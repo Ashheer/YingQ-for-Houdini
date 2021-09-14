@@ -1,0 +1,51 @@
+{
+    "path":"$LibPath/YingQ",
+    "env": [
+       {
+          "YingQLib": "$LibPath/YingQ",
+       },
+       {
+         "HOUDINI_SCRIPT_PATH": {
+             "method": "prepend",
+             "value": [
+                 "$YingQLib/scripts",
+             ]
+         }
+       },
+       {
+          "HOUDINI_TEMP_DIR" : "$YingQLib/houdini_temp"
+       },
+       {
+          "HOUDINI_OTLSCAN_PATH": {
+             "method": "append",
+             "value": [
+                "$YingQLib/otls"
+             ]
+          }
+       },
+       {
+          "HOUDINI_TOOLBAR_PATH": {
+             "method": "append",
+             "value": [
+                "$YingQLib/toolbar"
+             ]
+          }
+       },
+       {
+          "HOUDINI_DESK_PATH": {
+             "method": "append",
+             "value": [
+                "$YingQLib/desktop"
+             ]
+          }
+       },
+       {
+          "HOUDINI_PYTHON_PANEL_PATH": {
+             "method": "append",
+             "value": [
+                "$YingQLib/python_panels"
+             ]
+          }
+       },
+    ]
+ }

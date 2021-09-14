@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="My_shelf" label="My shelf"/>
+
+  <shelfSetEdit name="shelf_set_1" fileLocation="C:/PROGRA~1/SIDEEF~1/Houdini 18.5.633/houdini/toolbar/ShelfDefinitions.shelf">
+    <removeMemberToolshelf name="rigging" fromPosition="6"/>
+    <removeMemberToolshelf name="muscles" fromPosition="6"/>
+    <removeMemberToolshelf name="characters" fromPosition="6"/>
+    <removeMemberToolshelf name="constraints" fromPosition="6"/>
+    <addMemberToolshelf name="mytool" inPosition="13"/>
+  </shelfSetEdit>
+</shelfDocument>

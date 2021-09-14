@@ -1,0 +1,18 @@
+2021-09-06 10:08:40: Recomputing disk cache
+2021-09-06 10:08:40: >> Bucket[0]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[1]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[2]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[3]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[4]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[5]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[6]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[7]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[8]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[9]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[10]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[11]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[12]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[13]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[14]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Bucket[15]: nfiles=0, size=0.00 KB
+2021-09-06 10:08:40: >> Total: nfiles=0,  size=0.00 KB
