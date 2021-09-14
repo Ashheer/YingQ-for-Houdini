@@ -1,8 +1,8 @@
 {
-    "path":"$LibPath/YingQ",
+    "path":"$LibPath/YingQ-for-Houdini",
     "env": [
        {
-          "YingQLib": "$LibPath/YingQ",
+          "YingQLib": "$LibPath/YingQ-for-Houdini",
        },
        {
          "HOUDINI_SCRIPT_PATH": {
