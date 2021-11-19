@@ -1,0 +1,81 @@
+;_name	/obj/geo1/random_walk/attribvop1
+; ModuleID = 'obj_geo1_random_walk_attribvop1'
+
+@0 = private constant [5 x i8] c"size\00"
+@1 = private constant [6 x i8] c"speed\00"
+@P = external global <3 x double>
+@Frame = external global double
+@2 = private constant [2 x i8] c"P\00"
+@3 = private constant [6 x i8] c"Frame\00"
+
+define private void @"_obj_geo1_random_walk_attribvop1_snippet1@VF"(<3 x double>* %_bound_P, double* %_bound_Frame) nounwind alwaysinline {
+__llvm_entry:
+  %return = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([5 x i8]* @0, i64 0, i64 0))
+  %_bound_P1 = load <3 x double>* %_bound_P
+  %_bound_Frame2 = load double* %_bound_Frame
+  %return3 = call double @"chf@FS"(i8* getelementptr inbounds ([6 x i8]* @1, i64 0, i64 0))
+  %output = fmul double %_bound_Frame2, %return3
+  %cast = call <3 x double> @"set@VF"(double %output)
+  %output4 = call <3 x double> @"add@VV"(<3 x double> %_bound_P1, <3 x double> %cast)
+  %return5 = call <3 x double> @"noise@VV"(<3 x double> %output4)
+  %return7 = call <3 x double> @"set@VFFF"(double 5.000000e-01, double 5.000000e-01, double 5.000000e-01)
+  %output8 = call <3 x double> @"sub@VV"(<3 x double> %return5, <3 x double> %return7)
+  %cast11 = call <3 x double> @"set@VI"(i64 2)
+  %output12 = call <3 x double> @"mul@VV"(<3 x double> %return, <3 x double> %cast11)
+  %output13 = call <3 x double> @"mul@VV"(<3 x double> %output8, <3 x double> %output12)
+  store <3 x double> %output13, <3 x double>* %_bound_P
+  ret void
+}
+
+declare <3 x double> @"chv@VS"(i8*) nounwind readnone
+
+declare double @"chf@FS"(i8*) nounwind readnone
+
+declare <3 x double> @"set@VF"(double) nounwind readnone
+
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare <3 x double> @"noise@VV"(<3 x double>) nounwind readnone
+
+declare <3 x double> @"set@VFFF"(double, double, double) nounwind readnone
+
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare <3 x double> @"set@VI"(i64) nounwind readnone
+
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+define void @obj_geo1_random_walk_attribvop1(<3 x double> %P, double %Frame) nounwind {
+__llvm_entry:
+  %0 = alloca double
+  %"<P>" = alloca <3 x double>
+  store <3 x double> %P, <3 x double>* %"<P>"
+  store double %Frame, double* %0
+  call void @"_obj_geo1_random_walk_attribvop1_snippet1@VF"(<3 x double>* %"<P>", double* %0)
+  %evalue = load <3 x double>* %"<P>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @2, i64 0, i64 0), <3 x double> %evalue) nounwind readonly
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8]* @3, i64 0, i64 0), double %Frame) nounwind readonly
+  store <3 x double> %gvalue, <3 x double>* @P
+  store double %gvalue3, double* @Frame
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_random_walk_attribvop1(<3 x double> zeroinitializer, double 0.000000e+00)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

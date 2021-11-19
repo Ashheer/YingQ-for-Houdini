@@ -1,0 +1,50 @@
+;_name	/obj/geo1/scifi_panels1/BEVEL_SOME_CORNERS/groupexpression1/attribvop1
+; ModuleID = 'obj_geo1_scifi_panels1_BEVEL_SOME_CORNERS_groupexpression1_attribvop1'
+
+@group_group1 = external global i64
+@0 = private constant [13 x i8] c"group_group1\00"
+
+define private void @"_obj_geo1_scifi_panels1_BEVEL_SOME_CORNERS_groupexpression1_attribvop1_snippet1@II"(i64* %_bound_group_group1, i64* %_bound_elemnum) nounwind alwaysinline {
+__llvm_entry:
+  %_bound_elemnum1 = load i64* %_bound_elemnum
+  %output = add i64 %_bound_elemnum1, 5
+  %cast = sitofp i64 %output to double
+  %return = call double @"rand@FF"(double %cast)
+  %return2 = fcmp olt double %return, 8.000000e-01
+  %return3 = zext i1 %return2 to i64
+  store i64 %return3, i64* %_bound_group_group1
+  ret void
+}
+
+declare double @"rand@FF"(double) nounwind
+
+define void @obj_geo1_scifi_panels1_BEVEL_SOME_CORNERS_groupexpression1_attribvop1(i64 %group_group1, i64 %elemnum) nounwind {
+__llvm_entry:
+  %0 = alloca i64
+  %"<group_group1>" = alloca i64
+  store i64 %group_group1, i64* %"<group_group1>"
+  store i64 %elemnum, i64* %0
+  call void @"_obj_geo1_scifi_panels1_BEVEL_SOME_CORNERS_groupexpression1_attribvop1_snippet1@II"(i64* %"<group_group1>", i64* %0)
+  %evalue = load i64* %"<group_group1>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([13 x i8]* @0, i64 0, i64 0), i64 %evalue) nounwind readonly
+  store i64 %gvalue, i64* @group_group1
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_scifi_panels1_BEVEL_SOME_CORNERS_groupexpression1_attribvop1(i64 0, i64 0)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

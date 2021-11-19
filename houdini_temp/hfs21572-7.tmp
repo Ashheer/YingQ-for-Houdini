@@ -1,0 +1,5 @@
+custom_toolbox.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(center,center) HSTRETCH
+
+}

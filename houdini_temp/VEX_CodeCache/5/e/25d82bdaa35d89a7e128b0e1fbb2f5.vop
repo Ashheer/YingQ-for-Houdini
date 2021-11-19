@@ -1,0 +1,217 @@
+;_name	/obj/geo1/MOPs_Move_Along_Spline/MOPs_Parallel_Transport/Parallel_transport/attribvop1
+; ModuleID = 'obj_geo1_MOPs_Move_Along_Spline_MOPs_Parallel_Transport_Parallel_transport_attribvop1'
+
+@0 = private constant [24 x i8] c"Transported_Normal_Name\00"
+@1 = private constant [25 x i8] c"Transported_Tangent_Name\00"
+@2 = private constant [27 x i8] c"Transported_Bitangent_Name\00"
+@3 = private constant [2 x i8] c"P\00"
+@4 = private constant [2 x i8] c"N\00"
+@5 = private constant [21 x i8] c"custom_first_tangent\00"
+@6 = private constant [14 x i8] c"First_Tangent\00"
+@7 = private constant [0 x <3 x double>] zeroinitializer
+@8 = private constant [4 x i8] c"set\00"
+@primnum = external global i64
+@9 = private constant [8 x i8] c"primnum\00"
+
+define private void @"_obj_geo1_MOPs_Move_Along_Spline_MOPs_Parallel_Transport_Parallel_transport_attribvop1_snippet1@I"(i64* %_bound_primnum) nounwind alwaysinline {
+__llvm_entry:
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([24 x i8]* @0, i64 0, i64 0))
+  %return1 = call i8* @"chs@SS"(i8* getelementptr inbounds ([25 x i8]* @1, i64 0, i64 0))
+  %return2 = call i8* @"chs@SS"(i8* getelementptr inbounds ([27 x i8]* @2, i64 0, i64 0))
+  %_bound_primnum3 = load i64* %_bound_primnum
+  %return4 = call i64* @"primpoints@[III"(i64 0, i64 %_bound_primnum3)
+  %return6 = call i64 @"len@I[I"(i64* %return4)
+  %return7 = call i64 @"geoself@I"()
+  %return9 = call i64 @"getcomp@I[II"(i64* %return4, i64 1)
+  %return10 = call <3 x double> @"point@VISI"(i64 %return7, i8* getelementptr inbounds ([2 x i8]* @3, i64 0, i64 0), i64 %return9)
+  %return11 = call i64 @"geoself@I"()
+  %return13 = call i64 @"getcomp@I[II"(i64* %return4, i64 0)
+  %return14 = call <3 x double> @"point@VISI"(i64 %return11, i8* getelementptr inbounds ([2 x i8]* @3, i64 0, i64 0), i64 %return13)
+  %output = call <3 x double> @"sub@VV"(<3 x double> %return10, <3 x double> %return14)
+  %return15 = call <3 x double> @"normalize@VV"(<3 x double> %output)
+  %return18 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8]* @4, i64 0, i64 0), i64 %return13)
+  %return19 = call double @"ch@FS"(i8* getelementptr inbounds ([21 x i8]* @5, i64 0, i64 0))
+  %return20 = fcmp ogt double %return19, 0.000000e+00
+  br i1 %return20, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return22 = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([14 x i8]* @6, i64 0, i64 0))
+  %return23 = call <3 x double> @"normalize@VV"(<3 x double> %return22)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %firsttangent.0 = phi <3 x double> [ %return23, %true ], [ %return15, %__llvm_entry ]
+  %return26 = call <3 x double> @"cross@VVV"(<3 x double> %return18, <3 x double> %firsttangent.0)
+  %return27 = call <3 x double> @"normalize@VV"(<3 x double> %return26)
+  %return30 = call <3 x double> @"cross@VVV"(<3 x double> %firsttangent.0, <3 x double> %return27)
+  %return31 = call <3 x double> @"normalize@VV"(<3 x double> %return30)
+  br label %cond
+
+cond:                                             ; preds = %body, %end
+  %i.0 = phi i64 [ 0, %end ], [ %output41, %body ]
+  %normals.0 = phi <3 x double>* [ getelementptr inbounds ([0 x <3 x double>]* @7, i64 0, i64 0), %end ], [ %output54, %body ]
+  %tangents.0 = phi <3 x double>* [ getelementptr inbounds ([0 x <3 x double>]* @7, i64 0, i64 0), %end ], [ %output51, %body ]
+  %output34 = sub i64 %return6, 1
+  %return35 = call i64 @"lt@III"(i64 %i.0, i64 %output34)
+  %0 = icmp ne i64 %return35, 0
+  br i1 %0, label %body, label %end36
+
+body:                                             ; preds = %cond
+  %return38 = call i64 @"geoself@I"()
+  %output41 = add i64 %i.0, 1
+  %return42 = call i64 @"getcomp@I[II"(i64* %return4, i64 %output41)
+  %return43 = call <3 x double> @"point@VISI"(i64 %return38, i8* getelementptr inbounds ([2 x i8]* @3, i64 0, i64 0), i64 %return42)
+  %return44 = call i64 @"geoself@I"()
+  %return47 = call i64 @"getcomp@I[II"(i64* %return4, i64 %i.0)
+  %return48 = call <3 x double> @"point@VISI"(i64 %return44, i8* getelementptr inbounds ([2 x i8]* @3, i64 0, i64 0), i64 %return47)
+  %output49 = call <3 x double> @"sub@VV"(<3 x double> %return43, <3 x double> %return48)
+  %return50 = call <3 x double> @"normalize@VV"(<3 x double> %output49)
+  %output51 = call <3 x double>* @"push@[VV"(<3 x double>* %tangents.0, <3 x double> %return50)
+  %output54 = call <3 x double>* @"push@[VV"(<3 x double>* %normals.0, <3 x double> %return31)
+  br label %cond
+
+end36:                                            ; preds = %cond
+  %output61 = sub i64 %return6, 2
+  %return62 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %tangents.0, i64 %output61)
+  %output63 = call <3 x double>* @"push@[VV"(<3 x double>* %tangents.0, <3 x double> %return62)
+  %return68 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %normals.0, i64 %output61)
+  %output69 = call <3 x double>* @"push@[VV"(<3 x double>* %normals.0, <3 x double> %return68)
+  br label %cond71
+
+cond71:                                           ; preds = %end92, %end36
+  %i70.0 = phi i64 [ 0, %end36 ], [ %output84, %end92 ]
+  %normals.1 = phi <3 x double>* [ %output69, %end36 ], [ %normals.2, %end92 ]
+  %return76 = call i64 @"lt@III"(i64 %i70.0, i64 %output34)
+  %1 = icmp ne i64 %return76, 0
+  br i1 %1, label %body72, label %end77
+
+body72:                                           ; preds = %cond71
+  %return81 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %output63, i64 %i70.0)
+  %output84 = add i64 %i70.0, 1
+  %return85 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %output63, i64 %output84)
+  %return86 = call <3 x double> @"cross@VVV"(<3 x double> %return81, <3 x double> %return85)
+  %return88 = call double @"length@FV"(<3 x double> %return86)
+  %return89 = fcmp oeq double %return88, 0.000000e+00
+  br i1 %return89, label %true91, label %false
+
+end77:                                            ; preds = %cond71
+  br label %cond131
+
+true91:                                           ; preds = %body72
+  %return97 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %normals.1, i64 %i70.0)
+  %return98 = call { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>* %normals.1, <3 x double> %return97, i64 %output84)
+  %output100 = extractvalue { <3 x double>, <3 x double>* } %return98, 1
+  br label %end92
+
+false:                                            ; preds = %body72
+  %return102 = call <3 x double> @"normalize@VV"(<3 x double> %return86)
+  %return110 = call double @"dot@FVV"(<3 x double> %return81, <3 x double> %return85)
+  %return111 = call double @"acos@FF"(double %return110)
+  %return112 = call <16 x double> @"ident@4"()
+  %output116 = call <16 x double> @"rotate@4FV"(<16 x double> %return112, double %return111, <3 x double> %return102)
+  %return122 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %normals.1, i64 %i70.0)
+  %output123 = call <3 x double> @"mul@V4"(<3 x double> %return122, <16 x double> %output116)
+  %return125 = call { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>* %normals.1, <3 x double> %output123, i64 %output84)
+  %output127 = extractvalue { <3 x double>, <3 x double>* } %return125, 1
+  br label %end92
+
+end92:                                            ; preds = %false, %true91
+  %normals.2 = phi <3 x double>* [ %output100, %true91 ], [ %output127, %false ]
+  br label %cond71
+
+cond131:                                          ; preds = %body132, %end77
+  %j.0 = phi i64 [ 0, %end77 ], [ %output173, %body132 ]
+  %return135 = call i64 @"lt@III"(i64 %j.0, i64 %return6)
+  %2 = icmp ne i64 %return135, 0
+  br i1 %2, label %body132, label %end136
+
+body132:                                          ; preds = %cond131
+  %return138 = call i64 @"geoself@I"()
+  %return142 = call i64 @"getcomp@I[II"(i64* %return4, i64 %j.0)
+  %return145 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %output63, i64 %j.0)
+  %return146 = call i64 @"setpointattrib@IISIVS"(i64 %return138, i8* %return1, i64 %return142, <3 x double> %return145, i8* getelementptr inbounds ([4 x i8]* @8, i64 0, i64 0))
+  %return147 = call i64 @"geoself@I"()
+  %return154 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %normals.1, i64 %j.0)
+  %return155 = call i64 @"setpointattrib@IISIVS"(i64 %return147, i8* %return, i64 %return142, <3 x double> %return154, i8* getelementptr inbounds ([4 x i8]* @8, i64 0, i64 0))
+  %return162 = call <3 x double> @"cross@VVV"(<3 x double> %return145, <3 x double> %return154)
+  %return163 = call <3 x double> @"normalize@VV"(<3 x double> %return162)
+  %return164 = call i64 @"geoself@I"()
+  %return170 = call i64 @"setpointattrib@IISIVS"(i64 %return164, i8* %return2, i64 %return142, <3 x double> %return163, i8* getelementptr inbounds ([4 x i8]* @8, i64 0, i64 0))
+  %output173 = add i64 %j.0, 1
+  br label %cond131
+
+end136:                                           ; preds = %cond131
+  ret void
+}
+
+declare i8* @"chs@SS"(i8*) nounwind readnone
+
+declare i64* @"primpoints@[III"(i64, i64) nounwind
+
+declare i64 @"len@I[I"(i64*) nounwind readnone
+
+declare i64 @"geoself@I"() nounwind
+
+declare i64 @"getcomp@I[II"(i64*, i64) nounwind readnone
+
+declare <3 x double> @"point@VISI"(i64, i8*, i64) nounwind
+
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare <3 x double> @"normalize@VV"(<3 x double>) nounwind
+
+declare double @"ch@FS"(i8*) nounwind readnone
+
+declare <3 x double> @"chv@VS"(i8*) nounwind readnone
+
+declare <3 x double> @"cross@VVV"(<3 x double>, <3 x double>) nounwind
+
+declare i64 @"lt@III"(i64, i64) nounwind readnone
+
+declare <3 x double>* @"push@[VV"(<3 x double>*, <3 x double>) nounwind readnone
+
+declare <3 x double> @"getcomp@V[VI"(<3 x double>*, i64) nounwind readnone
+
+declare double @"length@FV"(<3 x double>) nounwind
+
+declare { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>*, <3 x double>, i64) nounwind readnone
+
+declare double @"dot@FVV"(<3 x double>, <3 x double>) nounwind
+
+declare double @"acos@FF"(double) nounwind readnone
+
+declare <16 x double> @"ident@4"() nounwind
+
+declare <16 x double> @"rotate@4FV"(<16 x double>, double, <3 x double>) nounwind readnone
+
+declare <3 x double> @"mul@V4"(<3 x double>, <16 x double>) nounwind
+
+declare i64 @"setpointattrib@IISIVS"(i64, i8*, i64, <3 x double>, i8*) nounwind
+
+define void @obj_geo1_MOPs_Move_Along_Spline_MOPs_Parallel_Transport_Parallel_transport_attribvop1(i64 %primnum) nounwind {
+__llvm_entry:
+  %0 = alloca i64
+  store i64 %primnum, i64* %0
+  call void @"_obj_geo1_MOPs_Move_Along_Spline_MOPs_Parallel_Transport_Parallel_transport_attribvop1_snippet1@I"(i64* %0)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8]* @9, i64 0, i64 0), i64 %primnum) nounwind readonly
+  store i64 %gvalue, i64* @primnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_MOPs_Move_Along_Spline_MOPs_Parallel_Transport_Parallel_transport_attribvop1(i64 0)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

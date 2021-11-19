@@ -1,0 +1,287 @@
+;_name	/obj/geo1/edgeexpand_fee1/polyexpand_fee1/flatedge_fee1/hedgewrangle1/attribvop1
+; ModuleID = 'obj_geo1_edgeexpand_fee1_polyexpand_fee1_flatedge_fee1_hedgewrangle1_attribvop1'
+
+@0 = private constant [23 x i8] c"../includeunsharededge\00"
+@1 = private constant [2 x i8] c"N\00"
+@2 = private constant [15 x i8] c"../absolutedot\00"
+@3 = private constant [13 x i8] c"../threshold\00"
+@4 = private constant [11 x i8] c"../reverse\00"
+@5 = private constant [17 x i8] c"../manifold_edge\00"
+@6 = private constant [0 x <3 x double>] zeroinitializer
+@7 = private constant [14 x i8] c"unsupport val\00"
+@elemnum = external global i64
+@outgrp = external global i64
+@primnum = external global i64
+@8 = private constant [8 x i8] c"elemnum\00"
+@9 = private constant [7 x i8] c"outgrp\00"
+@10 = private constant [8 x i8] c"primnum\00"
+
+define private void @"_obj_geo1_edgeexpand_fee1_polyexpand_fee1_flatedge_fee1_hedgewrangle1_attribvop1_snippet1@III"(i64* %_bound_elemnum, i64* %_bound_outgrp, i64* %_bound_primnum) nounwind alwaysinline {
+__llvm_entry:
+  %_bound_elemnum1 = load i64* %_bound_elemnum
+  %return = call i64 @"hedge_nextequiv@III"(i64 0, i64 %_bound_elemnum1)
+  %return2 = call i64 @"chi@IS"(i8* getelementptr inbounds ([23 x i8]* @0, i64 0, i64 0))
+  %0 = icmp ne i64 %return2, 0
+  %_bound_elemnum3 = load i64* %_bound_elemnum
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return5 = call i64 @"lt@III"(i64 %_bound_elemnum3, i64 %return)
+  %return7 = call i64 @"neg@II"(i64 1)
+  %return8 = call i64 @"eq@III"(i64 %return, i64 %return7)
+  %return9 = call i64 @"or@III"(i64 %return5, i64 %return8)
+  %1 = icmp ne i64 %return9, 0
+  br i1 %1, label %true10, label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return14 = call i64 @"le@III"(i64 %_bound_elemnum3, i64 %return)
+  %return16 = call i64 @"neg@II"(i64 1)
+  %return17 = call i64 @"eq@III"(i64 %return, i64 %return16)
+  %return18 = call i64 @"or@III"(i64 %return14, i64 %return17)
+  %2 = icmp ne i64 %return18, 0
+  br i1 %2, label %true19, label %end
+
+end:                                              ; preds = %false, %true
+  %_bound_elemnum21 = load i64* %_bound_elemnum
+  %return22 = call i64 @"hedge_equivcount@III"(i64 0, i64 %_bound_elemnum21)
+  %return24 = call i64 @"lt@III"(i64 %return22, i64 2)
+  %3 = icmp ne i64 %return24, 0
+  br i1 %3, label %true25, label %false26
+
+true10:                                           ; preds = %true
+  store i64 0, i64* %_bound_outgrp
+  br label %UnifiedReturnBlock
+
+true19:                                           ; preds = %false
+  store i64 0, i64* %_bound_outgrp
+  br label %UnifiedReturnBlock
+
+true25:                                           ; preds = %end
+  store i64 %return2, i64* %_bound_outgrp
+  br label %end27
+
+false26:                                          ; preds = %end
+  %return30 = call i64 @"eq@III"(i64 %return22, i64 2)
+  %4 = icmp ne i64 %return30, 0
+  br i1 %4, label %true31, label %false32
+
+end27:                                            ; preds = %true57, %end96, %end45, %true25
+  br label %UnifiedReturnBlock
+
+true31:                                           ; preds = %false26
+  %_bound_primnum34 = load i64* %_bound_primnum
+  %return35 = call <3 x double> @"prim@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8]* @1, i64 0, i64 0), i64 %_bound_primnum34)
+  %return37 = call i64 @"vertexprim@III"(i64 0, i64 %return)
+  %return38 = call <3 x double> @"prim@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8]* @1, i64 0, i64 0), i64 %return37)
+  %return41 = call double @"dot@FVV"(<3 x double> %return35, <3 x double> %return38)
+  %return42 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8]* @2, i64 0, i64 0))
+  %5 = icmp ne i64 %return42, 0
+  br i1 %5, label %true43, label %end45
+
+false32:                                          ; preds = %false26
+  %return55 = call i64 @"chi@IS"(i8* getelementptr inbounds ([17 x i8]* @5, i64 0, i64 0))
+  %return56 = call i64 @"lt@III"(i64 %return55, i64 2)
+  %6 = icmp ne i64 %return56, 0
+  br i1 %6, label %true57, label %false58
+
+true43:                                           ; preds = %true31
+  %return47 = call double @"abs@FF"(double %return41)
+  br label %end45
+
+end45:                                            ; preds = %true31, %true43
+  %phi = phi double [ %return47, %true43 ], [ %return41, %true31 ]
+  %return50 = call double @"chf@FS"(i8* getelementptr inbounds ([13 x i8]* @3, i64 0, i64 0))
+  %return51 = fcmp oge double %phi, %return50
+  %return52 = zext i1 %return51 to i64
+  %return53 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8]* @4, i64 0, i64 0))
+  %return54 = xor i64 %return52, %return53
+  store i64 %return54, i64* %_bound_outgrp
+  br label %end27
+
+true57:                                           ; preds = %false32
+  store i64 %return55, i64* %_bound_outgrp
+  br label %end27
+
+false58:                                          ; preds = %false32
+  %return62 = call i64 @"lt@III"(i64 %return55, i64 4)
+  %7 = icmp ne i64 %return62, 0
+  br i1 %7, label %true63, label %false64
+
+true63:                                           ; preds = %false58
+  %return67 = call i64 @"eq@III"(i64 %return55, i64 3)
+  %8 = icmp ne i64 %return67, 0
+  br i1 %8, label %true68, label %end70
+
+false64:                                          ; preds = %false58
+  call void @"error@S"(i8* getelementptr inbounds ([14 x i8]* @7, i64 0, i64 0))
+  br label %UnifiedReturnBlock
+
+true68:                                           ; preds = %true63
+  %return71 = call double @"neg@FF"(double 1.000000e+10)
+  br label %end70
+
+end70:                                            ; preds = %true63, %true68
+  %phi72 = phi double [ %return71, %true68 ], [ 1.000000e+10, %true63 ]
+  %output = call <3 x double>* @"resize@[VI"(<3 x double>* getelementptr inbounds ([0 x <3 x double>]* @6, i64 0, i64 0), i64 %return22)
+  %_bound_elemnum75 = load i64* %_bound_elemnum
+  br label %cond
+
+cond:                                             ; preds = %body, %end70
+  %i.0 = phi i64 [ 0, %end70 ], [ %output90, %body ]
+  %Ns.0 = phi <3 x double>* [ %output, %end70 ], [ %output86, %body ]
+  %hedge_nextequiv.0 = phi i64 [ %_bound_elemnum75, %end70 ], [ %return88, %body ]
+  %return78 = call i64 @"lt@III"(i64 %i.0, i64 %return22)
+  %9 = icmp ne i64 %return78, 0
+  br i1 %9, label %body, label %end79
+
+body:                                             ; preds = %cond
+  %return82 = call i64 @"vertexprim@III"(i64 0, i64 %hedge_nextequiv.0)
+  %return83 = call <3 x double> @"prim@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8]* @1, i64 0, i64 0), i64 %return82)
+  %return84 = call { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>* %Ns.0, <3 x double> %return83, i64 %i.0)
+  %output86 = extractvalue { <3 x double>, <3 x double>* } %return84, 1
+  %return88 = call i64 @"hedge_nextequiv@III"(i64 0, i64 %hedge_nextequiv.0)
+  %output90 = add i64 %i.0, 1
+  br label %cond
+
+end79:                                            ; preds = %cond
+  br label %cond91
+
+cond91:                                           ; preds = %end106, %end79
+  %j.0 = phi i64 [ 0, %end79 ], [ %output100, %end106 ]
+  %exdot.0 = phi double [ %phi72, %end79 ], [ %exdot.1, %end106 ]
+  %return95 = call i64 @"lt@III"(i64 %j.0, i64 %return22)
+  %10 = icmp ne i64 %return95, 0
+  br i1 %10, label %body92, label %end96
+
+body92:                                           ; preds = %cond91
+  %output100 = add i64 %j.0, 1
+  br label %cond101
+
+end96:                                            ; preds = %cond91
+  %return141 = call double @"chf@FS"(i8* getelementptr inbounds ([13 x i8]* @3, i64 0, i64 0))
+  %return142 = fcmp olt double %exdot.0, %return141
+  %return143 = zext i1 %return142 to i64
+  %return144 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8]* @4, i64 0, i64 0))
+  %return145 = xor i64 %return143, %return144
+  store i64 %return145, i64* %_bound_outgrp
+  br label %end27
+
+cond101:                                          ; preds = %end128, %body92
+  %i98.0 = phi i64 [ %output100, %body92 ], [ %output137, %end128 ]
+  %exdot.1 = phi double [ %exdot.0, %body92 ], [ %phi135, %end128 ]
+  %return105 = call i64 @"lt@III"(i64 %i98.0, i64 %return22)
+  %11 = icmp ne i64 %return105, 0
+  br i1 %11, label %body102, label %end106
+
+body102:                                          ; preds = %cond101
+  %return111 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %Ns.0, i64 %i98.0)
+  %return114 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %Ns.0, i64 %j.0)
+  %return115 = call double @"dot@FVV"(<3 x double> %return111, <3 x double> %return114)
+  %return116 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8]* @2, i64 0, i64 0))
+  %12 = icmp ne i64 %return116, 0
+  br i1 %12, label %true117, label %end119
+
+end106:                                           ; preds = %cond101
+  br label %cond91
+
+true117:                                          ; preds = %body102
+  %return121 = call double @"abs@FF"(double %return115)
+  br label %end119
+
+end119:                                           ; preds = %body102, %true117
+  %phi123 = phi double [ %return121, %true117 ], [ %return115, %body102 ]
+  br i1 %8, label %true126, label %false127
+
+true126:                                          ; preds = %end119
+  %return131 = call double @"max@FFF"(double %exdot.1, double %phi123)
+  br label %end128
+
+false127:                                         ; preds = %end119
+  %return134 = call double @"min@FFF"(double %exdot.1, double %phi123)
+  br label %end128
+
+end128:                                           ; preds = %false127, %true126
+  %phi135 = phi double [ %return131, %true126 ], [ %return134, %false127 ]
+  %output137 = add i64 %i98.0, 1
+  br label %cond101
+
+UnifiedReturnBlock:                               ; preds = %false64, %end27, %true19, %true10
+  ret void
+}
+
+declare i64 @"hedge_nextequiv@III"(i64, i64) nounwind
+
+declare i64 @"chi@IS"(i8*) nounwind readnone
+
+declare i64 @"lt@III"(i64, i64) nounwind readnone
+
+declare i64 @"neg@II"(i64) nounwind readnone
+
+declare i64 @"eq@III"(i64, i64) nounwind readnone
+
+declare i64 @"or@III"(i64, i64) nounwind readnone
+
+declare i64 @"le@III"(i64, i64) nounwind readnone
+
+declare i64 @"hedge_equivcount@III"(i64, i64) nounwind
+
+declare <3 x double> @"prim@VISI"(i64, i8*, i64) nounwind
+
+declare i64 @"vertexprim@III"(i64, i64) nounwind
+
+declare double @"dot@FVV"(<3 x double>, <3 x double>) nounwind
+
+declare double @"abs@FF"(double) nounwind
+
+declare double @"chf@FS"(i8*) nounwind readnone
+
+declare double @"neg@FF"(double) nounwind readnone
+
+declare <3 x double>* @"resize@[VI"(<3 x double>*, i64) nounwind readnone
+
+declare { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>*, <3 x double>, i64) nounwind readnone
+
+declare <3 x double> @"getcomp@V[VI"(<3 x double>*, i64) nounwind readnone
+
+declare double @"max@FFF"(double, double) nounwind readnone
+
+declare double @"min@FFF"(double, double) nounwind readnone
+
+declare void @"error@S"(i8*) nounwind
+
+define void @obj_geo1_edgeexpand_fee1_polyexpand_fee1_flatedge_fee1_hedgewrangle1_attribvop1(i64 %elemnum, i64 %outgrp, i64 %primnum) nounwind {
+__llvm_entry:
+  %"<outgrp>" = alloca i64
+  %0 = alloca i64
+  %1 = alloca i64
+  store i64 %outgrp, i64* %"<outgrp>"
+  store i64 %elemnum, i64* %0
+  store i64 %primnum, i64* %1
+  call void @"_obj_geo1_edgeexpand_fee1_polyexpand_fee1_flatedge_fee1_hedgewrangle1_attribvop1_snippet1@III"(i64* %0, i64* %"<outgrp>", i64* %1)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8]* @8, i64 0, i64 0), i64 %elemnum) nounwind readonly
+  %evalue3 = load i64* %"<outgrp>"
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8]* @9, i64 0, i64 0), i64 %evalue3) nounwind readonly
+  %gvalue6 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8]* @10, i64 0, i64 0), i64 %primnum) nounwind readonly
+  store i64 %gvalue, i64* @elemnum
+  store i64 %gvalue4, i64* @outgrp
+  store i64 %gvalue6, i64* @primnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_edgeexpand_fee1_polyexpand_fee1_flatedge_fee1_hedgewrangle1_attribvop1(i64 0, i64 0, i64 0)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

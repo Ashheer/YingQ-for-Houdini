@@ -1,0 +1,158 @@
+;_name	/obj/geo1/MOPs_Move_Along_Spline/pointwrangle13/attribvop1
+; ModuleID = 'obj_geo1_MOPs_Move_Along_Spline_pointwrangle13_attribvop1'
+
+@0 = private constant [7 x i8] c"orient\00"
+@1 = private constant [4 x i8] c"amp\00"
+@2 = private constant [14 x i8] c"__mops_center\00"
+@3 = private constant [7 x i8] c"curveu\00"
+@4 = private constant [2 x i8] c"P\00"
+@5 = private constant [11 x i8] c"__mops_rot\00"
+@6 = private constant [13 x i8] c"mops_falloff\00"
+@7 = private constant [9 x i8] c"polyline\00"
+@8 = private constant [14 x i8] c"__mops_trails\00"
+@9 = private constant [16 x i8] c"trail_step_size\00"
+@mops_falloff = external global double
+@P = external global <3 x double>
+@orient = external global <4 x double>
+
+define private void @"_obj_geo1_MOPs_Move_Along_Spline_pointwrangle13_attribvop1_snippet1@FVP"(double* %_bound_mops_falloff, <3 x double>* %_bound_P, <4 x double>* %_bound_orient) nounwind alwaysinline {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([7 x i8]* @0, i64 0, i64 0))
+  %return1 = call double @"chf@FS"(i8* getelementptr inbounds ([4 x i8]* @1, i64 0, i64 0))
+  %_bound_mops_falloff3 = load double* %_bound_mops_falloff
+  %output = fmul double %return1, %_bound_mops_falloff3
+  %return5 = call <3 x double> @"detail@VIS"(i64 0, i8* getelementptr inbounds ([14 x i8]* @2, i64 0, i64 0))
+  %_bound_P6 = load <3 x double>* %_bound_P
+  %output8 = call <3 x double> @"sub@VV"(<3 x double> %_bound_P6, <3 x double> %return5)
+  %return11 = call i64 @"nearpoint@IIV"(i64 1, <3 x double> %return5)
+  %return13 = call double @"point@FISI"(i64 1, i8* getelementptr inbounds ([7 x i8]* @3, i64 0, i64 0), i64 %return11)
+  %output16 = fadd double %return13, %output
+  %cast = call <3 x double> @"set@VF"(double %output16)
+  %return17 = call <3 x double> @"primuv@VISIV"(i64 1, i8* getelementptr inbounds ([2 x i8]* @4, i64 0, i64 0), i64 0, <3 x double> %cast)
+  %return22 = call <9 x double> @"primuv@3ISIV"(i64 1, i8* getelementptr inbounds ([11 x i8]* @5, i64 0, i64 0), i64 0, <3 x double> %cast)
+  %return25 = call <4 x double> @"quaternion@P3"(<9 x double> %return22)
+  %0 = icmp ne i64 %return, 0
+  %output30 = call <3 x double> @"add@VV"(<3 x double> %return17, <3 x double> %output8)
+  store <3 x double> %output30, <3 x double>* %_bound_P
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  store <4 x double> %return25, <4 x double>* %_bound_orient
+  br label %end
+
+end:                                              ; preds = %__llvm_entry, %true
+  %return39 = call <3 x double> @"primuv@VISIV"(i64 1, i8* getelementptr inbounds ([2 x i8]* @4, i64 0, i64 0), i64 0, <3 x double> %cast)
+  %output42 = call <3 x double> @"add@VV"(<3 x double> %return39, <3 x double> %output8)
+  %return44 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %output42)
+  %return47 = call i64 @"setpointattrib@IISIF"(i64 0, i8* getelementptr inbounds ([13 x i8]* @6, i64 0, i64 0), i64 %return44, double %_bound_mops_falloff3)
+  %return49 = call i64 @"addprim@IISI"(i64 0, i8* getelementptr inbounds ([9 x i8]* @7, i64 0, i64 0), i64 %return44)
+  %return51 = call i64 @"setprimgroup@IISII"(i64 0, i8* getelementptr inbounds ([14 x i8]* @8, i64 0, i64 0), i64 %return49, i64 1)
+  %return52 = call double @"chf@FS"(i8* getelementptr inbounds ([16 x i8]* @9, i64 0, i64 0))
+  %return54 = fcmp oeq double %return52, 0.000000e+00
+  br i1 %return54, label %true56, label %end57
+
+true56:                                           ; preds = %end
+  br label %end57
+
+end57:                                            ; preds = %true56, %end
+  %stepsize.0 = phi double [ 1.000000e-02, %true56 ], [ %return52, %end ]
+  br label %cond
+
+cond:                                             ; preds = %body, %end57
+  %i.0 = phi double [ %output16, %end57 ], [ %output82, %body ]
+  %return63 = fcmp ogt double %i.0, %return13
+  br i1 %return63, label %body, label %end65
+
+body:                                             ; preds = %cond
+  %cast67 = call <3 x double> @"set@VF"(double %i.0)
+  %return68 = call <3 x double> @"primuv@VISIV"(i64 1, i8* getelementptr inbounds ([2 x i8]* @4, i64 0, i64 0), i64 0, <3 x double> %cast67)
+  %output71 = call <3 x double> @"add@VV"(<3 x double> %return68, <3 x double> %output8)
+  %return73 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %output71)
+  %return76 = call i64 @"setpointattrib@IISIF"(i64 0, i8* getelementptr inbounds ([13 x i8]* @6, i64 0, i64 0), i64 %return73, double %_bound_mops_falloff3)
+  %return79 = call i64 @"addvertex@IIII"(i64 0, i64 %return49, i64 %return73)
+  %output82 = fsub double %i.0, %stepsize.0
+  br label %cond
+
+end65:                                            ; preds = %cond
+  %cast84 = call <3 x double> @"set@VF"(double %return13)
+  %return85 = call <3 x double> @"primuv@VISIV"(i64 1, i8* getelementptr inbounds ([2 x i8]* @4, i64 0, i64 0), i64 0, <3 x double> %cast84)
+  %output88 = call <3 x double> @"add@VV"(<3 x double> %return85, <3 x double> %output8)
+  %return90 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %output88)
+  %return93 = call i64 @"setpointattrib@IISIF"(i64 0, i8* getelementptr inbounds ([13 x i8]* @6, i64 0, i64 0), i64 %return90, double %_bound_mops_falloff3)
+  %return96 = call i64 @"addvertex@IIII"(i64 0, i64 %return49, i64 %return90)
+  ret void
+}
+
+declare i64 @"chi@IS"(i8*) nounwind readnone
+
+declare double @"chf@FS"(i8*) nounwind readnone
+
+declare <3 x double> @"detail@VIS"(i64, i8*) nounwind
+
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare i64 @"nearpoint@IIV"(i64, <3 x double>) nounwind
+
+declare double @"point@FISI"(i64, i8*, i64) nounwind
+
+declare <3 x double> @"set@VF"(double) nounwind readnone
+
+declare <3 x double> @"primuv@VISIV"(i64, i8*, i64, <3 x double>) nounwind
+
+declare <9 x double> @"primuv@3ISIV"(i64, i8*, i64, <3 x double>) nounwind
+
+declare <4 x double> @"quaternion@P3"(<9 x double>) nounwind readnone
+
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare i64 @"addpoint@IIV"(i64, <3 x double>) nounwind
+
+declare i64 @"setpointattrib@IISIF"(i64, i8*, i64, double) nounwind
+
+declare i64 @"addprim@IISI"(i64, i8*, i64) nounwind
+
+declare i64 @"setprimgroup@IISII"(i64, i8*, i64, i64) nounwind
+
+declare i64 @"addvertex@IIII"(i64, i64, i64) nounwind
+
+define void @obj_geo1_MOPs_Move_Along_Spline_pointwrangle13_attribvop1(double %mops_falloff, <3 x double> %P, <4 x double> %orient) nounwind {
+__llvm_entry:
+  %"<P>" = alloca <3 x double>
+  %"<orient>" = alloca <4 x double>
+  %0 = alloca double
+  store <3 x double> %P, <3 x double>* %"<P>"
+  store <4 x double> %orient, <4 x double>* %"<orient>"
+  store double %mops_falloff, double* %0
+  call void @"_obj_geo1_MOPs_Move_Along_Spline_pointwrangle13_attribvop1_snippet1@FVP"(double* %0, <3 x double>* %"<P>", <4 x double>* %"<orient>")
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([13 x i8]* @6, i64 0, i64 0), double %mops_falloff) nounwind readonly
+  %evalue2 = load <3 x double>* %"<P>"
+  %gvalue3 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @4, i64 0, i64 0), <3 x double> %evalue2) nounwind readonly
+  %evalue4 = load <4 x double>* %"<orient>"
+  %gvalue5 = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([7 x i8]* @0, i64 0, i64 0), <4 x double> %evalue4) nounwind readonly
+  store double %gvalue, double* @mops_falloff
+  store <3 x double> %gvalue3, <3 x double>* @P
+  store <4 x double> %gvalue5, <4 x double>* @orient
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_MOPs_Move_Along_Spline_pointwrangle13_attribvop1(double 0.000000e+00, <3 x double> zeroinitializer, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

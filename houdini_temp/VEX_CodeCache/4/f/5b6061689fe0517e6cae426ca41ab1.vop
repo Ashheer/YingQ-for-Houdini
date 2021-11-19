@@ -1,0 +1,235 @@
+;_name	/obj/box1/testgeometry_crag1/transformpieces2/make_rest_xform_inverse/attribvop1
+; ModuleID = 'obj_box1_testgeometry_crag1_transformpieces2_make_rest_xform_inverse_attribvop1'
+
+@0 = private constant [7 x i8] c"orient\00"
+@1 = private constant [6 x i8] c"pivot\00"
+@2 = private constant [2 x i8] c"N\00"
+@3 = private constant [20 x i8] c"packedfulltransform\00"
+@4 = private constant [8 x i8] c"userest\00"
+@5 = private constant [8 x i8] c"__xform\00"
+@6 = private constant [12 x i8] c"invertxform\00"
+@__xform = external global <16 x double>
+@__templateptnum = external global i64
+@__worldpivot = external global <3 x double>
+@7 = private constant [16 x i8] c"__templateptnum\00"
+@8 = private constant [13 x i8] c"__worldpivot\00"
+
+define private void @"_obj_box1_testgeometry_crag1_transformpieces2_make_rest_xform_inverse_attribvop1_snippet1@VPPF4IIVVVVVVVI"(<3 x double>* %_bound_scale, <4 x double>* %_bound_orient, <4 x double>* %_bound_rot, double* %_bound_pscale, <16 x double>* %_bound___xform, i64* %_bound___templateptnum, i64* %_bound_primnum, <3 x double>* %_bound___worldpivot, <3 x double>* %_bound_P, <3 x double>* %_bound_trans, <3 x double>* %_bound_pivot, <3 x double>* %_bound_N, <3 x double>* %_bound_v, <3 x double>* %_bound_up, i64* %_bound_ptnum) nounwind alwaysinline {
+__llvm_entry:
+  %return2 = call i64 @"isbound@IS"(i8* getelementptr inbounds ([7 x i8]* @0, i64 0, i64 0))
+  %return3 = call i64 @"isbound@IS"(i8* getelementptr inbounds ([6 x i8]* @1, i64 0, i64 0))
+  %return4 = call i64 @"haspointattrib@IIS"(i64 0, i8* getelementptr inbounds ([2 x i8]* @2, i64 0, i64 0))
+  %_bound_primnum5 = load i64* %_bound_primnum
+  %return6 = call i64 @"ge@III"(i64 %_bound_primnum5, i64 0)
+  %return8 = call i64 @"primvertexcount@III"(i64 0, i64 %_bound_primnum5)
+  %return9 = call i64 @"eq@III"(i64 %return8, i64 1)
+  %return10 = call i64 @"and@III"(i64 %return6, i64 %return9)
+  %0 = icmp ne i64 %return10, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_primnum11 = load i64* %_bound_primnum
+  %return12 = call <16 x double> @"primintrinsic@4ISI"(i64 0, i8* getelementptr inbounds ([20 x i8]* @3, i64 0, i64 0), i64 %_bound_primnum11)
+  store <16 x double> %return12, <16 x double>* %_bound___xform
+  %_bound_primnum13 = load i64* %_bound_primnum
+  %return14 = call <3 x double> @"primintrinsic@VISI"(i64 0, i8* getelementptr inbounds ([6 x i8]* @1, i64 0, i64 0), i64 %_bound_primnum13)
+  store <3 x double> %return14, <3 x double>* %_bound___worldpivot
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %1 = icmp ne i64 %return2, 0
+  %_bound_P19 = load <3 x double>* %_bound_P
+  %_bound_trans20 = load <3 x double>* %_bound_trans
+  %output = call <3 x double> @"add@VV"(<3 x double> %_bound_P19, <3 x double> %_bound_trans20)
+  br i1 %1, label %true16, label %false17
+
+end:                                              ; preds = %end18, %true46, %true
+  %has_pivot.0 = phi i64 [ 1, %true ], [ %return3, %true46 ], [ %return3, %end18 ]
+  %return49 = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8]* @4, i64 0, i64 0))
+  %2 = icmp ne i64 %return49, 0
+  br i1 %2, label %true50, label %end51
+
+true16:                                           ; preds = %false
+  %_bound_pscale21 = load double* %_bound_pscale
+  %_bound_scale22 = load <3 x double>* %_bound_scale
+  %cast = call <3 x double> @"set@VF"(double %_bound_pscale21)
+  %output23 = call <3 x double> @"mul@VV"(<3 x double> %cast, <3 x double> %_bound_scale22)
+  %_bound_rot24 = load <4 x double>* %_bound_rot
+  %_bound_orient25 = load <4 x double>* %_bound_orient
+  %_bound_pivot26 = load <3 x double>* %_bound_pivot
+  %return27 = call <16 x double> @"instance@4VVVPPV"(<3 x double> %output, <3 x double> zeroinitializer, <3 x double> %output23, <4 x double> %_bound_rot24, <4 x double> %_bound_orient25, <3 x double> %_bound_pivot26)
+  store <16 x double> %return27, <16 x double>* %_bound___xform
+  br label %end18
+
+false17:                                          ; preds = %false
+  %3 = icmp ne i64 %return4, 0
+  br i1 %3, label %true32, label %false33
+
+end18:                                            ; preds = %end34, %true16
+  %4 = icmp ne i64 %return3, 0
+  br i1 %4, label %true46, label %end
+
+true32:                                           ; preds = %false17
+  %_bound_N35 = load <3 x double>* %_bound_N
+  br label %end34
+
+false33:                                          ; preds = %false17
+  %_bound_v36 = load <3 x double>* %_bound_v
+  br label %end34
+
+end34:                                            ; preds = %false33, %true32
+  %phi = phi <3 x double> [ %_bound_N35, %true32 ], [ %_bound_v36, %false33 ]
+  %_bound_pscale37 = load double* %_bound_pscale
+  %_bound_scale38 = load <3 x double>* %_bound_scale
+  %cast39 = call <3 x double> @"set@VF"(double %_bound_pscale37)
+  %output40 = call <3 x double> @"mul@VV"(<3 x double> %cast39, <3 x double> %_bound_scale38)
+  %_bound_rot41 = load <4 x double>* %_bound_rot
+  %_bound_up42 = load <3 x double>* %_bound_up
+  %_bound_pivot43 = load <3 x double>* %_bound_pivot
+  %return44 = call <16 x double> @"instance@4VVVPVV"(<3 x double> %output, <3 x double> %phi, <3 x double> %output40, <4 x double> %_bound_rot41, <3 x double> %_bound_up42, <3 x double> %_bound_pivot43)
+  store <16 x double> %return44, <16 x double>* %_bound___xform
+  br label %end18
+
+true46:                                           ; preds = %end18
+  %_bound_pivot48 = load <3 x double>* %_bound_pivot
+  store <3 x double> %_bound_pivot48, <3 x double>* %_bound___worldpivot
+  br label %end
+
+true50:                                           ; preds = %end
+  %_bound_ptnum52 = load i64* %_bound_ptnum
+  %return53 = call <16 x double> @"point@4ISI"(i64 1, i8* getelementptr inbounds ([8 x i8]* @5, i64 0, i64 0), i64 %_bound_ptnum52)
+  %_bound___xform55 = load <16 x double>* %_bound___xform
+  %output56 = call <16 x double> @"mul@44"(<16 x double> %return53, <16 x double> %_bound___xform55)
+  store <16 x double> %output56, <16 x double>* %_bound___xform
+  br label %end51
+
+end51:                                            ; preds = %true50, %end
+  %return57 = call i64 @"chi@IS"(i8* getelementptr inbounds ([12 x i8]* @6, i64 0, i64 0))
+  %5 = icmp ne i64 %return57, 0
+  br i1 %5, label %true58, label %end59
+
+true58:                                           ; preds = %end51
+  %_bound___xform60 = load <16 x double>* %_bound___xform
+  %return61 = call <16 x double> @"invert@44"(<16 x double> %_bound___xform60)
+  store <16 x double> %return61, <16 x double>* %_bound___xform
+  br label %end59
+
+end59:                                            ; preds = %true58, %end51
+  %6 = icmp ne i64 %has_pivot.0, 0
+  br i1 %6, label %true63, label %end64
+
+true63:                                           ; preds = %end59
+  %_bound___worldpivot65 = load <3 x double>* %_bound___worldpivot
+  %_bound___xform66 = load <16 x double>* %_bound___xform
+  %output67 = call <3 x double> @"mul@V4"(<3 x double> %_bound___worldpivot65, <16 x double> %_bound___xform66)
+  store <3 x double> %output67, <3 x double>* %_bound___worldpivot
+  br label %end64
+
+end64:                                            ; preds = %true63, %end59
+  %_bound_ptnum68 = load i64* %_bound_ptnum
+  store i64 %_bound_ptnum68, i64* %_bound___templateptnum
+  ret void
+}
+
+declare i64 @"isbound@IS"(i8*) nounwind readnone
+
+declare i64 @"haspointattrib@IIS"(i64, i8*) nounwind
+
+declare i64 @"ge@III"(i64, i64) nounwind readnone
+
+declare i64 @"primvertexcount@III"(i64, i64) nounwind
+
+declare i64 @"eq@III"(i64, i64) nounwind readnone
+
+declare i64 @"and@III"(i64, i64) nounwind readnone
+
+declare <16 x double> @"primintrinsic@4ISI"(i64, i8*, i64) nounwind
+
+declare <3 x double> @"primintrinsic@VISI"(i64, i8*, i64) nounwind
+
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare <3 x double> @"set@VF"(double) nounwind readnone
+
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare <16 x double> @"instance@4VVVPPV"(<3 x double>, <3 x double>, <3 x double>, <4 x double>, <4 x double>, <3 x double>) nounwind readnone
+
+declare <16 x double> @"instance@4VVVPVV"(<3 x double>, <3 x double>, <3 x double>, <4 x double>, <3 x double>, <3 x double>) nounwind readnone
+
+declare i64 @"chi@IS"(i8*) nounwind readnone
+
+declare <16 x double> @"point@4ISI"(i64, i8*, i64) nounwind
+
+declare <16 x double> @"mul@44"(<16 x double>, <16 x double>) nounwind
+
+declare <16 x double> @"invert@44"(<16 x double>) nounwind readnone
+
+declare <3 x double> @"mul@V4"(<3 x double>, <16 x double>) nounwind
+
+define void @obj_box1_testgeometry_crag1_transformpieces2_make_rest_xform_inverse_attribvop1(<3 x double> %scale, <4 x double> %orient, <4 x double> %rot, double %pscale, <16 x double> %__xform, i64 %__templateptnum, i64 %primnum, <3 x double> %__worldpivot, <3 x double> %P, <3 x double> %trans, <3 x double> %pivot, <3 x double> %N, <3 x double> %v, <3 x double> %up, i64 %ptnum) nounwind {
+__llvm_entry:
+  %"<__xform>" = alloca <16 x double>
+  %"<__templateptnum>" = alloca i64
+  %"<__worldpivot>" = alloca <3 x double>
+  %0 = alloca <3 x double>
+  %1 = alloca <4 x double>
+  %2 = alloca <4 x double>
+  %3 = alloca double
+  %4 = alloca i64
+  %5 = alloca <3 x double>
+  %6 = alloca <3 x double>
+  %7 = alloca <3 x double>
+  %8 = alloca <3 x double>
+  %9 = alloca <3 x double>
+  %10 = alloca <3 x double>
+  %11 = alloca i64
+  store <16 x double> %__xform, <16 x double>* %"<__xform>"
+  store i64 %__templateptnum, i64* %"<__templateptnum>"
+  store <3 x double> %__worldpivot, <3 x double>* %"<__worldpivot>"
+  store <3 x double> %scale, <3 x double>* %0
+  store <4 x double> %orient, <4 x double>* %1
+  store <4 x double> %rot, <4 x double>* %2
+  store double %pscale, double* %3
+  store i64 %primnum, i64* %4
+  store <3 x double> %P, <3 x double>* %5
+  store <3 x double> %trans, <3 x double>* %6
+  store <3 x double> %pivot, <3 x double>* %7
+  store <3 x double> %N, <3 x double>* %8
+  store <3 x double> %v, <3 x double>* %9
+  store <3 x double> %up, <3 x double>* %10
+  store i64 %ptnum, i64* %11
+  call void @"_obj_box1_testgeometry_crag1_transformpieces2_make_rest_xform_inverse_attribvop1_snippet1@VPPF4IIVVVVVVVI"(<3 x double>* %0, <4 x double>* %1, <4 x double>* %2, double* %3, <16 x double>* %"<__xform>", i64* %"<__templateptnum>", i64* %4, <3 x double>* %"<__worldpivot>", <3 x double>* %5, <3 x double>* %6, <3 x double>* %7, <3 x double>* %8, <3 x double>* %9, <3 x double>* %10, i64* %11)
+  %evalue = load <16 x double>* %"<__xform>"
+  %gvalue = call <16 x double> @"_export@4S4"(i8* getelementptr inbounds ([8 x i8]* @5, i64 0, i64 0), <16 x double> %evalue) nounwind readonly
+  %evalue13 = load i64* %"<__templateptnum>"
+  %gvalue14 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([16 x i8]* @7, i64 0, i64 0), i64 %evalue13) nounwind readonly
+  %evalue15 = load <3 x double>* %"<__worldpivot>"
+  %gvalue16 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([13 x i8]* @8, i64 0, i64 0), <3 x double> %evalue15) nounwind readonly
+  store <16 x double> %gvalue, <16 x double>* @__xform
+  store i64 %gvalue14, i64* @__templateptnum
+  store <3 x double> %gvalue16, <3 x double>* @__worldpivot
+  ret void
+}
+
+declare <16 x double> @"_export@4S4"(i8*, <16 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_box1_testgeometry_crag1_transformpieces2_make_rest_xform_inverse_attribvop1(<3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, double 1.000000e+00, <16 x double> <double 1.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, i64 -1, i64 0, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

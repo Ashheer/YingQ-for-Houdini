@@ -1,0 +1,108 @@
+;_name	/obj/geo1/scifi_panels1/NOTCHES/sop_thicken3/attribblur4/init_point_primitives_and_neighbors1/attribvop1
+; ModuleID = 'obj_geo1_scifi_panels1_NOTCHES_sop_thicken3_attribblur4_init_point_primitives_and_neighbors1_attribvop1'
+
+@0 = private constant [17 x i8] c"../influencetype\00"
+@1 = private constant [11 x i8] c"../proxrad\00"
+@2 = private constant [12 x i8] c"../maxneigh\00"
+@3 = private constant [2 x i8] c"P\00"
+@4 = private constant [0 x i64] zeroinitializer
+@5 = private constant [0 x double] zeroinitializer
+@__blur_neighbors__ = external global i64*
+@P = external global <3 x double>
+@ptnum = external global i64
+@__blur_edge_weights__ = external global double*
+@6 = private constant [19 x i8] c"__blur_neighbors__\00"
+@7 = private constant [6 x i8] c"ptnum\00"
+@8 = private constant [22 x i8] c"__blur_edge_weights__\00"
+
+define private void @"_obj_geo1_scifi_panels1_NOTCHES_sop_thicken3_attribblur4_init_point_primitives_and_neighbors1_attribvop1_snippet1@[IVI[F"(i64** %_bound___blur_neighbors__, <3 x double>* %_bound_P, i64* %_bound_ptnum, double** %_bound___blur_edge_weights__) nounwind alwaysinline {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([17 x i8]* @0, i64 0, i64 0))
+  %return2 = call i64 @"eq@III"(i64 %return, i64 1)
+  %0 = icmp ne i64 %return2, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return3 = call double @"ch@FS"(i8* getelementptr inbounds ([11 x i8]* @1, i64 0, i64 0))
+  %return4 = call i64 @"chi@IS"(i8* getelementptr inbounds ([12 x i8]* @2, i64 0, i64 0))
+  %_bound_P5 = load <3 x double>* %_bound_P
+  %return8 = call i64* @"pcfind@[IISVFI"(i64 0, i8* getelementptr inbounds ([2 x i8]* @3, i64 0, i64 0), <3 x double> %_bound_P5, double %return3, i64 %return4)
+  store i64* %return8, i64** %_bound___blur_neighbors__
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %_bound_ptnum9 = load i64* %_bound_ptnum
+  %return10 = call i64* @"neighbours@[III"(i64 0, i64 %_bound_ptnum9)
+  store i64* %return10, i64** %_bound___blur_neighbors__
+  br label %end
+
+end:                                              ; preds = %false, %true
+  %_bound___blur_edge_weights__11 = load double** %_bound___blur_edge_weights__
+  %_bound___blur_neighbors__12 = load i64** %_bound___blur_neighbors__
+  %return13 = call i64 @"len@I[I"(i64* %_bound___blur_neighbors__12)
+  %output = call double* @"resize@[FI"(double* %_bound___blur_edge_weights__11, i64 %return13)
+  store double* %output, double** %_bound___blur_edge_weights__
+  ret void
+}
+
+declare i64 @"chi@IS"(i8*) nounwind readnone
+
+declare i64 @"eq@III"(i64, i64) nounwind readnone
+
+declare double @"ch@FS"(i8*) nounwind readnone
+
+declare i64* @"pcfind@[IISVFI"(i64, i8*, <3 x double>, double, i64) nounwind
+
+declare i64* @"neighbours@[III"(i64, i64) nounwind
+
+declare i64 @"len@I[I"(i64*) nounwind readnone
+
+declare double* @"resize@[FI"(double*, i64) nounwind readnone
+
+define void @obj_geo1_scifi_panels1_NOTCHES_sop_thicken3_attribblur4_init_point_primitives_and_neighbors1_attribvop1(i64* %__blur_neighbors__, <3 x double> %P, i64 %ptnum, double* %__blur_edge_weights__) nounwind {
+__llvm_entry:
+  %"<__blur_edge_weights__>" = alloca double*
+  %0 = alloca <3 x double>
+  %1 = alloca i64
+  %"<__blur_neighbors__>" = alloca i64*
+  store i64* %__blur_neighbors__, i64** %"<__blur_neighbors__>"
+  store double* %__blur_edge_weights__, double** %"<__blur_edge_weights__>"
+  store <3 x double> %P, <3 x double>* %0
+  store i64 %ptnum, i64* %1
+  call void @"_obj_geo1_scifi_panels1_NOTCHES_sop_thicken3_attribblur4_init_point_primitives_and_neighbors1_attribvop1_snippet1@[IVI[F"(i64** %"<__blur_neighbors__>", <3 x double>* %0, i64* %1, double** %"<__blur_edge_weights__>")
+  %evalue = load i64** %"<__blur_neighbors__>"
+  %gvalue = call i64* @"_export@[IS[I"(i8* getelementptr inbounds ([19 x i8]* @6, i64 0, i64 0), i64* %evalue) nounwind readonly
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @3, i64 0, i64 0), <3 x double> %P) nounwind readonly
+  %gvalue6 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8]* @7, i64 0, i64 0), i64 %ptnum) nounwind readonly
+  %evalue7 = load double** %"<__blur_edge_weights__>"
+  %gvalue8 = call double* @"_export@[FS[F"(i8* getelementptr inbounds ([22 x i8]* @8, i64 0, i64 0), double* %evalue7) nounwind readonly
+  store i64* %gvalue, i64** @__blur_neighbors__
+  store <3 x double> %gvalue4, <3 x double>* @P
+  store i64 %gvalue6, i64* @ptnum
+  store double* %gvalue8, double** @__blur_edge_weights__
+  ret void
+}
+
+declare i64* @"_export@[IS[I"(i8*, i64*)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double* @"_export@[FS[F"(i8*, double*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_scifi_panels1_NOTCHES_sop_thicken3_attribblur4_init_point_primitives_and_neighbors1_attribvop1(i64* getelementptr inbounds ([0 x i64]* @4, i64 0, i64 0), <3 x double> zeroinitializer, i64 0, double* getelementptr inbounds ([0 x double]* @5, i64 0, i64 0))
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

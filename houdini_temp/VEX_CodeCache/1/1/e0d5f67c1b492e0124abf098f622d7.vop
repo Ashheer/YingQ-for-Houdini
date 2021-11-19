@@ -1,0 +1,110 @@
+;_name	/obj/geo1/scifi_panels1/NOTCHES/sop_thicken3/attribblur4/compute_lambda_and_mu/attribvop1
+; ModuleID = 'obj_geo1_scifi_panels1_NOTCHES_sop_thicken3_attribblur4_compute_lambda_and_mu_attribvop1'
+
+@0 = private constant [12 x i8] c"../stepsize\00"
+@1 = private constant [8 x i8] c"../mode\00"
+@2 = private constant [13 x i8] c"../frequency\00"
+@3 = private constant [16 x i8] c"../evenstepsize\00"
+@4 = private constant [15 x i8] c"../oddstepsize\00"
+@__blur_u__ = external global double
+@__blur_l__ = external global double
+@5 = private constant [11 x i8] c"__blur_u__\00"
+@6 = private constant [11 x i8] c"__blur_l__\00"
+
+define private void @"_obj_geo1_scifi_panels1_NOTCHES_sop_thicken3_attribblur4_compute_lambda_and_mu_attribvop1_snippet1@FF"(double* %_bound___blur_u__, double* %_bound___blur_l__) nounwind alwaysinline {
+__llvm_entry:
+  %return = call double @"ch@FS"(i8* getelementptr inbounds ([12 x i8]* @0, i64 0, i64 0))
+  %return2 = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8]* @1, i64 0, i64 0))
+  %return4 = call i64 @"eq@III"(i64 %return2, i64 1)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return5 = call double @"ch@FS"(i8* getelementptr inbounds ([13 x i8]* @2, i64 0, i64 0))
+  %return7 = fcmp olt double %return5, 1.000000e-05
+  br i1 %return7, label %true9, label %false10
+
+false:                                            ; preds = %__llvm_entry
+  %return39 = call i64 @"eq@III"(i64 %return2, i64 2)
+  %1 = icmp ne i64 %return39, 0
+  br i1 %1, label %true40, label %end
+
+end:                                              ; preds = %false, %true40, %true9, %false10
+  %u.0 = phi double [ %return14, %true9 ], [ %output37, %false10 ], [ %return42, %true40 ], [ %return, %false ]
+  %l.0 = phi double [ 0x3FE43D136248490F, %true9 ], [ %output31, %false10 ], [ %return43, %true40 ], [ %return, %false ]
+  store double %u.0, double* %_bound___blur_u__
+  store double %l.0, double* %_bound___blur_l__
+  ret void
+
+true9:                                            ; preds = %true
+  %return14 = call double @"neg@FF"(double 0x3FE43D136248490F)
+  br label %end
+
+false10:                                          ; preds = %true
+  %output = fmul double 4.000000e+00, %return5
+  %output17 = fmul double %output, %return5
+  %output19 = fmul double 2.400000e+01, %return5
+  %output20 = fsub double %output17, %output19
+  %output21 = fadd double %output20, 4.000000e+01
+  %output23 = fmul double 2.000000e+00, %return5
+  %return25 = call double @"sqrt@FF"(double %output21)
+  %output26 = fsub double %output23, %return25
+  %output29 = fmul double 6.000000e+00, %return5
+  %output30 = fsub double %output29, 1.000000e+01
+  %output31 = call double @"div@FF"(double %output26, double %output30)
+  %output35 = fmul double %return5, %output31
+  %output36 = fsub double %output35, 1.000000e+00
+  %output37 = call double @"div@FF"(double %output31, double %output36)
+  br label %end
+
+true40:                                           ; preds = %false
+  %return42 = call double @"ch@FS"(i8* getelementptr inbounds ([16 x i8]* @3, i64 0, i64 0))
+  %return43 = call double @"ch@FS"(i8* getelementptr inbounds ([15 x i8]* @4, i64 0, i64 0))
+  br label %end
+}
+
+declare double @"ch@FS"(i8*) nounwind readnone
+
+declare i64 @"chi@IS"(i8*) nounwind readnone
+
+declare i64 @"eq@III"(i64, i64) nounwind readnone
+
+declare double @"neg@FF"(double) nounwind readnone
+
+declare double @"sqrt@FF"(double) nounwind readnone
+
+declare double @"div@FF"(double, double) nounwind readnone
+
+define void @obj_geo1_scifi_panels1_NOTCHES_sop_thicken3_attribblur4_compute_lambda_and_mu_attribvop1(double %__blur_u__, double %__blur_l__) nounwind {
+__llvm_entry:
+  %"<__blur_l__>" = alloca double
+  %"<__blur_u__>" = alloca double
+  store double %__blur_u__, double* %"<__blur_u__>"
+  store double %__blur_l__, double* %"<__blur_l__>"
+  call void @"_obj_geo1_scifi_panels1_NOTCHES_sop_thicken3_attribblur4_compute_lambda_and_mu_attribvop1_snippet1@FF"(double* %"<__blur_u__>", double* %"<__blur_l__>")
+  %evalue = load double* %"<__blur_u__>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8]* @5, i64 0, i64 0), double %evalue) nounwind readonly
+  %evalue1 = load double* %"<__blur_l__>"
+  %gvalue2 = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8]* @6, i64 0, i64 0), double %evalue1) nounwind readonly
+  store double %gvalue, double* @__blur_u__
+  store double %gvalue2, double* @__blur_l__
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_scifi_panels1_NOTCHES_sop_thicken3_attribblur4_compute_lambda_and_mu_attribvop1(double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

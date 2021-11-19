@@ -1,0 +1,66 @@
+;_name	/obj/geo1/MOPs_Move_Along_Spline/pointwrangle14/attribvop1
+; ModuleID = 'obj_geo1_MOPs_Move_Along_Spline_pointwrangle14_attribvop1'
+
+@mops_PT_normal = external global <3 x double>
+@mops_PT_tangent = external global <3 x double>
+@mops_PT_binormal = external global <3 x double>
+@__mops_rot = external global <9 x double>
+@0 = private constant [15 x i8] c"mops_PT_normal\00"
+@1 = private constant [16 x i8] c"mops_PT_tangent\00"
+@2 = private constant [17 x i8] c"mops_PT_binormal\00"
+@3 = private constant [11 x i8] c"__mops_rot\00"
+
+define private void @"_obj_geo1_MOPs_Move_Along_Spline_pointwrangle14_attribvop1_snippet1@VVV3"(<3 x double>* %_bound_mops_PT_normal, <3 x double>* %_bound_mops_PT_tangent, <3 x double>* %_bound_mops_PT_binormal, <9 x double>* %_bound___mops_rot) nounwind alwaysinline {
+__llvm_entry:
+  %_bound_mops_PT_normal1 = load <3 x double>* %_bound_mops_PT_normal
+  %_bound_mops_PT_tangent2 = load <3 x double>* %_bound_mops_PT_tangent
+  %_bound_mops_PT_binormal3 = load <3 x double>* %_bound_mops_PT_binormal
+  %return = call <9 x double> @"set@3VVV"(<3 x double> %_bound_mops_PT_normal1, <3 x double> %_bound_mops_PT_tangent2, <3 x double> %_bound_mops_PT_binormal3)
+  store <9 x double> %return, <9 x double>* %_bound___mops_rot
+  ret void
+}
+
+declare <9 x double> @"set@3VVV"(<3 x double>, <3 x double>, <3 x double>) nounwind
+
+define void @obj_geo1_MOPs_Move_Along_Spline_pointwrangle14_attribvop1(<3 x double> %mops_PT_normal, <3 x double> %mops_PT_tangent, <3 x double> %mops_PT_binormal, <9 x double> %__mops_rot) nounwind {
+__llvm_entry:
+  %"<__mops_rot>" = alloca <9 x double>
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca <3 x double>
+  store <9 x double> %__mops_rot, <9 x double>* %"<__mops_rot>"
+  store <3 x double> %mops_PT_normal, <3 x double>* %0
+  store <3 x double> %mops_PT_tangent, <3 x double>* %1
+  store <3 x double> %mops_PT_binormal, <3 x double>* %2
+  call void @"_obj_geo1_MOPs_Move_Along_Spline_pointwrangle14_attribvop1_snippet1@VVV3"(<3 x double>* %0, <3 x double>* %1, <3 x double>* %2, <9 x double>* %"<__mops_rot>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([15 x i8]* @0, i64 0, i64 0), <3 x double> %mops_PT_normal) nounwind readonly
+  %gvalue5 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([16 x i8]* @1, i64 0, i64 0), <3 x double> %mops_PT_tangent) nounwind readonly
+  %gvalue7 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([17 x i8]* @2, i64 0, i64 0), <3 x double> %mops_PT_binormal) nounwind readonly
+  %evalue8 = load <9 x double>* %"<__mops_rot>"
+  %gvalue9 = call <9 x double> @"_export@3S3"(i8* getelementptr inbounds ([11 x i8]* @3, i64 0, i64 0), <9 x double> %evalue8) nounwind readonly
+  store <3 x double> %gvalue, <3 x double>* @mops_PT_normal
+  store <3 x double> %gvalue5, <3 x double>* @mops_PT_tangent
+  store <3 x double> %gvalue7, <3 x double>* @mops_PT_binormal
+  store <9 x double> %gvalue9, <9 x double>* @__mops_rot
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare <9 x double> @"_export@3S3"(i8*, <9 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_MOPs_Move_Along_Spline_pointwrangle14_attribvop1(<3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <9 x double> zeroinitializer)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

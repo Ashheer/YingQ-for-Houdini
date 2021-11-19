@@ -1,0 +1,48 @@
+;_name	/obj/geo1/MOPs_Move_Along_Spline/pointwrangle1/attribvop1
+; ModuleID = 'obj_geo1_MOPs_Move_Along_Spline_pointwrangle1_attribvop1'
+
+@0 = private constant [3 x i8] c"id\00"
+@1 = private constant [64 x i8] c"Incoming packed primitives do not have an i@id point attribute!\00"
+
+define private void @_obj_geo1_MOPs_Move_Along_Spline_pointwrangle1_attribvop1_snippet1() nounwind alwaysinline {
+__llvm_entry:
+  %return = call i64 @"haspointattrib@IIS"(i64 0, i8* getelementptr inbounds ([3 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64 @"not@II"(i64 %return)
+  %0 = icmp ne i64 %return1, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  call void @"error@S"(i8* getelementptr inbounds ([64 x i8]* @1, i64 0, i64 0))
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+declare i64 @"haspointattrib@IIS"(i64, i8*) nounwind
+
+declare i64 @"not@II"(i64) nounwind readnone
+
+declare void @"error@S"(i8*) nounwind
+
+define void @obj_geo1_MOPs_Move_Along_Spline_pointwrangle1_attribvop1() nounwind {
+__llvm_entry:
+  call void @_obj_geo1_MOPs_Move_Along_Spline_pointwrangle1_attribvop1_snippet1()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_MOPs_Move_Along_Spline_pointwrangle1_attribvop1()
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

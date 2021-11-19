@@ -1,0 +1,58 @@
+;_name	/obj/geo1/MOPs_Move_Along_Spline/pointwrangle5/attribvop1
+; ModuleID = 'obj_geo1_MOPs_Move_Along_Spline_pointwrangle5_attribvop1'
+
+@0 = private constant [2 x i8] c"N\00"
+@N = external global <3 x double>
+@mops_N = external global <3 x double>
+@1 = private constant [7 x i8] c"mops_N\00"
+
+define private void @"_obj_geo1_MOPs_Move_Along_Spline_pointwrangle5_attribvop1_snippet1@VV"(<3 x double>* %_bound_N, <3 x double>* %_bound_mops_N) nounwind alwaysinline {
+__llvm_entry:
+  %return = call i64 @"haspointattrib@IIS"(i64 0, i8* getelementptr inbounds ([2 x i8]* @0, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %end, label %false
+
+false:                                            ; preds = %__llvm_entry
+  store <3 x double> <double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, <3 x double>* %_bound_N
+  br label %end
+
+end:                                              ; preds = %__llvm_entry, %false
+  store <3 x double> <double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, <3 x double>* %_bound_mops_N
+  ret void
+}
+
+declare i64 @"haspointattrib@IIS"(i64, i8*) nounwind
+
+define void @obj_geo1_MOPs_Move_Along_Spline_pointwrangle5_attribvop1(<3 x double> %N, <3 x double> %mops_N) nounwind {
+__llvm_entry:
+  %"<mops_N>" = alloca <3 x double>
+  %"<N>" = alloca <3 x double>
+  store <3 x double> %N, <3 x double>* %"<N>"
+  store <3 x double> %mops_N, <3 x double>* %"<mops_N>"
+  call void @"_obj_geo1_MOPs_Move_Along_Spline_pointwrangle5_attribvop1_snippet1@VV"(<3 x double>* %"<N>", <3 x double>* %"<mops_N>")
+  %evalue = load <3 x double>* %"<N>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @0, i64 0, i64 0), <3 x double> %evalue) nounwind readonly
+  %evalue1 = load <3 x double>* %"<mops_N>"
+  %gvalue2 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([7 x i8]* @1, i64 0, i64 0), <3 x double> %evalue1) nounwind readonly
+  store <3 x double> %gvalue, <3 x double>* @N
+  store <3 x double> %gvalue2, <3 x double>* @mops_N
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_MOPs_Move_Along_Spline_pointwrangle5_attribvop1(<3 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

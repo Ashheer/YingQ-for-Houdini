@@ -1,0 +1,77 @@
+;_name	/obj/geo1/MOPs_Move_Along_Spline/Do_transform/attribvop1
+; ModuleID = 'obj_geo1_MOPs_Move_Along_Spline_Do_transform_attribvop1'
+
+@0 = private constant [7 x i8] c"mops_N\00"
+@1 = private constant [10 x i8] c"transform\00"
+@mops_N = external global <3 x double>
+@ptnum = external global i64
+@orient = external global <4 x double>
+@2 = private constant [6 x i8] c"ptnum\00"
+@3 = private constant [7 x i8] c"orient\00"
+
+define private void @"_obj_geo1_MOPs_Move_Along_Spline_Do_transform_attribvop1_snippet1@VIP"(<3 x double>* %_bound_mops_N, i64* %_bound_ptnum, <4 x double>* %_bound_orient) nounwind alwaysinline {
+__llvm_entry:
+  %_bound_mops_N1 = load <3 x double>* %_bound_mops_N
+  %_bound_ptnum2 = load i64* %_bound_ptnum
+  %return3 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([7 x i8]* @0, i64 0, i64 0), i64 %_bound_ptnum2)
+  %return6 = call <3 x double> @"cross@VVV"(<3 x double> %return3, <3 x double> %_bound_mops_N1)
+  %return9 = call <9 x double> @"maketransform@3VV"(<3 x double> %_bound_mops_N1, <3 x double> %return6)
+  %return11 = call <4 x double> @"quaternion@P3"(<9 x double> %return9)
+  %_bound_ptnum12 = load i64* %_bound_ptnum
+  %return13 = call <9 x double> @"primintrinsic@3ISI"(i64 1, i8* getelementptr inbounds ([10 x i8]* @1, i64 0, i64 0), i64 %_bound_ptnum12)
+  store <4 x double> %return11, <4 x double>* %_bound_orient
+  ret void
+}
+
+declare double @"chf@FS"(i8*) nounwind readnone
+
+declare <3 x double> @"point@VISI"(i64, i8*, i64) nounwind
+
+declare <3 x double> @"cross@VVV"(<3 x double>, <3 x double>) nounwind
+
+declare <9 x double> @"maketransform@3VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare <4 x double> @"quaternion@P3"(<9 x double>) nounwind readnone
+
+declare <9 x double> @"primintrinsic@3ISI"(i64, i8*, i64) nounwind
+
+define void @obj_geo1_MOPs_Move_Along_Spline_Do_transform_attribvop1(<3 x double> %mops_N, i64 %ptnum, <4 x double> %orient) nounwind {
+__llvm_entry:
+  %"<orient>" = alloca <4 x double>
+  %0 = alloca <3 x double>
+  %1 = alloca i64
+  store <4 x double> %orient, <4 x double>* %"<orient>"
+  store <3 x double> %mops_N, <3 x double>* %0
+  store i64 %ptnum, i64* %1
+  call void @"_obj_geo1_MOPs_Move_Along_Spline_Do_transform_attribvop1_snippet1@VIP"(<3 x double>* %0, i64* %1, <4 x double>* %"<orient>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([7 x i8]* @0, i64 0, i64 0), <3 x double> %mops_N) nounwind readonly
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8]* @2, i64 0, i64 0), i64 %ptnum) nounwind readonly
+  %evalue5 = load <4 x double>* %"<orient>"
+  %gvalue6 = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([7 x i8]* @3, i64 0, i64 0), <4 x double> %evalue5) nounwind readonly
+  store <3 x double> %gvalue, <3 x double>* @mops_N
+  store i64 %gvalue4, i64* @ptnum
+  store <4 x double> %gvalue6, <4 x double>* @orient
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_MOPs_Move_Along_Spline_Do_transform_attribvop1(<3 x double> zeroinitializer, i64 0, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

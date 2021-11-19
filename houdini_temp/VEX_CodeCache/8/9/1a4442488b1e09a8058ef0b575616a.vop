@@ -1,0 +1,72 @@
+;_name	/obj/geo1/solver1/d/s/calc_error1/attribvop1
+; ModuleID = 'obj_geo1_solver1_d_s_calc_error1_attribvop1'
+
+@0 = private constant [3 x i8] c"Cd\00"
+@ptnum = external global i64
+@error = external global double
+@Cd = external global <3 x double>
+@1 = private constant [6 x i8] c"ptnum\00"
+@2 = private constant [6 x i8] c"error\00"
+
+define private void @"_obj_geo1_solver1_d_s_calc_error1_attribvop1_snippet1@IFV"(i64* %_bound_ptnum, double* %_bound_error, <3 x double>* %_bound_Cd) nounwind alwaysinline {
+__llvm_entry:
+  %_bound_ptnum1 = load i64* %_bound_ptnum
+  %return = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([3 x i8]* @0, i64 0, i64 0), i64 %_bound_ptnum1)
+  %_bound_Cd2 = load <3 x double>* %_bound_Cd
+  %return4 = call double @"distance2@FVV"(<3 x double> %_bound_Cd2, <3 x double> %return)
+  %output = call double @"div@FF"(double %return4, double 3.000000e+00)
+  store double %output, double* %_bound_error
+  %cast = call <3 x double> @"set@VF"(double %output)
+  store <3 x double> %cast, <3 x double>* %_bound_Cd
+  ret void
+}
+
+declare <3 x double> @"point@VISI"(i64, i8*, i64) nounwind
+
+declare double @"distance2@FVV"(<3 x double>, <3 x double>) nounwind
+
+declare double @"div@FF"(double, double) nounwind readnone
+
+declare <3 x double> @"set@VF"(double) nounwind readnone
+
+define void @obj_geo1_solver1_d_s_calc_error1_attribvop1(i64 %ptnum, double %error, <3 x double> %Cd) nounwind {
+__llvm_entry:
+  %"<error>" = alloca double
+  %"<Cd>" = alloca <3 x double>
+  %0 = alloca i64
+  store double %error, double* %"<error>"
+  store <3 x double> %Cd, <3 x double>* %"<Cd>"
+  store i64 %ptnum, i64* %0
+  call void @"_obj_geo1_solver1_d_s_calc_error1_attribvop1_snippet1@IFV"(i64* %0, double* %"<error>", <3 x double>* %"<Cd>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8]* @1, i64 0, i64 0), i64 %ptnum) nounwind readonly
+  %evalue2 = load double* %"<error>"
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8]* @2, i64 0, i64 0), double %evalue2) nounwind readonly
+  %evalue4 = load <3 x double>* %"<Cd>"
+  %gvalue5 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([3 x i8]* @0, i64 0, i64 0), <3 x double> %evalue4) nounwind readonly
+  store i64 %gvalue, i64* @ptnum
+  store double %gvalue3, double* @error
+  store <3 x double> %gvalue5, <3 x double>* @Cd
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_solver1_d_s_calc_error1_attribvop1(i64 0, double 0.000000e+00, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

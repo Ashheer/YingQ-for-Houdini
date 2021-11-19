@@ -1,0 +1,147 @@
+;_name	/obj/geo1/solver1/d/s/boundary/attribvop1
+; ModuleID = 'obj_geo1_solver1_d_s_boundary_attribvop1'
+
+@0 = private constant [5 x i8] c"size\00"
+@P = external global <3 x double>
+@1 = private constant [2 x i8] c"P\00"
+
+define private void @"_obj_geo1_solver1_d_s_boundary_attribvop1_snippet1@V"(<3 x double>* %_bound_P) nounwind alwaysinline {
+__llvm_entry:
+  %return = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([5 x i8]* @0, i64 0, i64 0))
+  %_bound_P1 = load <3 x double>* %_bound_P
+  %return2 = call double @"getcomp@FVI"(<3 x double> %_bound_P1, i64 0)
+  %return4 = call double @"getcomp@FVI"(<3 x double> %return, i64 0)
+  %output = fmul double %return4, 5.000000e-01
+  %return5 = fcmp ogt double %return2, %output
+  br i1 %return5, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return9 = call double @"neg@FF"(double %return4)
+  %output10 = fmul double %return9, 5.000000e-01
+  %return11 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %_bound_P1, double %output10, i64 0)
+  %output13 = extractvalue { double, <3 x double> } %return11, 1
+  store <3 x double> %output13, <3 x double>* %_bound_P
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %_bound_P14 = load <3 x double>* %_bound_P
+  %return15 = call double @"getcomp@FVI"(<3 x double> %_bound_P14, i64 1)
+  %return17 = call double @"getcomp@FVI"(<3 x double> %return, i64 1)
+  %output18 = fmul double %return17, 5.000000e-01
+  %return19 = fcmp ogt double %return15, %output18
+  br i1 %return19, label %true21, label %end22
+
+true21:                                           ; preds = %end
+  %return25 = call double @"neg@FF"(double %return17)
+  %output26 = fmul double %return25, 5.000000e-01
+  %return28 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %_bound_P14, double %output26, i64 1)
+  %output30 = extractvalue { double, <3 x double> } %return28, 1
+  store <3 x double> %output30, <3 x double>* %_bound_P
+  br label %end22
+
+end22:                                            ; preds = %true21, %end
+  %_bound_P31 = load <3 x double>* %_bound_P
+  %return32 = call double @"getcomp@FVI"(<3 x double> %_bound_P31, i64 2)
+  %return34 = call double @"getcomp@FVI"(<3 x double> %return, i64 2)
+  %output35 = fmul double %return34, 5.000000e-01
+  %return36 = fcmp ogt double %return32, %output35
+  br i1 %return36, label %true38, label %end39
+
+true38:                                           ; preds = %end22
+  %return42 = call double @"neg@FF"(double %return34)
+  %output43 = fmul double %return42, 5.000000e-01
+  %return45 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %_bound_P31, double %output43, i64 2)
+  %output47 = extractvalue { double, <3 x double> } %return45, 1
+  store <3 x double> %output47, <3 x double>* %_bound_P
+  br label %end39
+
+end39:                                            ; preds = %true38, %end22
+  %_bound_P48 = load <3 x double>* %_bound_P
+  %return49 = call double @"getcomp@FVI"(<3 x double> %_bound_P48, i64 0)
+  %return52 = call double @"neg@FF"(double %return4)
+  %output53 = fmul double %return52, 5.000000e-01
+  %return54 = fcmp olt double %return49, %output53
+  br i1 %return54, label %true56, label %end57
+
+true56:                                           ; preds = %end39
+  %return62 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %_bound_P48, double %output, i64 0)
+  %output64 = extractvalue { double, <3 x double> } %return62, 1
+  store <3 x double> %output64, <3 x double>* %_bound_P
+  br label %end57
+
+end57:                                            ; preds = %true56, %end39
+  %_bound_P65 = load <3 x double>* %_bound_P
+  %return66 = call double @"getcomp@FVI"(<3 x double> %_bound_P65, i64 0)
+  %return69 = call double @"neg@FF"(double %return17)
+  %output70 = fmul double %return69, 5.000000e-01
+  %return71 = fcmp olt double %return66, %output70
+  br i1 %return71, label %true73, label %end74
+
+true73:                                           ; preds = %end57
+  %return79 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %_bound_P65, double %output18, i64 1)
+  %output81 = extractvalue { double, <3 x double> } %return79, 1
+  store <3 x double> %output81, <3 x double>* %_bound_P
+  br label %end74
+
+end74:                                            ; preds = %true73, %end57
+  %_bound_P82 = load <3 x double>* %_bound_P
+  %return83 = call double @"getcomp@FVI"(<3 x double> %_bound_P82, i64 2)
+  %return86 = call double @"neg@FF"(double %return34)
+  %output87 = fmul double %return86, 5.000000e-01
+  %return88 = fcmp olt double %return83, %output87
+  br i1 %return88, label %true90, label %end91
+
+true90:                                           ; preds = %end74
+  %return96 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %_bound_P82, double %output35, i64 2)
+  %output98 = extractvalue { double, <3 x double> } %return96, 1
+  store <3 x double> %output98, <3 x double>* %_bound_P
+  br label %end91
+
+end91:                                            ; preds = %true90, %end74
+  ret void
+}
+
+declare <3 x double> @"chv@VS"(i8*) nounwind readnone
+
+declare double @"getcomp@FVI"(<3 x double>, i64) nounwind readnone
+
+declare double @"neg@FF"(double) nounwind readnone
+
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) alwaysinline {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) nounwind readnone
+
+define void @obj_geo1_solver1_d_s_boundary_attribvop1(<3 x double> %P) nounwind {
+__llvm_entry:
+  %"<P>" = alloca <3 x double>
+  store <3 x double> %P, <3 x double>* %"<P>"
+  call void @"_obj_geo1_solver1_d_s_boundary_attribvop1_snippet1@V"(<3 x double>* %"<P>")
+  %evalue = load <3 x double>* %"<P>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @1, i64 0, i64 0), <3 x double> %evalue) nounwind readonly
+  store <3 x double> %gvalue, <3 x double>* @P
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_solver1_d_s_boundary_attribvop1(<3 x double> zeroinitializer)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

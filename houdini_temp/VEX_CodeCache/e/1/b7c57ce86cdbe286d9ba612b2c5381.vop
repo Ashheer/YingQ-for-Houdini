@@ -1,0 +1,55 @@
+;_name	/obj/geo1/scifi_panels1/sop_lot_subdivision1/BETTER_ATTR_TRANSFER/attribvop1
+; ModuleID = 'obj_geo1_scifi_panels1_sop_lot_subdivision1_BETTER_ATTR_TRANSFER_attribvop1'
+
+@0 = private constant [3 x i8] c"Cd\00"
+@P = external global <3 x double>
+@Cd = external global <3 x double>
+@1 = private constant [2 x i8] c"P\00"
+
+define private void @"_obj_geo1_scifi_panels1_sop_lot_subdivision1_BETTER_ATTR_TRANSFER_attribvop1_snippet1@VV"(<3 x double>* %_bound_P, <3 x double>* %_bound_Cd) nounwind alwaysinline {
+__llvm_entry:
+  %_bound_P1 = load <3 x double>* %_bound_P
+  %return = call { double, i64, <3 x double> } @"xyzdist@FIVIVF"(i64 1, <3 x double> %_bound_P1, double 1.000000e+01)
+  %output = extractvalue { double, i64, <3 x double> } %return, 1
+  %output4 = extractvalue { double, i64, <3 x double> } %return, 2
+  %return7 = call <3 x double> @"primuv@VISIV"(i64 1, i8* getelementptr inbounds ([3 x i8]* @0, i64 0, i64 0), i64 %output, <3 x double> %output4)
+  store <3 x double> %return7, <3 x double>* %_bound_Cd
+  ret void
+}
+
+declare { double, i64, <3 x double> } @"xyzdist@FIVIVF"(i64, <3 x double>, double) nounwind
+
+declare <3 x double> @"primuv@VISIV"(i64, i8*, i64, <3 x double>) nounwind
+
+define void @obj_geo1_scifi_panels1_sop_lot_subdivision1_BETTER_ATTR_TRANSFER_attribvop1(<3 x double> %P, <3 x double> %Cd) nounwind {
+__llvm_entry:
+  %"<Cd>" = alloca <3 x double>
+  %0 = alloca <3 x double>
+  store <3 x double> %Cd, <3 x double>* %"<Cd>"
+  store <3 x double> %P, <3 x double>* %0
+  call void @"_obj_geo1_scifi_panels1_sop_lot_subdivision1_BETTER_ATTR_TRANSFER_attribvop1_snippet1@VV"(<3 x double>* %0, <3 x double>* %"<Cd>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @1, i64 0, i64 0), <3 x double> %P) nounwind readonly
+  %evalue2 = load <3 x double>* %"<Cd>"
+  %gvalue3 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([3 x i8]* @0, i64 0, i64 0), <3 x double> %evalue2) nounwind readonly
+  store <3 x double> %gvalue, <3 x double>* @P
+  store <3 x double> %gvalue3, <3 x double>* @Cd
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_scifi_panels1_sop_lot_subdivision1_BETTER_ATTR_TRANSFER_attribvop1(<3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

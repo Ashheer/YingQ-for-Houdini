@@ -1,0 +1,129 @@
+;_name	/obj/geo1/MOPs_Move_Along_Spline/init_attrs/attribvop1
+; ModuleID = 'obj_geo1_MOPs_Move_Along_Spline_init_attrs_attribvop1'
+
+@0 = private constant [18 x i8] c"curve_select_mode\00"
+@1 = private constant [12 x i8] c"search_dist\00"
+@2 = private constant [3 x i8] c"id\00"
+@__curvenum = external global i64
+@P = external global <3 x double>
+@id = external global i64
+@__goalu = external global double
+@ptnum = external global i64
+@3 = private constant [11 x i8] c"__curvenum\00"
+@4 = private constant [2 x i8] c"P\00"
+@5 = private constant [8 x i8] c"__goalu\00"
+@6 = private constant [6 x i8] c"ptnum\00"
+
+define private void @"_obj_geo1_MOPs_Move_Along_Spline_init_attrs_attribvop1_snippet1@IVIFI"(i64* %_bound___curvenum, <3 x double>* %_bound_P, i64* %_bound_id, double* %_bound___goalu, i64* %_bound_ptnum) nounwind alwaysinline {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([18 x i8]* @0, i64 0, i64 0))
+  %return2 = call i64 @"eq@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return2, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  store i64 0, i64* %_bound___curvenum
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return4 = call i64 @"eq@III"(i64 %return, i64 1)
+  %1 = icmp ne i64 %return4, 0
+  br i1 %1, label %true5, label %false6
+
+end:                                              ; preds = %true5, %false6, %true
+  store double 0.000000e+00, double* %_bound___goalu
+  %return20 = call i64 @"haspointattrib@IIS"(i64 0, i8* getelementptr inbounds ([3 x i8]* @2, i64 0, i64 0))
+  %return21 = call i64 @"not@II"(i64 %return20)
+  %2 = icmp ne i64 %return21, 0
+  br i1 %2, label %true22, label %end23
+
+true5:                                            ; preds = %false
+  %_bound_P8 = load <3 x double>* %_bound_P
+  %return9 = call double @"ch@FS"(i8* getelementptr inbounds ([12 x i8]* @1, i64 0, i64 0))
+  %return10 = call { double, i64, <3 x double> } @"xyzdist@FIVIVF"(i64 1, <3 x double> %_bound_P8, double %return9)
+  %output = extractvalue { double, i64, <3 x double> } %return10, 1
+  store i64 %output, i64* %_bound___curvenum
+  br label %end
+
+false6:                                           ; preds = %false
+  %return14 = call i64 @"nprimitives@II"(i64 1)
+  %_bound_id16 = load i64* %_bound_id
+  %return18 = call i64 @"mod@III"(i64 %_bound_id16, i64 %return14)
+  store i64 %return18, i64* %_bound___curvenum
+  br label %end
+
+true22:                                           ; preds = %end
+  %_bound_ptnum24 = load i64* %_bound_ptnum
+  store i64 %_bound_ptnum24, i64* %_bound_id
+  br label %end23
+
+end23:                                            ; preds = %true22, %end
+  ret void
+}
+
+declare i64 @"chi@IS"(i8*) nounwind readnone
+
+declare i64 @"eq@III"(i64, i64) nounwind readnone
+
+declare double @"ch@FS"(i8*) nounwind readnone
+
+declare { double, i64, <3 x double> } @"xyzdist@FIVIVF"(i64, <3 x double>, double) nounwind
+
+declare i64 @"nprimitives@II"(i64) nounwind
+
+declare i64 @"mod@III"(i64, i64) nounwind readnone
+
+declare i64 @"haspointattrib@IIS"(i64, i8*) nounwind
+
+declare i64 @"not@II"(i64) nounwind readnone
+
+define void @obj_geo1_MOPs_Move_Along_Spline_init_attrs_attribvop1(i64 %__curvenum, <3 x double> %P, i64 %id, double %__goalu, i64 %ptnum) nounwind {
+__llvm_entry:
+  %"<id>" = alloca i64
+  %"<__goalu>" = alloca double
+  %0 = alloca <3 x double>
+  %1 = alloca i64
+  %"<__curvenum>" = alloca i64
+  store i64 %__curvenum, i64* %"<__curvenum>"
+  store i64 %id, i64* %"<id>"
+  store double %__goalu, double* %"<__goalu>"
+  store <3 x double> %P, <3 x double>* %0
+  store i64 %ptnum, i64* %1
+  call void @"_obj_geo1_MOPs_Move_Along_Spline_init_attrs_attribvop1_snippet1@IVIFI"(i64* %"<__curvenum>", <3 x double>* %0, i64* %"<id>", double* %"<__goalu>", i64* %1)
+  %evalue = load i64* %"<__curvenum>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([11 x i8]* @3, i64 0, i64 0), i64 %evalue) nounwind readonly
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @4, i64 0, i64 0), <3 x double> %P) nounwind readonly
+  %evalue5 = load i64* %"<id>"
+  %gvalue6 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([3 x i8]* @2, i64 0, i64 0), i64 %evalue5) nounwind readonly
+  %evalue7 = load double* %"<__goalu>"
+  %gvalue8 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8]* @5, i64 0, i64 0), double %evalue7) nounwind readonly
+  %gvalue10 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8]* @6, i64 0, i64 0), i64 %ptnum) nounwind readonly
+  store i64 %gvalue, i64* @__curvenum
+  store <3 x double> %gvalue4, <3 x double>* @P
+  store i64 %gvalue6, i64* @id
+  store double %gvalue8, double* @__goalu
+  store i64 %gvalue10, i64* @ptnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_MOPs_Move_Along_Spline_init_attrs_attribvop1(i64 0, <3 x double> zeroinitializer, i64 -1, double 0.000000e+00, i64 0)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

@@ -1,0 +1,61 @@
+;_name	/obj/geo1/scifi_panels1/BETTER_INSET/sop_edgegroup_to_curve1/pointwrangle2/attribvop1
+; ModuleID = 'obj_geo1_scifi_panels1_BETTER_INSET_sop_edgegroup_to_curve1_pointwrangle2_attribvop1'
+
+@0 = private constant [4 x i8] c"exp\00"
+@1 = private constant [11 x i8] c"group1_exp\00"
+
+define private void @_obj_geo1_scifi_panels1_BETTER_INSET_sop_edgegroup_to_curve1_pointwrangle2_attribvop1_snippet1() nounwind alwaysinline {
+__llvm_entry:
+  %return = call i64* @"detail@[IIS"(i64 0, i8* getelementptr inbounds ([4 x i8]* @0, i64 0, i64 0))
+  %return2 = call i64 @"len@I[I"(i64* %return)
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output14, %body ]
+  %return5 = call i64 @"lt@III"(i64 %i.0, i64 %return2)
+  %0 = icmp ne i64 %return5, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return8 = call i64 @"getcomp@I[II"(i64* %return, i64 %i.0)
+  %output = add i64 %i.0, 1
+  %return11 = call i64 @"getcomp@I[II"(i64* %return, i64 %output)
+  %return12 = call i64 @"setedgegroup@IISIII"(i64 0, i8* getelementptr inbounds ([11 x i8]* @1, i64 0, i64 0), i64 %return8, i64 %return11, i64 1)
+  %output14 = add i64 %i.0, 2
+  br label %cond
+
+end:                                              ; preds = %cond
+  ret void
+}
+
+declare i64* @"detail@[IIS"(i64, i8*) nounwind
+
+declare i64 @"len@I[I"(i64*) nounwind readnone
+
+declare i64 @"lt@III"(i64, i64) nounwind readnone
+
+declare i64 @"getcomp@I[II"(i64*, i64) nounwind readnone
+
+declare i64 @"setedgegroup@IISIII"(i64, i8*, i64, i64, i64) nounwind
+
+define void @obj_geo1_scifi_panels1_BETTER_INSET_sop_edgegroup_to_curve1_pointwrangle2_attribvop1() nounwind {
+__llvm_entry:
+  call void @_obj_geo1_scifi_panels1_BETTER_INSET_sop_edgegroup_to_curve1_pointwrangle2_attribvop1_snippet1()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_scifi_panels1_BETTER_INSET_sop_edgegroup_to_curve1_pointwrangle2_attribvop1()
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

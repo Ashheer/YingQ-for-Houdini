@@ -1,0 +1,132 @@
+;_name	/obj/geo1/scifi_panels1/control_random_color/ramp_prim/attribvop1
+; ModuleID = 'obj_geo1_scifi_panels1_control_random_color_ramp_prim_attribvop1'
+
+@0 = private constant [17 x i8] c"../rampattribute\00"
+@1 = private constant [14 x i8] c"../ramprange1\00"
+@2 = private constant [14 x i8] c"../ramprange2\00"
+@3 = private constant [8 x i8] c"../ramp\00"
+@4 = private constant [1 x i8] zeroinitializer
+@OpInput1 = external global i8*
+@primnum = external global i64
+@Cd = external global <3 x double>
+@5 = private constant [9 x i8] c"OpInput1\00"
+@6 = private constant [8 x i8] c"primnum\00"
+@7 = private constant [3 x i8] c"Cd\00"
+
+define private void @"_obj_geo1_scifi_panels1_control_random_color_ramp_prim_attribvop1_snippet1@SIV"(i8** %_bound_OpInput1, i64* %_bound_primnum, <3 x double>* %_bound_Cd) nounwind alwaysinline {
+__llvm_entry:
+  %_bound_OpInput11 = load i8** %_bound_OpInput1
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([17 x i8]* @0, i64 0, i64 0))
+  %_bound_primnum2 = load i64* %_bound_primnum
+  %return3 = call <3 x double> @"prim@VSSI"(i8* %_bound_OpInput11, i8* %return, i64 %_bound_primnum2)
+  %return5 = call double @"ch@FS"(i8* getelementptr inbounds ([14 x i8]* @1, i64 0, i64 0))
+  %cast = call <3 x double> @"set@VF"(double %return5)
+  %return6 = call double @"ch@FS"(i8* getelementptr inbounds ([14 x i8]* @2, i64 0, i64 0))
+  %cast7 = call <3 x double> @"set@VF"(double %return6)
+  %cast8 = call <3 x double> @"set@VI"(i64 0)
+  %cast9 = call <3 x double> @"set@VI"(i64 1)
+  %return10 = call <3 x double> @"fit@VVVVVV"(<3 x double> %return3, <3 x double> %cast, <3 x double> %cast7, <3 x double> %cast8, <3 x double> %cast9)
+  %return12 = call double @"getcomp@FVI"(<3 x double> %return10, i64 0)
+  %return13 = call <3 x double> @"chramp@VSF"(i8* getelementptr inbounds ([8 x i8]* @3, i64 0, i64 0), double %return12)
+  %return17 = call double @"getcomp@FVI"(<3 x double> %return10, i64 1)
+  %return20 = fcmp one double %return17, %return12
+  br i1 %return20, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return24 = call <3 x double> @"chramp@VSF"(i8* getelementptr inbounds ([8 x i8]* @3, i64 0, i64 0), double %return17)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %yval.0 = phi <3 x double> [ %return24, %true ], [ %return13, %__llvm_entry ]
+  %return26 = call double @"getcomp@FVI"(<3 x double> %return10, i64 2)
+  %return29 = fcmp one double %return26, %return12
+  br i1 %return29, label %true31, label %end32
+
+true31:                                           ; preds = %end
+  %return35 = call <3 x double> @"chramp@VSF"(i8* getelementptr inbounds ([8 x i8]* @3, i64 0, i64 0), double %return26)
+  br label %end32
+
+end32:                                            ; preds = %true31, %end
+  %zval.0 = phi <3 x double> [ %return35, %true31 ], [ %return13, %end ]
+  %return37 = call double @"getcomp@FVI"(<3 x double> %return13, i64 0)
+  %tmp = load <3 x double>* %_bound_Cd
+  %return38 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %tmp, double %return37, i64 0)
+  %output = extractvalue { double, <3 x double> } %return38, 1
+  store <3 x double> %output, <3 x double>* %_bound_Cd
+  %return41 = call double @"getcomp@FVI"(<3 x double> %yval.0, i64 1)
+  %return43 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output, double %return41, i64 1)
+  %output45 = extractvalue { double, <3 x double> } %return43, 1
+  store <3 x double> %output45, <3 x double>* %_bound_Cd
+  %return47 = call double @"getcomp@FVI"(<3 x double> %zval.0, i64 2)
+  %return49 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output45, double %return47, i64 2)
+  %output51 = extractvalue { double, <3 x double> } %return49, 1
+  store <3 x double> %output51, <3 x double>* %_bound_Cd
+  ret void
+}
+
+declare i8* @"chs@SS"(i8*) nounwind readnone
+
+declare <3 x double> @"prim@VSSI"(i8*, i8*, i64) nounwind readnone
+
+declare double @"ch@FS"(i8*) nounwind readnone
+
+declare <3 x double> @"set@VF"(double) nounwind readnone
+
+declare <3 x double> @"set@VI"(i64) nounwind readnone
+
+declare <3 x double> @"fit@VVVVVV"(<3 x double>, <3 x double>, <3 x double>, <3 x double>, <3 x double>) nounwind
+
+declare double @"getcomp@FVI"(<3 x double>, i64) nounwind readnone
+
+declare <3 x double> @"chramp@VSF"(i8*, double) nounwind readnone
+
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) alwaysinline {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) nounwind readnone
+
+define void @obj_geo1_scifi_panels1_control_random_color_ramp_prim_attribvop1(i8* %OpInput1, i64 %primnum, <3 x double> %Cd) nounwind {
+__llvm_entry:
+  %"<Cd>" = alloca <3 x double>
+  %0 = alloca i8*
+  %1 = alloca i64
+  store <3 x double> %Cd, <3 x double>* %"<Cd>"
+  store i8* %OpInput1, i8** %0
+  store i64 %primnum, i64* %1
+  call void @"_obj_geo1_scifi_panels1_control_random_color_ramp_prim_attribvop1_snippet1@SIV"(i8** %0, i64* %1, <3 x double>* %"<Cd>")
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([9 x i8]* @5, i64 0, i64 0), i8* %OpInput1) nounwind readonly
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8]* @6, i64 0, i64 0), i64 %primnum) nounwind readonly
+  %evalue5 = load <3 x double>* %"<Cd>"
+  %gvalue6 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([3 x i8]* @7, i64 0, i64 0), <3 x double> %evalue5) nounwind readonly
+  store i8* %gvalue, i8** @OpInput1
+  store i64 %gvalue4, i64* @primnum
+  store <3 x double> %gvalue6, <3 x double>* @Cd
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_scifi_panels1_control_random_color_ramp_prim_attribvop1(i8* getelementptr inbounds ([1 x i8]* @4, i64 0, i64 0), i64 0, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

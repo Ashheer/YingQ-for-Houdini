@@ -1,0 +1,67 @@
+;_name	/obj/geo1/lookat/attribvop1
+; ModuleID = 'obj_geo1_lookat_attribvop1'
+
+@0 = private constant [2 x i8] c"P\00"
+@P = external global <3 x double>
+@N = external global <3 x double>
+@1 = private constant [2 x i8] c"N\00"
+
+define private void @"_obj_geo1_lookat_attribvop1_snippet1@VV"(<3 x double>* %_bound_P, <3 x double>* %_bound_N) nounwind alwaysinline {
+__llvm_entry:
+  %return = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8]* @0, i64 0, i64 0), i64 0)
+  %_bound_P2 = load <3 x double>* %_bound_P
+  %output = call <3 x double> @"sub@VV"(<3 x double> %return, <3 x double> %_bound_P2)
+  %return3 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output, double 0.000000e+00, i64 1)
+  %output5 = extractvalue { double, <3 x double> } %return3, 1
+  %return7 = call <3 x double> @"normalize@VV"(<3 x double> %output5)
+  store <3 x double> %return7, <3 x double>* %_bound_N
+  ret void
+}
+
+declare <3 x double> @"point@VISI"(i64, i8*, i64) nounwind
+
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) alwaysinline {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double 0.000000e+00, i64 1)
+  %mrv9 = insertvalue { double, <3 x double> } { double 0.000000e+00, <3 x double> undef }, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) nounwind readnone
+
+declare <3 x double> @"normalize@VV"(<3 x double>) nounwind
+
+define void @obj_geo1_lookat_attribvop1(<3 x double> %P, <3 x double> %N) nounwind {
+__llvm_entry:
+  %"<N>" = alloca <3 x double>
+  %0 = alloca <3 x double>
+  store <3 x double> %N, <3 x double>* %"<N>"
+  store <3 x double> %P, <3 x double>* %0
+  call void @"_obj_geo1_lookat_attribvop1_snippet1@VV"(<3 x double>* %0, <3 x double>* %"<N>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @0, i64 0, i64 0), <3 x double> %P) nounwind readonly
+  %evalue2 = load <3 x double>* %"<N>"
+  %gvalue3 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @1, i64 0, i64 0), <3 x double> %evalue2) nounwind readonly
+  store <3 x double> %gvalue, <3 x double>* @P
+  store <3 x double> %gvalue3, <3 x double>* @N
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_lookat_attribvop1(<3 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

@@ -1,0 +1,115 @@
+;_name	/obj/geo1/edgeexpand_fee1/pointwrangle1/attribvop1
+; ModuleID = 'obj_geo1_edgeexpand_fee1_pointwrangle1_attribvop1'
+
+@0 = private constant [6 x i8] c"point\00"
+@1 = private constant [25 x i8] c"../enumerate1/attribname\00"
+@2 = private constant [2 x i8] c"N\00"
+@ptnum = external global i64
+@N = external global <3 x double>
+@3 = private constant [6 x i8] c"ptnum\00"
+
+define private void @"_obj_geo1_edgeexpand_fee1_pointwrangle1_attribvop1_snippet1@IV"(i64* %_bound_ptnum, <3 x double>* %_bound_N) nounwind alwaysinline {
+__llvm_entry:
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([25 x i8]* @1, i64 0, i64 0))
+  %_bound_ptnum1 = load i64* %_bound_ptnum
+  %return2 = call i64* @"findattribval@[IISSI"(i64 0, i8* getelementptr inbounds ([6 x i8]* @0, i64 0, i64 0), i8* %return, i64 %_bound_ptnum1)
+  %_bound_N3 = load <3 x double>* %_bound_N
+  %return5 = call i64 @"len@I[I"(i64* %return2)
+  br label %cond
+
+cond:                                             ; preds = %iter, %__llvm_entry
+  %__impl_foreach_index.0 = phi i64 [ 0, %__llvm_entry ], [ %output30, %iter ]
+  %len.0 = phi i64 [ 1, %__llvm_entry ], [ %len.1, %iter ]
+  %return8 = call i64 @"lt@III"(i64 %__impl_foreach_index.0, i64 %return5)
+  %0 = icmp ne i64 %return8, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return11 = call i64 @"getcomp@I[II"(i64* %return2, i64 %__impl_foreach_index.0)
+  %_bound_ptnum12 = load i64* %_bound_ptnum
+  %return14 = call i64 @"eq@III"(i64 %_bound_ptnum12, i64 %return11)
+  %1 = icmp ne i64 %return14, 0
+  br i1 %1, label %iter, label %end15
+
+end:                                              ; preds = %cond
+  %_bound_N31 = load <3 x double>* %_bound_N
+  %cast = call <3 x double> @"set@VI"(i64 %len.0)
+  %output33 = call <3 x double> @"div@VV"(<3 x double> %_bound_N31, <3 x double> %cast)
+  store <3 x double> %output33, <3 x double>* %_bound_N
+  ret void
+
+iter:                                             ; preds = %end15, %body, %end24
+  %len.1 = phi i64 [ %len.0, %body ], [ %len.0, %end15 ], [ %output28, %end24 ]
+  %output30 = add i64 %__impl_foreach_index.0, 1
+  br label %cond
+
+end15:                                            ; preds = %body
+  %return17 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8]* @2, i64 0, i64 0), i64 %return11)
+  %return20 = call double @"dot@FVV"(<3 x double> %return17, <3 x double> %_bound_N3)
+  %return21 = fcmp olt double %return20, 0.000000e+00
+  br i1 %return21, label %iter, label %end24
+
+end24:                                            ; preds = %end15
+  %_bound_N25 = load <3 x double>* %_bound_N
+  %output = call <3 x double> @"add@VV"(<3 x double> %_bound_N25, <3 x double> %return17)
+  store <3 x double> %output, <3 x double>* %_bound_N
+  %output28 = add i64 %len.0, 1
+  br label %iter
+}
+
+declare i8* @"chs@SS"(i8*) nounwind readnone
+
+declare i64* @"findattribval@[IISSI"(i64, i8*, i8*, i64) nounwind
+
+declare i64 @"len@I[I"(i64*) nounwind readnone
+
+declare i64 @"lt@III"(i64, i64) nounwind readnone
+
+declare i64 @"getcomp@I[II"(i64*, i64) nounwind readnone
+
+declare i64 @"eq@III"(i64, i64) nounwind readnone
+
+declare <3 x double> @"point@VISI"(i64, i8*, i64) nounwind
+
+declare double @"dot@FVV"(<3 x double>, <3 x double>) nounwind
+
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare <3 x double> @"set@VI"(i64) nounwind readnone
+
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+define void @obj_geo1_edgeexpand_fee1_pointwrangle1_attribvop1(i64 %ptnum, <3 x double> %N) nounwind {
+__llvm_entry:
+  %"<N>" = alloca <3 x double>
+  %0 = alloca i64
+  store <3 x double> %N, <3 x double>* %"<N>"
+  store i64 %ptnum, i64* %0
+  call void @"_obj_geo1_edgeexpand_fee1_pointwrangle1_attribvop1_snippet1@IV"(i64* %0, <3 x double>* %"<N>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8]* @3, i64 0, i64 0), i64 %ptnum) nounwind readonly
+  %evalue2 = load <3 x double>* %"<N>"
+  %gvalue3 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @2, i64 0, i64 0), <3 x double> %evalue2) nounwind readonly
+  store i64 %gvalue, i64* @ptnum
+  store <3 x double> %gvalue3, <3 x double>* @N
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_edgeexpand_fee1_pointwrangle1_attribvop1(i64 0, <3 x double> zeroinitializer)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

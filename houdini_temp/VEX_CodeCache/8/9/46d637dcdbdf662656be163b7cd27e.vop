@@ -1,0 +1,172 @@
+;_name	/obj/geo1/solver1/d/s/rasterize1/attribvop1
+; ModuleID = 'obj_geo1_solver1_d_s_rasterize1_attribvop1'
+
+@0 = private constant [4 x i8] c"ctr\00"
+@1 = private constant [4 x i8] c"rad\00"
+@2 = private constant [5 x i8] c"rgba\00"
+@P = external global <3 x double>
+@Cd = external global <3 x double>
+@3 = private constant [2 x i8] c"P\00"
+@4 = private constant [3 x i8] c"Cd\00"
+
+define private void @"_obj_geo1_solver1_d_s_rasterize1_attribvop1_snippet1@VV"(<3 x double>* %_bound_P, <3 x double>* %_bound_Cd) nounwind alwaysinline {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca double
+  %3 = alloca <4 x double>
+  %4 = alloca <4 x double>
+  %return = call <3 x double>* @"point@[VISI"(i64 1, i8* getelementptr inbounds ([4 x i8]* @0, i64 0, i64 0), i64 0)
+  %return1 = call double* @"point@[FISI"(i64 1, i8* getelementptr inbounds ([4 x i8]* @1, i64 0, i64 0), i64 0)
+  %return2 = call <4 x double>* @"point@[PISI"(i64 1, i8* getelementptr inbounds ([5 x i8]* @2, i64 0, i64 0), i64 0)
+  %return4 = call i64 @"len@I[F"(double* %return1)
+  br label %cond
+
+cond:                                             ; preds = %end15, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output, %end15 ]
+  %col.0 = phi <4 x double> [ <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %__llvm_entry ], [ %col.1, %end15 ]
+  %return7 = call i64 @"lt@III"(i64 %i.0, i64 %return4)
+  %5 = icmp ne i64 %return7, 0
+  br i1 %5, label %body, label %end
+
+body:                                             ; preds = %cond
+  %_bound_P8 = load <3 x double>* %_bound_P
+  store <3 x double> %_bound_P8, <3 x double>* %0
+  %return11 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %return, i64 %i.0)
+  store <3 x double> %return11, <3 x double>* %1
+  %return14 = call double @"getcomp@F[FI"(double* %return1, i64 %i.0)
+  store double %return14, double* %2
+  %in_circle = call i64 @"in_circle@IVVF"(<3 x double>* %0, <3 x double>* %1, double* %2)
+  %6 = icmp ne i64 %in_circle, 0
+  br i1 %6, label %true, label %end15
+
+end:                                              ; preds = %cond
+  %cast = call <3 x double> @"set@VP"(<4 x double> %col.0)
+  store <3 x double> %cast, <3 x double>* %_bound_Cd
+  ret void
+
+true:                                             ; preds = %body
+  %return18 = call <4 x double> @"getcomp@P[PI"(<4 x double>* %return2, i64 %i.0)
+  store <4 x double> %return18, <4 x double>* %3
+  store <4 x double> %col.0, <4 x double>* %4
+  %col_blend = call <4 x double> @"col_blend@PPP"(<4 x double>* %3, <4 x double>* %4)
+  br label %end15
+
+end15:                                            ; preds = %true, %body
+  %col.1 = phi <4 x double> [ %col_blend, %true ], [ %col.0, %body ]
+  %output = add i64 %i.0, 1
+  br label %cond
+}
+
+define private i64 @"in_circle@IVVF"(<3 x double>* %P, <3 x double>* %center, double* %r) nounwind alwaysinline {
+__llvm_entry:
+  %P1 = load <3 x double>* %P
+  %center2 = load <3 x double>* %center
+  %return = call double @"distance2@FVV"(<3 x double> %P1, <3 x double> %center2)
+  %r4 = load double* %r
+  %output = fmul double %r4, %r4
+  %return6 = fcmp ole double %return, %output
+  %. = select i1 %return6, i64 1, i64 0
+  ret i64 %.
+}
+
+declare double @"distance2@FVV"(<3 x double>, <3 x double>) nounwind
+
+define private <4 x double> @"col_blend@PPP"(<4 x double>* %rgbaA, <4 x double>* %rgbaB) nounwind alwaysinline {
+__llvm_entry:
+  %rgbaA1 = load <4 x double>* %rgbaA
+  %return = call double @"getcomp@FPI"(<4 x double> %rgbaA1, i64 3)
+  %rgbaB2 = load <4 x double>* %rgbaB
+  %return3 = call double @"getcomp@FPI"(<4 x double> %rgbaB2, i64 3)
+  %output = fsub double 1.000000e+00, %return
+  %output7 = fmul double %output, %return3
+  %output8 = fadd double %return, %output7
+  %return10 = call double @"getcomp@FPI"(<4 x double> %rgbaA1, i64 0)
+  %return12 = call double @"getcomp@FPI"(<4 x double> %rgbaA1, i64 1)
+  %return14 = call double @"getcomp@FPI"(<4 x double> %rgbaA1, i64 2)
+  %return15 = call <3 x double> @"set@VFFF"(double %return10, double %return12, double %return14)
+  %return17 = call double @"getcomp@FPI"(<4 x double> %rgbaB2, i64 0)
+  %return19 = call double @"getcomp@FPI"(<4 x double> %rgbaB2, i64 1)
+  %return21 = call double @"getcomp@FPI"(<4 x double> %rgbaB2, i64 2)
+  %return22 = call <3 x double> @"set@VFFF"(double %return17, double %return19, double %return21)
+  %output24 = call double @"div@FF"(double 1.000000e+00, double %output8)
+  %cast = call <3 x double> @"set@VF"(double %return)
+  %output27 = call <3 x double> @"mul@VV"(<3 x double> %cast, <3 x double> %return15)
+  %cast33 = call <3 x double> @"set@VF"(double %output7)
+  %output34 = call <3 x double> @"mul@VV"(<3 x double> %cast33, <3 x double> %return22)
+  %output35 = call <3 x double> @"add@VV"(<3 x double> %output27, <3 x double> %output34)
+  %cast36 = call <3 x double> @"set@VF"(double %output24)
+  %output37 = call <3 x double> @"mul@VV"(<3 x double> %cast36, <3 x double> %output35)
+  %return39 = call double @"getcomp@FVI"(<3 x double> %output37, i64 0)
+  %return41 = call double @"getcomp@FVI"(<3 x double> %output37, i64 1)
+  %return43 = call double @"getcomp@FVI"(<3 x double> %output37, i64 2)
+  %return44 = call <4 x double> @"set@PFFFF"(double %return39, double %return41, double %return43, double 1.000000e+00)
+  ret <4 x double> %return44
+}
+
+declare double @"getcomp@FPI"(<4 x double>, i64) nounwind readnone
+
+declare <3 x double> @"set@VFFF"(double, double, double) nounwind readnone
+
+declare double @"div@FF"(double, double) nounwind readnone
+
+declare <3 x double> @"set@VF"(double) nounwind readnone
+
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare double @"getcomp@FVI"(<3 x double>, i64) nounwind readnone
+
+declare <4 x double> @"set@PFFFF"(double, double, double, double) nounwind readnone
+
+declare <3 x double>* @"point@[VISI"(i64, i8*, i64) nounwind
+
+declare double* @"point@[FISI"(i64, i8*, i64) nounwind
+
+declare <4 x double>* @"point@[PISI"(i64, i8*, i64) nounwind
+
+declare i64 @"len@I[F"(double*) nounwind readnone
+
+declare i64 @"lt@III"(i64, i64) nounwind readnone
+
+declare <3 x double> @"getcomp@V[VI"(<3 x double>*, i64) nounwind readnone
+
+declare double @"getcomp@F[FI"(double*, i64) nounwind readnone
+
+declare <4 x double> @"getcomp@P[PI"(<4 x double>*, i64) nounwind readnone
+
+declare <3 x double> @"set@VP"(<4 x double>) nounwind
+
+define void @obj_geo1_solver1_d_s_rasterize1_attribvop1(<3 x double> %P, <3 x double> %Cd) nounwind {
+__llvm_entry:
+  %"<Cd>" = alloca <3 x double>
+  %0 = alloca <3 x double>
+  store <3 x double> %Cd, <3 x double>* %"<Cd>"
+  store <3 x double> %P, <3 x double>* %0
+  call void @"_obj_geo1_solver1_d_s_rasterize1_attribvop1_snippet1@VV"(<3 x double>* %0, <3 x double>* %"<Cd>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @3, i64 0, i64 0), <3 x double> %P) nounwind readonly
+  %evalue2 = load <3 x double>* %"<Cd>"
+  %gvalue3 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([3 x i8]* @4, i64 0, i64 0), <3 x double> %evalue2) nounwind readonly
+  store <3 x double> %gvalue, <3 x double>* @P
+  store <3 x double> %gvalue3, <3 x double>* @Cd
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_solver1_d_s_rasterize1_attribvop1(<3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

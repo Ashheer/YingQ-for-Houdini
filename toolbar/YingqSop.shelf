@@ -5,7 +5,5 @@
  Note, that two definitions of the same element are not allowed in
  a single file. -->
 
-  <toolshelf name="yingq_Sop" label="Yingq Sop">
-    <memberTool name="blastprim"/>
-  </toolshelf>
+  <toolshelf name="YingQsop" label="yingqsop"/>
 </shelfDocument>

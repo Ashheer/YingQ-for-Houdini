@@ -1,0 +1,118 @@
+;_name	/obj/geo1/MOPs_Move_Along_Spline/MOPs_Orient_Curve/generate_orient/attribvop1
+; ModuleID = 'obj_geo1_MOPs_Move_Along_Spline_MOPs_Orient_Curve_generate_orient_attribvop1'
+
+@0 = private constant [7 x i8] c"invert\00"
+@1 = private constant [13 x i8] c"twist_amount\00"
+@2 = private constant [11 x i8] c"twist_ramp\00"
+@mops_PT_tangent = external global <3 x double>
+@mops_PT_normal = external global <3 x double>
+@__curveu = external global double
+@orient = external global <4 x double>
+@3 = private constant [16 x i8] c"mops_PT_tangent\00"
+@4 = private constant [15 x i8] c"mops_PT_normal\00"
+@5 = private constant [9 x i8] c"__curveu\00"
+@6 = private constant [7 x i8] c"orient\00"
+
+define private void @"_obj_geo1_MOPs_Move_Along_Spline_MOPs_Orient_Curve_generate_orient_attribvop1_snippet1@VVFP"(<3 x double>* %_bound_mops_PT_tangent, <3 x double>* %_bound_mops_PT_normal, double* %_bound___curveu, <4 x double>* %_bound_orient) nounwind alwaysinline {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([7 x i8]* @0, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return1 = call i64 @"neg@II"(i64 1)
+  %cast = sitofp i64 %return1 to double
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %invert.0 = phi double [ %cast, %true ], [ 1.000000e+00, %__llvm_entry ]
+  %_bound_mops_PT_tangent2 = load <3 x double>* %_bound_mops_PT_tangent
+  %_bound_mops_PT_normal3 = load <3 x double>* %_bound_mops_PT_normal
+  %cast5 = call <3 x double> @"set@VF"(double %invert.0)
+  %output = call <3 x double> @"mul@VV"(<3 x double> %_bound_mops_PT_normal3, <3 x double> %cast5)
+  %return6 = call <9 x double> @"maketransform@3VV"(<3 x double> %_bound_mops_PT_tangent2, <3 x double> %output)
+  %return7 = call double @"ch@FS"(i8* getelementptr inbounds ([13 x i8]* @1, i64 0, i64 0))
+  %_bound___curveu8 = load double* %_bound___curveu
+  %return9 = call double @"chramp@FSF"(i8* getelementptr inbounds ([11 x i8]* @2, i64 0, i64 0), double %_bound___curveu8)
+  %return12 = call double @"radians@FF"(double %return7)
+  %output14 = fmul double %return12, %return9
+  %return16 = call <4 x double> @"quaternion@PFV"(double %output14, <3 x double> %_bound_mops_PT_tangent2)
+  %return19 = call <4 x double> @"quaternion@P3"(<9 x double> %return6)
+  %return20 = call <4 x double> @"qmultiply@PPP"(<4 x double> %return16, <4 x double> %return19)
+  %_bound_mops_PT_normal22 = load <3 x double>* %_bound_mops_PT_normal
+  %output25 = call <3 x double> @"mul@VV"(<3 x double> %_bound_mops_PT_normal22, <3 x double> %cast5)
+  %return26 = call <3 x double> @"qrotate@VPV"(<4 x double> %return16, <3 x double> %output25)
+  store <3 x double> %return26, <3 x double>* %_bound_mops_PT_normal
+  store <4 x double> %return20, <4 x double>* %_bound_orient
+  ret void
+}
+
+declare i64 @"chi@IS"(i8*) nounwind readnone
+
+declare i64 @"neg@II"(i64) nounwind readnone
+
+declare <3 x double> @"set@VF"(double) nounwind readnone
+
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare <9 x double> @"maketransform@3VV"(<3 x double>, <3 x double>) nounwind readnone
+
+declare double @"ch@FS"(i8*) nounwind readnone
+
+declare double @"chramp@FSF"(i8*, double) nounwind readnone
+
+declare double @"radians@FF"(double) nounwind
+
+declare <4 x double> @"quaternion@PFV"(double, <3 x double>) nounwind readnone
+
+declare <4 x double> @"quaternion@P3"(<9 x double>) nounwind readnone
+
+declare <4 x double> @"qmultiply@PPP"(<4 x double>, <4 x double>) nounwind readnone
+
+declare <3 x double> @"qrotate@VPV"(<4 x double>, <3 x double>) nounwind readnone
+
+define void @obj_geo1_MOPs_Move_Along_Spline_MOPs_Orient_Curve_generate_orient_attribvop1(<3 x double> %mops_PT_tangent, <3 x double> %mops_PT_normal, double %__curveu, <4 x double> %orient) nounwind {
+__llvm_entry:
+  %"<mops_PT_normal>" = alloca <3 x double>
+  %"<orient>" = alloca <4 x double>
+  %0 = alloca <3 x double>
+  %1 = alloca double
+  store <3 x double> %mops_PT_normal, <3 x double>* %"<mops_PT_normal>"
+  store <4 x double> %orient, <4 x double>* %"<orient>"
+  store <3 x double> %mops_PT_tangent, <3 x double>* %0
+  store double %__curveu, double* %1
+  call void @"_obj_geo1_MOPs_Move_Along_Spline_MOPs_Orient_Curve_generate_orient_attribvop1_snippet1@VVFP"(<3 x double>* %0, <3 x double>* %"<mops_PT_normal>", double* %1, <4 x double>* %"<orient>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([16 x i8]* @3, i64 0, i64 0), <3 x double> %mops_PT_tangent) nounwind readonly
+  %evalue3 = load <3 x double>* %"<mops_PT_normal>"
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([15 x i8]* @4, i64 0, i64 0), <3 x double> %evalue3) nounwind readonly
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([9 x i8]* @5, i64 0, i64 0), double %__curveu) nounwind readonly
+  %evalue7 = load <4 x double>* %"<orient>"
+  %gvalue8 = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([7 x i8]* @6, i64 0, i64 0), <4 x double> %evalue7) nounwind readonly
+  store <3 x double> %gvalue, <3 x double>* @mops_PT_tangent
+  store <3 x double> %gvalue4, <3 x double>* @mops_PT_normal
+  store double %gvalue6, double* @__curveu
+  store <4 x double> %gvalue8, <4 x double>* @orient
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_MOPs_Move_Along_Spline_MOPs_Orient_Curve_generate_orient_attribvop1(<3 x double> zeroinitializer, <3 x double> zeroinitializer, double 0.000000e+00, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

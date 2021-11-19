@@ -1,0 +1,99 @@
+;_name	/obj/geo1/MOPs_Move_Along_Spline/pointwrangle7/attribvop1
+; ModuleID = 'obj_geo1_MOPs_Move_Along_Spline_pointwrangle7_attribvop1'
+
+@0 = private constant [18 x i8] c"overwrite_falloff\00"
+@1 = private constant [14 x i8] c"scale_falloff\00"
+@2 = private constant [13 x i8] c"mops_falloff\00"
+@primnum = external global i64
+@3 = private constant [8 x i8] c"primnum\00"
+
+define private void @"_obj_geo1_MOPs_Move_Along_Spline_pointwrangle7_attribvop1_snippet1@I"(i64* %_bound_primnum) nounwind alwaysinline {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([18 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8]* @1, i64 0, i64 0))
+  %_bound_primnum2 = load i64* %_bound_primnum
+  %return3 = call i64* @"primpoints@[III"(i64 0, i64 %_bound_primnum2)
+  %return5 = call i64 @"len@I[I"(i64* %return3)
+  %output = sub i64 %return5, 1
+  %cast = sitofp i64 %output to double
+  br label %cond
+
+cond:                                             ; preds = %end18, %__llvm_entry
+  %__impl_foreach_index_1.0 = phi i64 [ 0, %__llvm_entry ], [ %output37, %end18 ]
+  %n.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %output35, %end18 ]
+  %return10 = call i64 @"lt@III"(i64 %__impl_foreach_index_1.0, i64 %return5)
+  %0 = icmp ne i64 %return10, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return13 = call i64 @"getcomp@I[II"(i64* %return3, i64 %__impl_foreach_index_1.0)
+  %output16 = call double @"div@FF"(double %n.0, double %cast)
+  %1 = icmp ne i64 %return, 0
+  br i1 %1, label %true, label %false
+
+end:                                              ; preds = %cond
+  ret void
+
+true:                                             ; preds = %body
+  %return21 = call i64 @"setpointattrib@IISIF"(i64 0, i8* getelementptr inbounds ([13 x i8]* @2, i64 0, i64 0), i64 %return13, double %output16)
+  br label %end18
+
+false:                                            ; preds = %body
+  %2 = icmp ne i64 %return1, 0
+  br i1 %2, label %true23, label %end18
+
+end18:                                            ; preds = %false, %true23, %true
+  %output35 = fadd double %n.0, 1.000000e+00
+  %output37 = add i64 %__impl_foreach_index_1.0, 1
+  br label %cond
+
+true23:                                           ; preds = %false
+  %return26 = call double @"point@FISI"(i64 0, i8* getelementptr inbounds ([13 x i8]* @2, i64 0, i64 0), i64 %return13)
+  %output29 = fmul double %return26, %output16
+  %return32 = call i64 @"setpointattrib@IISIF"(i64 0, i8* getelementptr inbounds ([13 x i8]* @2, i64 0, i64 0), i64 %return13, double %output29)
+  br label %end18
+}
+
+declare i64 @"chi@IS"(i8*) nounwind readnone
+
+declare i64* @"primpoints@[III"(i64, i64) nounwind
+
+declare i64 @"len@I[I"(i64*) nounwind readnone
+
+declare i64 @"lt@III"(i64, i64) nounwind readnone
+
+declare i64 @"getcomp@I[II"(i64*, i64) nounwind readnone
+
+declare double @"div@FF"(double, double) nounwind readnone
+
+declare i64 @"setpointattrib@IISIF"(i64, i8*, i64, double) nounwind
+
+declare double @"point@FISI"(i64, i8*, i64) nounwind
+
+define void @obj_geo1_MOPs_Move_Along_Spline_pointwrangle7_attribvop1(i64 %primnum) nounwind {
+__llvm_entry:
+  %0 = alloca i64
+  store i64 %primnum, i64* %0
+  call void @"_obj_geo1_MOPs_Move_Along_Spline_pointwrangle7_attribvop1_snippet1@I"(i64* %0)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8]* @3, i64 0, i64 0), i64 %primnum) nounwind readonly
+  store i64 %gvalue, i64* @primnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_MOPs_Move_Along_Spline_pointwrangle7_attribvop1(i64 0)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end

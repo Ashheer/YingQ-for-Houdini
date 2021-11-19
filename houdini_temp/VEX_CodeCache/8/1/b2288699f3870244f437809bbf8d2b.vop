@@ -1,0 +1,139 @@
+;_name	/obj/geo1/polyexpand2d_fee1/fitorthoplane_fee2/pointwrangle1/attribvop1
+; ModuleID = 'obj_geo1_polyexpand2d_fee1_fitorthoplane_fee2_pointwrangle1_attribvop1'
+
+@0 = private constant [21 x i8] c"../fittedaxis_attrib\00"
+@1 = private constant [14 x i8] c"../inputplane\00"
+@2 = private constant [15 x i8] c"../planeheight\00"
+@3 = private constant [20 x i8] c"../centerAttribName\00"
+@4 = private constant [8 x i8] c"../rint\00"
+@P = external global <3 x double>
+@5 = private constant [2 x i8] c"P\00"
+
+define private void @"_obj_geo1_polyexpand2d_fee1_fitorthoplane_fee2_pointwrangle1_attribvop1_snippet1@V"(<3 x double>* %_bound_P) nounwind alwaysinline {
+__llvm_entry:
+  %pos = alloca <3 x double>
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca i64
+  %3 = alloca <3 x double>
+  %4 = alloca <3 x double>
+  %5 = alloca i64
+  %6 = alloca <3 x double>
+  %7 = alloca <3 x double>
+  %8 = alloca i64
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([21 x i8]* @0, i64 0, i64 0))
+  %return1 = call <3 x double> @"detail@VIS"(i64 1, i8* %return)
+  %return2 = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8]* @1, i64 0, i64 0))
+  %9 = icmp ne i64 %return2, 0
+  br i1 %9, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return3 = call double @"chf@FS"(i8* getelementptr inbounds ([15 x i8]* @2, i64 0, i64 0))
+  %cast = call <3 x double> @"set@VF"(double %return3)
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return4 = call i8* @"chs@SS"(i8* getelementptr inbounds ([20 x i8]* @3, i64 0, i64 0))
+  %return5 = call <3 x double> @"detail@VIS"(i64 1, i8* %return4)
+  %return6 = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8]* @4, i64 0, i64 0))
+  %10 = icmp ne i64 %return6, 0
+  br i1 %10, label %true7, label %end
+
+end:                                              ; preds = %false, %true7, %true
+  %middlepos.0 = phi <3 x double> [ %cast, %true ], [ %return10, %true7 ], [ %return5, %false ]
+  %_bound_P11 = load <3 x double>* %_bound_P
+  store <3 x double> %_bound_P11, <3 x double>* %pos
+  store <3 x double> %middlepos.0, <3 x double>* %0
+  store <3 x double> %return1, <3 x double>* %1
+  store i64 0, i64* %2
+  call void @"foreachaxis@VVVI"(<3 x double>* %pos, <3 x double>* %0, <3 x double>* %1, i64* %2)
+  store <3 x double> %middlepos.0, <3 x double>* %3
+  store <3 x double> %return1, <3 x double>* %4
+  store i64 1, i64* %5
+  call void @"foreachaxis@VVVI"(<3 x double>* %pos, <3 x double>* %3, <3 x double>* %4, i64* %5)
+  store <3 x double> %middlepos.0, <3 x double>* %6
+  store <3 x double> %return1, <3 x double>* %7
+  store i64 2, i64* %8
+  call void @"foreachaxis@VVVI"(<3 x double>* %pos, <3 x double>* %6, <3 x double>* %7, i64* %8)
+  %pos18 = load <3 x double>* %pos
+  store <3 x double> %pos18, <3 x double>* %_bound_P
+  ret void
+
+true7:                                            ; preds = %false
+  %return10 = call <3 x double> @"rint@VV"(<3 x double> %return5)
+  br label %end
+}
+
+define private void @"foreachaxis@VVVI"(<3 x double>* %pos, <3 x double>* %middlepos, <3 x double>* %fittedaxis, i64* %axis) nounwind alwaysinline {
+__llvm_entry:
+  %fittedaxis1 = load <3 x double>* %fittedaxis
+  %axis2 = load i64* %axis
+  %return = call double @"getcomp@FVI"(<3 x double> %fittedaxis1, i64 %axis2)
+  %return3 = fcmp ogt double %return, 5.000000e-01
+  br i1 %return3, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %middlepos6 = load <3 x double>* %middlepos
+  %return8 = call double @"getcomp@FVI"(<3 x double> %middlepos6, i64 %axis2)
+  %tmp = load <3 x double>* %pos
+  %return9 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %tmp, double %return8, i64 %axis2)
+  %output = extractvalue { double, <3 x double> } %return9, 1
+  store <3 x double> %output, <3 x double>* %pos
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+declare double @"getcomp@FVI"(<3 x double>, i64) nounwind readnone
+
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) alwaysinline {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) nounwind readnone
+
+declare i8* @"chs@SS"(i8*) nounwind readnone
+
+declare <3 x double> @"detail@VIS"(i64, i8*) nounwind
+
+declare i64 @"chi@IS"(i8*) nounwind readnone
+
+declare double @"chf@FS"(i8*) nounwind readnone
+
+declare <3 x double> @"set@VF"(double) nounwind readnone
+
+declare <3 x double> @"rint@VV"(<3 x double>) nounwind readnone
+
+define void @obj_geo1_polyexpand2d_fee1_fitorthoplane_fee2_pointwrangle1_attribvop1(<3 x double> %P) nounwind {
+__llvm_entry:
+  %"<P>" = alloca <3 x double>
+  store <3 x double> %P, <3 x double>* %"<P>"
+  call void @"_obj_geo1_polyexpand2d_fee1_fitorthoplane_fee2_pointwrangle1_attribvop1_snippet1@V"(<3 x double>* %"<P>")
+  %evalue = load <3 x double>* %"<P>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8]* @5, i64 0, i64 0), <3 x double> %evalue) nounwind readonly
+  store <3 x double> %gvalue, <3 x double>* @P
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_polyexpand2d_fee1_fitorthoplane_fee2_pointwrangle1_attribvop1(<3 x double> zeroinitializer)
+  ret void
+}
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = metadata !{metadata !"cvex"}
+!1 = metadata !{metadata !"18.5.633"}
+!2 = metadata !{metadata !"64"}
+
+;_code_end
