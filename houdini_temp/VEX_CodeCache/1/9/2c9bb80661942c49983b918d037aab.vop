@@ -1,0 +1,100 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"f\00"
+@1 = private constant [0 x i64] zeroinitializer
+@npts = external global i64*
+@num = external global double
+@f = external global double
+@2 = private constant [5 x i8] c"npts\00"
+@3 = private constant [4 x i8] c"num\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@[IFF"(i64** %_bound_npts, double* %_bound_num, double* %_bound_f) #0 {
+__llvm_entry:
+  %_bound_npts1 = load i64*, i64** %_bound_npts
+  %return = call i64 @"len@I[I"(i64* %_bound_npts1)
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %__impl_foreach_index.0 = phi i64 [ 0, %__llvm_entry ], [ %output13, %body ]
+  %avg.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %output, %body ]
+  %return4 = call i64 @"lt@III"(i64 %__impl_foreach_index.0, i64 %return)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %_bound_npts5 = load i64*, i64** %_bound_npts
+  %return7 = call i64 @"getcomp@I[II"(i64* %_bound_npts5, i64 %__impl_foreach_index.0)
+  %return9 = call double @"point@FISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 %return7)
+  %output = fadd double %avg.0, %return9
+  %output13 = add i64 %__impl_foreach_index.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  %_bound_num15 = load double, double* %_bound_num
+  %output16 = call double @"div@FF"(double %avg.0, double %_bound_num15)
+  store double %output16, double* %_bound_f
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind
+declare double @"point@FISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64* %npts, double %num, double %f) #2 {
+__llvm_entry:
+  %"<f>" = alloca double
+  %0 = alloca i64*
+  %1 = alloca double
+  store double %f, double* %"<f>"
+  store i64* %npts, i64** %0
+  store double %num, double* %1
+  call void @"__vex_snippet_snippet@[IFF"(i64** %0, double* %1, double* %"<f>")
+  %gvalue = call i64* @"_export@[IS[I"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0), i64* %npts) #3
+  %gvalue4 = call double @"_export@FSF"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0), double %num) #3
+  %evalue5 = load double, double* %"<f>"
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), double %evalue5) #3
+  store i64* %gvalue, i64** @npts
+  store double %gvalue4, double* @num
+  store double %gvalue6, double* @f
+  ret void
+}
+
+declare i64* @"_export@[IS[I"(i8*, i64*)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64* getelementptr inbounds ([0 x i64], [0 x i64]* @1, i64 0, i64 0), double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.383"}
+!2 = !{!"64"}
+
+;_code_end

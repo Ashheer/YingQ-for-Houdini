@@ -1,0 +1,258 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [5 x i8] c"poly\00"
+@1 = private constant [5 x i8] c"Seed\00"
+@primnum = external global i64
+@2 = private constant [8 x i8] c"primnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"subdiv@VVFI"(<3 x double>* %bbmin, <3 x double>* %bbmax, double* %cutpos, i64* %cutdir) #0 {
+__llvm_entry:
+  %bbmin1 = load <3 x double>, <3 x double>* %bbmin
+  %bbmax2 = load <3 x double>, <3 x double>* %bbmax
+  %cutpos3 = load double, double* %cutpos
+  %return = call <3 x double> @"lerp@VVVF"(<3 x double> %bbmin1, <3 x double> %bbmax2, double %cutpos3)
+  %cutdir4 = load i64, i64* %cutdir
+  %return5 = call i64 @"eq@III"(i64 %cutdir4, i64 0)
+  %0 = icmp ne i64 %return5, 0
+  %return6 = call i64 @"addprim@IIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0))
+  %bbmin7 = load <3 x double>, <3 x double>* %bbmin
+  %return9 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %bbmin7)
+  %return12 = call i64 @"addvertex@IIII"(i64 0, i64 %return6, i64 %return9)
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return14 = call double @"getcomp@FVI"(<3 x double> %return, i64 0)
+  %bbmin15 = load <3 x double>, <3 x double>* %bbmin
+  %return16 = call double @"getcomp@FVI"(<3 x double> %bbmin15, i64 1)
+  %return18 = call double @"getcomp@FVI"(<3 x double> %bbmin15, i64 2)
+  %return19 = call <3 x double> @"set@VFFF"(double %return14, double %return16, double %return18)
+  %return21 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return19)
+  %return24 = call i64 @"addvertex@IIII"(i64 0, i64 %return6, i64 %return21)
+  %bbmin27 = load <3 x double>, <3 x double>* %bbmin
+  %return28 = call double @"getcomp@FVI"(<3 x double> %bbmin27, i64 1)
+  %bbmax29 = load <3 x double>, <3 x double>* %bbmax
+  %return30 = call double @"getcomp@FVI"(<3 x double> %bbmax29, i64 2)
+  %return31 = call <3 x double> @"set@VFFF"(double %return14, double %return28, double %return30)
+  %return33 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return31)
+  %return36 = call i64 @"addvertex@IIII"(i64 0, i64 %return6, i64 %return33)
+  %bbmin37 = load <3 x double>, <3 x double>* %bbmin
+  %return38 = call double @"getcomp@FVI"(<3 x double> %bbmin37, i64 0)
+  %return40 = call double @"getcomp@FVI"(<3 x double> %bbmin37, i64 1)
+  %bbmax41 = load <3 x double>, <3 x double>* %bbmax
+  %return42 = call double @"getcomp@FVI"(<3 x double> %bbmax41, i64 2)
+  %return43 = call <3 x double> @"set@VFFF"(double %return38, double %return40, double %return42)
+  %return45 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return43)
+  %return48 = call i64 @"addvertex@IIII"(i64 0, i64 %return6, i64 %return45)
+  %return49 = call i64 @"addprim@IIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0))
+  %bbmin52 = load <3 x double>, <3 x double>* %bbmin
+  %return53 = call double @"getcomp@FVI"(<3 x double> %bbmin52, i64 1)
+  %return55 = call double @"getcomp@FVI"(<3 x double> %bbmin52, i64 2)
+  %return56 = call <3 x double> @"set@VFFF"(double %return14, double %return53, double %return55)
+  %return58 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return56)
+  %return61 = call i64 @"addvertex@IIII"(i64 0, i64 %return49, i64 %return58)
+  %bbmax62 = load <3 x double>, <3 x double>* %bbmax
+  %return63 = call double @"getcomp@FVI"(<3 x double> %bbmax62, i64 0)
+  %bbmin64 = load <3 x double>, <3 x double>* %bbmin
+  %return65 = call double @"getcomp@FVI"(<3 x double> %bbmin64, i64 1)
+  %return67 = call double @"getcomp@FVI"(<3 x double> %bbmin64, i64 2)
+  %return68 = call <3 x double> @"set@VFFF"(double %return63, double %return65, double %return67)
+  %return70 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return68)
+  %return73 = call i64 @"addvertex@IIII"(i64 0, i64 %return49, i64 %return70)
+  %bbmax74 = load <3 x double>, <3 x double>* %bbmax
+  %return75 = call double @"getcomp@FVI"(<3 x double> %bbmax74, i64 0)
+  %bbmin76 = load <3 x double>, <3 x double>* %bbmin
+  %return77 = call double @"getcomp@FVI"(<3 x double> %bbmin76, i64 1)
+  %return79 = call double @"getcomp@FVI"(<3 x double> %bbmax74, i64 2)
+  %return80 = call <3 x double> @"set@VFFF"(double %return75, double %return77, double %return79)
+  %return82 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return80)
+  %return85 = call i64 @"addvertex@IIII"(i64 0, i64 %return49, i64 %return82)
+  %bbmin88 = load <3 x double>, <3 x double>* %bbmin
+  %return89 = call double @"getcomp@FVI"(<3 x double> %bbmin88, i64 1)
+  %bbmax90 = load <3 x double>, <3 x double>* %bbmax
+  %return91 = call double @"getcomp@FVI"(<3 x double> %bbmax90, i64 2)
+  %return92 = call <3 x double> @"set@VFFF"(double %return14, double %return89, double %return91)
+  %return94 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return92)
+  %return97 = call i64 @"addvertex@IIII"(i64 0, i64 %return49, i64 %return94)
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %bbmin106 = load <3 x double>, <3 x double>* %bbmin
+  %return107 = call double @"getcomp@FVI"(<3 x double> %bbmin106, i64 0)
+  %return109 = call double @"getcomp@FVI"(<3 x double> %bbmin106, i64 1)
+  %return111 = call double @"getcomp@FVI"(<3 x double> %return, i64 2)
+  %return112 = call <3 x double> @"set@VFFF"(double %return107, double %return109, double %return111)
+  %return114 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return112)
+  %return117 = call i64 @"addvertex@IIII"(i64 0, i64 %return6, i64 %return114)
+  %bbmax118 = load <3 x double>, <3 x double>* %bbmax
+  %return119 = call double @"getcomp@FVI"(<3 x double> %bbmax118, i64 0)
+  %bbmin120 = load <3 x double>, <3 x double>* %bbmin
+  %return121 = call double @"getcomp@FVI"(<3 x double> %bbmin120, i64 1)
+  %return124 = call <3 x double> @"set@VFFF"(double %return119, double %return121, double %return111)
+  %return126 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return124)
+  %return129 = call i64 @"addvertex@IIII"(i64 0, i64 %return6, i64 %return126)
+  %bbmax130 = load <3 x double>, <3 x double>* %bbmax
+  %return131 = call double @"getcomp@FVI"(<3 x double> %bbmax130, i64 0)
+  %bbmin132 = load <3 x double>, <3 x double>* %bbmin
+  %return133 = call double @"getcomp@FVI"(<3 x double> %bbmin132, i64 1)
+  %return135 = call double @"getcomp@FVI"(<3 x double> %bbmin132, i64 2)
+  %return136 = call <3 x double> @"set@VFFF"(double %return131, double %return133, double %return135)
+  %return138 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return136)
+  %return141 = call i64 @"addvertex@IIII"(i64 0, i64 %return6, i64 %return138)
+  %return142 = call i64 @"addprim@IIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0))
+  %bbmin143 = load <3 x double>, <3 x double>* %bbmin
+  %return144 = call double @"getcomp@FVI"(<3 x double> %bbmin143, i64 0)
+  %return146 = call double @"getcomp@FVI"(<3 x double> %bbmin143, i64 1)
+  %return149 = call <3 x double> @"set@VFFF"(double %return144, double %return146, double %return111)
+  %return151 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return149)
+  %return154 = call i64 @"addvertex@IIII"(i64 0, i64 %return142, i64 %return151)
+  %bbmin155 = load <3 x double>, <3 x double>* %bbmin
+  %return156 = call double @"getcomp@FVI"(<3 x double> %bbmin155, i64 0)
+  %return158 = call double @"getcomp@FVI"(<3 x double> %bbmin155, i64 1)
+  %bbmax159 = load <3 x double>, <3 x double>* %bbmax
+  %return160 = call double @"getcomp@FVI"(<3 x double> %bbmax159, i64 2)
+  %return161 = call <3 x double> @"set@VFFF"(double %return156, double %return158, double %return160)
+  %return163 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return161)
+  %return166 = call i64 @"addvertex@IIII"(i64 0, i64 %return142, i64 %return163)
+  %bbmax167 = load <3 x double>, <3 x double>* %bbmax
+  %return169 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %bbmax167)
+  %return172 = call i64 @"addvertex@IIII"(i64 0, i64 %return142, i64 %return169)
+  %bbmax173 = load <3 x double>, <3 x double>* %bbmax
+  %return174 = call double @"getcomp@FVI"(<3 x double> %bbmax173, i64 0)
+  %bbmin175 = load <3 x double>, <3 x double>* %bbmin
+  %return176 = call double @"getcomp@FVI"(<3 x double> %bbmin175, i64 1)
+  %return179 = call <3 x double> @"set@VFFF"(double %return174, double %return176, double %return111)
+  %return181 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return179)
+  %return184 = call i64 @"addvertex@IIII"(i64 0, i64 %return142, i64 %return181)
+  br label %end
+
+end:                                              ; preds = %false, %true
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"lerp@VVVF"(<3 x double>, <3 x double>, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"addpoint@IIV"(i64, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"addvertex@IIII"(i64, i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #2
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I"(i64* %_bound_primnum) #0 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca double
+  %3 = alloca i64
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0))
+  %_bound_primnum1 = load i64, i64* %_bound_primnum
+  %return2 = call i64* @"primpoints@[III"(i64 0, i64 %_bound_primnum1)
+  %_bound_primnum3 = load i64, i64* %_bound_primnum
+  %return4 = call i8* @"itoa@SI"(i64 %_bound_primnum3)
+  %return6 = call <3 x double> @"getbbox_min@VIS"(i64 0, i8* %return4)
+  %return8 = call <3 x double> @"getbbox_max@VIS"(i64 0, i8* %return4)
+  %return10 = call <3 x double> @"getbbox_size@VIS"(i64 0, i8* %return4)
+  %return12 = call double @"getcomp@FVI"(<3 x double> %return10, i64 0)
+  %return14 = call double @"getcomp@FVI"(<3 x double> %return10, i64 2)
+  %return15 = fcmp ogt double %return12, %return14
+  br i1 %return15, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  br label %end
+
+end:                                              ; preds = %false, %true
+  %cutdir.0 = phi i64 [ 0, %true ], [ 1, %false ]
+  %_bound_primnum17 = load i64, i64* %_bound_primnum
+  %cast = sitofp i64 %_bound_primnum17 to double
+  %output = fadd double %cast, %return
+  %return19 = call double @"rand@FF"(double %output)
+  %return20 = call double @"fit01@FFFF"(double %return19, double 1.000000e-01, double 9.000000e-01)
+  store <3 x double> %return6, <3 x double>* %0
+  store <3 x double> %return8, <3 x double>* %1
+  store double %return20, double* %2
+  store i64 %cutdir.0, i64* %3
+  call void @"subdiv@VVFI"(<3 x double>* %0, <3 x double>* %1, double* %2, i64* %3)
+  %_bound_primnum25 = load i64, i64* %_bound_primnum
+  %return26 = call i64 @"removeprim@IIII"(i64 0, i64 %_bound_primnum25, i64 1)
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #2
+
+; Function Attrs: nounwind
+declare i64* @"primpoints@[III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"itoa@SI"(i64) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"getbbox_min@VIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"getbbox_max@VIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"getbbox_size@VIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+declare double @"rand@FF"(double) #1
+
+; Function Attrs: nounwind
+declare double @"fit01@FFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+declare i64 @"removeprim@IIII"(i64, i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %primnum) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  store i64 %primnum, i64* %0
+  call void @"__vex_snippet_snippet@I"(i64* %0)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i64 %primnum) #3
+  store i64 %gvalue, i64* @primnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.383"}
+!2 = !{!"64"}
+
+;_code_end

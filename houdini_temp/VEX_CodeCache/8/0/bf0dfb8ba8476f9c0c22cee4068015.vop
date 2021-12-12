@@ -1,0 +1,68 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [9 x i8] c"polyline\00"
+@ptnum = external global i64
+@numpt = external global i64
+@1 = private constant [6 x i8] c"ptnum\00"
+@2 = private constant [6 x i8] c"numpt\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@II"(i64* %_bound_ptnum, i64* %_bound_numpt) #0 {
+__llvm_entry:
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  %output = add i64 %_bound_ptnum1, 123
+  %cast = sitofp i64 %output to double
+  %return = call double @"rand@FF"(double %cast)
+  %_bound_numpt2 = load i64, i64* %_bound_numpt
+  %cast3 = sitofp i64 %_bound_numpt2 to double
+  %output4 = fmul double %return, %cast3
+  %cast5 = fptosi double %output4 to i64
+  %_bound_ptnum6 = load i64, i64* %_bound_ptnum
+  %return8 = call i64 @"addprim@IISII"(i64 0, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @0, i64 0, i64 0), i64 %_bound_ptnum6, i64 %cast5)
+  ret void
+}
+
+; Function Attrs: nounwind
+declare double @"rand@FF"(double) #1
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IISII"(i64, i8*, i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %ptnum, i64 %numpt) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  store i64 %ptnum, i64* %0
+  store i64 %numpt, i64* %1
+  call void @"__vex_snippet_snippet@II"(i64* %0, i64* %1)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %ptnum) #2
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0), i64 %numpt) #2
+  store i64 %gvalue, i64* @ptnum
+  store i64 %gvalue4, i64* @numpt
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.383"}
+!2 = !{!"64"}
+
+;_code_end

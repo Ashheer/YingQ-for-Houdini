@@ -1,0 +1,41 @@
+;_name	/obj/EXAMPLES_AL_MODEL/AL_ID_generator2/attribvop1
+; ModuleID = 'obj_EXAMPLES_AL_MODEL_AL_ID_generator2_attribvop1'
+source_filename = "obj_EXAMPLES_AL_MODEL_AL_ID_generator2_attribvop1"
+
+@0 = private constant [1 x i8] zeroinitializer
+@ID = external global double
+@1 = private constant [3 x i8] c"ID\00"
+
+; Function Attrs: nounwind
+define void @obj_EXAMPLES_AL_MODEL_AL_ID_generator2_attribvop1(i64 %ptnum, i64 %vtxnum, i64 %primnum, i64 %id, i64 %numpt, i64 %numvtx, i64 %numprim, double %Time, double %TimeInc, double %Frame, double %life, double %age, i8* %OpInput2, i8* %OpInput3, i8* %OpInput4, i8* %OpInput1, <3 x double> %uv, <3 x double> %P, <3 x double> %v, <3 x double> %force, <3 x double> %Cd, <3 x double> %N, double %ID) #0 {
+__llvm_entry:
+  %output = call { double, double, double } @"assign@FFFV"(<3 x double> %Cd)
+  %output31 = extractvalue { double, double, double } %output, 0
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @1, i64 0, i64 0), double %output31) #1
+  store double %gvalue, double* @ID
+  ret void
+}
+
+; Function Attrs: nounwind
+declare { double, double, double } @"assign@FFFV"(<3 x double>) #0
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_EXAMPLES_AL_MODEL_AL_ID_generator2_attribvop1(i64 0, i64 0, i64 0, i64 -1, i64 0, i64 0, i64 0, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, <3 x double> zeroinitializer, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { nounwind }
+attributes #1 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

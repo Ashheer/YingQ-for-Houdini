@@ -1,0 +1,46 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [20 x i8] c"origprims_subdivide\00"
+@1 = private constant [30 x i8] c"origprimborderedges_subdivide\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call i64 @"setprimgroup@IISII"(i64 0, i8* getelementptr inbounds ([20 x i8], [20 x i8]* @0, i64 0, i64 0), i64 0, i64 0)
+  %return1 = call i64 @"setedgegroup@IISIII"(i64 0, i8* getelementptr inbounds ([30 x i8], [30 x i8]* @1, i64 0, i64 0), i64 0, i64 0, i64 0)
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"setprimgroup@IISII"(i64, i8*, i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setedgegroup@IISIII"(i64, i8*, i64, i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #1 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

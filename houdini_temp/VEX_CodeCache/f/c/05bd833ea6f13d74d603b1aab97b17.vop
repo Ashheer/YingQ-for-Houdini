@@ -1,0 +1,86 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [5 x i8] c"bias\00"
+@1 = private constant [2 x i8] c"P\00"
+@2 = private constant [6 x i8] c"Angle\00"
+@3 = private constant [7 x i8] c"Angle2\00"
+@P = external global <3 x double>
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@V"(<3 x double>* %_bound_P) #0 {
+__llvm_entry:
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0))
+  %return1 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 1)
+  %return3 = call <3 x double> @"normalize@VV"(<3 x double> %return1)
+  %return5 = call <3 x double> @"point@VISI"(i64 2, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 1)
+  %return7 = call <3 x double> @"normalize@VV"(<3 x double> %return5)
+  %return8 = call double @"chf@FS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0))
+  %return10 = call double @"radians@FF"(double %return8)
+  %return11 = call double @"chf@FS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @3, i64 0, i64 0))
+  %return13 = call double @"radians@FF"(double %return11)
+  %return16 = call <4 x double> @"quaternion@PFV"(double %return10, <3 x double> %return3)
+  %return19 = call <4 x double> @"quaternion@PFV"(double %return13, <3 x double> %return7)
+  %return23 = call <4 x double> @"slerp@PPPF"(<4 x double> %return16, <4 x double> %return19, double %return)
+  %_bound_P25 = load <3 x double>, <3 x double>* %_bound_P
+  %return26 = call <3 x double> @"qrotate@VPV"(<4 x double> %return23, <3 x double> %_bound_P25)
+  store <3 x double> %return26, <3 x double>* %_bound_P
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #2
+
+; Function Attrs: nounwind
+declare double @"radians@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"quaternion@PFV"(double, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"slerp@PPPF"(<4 x double>, <4 x double>, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"qrotate@VPV"(<4 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P) #2 {
+__llvm_entry:
+  %"<P>" = alloca <3 x double>
+  store <3 x double> %P, <3 x double>* %"<P>"
+  call void @"__vex_snippet_snippet@V"(<3 x double>* %"<P>")
+  %evalue = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %evalue) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

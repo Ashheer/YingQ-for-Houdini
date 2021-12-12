@@ -47,5 +47,18 @@
              ]
           }
        },
+       {
+         "HOUDINI_VEX_PATH": {
+             "method": "append", 
+             "value": [
+                 "$YingQLib/vex/^",
+                 "$YingQLib/vex/include",
+                 "$YingQLib/vex/include/child",
+                 "$YingQLib/vex/include/child/element",
+                 "$YingQLib/vex/include/child/element/basic",
+                 "$YingQLib/vex/include/child/element/basic/deep",
+             ]
+         }
+       },
     ]
  }

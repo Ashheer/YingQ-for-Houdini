@@ -1,0 +1,65 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [6 x i8] c"maxps\00"
+@1 = private constant [6 x i8] c"minps\00"
+@2 = private constant [12 x i8] c"ramp_pscale\00"
+@pscale = external global double
+@3 = private constant [7 x i8] c"pscale\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@F"(double* %_bound_pscale) #0 {
+__llvm_entry:
+  %return = call double @"detail@FIS"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0))
+  %return1 = call double @"detail@FIS"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0))
+  %_bound_pscale2 = load double, double* %_bound_pscale
+  %return5 = call double @"fit@FFFFFF"(double %_bound_pscale2, double %return1, double %return, double 0.000000e+00, double 1.000000e+00)
+  %return7 = call double @"chramp@FSF"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @2, i64 0, i64 0), double %return5)
+  store double %return7, double* %_bound_pscale
+  ret void
+}
+
+; Function Attrs: nounwind
+declare double @"detail@FIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+declare double @"fit@FFFFFF"(double, double, double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chramp@FSF"(i8*, double) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %pscale) #1 {
+__llvm_entry:
+  %"<pscale>" = alloca double
+  store double %pscale, double* %"<pscale>"
+  call void @"__vex_snippet_snippet@F"(double* %"<pscale>")
+  %evalue = load double, double* %"<pscale>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @3, i64 0, i64 0), double %evalue) #3
+  store double %gvalue, double* @pscale
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end
