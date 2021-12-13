@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\YingQ\3D\Houdini_libs\YingQ-for-Houdini\dso\SOP_Star\SOP_Star.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\YingQ\3D\Houdini_libs\YingQ-for-Houdini\dso\SOP_Star\SOP_Star.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\YingQ\3D\Houdini_libs\YingQ-for-Houdini\dso\SOP_Star\build\CMakeFiles\5c9151be05e65bbb1265058e042f403d\SOP_Star.proto.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\YingQ\3D\Houdini_libs\YingQ-for-Houdini\dso\SOP_Star\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{95B172AF-B6E9-3064-9DEB-0C6CFEDF6723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{A33C33F2-D993-3BF8-9714-6CB48F61B8D2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D2441381-AC0A-3129-94EF-6581C503881C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

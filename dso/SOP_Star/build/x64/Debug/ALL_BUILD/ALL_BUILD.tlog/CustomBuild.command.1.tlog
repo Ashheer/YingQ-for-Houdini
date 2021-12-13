@@ -1,0 +1,10 @@
+^C:\USERS\YINGQ\3D\HOUDINI_LIBS\YINGQ-FOR-HOUDINI\DSO\SOP_STAR\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/YingQ/3D/Houdini_libs/YingQ-for-Houdini/dso/SOP_Star -BC:/Users/YingQ/3D/Houdini_libs/YingQ-for-Houdini/dso/SOP_Star/build --check-stamp-file C:/Users/YingQ/3D/Houdini_libs/YingQ-for-Houdini/dso/SOP_Star/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

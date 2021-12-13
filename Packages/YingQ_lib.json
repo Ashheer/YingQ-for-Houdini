@@ -16,6 +16,14 @@
           "HOUDINI_TEMP_DIR" : "$YingQLib/houdini_temp"
        },
        {
+         "HOUDINI_DSO_PATH": {
+            "method": "prepend",
+            "value": [
+               "$YingQLib/dso"
+            ]
+         }
+      },
+       {
           "HOUDINI_OTLSCAN_PATH": {
              "method": "append",
              "value": [
