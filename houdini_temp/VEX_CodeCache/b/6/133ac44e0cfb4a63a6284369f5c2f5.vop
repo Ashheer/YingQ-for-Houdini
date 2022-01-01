@@ -1,0 +1,69 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [8 x i8] c"minArea\00"
+@area = external global double
+@group_big = external global i64
+@1 = private constant [5 x i8] c"area\00"
+@2 = private constant [10 x i8] c"group_big\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FI"(double* %_bound_area, i64* %_bound_group_big) #0 {
+__llvm_entry:
+  %_bound_area1 = load double, double* %_bound_area
+  %return = call double @"ch@FS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0))
+  %return2 = fcmp ogt double %_bound_area1, %return
+  br i1 %return2, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  store i64 1, i64* %_bound_group_big
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %area, i64 %group_big) #2 {
+__llvm_entry:
+  %"<group_big>" = alloca i64
+  %0 = alloca double
+  store i64 %group_big, i64* %"<group_big>"
+  store double %area, double* %0
+  call void @"__vex_snippet_snippet@FI"(double* %0, i64* %"<group_big>")
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), double %area) #3
+  %evalue2 = load i64, i64* %"<group_big>"
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0), i64 %evalue2) #3
+  store double %gvalue, double* @area
+  store i64 %gvalue3, i64* @group_big
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

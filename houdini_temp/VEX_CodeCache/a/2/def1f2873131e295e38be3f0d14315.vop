@@ -1,0 +1,154 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [15 x i8] c"Num_of_Samples\00"
+@1 = private constant [8 x i8] c"blurdia\00"
+@2 = private constant [8 x i8] c"density\00"
+@dir = external global <3 x double>
+@P = external global <3 x double>
+@density = external global double
+@3 = private constant [4 x i8] c"dir\00"
+@4 = private constant [2 x i8] c"P\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VVF"(<3 x double>* %_bound_dir, <3 x double>* %_bound_P, double* %_bound_density) #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @0, i64 0, i64 0))
+  %_bound_dir1 = load <3 x double>, <3 x double>* %_bound_dir
+  %_bound_P2 = load <3 x double>, <3 x double>* %_bound_P
+  %return3 = call double @"chf@FS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0))
+  %cast = sitofp i64 %return to double
+  %output = call double @"div@FF"(double %return3, double %cast)
+  %return6 = call double @"neg@FF"(double 5.000000e-01)
+  %output8 = fmul double %return6, %return3
+  %_bound_density9 = load double, double* %_bound_density
+  br label %cond
+
+cond:                                             ; preds = %end41, %__llvm_entry
+  %val.0 = phi double [ %_bound_density9, %__llvm_entry ], [ %output46, %end41 ]
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output49, %end41 ]
+  %return12 = call i64 @"lt@III"(i64 %i.0, i64 %return)
+  %0 = icmp ne i64 %return12, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %cast17 = sitofp i64 %i.0 to double
+  %output18 = fmul double %output, %cast17
+  %output19 = fadd double %output8, %output18
+  %cast21 = call <3 x double> @"set@VF"(double %output19)
+  %output22 = call <3 x double> @"mul@VV"(<3 x double> %cast21, <3 x double> %_bound_dir1)
+  %output23 = call <3 x double> @"add@VV"(<3 x double> %_bound_P2, <3 x double> %output22)
+  %return25 = call double @"getcomp@FVI"(<3 x double> %output23, i64 0)
+  %return26 = call double @"abs@FF"(double %return25)
+  %return27 = fcmp olt double %return26, 1.500000e+00
+  %return28 = zext i1 %return27 to i64
+  %return30 = call double @"getcomp@FVI"(<3 x double> %output23, i64 1)
+  %return31 = call double @"abs@FF"(double %return30)
+  %return32 = fcmp olt double %return31, 1.500000e+00
+  %return33 = zext i1 %return32 to i64
+  %return34 = call i64 @"and@III"(i64 %return28, i64 %return33)
+  %return36 = call double @"getcomp@FVI"(<3 x double> %output23, i64 2)
+  %return37 = call double @"abs@FF"(double %return36)
+  %return38 = fcmp olt double %return37, 5.000000e-01
+  %return39 = zext i1 %return38 to i64
+  %return40 = call i64 @"and@III"(i64 %return34, i64 %return39)
+  %1 = icmp ne i64 %return40, 0
+  br i1 %1, label %true, label %end41
+
+end:                                              ; preds = %cond
+  %output53 = call double @"div@FF"(double %val.0, double %cast)
+  store double %output53, double* %_bound_density
+  ret void
+
+true:                                             ; preds = %body
+  %return43 = call double @"volumesample@FISV"(i64 0, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), <3 x double> %output23)
+  br label %end41
+
+end41:                                            ; preds = %true, %body
+  %nval.0 = phi double [ %return43, %true ], [ 0.000000e+00, %body ]
+  %output46 = fadd double %val.0, %nval.0
+  %output49 = add i64 %i.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind
+declare double @"abs@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare double @"volumesample@FISV"(i64, i8*, <3 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %dir, <3 x double> %P, double %density) #2 {
+__llvm_entry:
+  %"<density>" = alloca double
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  store double %density, double* %"<density>"
+  store <3 x double> %dir, <3 x double>* %0
+  store <3 x double> %P, <3 x double>* %1
+  call void @"__vex_snippet_snippet@VVF"(<3 x double>* %0, <3 x double>* %1, double* %"<density>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0), <3 x double> %dir) #3
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @4, i64 0, i64 0), <3 x double> %P) #3
+  %evalue5 = load double, double* %"<density>"
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), double %evalue5) #3
+  store <3 x double> %gvalue, <3 x double>* @dir
+  store <3 x double> %gvalue4, <3 x double>* @P
+  store double %gvalue6, double* @density
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> zeroinitializer, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

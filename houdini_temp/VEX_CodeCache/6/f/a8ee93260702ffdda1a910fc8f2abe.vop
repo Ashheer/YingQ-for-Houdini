@@ -1,0 +1,139 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [5 x i8] c"seed\00"
+@1 = private constant [10 x i8] c"seed_cent\00"
+@2 = private constant [10 x i8] c"maxangle0\00"
+@3 = private constant [11 x i8] c"seed_angle\00"
+@4 = private constant [10 x i8] c"maxangle1\00"
+@dir0 = external global <3 x double>
+@dir1 = external global <3 x double>
+@5 = private constant [5 x i8] c"dir0\00"
+@6 = private constant [5 x i8] c"dir1\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VV"(<3 x double>* %_bound_dir0, <3 x double>* %_bound_dir1) #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0))
+  %return1 = call double @"ch@FS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0))
+  %cast = sitofp i64 %return to double
+  %output = fadd double %cast, %return1
+  %return2 = call double @"rand@FF"(double %output)
+  %return4 = fcmp oge double %return2, 5.000000e-01
+  br i1 %return4, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return6 = call i64 @"neg@II"(i64 1)
+  %cast7 = sitofp i64 %return6 to double
+  br label %end
+
+end:                                              ; preds = %false, %true
+  %a.0 = phi double [ 1.000000e+00, %true ], [ %cast7, %false ]
+  %output9 = add i64 %return, 12345
+  %cast11 = sitofp i64 %output9 to double
+  %output12 = fadd double %cast11, %return1
+  %return13 = call double @"rand@FF"(double %output12)
+  %return15 = fcmp oge double %return13, 5.000000e-01
+  br i1 %return15, label %true17, label %false18
+
+true17:                                           ; preds = %end
+  br label %end19
+
+false18:                                          ; preds = %end
+  %return20 = call i64 @"neg@II"(i64 1)
+  %cast21 = sitofp i64 %return20 to double
+  br label %end19
+
+end19:                                            ; preds = %false18, %true17
+  %b.0 = phi double [ 1.000000e+00, %true17 ], [ %cast21, %false18 ]
+  %return23 = call <2 x double> @"set@UFF"(double %a.0, double 0.000000e+00)
+  %return24 = call double @"ch@FS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0))
+  %return26 = call double @"ch@FS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @3, i64 0, i64 0))
+  %output28 = fadd double %cast, %return26
+  %return29 = call double @"rand@FF"(double %output28)
+  %return30 = call <2 x double> @"sample_circle_arc@UUFF"(<2 x double> %return23, double %return24, double %return29)
+  %return32 = call <2 x double> @"set@UFF"(double 0.000000e+00, double %b.0)
+  %return33 = call double @"ch@FS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @4, i64 0, i64 0))
+  %output35 = add i64 %return, 1234
+  %cast37 = sitofp i64 %output35 to double
+  %output38 = fadd double %cast37, %return26
+  %return39 = call double @"rand@FF"(double %output38)
+  %return40 = call <2 x double> @"sample_circle_arc@UUFF"(<2 x double> %return32, double %return33, double %return39)
+  %return42 = call double @"getcomp@FUI"(<2 x double> %return30, i64 0)
+  %return44 = call double @"getcomp@FUI"(<2 x double> %return30, i64 1)
+  %return45 = call <3 x double> @"set@VFFF"(double %return42, double 0.000000e+00, double %return44)
+  store <3 x double> %return45, <3 x double>* %_bound_dir0
+  %return47 = call double @"getcomp@FUI"(<2 x double> %return40, i64 0)
+  %return49 = call double @"getcomp@FUI"(<2 x double> %return40, i64 1)
+  %return50 = call <3 x double> @"set@VFFF"(double %return47, double 0.000000e+00, double %return49)
+  store <3 x double> %return50, <3 x double>* %_bound_dir1
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind
+declare double @"rand@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UFF"(double, double) #1
+
+; Function Attrs: nounwind
+declare <2 x double> @"sample_circle_arc@UUFF"(<2 x double>, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FUI"(<2 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %dir0, <3 x double> %dir1) #2 {
+__llvm_entry:
+  %"<dir1>" = alloca <3 x double>
+  %"<dir0>" = alloca <3 x double>
+  store <3 x double> %dir0, <3 x double>* %"<dir0>"
+  store <3 x double> %dir1, <3 x double>* %"<dir1>"
+  call void @"__vex_snippet_snippet@VV"(<3 x double>* %"<dir0>", <3 x double>* %"<dir1>")
+  %evalue = load <3 x double>, <3 x double>* %"<dir0>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @5, i64 0, i64 0), <3 x double> %evalue) #3
+  %evalue1 = load <3 x double>, <3 x double>* %"<dir1>"
+  %gvalue2 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @6, i64 0, i64 0), <3 x double> %evalue1) #3
+  store <3 x double> %gvalue, <3 x double>* @dir0
+  store <3 x double> %gvalue2, <3 x double>* @dir1
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

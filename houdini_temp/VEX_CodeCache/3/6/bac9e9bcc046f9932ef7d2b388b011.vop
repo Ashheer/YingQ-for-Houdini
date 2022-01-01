@@ -1,0 +1,269 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [11 x i8] c"maxvalence\00"
+@1 = private constant [21 x i8] c"@__npts>=%d ^@%s>=0 \00"
+@2 = private constant [10 x i8] c"colorname\00"
+@3 = private constant [0 x i64] zeroinitializer
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @0, i64 0, i64 0))
+  %return2 = call i8* @"chs@SS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0))
+  %return3 = call i8* @"sprintf@SS:IS"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @1, i64 0, i64 0), i64 %return, i8* %return2)
+  %return5 = call i64* @"expandprimgroup@[IIS"(i64 0, i8* %return3)
+  %return7 = call i64 @"len@I[I"(i64* %return5)
+  %return9 = call i64 @"eq@III"(i64 %return7, i64 0)
+  %0 = icmp ne i64 %return9, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %cond171, %__llvm_entry
+  ret void
+
+end:                                              ; preds = %__llvm_entry
+  %return10 = call i64 @"npoints@II"(i64 0)
+  %output = call i64* @"resize@[II"(i64* getelementptr inbounds ([0 x i64], [0 x i64]* @3, i64 0, i64 0), i64 %return7)
+  br label %cond
+
+cond:                                             ; preds = %body, %end
+  %npts.0 = phi i64* [ %output, %end ], [ %output32, %body ]
+  %i.0 = phi i64 [ 0, %end ], [ %output34, %body ]
+  %return20 = call i64 @"lt@III"(i64 %i.0, i64 %return7)
+  %1 = icmp ne i64 %return20, 0
+  br i1 %1, label %body, label %end21
+
+body:                                             ; preds = %cond
+  %return24 = call i64 @"getcomp@I[II"(i64* %return5, i64 %i.0)
+  %return27 = call i64* @"primpoints@[III"(i64 0, i64 %return24)
+  %return28 = call i64 @"len@I[I"(i64* %return27)
+  %return29 = call i64 @"neg@II"(i64 %return28)
+  %return30 = call { i64, i64* } @"setcomp@I[III"(i64* %npts.0, i64 %return29, i64 %i.0)
+  %output32 = extractvalue { i64, i64* } %return30, 1
+  %output34 = add i64 %i.0, 1
+  br label %cond
+
+end21:                                            ; preds = %cond
+  %return37 = call i64* @"argsort@[I[I"(i64* %npts.0)
+  %return38 = call i64* @"reorder@[I[I[I"(i64* %return5, i64* %return37)
+  %return42 = call i64 @"len@I[I"(i64* %return38)
+  br label %cond43
+
+cond43:                                           ; preds = %end124, %end21
+  %mapping.0 = phi i64* [ getelementptr inbounds ([0 x i64], [0 x i64]* @3, i64 0, i64 0), %end21 ], [ %mapping.3, %end124 ]
+  %colors.0 = phi i64* [ %output, %end21 ], [ %colors.2, %end124 ]
+  %ncolors.0 = phi i64 [ 0, %end21 ], [ %ncolors.1, %end124 ]
+  %i39.0 = phi i64 [ 0, %end21 ], [ %output166, %end124 ]
+  %return47 = call i64 @"lt@III"(i64 %i39.0, i64 %return42)
+  %2 = icmp ne i64 %return47, 0
+  br i1 %2, label %body44, label %end48
+
+body44:                                           ; preds = %cond43
+  %return52 = call i64 @"getcomp@I[II"(i64* %return38, i64 %i39.0)
+  %return54 = call i64* @"primpoints@[III"(i64 0, i64 %return52)
+  br label %cond55
+
+end48:                                            ; preds = %cond43
+  br label %cond171
+
+cond55:                                           ; preds = %end88, %body44
+  %j.0 = phi i64 [ 0, %body44 ], [ %output121, %end88 ]
+  %return59 = call i64 @"lt@III"(i64 %j.0, i64 %ncolors.0)
+  %3 = icmp ne i64 %return59, 0
+  br i1 %3, label %body56, label %end60
+
+body56:                                           ; preds = %cond55
+  %return63 = call i64 @"len@I[I"(i64* %return54)
+  br label %cond64
+
+end60:                                            ; preds = %end103, %cond55
+  %mapping.1 = phi i64* [ %mapping.2, %end103 ], [ %mapping.0, %cond55 ]
+  %colors.1 = phi i64* [ %output94, %end103 ], [ %colors.0, %cond55 ]
+  %useNewColor.0 = phi i64 [ 0, %end103 ], [ 1, %cond55 ]
+  %4 = icmp ne i64 %useNewColor.0, 0
+  br i1 %4, label %true123, label %end124
+
+cond64:                                           ; preds = %end83, %body56
+  %__impl_foreach_index_c1.0 = phi i64 [ 0, %body56 ], [ %output85, %end83 ]
+  %return68 = call i64 @"lt@III"(i64 %__impl_foreach_index_c1.0, i64 %return63)
+  %5 = icmp ne i64 %return68, 0
+  br i1 %5, label %body65, label %end69
+
+body65:                                           ; preds = %cond64
+  %return73 = call i64 @"getcomp@I[II"(i64* %return54, i64 %__impl_foreach_index_c1.0)
+  %output77 = mul i64 %j.0, %return10
+  %output79 = add i64 %output77, %return73
+  %return80 = call i64 @"getcomp@I[II"(i64* %mapping.0, i64 %output79)
+  %return81 = call i64 @"ne@III"(i64 %return80, i64 0)
+  %6 = icmp ne i64 %return81, 0
+  br i1 %6, label %true82, label %end83
+
+end69:                                            ; preds = %true82, %cond64
+  %useColor.0 = phi i64 [ 0, %true82 ], [ 1, %cond64 ]
+  %7 = icmp ne i64 %useColor.0, 0
+  br i1 %7, label %true87, label %end88
+
+true82:                                           ; preds = %body65
+  br label %end69
+
+end83:                                            ; preds = %body65
+  %output85 = add i64 %__impl_foreach_index_c1.0, 1
+  br label %cond64
+
+true87:                                           ; preds = %end69
+  %return92 = call { i64, i64* } @"setcomp@I[III"(i64* %colors.0, i64 %j.0, i64 %i39.0)
+  %output94 = extractvalue { i64, i64* } %return92, 1
+  br label %cond98
+
+end88:                                            ; preds = %end69
+  %output121 = add i64 %j.0, 1
+  br label %cond55
+
+cond98:                                           ; preds = %body99, %true87
+  %mapping.2 = phi i64* [ %mapping.0, %true87 ], [ %output116, %body99 ]
+  %__impl_foreach_index_c2.0 = phi i64 [ 0, %true87 ], [ %output118, %body99 ]
+  %return102 = call i64 @"lt@III"(i64 %__impl_foreach_index_c2.0, i64 %return63)
+  %8 = icmp ne i64 %return102, 0
+  br i1 %8, label %body99, label %end103
+
+body99:                                           ; preds = %cond98
+  %return107 = call i64 @"getcomp@I[II"(i64* %return54, i64 %__impl_foreach_index_c2.0)
+  %output110 = mul i64 %j.0, %return10
+  %output112 = add i64 %output110, %return107
+  %return114 = call { i64, i64* } @"setcomp@I[III"(i64* %mapping.2, i64 1, i64 %output112)
+  %output116 = extractvalue { i64, i64* } %return114, 1
+  %output118 = add i64 %__impl_foreach_index_c2.0, 1
+  br label %cond98
+
+end103:                                           ; preds = %cond98
+  br label %end60
+
+true123:                                          ; preds = %end60
+  %return128 = call { i64, i64* } @"setcomp@I[III"(i64* %colors.1, i64 %ncolors.0, i64 %i39.0)
+  %output130 = extractvalue { i64, i64* } %return128, 1
+  %output133 = add i64 %ncolors.0, 1
+  %output137 = mul i64 %output133, %return10
+  %output138 = call i64* @"resize@[II"(i64* %mapping.1, i64 %output137)
+  %return141 = call i64 @"len@I[I"(i64* %return54)
+  br label %cond142
+
+end124:                                           ; preds = %cond142, %end60
+  %mapping.3 = phi i64* [ %mapping.4, %cond142 ], [ %mapping.1, %end60 ]
+  %colors.2 = phi i64* [ %output130, %cond142 ], [ %colors.1, %end60 ]
+  %ncolors.1 = phi i64 [ %output133, %cond142 ], [ %ncolors.0, %end60 ]
+  %output166 = add i64 %i39.0, 1
+  br label %cond43
+
+cond142:                                          ; preds = %body143, %true123
+  %mapping.4 = phi i64* [ %output138, %true123 ], [ %output162, %body143 ]
+  %__impl_foreach_index_c3.0 = phi i64 [ 0, %true123 ], [ %output164, %body143 ]
+  %return146 = call i64 @"lt@III"(i64 %__impl_foreach_index_c3.0, i64 %return141)
+  %9 = icmp ne i64 %return146, 0
+  br i1 %9, label %body143, label %end124
+
+body143:                                          ; preds = %cond142
+  %return151 = call i64 @"getcomp@I[II"(i64* %return54, i64 %__impl_foreach_index_c3.0)
+  %return154 = call i64 @"getcomp@I[II"(i64* %output130, i64 %i39.0)
+  %output156 = mul i64 %return154, %return10
+  %output158 = add i64 %output156, %return151
+  %return160 = call { i64, i64* } @"setcomp@I[III"(i64* %mapping.4, i64 1, i64 %output158)
+  %output162 = extractvalue { i64, i64* } %return160, 1
+  %output164 = add i64 %__impl_foreach_index_c3.0, 1
+  br label %cond142
+
+cond171:                                          ; preds = %body172, %end48
+  %i167.0 = phi i64 [ 0, %end48 ], [ %output189, %body172 ]
+  %return175 = call i64 @"lt@III"(i64 %i167.0, i64 %return42)
+  %10 = icmp ne i64 %return175, 0
+  br i1 %10, label %body172, label %true
+
+body172:                                          ; preds = %cond171
+  %return180 = call i64 @"getcomp@I[II"(i64* %return38, i64 %i167.0)
+  %return181 = call i64 @"geoself@I"()
+  %return186 = call i64 @"getcomp@I[II"(i64* %colors.0, i64 %i167.0)
+  %return187 = call i64 @"setprimattrib@IISII"(i64 %return181, i8* %return2, i64 %return180, i64 %return186)
+  %output189 = add i64 %i167.0, 1
+  br label %cond171
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"sprintf@SS:IS"(i8*, i64, i8*) #1
+
+; Function Attrs: nounwind
+declare i64* @"expandprimgroup@[IIS"(i64, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64* @"resize@[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"primpoints@[III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare { i64, i64* } @"setcomp@I[III"(i64*, i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64* @"argsort@[I[I"(i64*) #1
+
+; Function Attrs: nounwind
+declare i64* @"reorder@[I[I[I"(i64*, i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #2
+
+; Function Attrs: nounwind
+declare i64 @"setprimattrib@IISII"(i64, i8*, i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #2 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

@@ -160,3 +160,21 @@
 2021-12-07 21:11:43: >> Bucket[14]: nfiles=34, size=216.00 KB
 2021-12-07 21:11:43: >> Bucket[15]: nfiles=45, size=264.00 KB
 2021-12-07 21:11:43: >> Total: nfiles=568,  size=6.40 MB
+2021-12-29 11:47:26: Recomputing disk cache
+2021-12-29 11:47:26: >> Bucket[0]: nfiles=37, size=300.00 KB
+2021-12-29 11:47:26: >> Bucket[1]: nfiles=39, size=300.00 KB
+2021-12-29 11:47:26: >> Bucket[2]: nfiles=38, size=2.02 MB
+2021-12-29 11:47:26: >> Bucket[3]: nfiles=25, size=152.00 KB
+2021-12-29 11:47:26: >> Bucket[4]: nfiles=44, size=344.00 KB
+2021-12-29 11:47:26: >> Bucket[5]: nfiles=33, size=432.00 KB
+2021-12-29 11:47:26: >> Bucket[6]: nfiles=46, size=448.00 KB
+2021-12-29 11:47:26: >> Bucket[7]: nfiles=46, size=532.00 KB
+2021-12-29 11:47:26: >> Bucket[8]: nfiles=45, size=548.00 KB
+2021-12-29 11:47:26: >> Bucket[9]: nfiles=38, size=260.00 KB
+2021-12-29 11:47:26: >> Bucket[10]: nfiles=38, size=284.00 KB
+2021-12-29 11:47:26: >> Bucket[11]: nfiles=39, size=248.00 KB
+2021-12-29 11:47:26: >> Bucket[12]: nfiles=35, size=280.00 KB
+2021-12-29 11:47:26: >> Bucket[13]: nfiles=26, size=168.00 KB
+2021-12-29 11:47:26: >> Bucket[14]: nfiles=35, size=220.00 KB
+2021-12-29 11:47:26: >> Bucket[15]: nfiles=47, size=276.00 KB
+2021-12-29 11:47:26: >> Total: nfiles=611,  size=6.70 MB

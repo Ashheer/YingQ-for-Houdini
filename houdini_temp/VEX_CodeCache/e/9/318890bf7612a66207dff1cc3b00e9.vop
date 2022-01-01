@@ -1,0 +1,64 @@
+;_name	/obj/geo1/dopnet1/geometrywrangle1/geometryvop1
+; ModuleID = 'obj_geo1_dopnet1_geometrywrangle1_geometryvop1'
+source_filename = "obj_geo1_dopnet1_geometrywrangle1_geometryvop1"
+
+@0 = private constant [11 x i8] c"growthrate\00"
+@restlength = external global double
+@growth = external global double
+@1 = private constant [11 x i8] c"restlength\00"
+@2 = private constant [7 x i8] c"growth\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_geo1_dopnet1_geometrywrangle1_geometryvop1_snippet1@FF"(double* %_bound_restlength, double* %_bound_growth) #0 {
+__llvm_entry:
+  %_bound_restlength1 = load double, double* %_bound_restlength
+  %_bound_growth2 = load double, double* %_bound_growth
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @0, i64 0, i64 0))
+  %output = fmul double %_bound_growth2, %return
+  %output3 = fadd double 1.000000e+00, %output
+  %output4 = fmul double %_bound_restlength1, %output3
+  store double %output4, double* %_bound_restlength
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @obj_geo1_dopnet1_geometrywrangle1_geometryvop1(double %restlength, double %growth) #2 {
+__llvm_entry:
+  %0 = alloca double
+  %"<restlength>" = alloca double
+  store double %restlength, double* %"<restlength>"
+  store double %growth, double* %0
+  call void @"_obj_geo1_dopnet1_geometrywrangle1_geometryvop1_snippet1@FF"(double* %"<restlength>", double* %0)
+  %evalue = load double, double* %"<restlength>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @1, i64 0, i64 0), double %evalue) #3
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0), double %growth) #3
+  store double %gvalue, double* @restlength
+  store double %gvalue3, double* @growth
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_dopnet1_geometrywrangle1_geometryvop1(double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

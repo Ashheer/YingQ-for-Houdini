@@ -320,4 +320,17 @@ cop2toolutils.genericTool(kwargs, 'labs::sbs_archive')]]></script>
 
 soptoolutils.genericTool(kwargs, 'kinefx::skeletonblend::2.0')]]></script>
   </tool>
+
+  <tool name="sop_hdk_star" label="Star" icon="SOP_hdk_star">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/hdk_star</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Custom</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'hdk_star')]]></script>
+  </tool>
 </shelfDocument>
