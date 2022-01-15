@@ -1,0 +1,562 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x i64] zeroinitializer
+@1 = private constant [27 x i8] c"../pointwrangle2/bindname1\00"
+@2 = private constant [15 x i8] c"../outsrcprims\00"
+@3 = private constant [1 x i8] zeroinitializer
+@4 = private constant [27 x i8] c"../pointwrangle2/bindname2\00"
+@5 = private constant [13 x i8] c"../stopgroup\00"
+@6 = private constant [14 x i8] c"../closeloops\00"
+@7 = private constant [5 x i8] c"poly\00"
+@8 = private constant [9 x i8] c"polyline\00"
+@9 = private constant [22 x i8] c"../uniqueneb_srcprims\00"
+@10 = private constant [16 x i8] c"../srcprimsname\00"
+@11 = private constant [33 x i8] c"../copyAttribName_from_firstElem\00"
+@12 = private constant [25 x i8] c"../enumerate1/attribname\00"
+@opinput1___nebs_polypath_fee = external global i64*
+@ptnum = external global i64
+@opinput1___nebprims_polypath_fee = external global i64*
+@13 = private constant [29 x i8] c"opinput1___nebs_polypath_fee\00"
+@14 = private constant [6 x i8] c"ptnum\00"
+@15 = private constant [33 x i8] c"opinput1___nebprims_polypath_fee\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@[II[I"(i64** %_bound_opinput1___nebs_polypath_fee, i64* %_bound_ptnum, i64** %_bound_opinput1___nebprims_polypath_fee) #0 {
+__llvm_entry:
+  %path0 = alloca i64*
+  %path1 = alloca i64*
+  %sourceprims0 = alloca i64*
+  %sourceprims1 = alloca i64*
+  %0 = alloca i8*
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca i8*
+  %4 = alloca i64
+  %5 = alloca i64
+  %6 = alloca i64*
+  %7 = alloca i64*
+  %path = alloca i64*
+  %sourceprims = alloca i64*
+  %8 = alloca i8*
+  %9 = alloca i64
+  %10 = alloca i64
+  %11 = alloca i64*
+  %_bound_opinput1___nebs_polypath_fee1 = load i64*, i64** %_bound_opinput1___nebs_polypath_fee
+  %return = call i64 @"len@I[I"(i64* %_bound_opinput1___nebs_polypath_fee1)
+  %return4 = call i64 @"eq@III"(i64 %return, i64 2)
+  %_bound_ptnum5 = load i64, i64* %_bound_ptnum
+  %return7 = call i64 @"getcomp@I[II"(i64* %_bound_opinput1___nebs_polypath_fee1, i64 0)
+  %return8 = call i64 @"lt@III"(i64 %_bound_ptnum5, i64 %return7)
+  %return9 = call i64 @"and@III"(i64 %return4, i64 %return8)
+  %12 = icmp ne i64 %return9, 0
+  br i1 %12, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return12 = call i64* @"array@[I:I"(i64 %return7)
+  store i64* %return12, i64** %path0
+  store i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64** %path1, !vex-initializer-store !3
+  store i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64** %sourceprims0, !vex-initializer-store !3
+  store i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64** %sourceprims1, !vex-initializer-store !3
+  %return13 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @2, i64 0, i64 0))
+  %13 = icmp ne i64 %return13, 0
+  br i1 %13, label %true14, label %end15
+
+false:                                            ; preds = %__llvm_entry
+  %return127 = call i64 @"gt@III"(i64 %return, i64 2)
+  %return129 = call i64 @"eq@III"(i64 %return, i64 1)
+  %return134 = call i64 @"and@III"(i64 %return129, i64 %return8)
+  %return135 = call i64 @"or@III"(i64 %return127, i64 %return134)
+  %14 = icmp ne i64 %return135, 0
+  br i1 %14, label %true136, label %end
+
+end:                                              ; preds = %cond138, %false, %cond96, %true29, %end15
+  ret void
+
+true14:                                           ; preds = %true
+  %_bound_opinput1___nebprims_polypath_fee16 = load i64*, i64** %_bound_opinput1___nebprims_polypath_fee
+  %return17 = call i64 @"getcomp@I[II"(i64* %_bound_opinput1___nebprims_polypath_fee16, i64 0)
+  %return18 = call i64* @"array@[I:I"(i64 %return17)
+  store i64* %return18, i64** %sourceprims0
+  br label %end15
+
+end15:                                            ; preds = %true14, %true
+  %return19 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @5, i64 0, i64 0))
+  store i8* %return19, i8** %0
+  %_bound_ptnum20 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum20, i64* %1
+  store i64 %return7, i64* %2
+  %traceEdges = call i64 @"traceEdges@ISII[I[I"(i8** %0, i64* %1, i64* %2, i64** %path0, i64** %sourceprims0)
+  %return24 = call i64 @"eq@III"(i64 %traceEdges, i64 0)
+  %15 = icmp ne i64 %return24, 0
+  br i1 %15, label %end, label %end26
+
+end26:                                            ; preds = %end15
+  %return28 = call i64 @"ne@III"(i64 %traceEdges, i64 2)
+  %16 = icmp ne i64 %return28, 0
+  br i1 %16, label %true29, label %end30
+
+true29:                                           ; preds = %end26
+  %return32 = call i64 @"getcomp@I[II"(i64* %_bound_opinput1___nebs_polypath_fee1, i64 1)
+  %return33 = call i64* @"array@[I:I"(i64 %return32)
+  store i64* %return33, i64** %path1
+  %_bound_opinput1___nebprims_polypath_fee34 = load i64*, i64** %_bound_opinput1___nebprims_polypath_fee
+  %return35 = call i64 @"getcomp@I[II"(i64* %_bound_opinput1___nebprims_polypath_fee34, i64 1)
+  %return36 = call i64* @"array@[I:I"(i64 %return35)
+  store i64* %return36, i64** %sourceprims1
+  store i8* %return19, i8** %3
+  %_bound_ptnum38 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum38, i64* %4
+  store i64 %return32, i64* %5
+  %traceEdges41 = call i64 @"traceEdges@ISII[I[I"(i8** %3, i64* %4, i64* %5, i64** %path1, i64** %sourceprims1)
+  %return43 = call i64 @"eq@III"(i64 %traceEdges41, i64 0)
+  %17 = icmp ne i64 %return43, 0
+  br i1 %17, label %end, label %end30
+
+end30:                                            ; preds = %true29, %end26
+  %success.0 = phi i64 [ %traceEdges41, %true29 ], [ %traceEdges, %end26 ]
+  %return46 = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @6, i64 0, i64 0))
+  %return48 = call i64 @"eq@III"(i64 %success.0, i64 2)
+  %return49 = call i64 @"and@III"(i64 %return46, i64 %return48)
+  %18 = icmp ne i64 %return49, 0
+  %return51 = select i1 %18, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @7, i64 0, i64 0), i8* getelementptr inbounds ([9 x i8], [9 x i8]* @8, i64 0, i64 0)
+  %return52 = call i64 @"addprim@IIS"(i64 0, i8* %return51)
+  %path053 = load i64*, i64** %path0
+  %return54 = call i64 @"len@I[I"(i64* %path053)
+  %output = sub i64 %return54, %return49
+  %path156 = load i64*, i64** %path1
+  %return57 = call i64 @"len@I[I"(i64* %path156)
+  %return58 = call i64 @"chi@IS"(i8* getelementptr inbounds ([22 x i8], [22 x i8]* @9, i64 0, i64 0))
+  %19 = icmp ne i64 %return58, 0
+  br i1 %19, label %true59, label %end60
+
+true59:                                           ; preds = %end30
+  %sourceprims061 = load i64*, i64** %sourceprims0
+  store i64* %sourceprims061, i64** %6
+  %uniqueneb = call i64* @"uniqueneb@[I[I"(i64** %6)
+  store i64* %uniqueneb, i64** %sourceprims0
+  %sourceprims162 = load i64*, i64** %sourceprims1
+  store i64* %sourceprims162, i64** %7
+  %uniqueneb63 = call i64* @"uniqueneb@[I[I"(i64** %7)
+  store i64* %uniqueneb63, i64** %sourceprims1
+  br label %end60
+
+end60:                                            ; preds = %true59, %end30
+  %output65 = sub i64 %return57, 1
+  br label %cond
+
+cond:                                             ; preds = %end76, %end60
+  %i.0 = phi i64 [ %output65, %end60 ], [ %output91, %end76 ]
+  %return67 = call i64 @"ge@III"(i64 %i.0, i64 0)
+  %20 = icmp ne i64 %return67, 0
+  br i1 %20, label %body, label %end68
+
+body:                                             ; preds = %cond
+  %path170 = load i64*, i64** %path1
+  %return72 = call i64 @"getcomp@I[II"(i64* %path170, i64 %i.0)
+  %return73 = call i64 @"addvertex@IIII"(i64 0, i64 %return52, i64 %return72)
+  br i1 %13, label %true75, label %end76
+
+end68:                                            ; preds = %cond
+  %_bound_ptnum93 = load i64, i64* %_bound_ptnum
+  %return94 = call i64 @"addvertex@IIII"(i64 0, i64 %return52, i64 %_bound_ptnum93)
+  br label %cond96
+
+true75:                                           ; preds = %body
+  %return77 = call i8* @"chs@SS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @10, i64 0, i64 0))
+  %sourceprims179 = load i64*, i64** %sourceprims1
+  %return80 = call i64 @"setprimattrib@IISI[I"(i64 0, i8* %return77, i64 %return52, i64* %sourceprims179)
+  %return81 = call i8* @"chs@SS"(i8* getelementptr inbounds ([33 x i8], [33 x i8]* @11, i64 0, i64 0))
+  %return82 = call i64 @"ne@ISS"(i8* %return81, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @3, i64 0, i64 0))
+  %21 = icmp ne i64 %return82, 0
+  br i1 %21, label %true83, label %end76
+
+end76:                                            ; preds = %true75, %true83, %body
+  %output91 = sub i64 %i.0, 1
+  br label %cond
+
+true83:                                           ; preds = %true75
+  %return85 = call i8* @"chs@SS"(i8* getelementptr inbounds ([25 x i8], [25 x i8]* @12, i64 0, i64 0))
+  %sourceprims187 = load i64*, i64** %sourceprims1
+  %return88 = call i64 @"getcomp@I[II"(i64* %sourceprims187, i64 0)
+  %return89 = call i64 @"setprimattrib@IISII"(i64 0, i8* %return85, i64 %return52, i64 %return88)
+  br label %end76
+
+cond96:                                           ; preds = %end110, %end68
+  %i95.0 = phi i64 [ 0, %end68 ], [ %output125, %end110 ]
+  %return100 = call i64 @"lt@III"(i64 %i95.0, i64 %output)
+  %22 = icmp ne i64 %return100, 0
+  br i1 %22, label %body97, label %end
+
+body97:                                           ; preds = %cond96
+  %path0104 = load i64*, i64** %path0
+  %return106 = call i64 @"getcomp@I[II"(i64* %path0104, i64 %i95.0)
+  %return107 = call i64 @"addvertex@IIII"(i64 0, i64 %return52, i64 %return106)
+  br i1 %13, label %true109, label %end110
+
+true109:                                          ; preds = %body97
+  %return111 = call i8* @"chs@SS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @10, i64 0, i64 0))
+  %sourceprims0113 = load i64*, i64** %sourceprims0
+  %return114 = call i64 @"setprimattrib@IISI[I"(i64 0, i8* %return111, i64 %return52, i64* %sourceprims0113)
+  %return115 = call i8* @"chs@SS"(i8* getelementptr inbounds ([33 x i8], [33 x i8]* @11, i64 0, i64 0))
+  %return116 = call i64 @"ne@ISS"(i8* %return115, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @3, i64 0, i64 0))
+  %23 = icmp ne i64 %return116, 0
+  br i1 %23, label %true117, label %end110
+
+end110:                                           ; preds = %true109, %true117, %body97
+  %output125 = add i64 %i95.0, 1
+  br label %cond96
+
+true117:                                          ; preds = %true109
+  %return119 = call i8* @"chs@SS"(i8* getelementptr inbounds ([25 x i8], [25 x i8]* @12, i64 0, i64 0))
+  %sourceprims0121 = load i64*, i64** %sourceprims0
+  %return122 = call i64 @"getcomp@I[II"(i64* %sourceprims0121, i64 0)
+  %return123 = call i64 @"setprimattrib@IISII"(i64 0, i8* %return119, i64 %return52, i64 %return122)
+  br label %end110
+
+true136:                                          ; preds = %false
+  br label %cond138
+
+cond138:                                          ; preds = %iter144, %true136
+  %j.0 = phi i64 [ 0, %true136 ], [ %output220, %iter144 ]
+  %nebcount.0 = phi i64 [ %return, %true136 ], [ %nebcount.1, %iter144 ]
+  %nebs.0 = phi i64* [ %_bound_opinput1___nebs_polypath_fee1, %true136 ], [ %nebs.1, %iter144 ]
+  %return142 = call i64 @"lt@III"(i64 %j.0, i64 %nebcount.0)
+  %24 = icmp ne i64 %return142, 0
+  br i1 %24, label %body139, label %end
+
+body139:                                          ; preds = %cond138
+  %return147 = call i64 @"getcomp@I[II"(i64* %nebs.0, i64 %j.0)
+  %_bound_ptnum148 = load i64, i64* %_bound_ptnum
+  %return149 = call i64 @"gt@III"(i64 %return147, i64 %_bound_ptnum148)
+  %25 = icmp ne i64 %return149, 0
+  br i1 %25, label %true150, label %iter144
+
+iter144:                                          ; preds = %end203, %true212, %end179, %end158, %body139
+  %nebcount.1 = phi i64 [ %nebcount.0, %end158 ], [ %nebcount.2, %true212 ], [ %nebcount.2, %end203 ], [ %nebcount.2, %end179 ], [ %nebcount.0, %body139 ]
+  %nebs.1 = phi i64* [ %nebs.0, %end158 ], [ %nebs.2, %true212 ], [ %nebs.2, %end203 ], [ %nebs.2, %end179 ], [ %nebs.0, %body139 ]
+  %output220 = add i64 %j.0, 1
+  br label %cond138
+
+true150:                                          ; preds = %body139
+  %return155 = call i64* @"array@[I:I"(i64 %return147)
+  store i64* %return155, i64** %path
+  store i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64** %sourceprims, !vex-initializer-store !3
+  %return156 = call i64 @"chi@IS"(i8* getelementptr inbounds ([22 x i8], [22 x i8]* @9, i64 0, i64 0))
+  %26 = icmp ne i64 %return156, 0
+  br i1 %26, label %true157, label %end158
+
+true157:                                          ; preds = %true150
+  %_bound_opinput1___nebprims_polypath_fee159 = load i64*, i64** %_bound_opinput1___nebprims_polypath_fee
+  %return161 = call i64 @"getcomp@I[II"(i64* %_bound_opinput1___nebprims_polypath_fee159, i64 %j.0)
+  %return162 = call i64* @"array@[I:I"(i64 %return161)
+  store i64* %return162, i64** %sourceprims
+  br label %end158
+
+end158:                                           ; preds = %true157, %true150
+  %return164 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @5, i64 0, i64 0))
+  store i8* %return164, i8** %8
+  %_bound_ptnum165 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum165, i64* %9
+  store i64 %return147, i64* %10
+  %traceEdges169 = call i64 @"traceEdges@ISII[I[I"(i8** %8, i64* %9, i64* %10, i64** %path, i64** %sourceprims)
+  %return171 = call i64 @"eq@III"(i64 %traceEdges169, i64 0)
+  %27 = icmp ne i64 %return171, 0
+  br i1 %27, label %iter144, label %end173
+
+end173:                                           ; preds = %end158
+  %path174 = load i64*, i64** %path
+  %return175 = call i64 @"len@I[I"(i64* %path174)
+  %return177 = call i64 @"eq@III"(i64 %traceEdges169, i64 2)
+  %28 = icmp ne i64 %return177, 0
+  br i1 %28, label %true178, label %end179
+
+true178:                                          ; preds = %end173
+  %output182 = sub i64 %return175, 2
+  %return183 = call i64 @"getcomp@I[II"(i64* %path174, i64 %output182)
+  %return186 = call { i64, i64* } @"removevalue@I[II"(i64* %nebs.0, i64 %return183)
+  %output188 = extractvalue { i64, i64* } %return186, 1
+  %output190 = sub i64 %nebcount.0, 1
+  br label %end179
+
+end179:                                           ; preds = %true178, %end173
+  %nebcount.2 = phi i64 [ %output190, %true178 ], [ %nebcount.0, %end173 ]
+  %nebs.2 = phi i64* [ %output188, %true178 ], [ %nebs.0, %end173 ]
+  %return192 = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @6, i64 0, i64 0))
+  %29 = icmp ne i64 %return192, 0
+  %return193 = select i1 %29, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @7, i64 0, i64 0), i8* getelementptr inbounds ([9 x i8], [9 x i8]* @8, i64 0, i64 0)
+  %_bound_ptnum194 = load i64, i64* %_bound_ptnum
+  %path195 = load i64*, i64** %path
+  %return196 = call i64* @"array@[I:I[I"(i64 %_bound_ptnum194, i64* %path195)
+  %return197 = call i64 @"addprim@IIS[I"(i64 0, i8* %return193, i64* %return196)
+  %return198 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @2, i64 0, i64 0))
+  %30 = icmp ne i64 %return198, 0
+  br i1 %30, label %true199, label %iter144
+
+true199:                                          ; preds = %end179
+  br i1 %26, label %true202, label %end203
+
+true202:                                          ; preds = %true199
+  %sourceprims204 = load i64*, i64** %sourceprims
+  store i64* %sourceprims204, i64** %11
+  %uniqueneb205 = call i64* @"uniqueneb@[I[I"(i64** %11)
+  store i64* %uniqueneb205, i64** %sourceprims
+  br label %end203
+
+end203:                                           ; preds = %true202, %true199
+  %return206 = call i8* @"chs@SS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @10, i64 0, i64 0))
+  %sourceprims208 = load i64*, i64** %sourceprims
+  %return209 = call i64 @"setprimattrib@IISI[I"(i64 0, i8* %return206, i64 %return197, i64* %sourceprims208)
+  %return210 = call i8* @"chs@SS"(i8* getelementptr inbounds ([33 x i8], [33 x i8]* @11, i64 0, i64 0))
+  %return211 = call i64 @"ne@ISS"(i8* %return210, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @3, i64 0, i64 0))
+  %31 = icmp ne i64 %return211, 0
+  br i1 %31, label %true212, label %iter144
+
+true212:                                          ; preds = %end203
+  %return214 = call i8* @"chs@SS"(i8* getelementptr inbounds ([25 x i8], [25 x i8]* @12, i64 0, i64 0))
+  %sourceprims216 = load i64*, i64** %sourceprims
+  %return217 = call i64 @"getcomp@I[II"(i64* %sourceprims216, i64 0)
+  %return218 = call i64 @"setprimattrib@IISII"(i64 0, i8* %return214, i64 %return197, i64 %return217)
+  br label %iter144
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i64* @"uniqueneb@[I[I"(i64** %arr) #0 {
+__llvm_entry:
+  %arr2 = load i64*, i64** %arr
+  %return = call i64 @"len@I[I"(i64* %arr2)
+  %output = call i64* @"resize@[II"(i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64 %return)
+  %return8 = call i64 @"getcomp@I[II"(i64* %arr2, i64 0)
+  %return9 = call { i64, i64* } @"setcomp@I[III"(i64* %output, i64 %return8, i64 0)
+  %output11 = extractvalue { i64, i64* } %return9, 1
+  br label %cond
+
+cond:                                             ; preds = %iter, %__llvm_entry
+  %len.0 = phi i64 [ 0, %__llvm_entry ], [ %len.1, %iter ]
+  %i.0 = phi i64 [ 1, %__llvm_entry ], [ %output33, %iter ]
+  %result.0 = phi i64* [ %output11, %__llvm_entry ], [ %result.1, %iter ]
+  %return14 = call i64 @"lt@III"(i64 %i.0, i64 %return)
+  %0 = icmp ne i64 %return14, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %arr15 = load i64*, i64** %arr
+  %return17 = call i64 @"getcomp@I[II"(i64* %arr15, i64 %i.0)
+  %return20 = call i64 @"getcomp@I[II"(i64* %result.0, i64 %len.0)
+  %return21 = call i64 @"eq@III"(i64 %return17, i64 %return20)
+  %1 = icmp ne i64 %return21, 0
+  br i1 %1, label %iter, label %end22
+
+end:                                              ; preds = %cond
+  %output36 = add i64 %len.0, 1
+  %output37 = call i64* @"resize@[II"(i64* %result.0, i64 %output36)
+  ret i64* %output37
+
+iter:                                             ; preds = %body, %end22
+  %len.1 = phi i64 [ %len.0, %body ], [ %output24, %end22 ]
+  %result.1 = phi i64* [ %result.0, %body ], [ %output31, %end22 ]
+  %output33 = add i64 %i.0, 1
+  br label %cond
+
+end22:                                            ; preds = %body
+  %output24 = add i64 %len.0, 1
+  %return29 = call { i64, i64* } @"setcomp@I[III"(i64* %result.0, i64 %return17, i64 %output24)
+  %output31 = extractvalue { i64, i64* } %return29, 1
+  br label %iter
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64* @"resize@[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare { i64, i64* } @"setcomp@I[III"(i64*, i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"traceEdges@ISII[I[I"(i8** %stopgroup, i64* %ifirst, i64* %inext, i64** %path, i64** %sourceprims) #0 {
+__llvm_entry:
+  %ifirst1 = load i64, i64* %ifirst
+  %inext2 = load i64, i64* %inext
+  br label %cond
+
+cond:                                             ; preds = %end43, %__llvm_entry
+  %next.0 = phi i64 [ %inext2, %__llvm_entry ], [ %return26, %end43 ]
+  %prev.0 = phi i64 [ %ifirst1, %__llvm_entry ], [ %next.0, %end43 ]
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([27 x i8], [27 x i8]* @1, i64 0, i64 0))
+  %return4 = call i64* @"point@[IISI"(i64 1, i8* %return, i64 %next.0)
+  %return5 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @2, i64 0, i64 0))
+  %0 = icmp ne i64 %return5, 0
+  br i1 %0, label %true, label %end6
+
+true:                                             ; preds = %cond
+  br label %end6
+
+end6:                                             ; preds = %true, %cond
+  %orignebs.0 = phi i64* [ %return4, %true ], [ getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), %cond ]
+  %return10 = call { i64, i64* } @"removevalue@I[II"(i64* %return4, i64 %next.0)
+  %output = extractvalue { i64, i64* } %return10, 1
+  %return14 = call { i64, i64* } @"removevalue@I[II"(i64* %output, i64 %prev.0)
+  %output16 = extractvalue { i64, i64* } %return14, 1
+  %return18 = call i64 @"len@I[I"(i64* %output16)
+  %return19 = call i64 @"ne@III"(i64 %return18, i64 1)
+  %1 = icmp ne i64 %return19, 0
+  br i1 %1, label %true20, label %end21
+
+true20:                                           ; preds = %end43, %end30, %end21, %end6
+  %merge = phi i64 [ 1, %end21 ], [ 1, %end6 ], [ 0, %end30 ], [ 2, %end43 ]
+  ret i64 %merge
+
+end21:                                            ; preds = %end6
+  %stopgroup22 = load i8*, i8** %stopgroup
+  %return23 = call i64 @"ne@ISS"(i8* %stopgroup22, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @3, i64 0, i64 0))
+  %return26 = call i64 @"getcomp@I[II"(i64* %output16, i64 0)
+  %return27 = call i64 @"inpointgroup@IISI"(i64 0, i8* %stopgroup22, i64 %return26)
+  %return28 = call i64 @"and@III"(i64 %return23, i64 %return27)
+  %2 = icmp ne i64 %return28, 0
+  br i1 %2, label %true20, label %end30
+
+end30:                                            ; preds = %end21
+  %ifirst33 = load i64, i64* %ifirst
+  %return34 = call i64 @"lt@III"(i64 %return26, i64 %ifirst33)
+  %3 = icmp ne i64 %return34, 0
+  br i1 %3, label %true20, label %end36
+
+end36:                                            ; preds = %end30
+  %path37 = load i64*, i64** %path
+  %output40 = call i64* @"push@[II"(i64* %path37, i64 %return26)
+  store i64* %output40, i64** %path
+  br i1 %0, label %true42, label %end43
+
+true42:                                           ; preds = %end36
+  %return47 = call i64 @"find@I[II"(i64* %orignebs.0, i64 %return26)
+  %return48 = call i8* @"chs@SS"(i8* getelementptr inbounds ([27 x i8], [27 x i8]* @4, i64 0, i64 0))
+  %return50 = call i64* @"point@[IISI"(i64 1, i8* %return48, i64 %next.0)
+  %sourceprims51 = load i64*, i64** %sourceprims
+  %return54 = call i64 @"getcomp@I[II"(i64* %return50, i64 %return47)
+  %output55 = call i64* @"push@[II"(i64* %sourceprims51, i64 %return54)
+  store i64* %output55, i64** %sourceprims
+  br label %end43
+
+end43:                                            ; preds = %true42, %end36
+  %ifirst61 = load i64, i64* %ifirst
+  %return62 = call i64 @"eq@III"(i64 %return26, i64 %ifirst61)
+  %4 = icmp ne i64 %return62, 0
+  br i1 %4, label %true20, label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64* @"point@[IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind
+declare { i64, i64* } @"removevalue@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"inpointgroup@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64* @"push@[II"(i64*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"find@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64* @"array@[I:I"(i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IIS"(i64, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"addvertex@IIII"(i64, i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"setprimattrib@IISI[I"(i64, i8*, i64, i64*) #2
+
+; Function Attrs: nounwind
+declare i64 @"setprimattrib@IISII"(i64, i8*, i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64* @"array@[I:I[I"(i64, i64*) #1
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IIS[I"(i64, i8*, i64*) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64* %opinput1___nebs_polypath_fee, i64 %ptnum, i64* %opinput1___nebprims_polypath_fee) #2 {
+__llvm_entry:
+  %0 = alloca i64*
+  %1 = alloca i64
+  %2 = alloca i64*
+  store i64* %opinput1___nebs_polypath_fee, i64** %0
+  store i64 %ptnum, i64* %1
+  store i64* %opinput1___nebprims_polypath_fee, i64** %2
+  call void @"__vex_snippet_snippet@[II[I"(i64** %0, i64* %1, i64** %2)
+  %gvalue = call i64* @"_export@[IS[I"(i8* getelementptr inbounds ([29 x i8], [29 x i8]* @13, i64 0, i64 0), i64* %opinput1___nebs_polypath_fee) #3
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @14, i64 0, i64 0), i64 %ptnum) #3
+  %gvalue7 = call i64* @"_export@[IS[I"(i8* getelementptr inbounds ([33 x i8], [33 x i8]* @15, i64 0, i64 0), i64* %opinput1___nebprims_polypath_fee) #3
+  store i64* %gvalue, i64** @opinput1___nebs_polypath_fee
+  store i64 %gvalue5, i64* @ptnum
+  store i64* %gvalue7, i64** @opinput1___nebprims_polypath_fee
+  ret void
+}
+
+declare i64* @"_export@[IS[I"(i8*, i64*)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64 0, i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+!3 = !{!""}
+
+;_code_end

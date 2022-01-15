@@ -1,0 +1,518 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [13 x i8] c"../grouptype\00"
+@1 = private constant [7 x i8] c"bounds\00"
+@2 = private constant [2 x i8] c"P\00"
+@3 = private constant [6 x i8] c"../xn\00"
+@4 = private constant [6 x i8] c"../xp\00"
+@5 = private constant [6 x i8] c"../yn\00"
+@6 = private constant [6 x i8] c"../yp\00"
+@7 = private constant [6 x i8] c"../zn\00"
+@8 = private constant [6 x i8] c"../zp\00"
+@9 = private constant [11 x i8] c"../mergeop\00"
+@10 = private constant [16 x i8] c"../intersectnum\00"
+@elemnum = external global i64
+@vtxnum = external global i64
+@outgrp = external global i64
+@P = external global <3 x double>
+@11 = private constant [8 x i8] c"elemnum\00"
+@12 = private constant [7 x i8] c"vtxnum\00"
+@13 = private constant [7 x i8] c"outgrp\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IIIV"(i64* %_bound_elemnum, i64* %_bound_vtxnum, i64* %_bound_outgrp, <3 x double>* %_bound_P) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64 @"eq@III"(i64 %return, i64 2)
+  %2 = icmp ne i64 %return1, 0
+  br i1 %2, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_elemnum2 = load i64, i64* %_bound_elemnum
+  %return3 = call i64 @"hedge_nextequiv@III"(i64 0, i64 %_bound_elemnum2)
+  %_bound_elemnum4 = load i64, i64* %_bound_elemnum
+  %return6 = call i64 @"lt@III"(i64 %_bound_elemnum4, i64 %return3)
+  %return8 = call i64 @"neg@II"(i64 1)
+  %return9 = call i64 @"eq@III"(i64 %return3, i64 %return8)
+  %return10 = call i64 @"or@III"(i64 %return6, i64 %return9)
+  %3 = icmp ne i64 %return10, 0
+  br i1 %3, label %true11, label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %return13 = call double* @"detail@[FIS"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0))
+  br i1 %2, label %true16, label %false
+
+true11:                                           ; preds = %true
+  br label %UnifiedReturnBlock
+
+true16:                                           ; preds = %end
+  %_bound_vtxnum18 = load i64, i64* %_bound_vtxnum
+  %return19 = call i64 @"hedge_srcpoint@III"(i64 0, i64 %_bound_vtxnum18)
+  %return21 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @2, i64 0, i64 0), i64 %return19)
+  %return22 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0))
+  %4 = icmp ne i64 %return22, 0
+  br i1 %4, label %true23, label %end24
+
+false:                                            ; preds = %end
+  %return216 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0))
+  %5 = icmp ne i64 %return216, 0
+  br i1 %5, label %true217, label %end218
+
+end17:                                            ; preds = %true287, %true295, %end274, %true203, %true211, %end190
+  %numingroup.0 = phi i64 [ %output215, %true211 ], [ %numingroup.11, %true203 ], [ %numingroup.11, %end190 ], [ %output299, %true295 ], [ %numingroup.16, %true287 ], [ %numingroup.16, %end274 ]
+  %return301 = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @10, i64 0, i64 0))
+  %return302 = call i64 @"gt@III"(i64 %numingroup.0, i64 %return301)
+  store i64 %return302, i64* %0
+  %return303 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  store i64 %return303, i64* %1
+  call void @"mergegrp@III"(i64* %_bound_outgrp, i64* %0, i64* %1)
+  br label %UnifiedReturnBlock
+
+true23:                                           ; preds = %true16
+  %return26 = call double @"getcomp@FVI"(<3 x double> %return21, i64 0)
+  %return28 = call double @"getcomp@F[FI"(double* %return13, i64 0)
+  %return29 = fcmp ole double %return26, %return28
+  br i1 %return29, label %true31, label %end24
+
+end24:                                            ; preds = %true23, %true31, %true16
+  %numingroup.1 = phi i64 [ 1, %true31 ], [ 0, %true23 ], [ 0, %true16 ]
+  %return35 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @4, i64 0, i64 0))
+  %6 = icmp ne i64 %return35, 0
+  br i1 %6, label %true36, label %end37
+
+true31:                                           ; preds = %true23
+  br label %end24
+
+true36:                                           ; preds = %end24
+  %return39 = call double @"getcomp@FVI"(<3 x double> %return21, i64 0)
+  %return41 = call double @"getcomp@F[FI"(double* %return13, i64 1)
+  %return42 = fcmp oge double %return39, %return41
+  br i1 %return42, label %true44, label %end37
+
+end37:                                            ; preds = %true36, %true44, %end24
+  %numingroup.2 = phi i64 [ %output48, %true44 ], [ %numingroup.1, %true36 ], [ %numingroup.1, %end24 ]
+  %return49 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @5, i64 0, i64 0))
+  %7 = icmp ne i64 %return49, 0
+  br i1 %7, label %true50, label %end51
+
+true44:                                           ; preds = %true36
+  %output48 = add i64 %numingroup.1, 1
+  br label %end37
+
+true50:                                           ; preds = %end37
+  %return53 = call double @"getcomp@FVI"(<3 x double> %return21, i64 1)
+  %return55 = call double @"getcomp@F[FI"(double* %return13, i64 2)
+  %return56 = fcmp ole double %return53, %return55
+  br i1 %return56, label %true58, label %end51
+
+end51:                                            ; preds = %true50, %true58, %end37
+  %numingroup.3 = phi i64 [ %output62, %true58 ], [ %numingroup.2, %true50 ], [ %numingroup.2, %end37 ]
+  %return63 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @6, i64 0, i64 0))
+  %8 = icmp ne i64 %return63, 0
+  br i1 %8, label %true64, label %end65
+
+true58:                                           ; preds = %true50
+  %output62 = add i64 %numingroup.2, 1
+  br label %end51
+
+true64:                                           ; preds = %end51
+  %return67 = call double @"getcomp@FVI"(<3 x double> %return21, i64 1)
+  %return69 = call double @"getcomp@F[FI"(double* %return13, i64 3)
+  %return70 = fcmp oge double %return67, %return69
+  br i1 %return70, label %true72, label %end65
+
+end65:                                            ; preds = %true64, %true72, %end51
+  %numingroup.4 = phi i64 [ %output76, %true72 ], [ %numingroup.3, %true64 ], [ %numingroup.3, %end51 ]
+  %return77 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @7, i64 0, i64 0))
+  %9 = icmp ne i64 %return77, 0
+  br i1 %9, label %true78, label %end79
+
+true72:                                           ; preds = %true64
+  %output76 = add i64 %numingroup.3, 1
+  br label %end65
+
+true78:                                           ; preds = %end65
+  %return81 = call double @"getcomp@FVI"(<3 x double> %return21, i64 2)
+  %return83 = call double @"getcomp@F[FI"(double* %return13, i64 4)
+  %return84 = fcmp ole double %return81, %return83
+  br i1 %return84, label %true86, label %end79
+
+end79:                                            ; preds = %true78, %true86, %end65
+  %numingroup.5 = phi i64 [ %output90, %true86 ], [ %numingroup.4, %true78 ], [ %numingroup.4, %end65 ]
+  %return91 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @8, i64 0, i64 0))
+  %10 = icmp ne i64 %return91, 0
+  br i1 %10, label %true92, label %end93
+
+true86:                                           ; preds = %true78
+  %output90 = add i64 %numingroup.4, 1
+  br label %end79
+
+true92:                                           ; preds = %end79
+  %return95 = call double @"getcomp@FVI"(<3 x double> %return21, i64 2)
+  %return97 = call double @"getcomp@F[FI"(double* %return13, i64 5)
+  %return98 = fcmp oge double %return95, %return97
+  br i1 %return98, label %true100, label %end93
+
+end93:                                            ; preds = %true92, %true100, %end79
+  %numingroup.6 = phi i64 [ %output104, %true100 ], [ %numingroup.5, %true92 ], [ %numingroup.5, %end79 ]
+  %return105 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %return106 = call i64 @"eq@III"(i64 %return105, i64 0)
+  %11 = icmp ne i64 %return106, 0
+  br i1 %11, label %end109, label %false108
+
+true100:                                          ; preds = %true92
+  %output104 = add i64 %numingroup.5, 1
+  br label %end93
+
+false108:                                         ; preds = %end93
+  %return111 = call i64 @"eq@III"(i64 %return105, i64 1)
+  %return113 = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @10, i64 0, i64 0))
+  %return114 = call i64 @"gt@III"(i64 %numingroup.6, i64 %return113)
+  %return115 = call i64 @"and@III"(i64 %return111, i64 %return114)
+  %12 = icmp ne i64 %return115, 0
+  br i1 %12, label %true116, label %end109
+
+end109:                                           ; preds = %false108, %end93
+  %_bound_vtxnum124 = load i64, i64* %_bound_vtxnum
+  %return125 = call i64 @"hedge_dstpoint@III"(i64 0, i64 %_bound_vtxnum124)
+  %return127 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @2, i64 0, i64 0), i64 %return125)
+  %output130 = call <3 x double> @"add@VV"(<3 x double> %return21, <3 x double> %return127)
+  %cast = call <3 x double> @"set@VI"(i64 2)
+  %output131 = call <3 x double> @"div@VV"(<3 x double> %output130, <3 x double> %cast)
+  br i1 %4, label %true133, label %end134
+
+true116:                                          ; preds = %false108
+  store i64 1, i64* %_bound_outgrp
+  br label %UnifiedReturnBlock
+
+true133:                                          ; preds = %end109
+  %return136 = call double @"getcomp@FVI"(<3 x double> %output131, i64 0)
+  %return138 = call double @"getcomp@F[FI"(double* %return13, i64 0)
+  %return139 = fcmp ole double %return136, %return138
+  br i1 %return139, label %true141, label %end134
+
+end134:                                           ; preds = %true133, %true141, %end109
+  %numingroup.7 = phi i64 [ 1, %true141 ], [ 0, %true133 ], [ 0, %end109 ]
+  br i1 %6, label %true147, label %end148
+
+true141:                                          ; preds = %true133
+  br label %end134
+
+true147:                                          ; preds = %end134
+  %return150 = call double @"getcomp@FVI"(<3 x double> %output131, i64 0)
+  %return152 = call double @"getcomp@F[FI"(double* %return13, i64 1)
+  %return153 = fcmp oge double %return150, %return152
+  br i1 %return153, label %true155, label %end148
+
+end148:                                           ; preds = %true147, %true155, %end134
+  %numingroup.8 = phi i64 [ %output159, %true155 ], [ %numingroup.7, %true147 ], [ %numingroup.7, %end134 ]
+  br i1 %7, label %true161, label %end162
+
+true155:                                          ; preds = %true147
+  %output159 = add i64 %numingroup.7, 1
+  br label %end148
+
+true161:                                          ; preds = %end148
+  %return164 = call double @"getcomp@FVI"(<3 x double> %output131, i64 1)
+  %return166 = call double @"getcomp@F[FI"(double* %return13, i64 2)
+  %return167 = fcmp ole double %return164, %return166
+  br i1 %return167, label %true169, label %end162
+
+end162:                                           ; preds = %true161, %true169, %end148
+  %numingroup.9 = phi i64 [ %output173, %true169 ], [ %numingroup.8, %true161 ], [ %numingroup.8, %end148 ]
+  br i1 %8, label %true175, label %end176
+
+true169:                                          ; preds = %true161
+  %output173 = add i64 %numingroup.8, 1
+  br label %end162
+
+true175:                                          ; preds = %end162
+  %return178 = call double @"getcomp@FVI"(<3 x double> %output131, i64 1)
+  %return180 = call double @"getcomp@F[FI"(double* %return13, i64 3)
+  %return181 = fcmp oge double %return178, %return180
+  br i1 %return181, label %true183, label %end176
+
+end176:                                           ; preds = %true175, %true183, %end162
+  %numingroup.10 = phi i64 [ %output187, %true183 ], [ %numingroup.9, %true175 ], [ %numingroup.9, %end162 ]
+  br i1 %9, label %true189, label %end190
+
+true183:                                          ; preds = %true175
+  %output187 = add i64 %numingroup.9, 1
+  br label %end176
+
+true189:                                          ; preds = %end176
+  %return192 = call double @"getcomp@FVI"(<3 x double> %output131, i64 2)
+  %return194 = call double @"getcomp@F[FI"(double* %return13, i64 4)
+  %return195 = fcmp ole double %return192, %return194
+  br i1 %return195, label %true197, label %end190
+
+end190:                                           ; preds = %true189, %true197, %end176
+  %numingroup.11 = phi i64 [ %output201, %true197 ], [ %numingroup.10, %true189 ], [ %numingroup.10, %end176 ]
+  br i1 %10, label %true203, label %end17
+
+true197:                                          ; preds = %true189
+  %output201 = add i64 %numingroup.10, 1
+  br label %end190
+
+true203:                                          ; preds = %end190
+  %return206 = call double @"getcomp@FVI"(<3 x double> %output131, i64 2)
+  %return208 = call double @"getcomp@F[FI"(double* %return13, i64 5)
+  %return209 = fcmp oge double %return206, %return208
+  br i1 %return209, label %true211, label %end17
+
+true211:                                          ; preds = %true203
+  %output215 = add i64 %numingroup.11, 1
+  br label %end17
+
+true217:                                          ; preds = %false
+  %_bound_P219 = load <3 x double>, <3 x double>* %_bound_P
+  %return220 = call double @"getcomp@FVI"(<3 x double> %_bound_P219, i64 0)
+  %return222 = call double @"getcomp@F[FI"(double* %return13, i64 0)
+  %return223 = fcmp ole double %return220, %return222
+  br i1 %return223, label %true225, label %end218
+
+end218:                                           ; preds = %true217, %true225, %false
+  %numingroup.12 = phi i64 [ 1, %true225 ], [ 0, %true217 ], [ 0, %false ]
+  %return230 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @4, i64 0, i64 0))
+  %13 = icmp ne i64 %return230, 0
+  br i1 %13, label %true231, label %end232
+
+true225:                                          ; preds = %true217
+  br label %end218
+
+true231:                                          ; preds = %end218
+  %_bound_P233 = load <3 x double>, <3 x double>* %_bound_P
+  %return234 = call double @"getcomp@FVI"(<3 x double> %_bound_P233, i64 0)
+  %return236 = call double @"getcomp@F[FI"(double* %return13, i64 1)
+  %return237 = fcmp oge double %return234, %return236
+  br i1 %return237, label %true239, label %end232
+
+end232:                                           ; preds = %true231, %true239, %end218
+  %numingroup.13 = phi i64 [ %output243, %true239 ], [ %numingroup.12, %true231 ], [ %numingroup.12, %end218 ]
+  %return244 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @5, i64 0, i64 0))
+  %14 = icmp ne i64 %return244, 0
+  br i1 %14, label %true245, label %end246
+
+true239:                                          ; preds = %true231
+  %output243 = add i64 %numingroup.12, 1
+  br label %end232
+
+true245:                                          ; preds = %end232
+  %_bound_P247 = load <3 x double>, <3 x double>* %_bound_P
+  %return248 = call double @"getcomp@FVI"(<3 x double> %_bound_P247, i64 1)
+  %return250 = call double @"getcomp@F[FI"(double* %return13, i64 2)
+  %return251 = fcmp ole double %return248, %return250
+  br i1 %return251, label %true253, label %end246
+
+end246:                                           ; preds = %true245, %true253, %end232
+  %numingroup.14 = phi i64 [ %output257, %true253 ], [ %numingroup.13, %true245 ], [ %numingroup.13, %end232 ]
+  %return258 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @6, i64 0, i64 0))
+  %15 = icmp ne i64 %return258, 0
+  br i1 %15, label %true259, label %end260
+
+true253:                                          ; preds = %true245
+  %output257 = add i64 %numingroup.13, 1
+  br label %end246
+
+true259:                                          ; preds = %end246
+  %_bound_P261 = load <3 x double>, <3 x double>* %_bound_P
+  %return262 = call double @"getcomp@FVI"(<3 x double> %_bound_P261, i64 1)
+  %return264 = call double @"getcomp@F[FI"(double* %return13, i64 3)
+  %return265 = fcmp oge double %return262, %return264
+  br i1 %return265, label %true267, label %end260
+
+end260:                                           ; preds = %true259, %true267, %end246
+  %numingroup.15 = phi i64 [ %output271, %true267 ], [ %numingroup.14, %true259 ], [ %numingroup.14, %end246 ]
+  %return272 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @7, i64 0, i64 0))
+  %16 = icmp ne i64 %return272, 0
+  br i1 %16, label %true273, label %end274
+
+true267:                                          ; preds = %true259
+  %output271 = add i64 %numingroup.14, 1
+  br label %end260
+
+true273:                                          ; preds = %end260
+  %_bound_P275 = load <3 x double>, <3 x double>* %_bound_P
+  %return276 = call double @"getcomp@FVI"(<3 x double> %_bound_P275, i64 2)
+  %return278 = call double @"getcomp@F[FI"(double* %return13, i64 4)
+  %return279 = fcmp ole double %return276, %return278
+  br i1 %return279, label %true281, label %end274
+
+end274:                                           ; preds = %true273, %true281, %end260
+  %numingroup.16 = phi i64 [ %output285, %true281 ], [ %numingroup.15, %true273 ], [ %numingroup.15, %end260 ]
+  %return286 = call i64 @"chi@IS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @8, i64 0, i64 0))
+  %17 = icmp ne i64 %return286, 0
+  br i1 %17, label %true287, label %end17
+
+true281:                                          ; preds = %true273
+  %output285 = add i64 %numingroup.15, 1
+  br label %end274
+
+true287:                                          ; preds = %end274
+  %_bound_P289 = load <3 x double>, <3 x double>* %_bound_P
+  %return290 = call double @"getcomp@FVI"(<3 x double> %_bound_P289, i64 2)
+  %return292 = call double @"getcomp@F[FI"(double* %return13, i64 5)
+  %return293 = fcmp oge double %return290, %return292
+  br i1 %return293, label %true295, label %end17
+
+true295:                                          ; preds = %true287
+  %output299 = add i64 %numingroup.16, 1
+  br label %end17
+
+UnifiedReturnBlock:                               ; preds = %true116, %end17, %true11
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private void @"mergegrp@III"(i64* %grp, i64* %grpref, i64* %mergeop) #0 {
+__llvm_entry:
+  %mergeop1 = load i64, i64* %mergeop
+  %return = call i64 @"eq@III"(i64 %mergeop1, i64 0)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %grpref2 = load i64, i64* %grpref
+  store i64 %grpref2, i64* %grp
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return4 = call i64 @"eq@III"(i64 %mergeop1, i64 1)
+  %1 = icmp ne i64 %return4, 0
+  br i1 %1, label %true5, label %false6
+
+end:                                              ; preds = %true13, %false14, %true5, %true
+  ret void
+
+true5:                                            ; preds = %false
+  %grp8 = load i64, i64* %grp
+  %grpref9 = load i64, i64* %grpref
+  %return10 = or i64 %grp8, %grpref9
+  store i64 %return10, i64* %grp
+  br label %end
+
+false6:                                           ; preds = %false
+  %return12 = call i64 @"eq@III"(i64 %mergeop1, i64 2)
+  %2 = icmp ne i64 %return12, 0
+  %grp16 = load i64, i64* %grp
+  %grpref17 = load i64, i64* %grpref
+  br i1 %2, label %true13, label %false14
+
+true13:                                           ; preds = %false6
+  %return18 = and i64 %grp16, %grpref17
+  store i64 %return18, i64* %grp
+  br label %end
+
+false14:                                          ; preds = %false6
+  %return21 = call i64 @"not@II"(i64 %grpref17)
+  %return22 = and i64 %grp16, %return21
+  store i64 %return22, i64* %grp
+  br label %end
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"hedge_nextequiv@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare double* @"detail@[FIS"(i64, i8*) #2
+
+; Function Attrs: nounwind
+declare i64 @"hedge_srcpoint@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@F[FI"(double*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"hedge_dstpoint@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %elemnum, i64 %vtxnum, i64 %outgrp, <3 x double> %P) #2 {
+__llvm_entry:
+  %"<outgrp>" = alloca i64
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca <3 x double>
+  store i64 %outgrp, i64* %"<outgrp>"
+  store i64 %elemnum, i64* %0
+  store i64 %vtxnum, i64* %1
+  store <3 x double> %P, <3 x double>* %2
+  call void @"__vex_snippet_snippet@IIIV"(i64* %0, i64* %1, i64* %"<outgrp>", <3 x double>* %2)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @11, i64 0, i64 0), i64 %elemnum) #3
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @12, i64 0, i64 0), i64 %vtxnum) #3
+  %evalue6 = load i64, i64* %"<outgrp>"
+  %gvalue7 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @13, i64 0, i64 0), i64 %evalue6) #3
+  %gvalue9 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @2, i64 0, i64 0), <3 x double> %P) #3
+  store i64 %gvalue, i64* @elemnum
+  store i64 %gvalue5, i64* @vtxnum
+  store i64 %gvalue7, i64* @outgrp
+  store <3 x double> %gvalue9, <3 x double>* @P
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0, i64 0, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

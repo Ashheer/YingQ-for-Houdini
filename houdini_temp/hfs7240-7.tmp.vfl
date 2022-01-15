@@ -1,0 +1,9 @@
+﻿vector npos = minpos(1, @P);
+vector dir = normalize(@P - npos);
+matrix mat = ident();
+rotate(mat, $PI * 0.5, set(0, 1, 0));
+float yamount = (noise(@P*chf("y_smoothness")) - 0.5) * chf("y_amount");
+dir.y += yamount;
+dir = normalize(dir);
+dir *= mat;
+v@velocity = dir * distance(npos, @P);

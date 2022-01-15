@@ -1,0 +1,341 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [12 x i8] c"../distance\00"
+@1 = private constant [20 x i8] c"../scale_attribname\00"
+@2 = private constant [1 x i8] zeroinitializer
+@3 = private constant [9 x i8] c"../class\00"
+@4 = private constant [70 x i8] c"One or more of the specified elem attributes has an unsupported size.\00"
+@5 = private constant [59 x i8] c"One or more of the specified elem attributes do not exist.\00"
+@6 = private constant [70 x i8] c"One or more of the specified elem attributes has an unsupported type.\00"
+@7 = private constant [8 x i8] c"../useN\00"
+@8 = private constant [14 x i8] c"../attribname\00"
+@9 = private constant [4 x i8] c"add\00"
+@elemnum = external global i64
+@N = external global <3 x double>
+@10 = private constant [8 x i8] c"elemnum\00"
+@11 = private constant [2 x i8] c"N\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IV"(i64* %_bound_elemnum, <3 x double>* %_bound_N) #0 {
+__llvm_entry:
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @0, i64 0, i64 0))
+  %cast = call <3 x double> @"set@VF"(double %return)
+  %return1 = call i8* @"chs@SS"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @1, i64 0, i64 0))
+  %return2 = call i64 @"ne@ISS"(i8* %return1, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @2, i64 0, i64 0))
+  %0 = icmp ne i64 %return2, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return4 = call i8** @"split@[SS"(i8* %return1)
+  %return6 = call i64 @"len@I[S"(i8** %return4)
+  br label %cond
+
+end:                                              ; preds = %cond, %__llvm_entry
+  %value.0 = phi <3 x double> [ %value.1, %cond ], [ %cast, %__llvm_entry ]
+  %return146 = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @7, i64 0, i64 0))
+  %1 = icmp ne i64 %return146, 0
+  br i1 %1, label %true147, label %end148
+
+cond:                                             ; preds = %iter, %true
+  %__impl_foreach_index_181.0 = phi i64 [ 0, %true ], [ %output145, %iter ]
+  %value.1 = phi <3 x double> [ %cast, %true ], [ %value.2, %iter ]
+  %return9 = call i64 @"lt@III"(i64 %__impl_foreach_index_181.0, i64 %return6)
+  %2 = icmp ne i64 %return9, 0
+  br i1 %2, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return13 = call i8* @"getcomp@S[SI"(i8** %return4, i64 %__impl_foreach_index_181.0)
+  %return14 = call i8* @"chs@SS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @3, i64 0, i64 0))
+  %return16 = call i64 @"attribtype@IISS"(i64 0, i8* %return14, i8* %return13)
+  %return18 = call i64 @"eq@III"(i64 %return16, i64 0)
+  %3 = icmp ne i64 %return18, 0
+  br i1 %3, label %true19, label %false
+
+iter:                                             ; preds = %true141, %false142, %false131, %false126, %false121, %false31, %true94, %true107, %true79, %true66, %true52, %true38, %true19, %false108
+  %value.2 = phi <3 x double> [ %output, %true19 ], [ %output49, %true38 ], [ %output63, %true52 ], [ %output76, %true66 ], [ %cast91, %true79 ], [ %output104, %true94 ], [ %output117, %true107 ], [ %value.1, %false108 ], [ %value.1, %false31 ], [ %value.1, %false121 ], [ %value.1, %false126 ], [ %value.1, %false131 ], [ %value.1, %true141 ], [ %value.1, %false142 ]
+  %output145 = add i64 %__impl_foreach_index_181.0, 1
+  br label %cond
+
+true19:                                           ; preds = %body
+  %_bound_elemnum23 = load i64, i64* %_bound_elemnum
+  %return24 = call i64 @"attrib@IISSI"(i64 0, i8* %return14, i8* %return13, i64 %_bound_elemnum23)
+  %cast27 = call <3 x double> @"set@VI"(i64 %return24)
+  %output = call <3 x double> @"mul@VV"(<3 x double> %value.1, <3 x double> %cast27)
+  br label %iter
+
+false:                                            ; preds = %body
+  %return29 = call i64 @"eq@III"(i64 %return16, i64 1)
+  %4 = icmp ne i64 %return29, 0
+  br i1 %4, label %true30, label %false31
+
+true30:                                           ; preds = %false
+  %return35 = call i64 @"attribsize@IISS"(i64 0, i8* %return14, i8* %return13)
+  %return37 = call i64 @"eq@III"(i64 %return35, i64 1)
+  %5 = icmp ne i64 %return37, 0
+  br i1 %5, label %true38, label %false39
+
+false31:                                          ; preds = %false
+  %return119 = call i64 @"eq@III"(i64 %return16, i64 2)
+  %6 = icmp ne i64 %return119, 0
+  br i1 %6, label %iter, label %false121
+
+true38:                                           ; preds = %true30
+  %_bound_elemnum44 = load i64, i64* %_bound_elemnum
+  %return45 = call double @"attrib@FISSI"(i64 0, i8* %return14, i8* %return13, i64 %_bound_elemnum44)
+  %cast48 = call <3 x double> @"set@VF"(double %return45)
+  %output49 = call <3 x double> @"mul@VV"(<3 x double> %value.1, <3 x double> %cast48)
+  br label %iter
+
+false39:                                          ; preds = %true30
+  %return51 = call i64 @"eq@III"(i64 %return35, i64 2)
+  %7 = icmp ne i64 %return51, 0
+  br i1 %7, label %true52, label %false53
+
+true52:                                           ; preds = %false39
+  %_bound_elemnum58 = load i64, i64* %_bound_elemnum
+  %return59 = call <2 x double> @"attrib@UISSI"(i64 0, i8* %return14, i8* %return13, i64 %_bound_elemnum58)
+  %cast62 = call <3 x double> @"set@VU"(<2 x double> %return59)
+  %output63 = call <3 x double> @"mul@VV"(<3 x double> %value.1, <3 x double> %cast62)
+  br label %iter
+
+false53:                                          ; preds = %false39
+  %return65 = call i64 @"eq@III"(i64 %return35, i64 3)
+  %8 = icmp ne i64 %return65, 0
+  br i1 %8, label %true66, label %false67
+
+true66:                                           ; preds = %false53
+  %_bound_elemnum72 = load i64, i64* %_bound_elemnum
+  %return73 = call <3 x double> @"attrib@VISSI"(i64 0, i8* %return14, i8* %return13, i64 %_bound_elemnum72)
+  %output76 = call <3 x double> @"mul@VV"(<3 x double> %value.1, <3 x double> %return73)
+  br label %iter
+
+false67:                                          ; preds = %false53
+  %return78 = call i64 @"eq@III"(i64 %return35, i64 4)
+  %9 = icmp ne i64 %return78, 0
+  br i1 %9, label %true79, label %false80
+
+true79:                                           ; preds = %false67
+  %_bound_elemnum85 = load i64, i64* %_bound_elemnum
+  %return86 = call <4 x double> @"attrib@PISSI"(i64 0, i8* %return14, i8* %return13, i64 %_bound_elemnum85)
+  %cast89 = call <4 x double> @"set@PV"(<3 x double> %value.1)
+  %output90 = call <4 x double> @"mul@PP"(<4 x double> %cast89, <4 x double> %return86)
+  %cast91 = call <3 x double> @"set@VP"(<4 x double> %output90)
+  br label %iter
+
+false80:                                          ; preds = %false67
+  %return93 = call i64 @"eq@III"(i64 %return35, i64 9)
+  %10 = icmp ne i64 %return93, 0
+  br i1 %10, label %true94, label %false95
+
+true94:                                           ; preds = %false80
+  %_bound_elemnum100 = load i64, i64* %_bound_elemnum
+  %return101 = call <9 x double> @"attrib@3ISSI"(i64 0, i8* %return14, i8* %return13, i64 %_bound_elemnum100)
+  %output104 = call <3 x double> @"mul@V3"(<3 x double> %value.1, <9 x double> %return101)
+  br label %iter
+
+false95:                                          ; preds = %false80
+  %return106 = call i64 @"eq@III"(i64 %return35, i64 16)
+  %11 = icmp ne i64 %return106, 0
+  br i1 %11, label %true107, label %false108
+
+true107:                                          ; preds = %false95
+  %_bound_elemnum113 = load i64, i64* %_bound_elemnum
+  %return114 = call <16 x double> @"attrib@4ISSI"(i64 0, i8* %return14, i8* %return13, i64 %_bound_elemnum113)
+  %output117 = call <3 x double> @"mul@V4"(<3 x double> %value.1, <16 x double> %return114)
+  br label %iter
+
+false108:                                         ; preds = %false95
+  call void @"warning@S"(i8* getelementptr inbounds ([70 x i8], [70 x i8]* @4, i64 0, i64 0))
+  br label %iter
+
+false121:                                         ; preds = %false31
+  %return124 = call i64 @"eq@III"(i64 %return16, i64 3)
+  %12 = icmp ne i64 %return124, 0
+  br i1 %12, label %iter, label %false126
+
+false126:                                         ; preds = %false121
+  %return129 = call i64 @"eq@III"(i64 %return16, i64 4)
+  %13 = icmp ne i64 %return129, 0
+  br i1 %13, label %iter, label %false131
+
+false131:                                         ; preds = %false126
+  %return134 = call i64 @"eq@III"(i64 %return16, i64 5)
+  %14 = icmp ne i64 %return134, 0
+  br i1 %14, label %iter, label %false136
+
+false136:                                         ; preds = %false131
+  %return139 = call i64 @"neg@II"(i64 1)
+  %return140 = call i64 @"eq@III"(i64 %return16, i64 %return139)
+  %15 = icmp ne i64 %return140, 0
+  br i1 %15, label %true141, label %false142
+
+true141:                                          ; preds = %false136
+  call void @"warning@S"(i8* getelementptr inbounds ([59 x i8], [59 x i8]* @5, i64 0, i64 0))
+  br label %iter
+
+false142:                                         ; preds = %false136
+  call void @"warning@S"(i8* getelementptr inbounds ([70 x i8], [70 x i8]* @6, i64 0, i64 0))
+  br label %iter
+
+true147:                                          ; preds = %end
+  %_bound_N150 = load <3 x double>, <3 x double>* %_bound_N
+  %output151 = call <3 x double> @"mul@VV"(<3 x double> %value.0, <3 x double> %_bound_N150)
+  br label %end148
+
+end148:                                           ; preds = %true147, %end
+  %value.3 = phi <3 x double> [ %output151, %true147 ], [ %value.0, %end ]
+  %return152 = call i8* @"chs@SS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @8, i64 0, i64 0))
+  %return153 = call i8** @"split@[SS"(i8* %return152)
+  %return155 = call i64 @"len@I[S"(i8** %return153)
+  br label %cond156
+
+cond156:                                          ; preds = %body157, %end148
+  %__impl_foreach_index_182.0 = phi i64 [ 0, %end148 ], [ %output173, %body157 ]
+  %return160 = call i64 @"lt@III"(i64 %__impl_foreach_index_182.0, i64 %return155)
+  %16 = icmp ne i64 %return160, 0
+  br i1 %16, label %body157, label %end161
+
+body157:                                          ; preds = %cond156
+  %return165 = call i8* @"getcomp@S[SI"(i8** %return153, i64 %__impl_foreach_index_182.0)
+  %return166 = call i8* @"chs@SS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @3, i64 0, i64 0))
+  %_bound_elemnum168 = load i64, i64* %_bound_elemnum
+  %return169 = call i64 @"neg@II"(i64 1)
+  %return171 = call i64 @"setattrib@IISSIIVS"(i64 0, i8* %return166, i8* %return165, i64 %_bound_elemnum168, i64 %return169, <3 x double> %value.3, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @9, i64 0, i64 0))
+  %output173 = add i64 %__impl_foreach_index_182.0, 1
+  br label %cond156
+
+end161:                                           ; preds = %cond156
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8** @"split@[SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[S"(i8**) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"getcomp@S[SI"(i8**, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"attribtype@IISS"(i64, i8*, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"attrib@IISSI"(i64, i8*, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"attribsize@IISS"(i64, i8*, i8*) #2
+
+; Function Attrs: nounwind
+declare double @"attrib@FISSI"(i64, i8*, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare <2 x double> @"attrib@UISSI"(i64, i8*, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VU"(<2 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"attrib@VISSI"(i64, i8*, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare <4 x double> @"attrib@PISSI"(i64, i8*, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare <4 x double> @"set@PV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"mul@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"set@VP"(<4 x double>) #2
+
+; Function Attrs: nounwind
+declare <9 x double> @"attrib@3ISSI"(i64, i8*, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"mul@V3"(<3 x double>, <9 x double>) #2
+
+; Function Attrs: nounwind
+declare <16 x double> @"attrib@4ISSI"(i64, i8*, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"mul@V4"(<3 x double>, <16 x double>) #2
+
+; Function Attrs: nounwind
+declare void @"warning@S"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSIIVS"(i64, i8*, i8*, i64, i64, <3 x double>, i8*) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %elemnum, <3 x double> %N) #2 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca <3 x double>
+  store i64 %elemnum, i64* %0
+  store <3 x double> %N, <3 x double>* %1
+  call void @"__vex_snippet_snippet@IV"(i64* %0, <3 x double>* %1)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @10, i64 0, i64 0), i64 %elemnum) #3
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @11, i64 0, i64 0), <3 x double> %N) #3
+  store i64 %gvalue, i64* @elemnum
+  store <3 x double> %gvalue4, <3 x double>* @N
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

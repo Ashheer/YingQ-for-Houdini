@@ -1,0 +1,10 @@
+﻿vector goalpos = point(1, "P", @ptnum);
+
+float interpolate = chf("interpolate");
+float randscale = sin($PI * interpolate);
+vector noisedir = noise((@P + interpolate) * chf("randomness")) - set(0.5, 0.5, 0.5);
+noisedir *= chf("spreadness") * randscale;
+
+vector pos = @P + (goalpos - @P) * interpolate + noisedir;
+
+@P = pos;

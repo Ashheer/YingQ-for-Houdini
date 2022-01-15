@@ -1,0 +1,65 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [11 x i8] c"do_default\00"
+@1 = private constant [16 x i8] c"attribute_class\00"
+@2 = private constant [15 x i8] c"attribute_name\00"
+@3 = private constant [8 x i8] c"default\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @0, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return1 = call i8* @"chs@SS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @1, i64 0, i64 0))
+  %return2 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @2, i64 0, i64 0))
+  %return3 = call double @"chf@FS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @3, i64 0, i64 0))
+  %return4 = call i64 @"addattrib@IISSF"(i64 0, i8* %return1, i8* %return2, double %return3)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"addattrib@IISSF"(i64, i8*, i8*, double) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #2 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

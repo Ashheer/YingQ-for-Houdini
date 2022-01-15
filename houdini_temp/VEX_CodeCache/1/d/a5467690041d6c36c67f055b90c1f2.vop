@@ -1,0 +1,1200 @@
+;_name	/obj/Procedural_hardsurface/chineseEaves_fee1/chineseTile_fee1/banwa_fee1/bend1/deformationwrangle1/attribvop_explicitxform
+; ModuleID = 'obj_Procedural_hardsurface_chineseEaves_fee1_chineseTile_fee1_banwa_fee1_bend1_deformationwrangle1_attribvop_explicitxform'
+source_filename = "obj_Procedural_hardsurface_chineseEaves_fee1_chineseTile_fee1_banwa_fee1_bend1_deformationwrangle1_attribvop_explicitxform"
+
+@0 = private constant [9 x i8] c"dodeform\00"
+@1 = private constant [8 x i8] c"is_bbox\00"
+@2 = private constant [7 x i8] c"origin\00"
+@3 = private constant [7 x i8] c"caplen\00"
+@4 = private constant [11 x i8] c"rot_matrix\00"
+@5 = private constant [18 x i8] c"limit_deformation\00"
+@6 = private constant [21 x i8] c"symmetricdeformation\00"
+@7 = private constant [16 x i8] c"use_rest_at_all\00"
+@8 = private constant [9 x i8] c"use_rest\00"
+@9 = private constant [2 x i8] c"P\00"
+@10 = private constant [5 x i8] c"rest\00"
+@11 = private constant [16 x i8] c"enableoutattrib\00"
+@12 = private constant [10 x i8] c"outattrib\00"
+@13 = private constant [12 x i8] c"enabletwist\00"
+@14 = private constant [6 x i8] c"twist\00"
+@15 = private constant [15 x i8] c"twistscalemode\00"
+@16 = private constant [13 x i8] c"twist_attrib\00"
+@17 = private constant [16 x i8] c"continuoustwist\00"
+@18 = private constant [12 x i8] c"enabletaper\00"
+@19 = private constant [6 x i8] c"taper\00"
+@20 = private constant [15 x i8] c"taperscalemode\00"
+@21 = private constant [13 x i8] c"taper_attrib\00"
+@22 = private constant [11 x i8] c"taper_mode\00"
+@23 = private constant [11 x i8] c"enableramp\00"
+@24 = private constant [16 x i8] c"../taperprofile\00"
+@25 = private constant [18 x i8] c"enablelengthscale\00"
+@26 = private constant [7 x i8] c"squish\00"
+@27 = private constant [16 x i8] c"squishscalemode\00"
+@28 = private constant [14 x i8] c"squish_attrib\00"
+@29 = private constant [12 x i8] c"lengthscale\00"
+@30 = private constant [21 x i8] c"lengthscalescalemode\00"
+@31 = private constant [19 x i8] c"lengthscale_attrib\00"
+@32 = private constant [16 x i8] c"preserve_volume\00"
+@33 = private constant [12 x i8] c"squishpivot\00"
+@34 = private constant [11 x i8] c"enablebend\00"
+@35 = private constant [10 x i8] c"bend_mode\00"
+@36 = private constant [5 x i8] c"bend\00"
+@37 = private constant [20 x i8] c"bendscalemode_angle\00"
+@38 = private constant [12 x i8] c"bend_attrib\00"
+@39 = private constant [8 x i8] c"goaldir\00"
+@40 = private constant [18 x i8] c"bendscalemode_dir\00"
+@41 = private constant [9 x i8] c"maskmode\00"
+@42 = private constant [5 x i8] c"mask\00"
+@P = external global <3 x double>
+@__xform = external global <9 x double>
+@ptnum = external global i64
+@43 = private constant [8 x i8] c"__xform\00"
+@44 = private constant [6 x i8] c"ptnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_Procedural_hardsurface_chineseEaves_fee1_chineseTile_fee1_banwa_fee1_bend1_deformationwrangle1_attribvop_explicitxform_evaluate_deformer@V3I"(<3 x double>* %pos, <9 x double>* %xform, i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca i64
+  %2 = alloca double
+  %3 = alloca i8*
+  %4 = alloca i8*
+  %5 = alloca double
+  %6 = alloca double
+  %7 = alloca double
+  %8 = alloca i64
+  %9 = alloca double
+  %10 = alloca i8*
+  %11 = alloca i8*
+  %12 = alloca double
+  %13 = alloca double
+  %14 = alloca double
+  %15 = alloca double
+  %16 = alloca double
+  %17 = alloca i64
+  %18 = alloca double
+  %19 = alloca i8*
+  %20 = alloca i8*
+  %21 = alloca double
+  %22 = alloca i64
+  %23 = alloca double
+  %24 = alloca i8*
+  %25 = alloca i8*
+  %26 = alloca double
+  %27 = alloca double
+  %28 = alloca double
+  %29 = alloca double
+  %30 = alloca double
+  %31 = alloca i64
+  %32 = alloca double
+  %33 = alloca i8*
+  %34 = alloca i8*
+  %35 = alloca double
+  %36 = alloca i64
+  %37 = alloca double
+  %38 = alloca i8*
+  %39 = alloca i8*
+  %40 = alloca double
+  %41 = alloca double
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64 @"not@II"(i64 %return)
+  %42 = icmp ne i64 %return1, 0
+  br i1 %42, label %true, label %end
+
+true:                                             ; preds = %end788, %false782, %false778, %__llvm_entry
+  ret void
+
+end:                                              ; preds = %__llvm_entry
+  %return2 = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0))
+  %return3 = call double @"ch@FS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @3, i64 0, i64 0))
+  %return4 = call <9 x double> @"detail@3IS"(i64 2, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @4, i64 0, i64 0))
+  %return6 = call <9 x double> @"transpose@33"(<9 x double> %return4)
+  %return7 = call i64 @"chi@IS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @5, i64 0, i64 0))
+  %return8 = call i64 @"chi@IS"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @6, i64 0, i64 0))
+  %return9 = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0))
+  %pos10 = load <3 x double>, <3 x double>* %pos
+  %return13 = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @7, i64 0, i64 0))
+  %43 = icmp ne i64 %return13, 0
+  br i1 %43, label %true14, label %end15
+
+true14:                                           ; preds = %end
+  %return16 = call i64 @"chi@IS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @8, i64 0, i64 0))
+  %44 = icmp ne i64 %return16, 0
+  br i1 %44, label %true17, label %false
+
+end15:                                            ; preds = %false, %true22, %true17, %end
+  %rest_pos.0 = phi <3 x double> [ %return20, %true17 ], [ %return25, %true22 ], [ %pos10, %false ], [ %pos10, %end ]
+  %output = call <3 x double> @"sub@VV"(<3 x double> %rest_pos.0, <3 x double> %return2)
+  %output30 = call <3 x double> @"sub@VV"(<3 x double> %pos10, <3 x double> %return2)
+  %output34 = call <3 x double> @"mul@V3"(<3 x double> %output, <9 x double> %return6)
+  %output37 = call <3 x double> @"mul@V3"(<3 x double> %output30, <9 x double> %return6)
+  %xform38 = load <9 x double>, <9 x double>* %xform
+  %output40 = call <9 x double> @"mul@33"(<9 x double> %xform38, <9 x double> %return6)
+  store <9 x double> %output40, <9 x double>* %xform
+  %return41 = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @11, i64 0, i64 0))
+  %45 = icmp ne i64 %return41, 0
+  br i1 %45, label %true42, label %end43
+
+true17:                                           ; preds = %true14
+  %_bound_ptnum19 = load i64, i64* %_bound_ptnum
+  %return20 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @9, i64 0, i64 0), i64 %_bound_ptnum19)
+  br label %end15
+
+false:                                            ; preds = %true14
+  %return21 = call i64 @"haspointattrib@IIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @10, i64 0, i64 0))
+  %46 = icmp ne i64 %return21, 0
+  br i1 %46, label %true22, label %end15
+
+true22:                                           ; preds = %false
+  %_bound_ptnum24 = load i64, i64* %_bound_ptnum
+  %return25 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @10, i64 0, i64 0), i64 %_bound_ptnum24)
+  br label %end15
+
+true42:                                           ; preds = %end15
+  %return45 = call double @"getcomp@FVI"(<3 x double> %output34, i64 0)
+  %output47 = call double @"div@FF"(double %return45, double %return3)
+  %47 = icmp ne i64 %return7, 0
+  br i1 %47, label %true49, label %false50
+
+end43:                                            ; preds = %end51, %true74, %end15
+  %return80 = call i64 @"chi@IS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @13, i64 0, i64 0))
+  %48 = icmp ne i64 %return80, 0
+  br i1 %48, label %true81, label %end82
+
+true49:                                           ; preds = %true42
+  %49 = icmp ne i64 %return8, 0
+  br i1 %49, label %true53, label %false54
+
+false50:                                          ; preds = %true42
+  %return62 = call i64 @"not@II"(i64 %return8)
+  %50 = icmp ne i64 %return62, 0
+  br i1 %50, label %true63, label %end51
+
+end51:                                            ; preds = %true63, %true68, %false50, %true53, %false54
+  %factor.0 = phi double [ %return58, %true53 ], [ %return60, %false54 ], [ 0.000000e+00, %true68 ], [ %output47, %true63 ], [ %output47, %false50 ]
+  %return72 = call i64 @"not@II"(i64 %return9)
+  %return73 = call i64 @"and@III"(i64 %return41, i64 %return72)
+  %51 = icmp ne i64 %return73, 0
+  br i1 %51, label %true74, label %end43
+
+true53:                                           ; preds = %true49
+  %return57 = call i64 @"neg@II"(i64 1)
+  %cast = sitofp i64 %return57 to double
+  %return58 = call double @"clamp@FFFF"(double %output47, double %cast, double 1.000000e+00)
+  br label %end51
+
+false54:                                          ; preds = %true49
+  %return60 = call double @"clamp@FFFF"(double %output47, double 0.000000e+00, double 1.000000e+00)
+  br label %end51
+
+true63:                                           ; preds = %false50
+  %return66 = fcmp olt double %output47, 0.000000e+00
+  br i1 %return66, label %true68, label %end51
+
+true68:                                           ; preds = %true63
+  br label %end51
+
+true74:                                           ; preds = %end51
+  %return76 = call i8* @"chs@SS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @12, i64 0, i64 0))
+  %_bound_ptnum77 = load i64, i64* %_bound_ptnum
+  %return79 = call i64 @"setpointattrib@IISIF"(i64 0, i8* %return76, i64 %_bound_ptnum77, double %factor.0)
+  br label %end43
+
+true81:                                           ; preds = %end43
+  %return83 = call double @"ch@FS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @14, i64 0, i64 0))
+  %return84 = call double @"radians@FF"(double %return83)
+  store double %return84, double* %0
+  %_bound_ptnum85 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum85, i64* %1
+  store double 0.000000e+00, double* %2
+  store i8* getelementptr inbounds ([15 x i8], [15 x i8]* @15, i64 0, i64 0), i8** %3
+  store i8* getelementptr inbounds ([13 x i8], [13 x i8]* @16, i64 0, i64 0), i8** %4
+  %get_weightedvalue = call double @"get_weightedvalue@FFIFSS"(double* %0, i64* %1, double* %2, i8** %3, i8** %4)
+  %return87 = fcmp one double %get_weightedvalue, 0.000000e+00
+  br i1 %return87, label %true89, label %end82
+
+end82:                                            ; preds = %true81, %end118, %end43
+  %original.0 = phi <3 x double> [ %output205, %end118 ], [ %output37, %true81 ], [ %output37, %end43 ]
+  %return209 = call i64 @"chi@IS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @18, i64 0, i64 0))
+  %52 = icmp ne i64 %return209, 0
+  br i1 %52, label %true210, label %end211
+
+true89:                                           ; preds = %true81
+  %return93 = call double @"getcomp@FVI"(<3 x double> %output34, i64 0)
+  %return94 = fcmp olt double %return93, 0.000000e+00
+  %return95 = zext i1 %return94 to i64
+  %return96 = call i64 @"and@III"(i64 %return8, i64 %return95)
+  %return97 = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @17, i64 0, i64 0))
+  %return98 = call i64 @"eq@III"(i64 %return97, i64 0)
+  %return99 = call i64 @"and@III"(i64 %return96, i64 %return98)
+  %53 = icmp ne i64 %return99, 0
+  br i1 %53, label %true100, label %end101
+
+true100:                                          ; preds = %true89
+  %return103 = call i64 @"neg@II"(i64 1)
+  %cast104 = sitofp i64 %return103 to double
+  %output105 = fmul double %get_weightedvalue, %cast104
+  br label %end101
+
+end101:                                           ; preds = %true100, %true89
+  %twist_amt.0 = phi double [ %output105, %true100 ], [ %get_weightedvalue, %true89 ]
+  %output109 = fmul double %twist_amt.0, %return93
+  %output111 = call double @"div@FF"(double %output109, double %return3)
+  %output114 = call double @"div@FF"(double %twist_amt.0, double %return3)
+  %54 = icmp ne i64 %return8, 0
+  br i1 %54, label %true116, label %false117
+
+true116:                                          ; preds = %end101
+  %return122 = call double @"abs@FF"(double %return93)
+  %return124 = fcmp ogt double %return122, %return3
+  %return125 = zext i1 %return124 to i64
+  %return126 = call i64 @"and@III"(i64 %return7, i64 %return125)
+  %55 = icmp ne i64 %return126, 0
+  br i1 %55, label %true127, label %end118
+
+false117:                                         ; preds = %end101
+  store double %return93, double* %5
+  store double %return3, double* %6
+  %opposite = call i64 @"opposite@IFF"(double* %5, double* %6)
+  %56 = icmp ne i64 %opposite, 0
+  br i1 %56, label %true145, label %end146
+
+end118:                                           ; preds = %end146, %true154, %true116, %end137
+  %twist.0 = phi double [ %twist.1, %end137 ], [ %output111, %true116 ], [ %twist_amt.0, %true154 ], [ %twist.2, %end146 ]
+  %dtwist_dx.0 = phi double [ 0.000000e+00, %end137 ], [ %output114, %true116 ], [ 0.000000e+00, %true154 ], [ %dtwist_dx.1, %end146 ]
+  %return158 = call double @"sin@FF"(double %twist.0)
+  %return160 = call double @"cos@FF"(double %twist.0)
+  %return162 = call double @"getcomp@FVI"(<3 x double> %output34, i64 1)
+  %return164 = call double @"neg@FF"(double %return158)
+  %output165 = fmul double %return162, %return164
+  %output167 = fmul double %output165, %dtwist_dx.0
+  %return169 = call double @"getcomp@FVI"(<3 x double> %output34, i64 2)
+  %output171 = fmul double %return169, %return160
+  %output173 = fmul double %output171, %dtwist_dx.0
+  %output174 = fsub double %output167, %output173
+  %output178 = fmul double %return162, %return160
+  %output180 = fmul double %output178, %dtwist_dx.0
+  %output185 = fmul double %return169, %return164
+  %output187 = fmul double %output185, %dtwist_dx.0
+  %output188 = fadd double %output180, %output187
+  %return196 = call <9 x double> @"set@3FFFFFFFFF"(double 1.000000e+00, double %output174, double %output188, double 0.000000e+00, double %return160, double %return158, double 0.000000e+00, double %return164, double %return160)
+  %return202 = call <9 x double> @"set@3FFFFFFFFF"(double 1.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double %return160, double %return158, double 0.000000e+00, double %return164, double %return160)
+  %output205 = call <3 x double> @"mul@V3"(<3 x double> %output37, <9 x double> %return202)
+  %xform206 = load <9 x double>, <9 x double>* %xform
+  %output208 = call <9 x double> @"mul@33"(<9 x double> %xform206, <9 x double> %return196)
+  store <9 x double> %output208, <9 x double>* %xform
+  br label %end82
+
+true127:                                          ; preds = %true116
+  %return132 = call double @"neg@FF"(double %return93)
+  %return134 = fcmp ogt double %return132, %return3
+  br i1 %return134, label %true136, label %end137
+
+true136:                                          ; preds = %true127
+  %return139 = call i64 @"neg@II"(i64 1)
+  %cast140 = sitofp i64 %return139 to double
+  %output141 = fmul double %twist_amt.0, %cast140
+  br label %end137
+
+end137:                                           ; preds = %true136, %true127
+  %twist.1 = phi double [ %output141, %true136 ], [ %twist_amt.0, %true127 ]
+  br label %end118
+
+true145:                                          ; preds = %false117
+  br label %end146
+
+end146:                                           ; preds = %true145, %false117
+  %twist.2 = phi double [ 0.000000e+00, %true145 ], [ %output111, %false117 ]
+  %dtwist_dx.1 = phi double [ 0.000000e+00, %true145 ], [ %output114, %false117 ]
+  %return151 = fcmp ogt double %return93, %return3
+  %return152 = zext i1 %return151 to i64
+  %return153 = call i64 @"and@III"(i64 %return7, i64 %return152)
+  %57 = icmp ne i64 %return153, 0
+  br i1 %57, label %true154, label %end118
+
+true154:                                          ; preds = %end146
+  br label %end118
+
+true210:                                          ; preds = %end82
+  %return212 = call double @"ch@FS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @19, i64 0, i64 0))
+  store double %return212, double* %7
+  %_bound_ptnum213 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum213, i64* %8
+  store double 1.000000e+00, double* %9
+  store i8* getelementptr inbounds ([15 x i8], [15 x i8]* @20, i64 0, i64 0), i8** %10
+  store i8* getelementptr inbounds ([13 x i8], [13 x i8]* @21, i64 0, i64 0), i8** %11
+  %get_weightedvalue214 = call double @"get_weightedvalue@FFIFSS"(double* %7, i64* %8, double* %9, i8** %10, i8** %11)
+  %return216 = fcmp one double %get_weightedvalue214, 1.000000e+00
+  br i1 %return216, label %true218, label %end219
+
+end211:                                           ; preds = %end342, %true346, %end219, %end82
+  %dramp_dx.0 = phi double [ %output354, %true346 ], [ 0.000000e+00, %end342 ], [ 0.000000e+00, %end219 ], [ 0.000000e+00, %end82 ]
+  %ramp.0 = phi double [ %return349, %true346 ], [ 1.000000e+00, %end342 ], [ 1.000000e+00, %end219 ], [ 1.000000e+00, %end82 ]
+  %dtaper_dx.0 = phi double [ %dtaper_dx.1, %true346 ], [ %dtaper_dx.1, %end342 ], [ %dtaper_dx.1, %end219 ], [ 0.000000e+00, %end82 ]
+  %taper.0 = phi double [ %taper.1, %true346 ], [ %taper.1, %end342 ], [ %taper.1, %end219 ], [ 1.000000e+00, %end82 ]
+  %return355 = call i64 @"chi@IS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @25, i64 0, i64 0))
+  %return357 = call i64 @"or@III"(i64 %return355, i64 %return209)
+  %58 = icmp ne i64 %return357, 0
+  br i1 %58, label %true358, label %end359
+
+true218:                                          ; preds = %true210
+  %return220 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @22, i64 0, i64 0))
+  %return221 = call i64 @"eq@III"(i64 %return220, i64 0)
+  %59 = icmp ne i64 %return221, 0
+  br i1 %59, label %true222, label %false223
+
+end219:                                           ; preds = %end292, %true300, %true273, %true284, %true210
+  %dtaper_dx.1 = phi double [ 0.000000e+00, %true284 ], [ %dtaper_dx.2, %true273 ], [ 0.000000e+00, %true300 ], [ %dtaper_dx.3, %end292 ], [ 0.000000e+00, %true210 ]
+  %taper.1 = phi double [ %get_weightedvalue214, %true284 ], [ %taper.2, %true273 ], [ %get_weightedvalue214, %true300 ], [ %taper.3, %end292 ], [ 1.000000e+00, %true210 ]
+  %return303 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @23, i64 0, i64 0))
+  %60 = icmp ne i64 %return303, 0
+  br i1 %60, label %true304, label %end211
+
+true222:                                          ; preds = %true218
+  %return228 = call double @"getcomp@FVI"(<3 x double> %output34, i64 0)
+  %return229 = call double @"abs@FF"(double %return228)
+  %output231 = call double @"div@FF"(double %return229, double %return3)
+  %return232 = call double @"lerp@FFFF"(double 1.000000e+00, double %get_weightedvalue214, double %output231)
+  %output235 = fsub double %return232, 1.000000e+00
+  %output237 = call double @"div@FF"(double %output235, double %return3)
+  store double %return228, double* %12
+  store double %return3, double* %13
+  %opposite241 = call i64 @"opposite@IFF"(double* %12, double* %13)
+  %61 = icmp ne i64 %opposite241, 0
+  br i1 %61, label %true242, label %end224
+
+false223:                                         ; preds = %true218
+  %return249 = call double @"getcomp@FVI"(<3 x double> %output34, i64 0)
+  %output251 = call double @"div@FF"(double %return249, double %return3)
+  %output254 = fmul double %output251, %output251
+  %output255 = fsub double 1.000000e+00, %output254
+  %output257 = fsub double %get_weightedvalue214, 1.000000e+00
+  %output258 = fmul double %output257, 4.000000e+00
+  %output260 = fmul double %output258, %output251
+  %output262 = fmul double %output260, %output255
+  %output264 = call double @"div@FF"(double %output262, double %return3)
+  %output269 = fmul double %output255, %output255
+  %return270 = call double @"lerp@FFFF"(double %get_weightedvalue214, double 1.000000e+00, double %output269)
+  br label %end224
+
+end224:                                           ; preds = %true222, %true242, %false223
+  %dtaper_dx.2 = phi double [ %output247, %true242 ], [ %output237, %true222 ], [ %output264, %false223 ]
+  %taper.2 = phi double [ %return232, %true242 ], [ %return232, %true222 ], [ %return270, %false223 ]
+  %62 = icmp ne i64 %return8, 0
+  br i1 %62, label %true273, label %false274
+
+true242:                                          ; preds = %true222
+  %return245 = call i64 @"neg@II"(i64 1)
+  %cast246 = sitofp i64 %return245 to double
+  %output247 = fmul double %output237, %cast246
+  br label %end224
+
+true273:                                          ; preds = %end224
+  %return278 = call double @"getcomp@FVI"(<3 x double> %output34, i64 0)
+  %return279 = call double @"abs@FF"(double %return278)
+  %return281 = fcmp ogt double %return279, %return3
+  %return282 = zext i1 %return281 to i64
+  %return283 = call i64 @"and@III"(i64 %return7, i64 %return282)
+  %63 = icmp ne i64 %return283, 0
+  br i1 %63, label %true284, label %end219
+
+false274:                                         ; preds = %end224
+  %return288 = call double @"getcomp@FVI"(<3 x double> %output34, i64 0)
+  store double %return288, double* %14
+  store double %return3, double* %15
+  %opposite290 = call i64 @"opposite@IFF"(double* %14, double* %15)
+  %64 = icmp ne i64 %opposite290, 0
+  br i1 %64, label %true291, label %end292
+
+true284:                                          ; preds = %true273
+  br label %end219
+
+true291:                                          ; preds = %false274
+  br label %end292
+
+end292:                                           ; preds = %true291, %false274
+  %dtaper_dx.3 = phi double [ 0.000000e+00, %true291 ], [ %dtaper_dx.2, %false274 ]
+  %taper.3 = phi double [ 1.000000e+00, %true291 ], [ %taper.2, %false274 ]
+  %return297 = fcmp ogt double %return288, %return3
+  %return298 = zext i1 %return297 to i64
+  %return299 = call i64 @"and@III"(i64 %return7, i64 %return298)
+  %65 = icmp ne i64 %return299, 0
+  br i1 %65, label %true300, label %end219
+
+true300:                                          ; preds = %end292
+  br label %end219
+
+true304:                                          ; preds = %end219
+  %return307 = call double @"getcomp@FVI"(<3 x double> %output34, i64 0)
+  %output309 = call double @"div@FF"(double %return307, double %return3)
+  %66 = icmp ne i64 %return7, 0
+  %67 = icmp ne i64 %return8, 0
+  br i1 %66, label %true311, label %false312
+
+true311:                                          ; preds = %true304
+  br i1 %67, label %true315, label %false316
+
+false312:                                         ; preds = %true304
+  br i1 %67, label %true329, label %end313
+
+end313:                                           ; preds = %false312, %true329, %false316, %true326, %true315
+  %ramp_val.0 = phi double [ %return322, %true315 ], [ 1.000000e+00, %true326 ], [ %output309, %false316 ], [ %return332, %true329 ], [ %output309, %false312 ]
+  %return334 = fcmp ole double %ramp_val.0, 0.000000e+00
+  %return335 = zext i1 %return334 to i64
+  %return337 = call double @"neg@FF"(double 1.000000e-03)
+  %return338 = fcmp oge double %ramp_val.0, %return337
+  %return339 = zext i1 %return338 to i64
+  %return340 = call i64 @"and@III"(i64 %return335, i64 %return339)
+  %68 = icmp ne i64 %return340, 0
+  br i1 %68, label %true341, label %end342
+
+true315:                                          ; preds = %true311
+  %return319 = call i64 @"neg@II"(i64 1)
+  %cast320 = sitofp i64 %return319 to double
+  %return321 = call double @"clamp@FFFF"(double %output309, double %cast320, double 1.000000e+00)
+  %return322 = call double @"abs@FF"(double %return321)
+  br label %end313
+
+false316:                                         ; preds = %true311
+  %return324 = fcmp ogt double %output309, 1.000000e+00
+  br i1 %return324, label %true326, label %end313
+
+true326:                                          ; preds = %false316
+  br label %end313
+
+true329:                                          ; preds = %false312
+  %return332 = call double @"abs@FF"(double %output309)
+  br label %end313
+
+true341:                                          ; preds = %end313
+  br label %end342
+
+end342:                                           ; preds = %true341, %end313
+  %ramp_val.1 = phi double [ 0.000000e+00, %true341 ], [ %ramp_val.0, %end313 ]
+  %return344 = fcmp oge double %ramp_val.1, 0.000000e+00
+  br i1 %return344, label %true346, label %end211
+
+true346:                                          ; preds = %end342
+  %return349 = call double @"chramp@FSF"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @24, i64 0, i64 0), double %ramp_val.1)
+  %return351 = call double @"chrampderiv@FSF"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @24, i64 0, i64 0), double %ramp_val.1)
+  %output354 = call double @"div@FF"(double %return351, double %return3)
+  br label %end211
+
+true358:                                          ; preds = %end211
+  br i1 %52, label %true361, label %end362
+
+end359:                                           ; preds = %end391, %true489, %end211
+  %lengthscale_amt.0 = phi double [ %lengthscale_amt.1, %true489 ], [ %lengthscale_amt.1, %end391 ], [ 1.000000e+00, %end211 ]
+  %original.1 = phi <3 x double> [ %output524, %true489 ], [ %original.0, %end391 ], [ %original.0, %end211 ]
+  %69 = icmp ne i64 %return355, 0
+  br i1 %69, label %true529, label %end530
+
+true361:                                          ; preds = %true358
+  %return363 = call double @"ch@FS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @26, i64 0, i64 0))
+  store double %return363, double* %16
+  %_bound_ptnum364 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum364, i64* %17
+  store double 1.000000e+00, double* %18
+  store i8* getelementptr inbounds ([16 x i8], [16 x i8]* @27, i64 0, i64 0), i8** %19
+  store i8* getelementptr inbounds ([14 x i8], [14 x i8]* @28, i64 0, i64 0), i8** %20
+  %get_weightedvalue365 = call double @"get_weightedvalue@FFIFSS"(double* %16, i64* %17, double* %18, i8** %19, i8** %20)
+  br label %end362
+
+end362:                                           ; preds = %true361, %true358
+  %squish_amt.0 = phi double [ %get_weightedvalue365, %true361 ], [ 1.000000e+00, %true358 ]
+  %70 = icmp ne i64 %return355, 0
+  br i1 %70, label %true367, label %end368
+
+true367:                                          ; preds = %end362
+  %return369 = call double @"ch@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @29, i64 0, i64 0))
+  store double %return369, double* %21
+  %_bound_ptnum370 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum370, i64* %22
+  store double 1.000000e+00, double* %23
+  store i8* getelementptr inbounds ([21 x i8], [21 x i8]* @30, i64 0, i64 0), i8** %24
+  store i8* getelementptr inbounds ([19 x i8], [19 x i8]* @31, i64 0, i64 0), i8** %25
+  %get_weightedvalue371 = call double @"get_weightedvalue@FFIFSS"(double* %21, i64* %22, double* %23, i8** %24, i8** %25)
+  br label %end368
+
+end368:                                           ; preds = %true367, %end362
+  %lengthscale_amt.1 = phi double [ %get_weightedvalue371, %true367 ], [ 1.000000e+00, %end362 ]
+  %return372 = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @32, i64 0, i64 0))
+  %return374 = call i64 @"and@III"(i64 %return372, i64 %return355)
+  %return376 = fcmp one double %lengthscale_amt.1, 0.000000e+00
+  %return377 = zext i1 %return376 to i64
+  %return378 = call i64 @"and@III"(i64 %return374, i64 %return377)
+  %71 = icmp ne i64 %return378, 0
+  br i1 %71, label %true379, label %end380
+
+true379:                                          ; preds = %end368
+  %return383 = call double @"abs@FF"(double %lengthscale_amt.1)
+  %return384 = call double @"sqrt@FF"(double %return383)
+  %output385 = call double @"div@FF"(double 1.000000e+00, double %return384)
+  %output386 = fmul double %squish_amt.0, %output385
+  br label %end380
+
+end380:                                           ; preds = %true379, %end368
+  %squish_amt.1 = phi double [ %output386, %true379 ], [ %squish_amt.0, %end368 ]
+  %return388 = fcmp one double %squish_amt.1, 1.000000e+00
+  br i1 %return388, label %true390, label %end391
+
+true390:                                          ; preds = %end380
+  %72 = icmp ne i64 %return7, 0
+  br i1 %72, label %true393, label %false394
+
+end391:                                           ; preds = %end400, %end423, %end473, %end380
+  %dsquish_dx.0 = phi double [ %output454, %end423 ], [ 0.000000e+00, %end400 ], [ 0.000000e+00, %end473 ], [ 0.000000e+00, %end380 ]
+  %squish.0 = phi double [ %return460, %end423 ], [ 1.000000e+00, %end400 ], [ %squish.2, %end473 ], [ 1.000000e+00, %end380 ]
+  %output483 = fmul double %taper.0, %squish.0
+  %output485 = fmul double %output483, %ramp.0
+  %return487 = fcmp one double %output485, 1.000000e+00
+  br i1 %return487, label %true489, label %end359
+
+true393:                                          ; preds = %true390
+  %return397 = call double @"getcomp@FVI"(<3 x double> %output34, i64 0)
+  %73 = icmp ne i64 %return8, 0
+  br i1 %73, label %true399, label %end400
+
+false394:                                         ; preds = %true390
+  %return463 = call double @"getcomp@FVI"(<3 x double> %output34, i64 0)
+  %output465 = fmul double %return463, %return3
+  %return466 = fcmp oge double %output465, 0.000000e+00
+  br i1 %return466, label %true468, label %end469
+
+true399:                                          ; preds = %true393
+  %return402 = call double @"abs@FF"(double %return397)
+  br label %end400
+
+end400:                                           ; preds = %true399, %true393
+  %val.0 = phi double [ %return402, %true399 ], [ %return397, %true393 ]
+  %return405 = fcmp ole double %val.0, %return3
+  %return406 = zext i1 %return405 to i64
+  %return408 = fcmp oge double %val.0, 0.000000e+00
+  %return409 = zext i1 %return408 to i64
+  %return410 = call i64 @"and@III"(i64 %return406, i64 %return409)
+  %74 = icmp ne i64 %return410, 0
+  br i1 %74, label %true411, label %end391
+
+true411:                                          ; preds = %end400
+  %return413 = call double @"ch@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @33, i64 0, i64 0))
+  %output415 = fmul double %return413, %return3
+  %return419 = fcmp olt double %val.0, %output415
+  br i1 %return419, label %true421, label %false422
+
+true421:                                          ; preds = %true411
+  %output425 = call double @"div@FF"(double 1.000000e+00, double %output415)
+  %output428 = fmul double %output425, %val.0
+  br label %end423
+
+false422:                                         ; preds = %true411
+  %return429 = call i64 @"neg@II"(i64 1)
+  %output432 = fsub double %return3, %output415
+  %cast433 = sitofp i64 %return429 to double
+  %output434 = call double @"div@FF"(double %cast433, double %output432)
+  %output438 = fsub double %val.0, %output415
+  %output439 = fmul double %output434, %output438
+  %output440 = fadd double 1.000000e+00, %output439
+  br label %end423
+
+end423:                                           ; preds = %false422, %true421
+  %dsquish_dx.1 = phi double [ %output425, %true421 ], [ %output434, %false422 ]
+  %u416.0 = phi double [ %output428, %true421 ], [ %output440, %false422 ]
+  %output444 = fmul double %u416.0, %u416.0
+  %output445 = fsub double 1.000000e+00, %output444
+  %output448 = fsub double %squish_amt.1, 1.000000e+00
+  %output449 = fmul double %output448, 4.000000e+00
+  %output451 = fmul double %output449, %u416.0
+  %output453 = fmul double %output451, %output445
+  %output454 = fmul double %dsquish_dx.1, %output453
+  %output459 = fmul double %output445, %output445
+  %return460 = call double @"lerp@FFFF"(double %squish_amt.1, double 1.000000e+00, double %output459)
+  br label %end391
+
+true468:                                          ; preds = %false394
+  br label %end469
+
+end469:                                           ; preds = %true468, %false394
+  %squish.1 = phi double [ %squish_amt.1, %true468 ], [ 1.000000e+00, %false394 ]
+  %75 = icmp ne i64 %return8, 0
+  br i1 %75, label %true472, label %end473
+
+true472:                                          ; preds = %end469
+  store double %return463, double* %26
+  store double %return3, double* %27
+  %opposite477 = call i64 @"opposite@IFF"(double* %26, double* %27)
+  %76 = icmp ne i64 %opposite477, 0
+  br i1 %76, label %true478, label %end473
+
+end473:                                           ; preds = %true472, %true478, %end469
+  %squish.2 = phi double [ %squish_amt.1, %true478 ], [ %squish.1, %true472 ], [ %squish.1, %end469 ]
+  br label %end391
+
+true478:                                          ; preds = %true472
+  br label %end473
+
+true489:                                          ; preds = %end391
+  %output493 = fmul double %dtaper_dx.0, %squish.0
+  %output495 = fmul double %output493, %ramp.0
+  %output498 = fmul double %taper.0, %dsquish_dx.0
+  %output500 = fmul double %output498, %ramp.0
+  %output501 = fadd double %output495, %output500
+  %output506 = fmul double %output483, %dramp_dx.0
+  %output507 = fadd double %output501, %output506
+  %return509 = call double @"getcomp@FVI"(<3 x double> %output34, i64 1)
+  %output511 = fmul double %return509, %output507
+  %return513 = call double @"getcomp@FVI"(<3 x double> %output34, i64 2)
+  %output515 = fmul double %return513, %output507
+  %return518 = call <9 x double> @"set@3FFFFFFFFF"(double 1.000000e+00, double %output511, double %output515, double 0.000000e+00, double %output485, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double %output485)
+  %return521 = call <9 x double> @"set@3FFFFFFFFF"(double 1.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double %output485, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double %output485)
+  %output524 = call <3 x double> @"mul@V3"(<3 x double> %original.0, <9 x double> %return521)
+  %xform525 = load <9 x double>, <9 x double>* %xform
+  %output527 = call <9 x double> @"mul@33"(<9 x double> %xform525, <9 x double> %return518)
+  store <9 x double> %output527, <9 x double>* %xform
+  br label %end359
+
+true529:                                          ; preds = %end359
+  %return532 = fcmp one double %lengthscale_amt.0, 1.000000e+00
+  br i1 %return532, label %true534, label %end530
+
+end530:                                           ; preds = %true529, %end544, %end359
+  %original.2 = phi <3 x double> [ %output603, %end544 ], [ %original.1, %true529 ], [ %original.1, %end359 ]
+  %return609 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @34, i64 0, i64 0))
+  %77 = icmp ne i64 %return609, 0
+  br i1 %77, label %true610, label %end611
+
+true534:                                          ; preds = %true529
+  %return538 = call double @"getcomp@FVI"(<3 x double> %output34, i64 0)
+  %output540 = call double @"div@FF"(double %return538, double %return3)
+  %78 = icmp ne i64 %return8, 0
+  br i1 %78, label %true542, label %false543
+
+true542:                                          ; preds = %true534
+  %return548 = call double @"abs@FF"(double %return538)
+  %return550 = fcmp ogt double %return548, %return3
+  %return551 = zext i1 %return550 to i64
+  %return552 = call i64 @"and@III"(i64 %return7, i64 %return551)
+  %79 = icmp ne i64 %return552, 0
+  br i1 %79, label %true553, label %end544
+
+false543:                                         ; preds = %true534
+  store double %return538, double* %28
+  store double %return3, double* %29
+  %opposite568 = call i64 @"opposite@IFF"(double* %28, double* %29)
+  %80 = icmp ne i64 %opposite568, 0
+  br i1 %80, label %true569, label %false570
+
+end544:                                           ; preds = %false570, %true581, %true569, %true542, %end562
+  %dlengthscale_dx.0 = phi double [ 1.000000e+00, %end562 ], [ %lengthscale_amt.0, %true542 ], [ 1.000000e+00, %true569 ], [ 1.000000e+00, %true581 ], [ %lengthscale_amt.0, %false570 ]
+  %lengthscale.0 = phi double [ %lengthscale.1, %end562 ], [ %output540, %true542 ], [ 0.000000e+00, %true569 ], [ 1.000000e+00, %true581 ], [ %output540, %false570 ]
+  %return584 = call double @"getcomp@FVI"(<3 x double> %original.1, i64 0)
+  %output587 = fmul double %return3, %lengthscale.0
+  %output588 = fsub double %return584, %output587
+  %return589 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %original.1, double %output588, i64 0)
+  %output591 = extractvalue { double, <3 x double> } %return589, 1
+  %return593 = call double @"getcomp@FVI"(<3 x double> %output591, i64 0)
+  %output598 = fmul double %output587, %lengthscale_amt.0
+  %output599 = fadd double %return593, %output598
+  %return601 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output591, double %output599, i64 0)
+  %output603 = extractvalue { double, <3 x double> } %return601, 1
+  %return605 = call <9 x double> @"set@3FFFFFFFFF"(double %dlengthscale_dx.0, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00)
+  %xform606 = load <9 x double>, <9 x double>* %xform
+  %output608 = call <9 x double> @"mul@33"(<9 x double> %xform606, <9 x double> %return605)
+  store <9 x double> %output608, <9 x double>* %xform
+  br label %end530
+
+true553:                                          ; preds = %true542
+  %output558 = fmul double %return538, %return3
+  %return559 = fcmp olt double %output558, 0.000000e+00
+  br i1 %return559, label %true561, label %end562
+
+true561:                                          ; preds = %true553
+  %return563 = call i64 @"neg@II"(i64 1)
+  %cast564 = sitofp i64 %return563 to double
+  br label %end562
+
+end562:                                           ; preds = %true561, %true553
+  %lengthscale.1 = phi double [ %cast564, %true561 ], [ 1.000000e+00, %true553 ]
+  br label %end544
+
+true569:                                          ; preds = %false543
+  br label %end544
+
+false570:                                         ; preds = %false543
+  %return575 = fcmp ole double %return538, %return3
+  %return576 = zext i1 %return575 to i64
+  %81 = icmp eq i64 %return576, 0
+  %82 = icmp ne i64 %return7, 0
+  %or.cond = and i1 %81, %82
+  br i1 %or.cond, label %true581, label %end544
+
+true581:                                          ; preds = %false570
+  br label %end544
+
+true610:                                          ; preds = %end530
+  %return612 = call i64 @"chi@IS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @35, i64 0, i64 0))
+  %return613 = call i64 @"eq@III"(i64 %return612, i64 0)
+  %83 = icmp ne i64 %return613, 0
+  br i1 %83, label %true614, label %false615
+
+end611:                                           ; preds = %end616, %end726, %end530
+  %original.3 = phi <3 x double> [ %output761, %end726 ], [ %original.2, %end616 ], [ %original.2, %end530 ]
+  %output769 = call <3 x double> @"mul@V3"(<3 x double> %original.3, <9 x double> %return4)
+  %output771 = call <3 x double> @"add@VV"(<3 x double> %output769, <3 x double> %return2)
+  %xform772 = load <9 x double>, <9 x double>* %xform
+  %output774 = call <9 x double> @"mul@33"(<9 x double> %xform772, <9 x double> %return4)
+  store <9 x double> %output774, <9 x double>* %xform
+  %return776 = call i64 @"not@II"(i64 %return9)
+  %84 = icmp ne i64 %return776, 0
+  br i1 %84, label %true777, label %false778
+
+true614:                                          ; preds = %true610
+  %return617 = call double @"ch@FS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @36, i64 0, i64 0))
+  %return618 = call double @"radians@FF"(double %return617)
+  store double %return618, double* %30
+  %_bound_ptnum619 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum619, i64* %31
+  store double 0.000000e+00, double* %32
+  store i8* getelementptr inbounds ([20 x i8], [20 x i8]* @37, i64 0, i64 0), i8** %33
+  store i8* getelementptr inbounds ([12 x i8], [12 x i8]* @38, i64 0, i64 0), i8** %34
+  %get_weightedvalue620 = call double @"get_weightedvalue@FFIFSS"(double* %30, i64* %31, double* %32, i8** %33, i8** %34)
+  br label %end616
+
+false615:                                         ; preds = %true610
+  %return621 = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @39, i64 0, i64 0))
+  %output623 = call <3 x double> @"mul@V3"(<3 x double> %return621, <9 x double> %return6)
+  %return624 = call <3 x double> @"normalize@VV"(<3 x double> %output623)
+  %return625 = call double @"getcomp@FVI"(<3 x double> %return624, i64 0)
+  %return626 = call double @"acos@FF"(double %return625)
+  store double %return626, double* %35
+  %_bound_ptnum628 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum628, i64* %36
+  store double 0.000000e+00, double* %37
+  store i8* getelementptr inbounds ([18 x i8], [18 x i8]* @40, i64 0, i64 0), i8** %38
+  store i8* getelementptr inbounds ([12 x i8], [12 x i8]* @38, i64 0, i64 0), i8** %39
+  %get_weightedvalue629 = call double @"get_weightedvalue@FFIFSS"(double* %35, i64* %36, double* %37, i8** %38, i8** %39)
+  br label %end616
+
+end616:                                           ; preds = %false615, %true614
+  %bend_amt.0 = phi double [ %get_weightedvalue620, %true614 ], [ %get_weightedvalue629, %false615 ]
+  %return631 = call double @"degrees@FF"(double %bend_amt.0)
+  %return632 = call double @"abs@FF"(double %return631)
+  %return634 = fcmp oge double %return632, 1.000000e-02
+  br i1 %return634, label %true636, label %end611
+
+true636:                                          ; preds = %end616
+  %return640 = call double @"getcomp@FVI"(<3 x double> %output34, i64 0)
+  %output642 = call double @"div@FF"(double %return640, double %return3)
+  %output643 = fmul double %bend_amt.0, %output642
+  %output649 = fmul double %lengthscale_amt.0, %return3
+  %output651 = call double @"div@FF"(double %output649, double %bend_amt.0)
+  %cast653 = call <3 x double> @"set@VF"(double %output651)
+  %output654 = call <3 x double> @"mul@VV"(<3 x double> %cast653, <3 x double> <double 0.000000e+00, double 1.000000e+00, double 0.000000e+00>)
+  %85 = icmp ne i64 %return8, 0
+  br i1 %85, label %true660, label %false661
+
+true660:                                          ; preds = %true636
+  %return666 = call double @"abs@FF"(double %return640)
+  %return668 = fcmp ogt double %return666, %return3
+  %return669 = zext i1 %return668 to i64
+  %return670 = call i64 @"and@III"(i64 %return7, i64 %return669)
+  %86 = icmp ne i64 %return670, 0
+  br i1 %86, label %true671, label %end662
+
+false661:                                         ; preds = %true636
+  store double %return640, double* %40
+  store double %return3, double* %41
+  %opposite693 = call i64 @"opposite@IFF"(double* %40, double* %41)
+  %87 = icmp ne i64 %opposite693, 0
+  br i1 %87, label %true694, label %end695
+
+end662:                                           ; preds = %end695, %true703, %true671, %true680, %true660
+  %bend.0 = phi double [ %output685, %true680 ], [ %bend_amt.0, %true671 ], [ %output643, %true660 ], [ %bend_amt.0, %true703 ], [ %bend.1, %end695 ]
+  %d.0 = phi double [ %cast684, %true680 ], [ 1.000000e+00, %true671 ], [ %output642, %true660 ], [ 1.000000e+00, %true703 ], [ %d.1, %end695 ]
+  %return707 = call double @"cos@FF"(double %bend.0)
+  %return709 = call double @"sin@FF"(double %bend.0)
+  %return713 = call double @"neg@FF"(double %return709)
+  %return715 = call <9 x double> @"set@3FFFFFFFFF"(double %return707, double %return709, double 0.000000e+00, double %return713, double %return707, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00)
+  %return717 = call double @"getcomp@FVI"(<3 x double> %output654, i64 1)
+  %return719 = call double @"getcomp@FVI"(<3 x double> %output34, i64 1)
+  %output720 = fsub double %return717, %return719
+  %output723 = call double @"div@FF"(double %output720, double %return717)
+  %88 = icmp ne i64 %return7, 0
+  br i1 %88, label %true725, label %end726
+
+true671:                                          ; preds = %true660
+  %return676 = call double @"neg@FF"(double %return640)
+  %return678 = fcmp ogt double %return676, %return3
+  br i1 %return678, label %true680, label %end662
+
+true680:                                          ; preds = %true671
+  %return683 = call i64 @"neg@II"(i64 1)
+  %cast684 = sitofp i64 %return683 to double
+  %output685 = fmul double %bend_amt.0, %cast684
+  br label %end662
+
+true694:                                          ; preds = %false661
+  br label %end695
+
+end695:                                           ; preds = %true694, %false661
+  %bend.1 = phi double [ 0.000000e+00, %true694 ], [ %output643, %false661 ]
+  %d.1 = phi double [ 0.000000e+00, %true694 ], [ %output642, %false661 ]
+  %return700 = fcmp ogt double %return640, %return3
+  %return701 = zext i1 %return700 to i64
+  %return702 = call i64 @"and@III"(i64 %return7, i64 %return701)
+  %89 = icmp ne i64 %return702, 0
+  br i1 %89, label %true703, label %end662
+
+true703:                                          ; preds = %end695
+  br label %end662
+
+true725:                                          ; preds = %end662
+  %return730 = fcmp ogt double %return640, %return3
+  %return731 = zext i1 %return730 to i64
+  %return734 = fcmp olt double %return640, 0.000000e+00
+  %return735 = zext i1 %return734 to i64
+  %return736 = call i64 @"or@III"(i64 %return731, i64 %return735)
+  %90 = icmp ne i64 %return736, 0
+  br i1 %90, label %true737, label %end726
+
+end726:                                           ; preds = %true725, %true737, %end662
+  %ratio.0 = phi double [ 1.000000e+00, %true737 ], [ %output723, %true725 ], [ %output723, %end662 ]
+  %return740 = call <9 x double> @"set@3FFFFFFFFF"(double %ratio.0, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00)
+  %return742 = call double @"getcomp@FVI"(<3 x double> %original.2, i64 0)
+  %output745 = fmul double %d.0, %return3
+  %output747 = fmul double %output745, %lengthscale_amt.0
+  %output748 = fsub double %return742, %output747
+  %return750 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %original.2, double %output748, i64 0)
+  %output752 = extractvalue { double, <3 x double> } %return750, 1
+  %output755 = call <3 x double> @"sub@VV"(<3 x double> %output752, <3 x double> %output654)
+  %output758 = call <3 x double> @"mul@V3"(<3 x double> %output755, <9 x double> %return715)
+  %output761 = call <3 x double> @"add@VV"(<3 x double> %output758, <3 x double> %output654)
+  %xform762 = load <9 x double>, <9 x double>* %xform
+  %output765 = call <9 x double> @"mul@33"(<9 x double> %return740, <9 x double> %return715)
+  %output766 = call <9 x double> @"mul@33"(<9 x double> %xform762, <9 x double> %output765)
+  store <9 x double> %output766, <9 x double>* %xform
+  br label %end611
+
+true737:                                          ; preds = %true725
+  br label %end726
+
+true777:                                          ; preds = %end611
+  %return780 = call i64 @"chi@IS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @41, i64 0, i64 0))
+  %91 = icmp ne i64 %return780, 0
+  br i1 %91, label %true781, label %false782
+
+false778:                                         ; preds = %end611
+  store <3 x double> %output771, <3 x double>* %pos
+  br label %true
+
+true781:                                          ; preds = %true777
+  %return784 = call i8* @"chs@SS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @42, i64 0, i64 0))
+  %return786 = call i64 @"haspointattrib@IIS"(i64 0, i8* %return784)
+  %92 = icmp ne i64 %return786, 0
+  br i1 %92, label %true787, label %end788
+
+false782:                                         ; preds = %true777
+  store <3 x double> %output771, <3 x double>* %pos
+  br label %true
+
+true787:                                          ; preds = %true781
+  %_bound_ptnum790 = load i64, i64* %_bound_ptnum
+  %return791 = call double @"point@FISI"(i64 0, i8* %return784, i64 %_bound_ptnum790)
+  br label %end788
+
+end788:                                           ; preds = %true787, %true781
+  %mask_val.0 = phi double [ %return791, %true787 ], [ 0.000000e+00, %true781 ]
+  %pos792 = load <3 x double>, <3 x double>* %pos
+  %return795 = call <3 x double> @"lerp@VVVF"(<3 x double> %pos792, <3 x double> %output771, double %mask_val.0)
+  store <3 x double> %return795, <3 x double>* %pos
+  %xform796 = load <9 x double>, <9 x double>* %xform
+  %output798 = call <9 x double> @"mul@3F"(<9 x double> %xform796, double %mask_val.0)
+  %output800 = fsub double 1.000000e+00, %mask_val.0
+  %cast801 = call <9 x double> @"set@3F"(double %output800)
+  %output802 = call <9 x double> @"add@33"(<9 x double> %output798, <9 x double> %cast801)
+  store <9 x double> %output802, <9 x double>* %xform
+  br label %true
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private double @"get_weightedvalue@FFIFSS"(double* %val, i64* %pt, double* %def_val, i8** %scalemodeparmname, i8** %scaleattribparmname) #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0))
+  %scalemodeparmname1 = load i8*, i8** %scalemodeparmname
+  %return2 = call i64 @"chi@IS"(i8* %scalemodeparmname1)
+  %return3 = call i64 @"eq@III"(i64 %return2, i64 0)
+  %return4 = call i64 @"or@III"(i64 %return, i64 %return3)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %val5 = load double, double* %val
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %scaleattribparmname6 = load i8*, i8** %scaleattribparmname
+  %return7 = call i8* @"chs@SS"(i8* %scaleattribparmname6)
+  %return9 = call i64 @"haspointattrib@IIS"(i64 0, i8* %return7)
+  %return10 = call i64 @"not@II"(i64 %return9)
+  %1 = icmp ne i64 %return10, 0
+  %def_val13 = load double, double* %def_val
+  br i1 %1, label %true11, label %end12
+
+true11:                                           ; preds = %end
+  br label %UnifiedReturnBlock
+
+end12:                                            ; preds = %end
+  %val15 = load double, double* %val
+  %pt17 = load i64, i64* %pt
+  %return18 = call double @"point@FISI"(i64 0, i8* %return7, i64 %pt17)
+  %return19 = call double @"lerp@FFFF"(double %def_val13, double %val15, double %return18)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end12, %true11, %true
+  %UnifiedRetVal = phi double [ %val5, %true ], [ %def_val13, %true11 ], [ %return19, %end12 ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"haspointattrib@IIS"(i64, i8*) #2
+
+; Function Attrs: nounwind
+declare double @"point@FISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare double @"lerp@FFFF"(double, double, double) #2
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"opposite@IFF"(double* %x, double* %caplen) #0 {
+__llvm_entry:
+  %x1 = load double, double* %x
+  %caplen2 = load double, double* %caplen
+  %output = fmul double %x1, %caplen2
+  %return = fcmp olt double %output, 0.000000e+00
+  %return3 = zext i1 %return to i64
+  ret i64 %return3
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"chv@VS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind
+declare <9 x double> @"detail@3IS"(i64, i8*) #2
+
+; Function Attrs: nounwind
+declare <9 x double> @"transpose@33"(<9 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"mul@V3"(<3 x double>, <9 x double>) #2
+
+; Function Attrs: nounwind
+declare <9 x double> @"mul@33"(<9 x double>, <9 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind
+declare double @"clamp@FFFF"(double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setpointattrib@IISIF"(i64, i8*, i64, double) #2
+
+; Function Attrs: nounwind
+declare double @"radians@FF"(double) #2
+
+; Function Attrs: nounwind
+declare double @"abs@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"sin@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"cos@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"set@3FFFFFFFFF"(double, double, double, double, double, double, double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chramp@FSF"(i8*, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chrampderiv@FSF"(i8*, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"sqrt@FF"(double) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 0)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"acos@FF"(double) #1
+
+; Function Attrs: nounwind
+declare double @"degrees@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"lerp@VVVF"(<3 x double>, <3 x double>, double) #2
+
+; Function Attrs: nounwind
+declare <9 x double> @"mul@3F"(<9 x double>, double) #2
+
+; Function Attrs: nounwind
+declare <9 x double> @"set@3F"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"add@33"(<9 x double>, <9 x double>) #1
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_Procedural_hardsurface_chineseEaves_fee1_chineseTile_fee1_banwa_fee1_bend1_deformationwrangle1_attribvop_explicitxform_snippet3@V3II"(<3 x double>* %P, <9 x double>* %xform, i64* %rigidprojection, i64* %preventinversion) #0 {
+__llvm_entry:
+  %preventinversion1 = load i64, i64* %preventinversion
+  %0 = icmp ne i64 %preventinversion1, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %xform2 = load <9 x double>, <9 x double>* %xform
+  %return = call double @"determinant@F3"(<9 x double> %xform2)
+  %return3 = fcmp olt double %return, 0.000000e+00
+  br i1 %return3, label %true5, label %end
+
+end:                                              ; preds = %true, %true5, %__llvm_entry
+  %rigidprojection9 = load i64, i64* %rigidprojection
+  %1 = icmp ne i64 %rigidprojection9, 0
+  br i1 %1, label %true10, label %end11
+
+true5:                                            ; preds = %true
+  %return8 = call i64 @"neg@II"(i64 1)
+  %cast = sitofp i64 %return8 to double
+  %output = call <9 x double> @"mul@3F"(<9 x double> %xform2, double %cast)
+  store <9 x double> %output, <9 x double>* %xform
+  br label %end
+
+true10:                                           ; preds = %end
+  %xform12 = load <9 x double>, <9 x double>* %xform
+  %return13 = call <9 x double> @"polardecomp@33"(<9 x double> %xform12)
+  store <9 x double> %return13, <9 x double>* %xform
+  br label %end11
+
+end11:                                            ; preds = %true10, %end
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"determinant@F3"(<9 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"polardecomp@33"(<9 x double>) #1
+
+; Function Attrs: nounwind
+define void @obj_Procedural_hardsurface_chineseEaves_fee1_chineseTile_fee1_banwa_fee1_bend1_deformationwrangle1_attribvop_explicitxform(<3 x double> %P, <9 x double> %__xform, i64 %parm_rigidprojection, i64 %parm_preventinversion, i64 %ptnum) #2 {
+__llvm_entry:
+  %outpos = alloca <3 x double>
+  %outxform = alloca <9 x double>
+  %outxform1 = alloca <9 x double>
+  %0 = alloca i64
+  %1 = alloca <3 x double>
+  %2 = alloca i64
+  %3 = alloca i64
+  store <3 x double> %P, <3 x double>* %outpos
+  store <9 x double> %__xform, <9 x double>* %outxform
+  store i64 %ptnum, i64* %0
+  call void @"_obj_Procedural_hardsurface_chineseEaves_fee1_chineseTile_fee1_banwa_fee1_bend1_deformationwrangle1_attribvop_explicitxform_evaluate_deformer@V3I"(<3 x double>* %outpos, <9 x double>* %outxform, i64* %0)
+  %outpos6 = load <3 x double>, <3 x double>* %outpos
+  %outxform7 = load <9 x double>, <9 x double>* %outxform
+  store <9 x double> %outxform7, <9 x double>* %outxform1
+  store i64 %parm_rigidprojection, i64* %2
+  store i64 %parm_preventinversion, i64* %3
+  call void @"_obj_Procedural_hardsurface_chineseEaves_fee1_chineseTile_fee1_banwa_fee1_bend1_deformationwrangle1_attribvop_explicitxform_snippet3@V3II"(<3 x double>* %1, <9 x double>* %outxform1, i64* %2, i64* %3)
+  %outxform113 = load <9 x double>, <9 x double>* %outxform1
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @9, i64 0, i64 0), <3 x double> %outpos6) #4
+  %gvalue15 = call <9 x double> @"_export@3S3"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @43, i64 0, i64 0), <9 x double> %outxform113) #4
+  %gvalue17 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @44, i64 0, i64 0), i64 %ptnum) #4
+  store <3 x double> %gvalue, <3 x double>* @P
+  store <9 x double> %gvalue15, <9 x double>* @__xform
+  store i64 %gvalue17, i64* @ptnum
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare <9 x double> @"_export@3S3"(i8*, <9 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_Procedural_hardsurface_chineseEaves_fee1_chineseTile_fee1_banwa_fee1_bend1_deformationwrangle1_attribvop_explicitxform(<3 x double> zeroinitializer, <9 x double> <double 1.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, i64 0, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { alwaysinline }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

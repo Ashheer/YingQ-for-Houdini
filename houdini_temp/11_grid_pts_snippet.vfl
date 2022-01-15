@@ -1,0 +1,27 @@
+int x = chi("x");
+int y = chi("y");
+float spacing = chf("spacing");
+float minheight = chf("min_height");
+float maxheight = chf("max_height");
+float minsize = chf("min_size");
+float maxsize = chf("max_size");
+
+for(int i=0; i<x; i++){
+    for(int n=0; n<y; n++){
+        vector pos = set(i, 0, n) * spacing;
+        
+        int bottom_pt = addpoint(0, pos);
+        setpointgroup(0, "bottom", bottom_pt, 1);
+        setpointattrib(0, "scale", bottom_pt, set(1,1,1));
+        
+        int pole_pt = addpoint(0, pos);
+        setpointgroup(0, "pole", pole_pt, 1);
+        float height = minheight + (maxheight - minheight) * i / float(x-1);
+        setpointattrib(0, "scale", pole_pt, set(1, height, 1));
+        
+        int top_pt = addpoint(0, pos + set(0, height, 0));
+        setpointgroup(0, "top", top_pt, 1);
+        float topsize = minsize + (maxsize - minsize) * n / float(y-1);
+        setpointattrib(0, "scale", top_pt, set(topsize,1,topsize));
+    }
+}

@@ -1,0 +1,101 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"x\00"
+@1 = private constant [2 x i8] c"y\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64 @"chi@IS"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0))
+  br label %cond
+
+cond:                                             ; preds = %end10, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output31, %end10 ]
+  %return4 = call i64 @"lt@III"(i64 %i.0, i64 %return)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  br label %cond5
+
+end:                                              ; preds = %cond
+  ret void
+
+cond5:                                            ; preds = %body6, %body
+  %n.0 = phi i64 [ 0, %body ], [ %output28, %body6 ]
+  %output = mul i64 %return1, 3
+  %return9 = call i64 @"lt@III"(i64 %n.0, i64 %output)
+  %1 = icmp ne i64 %return9, 0
+  br i1 %1, label %body6, label %end10
+
+body6:                                            ; preds = %cond5
+  %output13 = mul i64 %i.0, 3
+  %return15 = call i64 @"mod@III"(i64 %n.0, i64 2)
+  %cast = sitofp i64 %return15 to double
+  %output16 = fmul double %cast, 1.500000e+00
+  %cast17 = sitofp i64 %output13 to double
+  %output18 = fadd double %cast17, %output16
+  %return20 = call double @"radians@FF"(double 3.000000e+01)
+  %return21 = call double @"cos@FF"(double %return20)
+  %cast22 = sitofp i64 %n.0 to double
+  %output23 = fmul double %cast22, %return21
+  %return24 = call <3 x double> @"set@VFFF"(double %output18, double 0.000000e+00, double %output23)
+  %return25 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return24)
+  %output28 = add i64 %n.0, 1
+  br label %cond5
+
+end10:                                            ; preds = %cond5
+  %output31 = add i64 %i.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"mod@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare double @"radians@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"cos@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+declare i64 @"addpoint@IIV"(i64, <3 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #2 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

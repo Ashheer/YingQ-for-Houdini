@@ -1,0 +1,220 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [12 x i8] c"DESIRED_CDF\00"
+@1 = private constant [8 x i8] c"buckets\00"
+@__noise = external global <3 x double>
+@2 = private constant [8 x i8] c"__noise\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@V"(<3 x double>* %_bound___noise) #0 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca <2 x double>*
+  %2 = alloca i64
+  %return = call <2 x double> @"set@UFF"(double 0.000000e+00, double 0.000000e+00)
+  %return1 = call <2 x double> @"set@UFF"(double 2.000000e-02, double 7.300000e-07)
+  %return2 = call <2 x double> @"set@UFF"(double 4.000000e-02, double 5.370000e-06)
+  %return3 = call <2 x double> @"set@UFF"(double 6.000000e-02, double 2.671000e-05)
+  %return4 = call <2 x double> @"set@UFF"(double 8.000000e-02, double 9.010000e-05)
+  %return5 = call <2 x double> @"set@UFF"(double 1.000000e-01, double 2.402700e-04)
+  %return6 = call <2 x double> @"set@UFF"(double 1.200000e-01, double 5.624900e-04)
+  %return7 = call <2 x double> @"set@UFF"(double 1.400000e-01, double 1.177370e-03)
+  %return8 = call <2 x double> @"set@UFF"(double 1.600000e-01, double 2.312360e-03)
+  %return9 = call <2 x double> @"set@UFF"(double 1.800000e-01, double 4.272330e-03)
+  %return10 = call <2 x double> @"set@UFF"(double 2.000000e-01, double 7.387020e-03)
+  %return11 = call <2 x double> @"set@UFF"(double 2.200000e-01, double 1.215590e-02)
+  %return12 = call <2 x double> @"set@UFF"(double 2.400000e-01, double 1.921790e-02)
+  %return13 = call <2 x double> @"set@UFF"(double 2.600000e-01, double 2.922880e-02)
+  %return14 = call <2 x double> @"set@UFF"(double 2.800000e-01, double 4.275250e-02)
+  %return15 = call <2 x double> @"set@UFF"(double 3.000000e-01, double 6.037870e-02)
+  %return16 = call <2 x double> @"set@UFF"(double 3.200000e-01, double 8.251610e-02)
+  %return17 = call <2 x double> @"set@UFF"(double 3.400000e-01, double 1.097730e-01)
+  %return18 = call <2 x double> @"set@UFF"(double 3.600000e-01, double 1.427060e-01)
+  %return19 = call <2 x double> @"set@UFF"(double 3.800000e-01, double 1.814510e-01)
+  %return20 = call <2 x double> @"set@UFF"(double 4.000000e-01, double 2.258390e-01)
+  %return21 = call <2 x double> @"set@UFF"(double 4.200000e-01, double 2.756220e-01)
+  %return22 = call <2 x double> @"set@UFF"(double 4.400000e-01, double 3.301580e-01)
+  %return23 = call <2 x double> @"set@UFF"(double 4.600000e-01, double 3.886690e-01)
+  %return24 = call <2 x double> @"set@UFF"(double 4.800000e-01, double 4.498080e-01)
+  %return25 = call <2 x double> @"set@UFF"(double 5.000000e-01, double 5.120820e-01)
+  %return26 = call <2 x double> @"set@UFF"(double 5.200000e-01, double 5.743680e-01)
+  %return27 = call <2 x double> @"set@UFF"(double 5.400000e-01, double 6.347260e-01)
+  %return28 = call <2 x double> @"set@UFF"(double 5.600000e-01, double 6.917580e-01)
+  %return29 = call <2 x double> @"set@UFF"(double 5.800000e-01, double 7.444270e-01)
+  %return30 = call <2 x double> @"set@UFF"(double 6.000000e-01, double 7.920140e-01)
+  %return31 = call <2 x double> @"set@UFF"(double 6.200000e-01, double 8.340900e-01)
+  %return32 = call <2 x double> @"set@UFF"(double 6.400000e-01, double 8.704790e-01)
+  %return33 = call <2 x double> @"set@UFF"(double 6.600000e-01, double 9.012190e-01)
+  %return34 = call <2 x double> @"set@UFF"(double 6.800000e-01, double 9.264410e-01)
+  %return35 = call <2 x double> @"set@UFF"(double 7.000000e-01, double 9.467500e-01)
+  %return36 = call <2 x double> @"set@UFF"(double 7.200000e-01, double 9.626610e-01)
+  %return37 = call <2 x double> @"set@UFF"(double 7.400000e-01, double 9.747550e-01)
+  %return38 = call <2 x double> @"set@UFF"(double 7.600000e-01, double 9.835950e-01)
+  %return39 = call <2 x double> @"set@UFF"(double 7.800000e-01, double 9.897420e-01)
+  %return40 = call <2 x double> @"set@UFF"(double 8.000000e-01, double 9.939050e-01)
+  %return41 = call <2 x double> @"set@UFF"(double 8.200000e-01, double 9.966060e-01)
+  %return42 = call <2 x double> @"set@UFF"(double 8.400000e-01, double 9.982140e-01)
+  %return43 = call <2 x double> @"set@UFF"(double 8.600000e-01, double 9.991340e-01)
+  %return44 = call <2 x double> @"set@UFF"(double 8.800000e-01, double 9.996280e-01)
+  %return45 = call <2 x double> @"set@UFF"(double 9.000000e-01, double 9.998540e-01)
+  %return46 = call <2 x double> @"set@UFF"(double 9.200000e-01, double 9.999450e-01)
+  %return47 = call <2 x double> @"set@UFF"(double 9.400000e-01, double 9.999820e-01)
+  %return48 = call <2 x double> @"set@UFF"(double 9.600000e-01, double 9.999980e-01)
+  %return49 = call <2 x double> @"set@UFF"(double 9.800000e-01, double 1.000000e+00)
+  %return50 = call <2 x double> @"set@UFF"(double 1.000000e+00, double 1.000000e+00)
+  %return51 = call <2 x double>* @"array@[U:UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"(<2 x double> %return, <2 x double> %return1, <2 x double> %return2, <2 x double> %return3, <2 x double> %return4, <2 x double> %return5, <2 x double> %return6, <2 x double> %return7, <2 x double> %return8, <2 x double> %return9, <2 x double> %return10, <2 x double> %return11, <2 x double> %return12, <2 x double> %return13, <2 x double> %return14, <2 x double> %return15, <2 x double> %return16, <2 x double> %return17, <2 x double> %return18, <2 x double> %return19, <2 x double> %return20, <2 x double> %return21, <2 x double> %return22, <2 x double> %return23, <2 x double> %return24, <2 x double> %return25, <2 x double> %return26, <2 x double> %return27, <2 x double> %return28, <2 x double> %return29, <2 x double> %return30, <2 x double> %return31, <2 x double> %return32, <2 x double> %return33, <2 x double> %return34, <2 x double> %return35, <2 x double> %return36, <2 x double> %return37, <2 x double> %return38, <2 x double> %return39, <2 x double> %return40, <2 x double> %return41, <2 x double> %return42, <2 x double> %return43, <2 x double> %return44, <2 x double> %return45, <2 x double> %return46, <2 x double> %return47, <2 x double> %return48, <2 x double> %return49, <2 x double> %return50)
+  %_bound___noise52 = load <3 x double>, <3 x double>* %_bound___noise
+  %return53 = call double @"getcomp@FVI"(<3 x double> %_bound___noise52, i64 0)
+  %output = fmul double %return53, 5.000000e+01
+  %return54 = call i64 @"floor@IF"(double %output)
+  %return55 = call i64 @"clamp@IIII"(i64 %return54, i64 0, i64 49)
+  %_bound___noise56 = load <3 x double>, <3 x double>* %_bound___noise
+  %return57 = call double @"getcomp@FVI"(<3 x double> %_bound___noise56, i64 0)
+  %return60 = call <2 x double> @"getcomp@U[UI"(<2 x double>* %return51, i64 %return55)
+  %return61 = call double @"getcomp@FUI"(<2 x double> %return60, i64 0)
+  %output64 = add i64 %return55, 1
+  %return65 = call <2 x double> @"getcomp@U[UI"(<2 x double>* %return51, i64 %output64)
+  %return66 = call double @"getcomp@FUI"(<2 x double> %return65, i64 0)
+  %return70 = call double @"getcomp@FUI"(<2 x double> %return60, i64 1)
+  %return75 = call double @"getcomp@FUI"(<2 x double> %return65, i64 1)
+  %return76 = call double @"fit@FFFFFF"(double %return57, double %return61, double %return66, double %return70, double %return75)
+  %return77 = call <2 x double>* @"detail@[UIS"(i64 0, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @0, i64 0, i64 0))
+  store double %return76, double* %0
+  store <2 x double>* %return77, <2 x double>** %1
+  %return80 = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0))
+  store i64 %return80, i64* %2
+  %binarySearch = call i64 @"binarySearch@IF[UI"(double* %0, <2 x double>** %1, i64* %2)
+  %return84 = call <2 x double> @"getcomp@U[UI"(<2 x double>* %return77, i64 %binarySearch)
+  %return85 = call double @"getcomp@FUI"(<2 x double> %return84, i64 1)
+  %output88 = add i64 %binarySearch, 1
+  %return89 = call <2 x double> @"getcomp@U[UI"(<2 x double>* %return77, i64 %output88)
+  %return90 = call double @"getcomp@FUI"(<2 x double> %return89, i64 1)
+  %return94 = call double @"getcomp@FUI"(<2 x double> %return84, i64 0)
+  %return99 = call double @"getcomp@FUI"(<2 x double> %return89, i64 0)
+  %return100 = call double @"fit@FFFFFF"(double %return76, double %return85, double %return90, double %return94, double %return99)
+  %tmp = load <3 x double>, <3 x double>* %_bound___noise
+  %return101 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %tmp, double %return100, i64 0)
+  %output103 = extractvalue { double, <3 x double> } %return101, 1
+  store <3 x double> %output103, <3 x double>* %_bound___noise
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"binarySearch@IF[UI"(double* %val, <2 x double>** %arr, i64* %buckets) #0 {
+__llvm_entry:
+  %buckets1 = load i64, i64* %buckets
+  br label %cond
+
+cond:                                             ; preds = %true, %false, %__llvm_entry
+  %u.0 = phi i64 [ %buckets1, %__llvm_entry ], [ %output7, %true ], [ %u.0, %false ]
+  %l.0 = phi i64 [ 0, %__llvm_entry ], [ %l.0, %true ], [ %output7, %false ]
+  %output = sub i64 %u.0, %l.0
+  %return = call i64 @"gt@III"(i64 %output, i64 1)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %output6 = add i64 %u.0, %l.0
+  %output7 = call i64 @"div@II"(i64 %output6, i64 2)
+  %val8 = load double, double* %val
+  %arr9 = load <2 x double>*, <2 x double>** %arr
+  %return11 = call <2 x double> @"getcomp@U[UI"(<2 x double>* %arr9, i64 %output7)
+  %return12 = call double @"getcomp@FUI"(<2 x double> %return11, i64 1)
+  %return13 = fcmp olt double %val8, %return12
+  br i1 %return13, label %true, label %false
+
+end:                                              ; preds = %cond
+  ret i64 %l.0
+
+true:                                             ; preds = %body
+  br label %cond
+
+false:                                            ; preds = %body
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"div@II"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"getcomp@U[UI"(<2 x double>*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FUI"(<2 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UFF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double>* @"array@[U:UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"(<2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>, <2 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"floor@IF"(double) #2
+
+; Function Attrs: nounwind
+declare i64 @"clamp@IIII"(i64, i64, i64) #2
+
+; Function Attrs: nounwind
+declare double @"fit@FFFFFF"(double, double, double, double, double) #2
+
+; Function Attrs: nounwind
+declare <2 x double>* @"detail@[UIS"(i64, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 0)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %__noise) #2 {
+__llvm_entry:
+  %"<__noise>" = alloca <3 x double>
+  store <3 x double> %__noise, <3 x double>* %"<__noise>"
+  call void @"__vex_snippet_snippet@V"(<3 x double>* %"<__noise>")
+  %evalue = load <3 x double>, <3 x double>* %"<__noise>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), <3 x double> %evalue) #4
+  store <3 x double> %gvalue, <3 x double>* @__noise
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { alwaysinline }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

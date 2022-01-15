@@ -1,0 +1,211 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [31 x i8] c"../primitivewrangle1/bindname1\00"
+@1 = private constant [12 x i8] c"../distance\00"
+@vtxnum = external global i64
+@target = external global i64
+@2 = private constant [7 x i8] c"vtxnum\00"
+@3 = private constant [7 x i8] c"target\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@II"(i64* %_bound_vtxnum, i64* %_bound_target) #0 {
+__llvm_entry:
+  %_bound_vtxnum1 = load i64, i64* %_bound_vtxnum
+  %return = call i64 @"vertexprim@III"(i64 0, i64 %_bound_vtxnum1)
+  %return2 = call i8* @"chs@SS"(i8* getelementptr inbounds ([31 x i8], [31 x i8]* @0, i64 0, i64 0))
+  %return4 = call i64* @"prim@[IISI"(i64 0, i8* %return2, i64 %return)
+  %return6 = call i64* @"primpoints@[III"(i64 0, i64 %return)
+  %return8 = call i64 @"primvertexcount@III"(i64 0, i64 %return)
+  %_bound_vtxnum9 = load i64, i64* %_bound_vtxnum
+  %return10 = call i64 @"vertexprimindex@III"(i64 0, i64 %_bound_vtxnum9)
+  %return12 = call i64 @"eq@III"(i64 %return10, i64 0)
+  %0 = icmp ne i64 %return12, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return14 = call i64 @"getcomp@I[II"(i64* %return4, i64 0)
+  %return15 = call double @"chf@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0))
+  %return16 = fcmp ogt double %return15, 0.000000e+00
+  %return17 = zext i1 %return16 to i64
+  %return18 = call i64 @"and@III"(i64 %return14, i64 %return17)
+  %1 = icmp ne i64 %return18, 0
+  br i1 %1, label %true19, label %false20
+
+false:                                            ; preds = %__llvm_entry
+  %return31 = call i64 @"eq@III"(i64 %return10, i64 1)
+  %2 = icmp ne i64 %return31, 0
+  br i1 %2, label %true32, label %false33
+
+end:                                              ; preds = %true94, %false95, %false89, %true70, %false71, %true43, %false44, %false38, %true19, %false20
+  ret void
+
+true19:                                           ; preds = %true
+  %output = sub i64 %return8, 1
+  %return25 = call i64 @"getcomp@I[II"(i64* %return4, i64 1)
+  %output26 = sub i64 %output, %return25
+  %return27 = call i64 @"primpoint@IIII"(i64 0, i64 %return, i64 %output26)
+  store i64 %return27, i64* %_bound_target
+  br label %end
+
+false20:                                          ; preds = %true
+  %return29 = call i64 @"primpoint@IIII"(i64 0, i64 %return, i64 0)
+  store i64 %return29, i64* %_bound_target
+  br label %end
+
+true32:                                           ; preds = %false
+  %return36 = call i64 @"getcomp@I[II"(i64* %return4, i64 0)
+  %3 = icmp ne i64 %return36, 0
+  br i1 %3, label %true37, label %false38
+
+false33:                                          ; preds = %false
+  %output59 = sub i64 %return8, 2
+  %return60 = call i64 @"eq@III"(i64 %return10, i64 %output59)
+  %return62 = call i64 @"getcomp@I[II"(i64* %return4, i64 1)
+  %return63 = call i64 @"and@III"(i64 %return60, i64 %return62)
+  %4 = icmp ne i64 %return63, 0
+  br i1 %4, label %true64, label %false65
+
+true37:                                           ; preds = %true32
+  %return40 = call double @"chf@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0))
+  %return41 = fcmp ogt double %return40, 0.000000e+00
+  br i1 %return41, label %true43, label %false44
+
+false38:                                          ; preds = %true32
+  %return56 = call i64 @"primpoint@IIII"(i64 0, i64 %return, i64 1)
+  store i64 %return56, i64* %_bound_target
+  br label %end
+
+true43:                                           ; preds = %true37
+  %return47 = call i64 @"primpoint@IIII"(i64 0, i64 %return, i64 0)
+  store i64 %return47, i64* %_bound_target
+  br label %end
+
+false44:                                          ; preds = %true37
+  %output50 = sub i64 %return8, 1
+  %return52 = call i64 @"getcomp@I[II"(i64* %return4, i64 1)
+  %output53 = sub i64 %output50, %return52
+  %return54 = call i64 @"primpoint@IIII"(i64 0, i64 %return, i64 %output53)
+  store i64 %return54, i64* %_bound_target
+  br label %end
+
+true64:                                           ; preds = %false33
+  %return67 = call double @"chf@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0))
+  %return68 = fcmp ogt double %return67, 0.000000e+00
+  br i1 %return68, label %true70, label %false71
+
+false65:                                          ; preds = %false33
+  %output83 = sub i64 %return8, 1
+  %return84 = call i64 @"eq@III"(i64 %return10, i64 %output83)
+  %return87 = call i64 @"and@III"(i64 %return84, i64 %return62)
+  %5 = icmp ne i64 %return87, 0
+  br i1 %5, label %true88, label %false89
+
+true70:                                           ; preds = %true64
+  %output75 = sub i64 %return8, 3
+  %return76 = call i64 @"primpoint@IIII"(i64 0, i64 %return, i64 %output75)
+  store i64 %return76, i64* %_bound_target
+  br label %end
+
+false71:                                          ; preds = %true64
+  %output79 = sub i64 %return8, 1
+  %return80 = call i64 @"primpoint@IIII"(i64 0, i64 %return, i64 %output79)
+  store i64 %return80, i64* %_bound_target
+  br label %end
+
+true88:                                           ; preds = %false65
+  %return91 = call double @"chf@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0))
+  %return92 = fcmp ogt double %return91, 0.000000e+00
+  br i1 %return92, label %true94, label %false95
+
+false89:                                          ; preds = %false65
+  %return108 = call i64 @"getcomp@I[II"(i64* %return4, i64 0)
+  %output109 = sub i64 %return10, %return108
+  %return110 = call i64 @"primpoint@IIII"(i64 0, i64 %return, i64 %output109)
+  store i64 %return110, i64* %_bound_target
+  br label %end
+
+true94:                                           ; preds = %true88
+  %return100 = call i64 @"primpoint@IIII"(i64 0, i64 %return, i64 %output83)
+  store i64 %return100, i64* %_bound_target
+  br label %end
+
+false95:                                          ; preds = %true88
+  %output103 = sub i64 %return8, 3
+  %return104 = call i64 @"primpoint@IIII"(i64 0, i64 %return, i64 %output103)
+  store i64 %return104, i64* %_bound_target
+  br label %end
+}
+
+; Function Attrs: nounwind
+declare i64 @"vertexprim@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #2
+
+; Function Attrs: nounwind
+declare i64* @"prim@[IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"primpoints@[III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"primvertexcount@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"vertexprimindex@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"primpoint@IIII"(i64, i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %vtxnum, i64 %target) #1 {
+__llvm_entry:
+  %"<target>" = alloca i64
+  %0 = alloca i64
+  store i64 %target, i64* %"<target>"
+  store i64 %vtxnum, i64* %0
+  call void @"__vex_snippet_snippet@II"(i64* %0, i64* %"<target>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0), i64 %vtxnum) #3
+  %evalue2 = load i64, i64* %"<target>"
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @3, i64 0, i64 0), i64 %evalue2) #3
+  store i64 %gvalue, i64* @vtxnum
+  store i64 %gvalue3, i64* @target
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

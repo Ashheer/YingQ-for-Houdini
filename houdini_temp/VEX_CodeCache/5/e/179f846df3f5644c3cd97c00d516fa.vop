@@ -1,0 +1,128 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@outgrp = external global i64
+@transform = external global <16 x double>
+@opinput1_N = external global <3 x double>
+@opinput2_N = external global <3 x double>
+@opinput1_up = external global <3 x double>
+@0 = private constant [7 x i8] c"outgrp\00"
+@1 = private constant [10 x i8] c"transform\00"
+@2 = private constant [11 x i8] c"opinput1_N\00"
+@3 = private constant [11 x i8] c"opinput2_N\00"
+@4 = private constant [12 x i8] c"opinput1_up\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I4VVV"(i64* %_bound_outgrp, <16 x double>* %_bound_transform, <3 x double>* %_bound_opinput1_N, <3 x double>* %_bound_opinput2_N, <3 x double>* %_bound_opinput1_up) #0 {
+__llvm_entry:
+  %_bound_outgrp1 = load i64, i64* %_bound_outgrp
+  %0 = icmp ne i64 %_bound_outgrp1, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %cast = call <3 x double> @"set@VI"(i64 0)
+  %_bound_opinput1_N3 = load <3 x double>, <3 x double>* %_bound_opinput1_N
+  %_bound_opinput2_N4 = load <3 x double>, <3 x double>* %_bound_opinput2_N
+  %return = call double @"dot@FVV"(<3 x double> %_bound_opinput1_N3, <3 x double> %_bound_opinput2_N4)
+  %output = call double @"div@FF"(double 1.000000e+00, double %return)
+  %return5 = call <3 x double> @"set@VFFF"(double 1.000000e+00, double %output, double 1.000000e+00)
+  %return9 = call <16 x double> @"maketransform@4IIVVVVVV"(i64 5, i64 0, <3 x double> %cast, <3 x double> %cast, <3 x double> %return5, <3 x double> %cast, <3 x double> %cast, <3 x double> %cast)
+  store <16 x double> %return9, <16 x double>* %_bound_transform
+  %_bound_opinput2_N11 = load <3 x double>, <3 x double>* %_bound_opinput2_N
+  %return12 = call <9 x double> @"maketransform@3VV"(<3 x double> %_bound_opinput2_N11, <3 x double> <double 0.000000e+00, double 1.000000e+00, double 0.000000e+00>)
+  %cast13 = call <16 x double> @"set@43"(<9 x double> %return12)
+  %output14 = call <16 x double> @"mul@44"(<16 x double> %return9, <16 x double> %cast13)
+  store <16 x double> %output14, <16 x double>* %_bound_transform
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %_bound_opinput2_N15 = load <3 x double>, <3 x double>* %_bound_opinput2_N
+  %_bound_opinput1_up16 = load <3 x double>, <3 x double>* %_bound_opinput1_up
+  %return17 = call <9 x double> @"maketransform@3VV"(<3 x double> %_bound_opinput2_N15, <3 x double> %_bound_opinput1_up16)
+  %cast18 = call <16 x double> @"set@43"(<9 x double> %return17)
+  store <16 x double> %cast18, <16 x double>* %_bound_transform
+  br label %end
+
+end:                                              ; preds = %false, %true
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FVV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <16 x double> @"maketransform@4IIVVVVVV"(i64, i64, <3 x double>, <3 x double>, <3 x double>, <3 x double>, <3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"maketransform@3VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare <16 x double> @"set@43"(<9 x double>) #2
+
+; Function Attrs: nounwind
+declare <16 x double> @"mul@44"(<16 x double>, <16 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %outgrp, <16 x double> %transform, <3 x double> %opinput1_N, <3 x double> %opinput2_N, <3 x double> %opinput1_up) #2 {
+__llvm_entry:
+  %"<transform>" = alloca <16 x double>
+  %0 = alloca i64
+  %1 = alloca <3 x double>
+  %2 = alloca <3 x double>
+  %3 = alloca <3 x double>
+  store <16 x double> %transform, <16 x double>* %"<transform>"
+  store i64 %outgrp, i64* %0
+  store <3 x double> %opinput1_N, <3 x double>* %1
+  store <3 x double> %opinput2_N, <3 x double>* %2
+  store <3 x double> %opinput1_up, <3 x double>* %3
+  call void @"__vex_snippet_snippet@I4VVV"(i64* %0, <16 x double>* %"<transform>", <3 x double>* %1, <3 x double>* %2, <3 x double>* %3)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), i64 %outgrp) #3
+  %evalue5 = load <16 x double>, <16 x double>* %"<transform>"
+  %gvalue6 = call <16 x double> @"_export@4S4"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0), <16 x double> %evalue5) #3
+  %gvalue8 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @2, i64 0, i64 0), <3 x double> %opinput1_N) #3
+  %gvalue10 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @3, i64 0, i64 0), <3 x double> %opinput2_N) #3
+  %gvalue12 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @4, i64 0, i64 0), <3 x double> %opinput1_up) #3
+  store i64 %gvalue, i64* @outgrp
+  store <16 x double> %gvalue6, <16 x double>* @transform
+  store <3 x double> %gvalue8, <3 x double>* @opinput1_N
+  store <3 x double> %gvalue10, <3 x double>* @opinput2_N
+  store <3 x double> %gvalue12, <3 x double>* @opinput1_up
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <16 x double> @"_export@4S4"(i8*, <16 x double>)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, <16 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

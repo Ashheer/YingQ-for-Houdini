@@ -1,0 +1,104 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [4 x i8] c"num\00"
+@1 = private constant [2 x i8] c"P\00"
+@2 = private constant [2 x i8] c"N\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @0, i64 0, i64 0))
+  %return1 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 0)
+  %return2 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 1)
+  %output = call <3 x double> @"sub@VV"(<3 x double> %return2, <3 x double> %return1)
+  %cast = call <3 x double> @"set@VI"(i64 %return)
+  %output6 = call <3 x double> @"div@VV"(<3 x double> %output, <3 x double> %cast)
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output24, %body ]
+  %output9 = add i64 %return, 1
+  %return10 = call i64 @"lt@III"(i64 %i.0, i64 %output9)
+  %0 = icmp ne i64 %return10, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %cast14 = call <3 x double> @"set@VI"(i64 %i.0)
+  %output15 = call <3 x double> @"mul@VV"(<3 x double> %output6, <3 x double> %cast14)
+  %output16 = call <3 x double> @"add@VV"(<3 x double> %return1, <3 x double> %output15)
+  %return17 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %output16)
+  %return20 = call <3 x double> @"normalize@VV"(<3 x double> %output6)
+  %return21 = call i64 @"setpointattrib@IISIV"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @2, i64 0, i64 0), i64 %return17, <3 x double> %return20)
+  %output24 = add i64 %i.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  %return25 = call i64 @"removepoint@III"(i64 0, i64 0)
+  %return26 = call i64 @"removepoint@III"(i64 0, i64 1)
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"addpoint@IIV"(i64, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #2
+
+; Function Attrs: nounwind
+declare i64 @"setpointattrib@IISIV"(i64, i8*, i64, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare i64 @"removepoint@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #2 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

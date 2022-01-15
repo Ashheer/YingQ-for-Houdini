@@ -1,0 +1,148 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"../useray\00"
+@1 = private constant [10 x i8] c"../inputv\00"
+@2 = private constant [15 x i8] c"../absoluteDot\00"
+@3 = private constant [13 x i8] c"../coneangle\00"
+@4 = private constant [16 x i8] c"../reversegroup\00"
+@opinput1_N = external global <3 x double>
+@opinput1___refdir_groupbyDir_fee = external global <3 x double>
+@N = external global <3 x double>
+@outgrp = external global i64
+@5 = private constant [11 x i8] c"opinput1_N\00"
+@6 = private constant [33 x i8] c"opinput1___refdir_groupbyDir_fee\00"
+@7 = private constant [2 x i8] c"N\00"
+@8 = private constant [7 x i8] c"outgrp\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VVVI"(<3 x double>* %_bound_opinput1_N, <3 x double>* %_bound_opinput1___refdir_groupbyDir_fee, <3 x double>* %_bound_N, i64* %_bound_outgrp) #0 {
+__llvm_entry:
+  %return = call i64 @"npoints@II"(i64 1)
+  %return1 = call i64 @"gt@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return1, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return2 = call i64 @"chi@IS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0))
+  %1 = icmp ne i64 %return2, 0
+  br i1 %1, label %true3, label %false4
+
+false:                                            ; preds = %__llvm_entry
+  %return8 = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0))
+  br label %end
+
+end:                                              ; preds = %true3, %false4, %false
+  %dir.0 = phi <3 x double> [ %_bound_opinput1_N6, %true3 ], [ %_bound_opinput1___refdir_groupbyDir_fee7, %false4 ], [ %return8, %false ]
+  %_bound_N9 = load <3 x double>, <3 x double>* %_bound_N
+  %return10 = call <3 x double> @"normalize@VV"(<3 x double> %_bound_N9)
+  %return12 = call <3 x double> @"normalize@VV"(<3 x double> %dir.0)
+  %return13 = call double @"dot@FVV"(<3 x double> %return10, <3 x double> %return12)
+  %return14 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @2, i64 0, i64 0))
+  %2 = icmp ne i64 %return14, 0
+  br i1 %2, label %true15, label %end17
+
+true3:                                            ; preds = %true
+  %_bound_opinput1_N6 = load <3 x double>, <3 x double>* %_bound_opinput1_N
+  br label %end
+
+false4:                                           ; preds = %true
+  %_bound_opinput1___refdir_groupbyDir_fee7 = load <3 x double>, <3 x double>* %_bound_opinput1___refdir_groupbyDir_fee
+  br label %end
+
+true15:                                           ; preds = %end
+  %return19 = call double @"abs@FF"(double %return13)
+  br label %end17
+
+end17:                                            ; preds = %end, %true15
+  %phi = phi double [ %return19, %true15 ], [ %return13, %end ]
+  %return21 = call double @"chf@FS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @3, i64 0, i64 0))
+  %return22 = call double @"radians@FF"(double %return21)
+  %return23 = call double @"cos@FF"(double %return22)
+  %return26 = fcmp oge double %phi, %return23
+  %return27 = zext i1 %return26 to i64
+  %return28 = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @4, i64 0, i64 0))
+  %return29 = xor i64 %return27, %return28
+  store i64 %return29, i64* %_bound_outgrp
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"chv@VS"(i8*) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"abs@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #2
+
+; Function Attrs: nounwind
+declare double @"radians@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"cos@FF"(double) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %opinput1_N, <3 x double> %opinput1___refdir_groupbyDir_fee, <3 x double> %N, i64 %outgrp) #1 {
+__llvm_entry:
+  %"<outgrp>" = alloca i64
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca <3 x double>
+  store i64 %outgrp, i64* %"<outgrp>"
+  store <3 x double> %opinput1_N, <3 x double>* %0
+  store <3 x double> %opinput1___refdir_groupbyDir_fee, <3 x double>* %1
+  store <3 x double> %N, <3 x double>* %2
+  call void @"__vex_snippet_snippet@VVVI"(<3 x double>* %0, <3 x double>* %1, <3 x double>* %2, i64* %"<outgrp>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @5, i64 0, i64 0), <3 x double> %opinput1_N) #3
+  %gvalue5 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([33 x i8], [33 x i8]* @6, i64 0, i64 0), <3 x double> %opinput1___refdir_groupbyDir_fee) #3
+  %gvalue7 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @7, i64 0, i64 0), <3 x double> %N) #3
+  %evalue8 = load i64, i64* %"<outgrp>"
+  %gvalue9 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @8, i64 0, i64 0), i64 %evalue8) #3
+  store <3 x double> %gvalue, <3 x double>* @opinput1_N
+  store <3 x double> %gvalue5, <3 x double>* @opinput1___refdir_groupbyDir_fee
+  store <3 x double> %gvalue7, <3 x double>* @N
+  store i64 %gvalue9, i64* @outgrp
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

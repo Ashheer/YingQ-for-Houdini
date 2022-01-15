@@ -1,0 +1,178 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [4 x i8] c"dir\00"
+@1 = private constant [9 x i8] c"bendmode\00"
+@2 = private constant [16 x i8] c"upvectorcontrol\00"
+@3 = private constant [10 x i8] c"up_vector\00"
+@4 = private constant [8 x i8] c"upangle\00"
+@5 = private constant [8 x i8] c"goaldir\00"
+@rot_matrix = external global <9 x double>
+@6 = private constant [11 x i8] c"rot_matrix\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@3"(<9 x double>* %_bound_rot_matrix) #0 {
+__llvm_entry:
+  %return = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @0, i64 0, i64 0))
+  %return1 = call <3 x double> @"normalize@VV"(<3 x double> %return)
+  %return2 = call i64 @"chi@IS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @1, i64 0, i64 0))
+  %return3 = call i64 @"eq@III"(i64 %return2, i64 0)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return4 = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @2, i64 0, i64 0))
+  %return6 = call i64 @"eq@III"(i64 %return4, i64 0)
+  %1 = icmp ne i64 %return6, 0
+  br i1 %1, label %true7, label %false8
+
+false:                                            ; preds = %__llvm_entry
+  %return28 = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @5, i64 0, i64 0))
+  br label %end
+
+end:                                              ; preds = %false, %end9
+  %v.0 = phi <3 x double> [ %output27, %end9 ], [ %return28, %false ]
+  %return30 = call <3 x double> @"normalize@VV"(<3 x double> %v.0)
+  %return33 = call <3 x double> @"cross@VVV"(<3 x double> %return1, <3 x double> %return30)
+  %return34 = call <3 x double> @"normalize@VV"(<3 x double> %return33)
+  %return36 = call double @"length2@FV"(<3 x double> %return34)
+  %return37 = fcmp oeq double %return36, 0.000000e+00
+  br i1 %return37, label %true39, label %false40
+
+true7:                                            ; preds = %true
+  br label %end9
+
+false8:                                           ; preds = %true
+  %return11 = call i64 @"eq@III"(i64 %return4, i64 1)
+  %2 = icmp ne i64 %return11, 0
+  br i1 %2, label %true12, label %false13
+
+end9:                                             ; preds = %true17, %false18, %true12, %true7
+  %v.1 = phi <3 x double> [ <double 1.000000e+00, double 0.000000e+00, double 0.000000e+00>, %true7 ], [ <double 0.000000e+00, double 1.000000e+00, double 0.000000e+00>, %true12 ], [ <double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, %true17 ], [ %return20, %false18 ]
+  %cast = call <9 x double> @"set@3I"(i64 1)
+  %return22 = call double @"ch@FS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @4, i64 0, i64 0))
+  %return23 = call double @"radians@FF"(double %return22)
+  %output = call <9 x double> @"rotate@3FV"(<9 x double> %cast, double %return23, <3 x double> %return1)
+  %output27 = call <3 x double> @"mul@V3"(<3 x double> %v.1, <9 x double> %output)
+  br label %end
+
+true12:                                           ; preds = %false8
+  br label %end9
+
+false13:                                          ; preds = %false8
+  %return16 = call i64 @"eq@III"(i64 %return4, i64 2)
+  %3 = icmp ne i64 %return16, 0
+  br i1 %3, label %true17, label %false18
+
+true17:                                           ; preds = %false13
+  br label %end9
+
+false18:                                          ; preds = %false13
+  %return20 = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @3, i64 0, i64 0))
+  br label %end9
+
+true39:                                           ; preds = %end
+  %return42 = call <3 x double> @"set@VFFF"(double 1.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  %return44 = call <9 x double> @"dihedral@3VV"(<3 x double> %return42, <3 x double> %return1)
+  store <9 x double> %return44, <9 x double>* %_bound_rot_matrix
+  br label %end41
+
+false40:                                          ; preds = %end
+  %return47 = call <3 x double> @"cross@VVV"(<3 x double> %return34, <3 x double> %return1)
+  %return49 = call double @"getcomp@FVI"(<3 x double> %return1, i64 0)
+  %return51 = call double @"getcomp@FVI"(<3 x double> %return1, i64 1)
+  %return53 = call double @"getcomp@FVI"(<3 x double> %return1, i64 2)
+  %return55 = call double @"getcomp@FVI"(<3 x double> %return47, i64 0)
+  %return57 = call double @"getcomp@FVI"(<3 x double> %return47, i64 1)
+  %return59 = call double @"getcomp@FVI"(<3 x double> %return47, i64 2)
+  %return61 = call double @"getcomp@FVI"(<3 x double> %return34, i64 0)
+  %return63 = call double @"getcomp@FVI"(<3 x double> %return34, i64 1)
+  %return65 = call double @"getcomp@FVI"(<3 x double> %return34, i64 2)
+  %return66 = call <9 x double> @"set@3FFFFFFFFF"(double %return49, double %return51, double %return53, double %return55, double %return57, double %return59, double %return61, double %return63, double %return65)
+  store <9 x double> %return66, <9 x double>* %_bound_rot_matrix
+  br label %end41
+
+end41:                                            ; preds = %false40, %true39
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"chv@VS"(i8*) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare <9 x double> @"set@3I"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind
+declare double @"radians@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"rotate@3FV"(<9 x double>, double, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"mul@V3"(<3 x double>, <9 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"cross@VVV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare double @"length2@FV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"dihedral@3VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"set@3FFFFFFFFF"(double, double, double, double, double, double, double, double, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<9 x double> %rot_matrix) #2 {
+__llvm_entry:
+  %"<rot_matrix>" = alloca <9 x double>
+  store <9 x double> %rot_matrix, <9 x double>* %"<rot_matrix>"
+  call void @"__vex_snippet_snippet@3"(<9 x double>* %"<rot_matrix>")
+  %evalue = load <9 x double>, <9 x double>* %"<rot_matrix>"
+  %gvalue = call <9 x double> @"_export@3S3"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @6, i64 0, i64 0), <9 x double> %evalue) #3
+  store <9 x double> %gvalue, <9 x double>* @rot_matrix
+  ret void
+}
+
+declare <9 x double> @"_export@3S3"(i8*, <9 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<9 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

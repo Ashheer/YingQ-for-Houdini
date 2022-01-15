@@ -1,0 +1,100 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [8 x i8] c"sideatt\00"
+@uvx = external global double
+@primnum = external global i64
+@numprim = external global i64
+@side = external global double
+@1 = private constant [4 x i8] c"uvx\00"
+@2 = private constant [8 x i8] c"primnum\00"
+@3 = private constant [8 x i8] c"numprim\00"
+@4 = private constant [5 x i8] c"side\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FIIF"(double* %_bound_uvx, i64* %_bound_primnum, i64* %_bound_numprim, double* %_bound_side) #0 {
+__llvm_entry:
+  %_bound_primnum1 = load i64, i64* %_bound_primnum
+  %_bound_numprim2 = load i64, i64* %_bound_numprim
+  %cast = sitofp i64 %_bound_numprim2 to double
+  %output = fsub double %cast, 1.000000e+00
+  %cast3 = sitofp i64 %_bound_primnum1 to double
+  %output4 = call double @"div@FF"(double %cast3, double %output)
+  store double %output4, double* %_bound_uvx
+  %_bound_primnum5 = load i64, i64* %_bound_primnum
+  %_bound_numprim6 = load i64, i64* %_bound_numprim
+  %cast7 = sitofp i64 %_bound_numprim6 to double
+  %output8 = fsub double %cast7, 1.000000e+00
+  %cast9 = sitofp i64 %_bound_primnum5 to double
+  %output10 = call double @"div@FF"(double %cast9, double %output8)
+  %output11 = fsub double %output10, 5.000000e-01
+  %return = call double @"abs@FF"(double %output11)
+  store double %return, double* %_bound_side
+  %return13 = call double @"fit@FFFFFF"(double %return, double 0.000000e+00, double 5.000000e-01, double 0.000000e+00, double 1.000000e+00)
+  %return14 = call double @"chramp@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0), double %return13)
+  store double %return14, double* %_bound_side
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind
+declare double @"abs@FF"(double) #2
+
+; Function Attrs: nounwind
+declare double @"fit@FFFFFF"(double, double, double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"chramp@FSF"(i8*, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %uvx, i64 %primnum, i64 %numprim, double %side) #2 {
+__llvm_entry:
+  %"<side>" = alloca double
+  %0 = alloca i64
+  %1 = alloca i64
+  %"<uvx>" = alloca double
+  store double %uvx, double* %"<uvx>"
+  store double %side, double* %"<side>"
+  store i64 %primnum, i64* %0
+  store i64 %numprim, i64* %1
+  call void @"__vex_snippet_snippet@FIIF"(double* %"<uvx>", i64* %0, i64* %1, double* %"<side>")
+  %evalue = load double, double* %"<uvx>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @1, i64 0, i64 0), double %evalue) #3
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i64 %primnum) #3
+  %gvalue6 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @3, i64 0, i64 0), i64 %numprim) #3
+  %evalue7 = load double, double* %"<side>"
+  %gvalue8 = call double @"_export@FSF"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @4, i64 0, i64 0), double %evalue7) #3
+  store double %gvalue, double* @uvx
+  store i64 %gvalue4, i64* @primnum
+  store i64 %gvalue6, i64* @numprim
+  store double %gvalue8, double* @side
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, i64 0, i64 0, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

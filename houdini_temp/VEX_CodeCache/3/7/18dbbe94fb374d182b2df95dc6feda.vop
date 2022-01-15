@@ -1,0 +1,585 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [37 x i8] c"fee ingroup func error invalid class\00"
+@1 = private constant [13 x i8] c"../groupname\00"
+@2 = private constant [16 x i8] c"../newgroupname\00"
+@3 = private constant [33 x i8] c"fee: not support too many groups\00"
+@4 = private constant [19 x i8] c"../usenewgroupname\00"
+@5 = private constant [28 x i8] c"not match len of group name\00"
+@6 = private constant [1 x i8] zeroinitializer
+@7 = private constant [17 x i8] c"../matchbyattrib\00"
+@8 = private constant [15 x i8] c"../targetclass\00"
+@9 = private constant [21 x i8] c"../attribtomatch_src\00"
+@10 = private constant [15 x i8] c"../sourceclass\00"
+@11 = private constant [16 x i8] c"../reversegroup\00"
+@12 = private constant [18 x i8] c"../groupmergetype\00"
+@ids = external global i8*
+@idi = external global i64
+@elemnum = external global i64
+@group0 = external global i64
+@group1 = external global i64
+@group2 = external global i64
+@group3 = external global i64
+@group4 = external global i64
+@13 = private constant [4 x i8] c"ids\00"
+@14 = private constant [4 x i8] c"idi\00"
+@15 = private constant [8 x i8] c"elemnum\00"
+@16 = private constant [7 x i8] c"group0\00"
+@17 = private constant [7 x i8] c"group1\00"
+@18 = private constant [7 x i8] c"group2\00"
+@19 = private constant [7 x i8] c"group3\00"
+@20 = private constant [7 x i8] c"group4\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@SIIIIIII"(i8** %_bound_ids, i64* %_bound_idi, i64* %_bound_elemnum, i64* %_bound_group0, i64* %_bound_group1, i64* %_bound_group2, i64* %_bound_group3, i64* %_bound_group4) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i8*
+  %3 = alloca i64
+  %4 = alloca i64
+  %5 = alloca i64
+  %6 = alloca i8*
+  %7 = alloca i64
+  %8 = alloca i64
+  %9 = alloca i64
+  %10 = alloca i8*
+  %11 = alloca i64
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @1, i64 0, i64 0))
+  %return1 = call i8** @"split@[SS"(i8* %return)
+  %return2 = call i8* @"chs@SS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @2, i64 0, i64 0))
+  %return3 = call i8** @"split@[SS"(i8* %return2)
+  %return5 = call i64 @"len@I[S"(i8** %return1)
+  %return6 = call i64 @"gt@III"(i64 %return5, i64 5)
+  %12 = icmp ne i64 %return6, 0
+  br i1 %12, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  call void @"error@S"(i8* getelementptr inbounds ([33 x i8], [33 x i8]* @3, i64 0, i64 0))
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %return7 = call i64 @"chi@IS"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @4, i64 0, i64 0))
+  %return11 = call i64 @"len@I[S"(i8** %return3)
+  %return12 = call i64 @"ne@III"(i64 %return5, i64 %return11)
+  %return13 = call i64 @"and@III"(i64 %return7, i64 %return12)
+  %13 = icmp ne i64 %return13, 0
+  br i1 %13, label %true14, label %end15
+
+true14:                                           ; preds = %end
+  call void @"error@S"(i8* getelementptr inbounds ([28 x i8], [28 x i8]* @5, i64 0, i64 0))
+  br label %end15
+
+end15:                                            ; preds = %true14, %end
+  %output = sub i64 %return5, 1
+  br label %cond
+
+cond:                                             ; preds = %end97, %end15
+  %i.0 = phi i64 [ %output, %end15 ], [ %output245, %end97 ]
+  %return19 = call i64 @"neg@II"(i64 1)
+  %return20 = call i64 @"gt@III"(i64 %i.0, i64 %return19)
+  %14 = icmp ne i64 %return20, 0
+  br i1 %14, label %body, label %end21
+
+body:                                             ; preds = %cond
+  %return28 = call i8* @"getcomp@S[SI"(i8** %return1, i64 %i.0)
+  %return30 = call i64 @"chi@IS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @7, i64 0, i64 0))
+  %15 = icmp ne i64 %return30, 0
+  br i1 %15, label %true31, label %false
+
+end21:                                            ; preds = %false236, %true241, %true235, %true229, %true223, %true217, %false205, %true209, %true204, %true199, %true194, %true189, %false165, %true169, %true164, %true159, %true154, %true149, %false130, %true135, %true129, %true123, %true117, %true111, %false85, %true90, %true84, %true78, %true72, %true66, %cond
+  ret void
+
+true31:                                           ; preds = %body
+  %return33 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @8, i64 0, i64 0))
+  %return34 = call i8* @"chs@SS"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @9, i64 0, i64 0))
+  %return35 = call i64 @"attribtype@IISS"(i64 0, i8* %return33, i8* %return34)
+  %16 = icmp ne i64 %return35, 0
+  %return39 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @10, i64 0, i64 0))
+  br i1 %16, label %true36, label %false37
+
+false:                                            ; preds = %body
+  %_bound_elemnum47 = load i64, i64* %_bound_elemnum
+  br label %end32
+
+end32:                                            ; preds = %true36, %false37, %false
+  %elemnum.0 = phi i64 [ %return42, %true36 ], [ %return46, %false37 ], [ %_bound_elemnum47, %false ]
+  store i64 1, i64* %0
+  %return48 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @10, i64 0, i64 0))
+  store i64 %return48, i64* %1
+  store i8* %return28, i8** %2
+  store i64 %elemnum.0, i64* %3
+  %ingroup53 = call i64 @"ingroup@IIISI"(i64* %0, i64* %1, i8** %2, i64* %3)
+  %return54 = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @11, i64 0, i64 0))
+  %return56 = call i64 @"not@II"(i64 %ingroup53)
+  %17 = icmp ne i64 %return54, 0
+  %return58 = select i1 %17, i64 %return56, i64 %ingroup53
+  %return59 = call i64 @"chi@IS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @12, i64 0, i64 0))
+  %return60 = call i64 @"eq@III"(i64 %return59, i64 0)
+  %18 = icmp ne i64 %return60, 0
+  br i1 %18, label %true61, label %false62
+
+true36:                                           ; preds = %true31
+  %_bound_ids41 = load i8*, i8** %_bound_ids
+  %return42 = call i64 @"findattribval@IISSSI"(i64 1, i8* %return39, i8* %return34, i8* %_bound_ids41, i64 0)
+  br label %end32
+
+false37:                                          ; preds = %true31
+  %_bound_idi45 = load i64, i64* %_bound_idi
+  %return46 = call i64 @"findattribval@IISSII"(i64 1, i8* %return39, i8* %return34, i64 %_bound_idi45, i64 0)
+  br label %end32
+
+true61:                                           ; preds = %end32
+  %return65 = call i64 @"eq@III"(i64 %i.0, i64 0)
+  %19 = icmp ne i64 %return65, 0
+  br i1 %19, label %true66, label %false67
+
+false62:                                          ; preds = %end32
+  %return94 = call i64 @"eq@III"(i64 %return59, i64 1)
+  %20 = icmp ne i64 %return94, 0
+  br i1 %20, label %true95, label %false96
+
+true66:                                           ; preds = %true61
+  store i64 %return58, i64* %_bound_group0
+  br label %end21
+
+false67:                                          ; preds = %true61
+  %return71 = call i64 @"eq@III"(i64 %i.0, i64 1)
+  %21 = icmp ne i64 %return71, 0
+  br i1 %21, label %true72, label %false73
+
+true72:                                           ; preds = %false67
+  store i64 %return58, i64* %_bound_group1
+  br label %end21
+
+false73:                                          ; preds = %false67
+  %return77 = call i64 @"eq@III"(i64 %i.0, i64 2)
+  %22 = icmp ne i64 %return77, 0
+  br i1 %22, label %true78, label %false79
+
+true78:                                           ; preds = %false73
+  store i64 %return58, i64* %_bound_group2
+  br label %end21
+
+false79:                                          ; preds = %false73
+  %return83 = call i64 @"eq@III"(i64 %i.0, i64 3)
+  %23 = icmp ne i64 %return83, 0
+  br i1 %23, label %true84, label %false85
+
+true84:                                           ; preds = %false79
+  store i64 %return58, i64* %_bound_group3
+  br label %end21
+
+false85:                                          ; preds = %false79
+  %return89 = call i64 @"eq@III"(i64 %i.0, i64 4)
+  %24 = icmp ne i64 %return89, 0
+  br i1 %24, label %true90, label %end21
+
+true90:                                           ; preds = %false85
+  store i64 %return58, i64* %_bound_group4
+  br label %end21
+
+true95:                                           ; preds = %false62
+  store i64 0, i64* %4
+  %return99 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @8, i64 0, i64 0))
+  store i64 %return99, i64* %5
+  store i8* %return28, i8** %6
+  %_bound_elemnum103 = load i64, i64* %_bound_elemnum
+  store i64 %_bound_elemnum103, i64* %7
+  %ingroup104 = call i64 @"ingroup@IIISI"(i64* %4, i64* %5, i8** %6, i64* %7)
+  %return105 = call i64 @"not@II"(i64 %ingroup104)
+  %return106 = call i64 @"and@III"(i64 %return58, i64 %return105)
+  %25 = icmp ne i64 %return106, 0
+  br i1 %25, label %true107, label %end97
+
+false96:                                          ; preds = %false62
+  %return139 = call i64 @"eq@III"(i64 %return59, i64 2)
+  %26 = icmp ne i64 %return139, 0
+  br i1 %26, label %true140, label %false141
+
+end97:                                            ; preds = %false174, %true173, %true140, %true95
+  %output245 = sub i64 %i.0, 1
+  br label %cond
+
+true107:                                          ; preds = %true95
+  %return110 = call i64 @"eq@III"(i64 %i.0, i64 0)
+  %27 = icmp ne i64 %return110, 0
+  br i1 %27, label %true111, label %false112
+
+true111:                                          ; preds = %true107
+  store i64 %return58, i64* %_bound_group0
+  br label %end21
+
+false112:                                         ; preds = %true107
+  %return116 = call i64 @"eq@III"(i64 %i.0, i64 1)
+  %28 = icmp ne i64 %return116, 0
+  br i1 %28, label %true117, label %false118
+
+true117:                                          ; preds = %false112
+  store i64 %return58, i64* %_bound_group1
+  br label %end21
+
+false118:                                         ; preds = %false112
+  %return122 = call i64 @"eq@III"(i64 %i.0, i64 2)
+  %29 = icmp ne i64 %return122, 0
+  br i1 %29, label %true123, label %false124
+
+true123:                                          ; preds = %false118
+  store i64 %return58, i64* %_bound_group2
+  br label %end21
+
+false124:                                         ; preds = %false118
+  %return128 = call i64 @"eq@III"(i64 %i.0, i64 3)
+  %30 = icmp ne i64 %return128, 0
+  br i1 %30, label %true129, label %false130
+
+true129:                                          ; preds = %false124
+  store i64 %return58, i64* %_bound_group3
+  br label %end21
+
+false130:                                         ; preds = %false124
+  %return134 = call i64 @"eq@III"(i64 %i.0, i64 4)
+  %31 = icmp ne i64 %return134, 0
+  br i1 %31, label %true135, label %end21
+
+true135:                                          ; preds = %false130
+  store i64 %return58, i64* %_bound_group4
+  br label %end21
+
+true140:                                          ; preds = %false96
+  %return144 = call i64 @"not@II"(i64 %return58)
+  %32 = icmp ne i64 %return144, 0
+  br i1 %32, label %true145, label %end97
+
+false141:                                         ; preds = %false96
+  %return172 = call i64 @"eq@III"(i64 %return59, i64 3)
+  %33 = icmp ne i64 %return172, 0
+  br i1 %33, label %true173, label %false174
+
+true145:                                          ; preds = %true140
+  %return148 = call i64 @"eq@III"(i64 %i.0, i64 0)
+  %34 = icmp ne i64 %return148, 0
+  br i1 %34, label %true149, label %false150
+
+true149:                                          ; preds = %true145
+  store i64 0, i64* %_bound_group0
+  br label %end21
+
+false150:                                         ; preds = %true145
+  %return153 = call i64 @"eq@III"(i64 %i.0, i64 1)
+  %35 = icmp ne i64 %return153, 0
+  br i1 %35, label %true154, label %false155
+
+true154:                                          ; preds = %false150
+  store i64 0, i64* %_bound_group1
+  br label %end21
+
+false155:                                         ; preds = %false150
+  %return158 = call i64 @"eq@III"(i64 %i.0, i64 2)
+  %36 = icmp ne i64 %return158, 0
+  br i1 %36, label %true159, label %false160
+
+true159:                                          ; preds = %false155
+  store i64 0, i64* %_bound_group2
+  br label %end21
+
+false160:                                         ; preds = %false155
+  %return163 = call i64 @"eq@III"(i64 %i.0, i64 3)
+  %37 = icmp ne i64 %return163, 0
+  br i1 %37, label %true164, label %false165
+
+true164:                                          ; preds = %false160
+  store i64 0, i64* %_bound_group3
+  br label %end21
+
+false165:                                         ; preds = %false160
+  %return168 = call i64 @"eq@III"(i64 %i.0, i64 4)
+  %38 = icmp ne i64 %return168, 0
+  br i1 %38, label %true169, label %end21
+
+true169:                                          ; preds = %false165
+  store i64 0, i64* %_bound_group4
+  br label %end21
+
+true173:                                          ; preds = %false141
+  store i64 0, i64* %8
+  %return177 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @8, i64 0, i64 0))
+  store i64 %return177, i64* %9
+  store i8* %return28, i8** %10
+  %_bound_elemnum181 = load i64, i64* %_bound_elemnum
+  store i64 %_bound_elemnum181, i64* %11
+  %ingroup182 = call i64 @"ingroup@IIISI"(i64* %8, i64* %9, i8** %10, i64* %11)
+  %return183 = call i64 @"not@II"(i64 %ingroup182)
+  %return184 = call i64 @"and@III"(i64 %return58, i64 %return183)
+  %39 = icmp ne i64 %return184, 0
+  br i1 %39, label %true185, label %end97
+
+false174:                                         ; preds = %false141
+  %return212 = call i64 @"eq@III"(i64 %return59, i64 4)
+  %40 = icmp ne i64 %return212, 0
+  br i1 %40, label %true213, label %end97
+
+true185:                                          ; preds = %true173
+  %return188 = call i64 @"eq@III"(i64 %i.0, i64 0)
+  %41 = icmp ne i64 %return188, 0
+  br i1 %41, label %true189, label %false190
+
+true189:                                          ; preds = %true185
+  store i64 0, i64* %_bound_group0
+  br label %end21
+
+false190:                                         ; preds = %true185
+  %return193 = call i64 @"eq@III"(i64 %i.0, i64 1)
+  %42 = icmp ne i64 %return193, 0
+  br i1 %42, label %true194, label %false195
+
+true194:                                          ; preds = %false190
+  store i64 0, i64* %_bound_group1
+  br label %end21
+
+false195:                                         ; preds = %false190
+  %return198 = call i64 @"eq@III"(i64 %i.0, i64 2)
+  %43 = icmp ne i64 %return198, 0
+  br i1 %43, label %true199, label %false200
+
+true199:                                          ; preds = %false195
+  store i64 0, i64* %_bound_group2
+  br label %end21
+
+false200:                                         ; preds = %false195
+  %return203 = call i64 @"eq@III"(i64 %i.0, i64 3)
+  %44 = icmp ne i64 %return203, 0
+  br i1 %44, label %true204, label %false205
+
+true204:                                          ; preds = %false200
+  store i64 0, i64* %_bound_group3
+  br label %end21
+
+false205:                                         ; preds = %false200
+  %return208 = call i64 @"eq@III"(i64 %i.0, i64 4)
+  %45 = icmp ne i64 %return208, 0
+  br i1 %45, label %true209, label %end21
+
+true209:                                          ; preds = %false205
+  store i64 0, i64* %_bound_group4
+  br label %end21
+
+true213:                                          ; preds = %false174
+  %return216 = call i64 @"eq@III"(i64 %i.0, i64 0)
+  %46 = icmp ne i64 %return216, 0
+  br i1 %46, label %true217, label %false218
+
+true217:                                          ; preds = %true213
+  store i64 %return58, i64* %_bound_group0
+  br label %end21
+
+false218:                                         ; preds = %true213
+  %return222 = call i64 @"eq@III"(i64 %i.0, i64 1)
+  %47 = icmp ne i64 %return222, 0
+  br i1 %47, label %true223, label %false224
+
+true223:                                          ; preds = %false218
+  store i64 %return58, i64* %_bound_group1
+  br label %end21
+
+false224:                                         ; preds = %false218
+  %return228 = call i64 @"eq@III"(i64 %i.0, i64 2)
+  %48 = icmp ne i64 %return228, 0
+  br i1 %48, label %true229, label %false230
+
+true229:                                          ; preds = %false224
+  store i64 %return58, i64* %_bound_group2
+  br label %end21
+
+false230:                                         ; preds = %false224
+  %return234 = call i64 @"eq@III"(i64 %i.0, i64 3)
+  %49 = icmp ne i64 %return234, 0
+  br i1 %49, label %true235, label %false236
+
+true235:                                          ; preds = %false230
+  store i64 %return58, i64* %_bound_group3
+  br label %end21
+
+false236:                                         ; preds = %false230
+  %return240 = call i64 @"eq@III"(i64 %i.0, i64 4)
+  %50 = icmp ne i64 %return240, 0
+  br i1 %50, label %true241, label %end21
+
+true241:                                          ; preds = %false236
+  store i64 %return58, i64* %_bound_group4
+  br label %end21
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"ingroup@IIISI"(i64* %geo, i64* %elemclass, i8** %groupname, i64* %elemnum) #0 {
+__llvm_entry:
+  %elemclass1 = load i64, i64* %elemclass
+  %return = call i64 @"eq@III"(i64 %elemclass1, i64 0)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %geo2 = load i64, i64* %geo
+  %groupname3 = load i8*, i8** %groupname
+  %elemnum4 = load i64, i64* %elemnum
+  %return5 = call i64 @"inprimgroup@IISI"(i64 %geo2, i8* %groupname3, i64 %elemnum4)
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  %return7 = call i64 @"eq@III"(i64 %elemclass1, i64 1)
+  %1 = icmp ne i64 %return7, 0
+  br i1 %1, label %true8, label %false9
+
+true8:                                            ; preds = %false
+  %geo11 = load i64, i64* %geo
+  %groupname12 = load i8*, i8** %groupname
+  %elemnum13 = load i64, i64* %elemnum
+  %return14 = call i64 @"inpointgroup@IISI"(i64 %geo11, i8* %groupname12, i64 %elemnum13)
+  br label %UnifiedReturnBlock
+
+false9:                                           ; preds = %false
+  %return16 = call i64 @"eq@III"(i64 %elemclass1, i64 2)
+  %2 = icmp ne i64 %return16, 0
+  br i1 %2, label %true17, label %false18
+
+true17:                                           ; preds = %false9
+  %geo20 = load i64, i64* %geo
+  %groupname21 = load i8*, i8** %groupname
+  %elemnum22 = load i64, i64* %elemnum
+  %return23 = call i64 @"invertexgroup@IISI"(i64 %geo20, i8* %groupname21, i64 %elemnum22)
+  br label %UnifiedReturnBlock
+
+false18:                                          ; preds = %false9
+  call void @"error@S"(i8* getelementptr inbounds ([37 x i8], [37 x i8]* @0, i64 0, i64 0))
+  %return24 = call i64 @"neg@II"(i64 1)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false18, %true17, %true8, %true
+  %UnifiedRetVal = phi i64 [ %return5, %true ], [ %return14, %true8 ], [ %return23, %true17 ], [ %return24, %false18 ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"inprimgroup@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"inpointgroup@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"invertexgroup@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare void @"error@S"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8** @"split@[SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[S"(i8**) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"getcomp@S[SI"(i8**, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"attribtype@IISS"(i64, i8*, i8*) #2
+
+; Function Attrs: nounwind
+declare i64 @"findattribval@IISSSI"(i64, i8*, i8*, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"findattribval@IISSII"(i64, i8*, i8*, i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8* %ids, i64 %idi, i64 %elemnum, i64 %group0, i64 %group1, i64 %group2, i64 %group3, i64 %group4) #2 {
+__llvm_entry:
+  %"<group0>" = alloca i64
+  %"<group1>" = alloca i64
+  %"<group2>" = alloca i64
+  %"<group3>" = alloca i64
+  %"<group4>" = alloca i64
+  %0 = alloca i8*
+  %1 = alloca i64
+  %2 = alloca i64
+  store i64 %group0, i64* %"<group0>"
+  store i64 %group1, i64* %"<group1>"
+  store i64 %group2, i64* %"<group2>"
+  store i64 %group3, i64* %"<group3>"
+  store i64 %group4, i64* %"<group4>"
+  store i8* %ids, i8** %0
+  store i64 %idi, i64* %1
+  store i64 %elemnum, i64* %2
+  call void @"__vex_snippet_snippet@SIIIIIII"(i8** %0, i64* %1, i64* %2, i64* %"<group0>", i64* %"<group1>", i64* %"<group2>", i64* %"<group3>", i64* %"<group4>")
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @13, i64 0, i64 0), i8* %ids) #3
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @14, i64 0, i64 0), i64 %idi) #3
+  %gvalue7 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @15, i64 0, i64 0), i64 %elemnum) #3
+  %evalue8 = load i64, i64* %"<group0>"
+  %gvalue9 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @16, i64 0, i64 0), i64 %evalue8) #3
+  %evalue10 = load i64, i64* %"<group1>"
+  %gvalue11 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @17, i64 0, i64 0), i64 %evalue10) #3
+  %evalue12 = load i64, i64* %"<group2>"
+  %gvalue13 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @18, i64 0, i64 0), i64 %evalue12) #3
+  %evalue14 = load i64, i64* %"<group3>"
+  %gvalue15 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @19, i64 0, i64 0), i64 %evalue14) #3
+  %evalue16 = load i64, i64* %"<group4>"
+  %gvalue17 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @20, i64 0, i64 0), i64 %evalue16) #3
+  store i8* %gvalue, i8** @ids
+  store i64 %gvalue5, i64* @idi
+  store i64 %gvalue7, i64* @elemnum
+  store i64 %gvalue9, i64* @group0
+  store i64 %gvalue11, i64* @group1
+  store i64 %gvalue13, i64* @group2
+  store i64 %gvalue15, i64* @group3
+  store i64 %gvalue17, i64* @group4
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @6, i64 0, i64 0), i64 0, i64 0, i64 0, i64 0, i64 0, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

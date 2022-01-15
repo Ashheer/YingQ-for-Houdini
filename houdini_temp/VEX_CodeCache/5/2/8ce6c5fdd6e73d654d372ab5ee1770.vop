@@ -1,0 +1,329 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"P\00"
+@1 = private constant [17 x i8] c"../correctdirbyN\00"
+@2 = private constant [14 x i8] c"../attribname\00"
+@N = external global <3 x double>
+@ptnum = external global i64
+@P = external global <3 x double>
+@opinput1_N = external global <3 x double>
+@3 = private constant [2 x i8] c"N\00"
+@4 = private constant [6 x i8] c"ptnum\00"
+@5 = private constant [11 x i8] c"opinput1_N\00"
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #0
+
+; Function Attrs: nounwind
+declare { i64, i64* } @"removevalue@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[F"(double*) #0
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@F[FI"(double*, i64) #0
+
+; Function Attrs: nounwind
+declare { i64, double* } @"removevalue@I[FF"(double*, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[U"(<2 x double>*) #0
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"getcomp@U[UI"(<2 x double>*, i64) #0
+
+; Function Attrs: nounwind
+declare { i64, <2 x double>* } @"removevalue@I[UU"(<2 x double>*, <2 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[V"(<3 x double>*) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"getcomp@V[VI"(<3 x double>*, i64) #0
+
+; Function Attrs: nounwind
+declare { i64, <3 x double>* } @"removevalue@I[VV"(<3 x double>*, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[P"(<4 x double>*) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"getcomp@P[PI"(<4 x double>*, i64) #0
+
+; Function Attrs: nounwind
+declare { i64, <4 x double>* } @"removevalue@I[PP"(<4 x double>*, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[2"(<4 x double>*) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"getcomp@2[2I"(<4 x double>*, i64) #0
+
+; Function Attrs: nounwind
+declare { i64, <4 x double>* } @"removevalue@I[22"(<4 x double>*, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[3"(<9 x double>*) #0
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"getcomp@3[3I"(<9 x double>*, i64) #0
+
+; Function Attrs: nounwind
+declare { i64, <9 x double>* } @"removevalue@I[33"(<9 x double>*, <9 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[4"(<16 x double>*) #0
+
+; Function Attrs: nounwind readnone
+declare <16 x double> @"getcomp@4[4I"(<16 x double>*, i64) #0
+
+; Function Attrs: nounwind
+declare { i64, <16 x double>* } @"removevalue@I[44"(<16 x double>*, <16 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[S"(i8**) #0
+
+; Function Attrs: nounwind readnone
+declare i8* @"getcomp@S[SI"(i8**, i64) #0
+
+; Function Attrs: nounwind
+declare { i64, i8** } @"removevalue@I[SS"(i8**, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64* @"resize@[II"(i64*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare { i64, i64* } @"setcomp@I[III"(i64*, i64, i64) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #0
+
+; Function Attrs: nounwind
+declare i64* @"neighbours@[III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64* @"push@[I[I"(i64*, i64*) #0
+
+; Function Attrs: nounwind readnone
+declare double* @"resize@[FI"(double*, i64) #0
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare double @"distance2@FVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare { double, double* } @"setcomp@F[FFI"(double*, double, i64) #0
+
+; Function Attrs: nounwind readnone
+declare double* @"push@[FF"(double*, double) #0
+
+; Function Attrs: nounwind
+declare double @"length2@FU"(<2 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"length2@FV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"length2@FP"(<4 x double>) #1
+
+; Function Attrs: nounwind
+declare <2 x double> @"normalize@UU"(<2 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UF"(double) #0
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"mul@UU"(<2 x double>, <2 x double>) #0
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #0
+
+; Function Attrs: nounwind
+declare <4 x double> @"normalize@PP"(<4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PF"(double) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"mul@PP"(<4 x double>, <4 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <2 x double>* @"push@[UU"(<2 x double>*, <2 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double>* @"push@[VV"(<3 x double>*, <3 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double>* @"push@[PP"(<4 x double>*, <4 x double>) #0
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VIVV"(<3 x double>* %_bound_N, i64* %_bound_ptnum, <3 x double>* %_bound_P, <3 x double>* %_bound_opinput1_N) #2 {
+__llvm_entry:
+  %_bound_N1 = load <3 x double>, <3 x double>* %_bound_N
+  %return = call double @"length2@FV"(<3 x double> %_bound_N1)
+  %return3 = fcmp oeq double %return, 0.000000e+00
+  br i1 %return3, label %true, label %end
+
+true:                                             ; preds = %true48, %false, %__llvm_entry
+  ret void
+
+end:                                              ; preds = %__llvm_entry
+  %_bound_N5 = load <3 x double>, <3 x double>* %_bound_N
+  %return6 = call <3 x double> @"normalize@VV"(<3 x double> %_bound_N5)
+  %return7 = call i64 @"neg@II"(i64 2)
+  %cast = sitofp i64 %return7 to double
+  %_bound_ptnum8 = load i64, i64* %_bound_ptnum
+  %return9 = call i64* @"neighbours@[III"(i64 0, i64 %_bound_ptnum8)
+  %return11 = call i64 @"len@I[I"(i64* %return9)
+  br label %cond
+
+cond:                                             ; preds = %end35, %end
+  %dot.0 = phi double [ %cast, %end ], [ %dot.1, %end35 ]
+  %__impl_foreach_index_5d.0 = phi i64 [ 0, %end ], [ %output39, %end35 ]
+  %targetN.0 = phi <3 x double> [ zeroinitializer, %end ], [ %targetN.1, %end35 ]
+  %return14 = call i64 @"lt@III"(i64 %__impl_foreach_index_5d.0, i64 %return11)
+  %0 = icmp ne i64 %return14, 0
+  br i1 %0, label %body, label %end15
+
+body:                                             ; preds = %cond
+  %return18 = call i64 @"getcomp@I[II"(i64* %return9, i64 %__impl_foreach_index_5d.0)
+  %return20 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 %return18)
+  %_bound_P22 = load <3 x double>, <3 x double>* %_bound_P
+  %output = call <3 x double> @"sub@VV"(<3 x double> %return20, <3 x double> %_bound_P22)
+  %_bound_opinput1_N24 = load <3 x double>, <3 x double>* %_bound_opinput1_N
+  %return25 = call <3 x double> @"cross@VVV"(<3 x double> %output, <3 x double> %_bound_opinput1_N24)
+  %return26 = call <3 x double> @"normalize@VV"(<3 x double> %return25)
+  %return29 = call double @"dot@FVV"(<3 x double> %return26, <3 x double> %return6)
+  %return32 = fcmp ogt double %return29, %dot.0
+  br i1 %return32, label %true34, label %end35
+
+end15:                                            ; preds = %cond
+  %return40 = call i64 @"chi@IS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @1, i64 0, i64 0))
+  %return41 = call i8* @"chs@SS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @2, i64 0, i64 0))
+  %return42 = call i64 @"haspointattrib@IIS"(i64 0, i8* %return41)
+  %return43 = call i64 @"and@III"(i64 %return40, i64 %return42)
+  %return45 = fcmp olt double %dot.0, 0.000000e+00
+  %return46 = zext i1 %return45 to i64
+  %return47 = call i64 @"and@III"(i64 %return43, i64 %return46)
+  %1 = icmp ne i64 %return47, 0
+  br i1 %1, label %true48, label %false
+
+true34:                                           ; preds = %body
+  br label %end35
+
+end35:                                            ; preds = %true34, %body
+  %dot.1 = phi double [ %return29, %true34 ], [ %dot.0, %body ]
+  %targetN.1 = phi <3 x double> [ %return26, %true34 ], [ %targetN.0, %body ]
+  %output39 = add i64 %__impl_foreach_index_5d.0, 1
+  br label %cond
+
+true48:                                           ; preds = %end15
+  %return51 = call <3 x double> @"neg@VV"(<3 x double> %targetN.0)
+  %return53 = call double @"sqrt@FF"(double %return)
+  %cast54 = call <3 x double> @"set@VF"(double %return53)
+  %output55 = call <3 x double> @"mul@VV"(<3 x double> %return51, <3 x double> %cast54)
+  store <3 x double> %output55, <3 x double>* %_bound_N
+  br label %true
+
+false:                                            ; preds = %end15
+  %return58 = call double @"sqrt@FF"(double %return)
+  %cast59 = call <3 x double> @"set@VF"(double %return58)
+  %output60 = call <3 x double> @"mul@VV"(<3 x double> %targetN.0, <3 x double> %cast59)
+  store <3 x double> %output60, <3 x double>* %_bound_N
+  br label %true
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #0
+
+; Function Attrs: nounwind
+declare <3 x double> @"cross@VVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #0
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #0
+
+; Function Attrs: nounwind
+declare i64 @"haspointattrib@IIS"(i64, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"neg@VV"(<3 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare double @"sqrt@FF"(double) #0
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %N, i64 %ptnum, <3 x double> %P, <3 x double> %opinput1_N) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca <3 x double>
+  %2 = alloca <3 x double>
+  %"<N>" = alloca <3 x double>
+  store <3 x double> %N, <3 x double>* %"<N>"
+  store i64 %ptnum, i64* %0
+  store <3 x double> %P, <3 x double>* %1
+  store <3 x double> %opinput1_N, <3 x double>* %2
+  call void @"__vex_snippet_snippet@VIVV"(<3 x double>* %"<N>", i64* %0, <3 x double>* %1, <3 x double>* %2)
+  %evalue = load <3 x double>, <3 x double>* %"<N>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @3, i64 0, i64 0), <3 x double> %evalue) #3
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @4, i64 0, i64 0), i64 %ptnum) #3
+  %gvalue7 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %P) #3
+  %gvalue9 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @5, i64 0, i64 0), <3 x double> %opinput1_N) #3
+  store <3 x double> %gvalue, <3 x double>* @N
+  store i64 %gvalue5, i64* @ptnum
+  store <3 x double> %gvalue7, <3 x double>* @P
+  store <3 x double> %gvalue9, <3 x double>* @opinput1_N
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, i64 0, <3 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { nounwind readnone }
+attributes #1 = { nounwind }
+attributes #2 = { alwaysinline nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end
