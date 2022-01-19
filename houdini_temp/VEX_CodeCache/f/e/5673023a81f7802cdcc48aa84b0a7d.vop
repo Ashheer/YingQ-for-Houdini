@@ -1,0 +1,107 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"P\00"
+@OutputGridResolutionX = external global i64
+@OutputGridResolutionZ = external global i64
+@1 = private constant [22 x i8] c"OutputGridResolutionX\00"
+@2 = private constant [22 x i8] c"OutputGridResolutionZ\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@II"(i64* %_bound_OutputGridResolutionX, i64* %_bound_OutputGridResolutionZ) #0 {
+__llvm_entry:
+  %return = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 0)
+  %return1 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %return, double 0.000000e+00, i64 1)
+  %output = extractvalue { double, <3 x double> } %return1, 1
+  %return3 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 1)
+  %return5 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %return3, double 0.000000e+00, i64 1)
+  %output7 = extractvalue { double, <3 x double> } %return5, 1
+  %return10 = call double @"distance@FVV"(<3 x double> %output, <3 x double> %output7)
+  %return11 = call <3 x double> @"getpointbbox_size@VI"(i64 0)
+  %return13 = call double @"getcomp@FVI"(<3 x double> %return11, i64 0)
+  %output15 = fadd double %return13, %return10
+  %return17 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %return11, double %output15, i64 0)
+  %output19 = extractvalue { double, <3 x double> } %return17, 1
+  %return21 = call double @"getcomp@FVI"(<3 x double> %output19, i64 2)
+  %output23 = fadd double %return21, %return10
+  %return25 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output19, double %output23, i64 2)
+  %output27 = extractvalue { double, <3 x double> } %return25, 1
+  %return29 = call double @"getcomp@FVI"(<3 x double> %output27, i64 0)
+  %output31 = call double @"div@FF"(double %return29, double %return10)
+  %cast = fptosi double %output31 to i64
+  %return33 = call double @"getcomp@FVI"(<3 x double> %output27, i64 2)
+  %output35 = call double @"div@FF"(double %return33, double %return10)
+  %cast36 = fptosi double %output35 to i64
+  store i64 %cast, i64* %_bound_OutputGridResolutionX
+  store i64 %cast36, i64* %_bound_OutputGridResolutionZ
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #2 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #3
+
+; Function Attrs: nounwind
+declare double @"distance@FVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"getpointbbox_size@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #3
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #3
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %OutputGridResolutionX, i64 %OutputGridResolutionZ) #1 {
+__llvm_entry:
+  %"<OutputGridResolutionZ>" = alloca i64
+  %"<OutputGridResolutionX>" = alloca i64
+  store i64 %OutputGridResolutionX, i64* %"<OutputGridResolutionX>"
+  store i64 %OutputGridResolutionZ, i64* %"<OutputGridResolutionZ>"
+  call void @"__vex_snippet_snippet@II"(i64* %"<OutputGridResolutionX>", i64* %"<OutputGridResolutionZ>")
+  %evalue = load i64, i64* %"<OutputGridResolutionX>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([22 x i8], [22 x i8]* @1, i64 0, i64 0), i64 %evalue) #4
+  %evalue1 = load i64, i64* %"<OutputGridResolutionZ>"
+  %gvalue2 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([22 x i8], [22 x i8]* @2, i64 0, i64 0), i64 %evalue1) #4
+  store i64 %gvalue, i64* @OutputGridResolutionX
+  store i64 %gvalue2, i64* @OutputGridResolutionZ
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { alwaysinline }
+attributes #3 = { nounwind readnone }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

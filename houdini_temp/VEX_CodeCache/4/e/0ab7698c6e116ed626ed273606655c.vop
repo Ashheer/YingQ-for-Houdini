@@ -1,0 +1,68 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [23 x i8] c"PlayerControllerPrefab\00"
+@1 = private constant [1 x i8] zeroinitializer
+@scale = external global <3 x double>
+@unity_instance = external global i8*
+@2 = private constant [6 x i8] c"scale\00"
+@3 = private constant [15 x i8] c"unity_instance\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VS"(<3 x double>* %_bound_scale, i8** %_bound_unity_instance) #0 {
+__llvm_entry:
+  %return = call <3 x double> @"set@VFFF"(double 2.400000e+00, double 2.400000e+00, double 2.400000e+00)
+  store <3 x double> %return, <3 x double>* %_bound_scale
+  %return1 = call i8* @"chs@SS"(i8* getelementptr inbounds ([23 x i8], [23 x i8]* @0, i64 0, i64 0))
+  store i8* %return1, i8** %_bound_unity_instance
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %scale, i8* %unity_instance) #2 {
+__llvm_entry:
+  %"<unity_instance>" = alloca i8*
+  %"<scale>" = alloca <3 x double>
+  store <3 x double> %scale, <3 x double>* %"<scale>"
+  store i8* %unity_instance, i8** %"<unity_instance>"
+  call void @"__vex_snippet_snippet@VS"(<3 x double>* %"<scale>", i8** %"<unity_instance>")
+  %evalue = load <3 x double>, <3 x double>* %"<scale>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0), <3 x double> %evalue) #3
+  %evalue1 = load i8*, i8** %"<unity_instance>"
+  %gvalue2 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @3, i64 0, i64 0), i8* %evalue1) #3
+  store <3 x double> %gvalue, <3 x double>* @scale
+  store i8* %gvalue2, i8** @unity_instance
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

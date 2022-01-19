@@ -1,0 +1,145 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [9 x i8] c"Obstacle\00"
+@1 = private constant [6 x i8] c"Enemy\00"
+@2 = private constant [7 x i8] c"Pickup\00"
+@3 = private constant [5 x i8] c"Core\00"
+@4 = private constant [7 x i8] c"Pillar\00"
+@5 = private constant [6 x i8] c"Crate\00"
+@6 = private constant [1 x i8] zeroinitializer
+@Cd = external global <3 x double>
+@name = external global i8*
+@ptnum = external global i64
+@7 = private constant [3 x i8] c"Cd\00"
+@8 = private constant [5 x i8] c"name\00"
+@9 = private constant [6 x i8] c"ptnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VSI"(<3 x double>* %_bound_Cd, i8** %_bound_name, i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %_bound_Cd1 = load <3 x double>, <3 x double>* %_bound_Cd
+  %return = call <3 x double> @"set@VFFF"(double 1.000000e+00, double 1.000000e+00, double 1.000000e+00)
+  %return2 = call i64 @"eq@IVV"(<3 x double> %_bound_Cd1, <3 x double> %return)
+  %0 = icmp ne i64 %return2, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  store i8* getelementptr inbounds ([9 x i8], [9 x i8]* @0, i64 0, i64 0), i8** %_bound_name
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return4 = call <3 x double> @"set@VFFF"(double 1.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  %return5 = call i64 @"eq@IVV"(<3 x double> %_bound_Cd1, <3 x double> %return4)
+  %1 = icmp ne i64 %return5, 0
+  br i1 %1, label %true6, label %false7
+
+end:                                              ; preds = %true30, %false31, %true24, %true18, %true12, %true6, %true
+  ret void
+
+true6:                                            ; preds = %false
+  store i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i8** %_bound_name
+  br label %end
+
+false7:                                           ; preds = %false
+  %return10 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 1.000000e+00, double 0.000000e+00)
+  %return11 = call i64 @"eq@IVV"(<3 x double> %_bound_Cd1, <3 x double> %return10)
+  %2 = icmp ne i64 %return11, 0
+  br i1 %2, label %true12, label %false13
+
+true12:                                           ; preds = %false7
+  store i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0), i8** %_bound_name
+  br label %end
+
+false13:                                          ; preds = %false7
+  %return16 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 0.000000e+00, double 1.000000e+00)
+  %return17 = call i64 @"eq@IVV"(<3 x double> %_bound_Cd1, <3 x double> %return16)
+  %3 = icmp ne i64 %return17, 0
+  br i1 %3, label %true18, label %false19
+
+true18:                                           ; preds = %false13
+  store i8* getelementptr inbounds ([5 x i8], [5 x i8]* @3, i64 0, i64 0), i8** %_bound_name
+  br label %end
+
+false19:                                          ; preds = %false13
+  %return22 = call <3 x double> @"set@VFFF"(double 1.000000e+00, double 1.000000e+00, double 0.000000e+00)
+  %return23 = call i64 @"eq@IVV"(<3 x double> %_bound_Cd1, <3 x double> %return22)
+  %4 = icmp ne i64 %return23, 0
+  br i1 %4, label %true24, label %false25
+
+true24:                                           ; preds = %false19
+  store i8* getelementptr inbounds ([7 x i8], [7 x i8]* @4, i64 0, i64 0), i8** %_bound_name
+  br label %end
+
+false25:                                          ; preds = %false19
+  %return28 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 1.000000e+00, double 1.000000e+00)
+  %return29 = call i64 @"eq@IVV"(<3 x double> %_bound_Cd1, <3 x double> %return28)
+  %5 = icmp ne i64 %return29, 0
+  br i1 %5, label %true30, label %false31
+
+true30:                                           ; preds = %false25
+  store i8* getelementptr inbounds ([6 x i8], [6 x i8]* @5, i64 0, i64 0), i8** %_bound_name
+  br label %end
+
+false31:                                          ; preds = %false25
+  %_bound_ptnum33 = load i64, i64* %_bound_ptnum
+  %return34 = call i64 @"removepoint@III"(i64 0, i64 %_bound_ptnum33)
+  br label %end
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@IVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"removepoint@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %Cd, i8* %name, i64 %ptnum) #2 {
+__llvm_entry:
+  %"<name>" = alloca i8*
+  %0 = alloca <3 x double>
+  %1 = alloca i64
+  store i8* %name, i8** %"<name>"
+  store <3 x double> %Cd, <3 x double>* %0
+  store i64 %ptnum, i64* %1
+  call void @"__vex_snippet_snippet@VSI"(<3 x double>* %0, i8** %"<name>", i64* %1)
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @7, i64 0, i64 0), <3 x double> %Cd) #3
+  %evalue3 = load i8*, i8** %"<name>"
+  %gvalue4 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @8, i64 0, i64 0), i8* %evalue3) #3
+  %gvalue6 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @9, i64 0, i64 0), i64 %ptnum) #3
+  store <3 x double> %gvalue, <3 x double>* @Cd
+  store i8* %gvalue4, i8** @name
+  store i64 %gvalue6, i64* @ptnum
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @6, i64 0, i64 0), i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

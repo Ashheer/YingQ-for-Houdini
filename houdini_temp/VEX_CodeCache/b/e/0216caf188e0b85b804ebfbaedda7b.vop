@@ -1,0 +1,78 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [17 x i8] c"__points_to_weld\00"
+@1 = private constant [15 x i8] c"__weld_targets\00"
+@2 = private constant [10 x i8] c"__snap_to\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call i64* @"expandpointgroup@[IIS"(i64 0, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64* @"expandpointgroup@[IIS"(i64 0, i8* getelementptr inbounds ([15 x i8], [15 x i8]* @1, i64 0, i64 0))
+  %return3 = call i64 @"len@I[I"(i64* %return)
+  %return4 = call i64 @"ne@III"(i64 %return3, i64 1)
+  %return6 = call i64 @"len@I[I"(i64* %return1)
+  %return7 = call i64 @"ne@III"(i64 %return6, i64 1)
+  %return8 = call i64 @"or@III"(i64 %return4, i64 %return7)
+  %0 = icmp ne i64 %return8, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %return10 = call i64 @"getcomp@I[II"(i64* %return, i64 0)
+  %return12 = call i64 @"getcomp@I[II"(i64* %return1, i64 0)
+  %return13 = call i64 @"setpointattrib@IISII"(i64 0, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0), i64 %return10, i64 %return12)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end, %true
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64* @"expandpointgroup@[IIS"(i64, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"setpointattrib@IISII"(i64, i8*, i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #1 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end

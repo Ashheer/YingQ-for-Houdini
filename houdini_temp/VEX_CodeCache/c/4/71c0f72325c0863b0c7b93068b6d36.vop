@@ -1,0 +1,103 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x i64] zeroinitializer
+@1 = private constant [2 x i8] c"P\00"
+@2 = private constant [9 x i8] c"polyline\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  br label %cond
+
+cond:                                             ; preds = %end12, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output24, %end12 ]
+  %pts.0 = phi i64* [ getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), %__llvm_entry ], [ %pts.1, %end12 ]
+  %return = call i64 @"npoints@II"(i64 1)
+  %return2 = call i64 @"lt@III"(i64 %i.0, i64 %return)
+  %0 = icmp ne i64 %return2, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return4 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %i.0)
+  %return6 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return4)
+  %output = call i64* @"push@[II"(i64* %pts.0, i64 %return6)
+  %return10 = call i64 @"len@I[I"(i64* %output)
+  %return11 = call i64 @"eq@III"(i64 %return10, i64 3)
+  %1 = icmp ne i64 %return11, 0
+  br i1 %1, label %true, label %end12
+
+end:                                              ; preds = %cond
+  ret void
+
+true:                                             ; preds = %body
+  %return14 = call i64 @"getcomp@I[II"(i64* %output, i64 0)
+  %return16 = call i64 @"getcomp@I[II"(i64* %output, i64 1)
+  %return18 = call i64 @"getcomp@I[II"(i64* %output, i64 2)
+  %return19 = call i64 @"addprim@IISIII"(i64 0, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @2, i64 0, i64 0), i64 %return14, i64 %return16, i64 %return18)
+  %output21 = call i64* @"resize@[II"(i64* %output, i64 0)
+  br label %end12
+
+end12:                                            ; preds = %true, %body
+  %pts.1 = phi i64* [ %output21, %true ], [ %output, %body ]
+  %output24 = add i64 %i.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"addpoint@IIV"(i64, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64* @"push@[II"(i64*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IISIII"(i64, i8*, i64, i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64* @"resize@[II"(i64*, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #1 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.451"}
+!2 = !{!"64"}
+
+;_code_end
