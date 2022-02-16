@@ -1,0 +1,226 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x i64] zeroinitializer
+@1 = private constant [5 x i8] c"bend\00"
+@2 = private constant [1 x i8] zeroinitializer
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@SI"(i8** %_bound_type, i64* %_bound_primnum) #0 {
+__llvm_entry:
+  %0 = alloca i64*
+  %1 = alloca i64*
+  %2 = alloca i64*
+  %3 = alloca i64*
+  %4 = alloca i64*
+  %5 = alloca i64*
+  %_bound_type1 = load i8*, i8** %_bound_type
+  %return = call i64 @"eq@ISS"(i8* %_bound_type1, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0))
+  %6 = icmp ne i64 %return, 0
+  br i1 %6, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_primnum2 = load i64, i64* %_bound_primnum
+  %return3 = call i64* @"primpoints@[III"(i64 0, i64 %_bound_primnum2)
+  %return5 = call i64 @"len@I[I"(i64* %return3)
+  %return6 = call i64 @"ne@III"(i64 %return5, i64 4)
+  %7 = icmp ne i64 %return6, 0
+  br i1 %7, label %true7, label %end8
+
+end:                                              ; preds = %end8, %__llvm_entry
+  br label %UnifiedReturnBlock
+
+true7:                                            ; preds = %true
+  %return9 = call i64 @"geoself@I"()
+  %_bound_primnum10 = load i64, i64* %_bound_primnum
+  %return11 = call i64 @"removeprim@IIII"(i64 %return9, i64 %_bound_primnum10, i64 0)
+  br label %UnifiedReturnBlock
+
+end8:                                             ; preds = %true
+  %return13 = call i64 @"getcomp@I[II"(i64* %return3, i64 0)
+  %return15 = call i64 @"getcomp@I[II"(i64* %return3, i64 1)
+  %return17 = call i64 @"getcomp@I[II"(i64* %return3, i64 2)
+  %return19 = call i64 @"getcomp@I[II"(i64* %return3, i64 3)
+  %return21 = call i64* @"pointprims@[III"(i64 1, i64 %return17)
+  store i64* %return21, i64** %0
+  %return23 = call i64* @"pointprims@[III"(i64 1, i64 %return19)
+  store i64* %return23, i64** %1
+  %commonelem = call i64* @"commonelem@[I[I[I"(i64** %0, i64** %1)
+  %return25 = call i64* @"pointprims@[III"(i64 1, i64 %return15)
+  store i64* %return25, i64** %2
+  store i64* %commonelem, i64** %3
+  %commonelem27 = call i64* @"commonelem@[I[I[I"(i64** %2, i64** %3)
+  %return29 = call i64* @"pointprims@[III"(i64 1, i64 %return13)
+  store i64* %return29, i64** %4
+  store i64* %commonelem, i64** %5
+  %commonelem31 = call i64* @"commonelem@[I[I[I"(i64** %4, i64** %5)
+  %return33 = call i64 @"len@I[I"(i64* %commonelem27)
+  %return34 = call i64 @"eq@III"(i64 %return33, i64 0)
+  %return36 = call i64 @"len@I[I"(i64* %commonelem31)
+  %return37 = call i64 @"eq@III"(i64 %return36, i64 0)
+  %return38 = call i64 @"or@III"(i64 %return34, i64 %return37)
+  %8 = icmp ne i64 %return38, 0
+  br i1 %8, label %true39, label %end
+
+true39:                                           ; preds = %end8
+  %return41 = call i64 @"geoself@I"()
+  %_bound_primnum42 = load i64, i64* %_bound_primnum
+  %return43 = call i64 @"removeprim@IIII"(i64 %return41, i64 %_bound_primnum42, i64 0)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %true39, %true7, %end
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i64* @"commonelem@[I[I[I"(i64** %a, i64** %b) #0 {
+__llvm_entry:
+  %b1 = load i64*, i64** %b
+  %return = call i64 @"len@I[I"(i64* %b1)
+  %return2 = call i64 @"lt@III"(i64 %return, i64 1)
+  %0 = icmp ne i64 %return2, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %a4 = load i64*, i64** %a
+  %return5 = call i64 @"len@I[I"(i64* %a4)
+  br label %cond
+
+cond:                                             ; preds = %end37, %end
+  %bidx.0 = phi i64 [ 0, %end ], [ %bidx.2, %end37 ]
+  %__impl_foreach_index_1f7.0 = phi i64 [ 0, %end ], [ %output52, %end37 ]
+  %result.0 = phi i64* [ getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), %end ], [ %result.1, %end37 ]
+  %return8 = call i64 @"lt@III"(i64 %__impl_foreach_index_1f7.0, i64 %return5)
+  %1 = icmp ne i64 %return8, 0
+  br i1 %1, label %body, label %end9
+
+body:                                             ; preds = %cond
+  %a10 = load i64*, i64** %a
+  %return12 = call i64 @"getcomp@I[II"(i64* %a10, i64 %__impl_foreach_index_1f7.0)
+  br label %cond13
+
+end9:                                             ; preds = %cond
+  br label %UnifiedReturnBlock
+
+cond13:                                           ; preds = %body14, %body
+  %bidx.1 = phi i64 [ %bidx.0, %body ], [ %output, %body14 ]
+  %b16 = load i64*, i64** %b
+  %return18 = call i64 @"getcomp@I[II"(i64* %b16, i64 %bidx.1)
+  %return19 = call i64 @"gt@III"(i64 %return12, i64 %return18)
+  %2 = icmp ne i64 %return19, 0
+  br i1 %2, label %body14, label %end20
+
+body14:                                           ; preds = %cond13
+  %output = add i64 %bidx.1, 1
+  %return26 = call i64 @"len@I[I"(i64* %b16)
+  %return27 = call i64 @"ge@III"(i64 %output, i64 %return26)
+  %3 = icmp ne i64 %return27, 0
+  br i1 %3, label %true28, label %cond13
+
+end20:                                            ; preds = %cond13
+  %return35 = call i64 @"eq@III"(i64 %return12, i64 %return18)
+  %4 = icmp ne i64 %return35, 0
+  br i1 %4, label %true36, label %end37
+
+true28:                                           ; preds = %body14
+  br label %UnifiedReturnBlock
+
+true36:                                           ; preds = %end20
+  %output40 = call i64* @"append@[II"(i64* %result.0, i64 %return12)
+  %output43 = add i64 %bidx.1, 1
+  %b45 = load i64*, i64** %b
+  %return46 = call i64 @"len@I[I"(i64* %b45)
+  %return47 = call i64 @"ge@III"(i64 %output43, i64 %return46)
+  %5 = icmp ne i64 %return47, 0
+  br i1 %5, label %true48, label %end37
+
+end37:                                            ; preds = %true36, %end20
+  %bidx.2 = phi i64 [ %output43, %true36 ], [ %bidx.1, %end20 ]
+  %result.1 = phi i64* [ %output40, %true36 ], [ %result.0, %end20 ]
+  %output52 = add i64 %__impl_foreach_index_1f7.0, 1
+  br label %cond
+
+true48:                                           ; preds = %true36
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %true48, %true28, %end9, %true
+  %UnifiedRetVal = phi i64* [ getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), %true ], [ %result.0, %end9 ], [ %result.0, %true28 ], [ %output40, %true48 ]
+  ret i64* %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"append@[II"(i64*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64* @"primpoints@[III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #2
+
+; Function Attrs: nounwind
+declare i64 @"removeprim@IIII"(i64, i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64* @"pointprims@[III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8* %type, i64 %primnum) #2 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca i64
+  store i8* %type, i8** %0
+  store i64 %primnum, i64* %1
+  call void @"__vex_snippet_snippet@SI"(i8** %0, i64* %1)
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @2, i64 0, i64 0), i64 -1)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

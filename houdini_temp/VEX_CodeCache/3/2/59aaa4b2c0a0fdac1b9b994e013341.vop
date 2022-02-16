@@ -1,0 +1,136 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [6 x i8] c"speed\00"
+@tangentu = external global <3 x double>
+@dir = external global <3 x double>
+@info = external global double
+@Frame = external global double
+@N = external global <3 x double>
+@spiral = external global <3 x double>
+@1 = private constant [9 x i8] c"tangentu\00"
+@2 = private constant [4 x i8] c"dir\00"
+@3 = private constant [5 x i8] c"info\00"
+@4 = private constant [6 x i8] c"Frame\00"
+@5 = private constant [2 x i8] c"N\00"
+@6 = private constant [7 x i8] c"spiral\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VVFFVV"(<3 x double>* %_bound_tangentu, <3 x double>* %_bound_dir, double* %_bound_info, double* %_bound_Frame, <3 x double>* %_bound_N, <3 x double>* %_bound_spiral) #0 {
+__llvm_entry:
+  %_bound_tangentu1 = load <3 x double>, <3 x double>* %_bound_tangentu
+  %return = call <3 x double> @"normalize@VV"(<3 x double> %_bound_tangentu1)
+  %_bound_dir2 = load <3 x double>, <3 x double>* %_bound_dir
+  %return3 = call <3 x double> @"normalize@VV"(<3 x double> %_bound_dir2)
+  %return6 = call <3 x double> @"cross@VVV"(<3 x double> %return, <3 x double> %return3)
+  %return7 = call <3 x double> @"normalize@VV"(<3 x double> %return6)
+  %return8 = call <16 x double> @"ident@4"()
+  %_bound_info10 = load double, double* %_bound_info
+  %output = fmul double %_bound_info10, 0x400921FB54442D18
+  %_bound_Frame11 = load double, double* %_bound_Frame
+  %return12 = call double @"pow@FFF"(double %_bound_Frame11, double 5.000000e-01)
+  %output13 = fmul double %output, %return12
+  %return14 = call double @"chf@FS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0))
+  %output15 = fmul double %output13, %return14
+  %output17 = call <16 x double> @"rotate@4FV"(<16 x double> %return8, double %output15, <3 x double> %return)
+  %output20 = call <3 x double> @"mul@V4"(<3 x double> %return7, <16 x double> %output17)
+  store <3 x double> %output20, <3 x double>* %_bound_dir
+  store <3 x double> %return, <3 x double>* %_bound_tangentu
+  %_bound_N23 = load <3 x double>, <3 x double>* %_bound_N
+  %return25 = call double @"dot@FVV"(<3 x double> %_bound_N23, <3 x double> %output20)
+  %return27 = call double @"fit11@FFFF"(double %return25, double 0.000000e+00, double 1.000000e+00)
+  %return29 = call double @"pow@FFF"(double %return27, double 1.000000e+01)
+  %return33 = call <3 x double> @"set@VFFF"(double %return29, double %return29, double %return29)
+  store <3 x double> %return33, <3 x double>* %_bound_spiral
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"cross@VVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare <16 x double> @"ident@4"() #1
+
+; Function Attrs: nounwind readnone
+declare double @"pow@FFF"(double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare <16 x double> @"rotate@4FV"(<16 x double>, double, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"mul@V4"(<3 x double>, <16 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"fit11@FFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %tangentu, <3 x double> %dir, double %info, double %Frame, <3 x double> %N, <3 x double> %spiral) #1 {
+__llvm_entry:
+  %"<dir>" = alloca <3 x double>
+  %"<spiral>" = alloca <3 x double>
+  %0 = alloca double
+  %1 = alloca double
+  %2 = alloca <3 x double>
+  %"<tangentu>" = alloca <3 x double>
+  store <3 x double> %tangentu, <3 x double>* %"<tangentu>"
+  store <3 x double> %dir, <3 x double>* %"<dir>"
+  store <3 x double> %spiral, <3 x double>* %"<spiral>"
+  store double %info, double* %0
+  store double %Frame, double* %1
+  store <3 x double> %N, <3 x double>* %2
+  call void @"__vex_snippet_snippet@VVFFVV"(<3 x double>* %"<tangentu>", <3 x double>* %"<dir>", double* %0, double* %1, <3 x double>* %2, <3 x double>* %"<spiral>")
+  %evalue = load <3 x double>, <3 x double>* %"<tangentu>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @1, i64 0, i64 0), <3 x double> %evalue) #3
+  %evalue4 = load <3 x double>, <3 x double>* %"<dir>"
+  %gvalue5 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @2, i64 0, i64 0), <3 x double> %evalue4) #3
+  %gvalue7 = call double @"_export@FSF"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @3, i64 0, i64 0), double %info) #3
+  %gvalue9 = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @4, i64 0, i64 0), double %Frame) #3
+  %gvalue11 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @5, i64 0, i64 0), <3 x double> %N) #3
+  %evalue12 = load <3 x double>, <3 x double>* %"<spiral>"
+  %gvalue13 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @6, i64 0, i64 0), <3 x double> %evalue12) #3
+  store <3 x double> %gvalue, <3 x double>* @tangentu
+  store <3 x double> %gvalue5, <3 x double>* @dir
+  store double %gvalue7, double* @info
+  store double %gvalue9, double* @Frame
+  store <3 x double> %gvalue11, <3 x double>* @N
+  store <3 x double> %gvalue13, <3 x double>* @spiral
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> zeroinitializer, double 0.000000e+00, double 0.000000e+00, <3 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

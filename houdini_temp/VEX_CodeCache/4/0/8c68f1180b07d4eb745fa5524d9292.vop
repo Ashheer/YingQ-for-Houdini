@@ -1,0 +1,68 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@ptnum = external global i64
+@info = external global double
+@0 = private constant [6 x i8] c"ptnum\00"
+@1 = private constant [5 x i8] c"info\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IF"(i64* %_bound_ptnum, double* %_bound_info) #0 {
+__llvm_entry:
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  %return = call i64 @"npoints@II"(i64 0)
+  %cast = sitofp i64 %return to double
+  %output = fsub double %cast, 1.000000e+00
+  %cast2 = sitofp i64 %_bound_ptnum1 to double
+  %output3 = call double @"div@FF"(double %cast2, double %output)
+  store double %output3, double* %_bound_info
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %ptnum, double %info) #1 {
+__llvm_entry:
+  %"<info>" = alloca double
+  %0 = alloca i64
+  store double %info, double* %"<info>"
+  store i64 %ptnum, i64* %0
+  call void @"__vex_snippet_snippet@IF"(i64* %0, double* %"<info>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i64 %ptnum) #3
+  %evalue2 = load double, double* %"<info>"
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), double %evalue2) #3
+  store i64 %gvalue, i64* @ptnum
+  store double %gvalue3, double* @info
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

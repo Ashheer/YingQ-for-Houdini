@@ -1,0 +1,77 @@
+;_name	/obj/Fluids/dopnet1/flipsolver1/blend_velocities
+; ModuleID = 'obj_Fluids_dopnet1_flipsolver1_blend_velocities'
+source_filename = "obj_Fluids_dopnet1_flipsolver1_blend_velocities"
+
+@v = external global <3 x double>
+@flipvel = external global <3 x double>
+@0 = private constant [2 x i8] c"v\00"
+@1 = private constant [8 x i8] c"flipvel\00"
+
+; Function Attrs: nounwind
+define void @obj_Fluids_dopnet1_flipsolver1_blend_velocities(<3 x double> %ballisticvel, double %ballistic, double %underresolved, <3 x double> %v, <3 x double> %flipvel, i64 %useballisticattrib, double %droplet) #0 {
+__llvm_entry:
+  %output = call <3 x double> @"sub@VV"(<3 x double> %ballisticvel, <3 x double> %v)
+  %return = call i64 @"ne@III"(i64 0, i64 0)
+  %0 = icmp ne i64 %return, 0
+  %return5 = call i64 @"ne@III"(i64 %useballisticattrib, i64 0)
+  %1 = icmp ne i64 %return5, 0
+  %phi = select i1 %1, double 0.000000e+00, double %ballistic
+  %phi16 = select i1 %1, double %ballistic, double 0.000000e+00
+  %phi17 = select i1 %0, double %phi, double %phi16
+  %return21 = call double @"max@FFF:F"(double %phi17, double %underresolved, double %droplet)
+  %cast = call <3 x double> @"set@VF"(double %return21)
+  %output24 = call <3 x double> @"mul@VV"(<3 x double> %output, <3 x double> %cast)
+  %output27 = call <3 x double> @"add@VV"(<3 x double> %v, <3 x double> %output24)
+  %return31 = call double @"neg@FF"(double %return21)
+  %output33 = fadd double %return31, 1.000000e+00
+  %cast36 = call <3 x double> @"set@VF"(double %output33)
+  %output37 = call <3 x double> @"mul@VV"(<3 x double> %flipvel, <3 x double> %cast36)
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %output27) #2
+  %gvalue40 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0), <3 x double> %output37) #2
+  store <3 x double> %gvalue, <3 x double>* @v
+  store <3 x double> %gvalue40, <3 x double>* @flipvel
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"max@FFF:F"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_Fluids_dopnet1_flipsolver1_blend_velocities(<3 x double> zeroinitializer, double 0.000000e+00, double 0.000000e+00, <3 x double> zeroinitializer, <3 x double> zeroinitializer, i64 0, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

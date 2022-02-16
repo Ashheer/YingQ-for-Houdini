@@ -1,0 +1,325 @@
+;_name	/obj/Wall_Breaking/rbdmaterialfracture1/CONCRETE_FRACTURE0/noisedscatter1/volumevop2
+; ModuleID = 'obj_Wall_Breaking_rbdmaterialfracture1_CONCRETE_FRACTURE0_noisedscatter1_volumevop2'
+source_filename = "obj_Wall_Breaking_rbdmaterialfracture1_CONCRETE_FRACTURE0_noisedscatter1_volumevop2"
+
+@0 = private constant [1 x i8] zeroinitializer
+@1 = private constant [7 x i8] c"linear\00"
+@2 = private constant [4 x i8*] [i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0)]
+@3 = private constant [4 x double] [double 0.000000e+00, double 0x3FE07A44C0000000, double 0x3FE7A44C60000000, double 1.000000e+00]
+@4 = private constant [4 x double] [double 0.000000e+00, double 0.000000e+00, double 1.000000e+00, double 1.000000e+00]
+@5 = private constant [7 x i8] c"snoise\00"
+@density = external global double
+@6 = private constant [7 x i8] c"onoise\00"
+@7 = private constant [7 x i8] c"anoise\00"
+@8 = private constant [13 x i8] c"correctnoise\00"
+@9 = private constant [7 x i8] c"xnoise\00"
+@10 = private constant [8 x i8] c"density\00"
+
+; Function Attrs: alwaysinline nounwind
+define private double @"vop_perlinNoiseVF@FVIFFF"(<3 x double>* %pos, i64* %turb, double* %amp, double* %rough, double* %atten) #0 {
+__llvm_entry:
+  %pos1 = load <3 x double>, <3 x double>* %pos
+  %amp2 = load double, double* %amp
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %nval.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %output11, %body ]
+  %scale.0 = phi double [ %amp2, %__llvm_entry ], [ %output19, %body ]
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output14, %body ]
+  %pp.0 = phi <3 x double> [ %pos1, %__llvm_entry ], [ %output16, %body ]
+  %turb4 = load i64, i64* %turb
+  %return = call i64 @"lt@III"(i64 %i.0, i64 %turb4)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return8 = call double @"noise@FV"(<3 x double> %pp.0)
+  %output9 = fadd double %return8, 0.000000e+00
+  %output10 = fmul double %scale.0, %output9
+  %output11 = fadd double %nval.0, %output10
+  %output14 = add i64 %i.0, 1
+  %cast = call <3 x double> @"set@VF"(double 2.000000e+00)
+  %output16 = call <3 x double> @"mul@VV"(<3 x double> %pp.0, <3 x double> %cast)
+  %rough18 = load double, double* %rough
+  %output19 = fmul double %scale.0, %rough18
+  br label %cond
+
+end:                                              ; preds = %cond
+  %atten21 = load double, double* %atten
+  %return22 = call double @"pow@FFF"(double %nval.0, double %atten21)
+  ret double %return22
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"noise@FV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"pow@FFF"(double, double) #1
+
+; Function Attrs: alwaysinline nounwind
+define private double @"vop_correctperlinNoiseVF@FVIFFF"(<3 x double>* %pos, i64* %turb, double* %amp, double* %rough, double* %atten) #0 {
+__llvm_entry:
+  %pos1 = load <3 x double>, <3 x double>* %pos
+  %amp2 = load double, double* %amp
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %nval.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %output12, %body ]
+  %scale.0 = phi double [ %amp2, %__llvm_entry ], [ %output20, %body ]
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output15, %body ]
+  %pp.0 = phi <3 x double> [ %pos1, %__llvm_entry ], [ %output17, %body ]
+  %turb4 = load i64, i64* %turb
+  %return = call i64 @"lt@III"(i64 %i.0, i64 %turb4)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %output = fmul double 5.000000e-01, %scale.0
+  %return8 = call double @"noise@FV"(<3 x double> %pp.0)
+  %return9 = call double @"neg@FF"(double 5.000000e-01)
+  %output10 = fadd double %return8, %return9
+  %output11 = fmul double %output, %output10
+  %output12 = fadd double %nval.0, %output11
+  %output15 = add i64 %i.0, 1
+  %cast = call <3 x double> @"set@VF"(double 2.000000e+00)
+  %output17 = call <3 x double> @"mul@VV"(<3 x double> %pp.0, <3 x double> %cast)
+  %rough19 = load double, double* %rough
+  %output20 = fmul double %scale.0, %rough19
+  br label %cond
+
+end:                                              ; preds = %cond
+  %atten22 = load double, double* %atten
+  %return23 = call double @"pow@FFF"(double %nval.0, double %atten22)
+  ret double %return23
+}
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+; Function Attrs: alwaysinline nounwind
+define private double @"vop_simplexNoiseVF@FVIFFF"(<3 x double>* %pos, i64* %turb, double* %amp, double* %rough, double* %atten) #0 {
+__llvm_entry:
+  %pos1 = load <3 x double>, <3 x double>* %pos
+  %amp2 = load double, double* %amp
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %nval.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %output12, %body ]
+  %scale.0 = phi double [ %amp2, %__llvm_entry ], [ %output20, %body ]
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output15, %body ]
+  %pp.0 = phi <3 x double> [ %pos1, %__llvm_entry ], [ %output17, %body ]
+  %turb4 = load i64, i64* %turb
+  %return = call i64 @"lt@III"(i64 %i.0, i64 %turb4)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %output = fmul double 5.000000e-01, %scale.0
+  %return8 = call double @"xnoise@FV"(<3 x double> %pp.0)
+  %return9 = call double @"neg@FF"(double 5.000000e-01)
+  %output10 = fadd double %return8, %return9
+  %output11 = fmul double %output, %output10
+  %output12 = fadd double %nval.0, %output11
+  %output15 = add i64 %i.0, 1
+  %cast = call <3 x double> @"set@VF"(double 2.000000e+00)
+  %output17 = call <3 x double> @"mul@VV"(<3 x double> %pp.0, <3 x double> %cast)
+  %rough19 = load double, double* %rough
+  %output20 = fmul double %scale.0, %rough19
+  br label %cond
+
+end:                                              ; preds = %cond
+  %atten22 = load double, double* %atten
+  %return23 = call double @"pow@FFF"(double %nval.0, double %atten22)
+  ret double %return23
+}
+
+; Function Attrs: nounwind readnone
+declare double @"xnoise@FV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+define void @obj_Wall_Breaking_rbdmaterialfracture1_CONCRETE_FRACTURE0_noisedscatter1_volumevop2(<3 x double> %P, i64 %ix, i64 %iy, i64 %iz, i64 %resx, i64 %resy, i64 %resz, <3 x double> %dPdx, <3 x double> %dPdy, <3 x double> %dPdz, <3 x double> %center, double %Time, double %Timeinc, double %Frame, i8* %OpInput2, i8* %OpInput3, i8* %OpInput4, i8* %OpInput1, double %density, <3 x double> %offset, <3 x double> %freq, i8** %ramp_the_basis_strings, double* %ramp_the_key_positions, double* %ramp_the_key_values, i8* %type) #2 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca i64
+  %2 = alloca double
+  %3 = alloca double
+  %4 = alloca double
+  %5 = alloca <3 x double>
+  %6 = alloca i64
+  %7 = alloca double
+  %8 = alloca double
+  %9 = alloca double
+  %cast = sitofp i64 %resx to double
+  %return = call double @"neg@FF"(double 5.000000e-01)
+  %output = fmul double %cast, %return
+  %cast7 = call <3 x double> @"set@VF"(double %output)
+  %output8 = call <3 x double> @"mul@VV"(<3 x double> %dPdx, <3 x double> %cast7)
+  %cast10 = sitofp i64 %resy to double
+  %output13 = fmul double %cast10, %return
+  %cast16 = call <3 x double> @"set@VF"(double %output13)
+  %output17 = call <3 x double> @"mul@VV"(<3 x double> %dPdy, <3 x double> %cast16)
+  %cast19 = sitofp i64 %resz to double
+  %output22 = fmul double %cast19, %return
+  %cast25 = call <3 x double> @"set@VF"(double %output22)
+  %output26 = call <3 x double> @"mul@VV"(<3 x double> %dPdz, <3 x double> %cast25)
+  %output29 = call <3 x double> @"add@VV"(<3 x double> %center, <3 x double> %output8)
+  %return35 = call double @"length@FV"(<3 x double> %output8)
+  %return37 = call double @"length@FV"(<3 x double> %output17)
+  %return39 = call double @"length@FV"(<3 x double> %output26)
+  %cast48 = sitofp i64 %ix to double
+  %cast50 = sitofp i64 %iy to double
+  %cast52 = sitofp i64 %iz to double
+  %return60 = call <3 x double> @"set@VFFF"(double %cast, double %cast10, double %cast19)
+  %return62 = call i64 @"neg@II"(i64 1)
+  %cast63 = call <3 x double> @"set@VI"(i64 %return62)
+  %return91 = call i64 @"eq@ISS"(i8* %type, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @6, i64 0, i64 0))
+  %10 = icmp ne i64 %return91, 0
+  br i1 %10, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %output94 = call <3 x double> @"mul@VV"(<3 x double> %P, <3 x double> %freq)
+  %output96 = call <3 x double> @"sub@VV"(<3 x double> %output94, <3 x double> %offset)
+  %return97 = call double @"onoise@FVIFF"(<3 x double> %output96, i64 5, double 7.500000e-02, double 1.000000e+00)
+  %output99 = fmul double %return97, 1.000000e+01
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return101 = call i64 @"eq@ISS"(i8* %type, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @5, i64 0, i64 0))
+  %11 = icmp ne i64 %return101, 0
+  br i1 %11, label %true102, label %false103
+
+end:                                              ; preds = %true138, %false139, %true128, %true115, %true102, %true
+  %noise.0 = phi double [ %output99, %true ], [ %output112, %true102 ], [ %output125, %true115 ], [ %vop_correctperlinNoiseVF, %true128 ], [ %vop_simplexNoiseVF, %true138 ], [ %vop_perlinNoiseVF, %false139 ]
+  %return153 = call double @"max@FFF"(double %noise.0, double 0.000000e+00)
+  %output156 = fmul double %density, %return153
+  %return161 = call double @"spline@F[SF[F[F"(i8** %ramp_the_basis_strings, double %output156, double* %ramp_the_key_values, double* %ramp_the_key_positions)
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @10, i64 0, i64 0), double %return161) #3
+  store double %gvalue, double* @density
+  ret void
+
+true102:                                          ; preds = %false
+  %output107 = call <3 x double> @"mul@VV"(<3 x double> %P, <3 x double> %freq)
+  %output109 = call <3 x double> @"sub@VV"(<3 x double> %output107, <3 x double> %offset)
+  %return110 = call double @"snoise@FVIFF"(<3 x double> %output109, i64 5, double 7.500000e-02, double 1.000000e+00)
+  %output112 = fmul double %return110, 1.000000e+01
+  br label %end
+
+false103:                                         ; preds = %false
+  %return114 = call i64 @"eq@ISS"(i8* %type, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @7, i64 0, i64 0))
+  %12 = icmp ne i64 %return114, 0
+  br i1 %12, label %true115, label %false116
+
+true115:                                          ; preds = %false103
+  %output120 = call <3 x double> @"mul@VV"(<3 x double> %P, <3 x double> %freq)
+  %output122 = call <3 x double> @"sub@VV"(<3 x double> %output120, <3 x double> %offset)
+  %return123 = call double @"anoise@FVIFF"(<3 x double> %output122, i64 5, double 7.500000e-02, double 1.000000e+00)
+  %output125 = fmul double %return123, 1.000000e+01
+  br label %end
+
+false116:                                         ; preds = %false103
+  %return127 = call i64 @"eq@ISS"(i8* %type, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %13 = icmp ne i64 %return127, 0
+  br i1 %13, label %true128, label %false129
+
+true128:                                          ; preds = %false116
+  %output133 = call <3 x double> @"mul@VV"(<3 x double> %P, <3 x double> %freq)
+  %output135 = call <3 x double> @"sub@VV"(<3 x double> %output133, <3 x double> %offset)
+  store <3 x double> %output135, <3 x double>* %0
+  store i64 5, i64* %1
+  store double 1.000000e+01, double* %2
+  store double 7.500000e-02, double* %3
+  store double 1.000000e+00, double* %4
+  %vop_correctperlinNoiseVF = call double @"vop_correctperlinNoiseVF@FVIFFF"(<3 x double>* %0, i64* %1, double* %2, double* %3, double* %4)
+  br label %end
+
+false129:                                         ; preds = %false116
+  %return137 = call i64 @"eq@ISS"(i8* %type, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @9, i64 0, i64 0))
+  %14 = icmp ne i64 %return137, 0
+  %output143 = call <3 x double> @"mul@VV"(<3 x double> %P, <3 x double> %freq)
+  %output145 = call <3 x double> @"sub@VV"(<3 x double> %output143, <3 x double> %offset)
+  store <3 x double> %output145, <3 x double>* %5
+  store i64 5, i64* %6
+  store double 1.000000e+01, double* %7
+  store double 7.500000e-02, double* %8
+  store double 1.000000e+00, double* %9
+  br i1 %14, label %true138, label %false139
+
+true138:                                          ; preds = %false129
+  %vop_simplexNoiseVF = call double @"vop_simplexNoiseVF@FVIFFF"(<3 x double>* %5, i64* %6, double* %7, double* %8, double* %9)
+  br label %end
+
+false139:                                         ; preds = %false129
+  %vop_perlinNoiseVF = call double @"vop_perlinNoiseVF@FVIFFF"(<3 x double>* %5, i64* %6, double* %7, double* %8, double* %9)
+  br label %end
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"onoise@FVIFF"(<3 x double>, i64, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"snoise@FVIFF"(<3 x double>, i64, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"anoise@FVIFF"(<3 x double>, i64, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"max@FFF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"spline@F[SF[F[F"(i8**, double, double*, double*) #1
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_Wall_Breaking_rbdmaterialfracture1_CONCRETE_FRACTURE0_noisedscatter1_volumevop2(<3 x double> zeroinitializer, i64 0, i64 0, i64 0, i64 0, i64 0, i64 0, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), double 0.000000e+00, <3 x double> <double 5.600000e-01, double 5.600000e-01, double 5.600000e-01>, <3 x double> <double 7.800000e-01, double 7.800000e-01, double 7.800000e-01>, i8** getelementptr inbounds ([4 x i8*], [4 x i8*]* @2, i64 0, i64 0), double* getelementptr inbounds ([4 x double], [4 x double]* @3, i64 0, i64 0), double* getelementptr inbounds ([4 x double], [4 x double]* @4, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @5, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

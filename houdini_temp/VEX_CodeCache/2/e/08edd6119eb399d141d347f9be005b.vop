@@ -1,0 +1,155 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [4 x i8] c"min\00"
+@1 = private constant [8 x i8] c"buckets\00"
+@2 = private constant [4 x i8] c"max\00"
+@3 = private constant [4 x i8] c"pdf\00"
+@4 = private constant [0 x <2 x double>] zeroinitializer
+@cdf = external global <2 x double>*
+@5 = private constant [4 x i8] c"cdf\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@[U"(<2 x double>** %_bound_cdf) #0 {
+__llvm_entry:
+  %return = call double @"ch@FS"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0))
+  %return2 = call double @"ch@FS"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @2, i64 0, i64 0))
+  %output = fsub double %return2, %return
+  %cast = sitofp i64 %return1 to double
+  %output5 = call double @"div@FF"(double %output, double %cast)
+  %return7 = call <2 x double> @"set@UFF"(double %return, double 0.000000e+00)
+  %tmp = load <2 x double>*, <2 x double>** %_bound_cdf
+  %return8 = call { <2 x double>, <2 x double>* } @"setcomp@U[UUI"(<2 x double>* %tmp, <2 x double> %return7, i64 0)
+  %output10 = extractvalue { <2 x double>, <2 x double>* } %return8, 1
+  store <2 x double>* %output10, <2 x double>** %_bound_cdf
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %i.0 = phi i64 [ 1, %__llvm_entry ], [ %output41, %body ]
+  %return13 = call i64 @"le@III"(i64 %i.0, i64 %return1)
+  %0 = icmp ne i64 %return13, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %cast18 = sitofp i64 %i.0 to double
+  %output19 = fmul double %cast18, %output5
+  %output20 = fadd double %return, %output19
+  %_bound_cdf21 = load <2 x double>*, <2 x double>** %_bound_cdf
+  %output23 = sub i64 %i.0, 1
+  %return24 = call <2 x double> @"getcomp@U[UI"(<2 x double>* %_bound_cdf21, i64 %output23)
+  %return25 = call double @"getcomp@FUI"(<2 x double> %return24, i64 1)
+  %output28 = fsub double %cast18, 5.000000e-01
+  %output31 = call double @"div@FF"(double %output28, double %cast)
+  %return32 = call double @"chramp@FSF"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0), double %output31)
+  %output33 = fadd double %return25, %return32
+  %return34 = call <2 x double> @"set@UFF"(double %output20, double %output33)
+  %return36 = call { <2 x double>, <2 x double>* } @"setcomp@U[UUI"(<2 x double>* %_bound_cdf21, <2 x double> %return34, i64 %i.0)
+  %output38 = extractvalue { <2 x double>, <2 x double>* } %return36, 1
+  store <2 x double>* %output38, <2 x double>** %_bound_cdf
+  %output41 = add i64 %i.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  br label %cond43
+
+cond43:                                           ; preds = %body44, %end
+  %i42.0 = phi i64 [ 0, %end ], [ %output70, %body44 ]
+  %return47 = call i64 @"le@III"(i64 %i42.0, i64 %return1)
+  %1 = icmp ne i64 %return47, 0
+  br i1 %1, label %body44, label %end48
+
+body44:                                           ; preds = %cond43
+  %_bound_cdf51 = load <2 x double>*, <2 x double>** %_bound_cdf
+  %return53 = call <2 x double> @"getcomp@U[UI"(<2 x double>* %_bound_cdf51, i64 %i42.0)
+  %return54 = call double @"getcomp@FUI"(<2 x double> %return53, i64 1)
+  %return57 = call <2 x double> @"getcomp@U[UI"(<2 x double>* %_bound_cdf51, i64 %return1)
+  %return58 = call double @"getcomp@FUI"(<2 x double> %return57, i64 1)
+  %output59 = call double @"div@FF"(double %return54, double %return58)
+  %return62 = call { double, <2 x double> } @"setcomp@FUFI"(<2 x double> %return53, double %output59, i64 1)
+  %output64 = extractvalue { double, <2 x double> } %return62, 1
+  %return65 = call { <2 x double>, <2 x double>* } @"setcomp@U[UUI"(<2 x double>* %_bound_cdf51, <2 x double> %output64, i64 %i42.0)
+  %output67 = extractvalue { <2 x double>, <2 x double>* } %return65, 1
+  store <2 x double>* %output67, <2 x double>** %_bound_cdf
+  %output70 = add i64 %i42.0, 1
+  br label %cond43
+
+end48:                                            ; preds = %cond43
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UFF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare { <2 x double>, <2 x double>* } @"setcomp@U[UUI"(<2 x double>*, <2 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"le@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"getcomp@U[UI"(<2 x double>*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FUI"(<2 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chramp@FSF"(i8*, double) #1
+
+; Function Attrs: alwaysinline
+define private { double, <2 x double> } @"setcomp@FUFI"(<2 x double> %rw11, double %rw22, i64 %rw33) #2 {
+__llvm_entry:
+  %rw16 = call <2 x double> @"setcomp@UFI"(<2 x double> %rw11, double %rw22, i64 1)
+  %mrv = insertvalue { double, <2 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <2 x double> } %mrv, <2 x double> %rw16, 1
+  ret { double, <2 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"setcomp@UFI"(<2 x double>, double, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<2 x double>* %cdf) #3 {
+__llvm_entry:
+  %"<cdf>" = alloca <2 x double>*
+  store <2 x double>* %cdf, <2 x double>** %"<cdf>"
+  call void @"__vex_snippet_snippet@[U"(<2 x double>** %"<cdf>")
+  %evalue = load <2 x double>*, <2 x double>** %"<cdf>"
+  %gvalue = call <2 x double>* @"_export@[US[U"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @5, i64 0, i64 0), <2 x double>* %evalue) #4
+  store <2 x double>* %gvalue, <2 x double>** @cdf
+  ret void
+}
+
+declare <2 x double>* @"_export@[US[U"(i8*, <2 x double>*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<2 x double>* getelementptr inbounds ([0 x <2 x double>], [0 x <2 x double>]* @4, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { alwaysinline }
+attributes #3 = { nounwind }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

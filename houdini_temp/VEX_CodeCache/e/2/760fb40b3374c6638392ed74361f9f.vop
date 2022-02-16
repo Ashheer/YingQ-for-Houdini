@@ -1,0 +1,86 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [7 x i8] c"volume\00"
+@split = external global i64
+@__class = external global i64
+@1 = private constant [6 x i8] c"split\00"
+@2 = private constant [8 x i8] c"__class\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@II"(i64* %_bound_split, i64* %_bound___class) #0 {
+__llvm_entry:
+  %_bound___class1 = load i64, i64* %_bound___class
+  %return = call i64 @"gt@III"(i64 %_bound___class1, i64 0)
+  store i64 %return, i64* %_bound_split
+  %return3 = call i64 @"not@II"(i64 %return)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %return4 = call double @"prim@FISI"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), i64 0)
+  %return5 = call double @"prim@FISI"(i64 2, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), i64 0)
+  %output = call double @"div@FF"(double %return5, double %return4)
+  %return8 = fcmp ogt double %output, 1.500000e+00
+  %return9 = zext i1 %return8 to i64
+  store i64 %return9, i64* %_bound_split
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end, %true
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind
+declare double @"prim@FISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %split, i64 %__class) #2 {
+__llvm_entry:
+  %0 = alloca i64
+  %"<split>" = alloca i64
+  store i64 %split, i64* %"<split>"
+  store i64 %__class, i64* %0
+  call void @"__vex_snippet_snippet@II"(i64* %"<split>", i64* %0)
+  %evalue = load i64, i64* %"<split>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %evalue) #3
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i64 %__class) #3
+  store i64 %gvalue, i64* @split
+  store i64 %gvalue3, i64* @__class
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

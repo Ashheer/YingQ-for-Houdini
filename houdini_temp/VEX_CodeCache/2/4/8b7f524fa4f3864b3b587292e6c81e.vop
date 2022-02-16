@@ -1,0 +1,92 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@N = external global <3 x double>
+@tangentu = external global <3 x double>
+@orient = external global <4 x double>
+@0 = private constant [2 x i8] c"N\00"
+@1 = private constant [9 x i8] c"tangentu\00"
+@2 = private constant [7 x i8] c"orient\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VVP"(<3 x double>* %_bound_N, <3 x double>* %_bound_tangentu, <4 x double>* %_bound_orient) #0 {
+__llvm_entry:
+  %_bound_N1 = load <3 x double>, <3 x double>* %_bound_N
+  %return = call <3 x double> @"normalize@VV"(<3 x double> %_bound_N1)
+  store <3 x double> %return, <3 x double>* %_bound_N
+  %_bound_tangentu2 = load <3 x double>, <3 x double>* %_bound_tangentu
+  %return3 = call <3 x double> @"normalize@VV"(<3 x double> %_bound_tangentu2)
+  store <3 x double> %return3, <3 x double>* %_bound_tangentu
+  %_bound_N5 = load <3 x double>, <3 x double>* %_bound_N
+  %return6 = call <3 x double> @"cross@VVV"(<3 x double> %return3, <3 x double> %_bound_N5)
+  %return7 = call <3 x double> @"normalize@VV"(<3 x double> %return6)
+  %_bound_N8 = load <3 x double>, <3 x double>* %_bound_N
+  %return9 = call <9 x double> @"maketransform@3VV"(<3 x double> %return7, <3 x double> %_bound_N8)
+  %return11 = call <4 x double> @"quaternion@P3"(<9 x double> %return9)
+  %return12 = call <4 x double> @"normalize@PP"(<4 x double> %return11)
+  store <4 x double> %return12, <4 x double>* %_bound_orient
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"cross@VVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"maketransform@3VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"quaternion@P3"(<9 x double>) #2
+
+; Function Attrs: nounwind
+declare <4 x double> @"normalize@PP"(<4 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %N, <3 x double> %tangentu, <4 x double> %orient) #1 {
+__llvm_entry:
+  %"<tangentu>" = alloca <3 x double>
+  %"<orient>" = alloca <4 x double>
+  %"<N>" = alloca <3 x double>
+  store <3 x double> %N, <3 x double>* %"<N>"
+  store <3 x double> %tangentu, <3 x double>* %"<tangentu>"
+  store <4 x double> %orient, <4 x double>* %"<orient>"
+  call void @"__vex_snippet_snippet@VVP"(<3 x double>* %"<N>", <3 x double>* %"<tangentu>", <4 x double>* %"<orient>")
+  %evalue = load <3 x double>, <3 x double>* %"<N>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %evalue) #3
+  %evalue1 = load <3 x double>, <3 x double>* %"<tangentu>"
+  %gvalue2 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @1, i64 0, i64 0), <3 x double> %evalue1) #3
+  %evalue3 = load <4 x double>, <4 x double>* %"<orient>"
+  %gvalue4 = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0), <4 x double> %evalue3) #3
+  store <3 x double> %gvalue, <3 x double>* @N
+  store <3 x double> %gvalue2, <3 x double>* @tangentu
+  store <4 x double> %gvalue4, <4 x double>* @orient
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> zeroinitializer, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

@@ -1,0 +1,143 @@
+;_name	/obj/Cloth/vellumsolver1/dopnet1/vellumsolver1/collision_update/geometryvop1
+; ModuleID = 'obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_collision_update_geometryvop1'
+source_filename = "obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_collision_update_geometryvop1"
+
+@P = external global <3 x double>
+@0 = private constant [2 x i8] c"P\00"
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"collisionUpdate@VVVV"(<3 x double>* %pos, <3 x double>* %hitpos, <3 x double>* %hitnml) #0 {
+__llvm_entry:
+  %pos1 = load <3 x double>, <3 x double>* %pos
+  %hitpos2 = load <3 x double>, <3 x double>* %hitpos
+  %output = call <3 x double> @"sub@VV"(<3 x double> %pos1, <3 x double> %hitpos2)
+  %hitnml3 = load <3 x double>, <3 x double>* %hitnml
+  %return = call double @"dot@FVV"(<3 x double> %output, <3 x double> %hitnml3)
+  %return5 = fcmp olt double %return, 0.000000e+00
+  br i1 %return5, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return8 = call double @"neg@FF"(double %return)
+  %hitnml9 = load <3 x double>, <3 x double>* %hitnml
+  %cast = call <3 x double> @"set@VF"(double %return8)
+  %output10 = call <3 x double> @"mul@VV"(<3 x double> %cast, <3 x double> %hitnml9)
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %cast11 = call <3 x double> @"set@VI"(i64 0)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end, %true
+  %UnifiedRetVal = phi <3 x double> [ %output10, %true ], [ %cast11, %end ]
+  ret <3 x double> %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FVV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_collision_update_geometryvop1_snippet1@FIIVVV"(double* %_bound_mass, i64* %_bound_hitnum, i64* %_bound_stopped, <3 x double>* %_bound_P, <3 x double>* %_bound_hitpos, <3 x double>* %_bound_hitnml) #0 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca <3 x double>
+  %_bound_mass1 = load double, double* %_bound_mass
+  %return = fcmp ogt double %_bound_mass1, 0.000000e+00
+  %return2 = zext i1 %return to i64
+  %_bound_hitnum3 = load i64, i64* %_bound_hitnum
+  %return4 = call i64 @"gt@III"(i64 %_bound_hitnum3, i64 0)
+  %return5 = call i64 @"and@III"(i64 %return2, i64 %return4)
+  %_bound_stopped6 = load i64, i64* %_bound_stopped
+  %return7 = and i64 %_bound_stopped6, 1
+  %return8 = call i64 @"not@II"(i64 %return7)
+  %return9 = call i64 @"and@III"(i64 %return5, i64 %return8)
+  %3 = icmp ne i64 %return9, 0
+  br i1 %3, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_P10 = load <3 x double>, <3 x double>* %_bound_P
+  store <3 x double> %_bound_P10, <3 x double>* %0
+  %_bound_hitpos12 = load <3 x double>, <3 x double>* %_bound_hitpos
+  store <3 x double> %_bound_hitpos12, <3 x double>* %1
+  %_bound_hitnml13 = load <3 x double>, <3 x double>* %_bound_hitnml
+  store <3 x double> %_bound_hitnml13, <3 x double>* %2
+  %collisionUpdate = call <3 x double> @"collisionUpdate@VVVV"(<3 x double>* %0, <3 x double>* %1, <3 x double>* %2)
+  %output = call <3 x double> @"add@VV"(<3 x double> %_bound_P10, <3 x double> %collisionUpdate)
+  store <3 x double> %output, <3 x double>* %_bound_P
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+define void @obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_collision_update_geometryvop1(double %mass, i64 %hitnum, i64 %stopped, <3 x double> %P, <3 x double> %hitpos, <3 x double> %hitnml) #2 {
+__llvm_entry:
+  %"<P>" = alloca <3 x double>
+  %0 = alloca double
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca <3 x double>
+  %4 = alloca <3 x double>
+  store <3 x double> %P, <3 x double>* %"<P>"
+  store double %mass, double* %0
+  store i64 %hitnum, i64* %1
+  store i64 %stopped, i64* %2
+  store <3 x double> %hitpos, <3 x double>* %3
+  store <3 x double> %hitnml, <3 x double>* %4
+  call void @"_obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_collision_update_geometryvop1_snippet1@FIIVVV"(double* %0, i64* %1, i64* %2, <3 x double>* %"<P>", <3 x double>* %3, <3 x double>* %4)
+  %evalue = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %evalue) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_collision_update_geometryvop1(double 0.000000e+00, i64 0, i64 0, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

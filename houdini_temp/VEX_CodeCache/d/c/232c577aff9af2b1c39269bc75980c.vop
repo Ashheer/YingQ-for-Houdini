@@ -1,0 +1,115 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"P\00"
+@P = external global <3 x double>
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IV"(i64* %_bound_ptnum, <3 x double>* %_bound_P) #0 {
+__llvm_entry:
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  %return = call i64* @"primpoints@[III"(i64 1, i64 %_bound_ptnum1)
+  %return3 = call i64 @"getcomp@I[II"(i64* %return, i64 0)
+  %return4 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 %return3)
+  %return6 = call i64 @"getcomp@I[II"(i64* %return, i64 1)
+  %return7 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 %return6)
+  %return9 = call i64 @"getcomp@I[II"(i64* %return, i64 2)
+  %return10 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 %return9)
+  %return12 = call i64 @"getcomp@I[II"(i64* %return, i64 3)
+  %return13 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 %return12)
+  %output = call <3 x double> @"sub@VV"(<3 x double> %return7, <3 x double> %return4)
+  %output18 = call <3 x double> @"sub@VV"(<3 x double> %return10, <3 x double> %return4)
+  %output21 = call <3 x double> @"sub@VV"(<3 x double> %return13, <3 x double> %return4)
+  %return26 = call double @"predicate_orient3d@FVVVV"(<3 x double> %return7, <3 x double> %return10, <3 x double> %return13, <3 x double> %return4)
+  %output27 = call double @"div@FF"(double 5.000000e-01, double %return26)
+  %return29 = call double @"length2@FV"(<3 x double> %output)
+  %return32 = call <3 x double> @"cross@VVV"(<3 x double> %output18, <3 x double> %output21)
+  %cast = call <3 x double> @"set@VF"(double %return29)
+  %output33 = call <3 x double> @"mul@VV"(<3 x double> %cast, <3 x double> %return32)
+  %return35 = call double @"length2@FV"(<3 x double> %output18)
+  %return38 = call <3 x double> @"cross@VVV"(<3 x double> %output21, <3 x double> %output)
+  %cast39 = call <3 x double> @"set@VF"(double %return35)
+  %output40 = call <3 x double> @"mul@VV"(<3 x double> %cast39, <3 x double> %return38)
+  %output41 = call <3 x double> @"add@VV"(<3 x double> %output33, <3 x double> %output40)
+  %return43 = call double @"length2@FV"(<3 x double> %output21)
+  %return46 = call <3 x double> @"cross@VVV"(<3 x double> %output, <3 x double> %output18)
+  %cast47 = call <3 x double> @"set@VF"(double %return43)
+  %output48 = call <3 x double> @"mul@VV"(<3 x double> %cast47, <3 x double> %return46)
+  %output49 = call <3 x double> @"add@VV"(<3 x double> %output41, <3 x double> %output48)
+  %cast51 = call <3 x double> @"set@VF"(double %output27)
+  %output52 = call <3 x double> @"mul@VV"(<3 x double> %output49, <3 x double> %cast51)
+  %output55 = call <3 x double> @"add@VV"(<3 x double> %return4, <3 x double> %output52)
+  store <3 x double> %output55, <3 x double>* %_bound_P
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64* @"primpoints@[III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"predicate_orient3d@FVVVV"(<3 x double>, <3 x double>, <3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #2
+
+; Function Attrs: nounwind
+declare double @"length2@FV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"cross@VVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %ptnum, <3 x double> %P) #1 {
+__llvm_entry:
+  %"<P>" = alloca <3 x double>
+  %0 = alloca i64
+  store <3 x double> %P, <3 x double>* %"<P>"
+  store i64 %ptnum, i64* %0
+  call void @"__vex_snippet_snippet@IV"(i64* %0, <3 x double>* %"<P>")
+  %evalue = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %evalue) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

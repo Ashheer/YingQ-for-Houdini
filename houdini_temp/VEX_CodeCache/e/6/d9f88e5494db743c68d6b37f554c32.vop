@@ -1,0 +1,337 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [16 x i8] c"../%srandomness\00"
+@1 = private constant [6 x i8] c"../%s\00"
+@2 = private constant [14 x i8] c"../randomseed\00"
+@3 = private constant [20 x i8] c"../fractureperpiece\00"
+@4 = private constant [18 x i8] c"wood_grainspacing\00"
+@5 = private constant [11 x i8] c"wood_grain\00"
+@6 = private constant [17 x i8] c"wood_grainoffset\00"
+@7 = private constant [16 x i8] c"wood_cutspacing\00"
+@8 = private constant [9 x i8] c"wood_cut\00"
+@9 = private constant [15 x i8] c"wood_cutoffset\00"
+@10 = private constant [20 x i8] c"wood_splinterlength\00"
+@11 = private constant [14 x i8] c"wood_splinter\00"
+@12 = private constant [18 x i8] c"wood_clustersize1\00"
+@13 = private constant [13 x i8] c"wood_cluster\00"
+@14 = private constant [18 x i8] c"wood_clustersize2\00"
+@15 = private constant [18 x i8] c"wood_clustersize3\00"
+@16 = private constant [20 x i8] c"glass_chippingratio\00"
+@17 = private constant [15 x i8] c"glass_chipping\00"
+@18 = private constant [19 x i8] c"glass_impactspread\00"
+@19 = private constant [17 x i8] c"glass_concentric\00"
+@20 = private constant [24 x i8] c"glass_discontinuitysize\00"
+@21 = private constant [23 x i8] c"concrete_chippingratio\00"
+@22 = private constant [18 x i8] c"concrete_chipping\00"
+@23 = private constant [21 x i8] c"custom_chippingratio\00"
+@24 = private constant [16 x i8] c"custom_chipping\00"
+@iteration = external global i64
+@wood_grainspacing = external global double
+@wood_grainoffset = external global double
+@wood_cutspacing = external global double
+@wood_cutoffset = external global double
+@wood_splinterlength = external global double
+@wood_clustersize = external global <3 x double>
+@glass_chippingratio = external global double
+@glass_impactspread = external global double
+@glass_discontinuitysize = external global double
+@concrete_chippingratio = external global double
+@custom_chippingratio = external global double
+@25 = private constant [10 x i8] c"iteration\00"
+@26 = private constant [17 x i8] c"wood_clustersize\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IFFFFFVFFFFF"(i64* %_bound_iteration, double* %_bound_wood_grainspacing, double* %_bound_wood_grainoffset, double* %_bound_wood_cutspacing, double* %_bound_wood_cutoffset, double* %_bound_wood_splinterlength, <3 x double>* %_bound_wood_clustersize, double* %_bound_glass_chippingratio, double* %_bound_glass_impactspread, double* %_bound_glass_discontinuitysize, double* %_bound_concrete_chippingratio, double* %_bound_custom_chippingratio) #0 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca i8*
+  %2 = alloca double
+  %3 = alloca i8*
+  %4 = alloca i8*
+  %5 = alloca double
+  %6 = alloca i8*
+  %7 = alloca i8*
+  %8 = alloca double
+  %9 = alloca i8*
+  %10 = alloca i8*
+  %11 = alloca double
+  %12 = alloca i8*
+  %13 = alloca i8*
+  %14 = alloca double
+  %15 = alloca i8*
+  %16 = alloca i8*
+  %17 = alloca double
+  %18 = alloca i8*
+  %19 = alloca i8*
+  %20 = alloca double
+  %21 = alloca i8*
+  %22 = alloca i8*
+  %23 = alloca double
+  %24 = alloca i8*
+  %25 = alloca i8*
+  %26 = alloca double
+  %27 = alloca i8*
+  %28 = alloca i8*
+  %29 = alloca double
+  %30 = alloca i8*
+  %31 = alloca i8*
+  %32 = alloca double
+  %33 = alloca i8*
+  %34 = alloca i8*
+  %35 = alloca double
+  %36 = alloca i8*
+  %37 = alloca i8*
+  %38 = alloca double
+  %_bound_iteration1 = load i64, i64* %_bound_iteration
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @2, i64 0, i64 0))
+  %cast = sitofp i64 %_bound_iteration1 to double
+  %output = fadd double %cast, %return
+  %return2 = call i64 @"chi@IS"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @3, i64 0, i64 0))
+  %return3 = call i64 @"eq@III"(i64 %return2, i64 0)
+  %39 = icmp ne i64 %return3, 0
+  br i1 %39, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return4 = call i64 @"neg@II"(i64 1)
+  %cast5 = sitofp i64 %return4 to double
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %seed.0 = phi double [ %cast5, %true ], [ %output, %__llvm_entry ]
+  store i8* getelementptr inbounds ([18 x i8], [18 x i8]* @4, i64 0, i64 0), i8** %0
+  store i8* getelementptr inbounds ([11 x i8], [11 x i8]* @5, i64 0, i64 0), i8** %1
+  store double %seed.0, double* %2
+  %getValue = call double @"getValue@FSSF"(i8** %0, i8** %1, double* %2)
+  store double %getValue, double* %_bound_wood_grainspacing
+  store i8* getelementptr inbounds ([17 x i8], [17 x i8]* @6, i64 0, i64 0), i8** %3
+  store i8* getelementptr inbounds ([11 x i8], [11 x i8]* @5, i64 0, i64 0), i8** %4
+  store double %seed.0, double* %5
+  %getValue8 = call double @"getValue@FSSF"(i8** %3, i8** %4, double* %5)
+  store double %getValue8, double* %_bound_wood_grainoffset
+  store i8* getelementptr inbounds ([16 x i8], [16 x i8]* @7, i64 0, i64 0), i8** %6
+  store i8* getelementptr inbounds ([9 x i8], [9 x i8]* @8, i64 0, i64 0), i8** %7
+  store double %seed.0, double* %8
+  %getValue10 = call double @"getValue@FSSF"(i8** %6, i8** %7, double* %8)
+  store double %getValue10, double* %_bound_wood_cutspacing
+  store i8* getelementptr inbounds ([15 x i8], [15 x i8]* @9, i64 0, i64 0), i8** %9
+  store i8* getelementptr inbounds ([9 x i8], [9 x i8]* @8, i64 0, i64 0), i8** %10
+  store double %seed.0, double* %11
+  %getValue12 = call double @"getValue@FSSF"(i8** %9, i8** %10, double* %11)
+  store double %getValue12, double* %_bound_wood_cutoffset
+  store i8* getelementptr inbounds ([20 x i8], [20 x i8]* @10, i64 0, i64 0), i8** %12
+  store i8* getelementptr inbounds ([14 x i8], [14 x i8]* @11, i64 0, i64 0), i8** %13
+  store double %seed.0, double* %14
+  %getValue14 = call double @"getValue@FSSF"(i8** %12, i8** %13, double* %14)
+  store double %getValue14, double* %_bound_wood_splinterlength
+  store i8* getelementptr inbounds ([18 x i8], [18 x i8]* @12, i64 0, i64 0), i8** %15
+  store i8* getelementptr inbounds ([13 x i8], [13 x i8]* @13, i64 0, i64 0), i8** %16
+  store double %seed.0, double* %17
+  %getValue16 = call double @"getValue@FSSF"(i8** %15, i8** %16, double* %17)
+  %tmp = load <3 x double>, <3 x double>* %_bound_wood_clustersize
+  %return17 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %tmp, double %getValue16, i64 0)
+  %output19 = extractvalue { double, <3 x double> } %return17, 1
+  store <3 x double> %output19, <3 x double>* %_bound_wood_clustersize
+  store i8* getelementptr inbounds ([18 x i8], [18 x i8]* @14, i64 0, i64 0), i8** %18
+  store i8* getelementptr inbounds ([13 x i8], [13 x i8]* @13, i64 0, i64 0), i8** %19
+  store double %seed.0, double* %20
+  %getValue21 = call double @"getValue@FSSF"(i8** %18, i8** %19, double* %20)
+  %tmp22 = load <3 x double>, <3 x double>* %_bound_wood_clustersize
+  %return23 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %tmp22, double %getValue21, i64 1)
+  %output25 = extractvalue { double, <3 x double> } %return23, 1
+  store <3 x double> %output25, <3 x double>* %_bound_wood_clustersize
+  store i8* getelementptr inbounds ([18 x i8], [18 x i8]* @15, i64 0, i64 0), i8** %21
+  store i8* getelementptr inbounds ([13 x i8], [13 x i8]* @13, i64 0, i64 0), i8** %22
+  store double %seed.0, double* %23
+  %getValue27 = call double @"getValue@FSSF"(i8** %21, i8** %22, double* %23)
+  %tmp28 = load <3 x double>, <3 x double>* %_bound_wood_clustersize
+  %return29 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %tmp28, double %getValue27, i64 2)
+  %output31 = extractvalue { double, <3 x double> } %return29, 1
+  store <3 x double> %output31, <3 x double>* %_bound_wood_clustersize
+  store i8* getelementptr inbounds ([20 x i8], [20 x i8]* @16, i64 0, i64 0), i8** %24
+  store i8* getelementptr inbounds ([15 x i8], [15 x i8]* @17, i64 0, i64 0), i8** %25
+  store double %seed.0, double* %26
+  %getValue33 = call double @"getValue@FSSF"(i8** %24, i8** %25, double* %26)
+  store double %getValue33, double* %_bound_glass_chippingratio
+  store i8* getelementptr inbounds ([19 x i8], [19 x i8]* @18, i64 0, i64 0), i8** %27
+  store i8* getelementptr inbounds ([17 x i8], [17 x i8]* @19, i64 0, i64 0), i8** %28
+  store double %seed.0, double* %29
+  %getValue35 = call double @"getValue@FSSF"(i8** %27, i8** %28, double* %29)
+  store double %getValue35, double* %_bound_glass_impactspread
+  store i8* getelementptr inbounds ([24 x i8], [24 x i8]* @20, i64 0, i64 0), i8** %30
+  store i8* getelementptr inbounds ([17 x i8], [17 x i8]* @19, i64 0, i64 0), i8** %31
+  store double %seed.0, double* %32
+  %getValue37 = call double @"getValue@FSSF"(i8** %30, i8** %31, double* %32)
+  store double %getValue37, double* %_bound_glass_discontinuitysize
+  store i8* getelementptr inbounds ([23 x i8], [23 x i8]* @21, i64 0, i64 0), i8** %33
+  store i8* getelementptr inbounds ([18 x i8], [18 x i8]* @22, i64 0, i64 0), i8** %34
+  store double %seed.0, double* %35
+  %getValue39 = call double @"getValue@FSSF"(i8** %33, i8** %34, double* %35)
+  store double %getValue39, double* %_bound_concrete_chippingratio
+  store i8* getelementptr inbounds ([21 x i8], [21 x i8]* @23, i64 0, i64 0), i8** %36
+  store i8* getelementptr inbounds ([16 x i8], [16 x i8]* @24, i64 0, i64 0), i8** %37
+  store double %seed.0, double* %38
+  %getValue41 = call double @"getValue@FSSF"(i8** %36, i8** %37, double* %38)
+  store double %getValue41, double* %_bound_custom_chippingratio
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private double @"getValue@FSSF"(i8** %parm, i8** %randparm, double* %seed) #0 {
+__llvm_entry:
+  %randparm1 = load i8*, i8** %randparm
+  %return = call i8* @"sprintf@SS:S"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @0, i64 0, i64 0), i8* %randparm1)
+  %return2 = call double @"chf@FS"(i8* %return)
+  %parm3 = load i8*, i8** %parm
+  %return4 = call i8* @"sprintf@SS:S"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i8* %parm3)
+  %return5 = call double @"chf@FS"(i8* %return4)
+  %seed6 = load double, double* %seed
+  %return7 = call i64 @"neg@II"(i64 1)
+  %cast = sitofp i64 %return7 to double
+  %return8 = fcmp oeq double %seed6, %cast
+  br i1 %return8, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %return12 = call double @"rand@FF"(double %seed6)
+  %output = fadd double 1.000000e+00, %return2
+  %output15 = fmul double %output, %return5
+  %output17 = fsub double 1.000000e+00, %return2
+  %output19 = fmul double %output17, %return5
+  %return20 = call double @"fit@FFFFFF"(double %return12, double 0.000000e+00, double 1.000000e+00, double %output15, double %output19)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end, %true
+  %UnifiedRetVal = phi double [ %return5, %true ], [ %return20, %end ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i8* @"sprintf@SS:S"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind
+declare double @"rand@FF"(double) #2
+
+; Function Attrs: nounwind
+declare double @"fit@FFFFFF"(double, double, double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %iteration, double %wood_grainspacing, double %wood_grainoffset, double %wood_cutspacing, double %wood_cutoffset, double %wood_splinterlength, <3 x double> %wood_clustersize, double %glass_chippingratio, double %glass_impactspread, double %glass_discontinuitysize, double %concrete_chippingratio, double %custom_chippingratio) #2 {
+__llvm_entry:
+  %"<wood_grainspacing>" = alloca double
+  %"<wood_grainoffset>" = alloca double
+  %"<wood_cutspacing>" = alloca double
+  %"<wood_cutoffset>" = alloca double
+  %"<wood_splinterlength>" = alloca double
+  %"<wood_clustersize>" = alloca <3 x double>
+  %"<glass_chippingratio>" = alloca double
+  %"<glass_impactspread>" = alloca double
+  %"<glass_discontinuitysize>" = alloca double
+  %"<concrete_chippingratio>" = alloca double
+  %"<custom_chippingratio>" = alloca double
+  %0 = alloca i64
+  store double %wood_grainspacing, double* %"<wood_grainspacing>"
+  store double %wood_grainoffset, double* %"<wood_grainoffset>"
+  store double %wood_cutspacing, double* %"<wood_cutspacing>"
+  store double %wood_cutoffset, double* %"<wood_cutoffset>"
+  store double %wood_splinterlength, double* %"<wood_splinterlength>"
+  store <3 x double> %wood_clustersize, <3 x double>* %"<wood_clustersize>"
+  store double %glass_chippingratio, double* %"<glass_chippingratio>"
+  store double %glass_impactspread, double* %"<glass_impactspread>"
+  store double %glass_discontinuitysize, double* %"<glass_discontinuitysize>"
+  store double %concrete_chippingratio, double* %"<concrete_chippingratio>"
+  store double %custom_chippingratio, double* %"<custom_chippingratio>"
+  store i64 %iteration, i64* %0
+  call void @"__vex_snippet_snippet@IFFFFFVFFFFF"(i64* %0, double* %"<wood_grainspacing>", double* %"<wood_grainoffset>", double* %"<wood_cutspacing>", double* %"<wood_cutoffset>", double* %"<wood_splinterlength>", <3 x double>* %"<wood_clustersize>", double* %"<glass_chippingratio>", double* %"<glass_impactspread>", double* %"<glass_discontinuitysize>", double* %"<concrete_chippingratio>", double* %"<custom_chippingratio>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @25, i64 0, i64 0), i64 %iteration) #4
+  %evalue2 = load double, double* %"<wood_grainspacing>"
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @4, i64 0, i64 0), double %evalue2) #4
+  %evalue4 = load double, double* %"<wood_grainoffset>"
+  %gvalue5 = call double @"_export@FSF"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @6, i64 0, i64 0), double %evalue4) #4
+  %evalue6 = load double, double* %"<wood_cutspacing>"
+  %gvalue7 = call double @"_export@FSF"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @7, i64 0, i64 0), double %evalue6) #4
+  %evalue8 = load double, double* %"<wood_cutoffset>"
+  %gvalue9 = call double @"_export@FSF"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @9, i64 0, i64 0), double %evalue8) #4
+  %evalue10 = load double, double* %"<wood_splinterlength>"
+  %gvalue11 = call double @"_export@FSF"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @10, i64 0, i64 0), double %evalue10) #4
+  %evalue12 = load <3 x double>, <3 x double>* %"<wood_clustersize>"
+  %gvalue13 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @26, i64 0, i64 0), <3 x double> %evalue12) #4
+  %evalue14 = load double, double* %"<glass_chippingratio>"
+  %gvalue15 = call double @"_export@FSF"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @16, i64 0, i64 0), double %evalue14) #4
+  %evalue16 = load double, double* %"<glass_impactspread>"
+  %gvalue17 = call double @"_export@FSF"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @18, i64 0, i64 0), double %evalue16) #4
+  %evalue18 = load double, double* %"<glass_discontinuitysize>"
+  %gvalue19 = call double @"_export@FSF"(i8* getelementptr inbounds ([24 x i8], [24 x i8]* @20, i64 0, i64 0), double %evalue18) #4
+  %evalue20 = load double, double* %"<concrete_chippingratio>"
+  %gvalue21 = call double @"_export@FSF"(i8* getelementptr inbounds ([23 x i8], [23 x i8]* @21, i64 0, i64 0), double %evalue20) #4
+  %evalue22 = load double, double* %"<custom_chippingratio>"
+  %gvalue23 = call double @"_export@FSF"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @23, i64 0, i64 0), double %evalue22) #4
+  store i64 %gvalue, i64* @iteration
+  store double %gvalue3, double* @wood_grainspacing
+  store double %gvalue5, double* @wood_grainoffset
+  store double %gvalue7, double* @wood_cutspacing
+  store double %gvalue9, double* @wood_cutoffset
+  store double %gvalue11, double* @wood_splinterlength
+  store <3 x double> %gvalue13, <3 x double>* @wood_clustersize
+  store double %gvalue15, double* @glass_chippingratio
+  store double %gvalue17, double* @glass_impactspread
+  store double %gvalue19, double* @glass_discontinuitysize
+  store double %gvalue21, double* @concrete_chippingratio
+  store double %gvalue23, double* @custom_chippingratio
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, <3 x double> zeroinitializer, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { alwaysinline }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

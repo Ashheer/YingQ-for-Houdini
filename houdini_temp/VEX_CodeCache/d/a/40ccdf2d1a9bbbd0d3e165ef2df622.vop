@@ -1,0 +1,76 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [13 x i8] c"__max_pscale\00"
+@pscale = external global double
+@1 = private constant [7 x i8] c"pscale\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@F"(double* %_bound_pscale) #0 {
+__llvm_entry:
+  %_bound_pscale1 = load double, double* %_bound_pscale
+  %return = fcmp olt double %_bound_pscale1, 0.000000e+00
+  br i1 %return, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return3 = call double @"neg@FF"(double 1.000000e+00)
+  br label %end
+
+end:                                              ; preds = %__llvm_entry, %true
+  %phi = phi double [ %return3, %true ], [ 1.000000e+00, %__llvm_entry ]
+  %_bound_pscale4 = load double, double* %_bound_pscale
+  %return5 = call double @"detail@FISI"(i64 0, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @0, i64 0, i64 0), i64 0)
+  %output = call double @"div@FF"(double %_bound_pscale4, double %return5)
+  %return7 = call double @"min@FFF"(double 1.000000e+00, double %output)
+  %output10 = fmul double %return7, %phi
+  store double %output10, double* %_bound_pscale
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+; Function Attrs: nounwind
+declare double @"detail@FISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"min@FFF"(double, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %pscale) #2 {
+__llvm_entry:
+  %"<pscale>" = alloca double
+  store double %pscale, double* %"<pscale>"
+  call void @"__vex_snippet_snippet@F"(double* %"<pscale>")
+  %evalue = load double, double* %"<pscale>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), double %evalue) #3
+  store double %gvalue, double* @pscale
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

@@ -1,0 +1,203 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [6 x i8] c"point\00"
+@1 = private constant [5 x i8] c"name\00"
+@2 = private constant [9 x i8] c"__delete\00"
+@3 = private constant [2 x i8] c"P\00"
+@4 = private constant [11 x i8] c"restlength\00"
+@5 = private constant [4 x i8] c"set\00"
+@6 = private constant [1 x i8] zeroinitializer
+@name = external global i8*
+@ptnum = external global i64
+@7 = private constant [6 x i8] c"ptnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@SI"(i8** %_bound_name, i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %_bound_name1 = load i8*, i8** %_bound_name
+  %return = call i64* @"findattribval@[IISSS"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), i8* %_bound_name1)
+  %return2 = call i64 @"neg@II"(i64 1)
+  %return4 = call i64 @"len@I[I"(i64* %return)
+  br label %cond
+
+cond:                                             ; preds = %iter, %__llvm_entry
+  %__impl_foreach_index_d.0 = phi i64 [ 0, %__llvm_entry ], [ %output, %iter ]
+  %targetpt.0 = phi i64 [ %return2, %__llvm_entry ], [ %targetpt.1, %iter ]
+  %return7 = call i64 @"lt@III"(i64 %__impl_foreach_index_d.0, i64 %return4)
+  %0 = icmp ne i64 %return7, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return10 = call i64 @"getcomp@I[II"(i64* %return, i64 %__impl_foreach_index_d.0)
+  %_bound_ptnum12 = load i64, i64* %_bound_ptnum
+  %return13 = call i64 @"eq@III"(i64 %return10, i64 %_bound_ptnum12)
+  %return15 = call i64 @"inpointgroup@IISI"(i64 0, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @2, i64 0, i64 0), i64 %return10)
+  %return16 = call i64 @"or@III"(i64 %return13, i64 %return15)
+  %1 = icmp ne i64 %return16, 0
+  br i1 %1, label %iter, label %end17
+
+end:                                              ; preds = %cond
+  %return22 = call i64 @"eq@III"(i64 %targetpt.0, i64 %return2)
+  %2 = icmp ne i64 %return22, 0
+  br i1 %2, label %true23, label %end24
+
+iter:                                             ; preds = %body, %end17
+  %targetpt.1 = phi i64 [ %targetpt.0, %body ], [ %return10, %end17 ]
+  %output = add i64 %__impl_foreach_index_d.0, 1
+  br label %cond
+
+end17:                                            ; preds = %body
+  br label %iter
+
+true23:                                           ; preds = %cond30, %end
+  ret void
+
+end24:                                            ; preds = %end
+  %return26 = call i64* @"neighbours@[III"(i64 0, i64 %targetpt.0)
+  %_bound_ptnum27 = load i64, i64* %_bound_ptnum
+  %return28 = call i64* @"pointprims@[III"(i64 0, i64 %_bound_ptnum27)
+  %return29 = call i64 @"len@I[I"(i64* %return28)
+  br label %cond30
+
+cond30:                                           ; preds = %end51, %end24
+  %__impl_foreach_index_f.0 = phi i64 [ 0, %end24 ], [ %output87, %end51 ]
+  %return34 = call i64 @"lt@III"(i64 %__impl_foreach_index_f.0, i64 %return29)
+  %3 = icmp ne i64 %return34, 0
+  br i1 %3, label %body31, label %true23
+
+body31:                                           ; preds = %cond30
+  %_bound_ptnum37 = load i64, i64* %_bound_ptnum
+  %return38 = call i64* @"pointprims@[III"(i64 0, i64 %_bound_ptnum37)
+  %return40 = call i64 @"getcomp@I[II"(i64* %return38, i64 %__impl_foreach_index_f.0)
+  %return42 = call i64* @"primpoints@[III"(i64 0, i64 %return40)
+  %return45 = call i64 @"len@I[I"(i64* %return42)
+  br label %cond46
+
+cond46:                                           ; preds = %iter52, %body31
+  %__impl_foreach_index_e.0 = phi i64 [ 0, %body31 ], [ %output85, %iter52 ]
+  %return50 = call i64 @"lt@III"(i64 %__impl_foreach_index_e.0, i64 %return45)
+  %4 = icmp ne i64 %return50, 0
+  br i1 %4, label %body47, label %end51
+
+body47:                                           ; preds = %cond46
+  %return55 = call i64 @"getcomp@I[II"(i64* %return42, i64 %__impl_foreach_index_e.0)
+  %_bound_ptnum57 = load i64, i64* %_bound_ptnum
+  %return58 = call i64 @"eq@III"(i64 %return55, i64 %_bound_ptnum57)
+  %return61 = call i64 @"eq@III"(i64 %return55, i64 %targetpt.0)
+  %return62 = call i64 @"or@III"(i64 %return58, i64 %return61)
+  %return65 = call i64 @"find@I[II"(i64* %return26, i64 %return55)
+  %return66 = call i64 @"ge@III"(i64 %return65, i64 0)
+  %return67 = call i64 @"or@III"(i64 %return62, i64 %return66)
+  %5 = icmp ne i64 %return67, 0
+  br i1 %5, label %iter52, label %end69
+
+end51:                                            ; preds = %cond46
+  %output87 = add i64 %__impl_foreach_index_f.0, 1
+  br label %cond30
+
+iter52:                                           ; preds = %body47, %end69
+  %output85 = add i64 %__impl_foreach_index_e.0, 1
+  br label %cond46
+
+end69:                                            ; preds = %body47
+  %return72 = call i64 @"setprimvertex@IIIII"(i64 0, i64 %return40, i64 0, i64 %return55)
+  %return75 = call i64 @"setprimvertex@IIIII"(i64 0, i64 %return40, i64 1, i64 %targetpt.0)
+  %return77 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @3, i64 0, i64 0), i64 %return55)
+  %return79 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @3, i64 0, i64 0), i64 %targetpt.0)
+  %return80 = call double @"distance@FVV"(<3 x double> %return77, <3 x double> %return79)
+  %return83 = call i64 @"setprimattrib@IISIFS"(i64 0, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @4, i64 0, i64 0), i64 %return40, double %return80, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @5, i64 0, i64 0))
+  br label %iter52
+}
+
+; Function Attrs: nounwind
+declare i64* @"findattribval@[IISSS"(i64, i8*, i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"inpointgroup@IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64* @"neighbours@[III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"pointprims@[III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"primpoints@[III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"find@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"setprimvertex@IIIII"(i64, i64, i64, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare double @"distance@FVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"setprimattrib@IISIFS"(i64, i8*, i64, double, i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8* %name, i64 %ptnum) #1 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca i64
+  store i8* %name, i8** %0
+  store i64 %ptnum, i64* %1
+  call void @"__vex_snippet_snippet@SI"(i8** %0, i64* %1)
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), i8* %name) #3
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @7, i64 0, i64 0), i64 %ptnum) #3
+  store i8* %gvalue, i8** @name
+  store i64 %gvalue4, i64* @ptnum
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @6, i64 0, i64 0), i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

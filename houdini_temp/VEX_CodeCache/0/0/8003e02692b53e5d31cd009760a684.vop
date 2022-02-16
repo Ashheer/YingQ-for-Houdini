@@ -1,0 +1,448 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x i64] zeroinitializer
+@1 = private constant [6 x i8] c"point\00"
+@2 = private constant [18 x i8] c"__sourcetetvertex\00"
+@3 = private constant [35 x i8] c"VEX Assertion Failed %s:%d - (%s)\0A\00"
+@4 = private constant [154 x i8] c"/obj/Wall_Breaking/rbdmaterialfracture1/CONCRETE_FRACTURE0/CSGVoronoi/generate_cutters/build_cutter_geo/voronoi_diagram_3d/build_voronoi_faces/attribvop1\00"
+@5 = private constant [17 x i8] c"boundary_pt >= 0\00"
+@6 = private constant [7 x i8] c"global\00"
+@7 = private constant [5 x i8] c"poly\00"
+@8 = private constant [6 x i64] [i64 0, i64 0, i64 0, i64 1, i64 1, i64 2]
+@9 = private constant [6 x i64] [i64 1, i64 2, i64 3, i64 2, i64 3, i64 3]
+@ptnum = external global i64
+@10 = private constant [6 x i8] c"ptnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I"(i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca i64
+  %4 = alloca i64
+  %5 = alloca i64
+  %6 = alloca i64
+  %7 = alloca i64
+  %8 = alloca i64
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %edgeidx.0 = phi i64 [ 0, %__llvm_entry ], [ %output, %body ]
+  %return = call i64 @"lt@III"(i64 %edgeidx.0, i64 6)
+  %9 = icmp ne i64 %return, 0
+  br i1 %9, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return5 = call i64 @"getcomp@I[II"(i64* getelementptr inbounds ([6 x i64], [6 x i64]* @8, i64 0, i64 0), i64 %edgeidx.0)
+  %return8 = call i64 @"getcomp@I[II"(i64* getelementptr inbounds ([6 x i64], [6 x i64]* @9, i64 0, i64 0), i64 %edgeidx.0)
+  store i64 %return5, i64* %0
+  store i64 %return8, i64* %1
+  %tet_facefromedge = call i64 @"tet_facefromedge@III"(i64* %0, i64* %1)
+  %return14 = call i64 @"primpoint@IIII"(i64 1, i64 %_bound_ptnum1, i64 %return5)
+  %return18 = call i64 @"primpoint@IIII"(i64 1, i64 %_bound_ptnum1, i64 %return8)
+  store i64 1, i64* %2
+  store i64 %_bound_ptnum1, i64* %3
+  store i64 %return14, i64* %4
+  store i64 %return18, i64* %5
+  store i64 %tet_facefromedge, i64* %6
+  store i64 %return5, i64* %7
+  store i64 %return8, i64* %8
+  call void @"build_voronoi_face@IIIIIII"(i64* %2, i64* %3, i64* %4, i64* %5, i64* %6, i64* %7, i64* %8)
+  %output = add i64 %edgeidx.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"tet_facefromedge@III"(i64* %v0, i64* %v1) #0 {
+__llvm_entry:
+  br label %cond
+
+cond:                                             ; preds = %end9, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output, %end9 ]
+  %return = call i64 @"lt@III"(i64 %i.0, i64 4)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %v03 = load i64, i64* %v0
+  %return4 = call i64 @"ne@III"(i64 %i.0, i64 %v03)
+  %v16 = load i64, i64* %v1
+  %return7 = call i64 @"ne@III"(i64 %i.0, i64 %v16)
+  %return8 = call i64 @"and@III"(i64 %return4, i64 %return7)
+  %1 = icmp ne i64 %return8, 0
+  br i1 %1, label %true, label %end9
+
+end:                                              ; preds = %cond
+  %return12 = call i64 @"neg@II"(i64 1)
+  br label %UnifiedReturnBlock
+
+true:                                             ; preds = %body
+  br label %UnifiedReturnBlock
+
+end9:                                             ; preds = %body
+  %output = add i64 %i.0, 1
+  br label %cond
+
+UnifiedReturnBlock:                               ; preds = %true, %end
+  %UnifiedRetVal = phi i64 [ %return12, %end ], [ %i.0, %true ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"tet_reverseedge@IIII"(i64* %face, i64* %v0, i64* %v1) #0 {
+__llvm_entry:
+  br label %cond
+
+cond:                                             ; preds = %end13, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output, %end13 ]
+  %return = call i64 @"lt@III"(i64 %i.0, i64 4)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %face3 = load i64, i64* %face
+  %return4 = call i64 @"ne@III"(i64 %i.0, i64 %face3)
+  %v06 = load i64, i64* %v0
+  %return7 = call i64 @"ne@III"(i64 %i.0, i64 %v06)
+  %return8 = call i64 @"and@III"(i64 %return4, i64 %return7)
+  %v110 = load i64, i64* %v1
+  %return11 = call i64 @"ne@III"(i64 %i.0, i64 %v110)
+  %return12 = call i64 @"and@III"(i64 %return8, i64 %return11)
+  %1 = icmp ne i64 %return12, 0
+  br i1 %1, label %true, label %end13
+
+end:                                              ; preds = %cond
+  %return16 = call i64 @"neg@II"(i64 1)
+  br label %UnifiedReturnBlock
+
+true:                                             ; preds = %body
+  br label %UnifiedReturnBlock
+
+end13:                                            ; preds = %body
+  %output = add i64 %i.0, 1
+  br label %cond
+
+UnifiedReturnBlock:                               ; preds = %true, %end
+  %UnifiedRetVal = phi i64 [ %return16, %end ], [ %i.0, %true ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: alwaysinline nounwind
+define private void @"tet_findface@IIIIIIII"(i64* %tet_geo, i64* %tet_idx, i64* %p0, i64* %p1, i64* %p2, i64* %v0, i64* %v1, i64* %face) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  %tet_geo1 = load i64, i64* %tet_geo
+  %tet_idx2 = load i64, i64* %tet_idx
+  %return = call i64* @"primpoints@[III"(i64 %tet_geo1, i64 %tet_idx2)
+  %p04 = load i64, i64* %p0
+  %return5 = call i64 @"find@I[II"(i64* %return, i64 %p04)
+  store i64 %return5, i64* %v0
+  %p17 = load i64, i64* %p1
+  %return8 = call i64 @"find@I[II"(i64* %return, i64 %p17)
+  store i64 %return8, i64* %v1
+  %p210 = load i64, i64* %p2
+  %return11 = call i64 @"find@I[II"(i64* %return, i64 %p210)
+  store i64 %return11, i64* %0
+  %v013 = load i64, i64* %v0
+  store i64 %v013, i64* %1
+  %v114 = load i64, i64* %v1
+  store i64 %v114, i64* %2
+  %tet_reverseedge = call i64 @"tet_reverseedge@IIII"(i64* %0, i64* %1, i64* %2)
+  store i64 %tet_reverseedge, i64* %face
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64* @"primpoints@[III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"find@I[II"(i64*, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"find_tets_around_edge@IIIIIIII[II"(i64* %tet_geo, i64* %start_tet, i64* %p0, i64* %p1, i64* %start_face, i64* %start_v0, i64* %start_v1, i64** %voronoi_pts, i64* %hit_boundary) #0 {
+__llvm_entry:
+  %face = alloca i64
+  %v0 = alloca i64
+  %v1 = alloca i64
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca i64
+  %4 = alloca i64
+  %5 = alloca i64
+  %6 = alloca i64
+  %7 = alloca i64
+  %start_tet1 = load i64, i64* %start_tet
+  %start_face2 = load i64, i64* %start_face
+  store i64 %start_face2, i64* %face
+  %start_v03 = load i64, i64* %start_v0
+  store i64 %start_v03, i64* %v0
+  %start_v14 = load i64, i64* %start_v1
+  store i64 %start_v14, i64* %v1
+  br label %body
+
+body:                                             ; preds = %end43, %__llvm_entry
+  %tet_idx.0 = phi i64 [ %start_tet1, %__llvm_entry ], [ %return18, %end43 ]
+  %face7 = load i64, i64* %face
+  store i64 %face7, i64* %0
+  %v09 = load i64, i64* %v0
+  store i64 %v09, i64* %1
+  %v110 = load i64, i64* %v1
+  store i64 %v110, i64* %2
+  %tet_reverseedge = call i64 @"tet_reverseedge@IIII"(i64* %0, i64* %1, i64* %2)
+  store i64 %tet_reverseedge, i64* %face
+  %tet_geo11 = load i64, i64* %tet_geo
+  %return14 = call i64 @"primpoint@IIII"(i64 %tet_geo11, i64 %tet_idx.0, i64 %face7)
+  %tet_geo15 = load i64, i64* %tet_geo
+  %face17 = load i64, i64* %face
+  %return18 = call i64 @"tet_adjacent@IIII"(i64 %tet_geo15, i64 %tet_idx.0, i64 %face17)
+  %return20 = call i64 @"lt@III"(i64 %return18, i64 0)
+  %8 = icmp ne i64 %return20, 0
+  br i1 %8, label %true, label %false
+
+end:                                              ; preds = %false, %end43
+  %merge = phi i64 [ 1, %end43 ], [ 0, %false ]
+  br label %UnifiedReturnBlock
+
+true:                                             ; preds = %body
+  %tet_geo22 = load i64, i64* %tet_geo
+  %face24 = load i64, i64* %face
+  %return25 = call i64 @"primvertex@IIII"(i64 %tet_geo22, i64 %tet_idx.0, i64 %face24)
+  %return27 = call i64 @"findattribval@IISSI"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([18 x i8], [18 x i8]* @2, i64 0, i64 0), i64 %return25)
+  %return28 = call i64 @"assert_enabled@I"()
+  %9 = icmp ne i64 %return28, 0
+  br i1 %9, label %true29, label %end30
+
+false:                                            ; preds = %body
+  %start_tet40 = load i64, i64* %start_tet
+  %return41 = call i64 @"lt@III"(i64 %return18, i64 %start_tet40)
+  %10 = icmp ne i64 %return41, 0
+  br i1 %10, label %end, label %end43
+
+true29:                                           ; preds = %true
+  %return32 = call i64 @"ge@III"(i64 %return27, i64 0)
+  %return33 = call i64 @"not@II"(i64 %return32)
+  %11 = icmp ne i64 %return33, 0
+  br i1 %11, label %true34, label %end30
+
+end30:                                            ; preds = %true29, %true34, %true
+  %voronoi_pts37 = load i64*, i64** %voronoi_pts
+  %output = call i64* @"append@[II"(i64* %voronoi_pts37, i64 %return27)
+  store i64* %output, i64** %voronoi_pts
+  store i64 1, i64* %hit_boundary
+  br label %UnifiedReturnBlock
+
+true34:                                           ; preds = %true29
+  %return36 = call i8* @"sprintf@SS:SIS"(i8* getelementptr inbounds ([35 x i8], [35 x i8]* @3, i64 0, i64 0), i8* getelementptr inbounds ([154 x i8], [154 x i8]* @4, i64 0, i64 0), i64 68, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @5, i64 0, i64 0))
+  call void @"print_once@S:SI"(i8* %return36, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @6, i64 0, i64 0), i64 1)
+  br label %end30
+
+end43:                                            ; preds = %false
+  %tet_geo44 = load i64, i64* %tet_geo
+  store i64 %tet_geo44, i64* %3
+  store i64 %return18, i64* %4
+  %p046 = load i64, i64* %p0
+  store i64 %p046, i64* %5
+  %p147 = load i64, i64* %p1
+  store i64 %p147, i64* %6
+  store i64 %return14, i64* %7
+  call void @"tet_findface@IIIIIIII"(i64* %3, i64* %4, i64* %5, i64* %6, i64* %7, i64* %v0, i64* %v1, i64* %face)
+  %voronoi_pts50 = load i64*, i64** %voronoi_pts
+  %output52 = call i64* @"append@[II"(i64* %voronoi_pts50, i64 %return18)
+  store i64* %output52, i64** %voronoi_pts
+  %start_tet6 = load i64, i64* %start_tet
+  %return = call i64 @"ne@III"(i64 %return18, i64 %start_tet6)
+  %12 = icmp ne i64 %return, 0
+  br i1 %12, label %body, label %end
+
+UnifiedReturnBlock:                               ; preds = %end30, %end
+  %UnifiedRetVal = phi i64 [ %merge, %end ], [ 1, %end30 ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64 @"primpoint@IIII"(i64, i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"tet_adjacent@IIII"(i64, i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"primvertex@IIII"(i64, i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"findattribval@IISSI"(i64, i8*, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"assert_enabled@I"() #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"sprintf@SS:SIS"(i8*, i8*, i64, i8*) #1
+
+; Function Attrs: nounwind
+declare void @"print_once@S:SI"(i8*, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64* @"append@[II"(i64*, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private void @"build_voronoi_face@IIIIIII"(i64* %tet_geo, i64* %start_tet, i64* %p0, i64* %p1, i64* %start_face, i64* %start_v0, i64* %start_v1) #0 {
+__llvm_entry:
+  %hit_boundary = alloca i64
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca i64
+  %4 = alloca i64
+  %5 = alloca i64
+  %6 = alloca i64
+  %7 = alloca i64
+  %8 = alloca i64
+  %9 = alloca i64
+  %10 = alloca i64
+  %11 = alloca i64
+  %12 = alloca i64
+  %13 = alloca i64
+  %14 = alloca i64
+  %15 = alloca i64
+  %16 = alloca i64
+  %voronoi_pts = alloca i64*
+  store i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64** %voronoi_pts, !vex-initializer-store !3
+  store i64 0, i64* %hit_boundary
+  %tet_geo1 = load i64, i64* %tet_geo
+  store i64 %tet_geo1, i64* %0
+  %start_tet2 = load i64, i64* %start_tet
+  store i64 %start_tet2, i64* %1
+  %p03 = load i64, i64* %p0
+  store i64 %p03, i64* %2
+  %p14 = load i64, i64* %p1
+  store i64 %p14, i64* %3
+  %start_face5 = load i64, i64* %start_face
+  store i64 %start_face5, i64* %4
+  %start_v06 = load i64, i64* %start_v0
+  store i64 %start_v06, i64* %5
+  %start_v17 = load i64, i64* %start_v1
+  store i64 %start_v17, i64* %6
+  %find_tets_around_edge = call i64 @"find_tets_around_edge@IIIIIIII[II"(i64* %0, i64* %1, i64* %2, i64* %3, i64* %4, i64* %5, i64* %6, i64** %voronoi_pts, i64* %hit_boundary)
+  %return = call i64 @"not@II"(i64 %find_tets_around_edge)
+  %17 = icmp ne i64 %return, 0
+  br i1 %17, label %true, label %end
+
+true:                                             ; preds = %true9, %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %hit_boundary8 = load i64, i64* %hit_boundary
+  %18 = icmp ne i64 %hit_boundary8, 0
+  br i1 %18, label %true9, label %end10
+
+true9:                                            ; preds = %end
+  %voronoi_pts11 = load i64*, i64** %voronoi_pts
+  %return12 = call i64* @"reverse@[I[I"(i64* %voronoi_pts11)
+  store i64* %return12, i64** %voronoi_pts
+  %start_tet14 = load i64, i64* %start_tet
+  %output = call i64* @"append@[II"(i64* %return12, i64 %start_tet14)
+  store i64* %output, i64** %voronoi_pts
+  %start_face15 = load i64, i64* %start_face
+  store i64 %start_face15, i64* %7
+  %start_v016 = load i64, i64* %start_v0
+  store i64 %start_v016, i64* %8
+  %start_v117 = load i64, i64* %start_v1
+  store i64 %start_v117, i64* %9
+  %tet_reverseedge = call i64 @"tet_reverseedge@IIII"(i64* %7, i64* %8, i64* %9)
+  %tet_geo18 = load i64, i64* %tet_geo
+  store i64 %tet_geo18, i64* %10
+  %start_tet19 = load i64, i64* %start_tet
+  store i64 %start_tet19, i64* %11
+  %p020 = load i64, i64* %p0
+  store i64 %p020, i64* %12
+  %p121 = load i64, i64* %p1
+  store i64 %p121, i64* %13
+  store i64 %tet_reverseedge, i64* %14
+  %start_v023 = load i64, i64* %start_v0
+  store i64 %start_v023, i64* %15
+  %start_v124 = load i64, i64* %start_v1
+  store i64 %start_v124, i64* %16
+  %find_tets_around_edge25 = call i64 @"find_tets_around_edge@IIIIIIII[II"(i64* %10, i64* %11, i64* %12, i64* %13, i64* %14, i64* %15, i64* %16, i64** %voronoi_pts, i64* %hit_boundary)
+  %return26 = call i64 @"not@II"(i64 %find_tets_around_edge25)
+  %19 = icmp ne i64 %return26, 0
+  br i1 %19, label %true, label %end10
+
+end10:                                            ; preds = %true9, %end
+  %voronoi_pts29 = load i64*, i64** %voronoi_pts
+  %return30 = call i64 @"addprim@IIS[I"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @7, i64 0, i64 0), i64* %voronoi_pts29)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end10, %true
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64* @"reverse@[I[I"(i64*) #2
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IIS[I"(i64, i8*, i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %ptnum) #2 {
+__llvm_entry:
+  %0 = alloca i64
+  store i64 %ptnum, i64* %0
+  call void @"__vex_snippet_snippet@I"(i64* %0)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @10, i64 0, i64 0), i64 %ptnum) #3
+  store i64 %gvalue, i64* @ptnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+!3 = !{!""}
+
+;_code_end

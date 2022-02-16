@@ -1,0 +1,72 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"P\00"
+@P_texture = external global <3 x double>
+@P = external global <3 x double>
+@ptnum = external global i64
+@1 = private constant [10 x i8] c"P_texture\00"
+@2 = private constant [6 x i8] c"ptnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VVI"(<3 x double>* %_bound_P_texture, <3 x double>* %_bound_P, i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %_bound_P1 = load <3 x double>, <3 x double>* %_bound_P
+  %_bound_ptnum2 = load i64, i64* %_bound_ptnum
+  %return = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 %_bound_ptnum2)
+  %output = call <3 x double> @"sub@VV"(<3 x double> %_bound_P1, <3 x double> %return)
+  store <3 x double> %output, <3 x double>* %_bound_P_texture
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P_texture, <3 x double> %P, i64 %ptnum) #1 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca i64
+  %"<P_texture>" = alloca <3 x double>
+  store <3 x double> %P_texture, <3 x double>* %"<P_texture>"
+  store <3 x double> %P, <3 x double>* %0
+  store i64 %ptnum, i64* %1
+  call void @"__vex_snippet_snippet@VVI"(<3 x double>* %"<P_texture>", <3 x double>* %0, i64* %1)
+  %evalue = load <3 x double>, <3 x double>* %"<P_texture>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0), <3 x double> %evalue) #3
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %P) #3
+  %gvalue6 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0), i64 %ptnum) #3
+  store <3 x double> %gvalue, <3 x double>* @P_texture
+  store <3 x double> %gvalue4, <3 x double>* @P
+  store i64 %gvalue6, i64* @ptnum
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

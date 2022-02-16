@@ -1,0 +1,242 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [8 x i8] c"../%s%d\00"
+@1 = private constant [10 x i8] c"volumeres\00"
+@2 = private constant [18 x i8] c"volumenoiseoffset\00"
+@3 = private constant [16 x i8] c"volumenoisefreq\00"
+@4 = private constant [14 x i8] c"cutoffdensity\00"
+@5 = private constant [20 x i8] c"densitymaxthreshold\00"
+@6 = private constant [12 x i8] c"useptsinput\00"
+@7 = private constant [14 x i8] c"ptsinputgroup\00"
+@8 = private constant [15 x i8] c"usevolumeinput\00"
+@9 = private constant [17 x i8] c"volumeinputgroup\00"
+@10 = private constant [16 x i8] c"volumemixmethod\00"
+@11 = private constant [16 x i8] c"volumenoisetype\00"
+@12 = private constant [1 x i8] zeroinitializer
+@iteration = external global i64
+@volumeres = external global <3 x double>
+@scatteroffset = external global <3 x double>
+@scatterfreq = external global <3 x double>
+@densitymin = external global double
+@densitymax = external global double
+@useptsinput = external global i64
+@ptsinputgroup = external global i8*
+@usevolumeinput = external global i64
+@volumeinputgroup = external global i8*
+@volumemixmethod = external global i64
+@volumenoisetype = external global i8*
+@13 = private constant [10 x i8] c"iteration\00"
+@14 = private constant [14 x i8] c"scatteroffset\00"
+@15 = private constant [12 x i8] c"scatterfreq\00"
+@16 = private constant [11 x i8] c"densitymin\00"
+@17 = private constant [11 x i8] c"densitymax\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IVVVFFISISIS"(i64* %_bound_iteration, <3 x double>* %_bound_volumeres, <3 x double>* %_bound_scatteroffset, <3 x double>* %_bound_scatterfreq, double* %_bound_densitymin, double* %_bound_densitymax, i64* %_bound_useptsinput, i8** %_bound_ptsinputgroup, i64* %_bound_usevolumeinput, i8** %_bound_volumeinputgroup, i64* %_bound_volumemixmethod, i8** %_bound_volumenoisetype) #0 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca i64
+  %2 = alloca i8*
+  %3 = alloca i64
+  %4 = alloca i8*
+  %5 = alloca i64
+  %6 = alloca i8*
+  %7 = alloca i64
+  %8 = alloca i8*
+  %9 = alloca i64
+  %10 = alloca i8*
+  %11 = alloca i64
+  %12 = alloca i8*
+  %13 = alloca i64
+  %14 = alloca i8*
+  %15 = alloca i64
+  %16 = alloca i8*
+  %17 = alloca i64
+  %18 = alloca i8*
+  %19 = alloca i64
+  %20 = alloca i8*
+  %21 = alloca i64
+  %_bound_iteration1 = load i64, i64* %_bound_iteration
+  %output = add i64 %_bound_iteration1, 1
+  store i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0), i8** %0
+  store i64 %output, i64* %1
+  %parm = call i8* @"parm@SSI"(i8** %0, i64* %1)
+  %return = call i64 @"chi@IS"(i8* %parm)
+  %cast = call <3 x double> @"set@VI"(i64 %return)
+  store <3 x double> %cast, <3 x double>* %_bound_volumeres
+  store i8* getelementptr inbounds ([18 x i8], [18 x i8]* @2, i64 0, i64 0), i8** %2
+  store i64 %output, i64* %3
+  %parm4 = call i8* @"parm@SSI"(i8** %2, i64* %3)
+  %return5 = call <3 x double> @"chv@VS"(i8* %parm4)
+  store <3 x double> %return5, <3 x double>* %_bound_scatteroffset
+  store i8* getelementptr inbounds ([16 x i8], [16 x i8]* @3, i64 0, i64 0), i8** %4
+  store i64 %output, i64* %5
+  %parm7 = call i8* @"parm@SSI"(i8** %4, i64* %5)
+  %return8 = call <3 x double> @"chv@VS"(i8* %parm7)
+  store <3 x double> %return8, <3 x double>* %_bound_scatterfreq
+  store i8* getelementptr inbounds ([14 x i8], [14 x i8]* @4, i64 0, i64 0), i8** %6
+  store i64 %output, i64* %7
+  %parm10 = call i8* @"parm@SSI"(i8** %6, i64* %7)
+  %return11 = call double @"chf@FS"(i8* %parm10)
+  store double %return11, double* %_bound_densitymin
+  store i8* getelementptr inbounds ([20 x i8], [20 x i8]* @5, i64 0, i64 0), i8** %8
+  store i64 %output, i64* %9
+  %parm13 = call i8* @"parm@SSI"(i8** %8, i64* %9)
+  %return14 = call double @"chf@FS"(i8* %parm13)
+  store double %return14, double* %_bound_densitymax
+  store i8* getelementptr inbounds ([12 x i8], [12 x i8]* @6, i64 0, i64 0), i8** %10
+  store i64 %output, i64* %11
+  %parm16 = call i8* @"parm@SSI"(i8** %10, i64* %11)
+  %return17 = call i64 @"chi@IS"(i8* %parm16)
+  store i64 %return17, i64* %_bound_useptsinput
+  store i8* getelementptr inbounds ([14 x i8], [14 x i8]* @7, i64 0, i64 0), i8** %12
+  store i64 %output, i64* %13
+  %parm19 = call i8* @"parm@SSI"(i8** %12, i64* %13)
+  %return20 = call i8* @"chs@SS"(i8* %parm19)
+  store i8* %return20, i8** %_bound_ptsinputgroup
+  store i8* getelementptr inbounds ([15 x i8], [15 x i8]* @8, i64 0, i64 0), i8** %14
+  store i64 %output, i64* %15
+  %parm22 = call i8* @"parm@SSI"(i8** %14, i64* %15)
+  %return23 = call i64 @"chi@IS"(i8* %parm22)
+  store i64 %return23, i64* %_bound_usevolumeinput
+  store i8* getelementptr inbounds ([17 x i8], [17 x i8]* @9, i64 0, i64 0), i8** %16
+  store i64 %output, i64* %17
+  %parm25 = call i8* @"parm@SSI"(i8** %16, i64* %17)
+  %return26 = call i8* @"chs@SS"(i8* %parm25)
+  store i8* %return26, i8** %_bound_volumeinputgroup
+  store i8* getelementptr inbounds ([16 x i8], [16 x i8]* @10, i64 0, i64 0), i8** %18
+  store i64 %output, i64* %19
+  %parm28 = call i8* @"parm@SSI"(i8** %18, i64* %19)
+  %return29 = call i64 @"chi@IS"(i8* %parm28)
+  store i64 %return29, i64* %_bound_volumemixmethod
+  store i8* getelementptr inbounds ([16 x i8], [16 x i8]* @11, i64 0, i64 0), i8** %20
+  store i64 %output, i64* %21
+  %parm31 = call i8* @"parm@SSI"(i8** %20, i64* %21)
+  %return32 = call i8* @"chs@SS"(i8* %parm31)
+  store i8* %return32, i8** %_bound_volumenoisetype
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i8* @"parm@SSI"(i8** %parmname, i64* %idx) #0 {
+__llvm_entry:
+  %parmname1 = load i8*, i8** %parmname
+  %idx2 = load i64, i64* %idx
+  %return = call i8* @"sprintf@SS:SI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0), i8* %parmname1, i64 %idx2)
+  ret i8* %return
+}
+
+; Function Attrs: nounwind readnone
+declare i8* @"sprintf@SS:SI"(i8*, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"chv@VS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %iteration, <3 x double> %volumeres, <3 x double> %scatteroffset, <3 x double> %scatterfreq, double %densitymin, double %densitymax, i64 %useptsinput, i8* %ptsinputgroup, i64 %usevolumeinput, i8* %volumeinputgroup, i64 %volumemixmethod, i8* %volumenoisetype) #2 {
+__llvm_entry:
+  %"<volumeres>" = alloca <3 x double>
+  %"<scatteroffset>" = alloca <3 x double>
+  %"<scatterfreq>" = alloca <3 x double>
+  %"<densitymin>" = alloca double
+  %"<densitymax>" = alloca double
+  %"<useptsinput>" = alloca i64
+  %"<ptsinputgroup>" = alloca i8*
+  %"<usevolumeinput>" = alloca i64
+  %"<volumeinputgroup>" = alloca i8*
+  %"<volumemixmethod>" = alloca i64
+  %"<volumenoisetype>" = alloca i8*
+  %0 = alloca i64
+  store <3 x double> %volumeres, <3 x double>* %"<volumeres>"
+  store <3 x double> %scatteroffset, <3 x double>* %"<scatteroffset>"
+  store <3 x double> %scatterfreq, <3 x double>* %"<scatterfreq>"
+  store double %densitymin, double* %"<densitymin>"
+  store double %densitymax, double* %"<densitymax>"
+  store i64 %useptsinput, i64* %"<useptsinput>"
+  store i8* %ptsinputgroup, i8** %"<ptsinputgroup>"
+  store i64 %usevolumeinput, i64* %"<usevolumeinput>"
+  store i8* %volumeinputgroup, i8** %"<volumeinputgroup>"
+  store i64 %volumemixmethod, i64* %"<volumemixmethod>"
+  store i8* %volumenoisetype, i8** %"<volumenoisetype>"
+  store i64 %iteration, i64* %0
+  call void @"__vex_snippet_snippet@IVVVFFISISIS"(i64* %0, <3 x double>* %"<volumeres>", <3 x double>* %"<scatteroffset>", <3 x double>* %"<scatterfreq>", double* %"<densitymin>", double* %"<densitymax>", i64* %"<useptsinput>", i8** %"<ptsinputgroup>", i64* %"<usevolumeinput>", i8** %"<volumeinputgroup>", i64* %"<volumemixmethod>", i8** %"<volumenoisetype>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @13, i64 0, i64 0), i64 %iteration) #3
+  %evalue2 = load <3 x double>, <3 x double>* %"<volumeres>"
+  %gvalue3 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0), <3 x double> %evalue2) #3
+  %evalue4 = load <3 x double>, <3 x double>* %"<scatteroffset>"
+  %gvalue5 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @14, i64 0, i64 0), <3 x double> %evalue4) #3
+  %evalue6 = load <3 x double>, <3 x double>* %"<scatterfreq>"
+  %gvalue7 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @15, i64 0, i64 0), <3 x double> %evalue6) #3
+  %evalue8 = load double, double* %"<densitymin>"
+  %gvalue9 = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @16, i64 0, i64 0), double %evalue8) #3
+  %evalue10 = load double, double* %"<densitymax>"
+  %gvalue11 = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @17, i64 0, i64 0), double %evalue10) #3
+  %evalue12 = load i64, i64* %"<useptsinput>"
+  %gvalue13 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @6, i64 0, i64 0), i64 %evalue12) #3
+  %evalue14 = load i8*, i8** %"<ptsinputgroup>"
+  %gvalue15 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @7, i64 0, i64 0), i8* %evalue14) #3
+  %evalue16 = load i64, i64* %"<usevolumeinput>"
+  %gvalue17 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @8, i64 0, i64 0), i64 %evalue16) #3
+  %evalue18 = load i8*, i8** %"<volumeinputgroup>"
+  %gvalue19 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @9, i64 0, i64 0), i8* %evalue18) #3
+  %evalue20 = load i64, i64* %"<volumemixmethod>"
+  %gvalue21 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @10, i64 0, i64 0), i64 %evalue20) #3
+  %evalue22 = load i8*, i8** %"<volumenoisetype>"
+  %gvalue23 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @11, i64 0, i64 0), i8* %evalue22) #3
+  store i64 %gvalue, i64* @iteration
+  store <3 x double> %gvalue3, <3 x double>* @volumeres
+  store <3 x double> %gvalue5, <3 x double>* @scatteroffset
+  store <3 x double> %gvalue7, <3 x double>* @scatterfreq
+  store double %gvalue9, double* @densitymin
+  store double %gvalue11, double* @densitymax
+  store i64 %gvalue13, i64* @useptsinput
+  store i8* %gvalue15, i8** @ptsinputgroup
+  store i64 %gvalue17, i64* @usevolumeinput
+  store i8* %gvalue19, i8** @volumeinputgroup
+  store i64 %gvalue21, i64* @volumemixmethod
+  store i8* %gvalue23, i8** @volumenoisetype
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, double 0.000000e+00, double 0.000000e+00, i64 0, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @12, i64 0, i64 0), i64 0, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @12, i64 0, i64 0), i64 0, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @12, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

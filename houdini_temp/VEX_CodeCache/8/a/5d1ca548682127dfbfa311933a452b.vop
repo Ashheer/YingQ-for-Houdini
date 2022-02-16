@@ -1,0 +1,273 @@
+;_name	/obj/sprite/dopnet1/popcolor1/geometryvop1
+; ModuleID = 'obj_sprite_dopnet1_popcolor1_geometryvop1'
+source_filename = "obj_sprite_dopnet1_popcolor1_geometryvop1"
+
+@0 = private constant [7 x i8] c"catrom\00"
+@1 = private constant [7 x i8] c"linear\00"
+@2 = private constant [2 x i8*] [i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0)]
+@3 = private constant [2 x double] [double 0.000000e+00, double 1.000000e+00]
+@4 = private constant [2 x <3 x double>] [<3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>]
+@Cd = external global <3 x double>
+@5 = private constant [11 x i8] c"colorspace\00"
+@6 = private constant [11 x i8] c"cspace:rgb\00"
+@7 = private constant [3 x i8] c"Cd\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_sprite_dopnet1_popcolor1_geometryvop1_if_constant_if1_snippet1@V"(<3 x double>* %color) #0 {
+__llvm_entry:
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_sprite_dopnet1_popcolor1_geometryvop1_if1_random_snippet1@FI"(double* %seed, i64* %_bound_id) #0 {
+__llvm_entry:
+  %seed1 = load double, double* %seed
+  %_bound_id2 = load i64, i64* %_bound_id
+  %cast = sitofp i64 %_bound_id2 to double
+  %output = fadd double %seed1, %cast
+  store double %output, double* %seed
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_sprite_dopnet1_popcolor1_geometryvop1_if_ramp_snippet1@FF"(double* %ramp, double* %_bound_nage) #0 {
+__llvm_entry:
+  %_bound_nage1 = load double, double* %_bound_nage
+  store double %_bound_nage1, double* %ramp
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"vop_colormix@VVVFI"(<3 x double>* %c1, <3 x double>* %c2, double* %bias, i64* %adjust) #0 {
+__llvm_entry:
+  %adjust1 = load i64, i64* %adjust
+  %return = call i64 @"eq@III"(i64 %adjust1, i64 3)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %bias2 = load double, double* %bias
+  %c13 = load <3 x double>, <3 x double>* %c1
+  %c25 = load <3 x double>, <3 x double>* %c2
+  %return7 = call <3 x double> @"cspline@VFV:VVV"(double %bias2, <3 x double> %c13, <3 x double> %c13, <3 x double> %c25, <3 x double> %c25)
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return9 = call i64 @"eq@III"(i64 %adjust1, i64 2)
+  %1 = icmp ne i64 %return9, 0
+  br i1 %1, label %true10, label %false11
+
+end:                                              ; preds = %true20, %false21, %true10, %true
+  %clr.0 = phi <3 x double> [ %return7, %true ], [ %return17, %true10 ], [ %return27, %true20 ], [ %return31, %false21 ]
+  ret <3 x double> %clr.0
+
+true10:                                           ; preds = %false
+  %c113 = load <3 x double>, <3 x double>* %c1
+  %c214 = load <3 x double>, <3 x double>* %c2
+  %bias15 = load double, double* %bias
+  %return16 = call double @"smooth@FFFF"(double 0.000000e+00, double 1.000000e+00, double %bias15)
+  %return17 = call <3 x double> @"lerp@VVVF"(<3 x double> %c113, <3 x double> %c214, double %return16)
+  br label %end
+
+false11:                                          ; preds = %false
+  %return19 = call i64 @"eq@III"(i64 %adjust1, i64 1)
+  %2 = icmp ne i64 %return19, 0
+  %c123 = load <3 x double>, <3 x double>* %c1
+  %c224 = load <3 x double>, <3 x double>* %c2
+  %bias25 = load double, double* %bias
+  br i1 %2, label %true20, label %false21
+
+true20:                                           ; preds = %false11
+  %return26 = call double @"clamp@FFFF"(double %bias25, double 0.000000e+00, double 1.000000e+00)
+  %return27 = call <3 x double> @"lerp@VVVF"(<3 x double> %c123, <3 x double> %c224, double %return26)
+  br label %end
+
+false21:                                          ; preds = %false11
+  %return31 = call <3 x double> @"lerp@VVVF"(<3 x double> %c123, <3 x double> %c224, double %bias25)
+  br label %end
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: alwaysinline
+define private <3 x double> @"cspline@VFV:VVV"(double %rw11, <3 x double> %rw22, <3 x double> %rw33, <3 x double> %rw44, <3 x double> %rw55) #2 {
+__llvm_entry:
+  %rw011 = call <3 x double> @"spline@VSFV:VVV"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), double %rw11, <3 x double> %rw22, <3 x double> %rw33, <3 x double> %rw44, <3 x double> %rw55)
+  ret <3 x double> %rw011
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"spline@VSFV:VVV"(i8*, double, <3 x double>, <3 x double>, <3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"smooth@FFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"lerp@VVVF"(<3 x double>, <3 x double>, double) #3
+
+; Function Attrs: nounwind
+declare double @"clamp@FFFF"(double, double, double) #3
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_sprite_dopnet1_popcolor1_geometryvop1_if_blend_snippet1@FVVF"(double* %ramp, <3 x double>* %startcolor, <3 x double>* %endcolor, double* %_bound_nage) #0 {
+__llvm_entry:
+  %_bound_nage1 = load double, double* %_bound_nage
+  store double %_bound_nage1, double* %ramp
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @obj_sprite_dopnet1_popcolor1_geometryvop1(<3 x double> %parm_color, i64 %parm_uselocalconstant, i64 %parm_colortype, double %parm_seed, i8** %parm_ramp_the_basis_strings, double* %parm_ramp_the_key_positions, <3 x double>* %parm_ramp_the_key_values, double %parm_rampmin, double %parm_rampmax, <3 x double> %Cd, <3 x double> %parm_startcolor, <3 x double> %parm_endcolor, i8** %blendramp_the_basis_strings, double* %blendramp_the_key_positions, double* %blendramp_the_key_values, i64 %id, double %nage) #3 {
+__llvm_entry:
+  %outseed = alloca double
+  %outramp = alloca double
+  %outramp1 = alloca double
+  %0 = alloca <3 x double>
+  %1 = alloca i64
+  %2 = alloca double
+  %3 = alloca <3 x double>
+  %4 = alloca <3 x double>
+  %5 = alloca double
+  %6 = alloca <3 x double>
+  %7 = alloca <3 x double>
+  %8 = alloca double
+  %9 = alloca i64
+  store double 0.000000e+00, double* %outseed, !vex-initializer-store !3
+  store double 0.000000e+00, double* %outramp, !vex-initializer-store !3
+  store double 0.000000e+00, double* %outramp1, !vex-initializer-store !3
+  %return = call i64 @"eq@III"(i64 %parm_colortype, i64 0)
+  %return6 = call i64 @"ne@III"(i64 %return, i64 0)
+  %10 = icmp ne i64 %return6, 0
+  br i1 %10, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return10 = call i64 @"ne@III"(i64 %parm_uselocalconstant, i64 0)
+  %11 = icmp ne i64 %return10, 0
+  br i1 %11, label %true11, label %end12
+
+end:                                              ; preds = %end12, %__llvm_entry
+  %_Cd.0 = phi <3 x double> [ %parm_color, %end12 ], [ %Cd, %__llvm_entry ]
+  %return17 = call i64 @"eq@III"(i64 %parm_colortype, i64 1)
+  %return21 = call i64 @"ne@III"(i64 %return17, i64 0)
+  %12 = icmp ne i64 %return21, 0
+  br i1 %12, label %true22, label %end23
+
+true11:                                           ; preds = %true
+  call void @"_obj_sprite_dopnet1_popcolor1_geometryvop1_if_constant_if1_snippet1@V"(<3 x double>* %0)
+  br label %end12
+
+end12:                                            ; preds = %true11, %true
+  br label %end
+
+true22:                                           ; preds = %end
+  store double %parm_seed, double* %outseed
+  store i64 %id, i64* %1
+  call void @"_obj_sprite_dopnet1_popcolor1_geometryvop1_if1_random_snippet1@FI"(double* %outseed, i64* %1)
+  %outseed28 = load double, double* %outseed
+  %return29 = call <3 x double> @"random@VF"(double %outseed28)
+  br label %end23
+
+end23:                                            ; preds = %true22, %end
+  %__Cd.0 = phi <3 x double> [ %return29, %true22 ], [ %_Cd.0, %end ]
+  %return34 = call i64 @"eq@III"(i64 %parm_colortype, i64 2)
+  %return38 = call i64 @"ne@III"(i64 %return34, i64 0)
+  %13 = icmp ne i64 %return38, 0
+  br i1 %13, label %true39, label %end40
+
+true39:                                           ; preds = %end23
+  store double 0.000000e+00, double* %outramp
+  store double %nage, double* %2
+  call void @"_obj_sprite_dopnet1_popcolor1_geometryvop1_if_ramp_snippet1@FF"(double* %outramp, double* %2)
+  %outramp43 = load double, double* %outramp
+  %return46 = call double @"fit@FFFFFF"(double %outramp43, double %parm_rampmin, double %parm_rampmax, double 0.000000e+00, double 1.000000e+00)
+  %return51 = call <3 x double> @"spline@V[SF[V[F:SS"(i8** %parm_ramp_the_basis_strings, double %return46, <3 x double>* %parm_ramp_the_key_values, double* %parm_ramp_the_key_positions, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @5, i64 0, i64 0), i8* getelementptr inbounds ([11 x i8], [11 x i8]* @6, i64 0, i64 0))
+  br label %end40
+
+end40:                                            ; preds = %true39, %end23
+  %___Cd.0 = phi <3 x double> [ %return51, %true39 ], [ %__Cd.0, %end23 ]
+  %return54 = call i64 @"eq@III"(i64 %parm_colortype, i64 3)
+  %return58 = call i64 @"ne@III"(i64 %return54, i64 0)
+  %14 = icmp ne i64 %return58, 0
+  br i1 %14, label %true59, label %end60
+
+true59:                                           ; preds = %end40
+  store double 0.000000e+00, double* %outramp1
+  store double %nage, double* %5
+  call void @"_obj_sprite_dopnet1_popcolor1_geometryvop1_if_blend_snippet1@FVVF"(double* %outramp1, <3 x double>* %3, <3 x double>* %4, double* %5)
+  %outramp165 = load double, double* %outramp1
+  %return68 = call double @"fit@FFFFFF"(double %outramp165, double %parm_rampmin, double %parm_rampmax, double 0.000000e+00, double 1.000000e+00)
+  %return73 = call double @"spline@F[SF[F[F"(i8** %blendramp_the_basis_strings, double %return68, double* %blendramp_the_key_values, double* %blendramp_the_key_positions)
+  store <3 x double> %parm_startcolor, <3 x double>* %6
+  store <3 x double> %parm_endcolor, <3 x double>* %7
+  store double %return73, double* %8
+  store i64 1, i64* %9
+  %vop_colormix86 = call <3 x double> @"vop_colormix@VVVFI"(<3 x double>* %6, <3 x double>* %7, double* %8, i64* %9)
+  br label %end60
+
+end60:                                            ; preds = %true59, %end40
+  %____Cd.0 = phi <3 x double> [ %vop_colormix86, %true59 ], [ %___Cd.0, %end40 ]
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @7, i64 0, i64 0), <3 x double> %____Cd.0) #4
+  store <3 x double> %gvalue, <3 x double>* @Cd
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: alwaysinline
+define private <3 x double> @"random@VF"(double %rw11) #2 {
+__llvm_entry:
+  %t_0_ = call i64 @"floor@IF"(double %rw11)
+  %rw03 = call <3 x double> @"random@VI"(i64 %t_0_)
+  ret <3 x double> %rw03
+}
+
+; Function Attrs: nounwind
+declare i64 @"floor@IF"(double) #3
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"random@VI"(i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"rand@VF"(double) #3
+
+; Function Attrs: nounwind
+declare double @"fit@FFFFFF"(double, double, double, double, double) #3
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"spline@V[SF[V[F:SS"(i8**, double, <3 x double>*, double*, i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"spline@F[SF[F[F"(i8**, double, double*, double*) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"rgbtohsv@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"hsvtorgb@VV"(<3 x double>) #1
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_sprite_dopnet1_popcolor1_geometryvop1(<3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, i64 0, i64 0, double 0.000000e+00, i8** getelementptr inbounds ([2 x i8*], [2 x i8*]* @2, i64 0, i64 0), double* getelementptr inbounds ([2 x double], [2 x double]* @3, i64 0, i64 0), <3 x double>* getelementptr inbounds ([2 x <3 x double>], [2 x <3 x double>]* @4, i64 0, i64 0), double 0.000000e+00, double 1.000000e+00, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, <3 x double> zeroinitializer, <3 x double> zeroinitializer, i8** getelementptr inbounds ([2 x i8*], [2 x i8*]* @2, i64 0, i64 0), double* getelementptr inbounds ([2 x double], [2 x double]* @3, i64 0, i64 0), double* getelementptr inbounds ([2 x double], [2 x double]* @3, i64 0, i64 0), i64 -1, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { alwaysinline }
+attributes #3 = { nounwind }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+!3 = !{!""}
+
+;_code_end

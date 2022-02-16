@@ -1,0 +1,94 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [9 x i8] c"typename\00"
+@1 = private constant [8 x i8] c"Packed*\00"
+@2 = private constant [5 x i8] c"Poly\00"
+@primnum = external global i64
+@__not_packed = external global i64
+@__not_poly = external global i64
+@3 = private constant [8 x i8] c"primnum\00"
+@4 = private constant [13 x i8] c"__not_packed\00"
+@5 = private constant [11 x i8] c"__not_poly\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@III"(i64* %_bound_primnum, i64* %_bound___not_packed, i64* %_bound___not_poly) #0 {
+__llvm_entry:
+  %_bound_primnum1 = load i64, i64* %_bound_primnum
+  %return = call i8* @"primintrinsic@SISI"(i64 0, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @0, i64 0, i64 0), i64 %_bound_primnum1)
+  %return3 = call i64 @"match@ISS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0), i8* %return)
+  %return4 = call i64 @"not@II"(i64 %return3)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  store i64 1, i64* %_bound___not_packed
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %return6 = call i64 @"match@ISS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0), i8* %return)
+  %return7 = call i64 @"not@II"(i64 %return6)
+  %1 = icmp ne i64 %return7, 0
+  br i1 %1, label %true8, label %end9
+
+true8:                                            ; preds = %end
+  store i64 1, i64* %_bound___not_poly
+  br label %end9
+
+end9:                                             ; preds = %true8, %end
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i8* @"primintrinsic@SISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"match@ISS"(i8*, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %primnum, i64 %__not_packed, i64 %__not_poly) #1 {
+__llvm_entry:
+  %"<__not_packed>" = alloca i64
+  %"<__not_poly>" = alloca i64
+  %0 = alloca i64
+  store i64 %__not_packed, i64* %"<__not_packed>"
+  store i64 %__not_poly, i64* %"<__not_poly>"
+  store i64 %primnum, i64* %0
+  call void @"__vex_snippet_snippet@III"(i64* %0, i64* %"<__not_packed>", i64* %"<__not_poly>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @3, i64 0, i64 0), i64 %primnum) #3
+  %evalue2 = load i64, i64* %"<__not_packed>"
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @4, i64 0, i64 0), i64 %evalue2) #3
+  %evalue4 = load i64, i64* %"<__not_poly>"
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @5, i64 0, i64 0), i64 %evalue4) #3
+  store i64 %gvalue, i64* @primnum
+  store i64 %gvalue3, i64* @__not_packed
+  store i64 %gvalue5, i64* @__not_poly
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

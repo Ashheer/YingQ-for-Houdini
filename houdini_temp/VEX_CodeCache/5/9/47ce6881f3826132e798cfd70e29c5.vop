@@ -1,0 +1,54 @@
+;_name	/obj/sphere1/vellumcloth1/copy_average_pscale/attribvop1
+; ModuleID = 'obj_sphere1_vellumcloth1_copy_average_pscale_attribvop1'
+source_filename = "obj_sphere1_vellumcloth1_copy_average_pscale_attribvop1"
+
+@pscale = external global double
+@0 = private constant [7 x i8] c"pscale\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_sphere1_vellumcloth1_copy_average_pscale_attribvop1_snippet1@FF"(double* %_bound_pscale, double* %_bound_opinput1_pscale) #0 {
+__llvm_entry:
+  %_bound_opinput1_pscale2 = load double, double* %_bound_opinput1_pscale
+  store double %_bound_opinput1_pscale2, double* %_bound_pscale
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @obj_sphere1_vellumcloth1_copy_average_pscale_attribvop1(double %pscale, double %opinput1_pscale) #2 {
+__llvm_entry:
+  %0 = alloca double
+  %"<pscale>" = alloca double
+  store double %pscale, double* %"<pscale>"
+  store double %opinput1_pscale, double* %0
+  call void @"_obj_sphere1_vellumcloth1_copy_average_pscale_attribvop1_snippet1@FF"(double* %"<pscale>", double* %0)
+  %evalue = load double, double* %"<pscale>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), double %evalue) #3
+  store double %gvalue, double* @pscale
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_sphere1_vellumcloth1_copy_average_pscale_attribvop1(double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

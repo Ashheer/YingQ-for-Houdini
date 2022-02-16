@@ -1,0 +1,68 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"iteration\00"
+@1 = private constant [1 x i8] zeroinitializer
+@2 = private constant [0 x i8*] zeroinitializer
+@__blur_target__ = external global i8*
+@__blur_targets__ = external global i8**
+@3 = private constant [16 x i8] c"__blur_target__\00"
+@4 = private constant [17 x i8] c"__blur_targets__\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@S[S"(i8** %_bound___blur_target__, i8*** %_bound___blur_targets__) #0 {
+__llvm_entry:
+  %return = call i64 @"detail@IISI"(i64 1, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), i64 0)
+  %_bound___blur_targets__1 = load i8**, i8*** %_bound___blur_targets__
+  %return3 = call i8* @"getcomp@S[SI"(i8** %_bound___blur_targets__1, i64 %return)
+  store i8* %return3, i8** %_bound___blur_target__
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"detail@IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"getcomp@S[SI"(i8**, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8* %__blur_target__, i8** %__blur_targets__) #1 {
+__llvm_entry:
+  %0 = alloca i8**
+  %"<__blur_target__>" = alloca i8*
+  store i8* %__blur_target__, i8** %"<__blur_target__>"
+  store i8** %__blur_targets__, i8*** %0
+  call void @"__vex_snippet_snippet@S[S"(i8** %"<__blur_target__>", i8*** %0)
+  %evalue = load i8*, i8** %"<__blur_target__>"
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @3, i64 0, i64 0), i8* %evalue) #3
+  %gvalue3 = call i8** @"_export@[SS[S"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @4, i64 0, i64 0), i8** %__blur_targets__) #3
+  store i8* %gvalue, i8** @__blur_target__
+  store i8** %gvalue3, i8*** @__blur_targets__
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+declare i8** @"_export@[SS[S"(i8*, i8**)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0), i8** getelementptr inbounds ([0 x i8*], [0 x i8*]* @2, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

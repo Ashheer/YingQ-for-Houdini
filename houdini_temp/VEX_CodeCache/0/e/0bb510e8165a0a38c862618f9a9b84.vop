@@ -1,0 +1,83 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [11 x i8] c"looplength\00"
+@1 = private constant [11 x i8] c"startframe\00"
+@2 = private constant [9 x i8] c"__max_id\00"
+@Frame = external global double
+@id = external global i64
+@3 = private constant [6 x i8] c"Frame\00"
+@4 = private constant [3 x i8] c"id\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FI"(double* %_bound_Frame, i64* %_bound_id) #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @1, i64 0, i64 0))
+  %_bound_Frame2 = load double, double* %_bound_Frame
+  %cast = sitofp i64 %return1 to double
+  %output = fsub double %_bound_Frame2, %cast
+  %cast5 = sitofp i64 %return to double
+  %output6 = call double @"div@FF"(double %output, double %cast5)
+  %return7 = call i64 @"floor@IF"(double %output6)
+  %return8 = call i64 @"detail@IISI"(i64 1, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @2, i64 0, i64 0), i64 0)
+  %_bound_id9 = load i64, i64* %_bound_id
+  %output12 = mul i64 %return7, %return8
+  %output13 = add i64 %_bound_id9, %output12
+  store i64 %output13, i64* %_bound_id
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind
+declare i64 @"floor@IF"(double) #2
+
+; Function Attrs: nounwind
+declare i64 @"detail@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %Frame, i64 %id) #2 {
+__llvm_entry:
+  %"<id>" = alloca i64
+  %0 = alloca double
+  store i64 %id, i64* %"<id>"
+  store double %Frame, double* %0
+  call void @"__vex_snippet_snippet@FI"(double* %0, i64* %"<id>")
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0), double %Frame) #3
+  %evalue2 = load i64, i64* %"<id>"
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @4, i64 0, i64 0), i64 %evalue2) #3
+  store double %gvalue, double* @Frame
+  store i64 %gvalue3, i64* @id
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, i64 -1)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

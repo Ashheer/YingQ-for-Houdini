@@ -1,0 +1,71 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@weld = external global i64
+@rewire_to = external global i64
+@0 = private constant [5 x i8] c"weld\00"
+@1 = private constant [10 x i8] c"rewire_to\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@II"(i64* %_bound_weld, i64* %_bound_rewire_to) #0 {
+__llvm_entry:
+  %_bound_weld1 = load i64, i64* %_bound_weld
+  %return = call i64 @"ge@III"(i64 %_bound_weld1, i64 0)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return4 = call i64 @"idtopoint@III"(i64 0, i64 %_bound_weld1)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %weldpt.0 = phi i64 [ %return4, %true ], [ %_bound_weld1, %__llvm_entry ]
+  store i64 %weldpt.0, i64* %_bound_rewire_to
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"idtopoint@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %weld, i64 %rewire_to) #2 {
+__llvm_entry:
+  %"<rewire_to>" = alloca i64
+  %0 = alloca i64
+  store i64 %rewire_to, i64* %"<rewire_to>"
+  store i64 %weld, i64* %0
+  call void @"__vex_snippet_snippet@II"(i64* %0, i64* %"<rewire_to>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0), i64 %weld) #3
+  %evalue2 = load i64, i64* %"<rewire_to>"
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0), i64 %evalue2) #3
+  store i64 %gvalue, i64* @weld
+  store i64 %gvalue3, i64* @rewire_to
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 -1, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

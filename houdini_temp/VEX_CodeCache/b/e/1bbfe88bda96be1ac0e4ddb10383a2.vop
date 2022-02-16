@@ -1,0 +1,92 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [1 x i8] zeroinitializer
+@1 = private constant [14 x i8] c"../nameprefix\00"
+@2 = private constant [14 x i8] c"../namemethod\00"
+@3 = private constant [21 x i8] c"../fracturenamespace\00"
+@name = external global i8*
+@4 = private constant [5 x i8] c"name\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IS"(i64* %_bound___piece, i8** %_bound_name) #0 {
+__llvm_entry:
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @1, i64 0, i64 0))
+  %_bound___piece1 = load i64, i64* %_bound___piece
+  %return2 = call i8* @"itoa@SI"(i64 %_bound___piece1)
+  %output = call i8* @"add@SS"(i8* %return, i8* %return2)
+  %return3 = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @2, i64 0, i64 0))
+  %return4 = call i64 @"eq@III"(i64 %return3, i64 0)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  store i8* %output, i8** %_bound_name
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return6 = call i8* @"chs@SS"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @3, i64 0, i64 0))
+  %_bound_name8 = load i8*, i8** %_bound_name
+  %return10 = call i8* @"concat@SSS:S"(i8* %return6, i8* %_bound_name8, i8* %output)
+  store i8* %return10, i8** %_bound_name
+  br label %end
+
+end:                                              ; preds = %false, %true
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"itoa@SI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"add@SS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"concat@SSS:S"(i8*, i8*, i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %__piece, i8* %name) #2 {
+__llvm_entry:
+  %"<name>" = alloca i8*
+  %0 = alloca i64
+  store i8* %name, i8** %"<name>"
+  store i64 %__piece, i64* %0
+  call void @"__vex_snippet_snippet@IS"(i64* %0, i8** %"<name>")
+  %evalue = load i8*, i8** %"<name>"
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @4, i64 0, i64 0), i8* %evalue) #3
+  store i8* %gvalue, i8** @name
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

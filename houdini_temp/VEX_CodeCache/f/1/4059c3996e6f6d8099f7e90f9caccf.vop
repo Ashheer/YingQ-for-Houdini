@@ -1,0 +1,117 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [7 x i8] c"closed\00"
+@elemnum = external global i64
+@primnum = external global i64
+@dstpt = external global i64
+@1 = private constant [8 x i8] c"elemnum\00"
+@2 = private constant [8 x i8] c"primnum\00"
+@3 = private constant [6 x i8] c"dstpt\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@III"(i64* %_bound_elemnum, i64* %_bound_primnum, i64* %_bound_dstpt) #0 {
+__llvm_entry:
+  %_bound_elemnum1 = load i64, i64* %_bound_elemnum
+  %return = call i64 @"vertexprimindex@III"(i64 0, i64 %_bound_elemnum1)
+  %output = add i64 %return, 1
+  %_bound_primnum2 = load i64, i64* %_bound_primnum
+  %return3 = call i64 @"primvertexcount@III"(i64 0, i64 %_bound_primnum2)
+  %return6 = call i64 @"eq@III"(i64 %output, i64 %return3)
+  %0 = icmp ne i64 %return6, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_primnum7 = load i64, i64* %_bound_primnum
+  %return8 = call i64 @"primintrinsic@IISI"(i64 0, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), i64 %_bound_primnum7)
+  %return9 = call i64 @"not@II"(i64 %return8)
+  %1 = icmp ne i64 %return9, 0
+  br i1 %1, label %true10, label %false
+
+end:                                              ; preds = %false, %__llvm_entry
+  %vertexprimindex.0 = phi i64 [ 0, %false ], [ %output, %__llvm_entry ]
+  %_bound_primnum13 = load i64, i64* %_bound_primnum
+  %return15 = call i64 @"primvertex@IIII"(i64 0, i64 %_bound_primnum13, i64 %vertexprimindex.0)
+  %return17 = call i64 @"vertexpoint@III"(i64 0, i64 %return15)
+  store i64 %return17, i64* %_bound_dstpt
+  br label %UnifiedReturnBlock
+
+true10:                                           ; preds = %true
+  %return12 = call i64 @"neg@II"(i64 1)
+  store i64 %return12, i64* %_bound_dstpt
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %true
+  br label %end
+
+UnifiedReturnBlock:                               ; preds = %true10, %end
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"vertexprimindex@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"primvertexcount@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"primintrinsic@IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"primvertex@IIII"(i64, i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"vertexpoint@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %elemnum, i64 %primnum, i64 %dstpt) #1 {
+__llvm_entry:
+  %"<dstpt>" = alloca i64
+  %0 = alloca i64
+  %1 = alloca i64
+  store i64 %dstpt, i64* %"<dstpt>"
+  store i64 %elemnum, i64* %0
+  store i64 %primnum, i64* %1
+  call void @"__vex_snippet_snippet@III"(i64* %0, i64* %1, i64* %"<dstpt>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0), i64 %elemnum) #3
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i64 %primnum) #3
+  %evalue5 = load i64, i64* %"<dstpt>"
+  %gvalue6 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0), i64 %evalue5) #3
+  store i64 %gvalue, i64* @elemnum
+  store i64 %gvalue4, i64* @primnum
+  store i64 %gvalue6, i64* @dstpt
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

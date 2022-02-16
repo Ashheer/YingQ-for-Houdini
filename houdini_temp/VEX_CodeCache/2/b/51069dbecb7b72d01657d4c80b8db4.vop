@@ -1,0 +1,162 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [1 x i8] zeroinitializer
+@1 = private constant [2 x i8] c" \00"
+@2 = private constant [5 x i8] c"mode\00"
+@3 = private constant [67 x i8] c"Soft-Body Deformation (Soft) mode expects consistent point count. \00"
+@4 = private constant [44 x i8] c"If the topology is inherently nonconstant, \00"
+@5 = private constant [55 x i8] c"consider switching to Dynamic Remeshing (Fluid) mode. \00"
+@6 = private constant [47 x i8] c"Inconsistent point count detected at frame(s):\00"
+@7 = private constant [2 x i8] c".\00"
+@8 = private constant [73 x i8] c"Rigid-Body Dynamics (Rigid) mode expects consistent packed piece count. \00"
+@9 = private constant [54 x i8] c"Inconsistent packed piece count detected at frame(s):\00"
+@10 = private constant [591 x i8] c"Rigid-Body Dynamics (Rigid) mode expects the primitive intrinsic \22pivot\22                to not change more than once during the animation. Go to Geometry                Spreadsheet > Primitives > Intrinsics and select \22pivot\22 to check if                the values are changing more than once. If they are, make sure the pieces                are packed before (not after) the solver; if the pieces are animated using                a Transform Pieces SOP, make sure they are packed before (not after) that SOP.                Very small numerical discrepancies do not count as real changes.\00"
+@11 = private constant [0 x i64] zeroinitializer
+@__numpt_error_fs = external global i64*
+@__intrinsic_pivot_update_count = external global i64
+@12 = private constant [17 x i8] c"__numpt_error_fs\00"
+@13 = private constant [31 x i8] c"__intrinsic_pivot_update_count\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@[II"(i64** %_bound___numpt_error_fs, i64* %_bound___intrinsic_pivot_update_count) #0 {
+__llvm_entry:
+  %_bound___numpt_error_fs1 = load i64*, i64** %_bound___numpt_error_fs
+  %return = call i64 @"len@I[I"(i64* %_bound___numpt_error_fs1)
+  %return2 = call i64 @"gt@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return2, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %cond
+
+end:                                              ; preds = %false, %true30, %true20, %__llvm_entry
+  %return36 = call i64 @"chi@IS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0))
+  %return37 = call i64 @"eq@III"(i64 %return36, i64 1)
+  %_bound___intrinsic_pivot_update_count38 = load i64, i64* %_bound___intrinsic_pivot_update_count
+  %return39 = call i64 @"gt@III"(i64 %_bound___intrinsic_pivot_update_count38, i64 1)
+  %return40 = call i64 @"and@III"(i64 %return37, i64 %return39)
+  %1 = icmp ne i64 %return40, 0
+  br i1 %1, label %true41, label %end42
+
+cond:                                             ; preds = %body, %true
+  %frames.0 = phi i8* [ getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), %true ], [ %output15, %body ]
+  %__impl_foreach_index_217.0 = phi i64 [ 0, %true ], [ %output17, %body ]
+  %return7 = call i64 @"lt@III"(i64 %__impl_foreach_index_217.0, i64 %return)
+  %2 = icmp ne i64 %return7, 0
+  br i1 %2, label %body, label %end8
+
+body:                                             ; preds = %cond
+  %_bound___numpt_error_fs9 = load i64*, i64** %_bound___numpt_error_fs
+  %return11 = call i64 @"getcomp@I[II"(i64* %_bound___numpt_error_fs9, i64 %__impl_foreach_index_217.0)
+  %return14 = call i8* @"itoa@SI"(i64 %return11)
+  %output = call i8* @"add@SS"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i8* %return14)
+  %output15 = call i8* @"add@SS"(i8* %frames.0, i8* %output)
+  %output17 = add i64 %__impl_foreach_index_217.0, 1
+  br label %cond
+
+end8:                                             ; preds = %cond
+  %return18 = call i64 @"chi@IS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0))
+  %return19 = call i64 @"eq@III"(i64 %return18, i64 0)
+  %3 = icmp ne i64 %return19, 0
+  br i1 %3, label %true20, label %false
+
+true20:                                           ; preds = %end8
+  %output22 = call i8* @"add@SS"(i8* getelementptr inbounds ([67 x i8], [67 x i8]* @3, i64 0, i64 0), i8* getelementptr inbounds ([44 x i8], [44 x i8]* @4, i64 0, i64 0))
+  %output23 = call i8* @"add@SS"(i8* %output22, i8* getelementptr inbounds ([55 x i8], [55 x i8]* @5, i64 0, i64 0))
+  %output24 = call i8* @"add@SS"(i8* %output23, i8* getelementptr inbounds ([47 x i8], [47 x i8]* @6, i64 0, i64 0))
+  %output26 = call i8* @"add@SS"(i8* %output24, i8* %frames.0)
+  %output27 = call i8* @"add@SS"(i8* %output26, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @7, i64 0, i64 0))
+  call void @"error@S"(i8* %output27)
+  br label %end
+
+false:                                            ; preds = %end8
+  %return29 = call i64 @"eq@III"(i64 %return18, i64 1)
+  %4 = icmp ne i64 %return29, 0
+  br i1 %4, label %true30, label %end
+
+true30:                                           ; preds = %false
+  %output32 = call i8* @"add@SS"(i8* getelementptr inbounds ([73 x i8], [73 x i8]* @8, i64 0, i64 0), i8* getelementptr inbounds ([54 x i8], [54 x i8]* @9, i64 0, i64 0))
+  %output34 = call i8* @"add@SS"(i8* %output32, i8* %frames.0)
+  %output35 = call i8* @"add@SS"(i8* %output34, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @7, i64 0, i64 0))
+  call void @"error@S"(i8* %output35)
+  br label %end
+
+true41:                                           ; preds = %end
+  call void @"error@S"(i8* getelementptr inbounds ([591 x i8], [591 x i8]* @10, i64 0, i64 0))
+  br label %end42
+
+end42:                                            ; preds = %true41, %end
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"itoa@SI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"add@SS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare void @"error@S"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64* %__numpt_error_fs, i64 %__intrinsic_pivot_update_count) #2 {
+__llvm_entry:
+  %0 = alloca i64*
+  %1 = alloca i64
+  store i64* %__numpt_error_fs, i64** %0
+  store i64 %__intrinsic_pivot_update_count, i64* %1
+  call void @"__vex_snippet_snippet@[II"(i64** %0, i64* %1)
+  %gvalue = call i64* @"_export@[IS[I"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @12, i64 0, i64 0), i64* %__numpt_error_fs) #3
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([31 x i8], [31 x i8]* @13, i64 0, i64 0), i64 %__intrinsic_pivot_update_count) #3
+  store i64* %gvalue, i64** @__numpt_error_fs
+  store i64 %gvalue4, i64* @__intrinsic_pivot_update_count
+  ret void
+}
+
+declare i64* @"_export@[IS[I"(i8*, i64*)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64* getelementptr inbounds ([0 x i64], [0 x i64]* @11, i64 0, i64 0), i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

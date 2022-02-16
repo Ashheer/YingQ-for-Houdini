@@ -1,0 +1,79 @@
+;_name	/obj/Cloth/vellumsolver1/dopnet1/vellumsolver1/fix_welded_points1/geometryvop1
+; ModuleID = 'obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_fix_welded_points1_geometryvop1'
+source_filename = "obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_fix_welded_points1_geometryvop1"
+
+@0 = private constant [6 x i8] c"plast\00"
+@1 = private constant [6 x i8] c"vlast\00"
+@plast = external global <3 x double>
+@vlast = external global <3 x double>
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_fix_welded_points1_geometryvop1_snippet1@IVV"(i64* %_bound_weld, <3 x double>* %_bound_plast, <3 x double>* %_bound_vlast) #0 {
+__llvm_entry:
+  %_bound_weld1 = load i64, i64* %_bound_weld
+  %return = call i64 @"idtopoint@III"(i64 0, i64 %_bound_weld1)
+  %return4 = call i64 @"ge@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return6 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i64 %return)
+  store <3 x double> %return6, <3 x double>* %_bound_plast
+  %return8 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %return)
+  store <3 x double> %return8, <3 x double>* %_bound_vlast
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"idtopoint@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+define void @obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_fix_welded_points1_geometryvop1(i64 %weld, <3 x double> %plast, <3 x double> %vlast) #1 {
+__llvm_entry:
+  %"<plast>" = alloca <3 x double>
+  %"<vlast>" = alloca <3 x double>
+  %0 = alloca i64
+  store <3 x double> %plast, <3 x double>* %"<plast>"
+  store <3 x double> %vlast, <3 x double>* %"<vlast>"
+  store i64 %weld, i64* %0
+  call void @"_obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_fix_welded_points1_geometryvop1_snippet1@IVV"(i64* %0, <3 x double>* %"<plast>", <3 x double>* %"<vlast>")
+  %evalue = load <3 x double>, <3 x double>* %"<plast>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), <3 x double> %evalue) #3
+  %evalue2 = load <3 x double>, <3 x double>* %"<vlast>"
+  %gvalue3 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), <3 x double> %evalue2) #3
+  store <3 x double> %gvalue, <3 x double>* @plast
+  store <3 x double> %gvalue3, <3 x double>* @vlast
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_Cloth_vellumsolver1_dopnet1_vellumsolver1_fix_welded_points1_geometryvop1(i64 0, <3 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

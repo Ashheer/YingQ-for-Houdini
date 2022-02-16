@@ -1,0 +1,259 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [8 x i8] c"../%s%d\00"
+@1 = private constant [1 x i8] zeroinitializer
+@2 = private constant [11 x i8] c"fractureid\00"
+@3 = private constant [14 x i8] c"fractureratio\00"
+@4 = private constant [13 x i8] c"fractureseed\00"
+@5 = private constant [16 x i8] c"copycellattribs\00"
+@6 = private constant [23 x i8] c"createinteriorsurfaces\00"
+@7 = private constant [13 x i8] c"ptattributes\00"
+@8 = private constant [15 x i8] c"primattributes\00"
+@9 = private constant [23 x i8] c"constraintptattributes\00"
+@10 = private constant [22 x i8] c"connectivitypartition\00"
+@11 = private constant [12 x i8] c"insidegroup\00"
+@12 = private constant [13 x i8] c"outsidegroup\00"
+@13 = private constant [13 x i8] c"enabledetail\00"
+@iteration = external global i64
+@fracturetype = external global i8*
+@fractureratio = external global double
+@fractureseed = external global double
+@voronoicopycellattribs = external global i64
+@voronoicreateinteriorsurfaces = external global i64
+@ptattributes = external global i8*
+@primattributes = external global i8*
+@constraintptattributes = external global i8*
+@connectivitypartition = external global i64
+@insidegroup = external global i64
+@outsidegroup = external global i64
+@enabledetail = external global i64
+@14 = private constant [10 x i8] c"iteration\00"
+@15 = private constant [13 x i8] c"fracturetype\00"
+@16 = private constant [23 x i8] c"voronoicopycellattribs\00"
+@17 = private constant [30 x i8] c"voronoicreateinteriorsurfaces\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@ISFFIISSSIIII"(i64* %_bound_iteration, i8** %_bound_fracturetype, double* %_bound_fractureratio, double* %_bound_fractureseed, i64* %_bound_voronoicopycellattribs, i64* %_bound_voronoicreateinteriorsurfaces, i8** %_bound_ptattributes, i8** %_bound_primattributes, i8** %_bound_constraintptattributes, i64* %_bound_connectivitypartition, i64* %_bound_insidegroup, i64* %_bound_outsidegroup, i64* %_bound_enabledetail) #0 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca i64
+  %2 = alloca i8*
+  %3 = alloca i64
+  %4 = alloca i8*
+  %5 = alloca i64
+  %6 = alloca i8*
+  %7 = alloca i64
+  %8 = alloca i8*
+  %9 = alloca i64
+  %10 = alloca i8*
+  %11 = alloca i64
+  %12 = alloca i8*
+  %13 = alloca i64
+  %14 = alloca i8*
+  %15 = alloca i64
+  %16 = alloca i8*
+  %17 = alloca i64
+  %18 = alloca i8*
+  %19 = alloca i64
+  %20 = alloca i8*
+  %21 = alloca i64
+  %22 = alloca i8*
+  %23 = alloca i64
+  %_bound_iteration1 = load i64, i64* %_bound_iteration
+  %output = add i64 %_bound_iteration1, 1
+  store i8* getelementptr inbounds ([11 x i8], [11 x i8]* @2, i64 0, i64 0), i8** %0
+  store i64 %output, i64* %1
+  %parm = call i8* @"parm@SSI"(i8** %0, i64* %1)
+  %return = call i8* @"chs@SS"(i8* %parm)
+  store i8* %return, i8** %_bound_fracturetype
+  store i8* getelementptr inbounds ([14 x i8], [14 x i8]* @3, i64 0, i64 0), i8** %2
+  store i64 %output, i64* %3
+  %parm4 = call i8* @"parm@SSI"(i8** %2, i64* %3)
+  %return5 = call double @"chf@FS"(i8* %parm4)
+  store double %return5, double* %_bound_fractureratio
+  store i8* getelementptr inbounds ([13 x i8], [13 x i8]* @4, i64 0, i64 0), i8** %4
+  store i64 %output, i64* %5
+  %parm7 = call i8* @"parm@SSI"(i8** %4, i64* %5)
+  %return8 = call double @"chf@FS"(i8* %parm7)
+  store double %return8, double* %_bound_fractureseed
+  store i8* getelementptr inbounds ([16 x i8], [16 x i8]* @5, i64 0, i64 0), i8** %6
+  store i64 %output, i64* %7
+  %parm10 = call i8* @"parm@SSI"(i8** %6, i64* %7)
+  %return11 = call i64 @"chi@IS"(i8* %parm10)
+  store i64 %return11, i64* %_bound_voronoicopycellattribs
+  store i8* getelementptr inbounds ([23 x i8], [23 x i8]* @6, i64 0, i64 0), i8** %8
+  store i64 %output, i64* %9
+  %parm13 = call i8* @"parm@SSI"(i8** %8, i64* %9)
+  %return14 = call i64 @"chi@IS"(i8* %parm13)
+  store i64 %return14, i64* %_bound_voronoicreateinteriorsurfaces
+  store i8* getelementptr inbounds ([13 x i8], [13 x i8]* @7, i64 0, i64 0), i8** %10
+  store i64 %output, i64* %11
+  %parm16 = call i8* @"parm@SSI"(i8** %10, i64* %11)
+  %return17 = call i8* @"chs@SS"(i8* %parm16)
+  store i8* %return17, i8** %_bound_ptattributes
+  store i8* getelementptr inbounds ([15 x i8], [15 x i8]* @8, i64 0, i64 0), i8** %12
+  store i64 %output, i64* %13
+  %parm19 = call i8* @"parm@SSI"(i8** %12, i64* %13)
+  %return20 = call i8* @"chs@SS"(i8* %parm19)
+  store i8* %return20, i8** %_bound_primattributes
+  store i8* getelementptr inbounds ([23 x i8], [23 x i8]* @9, i64 0, i64 0), i8** %14
+  store i64 %output, i64* %15
+  %parm22 = call i8* @"parm@SSI"(i8** %14, i64* %15)
+  %return23 = call i8* @"chs@SS"(i8* %parm22)
+  store i8* %return23, i8** %_bound_constraintptattributes
+  store i8* getelementptr inbounds ([22 x i8], [22 x i8]* @10, i64 0, i64 0), i8** %16
+  store i64 %output, i64* %17
+  %parm25 = call i8* @"parm@SSI"(i8** %16, i64* %17)
+  %return26 = call double @"ch@FS"(i8* %parm25)
+  %cast = fptosi double %return26 to i64
+  store i64 %cast, i64* %_bound_connectivitypartition
+  store i8* getelementptr inbounds ([12 x i8], [12 x i8]* @11, i64 0, i64 0), i8** %18
+  store i64 %output, i64* %19
+  %parm28 = call i8* @"parm@SSI"(i8** %18, i64* %19)
+  %return29 = call i64 @"chi@IS"(i8* %parm28)
+  store i64 %return29, i64* %_bound_insidegroup
+  store i8* getelementptr inbounds ([13 x i8], [13 x i8]* @12, i64 0, i64 0), i8** %20
+  store i64 %output, i64* %21
+  %parm31 = call i8* @"parm@SSI"(i8** %20, i64* %21)
+  %return32 = call i64 @"chi@IS"(i8* %parm31)
+  store i64 %return32, i64* %_bound_outsidegroup
+  store i8* getelementptr inbounds ([13 x i8], [13 x i8]* @13, i64 0, i64 0), i8** %22
+  store i64 %output, i64* %23
+  %parm34 = call i8* @"parm@SSI"(i8** %22, i64* %23)
+  %return35 = call i64 @"chi@IS"(i8* %parm34)
+  store i64 %return35, i64* %_bound_enabledetail
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i8* @"parm@SSI"(i8** %parmname, i64* %idx) #0 {
+__llvm_entry:
+  %parmname1 = load i8*, i8** %parmname
+  %idx2 = load i64, i64* %idx
+  %return = call i8* @"sprintf@SS:SI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0), i8* %parmname1, i64 %idx2)
+  ret i8* %return
+}
+
+; Function Attrs: nounwind readnone
+declare i8* @"sprintf@SS:SI"(i8*, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"startswith@ISS"(i8*, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i8* @"sprintf@SS:S"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %iteration, i8* %fracturetype, double %fractureratio, double %fractureseed, i64 %voronoicopycellattribs, i64 %voronoicreateinteriorsurfaces, i8* %ptattributes, i8* %primattributes, i8* %constraintptattributes, i64 %connectivitypartition, i64 %insidegroup, i64 %outsidegroup, i64 %enabledetail) #2 {
+__llvm_entry:
+  %"<fracturetype>" = alloca i8*
+  %"<fractureratio>" = alloca double
+  %"<fractureseed>" = alloca double
+  %"<voronoicopycellattribs>" = alloca i64
+  %"<voronoicreateinteriorsurfaces>" = alloca i64
+  %"<ptattributes>" = alloca i8*
+  %"<primattributes>" = alloca i8*
+  %"<constraintptattributes>" = alloca i8*
+  %"<connectivitypartition>" = alloca i64
+  %"<insidegroup>" = alloca i64
+  %"<outsidegroup>" = alloca i64
+  %"<enabledetail>" = alloca i64
+  %0 = alloca i64
+  store i8* %fracturetype, i8** %"<fracturetype>"
+  store double %fractureratio, double* %"<fractureratio>"
+  store double %fractureseed, double* %"<fractureseed>"
+  store i64 %voronoicopycellattribs, i64* %"<voronoicopycellattribs>"
+  store i64 %voronoicreateinteriorsurfaces, i64* %"<voronoicreateinteriorsurfaces>"
+  store i8* %ptattributes, i8** %"<ptattributes>"
+  store i8* %primattributes, i8** %"<primattributes>"
+  store i8* %constraintptattributes, i8** %"<constraintptattributes>"
+  store i64 %connectivitypartition, i64* %"<connectivitypartition>"
+  store i64 %insidegroup, i64* %"<insidegroup>"
+  store i64 %outsidegroup, i64* %"<outsidegroup>"
+  store i64 %enabledetail, i64* %"<enabledetail>"
+  store i64 %iteration, i64* %0
+  call void @"__vex_snippet_snippet@ISFFIISSSIIII"(i64* %0, i8** %"<fracturetype>", double* %"<fractureratio>", double* %"<fractureseed>", i64* %"<voronoicopycellattribs>", i64* %"<voronoicreateinteriorsurfaces>", i8** %"<ptattributes>", i8** %"<primattributes>", i8** %"<constraintptattributes>", i64* %"<connectivitypartition>", i64* %"<insidegroup>", i64* %"<outsidegroup>", i64* %"<enabledetail>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @14, i64 0, i64 0), i64 %iteration) #3
+  %evalue2 = load i8*, i8** %"<fracturetype>"
+  %gvalue3 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @15, i64 0, i64 0), i8* %evalue2) #3
+  %evalue4 = load double, double* %"<fractureratio>"
+  %gvalue5 = call double @"_export@FSF"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @3, i64 0, i64 0), double %evalue4) #3
+  %evalue6 = load double, double* %"<fractureseed>"
+  %gvalue7 = call double @"_export@FSF"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @4, i64 0, i64 0), double %evalue6) #3
+  %evalue8 = load i64, i64* %"<voronoicopycellattribs>"
+  %gvalue9 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([23 x i8], [23 x i8]* @16, i64 0, i64 0), i64 %evalue8) #3
+  %evalue10 = load i64, i64* %"<voronoicreateinteriorsurfaces>"
+  %gvalue11 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([30 x i8], [30 x i8]* @17, i64 0, i64 0), i64 %evalue10) #3
+  %evalue12 = load i8*, i8** %"<ptattributes>"
+  %gvalue13 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @7, i64 0, i64 0), i8* %evalue12) #3
+  %evalue14 = load i8*, i8** %"<primattributes>"
+  %gvalue15 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @8, i64 0, i64 0), i8* %evalue14) #3
+  %evalue16 = load i8*, i8** %"<constraintptattributes>"
+  %gvalue17 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([23 x i8], [23 x i8]* @9, i64 0, i64 0), i8* %evalue16) #3
+  %evalue18 = load i64, i64* %"<connectivitypartition>"
+  %gvalue19 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([22 x i8], [22 x i8]* @10, i64 0, i64 0), i64 %evalue18) #3
+  %evalue20 = load i64, i64* %"<insidegroup>"
+  %gvalue21 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @11, i64 0, i64 0), i64 %evalue20) #3
+  %evalue22 = load i64, i64* %"<outsidegroup>"
+  %gvalue23 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @12, i64 0, i64 0), i64 %evalue22) #3
+  %evalue24 = load i64, i64* %"<enabledetail>"
+  %gvalue25 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @13, i64 0, i64 0), i64 %evalue24) #3
+  store i64 %gvalue, i64* @iteration
+  store i8* %gvalue3, i8** @fracturetype
+  store double %gvalue5, double* @fractureratio
+  store double %gvalue7, double* @fractureseed
+  store i64 %gvalue9, i64* @voronoicopycellattribs
+  store i64 %gvalue11, i64* @voronoicreateinteriorsurfaces
+  store i8* %gvalue13, i8** @ptattributes
+  store i8* %gvalue15, i8** @primattributes
+  store i8* %gvalue17, i8** @constraintptattributes
+  store i64 %gvalue19, i64* @connectivitypartition
+  store i64 %gvalue21, i64* @insidegroup
+  store i64 %gvalue23, i64* @outsidegroup
+  store i64 %gvalue25, i64* @enabledetail
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0), double 0.000000e+00, double 0.000000e+00, i64 0, i64 0, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0), i64 0, i64 0, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

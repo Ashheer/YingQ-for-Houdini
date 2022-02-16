@@ -1,0 +1,648 @@
+;_name	/out/RBD_Simulation/textures/orient
+; ModuleID = 'out_RBD_Simulation_textures_orient'
+source_filename = "out_RBD_Simulation_textures_orient"
+
+@XRES = external global i64
+@YRES = external global i64
+@AR = external global double
+@R = external global double
+@G = external global double
+@B = external global double
+@A = external global double
+@Cr = external global double
+@Cg = external global double
+@Cb = external global double
+@C4 = external global double
+@PNAME = external global i8*
+@PL = external global i64
+@NP = external global i64
+@PS = external global i64
+@AI = external global i64
+@AS = external global i64
+@I = external global i64
+@NI = external global i64
+@H = external global double
+@S = external global double
+@V = external global double
+@X = external global double
+@Y = external global double
+@IX = external global i64
+@IY = external global i64
+@SF = external global i64
+@EF = external global i64
+@F = external global i64
+@FR = external global i64
+@TIME = external global double
+@TINC = external global double
+@PXSC = external global double
+@0 = private constant [29 x i8] c"op:`opfullpath(chs(\22path\22))`\00"
+@1 = private constant [7 x i8] c"orient\00"
+@2 = private constant [5 x i8] c"file\00"
+@3 = private constant [6 x i8] c"point\00"
+@4 = private constant [7 x i8] c"vertex\00"
+
+; Function Attrs: nounwind
+define void @out_RBD_Simulation_textures_orient(i8* %geo, double %target_texture_size, double %numpt, i8* %rbd_frame_export_attribute, i64 %quaternion_flip, i64 %coord_swizzle, i64 %coord_flip) #0 {
+__llvm_entry:
+  %0 = load i64, i64* @IY
+  %1 = load i64, i64* @IX
+  %2 = load i64, i64* @YRES
+  %output = call double @"div@FF"(double %numpt, double %target_texture_size)
+  %return = call double @"ceil@FF"(double %output)
+  %output7 = fsub double %return, 1.000000e+00
+  %cast = sitofp i64 %0 to double
+  %return10 = call double @"mod@FFF"(double %cast, double %return)
+  %output16 = fsub double %output7, %return10
+  %output19 = fmul double %output16, %target_texture_size
+  %cast21 = fptosi double %output19 to i64
+  %output23 = add i64 %1, %cast21
+  %cast25 = fptosi double %numpt to i64
+  %cast27 = fptosi double %return to i64
+  %output29 = call i64 @"div@II"(i64 %2, i64 %cast27)
+  %output32 = call double @"div@FF"(double %cast, double %return)
+  %return34 = call double @"floor@FF"(double %output32)
+  %output36 = fadd double %return34, 1.000000e+00
+  %cast38 = fptosi double %output36 to i64
+  %output41 = sub i64 %output29, %cast38
+  %output44 = mul i64 %cast25, %output41
+  %output47 = add i64 %output23, %output44
+  %return52 = call i64 @"eq@ISS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0))
+  %3 = icmp ne i64 %return52, 0
+  br i1 %3, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %sourcefile.0 = phi i8* [ %geo, %true ], [ getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0), %__llvm_entry ]
+  %return55 = call i64 @"eq@ISS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @4, i64 0, i64 0))
+  %4 = icmp ne i64 %return55, 0
+  br i1 %4, label %true56, label %end57
+
+true56:                                           ; preds = %end
+  %return60 = call i64 @"vertexindex@ISII"(i8* %sourcefile.0, i64 %output47, i64 0)
+  br label %end57
+
+end57:                                            ; preds = %true56, %end
+  %elemidx.0 = phi i64 [ %return60, %true56 ], [ %output47, %end ]
+  %return64 = call { <4 x double>, i64 } @"getattrib@PSSSII"(i8* %sourcefile.0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0), i8* %rbd_frame_export_attribute, i64 %elemidx.0)
+  %return65 = extractvalue { <4 x double>, i64 } %return64, 0
+  %output66 = extractvalue { <4 x double>, i64 } %return64, 1
+  %return68 = call i64 @"not@II"(i64 %output66)
+  %5 = icmp ne i64 %return68, 0
+  %.return65 = select i1 %5, <4 x double> zeroinitializer, <4 x double> %return65
+  %return75 = call i64 @"eq@III"(i64 %quaternion_flip, i64 0)
+  %6 = icmp ne i64 %return75, 0
+  br i1 %6, label %true76, label %false
+
+true76:                                           ; preds = %end57
+  br label %end77
+
+false:                                            ; preds = %end57
+  %return80 = call i64 @"eq@III"(i64 %quaternion_flip, i64 1)
+  %7 = icmp ne i64 %return80, 0
+  br i1 %7, label %true81, label %false82
+
+end77:                                            ; preds = %true153, %false154, %true147, %true141, %true135, %true129, %true123, %true117, %true111, %true105, %true99, %true93, %true87, %true81, %true76
+  %result.0 = phi <4 x double> [ <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true76 ], [ <double -1.000000e+00, double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true81 ], [ <double 1.000000e+00, double -1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true87 ], [ <double 1.000000e+00, double 1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true93 ], [ <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00, double -1.000000e+00>, %true99 ], [ <double -1.000000e+00, double -1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true105 ], [ <double -1.000000e+00, double 1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true111 ], [ <double -1.000000e+00, double 1.000000e+00, double 1.000000e+00, double -1.000000e+00>, %true117 ], [ <double -1.000000e+00, double -1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true123 ], [ <double -1.000000e+00, double -1.000000e+00, double 1.000000e+00, double -1.000000e+00>, %true129 ], [ <double -1.000000e+00, double -1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %true135 ], [ <double 1.000000e+00, double -1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true141 ], [ <double 1.000000e+00, double 1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %true147 ], [ <double 1.000000e+00, double -1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %true153 ], [ <double 1.000000e+00, double 1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %false154 ]
+  br i1 %6, label %true160, label %false161
+
+true81:                                           ; preds = %false
+  br label %end77
+
+false82:                                          ; preds = %false
+  %return86 = call i64 @"eq@III"(i64 %quaternion_flip, i64 2)
+  %8 = icmp ne i64 %return86, 0
+  br i1 %8, label %true87, label %false88
+
+true87:                                           ; preds = %false82
+  br label %end77
+
+false88:                                          ; preds = %false82
+  %return92 = call i64 @"eq@III"(i64 %quaternion_flip, i64 3)
+  %9 = icmp ne i64 %return92, 0
+  br i1 %9, label %true93, label %false94
+
+true93:                                           ; preds = %false88
+  br label %end77
+
+false94:                                          ; preds = %false88
+  %return98 = call i64 @"eq@III"(i64 %quaternion_flip, i64 4)
+  %10 = icmp ne i64 %return98, 0
+  br i1 %10, label %true99, label %false100
+
+true99:                                           ; preds = %false94
+  br label %end77
+
+false100:                                         ; preds = %false94
+  %return104 = call i64 @"eq@III"(i64 %quaternion_flip, i64 5)
+  %11 = icmp ne i64 %return104, 0
+  br i1 %11, label %true105, label %false106
+
+true105:                                          ; preds = %false100
+  br label %end77
+
+false106:                                         ; preds = %false100
+  %return110 = call i64 @"eq@III"(i64 %quaternion_flip, i64 6)
+  %12 = icmp ne i64 %return110, 0
+  br i1 %12, label %true111, label %false112
+
+true111:                                          ; preds = %false106
+  br label %end77
+
+false112:                                         ; preds = %false106
+  %return116 = call i64 @"eq@III"(i64 %quaternion_flip, i64 7)
+  %13 = icmp ne i64 %return116, 0
+  br i1 %13, label %true117, label %false118
+
+true117:                                          ; preds = %false112
+  br label %end77
+
+false118:                                         ; preds = %false112
+  %return122 = call i64 @"eq@III"(i64 %quaternion_flip, i64 8)
+  %14 = icmp ne i64 %return122, 0
+  br i1 %14, label %true123, label %false124
+
+true123:                                          ; preds = %false118
+  br label %end77
+
+false124:                                         ; preds = %false118
+  %return128 = call i64 @"eq@III"(i64 %quaternion_flip, i64 9)
+  %15 = icmp ne i64 %return128, 0
+  br i1 %15, label %true129, label %false130
+
+true129:                                          ; preds = %false124
+  br label %end77
+
+false130:                                         ; preds = %false124
+  %return134 = call i64 @"eq@III"(i64 %quaternion_flip, i64 10)
+  %16 = icmp ne i64 %return134, 0
+  br i1 %16, label %true135, label %false136
+
+true135:                                          ; preds = %false130
+  br label %end77
+
+false136:                                         ; preds = %false130
+  %return140 = call i64 @"eq@III"(i64 %quaternion_flip, i64 11)
+  %17 = icmp ne i64 %return140, 0
+  br i1 %17, label %true141, label %false142
+
+true141:                                          ; preds = %false136
+  br label %end77
+
+false142:                                         ; preds = %false136
+  %return146 = call i64 @"eq@III"(i64 %quaternion_flip, i64 12)
+  %18 = icmp ne i64 %return146, 0
+  br i1 %18, label %true147, label %false148
+
+true147:                                          ; preds = %false142
+  br label %end77
+
+false148:                                         ; preds = %false142
+  %return152 = call i64 @"eq@III"(i64 %quaternion_flip, i64 13)
+  %19 = icmp ne i64 %return152, 0
+  br i1 %19, label %true153, label %false154
+
+true153:                                          ; preds = %false148
+  br label %end77
+
+false154:                                         ; preds = %false148
+  br label %end77
+
+true160:                                          ; preds = %end77
+  br label %end162
+
+false161:                                         ; preds = %end77
+  %return165 = call i64 @"eq@III"(i64 %quaternion_flip, i64 1)
+  %20 = icmp ne i64 %return165, 0
+  br i1 %20, label %true166, label %false167
+
+end162:                                           ; preds = %true238, %false239, %true232, %true226, %true220, %true214, %true208, %true202, %true196, %true190, %true184, %true178, %true172, %true166, %true160
+  %result1.0 = phi <4 x double> [ <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true160 ], [ <double -1.000000e+00, double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true166 ], [ <double 1.000000e+00, double -1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true172 ], [ <double 1.000000e+00, double 1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true178 ], [ <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00, double -1.000000e+00>, %true184 ], [ <double -1.000000e+00, double -1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true190 ], [ <double -1.000000e+00, double 1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true196 ], [ <double -1.000000e+00, double 1.000000e+00, double 1.000000e+00, double -1.000000e+00>, %true202 ], [ <double -1.000000e+00, double -1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true208 ], [ <double -1.000000e+00, double -1.000000e+00, double 1.000000e+00, double -1.000000e+00>, %true214 ], [ <double -1.000000e+00, double -1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %true220 ], [ <double 1.000000e+00, double -1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true226 ], [ <double 1.000000e+00, double 1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %true232 ], [ <double 1.000000e+00, double -1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %true238 ], [ <double 1.000000e+00, double 1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %false239 ]
+  %return244 = call i64 @"eq@III"(i64 0, i64 0)
+  %21 = icmp ne i64 %return244, 0
+  br i1 %21, label %true245, label %false246
+
+true166:                                          ; preds = %false161
+  br label %end162
+
+false167:                                         ; preds = %false161
+  %return171 = call i64 @"eq@III"(i64 %quaternion_flip, i64 2)
+  %22 = icmp ne i64 %return171, 0
+  br i1 %22, label %true172, label %false173
+
+true172:                                          ; preds = %false167
+  br label %end162
+
+false173:                                         ; preds = %false167
+  %return177 = call i64 @"eq@III"(i64 %quaternion_flip, i64 3)
+  %23 = icmp ne i64 %return177, 0
+  br i1 %23, label %true178, label %false179
+
+true178:                                          ; preds = %false173
+  br label %end162
+
+false179:                                         ; preds = %false173
+  %return183 = call i64 @"eq@III"(i64 %quaternion_flip, i64 4)
+  %24 = icmp ne i64 %return183, 0
+  br i1 %24, label %true184, label %false185
+
+true184:                                          ; preds = %false179
+  br label %end162
+
+false185:                                         ; preds = %false179
+  %return189 = call i64 @"eq@III"(i64 %quaternion_flip, i64 5)
+  %25 = icmp ne i64 %return189, 0
+  br i1 %25, label %true190, label %false191
+
+true190:                                          ; preds = %false185
+  br label %end162
+
+false191:                                         ; preds = %false185
+  %return195 = call i64 @"eq@III"(i64 %quaternion_flip, i64 6)
+  %26 = icmp ne i64 %return195, 0
+  br i1 %26, label %true196, label %false197
+
+true196:                                          ; preds = %false191
+  br label %end162
+
+false197:                                         ; preds = %false191
+  %return201 = call i64 @"eq@III"(i64 %quaternion_flip, i64 7)
+  %27 = icmp ne i64 %return201, 0
+  br i1 %27, label %true202, label %false203
+
+true202:                                          ; preds = %false197
+  br label %end162
+
+false203:                                         ; preds = %false197
+  %return207 = call i64 @"eq@III"(i64 %quaternion_flip, i64 8)
+  %28 = icmp ne i64 %return207, 0
+  br i1 %28, label %true208, label %false209
+
+true208:                                          ; preds = %false203
+  br label %end162
+
+false209:                                         ; preds = %false203
+  %return213 = call i64 @"eq@III"(i64 %quaternion_flip, i64 9)
+  %29 = icmp ne i64 %return213, 0
+  br i1 %29, label %true214, label %false215
+
+true214:                                          ; preds = %false209
+  br label %end162
+
+false215:                                         ; preds = %false209
+  %return219 = call i64 @"eq@III"(i64 %quaternion_flip, i64 10)
+  %30 = icmp ne i64 %return219, 0
+  br i1 %30, label %true220, label %false221
+
+true220:                                          ; preds = %false215
+  br label %end162
+
+false221:                                         ; preds = %false215
+  %return225 = call i64 @"eq@III"(i64 %quaternion_flip, i64 11)
+  %31 = icmp ne i64 %return225, 0
+  br i1 %31, label %true226, label %false227
+
+true226:                                          ; preds = %false221
+  br label %end162
+
+false227:                                         ; preds = %false221
+  %return231 = call i64 @"eq@III"(i64 %quaternion_flip, i64 12)
+  %32 = icmp ne i64 %return231, 0
+  br i1 %32, label %true232, label %false233
+
+true232:                                          ; preds = %false227
+  br label %end162
+
+false233:                                         ; preds = %false227
+  %return237 = call i64 @"eq@III"(i64 %quaternion_flip, i64 13)
+  %33 = icmp ne i64 %return237, 0
+  br i1 %33, label %true238, label %false239
+
+true238:                                          ; preds = %false233
+  br label %end162
+
+false239:                                         ; preds = %false233
+  br label %end162
+
+true245:                                          ; preds = %end162
+  br label %end247
+
+false246:                                         ; preds = %end162
+  br label %end247
+
+end247:                                           ; preds = %false246, %true245
+  %result2.0 = phi <4 x double> [ %result.0, %true245 ], [ %result1.0, %false246 ]
+  %output252 = call <4 x double> @"mul@PP"(<4 x double> %.return65, <4 x double> %result2.0)
+  %cast256 = call <3 x double> @"set@VP"(<4 x double> %output252)
+  %return258 = call double @"getcomp@FPI"(<4 x double> %output252, i64 3)
+  %return263 = call i64 @"eq@III"(i64 %coord_swizzle, i64 0)
+  %34 = icmp ne i64 %return263, 0
+  br i1 %34, label %true264, label %false265
+
+true264:                                          ; preds = %end247
+  br label %end266
+
+false265:                                         ; preds = %end247
+  %return269 = call i64 @"eq@III"(i64 %coord_swizzle, i64 1)
+  %35 = icmp ne i64 %return269, 0
+  br i1 %35, label %true270, label %false271
+
+end266:                                           ; preds = %true288, %false289, %true282, %true276, %true270, %true264
+  %result3.0 = phi <3 x double> [ <double 0.000000e+00, double 1.000000e+00, double 2.000000e+00>, %true264 ], [ <double 0.000000e+00, double 2.000000e+00, double 1.000000e+00>, %true270 ], [ <double 1.000000e+00, double 0.000000e+00, double 2.000000e+00>, %true276 ], [ <double 1.000000e+00, double 2.000000e+00, double 0.000000e+00>, %true282 ], [ <double 2.000000e+00, double 0.000000e+00, double 1.000000e+00>, %true288 ], [ <double 2.000000e+00, double 1.000000e+00, double 0.000000e+00>, %false289 ]
+  br i1 %34, label %true295, label %false296
+
+true270:                                          ; preds = %false265
+  br label %end266
+
+false271:                                         ; preds = %false265
+  %return275 = call i64 @"eq@III"(i64 %coord_swizzle, i64 2)
+  %36 = icmp ne i64 %return275, 0
+  br i1 %36, label %true276, label %false277
+
+true276:                                          ; preds = %false271
+  br label %end266
+
+false277:                                         ; preds = %false271
+  %return281 = call i64 @"eq@III"(i64 %coord_swizzle, i64 3)
+  %37 = icmp ne i64 %return281, 0
+  br i1 %37, label %true282, label %false283
+
+true282:                                          ; preds = %false277
+  br label %end266
+
+false283:                                         ; preds = %false277
+  %return287 = call i64 @"eq@III"(i64 %coord_swizzle, i64 4)
+  %38 = icmp ne i64 %return287, 0
+  br i1 %38, label %true288, label %false289
+
+true288:                                          ; preds = %false283
+  br label %end266
+
+false289:                                         ; preds = %false283
+  br label %end266
+
+true295:                                          ; preds = %end266
+  br label %end297
+
+false296:                                         ; preds = %end266
+  %return300 = call i64 @"eq@III"(i64 %coord_swizzle, i64 1)
+  %39 = icmp ne i64 %return300, 0
+  br i1 %39, label %true301, label %false302
+
+end297:                                           ; preds = %true319, %false320, %true313, %true307, %true301, %true295
+  %result4.0 = phi <3 x double> [ <double 0.000000e+00, double 1.000000e+00, double 2.000000e+00>, %true295 ], [ <double 0.000000e+00, double 2.000000e+00, double 1.000000e+00>, %true301 ], [ <double 1.000000e+00, double 0.000000e+00, double 2.000000e+00>, %true307 ], [ <double 1.000000e+00, double 2.000000e+00, double 0.000000e+00>, %true313 ], [ <double 2.000000e+00, double 0.000000e+00, double 1.000000e+00>, %true319 ], [ <double 2.000000e+00, double 1.000000e+00, double 0.000000e+00>, %false320 ]
+  br i1 %34, label %true326, label %false327
+
+true301:                                          ; preds = %false296
+  br label %end297
+
+false302:                                         ; preds = %false296
+  %return306 = call i64 @"eq@III"(i64 %coord_swizzle, i64 2)
+  %40 = icmp ne i64 %return306, 0
+  br i1 %40, label %true307, label %false308
+
+true307:                                          ; preds = %false302
+  br label %end297
+
+false308:                                         ; preds = %false302
+  %return312 = call i64 @"eq@III"(i64 %coord_swizzle, i64 3)
+  %41 = icmp ne i64 %return312, 0
+  br i1 %41, label %true313, label %false314
+
+true313:                                          ; preds = %false308
+  br label %end297
+
+false314:                                         ; preds = %false308
+  %return318 = call i64 @"eq@III"(i64 %coord_swizzle, i64 4)
+  %42 = icmp ne i64 %return318, 0
+  br i1 %42, label %true319, label %false320
+
+true319:                                          ; preds = %false314
+  br label %end297
+
+false320:                                         ; preds = %false314
+  br label %end297
+
+true326:                                          ; preds = %end297
+  br label %end328
+
+false327:                                         ; preds = %end297
+  br label %end328
+
+end328:                                           ; preds = %false327, %true326
+  %result5.0 = phi <3 x double> [ %result3.0, %true326 ], [ %result4.0, %false327 ]
+  %output332 = call { double, double, double } @"assign@FFFV"(<3 x double> %result5.0)
+  %output333 = extractvalue { double, double, double } %output332, 0
+  %output334 = extractvalue { double, double, double } %output332, 1
+  %output335 = extractvalue { double, double, double } %output332, 2
+  %cast337 = fptosi double %output333 to i64
+  %cast339 = fptosi double %output334 to i64
+  %cast341 = fptosi double %output335 to i64
+  %return346 = call <3 x double> @"swizzle@VVIII"(<3 x double> %cast256, i64 %cast337, i64 %cast339, i64 %cast341)
+  %return348 = call i64 @"eq@III"(i64 %coord_flip, i64 0)
+  %43 = icmp ne i64 %return348, 0
+  br i1 %43, label %true349, label %false350
+
+true349:                                          ; preds = %end328
+  br label %end351
+
+false350:                                         ; preds = %end328
+  %return354 = call i64 @"eq@III"(i64 %coord_flip, i64 1)
+  %44 = icmp ne i64 %return354, 0
+  br i1 %44, label %true355, label %false356
+
+end351:                                           ; preds = %true385, %false386, %true379, %true373, %true367, %true361, %true355, %true349
+  %result6.0 = phi <3 x double> [ <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true349 ], [ <double -1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true355 ], [ <double 1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true361 ], [ <double 1.000000e+00, double 1.000000e+00, double -1.000000e+00>, %true367 ], [ <double -1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true373 ], [ <double -1.000000e+00, double 1.000000e+00, double -1.000000e+00>, %true379 ], [ <double -1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %true385 ], [ <double 1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %false386 ]
+  br i1 %43, label %true392, label %false393
+
+true355:                                          ; preds = %false350
+  br label %end351
+
+false356:                                         ; preds = %false350
+  %return360 = call i64 @"eq@III"(i64 %coord_flip, i64 2)
+  %45 = icmp ne i64 %return360, 0
+  br i1 %45, label %true361, label %false362
+
+true361:                                          ; preds = %false356
+  br label %end351
+
+false362:                                         ; preds = %false356
+  %return366 = call i64 @"eq@III"(i64 %coord_flip, i64 3)
+  %46 = icmp ne i64 %return366, 0
+  br i1 %46, label %true367, label %false368
+
+true367:                                          ; preds = %false362
+  br label %end351
+
+false368:                                         ; preds = %false362
+  %return372 = call i64 @"eq@III"(i64 %coord_flip, i64 4)
+  %47 = icmp ne i64 %return372, 0
+  br i1 %47, label %true373, label %false374
+
+true373:                                          ; preds = %false368
+  br label %end351
+
+false374:                                         ; preds = %false368
+  %return378 = call i64 @"eq@III"(i64 %coord_flip, i64 5)
+  %48 = icmp ne i64 %return378, 0
+  br i1 %48, label %true379, label %false380
+
+true379:                                          ; preds = %false374
+  br label %end351
+
+false380:                                         ; preds = %false374
+  %return384 = call i64 @"eq@III"(i64 %coord_flip, i64 6)
+  %49 = icmp ne i64 %return384, 0
+  br i1 %49, label %true385, label %false386
+
+true385:                                          ; preds = %false380
+  br label %end351
+
+false386:                                         ; preds = %false380
+  br label %end351
+
+true392:                                          ; preds = %end351
+  br label %end394
+
+false393:                                         ; preds = %end351
+  %return397 = call i64 @"eq@III"(i64 %coord_flip, i64 1)
+  %50 = icmp ne i64 %return397, 0
+  br i1 %50, label %true398, label %false399
+
+end394:                                           ; preds = %true428, %false429, %true422, %true416, %true410, %true404, %true398, %true392
+  %result7.0 = phi <3 x double> [ <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true392 ], [ <double -1.000000e+00, double 1.000000e+00, double 1.000000e+00>, %true398 ], [ <double 1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true404 ], [ <double 1.000000e+00, double 1.000000e+00, double -1.000000e+00>, %true410 ], [ <double -1.000000e+00, double -1.000000e+00, double 1.000000e+00>, %true416 ], [ <double -1.000000e+00, double 1.000000e+00, double -1.000000e+00>, %true422 ], [ <double -1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %true428 ], [ <double 1.000000e+00, double -1.000000e+00, double -1.000000e+00>, %false429 ]
+  br i1 %21, label %true435, label %false436
+
+true398:                                          ; preds = %false393
+  br label %end394
+
+false399:                                         ; preds = %false393
+  %return403 = call i64 @"eq@III"(i64 %coord_flip, i64 2)
+  %51 = icmp ne i64 %return403, 0
+  br i1 %51, label %true404, label %false405
+
+true404:                                          ; preds = %false399
+  br label %end394
+
+false405:                                         ; preds = %false399
+  %return409 = call i64 @"eq@III"(i64 %coord_flip, i64 3)
+  %52 = icmp ne i64 %return409, 0
+  br i1 %52, label %true410, label %false411
+
+true410:                                          ; preds = %false405
+  br label %end394
+
+false411:                                         ; preds = %false405
+  %return415 = call i64 @"eq@III"(i64 %coord_flip, i64 4)
+  %53 = icmp ne i64 %return415, 0
+  br i1 %53, label %true416, label %false417
+
+true416:                                          ; preds = %false411
+  br label %end394
+
+false417:                                         ; preds = %false411
+  %return421 = call i64 @"eq@III"(i64 %coord_flip, i64 5)
+  %54 = icmp ne i64 %return421, 0
+  br i1 %54, label %true422, label %false423
+
+true422:                                          ; preds = %false417
+  br label %end394
+
+false423:                                         ; preds = %false417
+  %return427 = call i64 @"eq@III"(i64 %coord_flip, i64 6)
+  %55 = icmp ne i64 %return427, 0
+  br i1 %55, label %true428, label %false429
+
+true428:                                          ; preds = %false423
+  br label %end394
+
+false429:                                         ; preds = %false423
+  br label %end394
+
+true435:                                          ; preds = %end394
+  br label %end437
+
+false436:                                         ; preds = %end394
+  br label %end437
+
+end437:                                           ; preds = %false436, %true435
+  %result8.0 = phi <3 x double> [ %result6.0, %true435 ], [ %result7.0, %false436 ]
+  %output442 = call <3 x double> @"mul@VV"(<3 x double> %return346, <3 x double> %result8.0)
+  %output446 = call { double, double, double } @"assign@FFFV"(<3 x double> %output442)
+  %output447 = extractvalue { double, double, double } %output446, 0
+  %output448 = extractvalue { double, double, double } %output446, 1
+  %output449 = extractvalue { double, double, double } %output446, 2
+  store double %output447, double* @R
+  store double %output448, double* @G
+  store double %output449, double* @B
+  store double %return258, double* @A
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"ceil@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"mod@FFF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"div@II"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"floor@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"vertexindex@ISII"(i8*, i64, i64) #1
+
+; Function Attrs: nounwind
+declare { <4 x double>, i64 } @"getattrib@PSSSII"(i8*, i8*, i8*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"mul@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"set@VP"(<4 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FPI"(<4 x double>, i64) #1
+
+; Function Attrs: nounwind
+declare { double, double, double } @"assign@FFFV"(<3 x double>) #0
+
+; Function Attrs: nounwind
+declare <3 x double> @"swizzle@VVIII"(<3 x double>, i64, i64, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @out_RBD_Simulation_textures_orient(i8* getelementptr inbounds ([29 x i8], [29 x i8]* @0, i64 0, i64 0), double 0.000000e+00, double 5.190000e+02, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i64 1, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { nounwind }
+attributes #1 = { nounwind readnone }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cop2"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end
