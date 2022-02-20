@@ -1,0 +1,105 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"groupname\00"
+@ptnum = external global i64
+@1 = private constant [6 x i8] c"ptnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I"(i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0))
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  %return2 = call i64* @"neighbours@[III"(i64 0, i64 %_bound_ptnum1)
+  %return4 = call i64 @"len@I[I"(i64* %return2)
+  br label %cond
+
+cond:                                             ; preds = %end18, %__llvm_entry
+  %__impl_foreach_index_3.0 = phi i64 [ 0, %__llvm_entry ], [ %output, %end18 ]
+  %return7 = call i64 @"lt@III"(i64 %__impl_foreach_index_3.0, i64 %return4)
+  %0 = icmp ne i64 %return7, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return10 = call i64 @"getcomp@I[II"(i64* %return2, i64 %__impl_foreach_index_3.0)
+  %_bound_ptnum11 = load i64, i64* %_bound_ptnum
+  %return13 = call i64 @"pointhedge@IIII"(i64 0, i64 %_bound_ptnum11, i64 %return10)
+  %return15 = call i64 @"hedge_equivcount@III"(i64 0, i64 %return13)
+  %return17 = call i64 @"eq@III"(i64 %return15, i64 1)
+  %1 = icmp ne i64 %return17, 0
+  br i1 %1, label %true, label %end18
+
+end:                                              ; preds = %cond
+  ret void
+
+true:                                             ; preds = %body
+  %_bound_ptnum20 = load i64, i64* %_bound_ptnum
+  %return22 = call i64 @"setedgegroup@IISIII"(i64 0, i8* %return, i64 %_bound_ptnum20, i64 %return10, i64 1)
+  br label %end18
+
+end18:                                            ; preds = %true, %body
+  %output = add i64 %__impl_foreach_index_3.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64* @"neighbours@[III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"pointhedge@IIII"(i64, i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"hedge_equivcount@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setedgegroup@IISIII"(i64, i8*, i64, i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %ptnum) #2 {
+__llvm_entry:
+  %0 = alloca i64
+  store i64 %ptnum, i64* %0
+  call void @"__vex_snippet_snippet@I"(i64* %0)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %ptnum) #3
+  store i64 %gvalue, i64* @ptnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

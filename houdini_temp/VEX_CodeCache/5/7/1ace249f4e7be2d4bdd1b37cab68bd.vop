@@ -1,0 +1,77 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@ptnum = external global i64
+@pthash0 = external global double
+@pthash1 = external global double
+@0 = private constant [6 x i8] c"ptnum\00"
+@1 = private constant [8 x i8] c"pthash0\00"
+@2 = private constant [8 x i8] c"pthash1\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IFF"(i64* %_bound_ptnum, double* %_bound_pthash0, double* %_bound_pthash1) #0 {
+__llvm_entry:
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  %return = call i64 @"neighbour@IIII"(i64 0, i64 %_bound_ptnum1, i64 0)
+  %_bound_ptnum2 = load i64, i64* %_bound_ptnum
+  %return3 = call i64 @"random_ihash@II"(i64 %_bound_ptnum2)
+  %cast = sitofp i64 %return3 to double
+  store double %cast, double* %_bound_pthash0
+  %return5 = call i64 @"random_ihash@II"(i64 %return)
+  %cast6 = sitofp i64 %return5 to double
+  store double %cast6, double* %_bound_pthash1
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"neighbour@IIII"(i64, i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"random_ihash@II"(i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %ptnum, double %pthash0, double %pthash1) #1 {
+__llvm_entry:
+  %"<pthash0>" = alloca double
+  %"<pthash1>" = alloca double
+  %0 = alloca i64
+  store double %pthash0, double* %"<pthash0>"
+  store double %pthash1, double* %"<pthash1>"
+  store i64 %ptnum, i64* %0
+  call void @"__vex_snippet_snippet@IFF"(i64* %0, double* %"<pthash0>", double* %"<pthash1>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i64 %ptnum) #3
+  %evalue2 = load double, double* %"<pthash0>"
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0), double %evalue2) #3
+  %evalue4 = load double, double* %"<pthash1>"
+  %gvalue5 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), double %evalue4) #3
+  store i64 %gvalue, i64* @ptnum
+  store double %gvalue3, double* @pthash0
+  store double %gvalue5, double* @pthash1
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end
