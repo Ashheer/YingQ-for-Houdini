@@ -1,0 +1,47 @@
+;_name	/obj/geo1/vellumsolver1/dopnet1/vellumsolver1/remove_from_broken/geometryvop1
+; ModuleID = 'obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_from_broken_geometryvop1'
+source_filename = "obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_from_broken_geometryvop1"
+
+@group_broken = external global i64
+@0 = private constant [13 x i8] c"group_broken\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_from_broken_geometryvop1_snippet1@I"(i64* %_bound_group_broken) #0 {
+__llvm_entry:
+  store i64 0, i64* %_bound_group_broken
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_from_broken_geometryvop1(i64 %group_broken) #1 {
+__llvm_entry:
+  %"<group_broken>" = alloca i64
+  store i64 %group_broken, i64* %"<group_broken>"
+  call void @"_obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_from_broken_geometryvop1_snippet1@I"(i64* %"<group_broken>")
+  %evalue = load i64, i64* %"<group_broken>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @0, i64 0, i64 0), i64 %evalue) #2
+  store i64 %gvalue, i64* @group_broken
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_from_broken_geometryvop1(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

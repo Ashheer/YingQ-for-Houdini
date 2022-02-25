@@ -1,0 +1,194 @@
+;_name	/obj/geo1/vellumsolver1/dopnet1/vellumsolver1/orient_update_2nd_order_fallback/geometrywrangle1/geometryvop1
+; ModuleID = 'obj_geo1_vellumsolver1_dopnet1_vellumsolver1_orient_update_2nd_order_fallback_geometrywrangle1_geometryvop1'
+source_filename = "obj_geo1_vellumsolver1_dopnet1_vellumsolver1_orient_update_2nd_order_fallback_geometrywrangle1_geometryvop1"
+
+@orient = external global <4 x double>
+@0 = private constant [7 x i8] c"orient\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_geo1_vellumsolver1_dopnet1_vellumsolver1_orient_update_2nd_order_fallback_geometrywrangle1_geometryvop1_snippet1@IFIVPFVVPP"(i64* %_bound_fallback, double* %_bound_inertia, i64* %_bound_stopped, <3 x double>* %_bound_w, <4 x double>* %_bound_orient, double* %_bound_Timeinc, <3 x double>* %_bound_wprevious, <3 x double>* %_bound_wlast, <4 x double>* %_bound_orientprevious, <4 x double>* %_bound_orientlast) #0 {
+__llvm_entry:
+  %_bound_fallback1 = load i64, i64* %_bound_fallback
+  %0 = icmp ne i64 %_bound_fallback1, 0
+  %_bound_inertia2 = load double, double* %_bound_inertia
+  %return = fcmp ogt double %_bound_inertia2, 0.000000e+00
+  %return3 = zext i1 %return to i64
+  %_bound_stopped4 = load i64, i64* %_bound_stopped
+  %return5 = and i64 %_bound_stopped4, 2
+  %return6 = call i64 @"not@II"(i64 %return5)
+  %return7 = call i64 @"and@III"(i64 %return3, i64 %return6)
+  %1 = icmp ne i64 %return7, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  br i1 %1, label %true8, label %end
+
+false:                                            ; preds = %__llvm_entry
+  br i1 %1, label %true28, label %end
+
+end:                                              ; preds = %false, %true28, %true, %true8
+  ret void
+
+true8:                                            ; preds = %true
+  %_bound_w10 = load <3 x double>, <3 x double>* %_bound_w
+  %cast = call <4 x double> @"set@PV"(<3 x double> %_bound_w10)
+  %_bound_orient11 = load <4 x double>, <4 x double>* %_bound_orient
+  %_bound_Timeinc12 = load double, double* %_bound_Timeinc
+  %output = call double @"div@FF"(double %_bound_Timeinc12, double 2.000000e+00)
+  %return15 = call <4 x double> @"qmultiply@PPP"(<4 x double> %cast, <4 x double> %_bound_orient11)
+  %cast16 = call <4 x double> @"set@PF"(double %output)
+  %output17 = call <4 x double> @"mul@PP"(<4 x double> %cast16, <4 x double> %return15)
+  %output18 = call <4 x double> @"add@PP"(<4 x double> %_bound_orient11, <4 x double> %output17)
+  store <4 x double> %output18, <4 x double>* %_bound_orient
+  %return20 = call <4 x double> @"normalize@PP"(<4 x double> %output18)
+  store <4 x double> %return20, <4 x double>* %_bound_orient
+  br label %end
+
+true28:                                           ; preds = %false
+  %_bound_w30 = load <3 x double>, <3 x double>* %_bound_w
+  %_bound_wprevious31 = load <3 x double>, <3 x double>* %_bound_wprevious
+  %output32 = call <3 x double> @"sub@VV"(<3 x double> %_bound_w30, <3 x double> %_bound_wprevious31)
+  %cast34 = call <3 x double> @"set@VI"(i64 4)
+  %output35 = call <3 x double> @"mul@VV"(<3 x double> %cast34, <3 x double> %_bound_wprevious31)
+  %_bound_wlast36 = load <3 x double>, <3 x double>* %_bound_wlast
+  %output37 = call <3 x double> @"sub@VV"(<3 x double> %output35, <3 x double> %_bound_wlast36)
+  %cast39 = call <3 x double> @"set@VI"(i64 2)
+  %output40 = call <3 x double> @"mul@VV"(<3 x double> %cast39, <3 x double> %output32)
+  %output41 = call <3 x double> @"add@VV"(<3 x double> %output37, <3 x double> %output40)
+  %cast42 = call <3 x double> @"set@VI"(i64 3)
+  %output43 = call <3 x double> @"div@VV"(<3 x double> %output41, <3 x double> %cast42)
+  %return45 = call double @"getcomp@FVI"(<3 x double> %output43, i64 0)
+  %return47 = call double @"getcomp@FVI"(<3 x double> %output43, i64 1)
+  %return49 = call double @"getcomp@FVI"(<3 x double> %output43, i64 2)
+  %return50 = call <4 x double> @"set@PFFFF"(double %return45, double %return47, double %return49, double 0.000000e+00)
+  %_bound_orient51 = load <4 x double>, <4 x double>* %_bound_orient
+  %return52 = call <4 x double> @"qmultiply@PPP"(<4 x double> %return50, <4 x double> %_bound_orient51)
+  %cast53 = call <4 x double> @"set@PF"(double 5.000000e-01)
+  %output54 = call <4 x double> @"mul@PP"(<4 x double> %cast53, <4 x double> %return52)
+  %_bound_orientprevious55 = load <4 x double>, <4 x double>* %_bound_orientprevious
+  %cast56 = call <4 x double> @"set@PI"(i64 4)
+  %output57 = call <4 x double> @"mul@PP"(<4 x double> %cast56, <4 x double> %_bound_orientprevious55)
+  %_bound_orientlast58 = load <4 x double>, <4 x double>* %_bound_orientlast
+  %output59 = call <4 x double> @"sub@PP"(<4 x double> %output57, <4 x double> %_bound_orientlast58)
+  %_bound_Timeinc60 = load double, double* %_bound_Timeinc
+  %output61 = fmul double 2.000000e+00, %_bound_Timeinc60
+  %cast63 = call <4 x double> @"set@PF"(double %output61)
+  %output64 = call <4 x double> @"mul@PP"(<4 x double> %cast63, <4 x double> %output54)
+  %output65 = call <4 x double> @"add@PP"(<4 x double> %output59, <4 x double> %output64)
+  %cast66 = call <4 x double> @"set@PI"(i64 3)
+  %output67 = call <4 x double> @"div@PP"(<4 x double> %output65, <4 x double> %cast66)
+  store <4 x double> %output67, <4 x double>* %_bound_orient
+  %return69 = call <4 x double> @"normalize@PP"(<4 x double> %output67)
+  store <4 x double> %return69, <4 x double>* %_bound_orient
+  br label %end
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare <4 x double> @"set@PV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"qmultiply@PPP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"mul@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"add@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind
+declare <4 x double> @"normalize@PP"(<4 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PFFFF"(double, double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"sub@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"div@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind
+define void @obj_geo1_vellumsolver1_dopnet1_vellumsolver1_orient_update_2nd_order_fallback_geometrywrangle1_geometryvop1(i64 %fallback, double %inertia, i64 %stopped, <3 x double> %w, <4 x double> %orient, double %Timeinc, <3 x double> %wprevious, <3 x double> %wlast, <4 x double> %orientprevious, <4 x double> %orientlast) #2 {
+__llvm_entry:
+  %"<orient>" = alloca <4 x double>
+  %0 = alloca i64
+  %1 = alloca double
+  %2 = alloca i64
+  %3 = alloca <3 x double>
+  %4 = alloca double
+  %5 = alloca <3 x double>
+  %6 = alloca <3 x double>
+  %7 = alloca <4 x double>
+  %8 = alloca <4 x double>
+  store <4 x double> %orient, <4 x double>* %"<orient>"
+  store i64 %fallback, i64* %0
+  store double %inertia, double* %1
+  store i64 %stopped, i64* %2
+  store <3 x double> %w, <3 x double>* %3
+  store double %Timeinc, double* %4
+  store <3 x double> %wprevious, <3 x double>* %5
+  store <3 x double> %wlast, <3 x double>* %6
+  store <4 x double> %orientprevious, <4 x double>* %7
+  store <4 x double> %orientlast, <4 x double>* %8
+  call void @"_obj_geo1_vellumsolver1_dopnet1_vellumsolver1_orient_update_2nd_order_fallback_geometrywrangle1_geometryvop1_snippet1@IFIVPFVVPP"(i64* %0, double* %1, i64* %2, <3 x double>* %3, <4 x double>* %"<orient>", double* %4, <3 x double>* %5, <3 x double>* %6, <4 x double>* %7, <4 x double>* %8)
+  %evalue = load <4 x double>, <4 x double>* %"<orient>"
+  %gvalue = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), <4 x double> %evalue) #3
+  store <4 x double> %gvalue, <4 x double>* @orient
+  ret void
+}
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_vellumsolver1_dopnet1_vellumsolver1_orient_update_2nd_order_fallback_geometrywrangle1_geometryvop1(i64 0, double 0.000000e+00, i64 0, <3 x double> zeroinitializer, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, double 0.000000e+00, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <4 x double> zeroinitializer, <4 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

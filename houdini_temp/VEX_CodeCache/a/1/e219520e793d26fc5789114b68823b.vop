@@ -1,0 +1,164 @@
+;_name	/obj/grid1/pointjitter2/attribvop1
+; ModuleID = 'obj_grid1_pointjitter2_attribvop1'
+source_filename = "obj_grid1_pointjitter2_attribvop1"
+
+@0 = private constant [1 x i8] zeroinitializer
+@1 = private constant [3 x i8] c"id\00"
+@P = external global <3 x double>
+@2 = private constant [10 x i8] c"opinput:0\00"
+@3 = private constant [5 x i8] c"file\00"
+@4 = private constant [62 x i8] c"C:/PROGRA~1/SIDEEF~1/Houdini 19.0.498/houdini/geo/defgeo.bgeo\00"
+@5 = private constant [6 x i8] c"point\00"
+@6 = private constant [7 x i8] c"vertex\00"
+@7 = private constant [2 x i8] c"P\00"
+
+; Function Attrs: nounwind
+define void @obj_grid1_pointjitter2_attribvop1(i64 %ptnum, i64 %vtxnum, i64 %primnum, i64 %id, i64 %numpt, i64 %numvtx, i64 %numprim, double %Time, double %TimeInc, double %Frame, double %life, double %age, i8* %OpInput2, i8* %OpInput3, i8* %OpInput4, i8* %OpInput1, <3 x double> %uv, <3 x double> %P, <3 x double> %v, <3 x double> %force, <3 x double> %Cd, <3 x double> %N, double %seed, double %parm_scale, double %pscale, i64 %usepscale, <3 x double> %parm_axisscale, i64 %useidattrib, i8* %attrib) #0 {
+__llvm_entry:
+  %0 = icmp ne i64 %useidattrib, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return = call i64 @"eq@ISS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8], [5 x i8]* @3, i64 0, i64 0))
+  %1 = icmp ne i64 %return, 0
+  %. = select i1 %1, i8* getelementptr inbounds ([62 x i8], [62 x i8]* @4, i64 0, i64 0), i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0)
+  %return36 = call i64 @"eq@ISS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @5, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @6, i64 0, i64 0))
+  %2 = icmp ne i64 %return36, 0
+  br i1 %2, label %true37, label %end38
+
+end:                                              ; preds = %end53, %__llvm_entry
+  %var1_out.0 = phi i64 [ %phi69, %end53 ], [ %ptnum, %__llvm_entry ]
+  %return73 = call i64 @"mod@III"(i64 %var1_out.0, i64 100000)
+  %cast = sitofp i64 %return73 to double
+  %output77 = fmul double %seed, 0x4005BF0A808C825A
+  %output80 = call i64 @"div@II"(i64 %var1_out.0, i64 100000)
+  %cast82 = sitofp i64 %output80 to double
+  %output85 = fmul double %cast82, 0x400921FB54442D18
+  %output88 = fadd double %cast, %output77
+  %output90 = fadd double %output88, %output85
+  %return92 = call double @"hscript_rand@FF"(double %output90)
+  %output94 = fadd double %output90, 0x3FD333334015BC21
+  %return96 = call double @"hscript_rand@FF"(double %output94)
+  %output98 = fadd double %output90, 0x3FE333334015BC21
+  %return100 = call double @"hscript_rand@FF"(double %output98)
+  %return104 = call <3 x double> @"set@VFFF"(double %return92, double %return96, double %return100)
+  %return106 = call double @"neg@FF"(double 5.000000e-01)
+  %cast107 = call <3 x double> @"set@VF"(double %return106)
+  %output108 = call <3 x double> @"add@VV"(<3 x double> %return104, <3 x double> %cast107)
+  %return109 = call i64 @"ne@III"(i64 0, i64 0)
+  %3 = icmp ne i64 %return109, 0
+  %return114 = call i64 @"ne@III"(i64 %usepscale, i64 0)
+  %4 = icmp ne i64 %return114, 0
+  br i1 %3, label %true110, label %false111
+
+true37:                                           ; preds = %true
+  %return41 = call i64 @"vertexindex@ISII"(i8* %., i64 %ptnum, i64 0)
+  br label %end38
+
+end38:                                            ; preds = %true37, %true
+  %elemidx.0 = phi i64 [ %return41, %true37 ], [ %ptnum, %true ]
+  %return45 = call { i64, i64 } @"getattrib@ISSSII"(i8* %., i8* getelementptr inbounds ([6 x i8], [6 x i8]* @5, i64 0, i64 0), i8* %attrib, i64 %elemidx.0)
+  %return46 = extractvalue { i64, i64 } %return45, 0
+  %output = extractvalue { i64, i64 } %return45, 1
+  %return48 = call i64 @"not@II"(i64 %output)
+  %5 = icmp ne i64 %return48, 0
+  %.return46 = select i1 %5, i64 0, i64 %return46
+  %return51 = call i64 @"ne@III"(i64 0, i64 0)
+  %6 = icmp ne i64 %return51, 0
+  %return55 = call i64 @"ne@III"(i64 %output, i64 0)
+  %7 = icmp ne i64 %return55, 0
+  br i1 %6, label %true52, label %false
+
+true52:                                           ; preds = %end38
+  %phi = select i1 %7, i64 %ptnum, i64 %.return46
+  br label %end53
+
+false:                                            ; preds = %end38
+  %phi68 = select i1 %7, i64 %.return46, i64 %ptnum
+  br label %end53
+
+end53:                                            ; preds = %false, %true52
+  %phi69 = phi i64 [ %phi, %true52 ], [ %phi68, %false ]
+  br label %end
+
+true110:                                          ; preds = %end
+  %phi120 = select i1 %4, double 1.000000e+00, double %pscale
+  br label %end112
+
+false111:                                         ; preds = %end
+  %phi128 = select i1 %4, double %pscale, double 1.000000e+00
+  br label %end112
+
+end112:                                           ; preds = %false111, %true110
+  %phi129 = phi double [ %phi120, %true110 ], [ %phi128, %false111 ]
+  %output132 = call <3 x double> @"mul@VV"(<3 x double> %output108, <3 x double> %parm_axisscale)
+  %cast134 = call <3 x double> @"set@VF"(double %parm_scale)
+  %output135 = call <3 x double> @"mul@VV"(<3 x double> %output132, <3 x double> %cast134)
+  %cast137 = call <3 x double> @"set@VF"(double %phi129)
+  %output138 = call <3 x double> @"mul@VV"(<3 x double> %output135, <3 x double> %cast137)
+  %output141 = call <3 x double> @"add@VV"(<3 x double> %P, <3 x double> %output138)
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @7, i64 0, i64 0), <3 x double> %output141) #2
+  store <3 x double> %gvalue, <3 x double>* @P
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"vertexindex@ISII"(i8*, i64, i64) #1
+
+; Function Attrs: nounwind
+declare { i64, i64 } @"getattrib@ISSSII"(i8*, i8*, i8*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"mod@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"div@II"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"hscript_rand@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_grid1_pointjitter2_attribvop1(i64 0, i64 0, i64 0, i64 -1, i64 0, i64 0, i64 0, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, <3 x double> zeroinitializer, double 0.000000e+00, double 1.000000e+00, double 0.000000e+00, i64 0, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, i64 0, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @1, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

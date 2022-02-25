@@ -1,0 +1,905 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [13 x i8] c"../visualize\00"
+@1 = private constant [1 x i8] zeroinitializer
+@2 = private constant [2 x i8] c"P\00"
+@3 = private constant [8 x i8] c"../name\00"
+@4 = private constant [6 x i8] c"point\00"
+@5 = private constant [9 x i8] c"../class\00"
+@6 = private constant [4 x i8] c"set\00"
+@7 = private constant [13 x i8] c"../operation\00"
+@8 = private constant [16 x i8] c"../distribution\00"
+@9 = private constant [9 x i8] c"../scale\00"
+@10 = private constant [10 x i8] c"primitive\00"
+@11 = private constant [5 x i8] c"prim\00"
+@12 = private constant [7 x i8] c"vertex\00"
+@13 = private constant [9 x i8] c"discrete\00"
+@14 = private constant [14 x i8] c"../dimensions\00"
+@15 = private constant [14 x i8] c"uniformorient\00"
+@16 = private constant [12 x i8] c"uniformball\00"
+@17 = private constant [5 x i8] c"ramp\00"
+@18 = private constant [11 x i8] c"../allsame\00"
+@19 = private constant [9 x i8] c"constant\00"
+@20 = private constant [16 x i8] c"uniformdiscrete\00"
+@21 = private constant [7 x i8] c"normal\00"
+@22 = private constant [10 x i8] c"lognormal\00"
+@23 = private constant [12 x i8] c"exponential\00"
+@24 = private constant [7 x i8] c"cauchy\00"
+@25 = private constant [16 x i8] c"../medianattrib\00"
+@26 = private constant [21 x i8] c"../usefractionattrib\00"
+@27 = private constant [18 x i8] c"../fractionattrib\00"
+@28 = private constant [8 x i8] c"../seed\00"
+@29 = private constant [17 x i8] c"../useseedattrib\00"
+@30 = private constant [14 x i8] c"../seedattrib\00"
+@31 = private constant [19 x i8] c"../onesidedmedianx\00"
+@32 = private constant [11 x i8] c"../medianx\00"
+@33 = private constant [19 x i8] c"../onesidedstddevx\00"
+@34 = private constant [11 x i8] c"../stddevx\00"
+@35 = private constant [18 x i8] c"../useonesidedmin\00"
+@36 = private constant [15 x i8] c"../useminlimit\00"
+@37 = private constant [15 x i8] c"../usemaxlimit\00"
+@38 = private constant [16 x i8] c"../onesidedminx\00"
+@39 = private constant [13 x i8] c"../minlimitx\00"
+@40 = private constant [13 x i8] c"../maxlimitx\00"
+@41 = private constant [19 x i8] c"../onesidedmediany\00"
+@42 = private constant [11 x i8] c"../mediany\00"
+@43 = private constant [19 x i8] c"../onesidedstddevy\00"
+@44 = private constant [11 x i8] c"../stddevy\00"
+@45 = private constant [16 x i8] c"../onesidedminy\00"
+@46 = private constant [13 x i8] c"../minlimity\00"
+@47 = private constant [13 x i8] c"../maxlimity\00"
+@48 = private constant [19 x i8] c"../onesidedmedianz\00"
+@49 = private constant [11 x i8] c"../medianz\00"
+@50 = private constant [19 x i8] c"../onesidedstddevz\00"
+@51 = private constant [11 x i8] c"../stddevz\00"
+@52 = private constant [16 x i8] c"../onesidedminz\00"
+@53 = private constant [13 x i8] c"../minlimitz\00"
+@54 = private constant [13 x i8] c"../maxlimitz\00"
+@55 = private constant [19 x i8] c"../onesidedmedianw\00"
+@56 = private constant [11 x i8] c"../medianw\00"
+@57 = private constant [19 x i8] c"../onesidedstddevw\00"
+@58 = private constant [11 x i8] c"../stddevw\00"
+@59 = private constant [16 x i8] c"../onesidedminw\00"
+@60 = private constant [13 x i8] c"../minlimitw\00"
+@61 = private constant [13 x i8] c"../maxlimitw\00"
+@62 = private constant [13 x i8] c"../normalize\00"
+@primnum = external global i64
+@ptnum = external global i64
+@vtxnum = external global i64
+@OpInput1 = external global i8*
+@63 = private constant [8 x i8] c"primnum\00"
+@64 = private constant [6 x i8] c"ptnum\00"
+@65 = private constant [7 x i8] c"vtxnum\00"
+@66 = private constant [9 x i8] c"OpInput1\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IIIS"(i64* %_bound_primnum, i64* %_bound_ptnum, i64* %_bound_vtxnum, i8** %_bound_OpInput1) #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @0, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %end, label %false
+
+false:                                            ; preds = %__llvm_entry
+  %return2 = call i8* @"chs@SS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @3, i64 0, i64 0))
+  br label %end
+
+end:                                              ; preds = %__llvm_entry, %false
+  %phi = phi i8* [ %return2, %false ], [ getelementptr inbounds ([2 x i8], [2 x i8]* @2, i64 0, i64 0), %__llvm_entry ]
+  br i1 %0, label %end6, label %false5
+
+false5:                                           ; preds = %end
+  %return7 = call i8* @"chs@SS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0))
+  br label %end6
+
+end6:                                             ; preds = %end, %false5
+  %phi8 = phi i8* [ %return7, %false5 ], [ getelementptr inbounds ([6 x i8], [6 x i8]* @4, i64 0, i64 0), %end ]
+  br i1 %0, label %end12, label %false11
+
+false11:                                          ; preds = %end6
+  %return13 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @7, i64 0, i64 0))
+  br label %end12
+
+end12:                                            ; preds = %end6, %false11
+  %phi14 = phi i8* [ %return13, %false11 ], [ getelementptr inbounds ([4 x i8], [4 x i8]* @6, i64 0, i64 0), %end6 ]
+  %return15 = call i8* @"chs@SS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @8, i64 0, i64 0))
+  %return16 = call double @"chf@FS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @9, i64 0, i64 0))
+  %return17 = call i64 @"neg@II"(i64 1)
+  %return20 = call i64 @"eq@ISS"(i8* %phi8, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @10, i64 0, i64 0))
+  %1 = icmp ne i64 %return20, 0
+  br i1 %1, label %true21, label %false22
+
+true21:                                           ; preds = %end12
+  %_bound_primnum24 = load i64, i64* %_bound_primnum
+  br label %end23
+
+false22:                                          ; preds = %end12
+  %return27 = call i64 @"eq@ISS"(i8* %phi8, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @4, i64 0, i64 0))
+  %2 = icmp ne i64 %return27, 0
+  br i1 %2, label %true28, label %false29
+
+end23:                                            ; preds = %false29, %true35, %true28, %true21
+  %vertex.0 = phi i64 [ %return17, %true21 ], [ %return17, %true28 ], [ %return39, %true35 ], [ %return17, %false29 ]
+  %primorpt.0 = phi i64 [ %_bound_primnum24, %true21 ], [ %_bound_ptnum31, %true28 ], [ %_bound_primnum37, %true35 ], [ %return17, %false29 ]
+  %iseed.0 = phi i64 [ %_bound_primnum24, %true21 ], [ %_bound_ptnum31, %true28 ], [ %_bound_vtxnum40, %true35 ], [ 0, %false29 ]
+  %owner.0 = phi i8* [ getelementptr inbounds ([5 x i8], [5 x i8]* @11, i64 0, i64 0), %true21 ], [ %phi8, %true28 ], [ %phi8, %true35 ], [ %phi8, %false29 ]
+  %return42 = call i64 @"ne@ISS"(i8* %return15, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @13, i64 0, i64 0))
+  %3 = icmp ne i64 %return42, 0
+  br i1 %3, label %true43, label %end44
+
+true28:                                           ; preds = %false22
+  %_bound_ptnum31 = load i64, i64* %_bound_ptnum
+  br label %end23
+
+false29:                                          ; preds = %false22
+  %return34 = call i64 @"eq@ISS"(i8* %phi8, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @12, i64 0, i64 0))
+  %4 = icmp ne i64 %return34, 0
+  br i1 %4, label %true35, label %end23
+
+true35:                                           ; preds = %false29
+  %_bound_primnum37 = load i64, i64* %_bound_primnum
+  %_bound_vtxnum38 = load i64, i64* %_bound_vtxnum
+  %return39 = call i64 @"vertexprimindex@III"(i64 0, i64 %_bound_vtxnum38)
+  %_bound_vtxnum40 = load i64, i64* %_bound_vtxnum
+  br label %end23
+
+true43:                                           ; preds = %end23
+  %return45 = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @14, i64 0, i64 0))
+  %return46 = call i64 @"clamp@IIII"(i64 %return45, i64 1, i64 4)
+  %return49 = call i64 @"attribsize@IISS"(i64 0, i8* %owner.0, i8* %phi)
+  %return52 = call i64 @"gt@III"(i64 %return46, i64 %return49)
+  %5 = icmp ne i64 %return52, 0
+  br i1 %5, label %true53, label %end44
+
+end44:                                            ; preds = %true43, %end58, %end23
+  %dimensions.0 = phi i64 [ %return49, %end58 ], [ %return46, %true43 ], [ 1, %end23 ]
+  %return61 = call i64 @"eq@III"(i64 %dimensions.0, i64 1)
+  %return63 = call i64 @"eq@ISS"(i8* %return15, i8* getelementptr inbounds ([14 x i8], [14 x i8]* @15, i64 0, i64 0))
+  %return64 = call i64 @"or@III"(i64 %return61, i64 %return63)
+  %return66 = call i64 @"eq@ISS"(i8* %return15, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @16, i64 0, i64 0))
+  %return67 = call i64 @"or@III"(i64 %return64, i64 %return66)
+  %return69 = call i64 @"eq@ISS"(i8* %return15, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @17, i64 0, i64 0))
+  %return70 = call i64 @"or@III"(i64 %return67, i64 %return69)
+  %return71 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @18, i64 0, i64 0))
+  %return72 = call i64 @"or@III"(i64 %return70, i64 %return71)
+  %return74 = call i64 @"ne@ISS"(i8* %return15, i8* getelementptr inbounds ([14 x i8], [14 x i8]* @15, i64 0, i64 0))
+  %return76 = call i64 @"ne@ISS"(i8* %return15, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @16, i64 0, i64 0))
+  %return77 = call i64 @"and@III"(i64 %return74, i64 %return76)
+  %return79 = call i64 @"ne@ISS"(i8* %return15, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @19, i64 0, i64 0))
+  %return80 = call i64 @"and@III"(i64 %return77, i64 %return79)
+  %return82 = call i64 @"ne@ISS"(i8* %return15, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @17, i64 0, i64 0))
+  %return83 = call i64 @"and@III"(i64 %return80, i64 %return82)
+  %return88 = call i64 @"ne@ISS"(i8* %return15, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @20, i64 0, i64 0))
+  %return91 = call i64 @"eq@ISS"(i8* %return15, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @21, i64 0, i64 0))
+  %return93 = call i64 @"eq@ISS"(i8* %return15, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @22, i64 0, i64 0))
+  %return94 = call i64 @"or@III"(i64 %return91, i64 %return93)
+  %return96 = call i64 @"eq@ISS"(i8* %return15, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @23, i64 0, i64 0))
+  %return97 = call i64 @"or@III"(i64 %return94, i64 %return96)
+  %return99 = call i64 @"eq@ISS"(i8* %return15, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @24, i64 0, i64 0))
+  %return100 = call i64 @"or@III"(i64 %return97, i64 %return99)
+  %return109 = call <4 x double> @"set@PFFFF"(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  %6 = icmp ne i64 %return100, 0
+  br i1 %6, label %true113, label %end114
+
+true53:                                           ; preds = %true43
+  %return56 = call i64 @"le@III"(i64 %return49, i64 0)
+  %7 = icmp ne i64 %return56, 0
+  br i1 %7, label %true57, label %end58
+
+true57:                                           ; preds = %false740, %true753, %true739, %true725, %true711, %true53
+  ret void
+
+end58:                                            ; preds = %true53
+  br label %end44
+
+true113:                                          ; preds = %end44
+  %return115 = call i8* @"chs@SS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @25, i64 0, i64 0))
+  %return117 = call i64 @"ne@ISS"(i8* %return115, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0))
+  %8 = icmp ne i64 %return117, 0
+  br i1 %8, label %true118, label %end114
+
+end114:                                           ; preds = %true113, %true118, %end44
+  %medianv.0 = phi <4 x double> [ %output, %true118 ], [ %return109, %true113 ], [ %return109, %end44 ]
+  %9 = icmp ne i64 %return79, 0
+  br i1 %9, label %true130, label %end131
+
+true118:                                          ; preds = %true113
+  %_bound_OpInput1120 = load i8*, i8** %_bound_OpInput1
+  %return125 = call { i64, <4 x double> } @"getattribute@ISPSSII"(i8* %_bound_OpInput1120, i8* %owner.0, i8* %return115, i64 %primorpt.0, i64 %vertex.0)
+  %output = extractvalue { i64, <4 x double> } %return125, 1
+  br label %end114
+
+true130:                                          ; preds = %end114
+  %return132 = call i64 @"chi@IS"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @26, i64 0, i64 0))
+  %10 = icmp ne i64 %return132, 0
+  br i1 %10, label %true134, label %false135
+
+end131:                                           ; preds = %cond, %end220, %end114
+  %u.0 = phi <4 x double> [ %u.1, %cond ], [ %return275, %end220 ], [ zeroinitializer, %end114 ]
+  %return279 = call double @"getcomp@FPI"(<4 x double> %medianv.0, i64 0)
+  %11 = icmp ne i64 %return93, 0
+  %. = select i1 %11, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @31, i64 0, i64 0), i8* getelementptr inbounds ([11 x i8], [11 x i8]* @32, i64 0, i64 0)
+  %return285 = call double @"chf@FS"(i8* %.)
+  %output286 = fadd double %return279, %return285
+  %return288 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %medianv.0, double %output286, i64 0)
+  %output290 = extractvalue { double, <4 x double> } %return288, 1
+  %phi295 = select i1 %11, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @33, i64 0, i64 0), i8* getelementptr inbounds ([11 x i8], [11 x i8]* @34, i64 0, i64 0)
+  %return296 = call double @"chf@FS"(i8* %phi295)
+  %return298 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %return109, double %return296, i64 0)
+  %output300 = extractvalue { double, <4 x double> } %return298, 1
+  %.763 = select i1 %11, i8* getelementptr inbounds ([18 x i8], [18 x i8]* @35, i64 0, i64 0), i8* getelementptr inbounds ([15 x i8], [15 x i8]* @36, i64 0, i64 0)
+  %return306 = call i64 @"chi@IS"(i8* %.763)
+  %return307 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @37, i64 0, i64 0))
+  %12 = icmp ne i64 %return306, 0
+  br i1 %12, label %true309, label %end310
+
+true134:                                          ; preds = %true130
+  %return137 = call i8* @"chs@SS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @27, i64 0, i64 0))
+  %_bound_OpInput1138 = load i8*, i8** %_bound_OpInput1
+  %return143 = call { i64, <4 x double> } @"getattribute@ISPSSII"(i8* %_bound_OpInput1138, i8* %owner.0, i8* %return137, i64 %primorpt.0, i64 %vertex.0)
+  %output145 = extractvalue { i64, <4 x double> } %return143, 1
+  br label %cond
+
+false135:                                         ; preds = %true130
+  %return154 = call double @"chf@FS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @28, i64 0, i64 0))
+  %return155 = call i64 @"chi@IS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @29, i64 0, i64 0))
+  %return157 = call <4 x double> @"set@PFFFF"(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double %return154)
+  %13 = icmp ne i64 %return155, 0
+  br i1 %13, label %true159, label %end160
+
+cond:                                             ; preds = %body, %true134
+  %u.1 = phi <4 x double> [ %output145, %true134 ], [ %return151, %body ]
+  %i.0 = phi i64 [ 0, %true134 ], [ %output153, %body ]
+  %return147 = call i64 @"lt@III"(i64 %i.0, i64 4)
+  %14 = icmp ne i64 %return147, 0
+  br i1 %14, label %body, label %end131
+
+body:                                             ; preds = %cond
+  %cast = call <4 x double> @"set@PI"(i64 0)
+  %cast150 = call <4 x double> @"set@PI"(i64 1)
+  %return151 = call <4 x double> @"clamp@PPPP"(<4 x double> %u.1, <4 x double> %cast, <4 x double> %cast150)
+  %output153 = add i64 %i.0, 1
+  br label %cond
+
+true159:                                          ; preds = %false135
+  %return161 = call i8* @"chs@SS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @30, i64 0, i64 0))
+  %return164 = call i64 @"attribtype@IISS"(i64 0, i8* %owner.0, i8* %return161)
+  %return166 = call i64 @"eq@III"(i64 %return164, i64 0)
+  %15 = icmp ne i64 %return166, 0
+  br i1 %15, label %true167, label %false168
+
+end160:                                           ; preds = %false182, %true206, %true181, %true195, %true167, %false135
+  %useiseed.0 = phi i64 [ 1, %true167 ], [ %return192, %true195 ], [ %return192, %true181 ], [ 1, %true206 ], [ 1, %false182 ], [ 1, %false135 ]
+  %vseed.0 = phi <4 x double> [ %return157, %true167 ], [ %output203, %true195 ], [ %output191, %true181 ], [ %return157, %true206 ], [ %return157, %false182 ], [ %return157, %false135 ]
+  %iseed.1 = phi i64 [ %output178, %true167 ], [ %iseed.0, %true195 ], [ %iseed.0, %true181 ], [ %return217, %true206 ], [ %iseed.0, %false182 ], [ %iseed.0, %false135 ]
+  %16 = icmp ne i64 %useiseed.0, 0
+  br i1 %16, label %true219, label %end220
+
+true167:                                          ; preds = %true159
+  %_bound_OpInput1171 = load i8*, i8** %_bound_OpInput1
+  %return176 = call { i64, i64 } @"getattribute@ISISSII"(i8* %_bound_OpInput1171, i8* %owner.0, i8* %return161, i64 %primorpt.0, i64 %vertex.0)
+  %output178 = extractvalue { i64, i64 } %return176, 1
+  br label %end160
+
+false168:                                         ; preds = %true159
+  %return180 = call i64 @"eq@III"(i64 %return164, i64 1)
+  %17 = icmp ne i64 %return180, 0
+  br i1 %17, label %true181, label %false182
+
+true181:                                          ; preds = %false168
+  %_bound_OpInput1184 = load i8*, i8** %_bound_OpInput1
+  %return189 = call { i64, <4 x double> } @"getattribute@ISPSSII"(i8* %_bound_OpInput1184, i8* %owner.0, i8* %return161, i64 %primorpt.0, i64 %vertex.0)
+  %return190 = extractvalue { i64, <4 x double> } %return189, 0
+  %output191 = extractvalue { i64, <4 x double> } %return189, 1
+  %return192 = call i64 @"not@II"(i64 %return190)
+  %return194 = call i64 @"not@II"(i64 %return192)
+  %18 = icmp ne i64 %return194, 0
+  br i1 %18, label %true195, label %end160
+
+false182:                                         ; preds = %false168
+  %return205 = call i64 @"eq@III"(i64 %return164, i64 2)
+  %19 = icmp ne i64 %return205, 0
+  br i1 %19, label %true206, label %end160
+
+true195:                                          ; preds = %true181
+  %return198 = call double @"getcomp@FPI"(<4 x double> %output191, i64 3)
+  %output200 = fadd double %return198, %return154
+  %return201 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %output191, double %output200, i64 3)
+  %output203 = extractvalue { double, <4 x double> } %return201, 1
+  br label %end160
+
+true206:                                          ; preds = %false182
+  %_bound_OpInput1208 = load i8*, i8** %_bound_OpInput1
+  %return213 = call { i64, i8* } @"getattribute@ISSSSII"(i8* %_bound_OpInput1208, i8* %owner.0, i8* %return161, i64 %primorpt.0, i64 %vertex.0)
+  %output215 = extractvalue { i64, i8* } %return213, 1
+  %return217 = call i64 @"random_shash@IS"(i8* %output215)
+  br label %end160
+
+true219:                                          ; preds = %end160
+  %return222 = call i64 @"mod@III"(i64 %iseed.1, i64 65536)
+  %cast223 = sitofp i64 %return222 to double
+  %output225 = call i64 @"div@II"(i64 %iseed.1, i64 65536)
+  %cast226 = sitofp i64 %output225 to double
+  %return228 = call <4 x double> @"set@PFFFF"(double %cast223, double %cast226, double 0.000000e+00, double %return154)
+  br label %end220
+
+end220:                                           ; preds = %true219, %end160
+  %vseed.1 = phi <4 x double> [ %return228, %true219 ], [ %vseed.0, %end160 ]
+  %return230 = call i64 @"random_fhash@IP"(<4 x double> %vseed.1)
+  %return232 = call i64 @"mod@III"(i64 %return230, i64 65536)
+  %cast233 = sitofp i64 %return232 to double
+  %output235 = call i64 @"div@II"(i64 %return230, i64 65536)
+  %cast236 = sitofp i64 %output235 to double
+  %return237 = call <2 x double> @"set@UFF"(double %cast233, double %cast236)
+  %return238 = call i64 @"random_fhash@IU"(<2 x double> %return237)
+  %return240 = call i64 @"mod@III"(i64 %return238, i64 65536)
+  %cast241 = sitofp i64 %return240 to double
+  %output243 = call i64 @"div@II"(i64 %return238, i64 65536)
+  %cast244 = sitofp i64 %output243 to double
+  %return251 = call <4 x double> @"set@PFFFF"(double %cast241, double %cast244, double %cast233, double %cast236)
+  %return252 = call i64 @"random_fhash@IP"(<4 x double> %return251)
+  %return254 = call i64 @"mod@III"(i64 %return252, i64 65536)
+  %cast255 = sitofp i64 %return254 to double
+  %output257 = call i64 @"div@II"(i64 %return252, i64 65536)
+  %cast258 = sitofp i64 %output257 to double
+  %return265 = call <4 x double> @"set@PFFFF"(double %cast255, double %cast258, double %cast233, double %cast236)
+  %return266 = call i64 @"random_fhash@IP"(<4 x double> %return265)
+  %return268 = call double @"random@FI"(i64 %return230)
+  %return270 = call double @"random@FI"(i64 %return238)
+  %return272 = call double @"random@FI"(i64 %return252)
+  %return274 = call double @"random@FI"(i64 %return266)
+  %return275 = call <4 x double> @"set@PFFFF"(double %return268, double %return270, double %return272, double %return274)
+  br label %end131
+
+true309:                                          ; preds = %end131
+  %.764 = select i1 %11, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @38, i64 0, i64 0), i8* getelementptr inbounds ([13 x i8], [13 x i8]* @39, i64 0, i64 0)
+  %return316 = call double @"chf@FS"(i8* %.764)
+  %return318 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> <double -1.000000e+30, double -1.000000e+30, double -1.000000e+30, double -1.000000e+30>, double %return316, i64 0)
+  %output320 = extractvalue { double, <4 x double> } %return318, 1
+  br label %end310
+
+end310:                                           ; preds = %true309, %end131
+  %minv.0 = phi <4 x double> [ %output320, %true309 ], [ <double -1.000000e+30, double -1.000000e+30, double -1.000000e+30, double -1.000000e+30>, %end131 ]
+  %20 = icmp ne i64 %return307, 0
+  br i1 %20, label %true322, label %end323
+
+true322:                                          ; preds = %end310
+  %return324 = call double @"chf@FS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @40, i64 0, i64 0))
+  %return326 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> <double 1.000000e+30, double 1.000000e+30, double 1.000000e+30, double 1.000000e+30>, double %return324, i64 0)
+  %output328 = extractvalue { double, <4 x double> } %return326, 1
+  br label %end323
+
+end323:                                           ; preds = %true322, %end310
+  %maxv.0 = phi <4 x double> [ %output328, %true322 ], [ <double 1.000000e+30, double 1.000000e+30, double 1.000000e+30, double 1.000000e+30>, %end310 ]
+  %21 = icmp ne i64 %return72, 0
+  br i1 %21, label %true330, label %false331
+
+true330:                                          ; preds = %end323
+  %return334 = call double @"getcomp@FPI"(<4 x double> %output290, i64 0)
+  %return341 = call <4 x double> @"set@PFFFF"(double %return334, double %return334, double %return334, double %return334)
+  %return343 = call double @"getcomp@FPI"(<4 x double> %output300, i64 0)
+  %return350 = call <4 x double> @"set@PFFFF"(double %return343, double %return343, double %return343, double %return343)
+  br i1 %12, label %true352, label %end353
+
+false331:                                         ; preds = %end323
+  %return376 = call i64 @"ge@III"(i64 %dimensions.0, i64 2)
+  %22 = icmp ne i64 %return376, 0
+  br i1 %22, label %true377, label %end332
+
+end332:                                           ; preds = %end500, %true512, %end465, %end417, %false331, %end353, %true364
+  %stddev.0 = phi <4 x double> [ %return350, %true364 ], [ %return350, %end353 ], [ %output497, %true512 ], [ %output497, %end500 ], [ %output449, %end465 ], [ %output401, %end417 ], [ %output300, %false331 ]
+  %medianv.1 = phi <4 x double> [ %return341, %true364 ], [ %return341, %end353 ], [ %output487, %true512 ], [ %output487, %end500 ], [ %output439, %end465 ], [ %output391, %end417 ], [ %output290, %false331 ]
+  %minv.1 = phi <4 x double> [ %minv.2, %true364 ], [ %minv.2, %end353 ], [ %minv.5, %true512 ], [ %minv.5, %end500 ], [ %minv.4, %end465 ], [ %minv.3, %end417 ], [ %minv.0, %false331 ]
+  %maxv.1 = phi <4 x double> [ %return374, %true364 ], [ %maxv.0, %end353 ], [ %output518, %true512 ], [ %maxv.3, %end500 ], [ %maxv.3, %end465 ], [ %maxv.2, %end417 ], [ %maxv.0, %false331 ]
+  br i1 %11, label %cond524, label %cond576
+
+true352:                                          ; preds = %true330
+  %return355 = call double @"getcomp@FPI"(<4 x double> %minv.0, i64 0)
+  %return362 = call <4 x double> @"set@PFFFF"(double %return355, double %return355, double %return355, double %return355)
+  br label %end353
+
+end353:                                           ; preds = %true352, %true330
+  %minv.2 = phi <4 x double> [ %return362, %true352 ], [ %minv.0, %true330 ]
+  br i1 %20, label %true364, label %end332
+
+true364:                                          ; preds = %end353
+  %return367 = call double @"getcomp@FPI"(<4 x double> %maxv.0, i64 0)
+  %return374 = call <4 x double> @"set@PFFFF"(double %return367, double %return367, double %return367, double %return367)
+  br label %end332
+
+true377:                                          ; preds = %false331
+  %return380 = call double @"getcomp@FPI"(<4 x double> %output290, i64 1)
+  %.765 = select i1 %11, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @41, i64 0, i64 0), i8* getelementptr inbounds ([11 x i8], [11 x i8]* @42, i64 0, i64 0)
+  %return386 = call double @"chf@FS"(i8* %.765)
+  %output387 = fadd double %return380, %return386
+  %return389 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %output290, double %output387, i64 1)
+  %output391 = extractvalue { double, <4 x double> } %return389, 1
+  %phi396 = select i1 %11, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @43, i64 0, i64 0), i8* getelementptr inbounds ([11 x i8], [11 x i8]* @44, i64 0, i64 0)
+  %return397 = call double @"chf@FS"(i8* %phi396)
+  %return399 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %output300, double %return397, i64 1)
+  %output401 = extractvalue { double, <4 x double> } %return399, 1
+  br i1 %12, label %true403, label %end404
+
+true403:                                          ; preds = %true377
+  %.766 = select i1 %11, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @45, i64 0, i64 0), i8* getelementptr inbounds ([13 x i8], [13 x i8]* @46, i64 0, i64 0)
+  %return410 = call double @"chf@FS"(i8* %.766)
+  %return412 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %minv.0, double %return410, i64 1)
+  %output414 = extractvalue { double, <4 x double> } %return412, 1
+  br label %end404
+
+end404:                                           ; preds = %true403, %true377
+  %minv.3 = phi <4 x double> [ %output414, %true403 ], [ %minv.0, %true377 ]
+  br i1 %20, label %true416, label %end417
+
+true416:                                          ; preds = %end404
+  %return418 = call double @"chf@FS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @47, i64 0, i64 0))
+  %return420 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %maxv.0, double %return418, i64 1)
+  %output422 = extractvalue { double, <4 x double> } %return420, 1
+  br label %end417
+
+end417:                                           ; preds = %true416, %end404
+  %maxv.2 = phi <4 x double> [ %output422, %true416 ], [ %maxv.0, %end404 ]
+  %return424 = call i64 @"ge@III"(i64 %dimensions.0, i64 3)
+  %23 = icmp ne i64 %return424, 0
+  br i1 %23, label %true425, label %end332
+
+true425:                                          ; preds = %end417
+  %return428 = call double @"getcomp@FPI"(<4 x double> %output391, i64 2)
+  %.767 = select i1 %11, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @48, i64 0, i64 0), i8* getelementptr inbounds ([11 x i8], [11 x i8]* @49, i64 0, i64 0)
+  %return434 = call double @"chf@FS"(i8* %.767)
+  %output435 = fadd double %return428, %return434
+  %return437 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %output391, double %output435, i64 2)
+  %output439 = extractvalue { double, <4 x double> } %return437, 1
+  %phi444 = select i1 %11, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @50, i64 0, i64 0), i8* getelementptr inbounds ([11 x i8], [11 x i8]* @51, i64 0, i64 0)
+  %return445 = call double @"chf@FS"(i8* %phi444)
+  %return447 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %output401, double %return445, i64 2)
+  %output449 = extractvalue { double, <4 x double> } %return447, 1
+  br i1 %12, label %true451, label %end452
+
+true451:                                          ; preds = %true425
+  %.768 = select i1 %11, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @52, i64 0, i64 0), i8* getelementptr inbounds ([13 x i8], [13 x i8]* @53, i64 0, i64 0)
+  %return458 = call double @"chf@FS"(i8* %.768)
+  %return460 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %minv.3, double %return458, i64 2)
+  %output462 = extractvalue { double, <4 x double> } %return460, 1
+  br label %end452
+
+end452:                                           ; preds = %true451, %true425
+  %minv.4 = phi <4 x double> [ %output462, %true451 ], [ %minv.3, %true425 ]
+  br i1 %20, label %true464, label %end465
+
+true464:                                          ; preds = %end452
+  %return466 = call double @"chf@FS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @54, i64 0, i64 0))
+  %return468 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %maxv.2, double %return466, i64 2)
+  %output470 = extractvalue { double, <4 x double> } %return468, 1
+  br label %end465
+
+end465:                                           ; preds = %true464, %end452
+  %maxv.3 = phi <4 x double> [ %output470, %true464 ], [ %maxv.2, %end452 ]
+  %return472 = call i64 @"ge@III"(i64 %dimensions.0, i64 4)
+  %24 = icmp ne i64 %return472, 0
+  br i1 %24, label %true473, label %end332
+
+true473:                                          ; preds = %end465
+  %return476 = call double @"getcomp@FPI"(<4 x double> %output439, i64 3)
+  %.769 = select i1 %11, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @55, i64 0, i64 0), i8* getelementptr inbounds ([11 x i8], [11 x i8]* @56, i64 0, i64 0)
+  %return482 = call double @"chf@FS"(i8* %.769)
+  %output483 = fadd double %return476, %return482
+  %return485 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %output439, double %output483, i64 3)
+  %output487 = extractvalue { double, <4 x double> } %return485, 1
+  %phi492 = select i1 %11, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @57, i64 0, i64 0), i8* getelementptr inbounds ([11 x i8], [11 x i8]* @58, i64 0, i64 0)
+  %return493 = call double @"chf@FS"(i8* %phi492)
+  %return495 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %output449, double %return493, i64 3)
+  %output497 = extractvalue { double, <4 x double> } %return495, 1
+  br i1 %12, label %true499, label %end500
+
+true499:                                          ; preds = %true473
+  %.770 = select i1 %11, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @59, i64 0, i64 0), i8* getelementptr inbounds ([13 x i8], [13 x i8]* @60, i64 0, i64 0)
+  %return506 = call double @"chf@FS"(i8* %.770)
+  %return508 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %minv.4, double %return506, i64 3)
+  %output510 = extractvalue { double, <4 x double> } %return508, 1
+  br label %end500
+
+end500:                                           ; preds = %true499, %true473
+  %minv.5 = phi <4 x double> [ %output510, %true499 ], [ %minv.4, %true473 ]
+  br i1 %20, label %true512, label %end332
+
+true512:                                          ; preds = %end500
+  %return514 = call double @"chf@FS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @61, i64 0, i64 0))
+  %return516 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %maxv.3, double %return514, i64 3)
+  %output518 = extractvalue { double, <4 x double> } %return516, 1
+  br label %end332
+
+end522:                                           ; preds = %cond576, %cond524
+  %v.0 = phi <4 x double> [ %v.1, %cond524 ], [ %v.3, %cond576 ]
+  %return634 = call i64 @"and@III"(i64 %return77, i64 %return88)
+  %return637 = call i64 @"and@III"(i64 %return634, i64 %return42)
+  %return638 = call i64 @"chi@IS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @62, i64 0, i64 0))
+  %return639 = call i64 @"and@III"(i64 %return637, i64 %return638)
+  %25 = icmp ne i64 %return639, 0
+  br i1 %25, label %true641, label %end642
+
+cond524:                                          ; preds = %end332, %end536
+  %v.1 = phi <4 x double> [ %return109, %end332 ], [ %v.2, %end536 ]
+  %i523.0 = phi i64 [ 0, %end332 ], [ %output574, %end536 ]
+  %return528 = call i64 @"lt@III"(i64 %i523.0, i64 %dimensions.0)
+  %26 = icmp ne i64 %return528, 0
+  br i1 %26, label %body525, label %end522
+
+body525:                                          ; preds = %cond524
+  %return533 = call i64 @"or@III"(i64 %return307, i64 %return306)
+  %27 = icmp ne i64 %return533, 0
+  %return540 = call double @"getcomp@FPI"(<4 x double> %medianv.1, i64 %i523.0)
+  %return543 = call double @"getcomp@FPI"(<4 x double> %stddev.0, i64 %i523.0)
+  br i1 %27, label %true534, label %false535
+
+true534:                                          ; preds = %body525
+  %return546 = call double @"getcomp@FPI"(<4 x double> %minv.1, i64 %i523.0)
+  %return549 = call double @"getcomp@FPI"(<4 x double> %maxv.1, i64 %i523.0)
+  %return552 = call double @"getcomp@FPI"(<4 x double> %u.0, i64 %i523.0)
+  %return553 = call double @"sample_lognormal_by_median@FFFFFF"(double %return540, double %return543, double %return546, double %return549, double %return552)
+  %return555 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %v.1, double %return553, i64 %i523.0)
+  %output557 = extractvalue { double, <4 x double> } %return555, 1
+  br label %end536
+
+false535:                                         ; preds = %body525
+  %return567 = call double @"getcomp@FPI"(<4 x double> %u.0, i64 %i523.0)
+  %return568 = call double @"sample_lognormal_by_median@FFFF"(double %return540, double %return543, double %return567)
+  %return570 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %v.1, double %return568, i64 %i523.0)
+  %output572 = extractvalue { double, <4 x double> } %return570, 1
+  br label %end536
+
+end536:                                           ; preds = %false535, %true534
+  %v.2 = phi <4 x double> [ %output557, %true534 ], [ %output572, %false535 ]
+  %output574 = add i64 %i523.0, 1
+  br label %cond524
+
+cond576:                                          ; preds = %end332, %end588
+  %v.3 = phi <4 x double> [ %return109, %end332 ], [ %v.4, %end588 ]
+  %i523.1 = phi i64 [ 0, %end332 ], [ %output626, %end588 ]
+  %return580 = call i64 @"lt@III"(i64 %i523.1, i64 %dimensions.0)
+  %28 = icmp ne i64 %return580, 0
+  br i1 %28, label %body577, label %end522
+
+body577:                                          ; preds = %cond576
+  %return585 = call i64 @"or@III"(i64 %return307, i64 %return306)
+  %29 = icmp ne i64 %return585, 0
+  %return592 = call double @"getcomp@FPI"(<4 x double> %medianv.1, i64 %i523.1)
+  %return595 = call double @"getcomp@FPI"(<4 x double> %stddev.0, i64 %i523.1)
+  br i1 %29, label %true586, label %false587
+
+true586:                                          ; preds = %body577
+  %return598 = call double @"getcomp@FPI"(<4 x double> %minv.1, i64 %i523.1)
+  %return601 = call double @"getcomp@FPI"(<4 x double> %maxv.1, i64 %i523.1)
+  %return604 = call double @"getcomp@FPI"(<4 x double> %u.0, i64 %i523.1)
+  %return605 = call double @"sample_normal@FFFFFF"(double %return592, double %return595, double %return598, double %return601, double %return604)
+  %return607 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %v.3, double %return605, i64 %i523.1)
+  %output609 = extractvalue { double, <4 x double> } %return607, 1
+  br label %end588
+
+false587:                                         ; preds = %body577
+  %return619 = call double @"getcomp@FPI"(<4 x double> %u.0, i64 %i523.1)
+  %return620 = call double @"sample_normal@FFFF"(double %return592, double %return595, double %return619)
+  %return622 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %v.3, double %return620, i64 %i523.1)
+  %output624 = extractvalue { double, <4 x double> } %return622, 1
+  br label %end588
+
+end588:                                           ; preds = %false587, %true586
+  %v.4 = phi <4 x double> [ %output609, %true586 ], [ %output624, %false587 ]
+  %output626 = add i64 %i523.1, 1
+  br label %cond576
+
+true641:                                          ; preds = %end522
+  br label %cond644
+
+end642:                                           ; preds = %end670, %end522
+  %v.5 = phi <4 x double> [ %v.6, %end670 ], [ %v.0, %end522 ]
+  %scale.0 = phi double [ %output704, %end670 ], [ %return16, %end522 ]
+  %cast707 = call <4 x double> @"set@PF"(double %scale.0)
+  %output708 = call <4 x double> @"mul@PP"(<4 x double> %v.5, <4 x double> %cast707)
+  %30 = icmp ne i64 %return61, 0
+  br i1 %30, label %true711, label %false712
+
+cond644:                                          ; preds = %body645, %true641
+  %len.0 = phi double [ 0.000000e+00, %true641 ], [ %output659, %body645 ]
+  %i643.0 = phi i64 [ 0, %true641 ], [ %output661, %body645 ]
+  %return648 = call i64 @"lt@III"(i64 %i643.0, i64 %dimensions.0)
+  %31 = icmp ne i64 %return648, 0
+  br i1 %31, label %body645, label %end649
+
+body645:                                          ; preds = %cond644
+  %return654 = call double @"getcomp@FPI"(<4 x double> %v.0, i64 %i643.0)
+  %output658 = fmul double %return654, %return654
+  %output659 = fadd double %len.0, %output658
+  %output661 = add i64 %i643.0, 1
+  br label %cond644
+
+end649:                                           ; preds = %cond644
+  %return663 = fcmp oeq double %len.0, 0.000000e+00
+  %return664 = zext i1 %return663 to i64
+  %return666 = fcmp ogt double %len.0, 1.000000e+38
+  %return667 = zext i1 %return666 to i64
+  %return668 = call i64 @"or@III"(i64 %return664, i64 %return667)
+  %32 = icmp ne i64 %return668, 0
+  br i1 %32, label %true669, label %end670
+
+true669:                                          ; preds = %end649
+  br label %cond673
+
+end670:                                           ; preds = %end678, %true698, %end649
+  %v.6 = phi <4 x double> [ %return700, %true698 ], [ %medianv.1, %end678 ], [ %v.0, %end649 ]
+  %len.1 = phi double [ 1.000000e+00, %true698 ], [ %len.2, %end678 ], [ %len.0, %end649 ]
+  %return703 = call double @"sqrt@FF"(double %len.1)
+  %output704 = call double @"div@FF"(double %return16, double %return703)
+  br label %end642
+
+cond673:                                          ; preds = %body674, %true669
+  %len.2 = phi double [ %len.0, %true669 ], [ %output688, %body674 ]
+  %i672.0 = phi i64 [ 0, %true669 ], [ %output690, %body674 ]
+  %return677 = call i64 @"lt@III"(i64 %i672.0, i64 %dimensions.0)
+  %33 = icmp ne i64 %return677, 0
+  br i1 %33, label %body674, label %end678
+
+body674:                                          ; preds = %cond673
+  %return683 = call double @"getcomp@FPI"(<4 x double> %medianv.1, i64 %i672.0)
+  %output687 = fmul double %return683, %return683
+  %output688 = fadd double %len.2, %output687
+  %output690 = add i64 %i672.0, 1
+  br label %cond673
+
+end678:                                           ; preds = %cond673
+  %return692 = fcmp oeq double %len.2, 0.000000e+00
+  %return693 = zext i1 %return692 to i64
+  %return695 = fcmp ogt double %len.2, 1.000000e+38
+  %return696 = zext i1 %return695 to i64
+  %return697 = call i64 @"or@III"(i64 %return693, i64 %return696)
+  %34 = icmp ne i64 %return697, 0
+  br i1 %34, label %true698, label %end670
+
+true698:                                          ; preds = %end678
+  %return700 = call <4 x double> @"set@PFFFF"(double 1.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  br label %end670
+
+true711:                                          ; preds = %end642
+  %return714 = call i64 @"geoself@I"()
+  %return720 = call double @"getcomp@FPI"(<4 x double> %output708, i64 0)
+  %return722 = call i64 @"setattrib@IISSIIFS"(i64 %return714, i8* %owner.0, i8* %phi, i64 %primorpt.0, i64 %vertex.0, double %return720, i8* %phi14)
+  br label %true57
+
+false712:                                         ; preds = %end642
+  %return724 = call i64 @"eq@III"(i64 %dimensions.0, i64 2)
+  %35 = icmp ne i64 %return724, 0
+  br i1 %35, label %true725, label %false726
+
+true725:                                          ; preds = %false712
+  %return728 = call i64 @"geoself@I"()
+  %cast734 = call <2 x double> @"set@UP"(<4 x double> %output708)
+  %return736 = call i64 @"setattrib@IISSIIUS"(i64 %return728, i8* %owner.0, i8* %phi, i64 %primorpt.0, i64 %vertex.0, <2 x double> %cast734, i8* %phi14)
+  br label %true57
+
+false726:                                         ; preds = %false712
+  %return738 = call i64 @"eq@III"(i64 %dimensions.0, i64 3)
+  %36 = icmp ne i64 %return738, 0
+  br i1 %36, label %true739, label %false740
+
+true739:                                          ; preds = %false726
+  %return742 = call i64 @"geoself@I"()
+  %cast748 = call <3 x double> @"set@VP"(<4 x double> %output708)
+  %return750 = call i64 @"setattrib@IISSIIVS"(i64 %return742, i8* %owner.0, i8* %phi, i64 %primorpt.0, i64 %vertex.0, <3 x double> %cast748, i8* %phi14)
+  br label %true57
+
+false740:                                         ; preds = %false726
+  %return752 = call i64 @"ge@III"(i64 %dimensions.0, i64 4)
+  %37 = icmp ne i64 %return752, 0
+  br i1 %37, label %true753, label %true57
+
+true753:                                          ; preds = %false740
+  %return755 = call i64 @"geoself@I"()
+  %return762 = call i64 @"setattrib@IISSIIPS"(i64 %return755, i8* %owner.0, i8* %phi, i64 %primorpt.0, i64 %vertex.0, <4 x double> %output708, i8* %phi14)
+  br label %true57
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"pow@FFF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"vertexprimindex@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"clamp@IIII"(i64, i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"attribsize@IISS"(i64, i8*, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"le@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PFFFF"(double, double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare { i64, <4 x double> } @"getattribute@ISPSSII"(i8*, i8*, i8*, i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PI"(i64) #1
+
+; Function Attrs: nounwind
+declare <4 x double> @"clamp@PPPP"(<4 x double>, <4 x double>, <4 x double>) #2
+
+; Function Attrs: nounwind
+declare i64 @"attribtype@IISS"(i64, i8*, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare { i64, i64 } @"getattribute@ISISSII"(i8*, i8*, i8*, i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FPI"(<4 x double>, i64) #1
+
+; Function Attrs: alwaysinline
+define private { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <4 x double> @"setcomp@PFI"(<4 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <4 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <4 x double> } %mrv, <4 x double> %rw16, 1
+  ret { double, <4 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"setcomp@PFI"(<4 x double>, double, i64) #1
+
+; Function Attrs: nounwind readnone
+declare { i64, i8* } @"getattribute@ISSSSII"(i8*, i8*, i8*, i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"random_shash@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"mod@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"div@II"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"random_fhash@IP"(<4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UFF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"random_fhash@IU"(<2 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"random@FI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare double @"sample_lognormal_by_median@FFFFFF"(double, double, double, double, double) #2
+
+; Function Attrs: nounwind
+declare double @"sample_lognormal_by_median@FFFF"(double, double, double) #2
+
+; Function Attrs: nounwind
+declare double @"sample_normal@FFFFFF"(double, double, double, double, double) #2
+
+; Function Attrs: nounwind
+declare double @"sample_normal@FFFF"(double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"sqrt@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"mul@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #2
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSIIFS"(i64, i8*, i8*, i64, i64, double, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UP"(<4 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSIIUS"(i64, i8*, i8*, i64, i64, <2 x double>, i8*) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"set@VP"(<4 x double>) #2
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSIIVS"(i64, i8*, i8*, i64, i64, <3 x double>, i8*) #2
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSIIPS"(i64, i8*, i8*, i64, i64, <4 x double>, i8*) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %primnum, i64 %ptnum, i64 %vtxnum, i8* %OpInput1) #2 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca i8*
+  store i64 %primnum, i64* %0
+  store i64 %ptnum, i64* %1
+  store i64 %vtxnum, i64* %2
+  store i8* %OpInput1, i8** %3
+  call void @"__vex_snippet_snippet@IIIS"(i64* %0, i64* %1, i64* %2, i8** %3)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @63, i64 0, i64 0), i64 %primnum) #4
+  %gvalue6 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @64, i64 0, i64 0), i64 %ptnum) #4
+  %gvalue8 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @65, i64 0, i64 0), i64 %vtxnum) #4
+  %gvalue10 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @66, i64 0, i64 0), i8* %OpInput1) #4
+  store i64 %gvalue, i64* @primnum
+  store i64 %gvalue6, i64* @ptnum
+  store i64 %gvalue8, i64* @vtxnum
+  store i8* %gvalue10, i8** @OpInput1
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0, i64 0, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { alwaysinline }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

@@ -1,0 +1,52 @@
+;_name	/obj/grid1/vellumsolver1/dopnet1/vellumsolver1/unbranchweld_broken/geometryvop1
+; ModuleID = 'obj_grid1_vellumsolver1_dopnet1_vellumsolver1_unbranchweld_broken_geometryvop1'
+source_filename = "obj_grid1_vellumsolver1_dopnet1_vellumsolver1_unbranchweld_broken_geometryvop1"
+
+@branchweld = external global i64
+@0 = private constant [11 x i8] c"branchweld\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_grid1_vellumsolver1_dopnet1_vellumsolver1_unbranchweld_broken_geometryvop1_snippet1@I"(i64* %_bound_branchweld) #0 {
+__llvm_entry:
+  %return = call i64 @"neg@II"(i64 1)
+  store i64 %return, i64* %_bound_branchweld
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind
+define void @obj_grid1_vellumsolver1_dopnet1_vellumsolver1_unbranchweld_broken_geometryvop1(i64 %branchweld) #2 {
+__llvm_entry:
+  %"<branchweld>" = alloca i64
+  store i64 %branchweld, i64* %"<branchweld>"
+  call void @"_obj_grid1_vellumsolver1_dopnet1_vellumsolver1_unbranchweld_broken_geometryvop1_snippet1@I"(i64* %"<branchweld>")
+  %evalue = load i64, i64* %"<branchweld>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @0, i64 0, i64 0), i64 %evalue) #3
+  store i64 %gvalue, i64* @branchweld
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_grid1_vellumsolver1_dopnet1_vellumsolver1_unbranchweld_broken_geometryvop1(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

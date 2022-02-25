@@ -1,0 +1,95 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@__seat_num = external global i64
+@ptnum = external global i64
+@__occupied = external global i64
+@id = external global i64
+@pscale = external global double
+@Cd = external global <3 x double>
+@0 = private constant [11 x i8] c"__seat_num\00"
+@1 = private constant [6 x i8] c"ptnum\00"
+@2 = private constant [11 x i8] c"__occupied\00"
+@3 = private constant [3 x i8] c"id\00"
+@4 = private constant [7 x i8] c"pscale\00"
+@5 = private constant [3 x i8] c"Cd\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IIIIFV"(i64* %_bound___seat_num, i64* %_bound_ptnum, i64* %_bound___occupied, i64* %_bound_id, double* %_bound_pscale, <3 x double>* %_bound_Cd) #0 {
+__llvm_entry:
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum1, i64* %_bound___seat_num
+  store i64 0, i64* %_bound___occupied
+  %return = call i64 @"neg@II"(i64 99999)
+  store i64 %return, i64* %_bound_id
+  store double 0.000000e+00, double* %_bound_pscale
+  store <3 x double> zeroinitializer, <3 x double>* %_bound_Cd
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %__seat_num, i64 %ptnum, i64 %__occupied, i64 %id, double %pscale, <3 x double> %Cd) #2 {
+__llvm_entry:
+  %"<__occupied>" = alloca i64
+  %"<id>" = alloca i64
+  %"<pscale>" = alloca double
+  %"<Cd>" = alloca <3 x double>
+  %0 = alloca i64
+  %"<__seat_num>" = alloca i64
+  store i64 %__seat_num, i64* %"<__seat_num>"
+  store i64 %__occupied, i64* %"<__occupied>"
+  store i64 %id, i64* %"<id>"
+  store double %pscale, double* %"<pscale>"
+  store <3 x double> %Cd, <3 x double>* %"<Cd>"
+  store i64 %ptnum, i64* %0
+  call void @"__vex_snippet_snippet@IIIIFV"(i64* %"<__seat_num>", i64* %0, i64* %"<__occupied>", i64* %"<id>", double* %"<pscale>", <3 x double>* %"<Cd>")
+  %evalue = load i64, i64* %"<__seat_num>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @0, i64 0, i64 0), i64 %evalue) #3
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %ptnum) #3
+  %evalue4 = load i64, i64* %"<__occupied>"
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @2, i64 0, i64 0), i64 %evalue4) #3
+  %evalue6 = load i64, i64* %"<id>"
+  %gvalue7 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @3, i64 0, i64 0), i64 %evalue6) #3
+  %evalue8 = load double, double* %"<pscale>"
+  %gvalue9 = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @4, i64 0, i64 0), double %evalue8) #3
+  %evalue10 = load <3 x double>, <3 x double>* %"<Cd>"
+  %gvalue11 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @5, i64 0, i64 0), <3 x double> %evalue10) #3
+  store i64 %gvalue, i64* @__seat_num
+  store i64 %gvalue3, i64* @ptnum
+  store i64 %gvalue5, i64* @__occupied
+  store i64 %gvalue7, i64* @id
+  store double %gvalue9, double* @pscale
+  store <3 x double> %gvalue11, <3 x double>* @Cd
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0, i64 0, i64 -1, double 0.000000e+00, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

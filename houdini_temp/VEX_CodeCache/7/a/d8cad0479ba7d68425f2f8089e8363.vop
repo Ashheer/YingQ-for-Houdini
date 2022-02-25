@@ -1,0 +1,112 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x i64] zeroinitializer
+@1 = private constant [5 x i8] c"prim\00"
+@2 = private constant [8 x i8] c"__piece\00"
+@3 = private constant [12 x i8] c"__clippiece\00"
+@4 = private constant [6 x i8] c"point\00"
+@5 = private constant [9 x i8] c"polyline\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@II"(i64* %_bound___piece, i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %_bound___piece1 = load i64, i64* %_bound___piece
+  %return = call i64 @"findattribvalcount@IISSI"(i64 1, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i64 %_bound___piece1)
+  br label %cond
+
+cond:                                             ; preds = %iter, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output28, %iter ]
+  %known_pieces.0 = phi i64* [ getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), %__llvm_entry ], [ %known_pieces.1, %iter ]
+  %return4 = call i64 @"lt@III"(i64 %i.0, i64 %return)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %_bound___piece5 = load i64, i64* %_bound___piece
+  %return7 = call i64 @"findattribval@IISSII"(i64 1, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i64 %_bound___piece5, i64 %i.0)
+  %return9 = call i64 @"prim@IISI"(i64 1, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @3, i64 0, i64 0), i64 %return7)
+  %return12 = call i64 @"find@I[II"(i64* %known_pieces.0, i64 %return9)
+  %return13 = call i64 @"ge@III"(i64 %return12, i64 0)
+  %1 = icmp ne i64 %return13, 0
+  br i1 %1, label %iter, label %end14
+
+end:                                              ; preds = %cond
+  ret void
+
+iter:                                             ; preds = %end14, %true22, %body
+  %known_pieces.1 = phi i64* [ %known_pieces.0, %body ], [ %output, %true22 ], [ %output, %end14 ]
+  %output28 = add i64 %i.0, 1
+  br label %cond
+
+end14:                                            ; preds = %body
+  %output = call i64* @"append@[II"(i64* %known_pieces.0, i64 %return9)
+  %return18 = call i64 @"findattribval@IISSII"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @4, i64 0, i64 0), i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i64 %return9, i64 0)
+  %_bound_ptnum20 = load i64, i64* %_bound_ptnum
+  %return21 = call i64 @"gt@III"(i64 %return18, i64 %_bound_ptnum20)
+  %2 = icmp ne i64 %return21, 0
+  br i1 %2, label %true22, label %iter
+
+true22:                                           ; preds = %end14
+  %return26 = call i64 @"addprim@IISII"(i64 0, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0), i64 %_bound_ptnum20, i64 %return18)
+  br label %iter
+}
+
+; Function Attrs: nounwind
+declare i64 @"findattribvalcount@IISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"findattribval@IISSII"(i64, i8*, i8*, i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"prim@IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"find@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64* @"append@[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IISII"(i64, i8*, i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %__piece, i64 %ptnum) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  store i64 %__piece, i64* %0
+  store i64 %ptnum, i64* %1
+  call void @"__vex_snippet_snippet@II"(i64* %0, i64* %1)
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

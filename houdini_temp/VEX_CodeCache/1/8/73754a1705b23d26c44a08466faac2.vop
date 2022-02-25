@@ -1,0 +1,61 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@radius = external global double
+@0 = private constant [7 x i8] c"radius\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@F"(double* %_bound_radius) #0 {
+__llvm_entry:
+  %return = call <3 x double> @"getbbox_size@VI"(i64 1)
+  %return1 = call double @"getcomp@FVI"(<3 x double> %return, i64 0)
+  %output = fmul double 5.000000e-01, %return1
+  %return3 = call double @"max@FFF"(double 2.500000e-01, double %output)
+  store double %return3, double* %_bound_radius
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"getbbox_size@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"max@FFF"(double, double) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %radius) #1 {
+__llvm_entry:
+  %"<radius>" = alloca double
+  store double %radius, double* %"<radius>"
+  call void @"__vex_snippet_snippet@F"(double* %"<radius>")
+  %evalue = load double, double* %"<radius>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), double %evalue) #3
+  store double %gvalue, double* @radius
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

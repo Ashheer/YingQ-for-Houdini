@@ -1,0 +1,135 @@
+Crash report from YingQ; Houdini FX Version 19.0.498 [windows-x86_64-cl19.29]
+Uptime 712 seconds
+Sun Feb 20 15:43:38 2022
+Caught signal 11
+
+Traceback from 11272 ThreadId=0x00005834
+CURRENT THREAD 22580
++0x7ffb54331989 [memcpy] C:\WINDOWS\SYSTEM32\VCRUNTIME140.dll
++0x2758304e [GA_MergeOptions::setReuseStrategy] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGA.dll
++0x27500dfa [GA_EdgeGroupTable::virtualCreateGroup] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGA.dll
++0x278fafb0 [GA_BreakpointGroup::toggle] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGA.dll
++0x278ff20a [GA_CEAttribute::attributeToOCL] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGA.dll
++0x27892a24 [GA_Attribute::getCEAttribute] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGA.dll
++0x1ea8339d [SIM_Geometry::getReadableCEAttributePrec] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSIM.dll
++0x3190bdd3 [GAS_NetSliceExchange::solveGasSubclass] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGAS.dll
++0x319215b9 [GAS_OpenCL::setKernelArguments] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGAS.dll
++0x3191f628 [GAS_OpenCL::setAndExecuteKernel] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGAS.dll
++0x319186d5 [GAS_OpenCL::executeOpenCLKernelGeometry] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGAS.dll
++0x31915a53 [GAS_OpenCL::executeOpenCLKernel] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGAS.dll
++0x31921ec1 [GAS_OpenCL::solveGasSubclass] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGAS.dll
++0x31a6c39e [GAS_SubSolver::solveGas] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGAS.dll
++0x31a6c554 [GAS_SubSolver::solveObjectsSubclass] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGAS.dll
++0x1ebbf7fb [SIM_Solver::solveObjects] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSIM.dll
++0x318aa2ba [GAS_InterleaveSolver::solveObjectsSubclass] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGAS.dll
++0x1ebbf7fb [SIM_Solver::solveObjects] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSIM.dll
++0x31a04e5f [GAS_RepeatSolver::solveObjectsSubclass] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGAS.dll
++0x1ebbf7fb [SIM_Solver::solveObjects] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSIM.dll
++0x31a6f323 [GAS_SubStep::solveObjectsSubclass] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libGAS.dll
++0x1ebbf7fb [SIM_Solver::solveObjects] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSIM.dll
++0x1ebc7dd7 [SIM_SolverMulti::solveObjectsSubclass] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSIM.dll
++0x1ebbf7fb [SIM_Solver::solveObjects] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSIM.dll
++0x1ea461d5 [SIM_Engine::doSimulationStepForMetaObject] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSIM.dll
++0x1ea44c63 [SIM_Engine::doSimulationStep] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSIM.dll
++0x1ea4cfe4 [SIM_Engine::setSimulationTime] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSIM.dll
++0x2a49e1aa [DOP_Parent::setDOPTimeSubclass] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libDOP.dll
++0x2fb7f266 [SOP_Dopnet::setDOPTimeSubclass] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOPZ.dll
++0x2a49dfb6 [DOP_Parent::setDOPTime] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libDOP.dll
++0x2fb6b80d [SOP_DopImport::getDOPParent] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOPZ.dll
++0x2fb70200 [SOP_DopImport::initializeObjectInfo] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOPZ.dll
++0x2fb69f16 [SOP_DopImport::cookMySop] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOPZ.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129fb6fe [OP_Node::internalCookInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x12a0067a [OP_Node::lockInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd93ad6 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1d21b896 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd8193c C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8fa1a C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1c6c7044 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129fb6fe [OP_Node::internalCookInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x12a0067a [OP_Node::lockInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd93ad6 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1d21b896 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129fb6fe [OP_Node::internalCookInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x12a0067a [OP_Node::lockInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd93ad6 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x128bc171 [OP_AutoLockInputs::lockInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd88b02 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1c558b7e C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8ae51 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd8193c C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8fa1a C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1c6c739c C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129fb6fe [OP_Node::internalCookInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x12a0067a [OP_Node::lockInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd93ad6 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cdcd8e0 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd8193c C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8fa1a C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1d0784f3 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129fb6fe [OP_Node::internalCookInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x12a0067a [OP_Node::lockInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd93ad6 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1d21b896 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129fb6fe [OP_Node::internalCookInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x12a0067a [OP_Node::lockInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd93ad6 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x128bc171 [OP_AutoLockInputs::lockInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd88b02 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1c558b7e C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8ae51 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129fb6fe [OP_Node::internalCookInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x12a0067a [OP_Node::lockInput] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd93ad6 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1d21b896 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x1cd8193c C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8fa1a C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1d0784f3 C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x1cd8aaea C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libSOP.dll
++0x129cfe8b [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129cf898 [OP_OTLOptions::operator!=] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
++0x129ddd1c [OP_Node::cook] C:\Program Files\Side Effects Software\Houdini 19.0.498\bin\libOP.dll
+

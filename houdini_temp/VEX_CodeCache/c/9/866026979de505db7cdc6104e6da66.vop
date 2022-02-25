@@ -1,0 +1,2261 @@
+;_name	/obj/geo1/vellumsolver1/dopnet1/vellumsolver1/break_branchwelds_from_stress/geometryvop1
+; ModuleID = 'obj_geo1_vellumsolver1_dopnet1_vellumsolver1_break_branchwelds_from_stress_geometryvop1'
+source_filename = "obj_geo1_vellumsolver1_dopnet1_vellumsolver1_break_branchwelds_from_stress_geometryvop1"
+
+@0 = private constant [0 x i64] zeroinitializer
+@1 = private constant [7 x i8] c"attach\00"
+@2 = private constant [4 x i8] c"pin\00"
+@3 = private constant [7 x i8] c"stitch\00"
+@4 = private constant [13 x i8] c"branchstitch\00"
+@5 = private constant [9 x i8] c"distance\00"
+@6 = private constant [13 x i8] c"attachnormal\00"
+@7 = private constant [13 x i8] c"distanceline\00"
+@8 = private constant [8 x i8] c"triarap\00"
+@9 = private constant [10 x i8] c"triarapnl\00"
+@10 = private constant [12 x i8] c"triarapnorm\00"
+@11 = private constant [11 x i8] c"tetarapvol\00"
+@12 = private constant [13 x i8] c"tetarapnlvol\00"
+@13 = private constant [15 x i8] c"tetarapnormvol\00"
+@14 = private constant [8 x i8] c"tetarap\00"
+@15 = private constant [10 x i8] c"tetarapnl\00"
+@16 = private constant [12 x i8] c"tetarapnorm\00"
+@17 = private constant [9 x i8] c"tetfiber\00"
+@18 = private constant [13 x i8] c"tetfibernorm\00"
+@19 = private constant [2 x i8] c"P\00"
+@20 = private constant [1 x i8] zeroinitializer
+@21 = private constant [7 x i8] c"orient\00"
+@22 = private constant [7 x i8] c"volume\00"
+@23 = private constant [10 x i8] c"volumepts\00"
+@24 = private constant [10 x i8] c"materialW\00"
+@25 = private constant [10 x i8] c"pinorient\00"
+@26 = private constant [10 x i8] c"bendtwist\00"
+@27 = private constant [0 x <2 x double>] zeroinitializer
+@28 = private constant [5 x i8] c"weld\00"
+@29 = private constant [13 x i8] c"stretchshear\00"
+@30 = private constant [9 x i8] c"pressure\00"
+@31 = private constant [10 x i8] c"tetvolume\00"
+@32 = private constant [5 x i8] c"bend\00"
+@33 = private constant [6 x i8] c"angle\00"
+@34 = private constant [13 x i8] c"trianglebend\00"
+@35 = private constant [7 x i8] c"ptprim\00"
+@36 = private constant [14 x i8] c"stretchstress\00"
+@37 = private constant [11 x i8] c"bendstress\00"
+@38 = private constant [7 x i8] c"stress\00"
+@39 = private constant [11 x i8] c"restlength\00"
+@40 = private constant [11 x i8] c"restvector\00"
+@41 = private constant [8 x i8] c"restdir\00"
+@42 = private constant [12 x i8] c"target_path\00"
+@43 = private constant [12 x i8] c"target_prim\00"
+@44 = private constant [11 x i8] c"restmatrix\00"
+@45 = private constant [13 x i8] c"stretchratio\00"
+@46 = private constant [5 x i8] c"type\00"
+@47 = private constant [5 x i8] c"none\00"
+@48 = private constant [2 x i8*] [i8* getelementptr inbounds ([13 x i8], [13 x i8]* @29, i64 0, i64 0), i8* getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0)]
+@49 = private constant [10 x i8] c"bendangle\00"
+@50 = private constant [3 x i8*] [i8* getelementptr inbounds ([10 x i8], [10 x i8]* @26, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8], [5 x i8]* @32, i64 0, i64 0), i8* getelementptr inbounds ([6 x i8], [6 x i8]* @33, i64 0, i64 0)]
+@group_broken = external global i64
+@51 = private constant [13 x i8] c"group_broken\00"
+
+; Function Attrs: alwaysinline nounwind
+define private i64* @"sortRemoveDuplicates@[I[I"(i64** %a) #0 {
+__llvm_entry:
+  %a2 = load i64*, i64** %a
+  %return = call i64 @"len@I[I"(i64* %a2)
+  %output = call i64* @"resize@[II"(i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64 %return)
+  %return4 = call i64* @"sort@[I[I"(i64* %a2)
+  %return6 = call i64 @"len@I[I"(i64* %return4)
+  br label %cond
+
+cond:                                             ; preds = %iter, %__llvm_entry
+  %last.0 = phi i64 [ 0, %__llvm_entry ], [ %last.1, %iter ]
+  %first.0 = phi i64 [ 1, %__llvm_entry ], [ %first.1, %iter ]
+  %idx.0 = phi i64 [ 0, %__llvm_entry ], [ %idx.1, %iter ]
+  %__impl_foreach_index_259.0 = phi i64 [ 0, %__llvm_entry ], [ %output30, %iter ]
+  %b.0 = phi i64* [ %output, %__llvm_entry ], [ %b.1, %iter ]
+  %return9 = call i64 @"lt@III"(i64 %__impl_foreach_index_259.0, i64 %return6)
+  %0 = icmp ne i64 %return9, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return12 = call i64 @"getcomp@I[II"(i64* %return4, i64 %__impl_foreach_index_259.0)
+  %return14 = call i64 @"not@II"(i64 %first.0)
+  %return17 = call i64 @"eq@III"(i64 %return12, i64 %last.0)
+  %return18 = call i64 @"and@III"(i64 %return14, i64 %return17)
+  %1 = icmp ne i64 %return18, 0
+  br i1 %1, label %iter, label %end19
+
+end:                                              ; preds = %cond
+  %output33 = call i64* @"resize@[II"(i64* %b.0, i64 %idx.0)
+  ret i64* %output33
+
+iter:                                             ; preds = %body, %end19
+  %last.1 = phi i64 [ %last.0, %body ], [ %return12, %end19 ]
+  %first.1 = phi i64 [ %first.0, %body ], [ 0, %end19 ]
+  %idx.1 = phi i64 [ %idx.0, %body ], [ %output27, %end19 ]
+  %b.1 = phi i64* [ %b.0, %body ], [ %output24, %end19 ]
+  %output30 = add i64 %__impl_foreach_index_259.0, 1
+  br label %cond
+
+end19:                                            ; preds = %body
+  %return22 = call { i64, i64* } @"setcomp@I[III"(i64* %b.0, i64 %return12, i64 %idx.0)
+  %output24 = extractvalue { i64, i64* } %return22, 1
+  %output27 = add i64 %idx.0, 1
+  br label %iter
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64* @"resize@[II"(i64*, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"sort@[I[I"(i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare { i64, i64* } @"setcomp@I[III"(i64*, i64, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i8* @"constraintAlias@SS"(i8** %type) #0 {
+__llvm_entry:
+  %type1 = load i8*, i8** %type
+  %return = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %end8, %end, %__llvm_entry
+  %merge = phi i8* [ getelementptr inbounds ([4 x i8], [4 x i8]* @2, i64 0, i64 0), %__llvm_entry ], [ getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0), %end ], [ getelementptr inbounds ([13 x i8], [13 x i8]* @7, i64 0, i64 0), %end8 ]
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %return3 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @3, i64 0, i64 0))
+  %return5 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @4, i64 0, i64 0))
+  %return6 = call i64 @"or@III"(i64 %return3, i64 %return5)
+  %1 = icmp ne i64 %return6, 0
+  br i1 %1, label %true, label %end8
+
+end8:                                             ; preds = %end
+  %return10 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @6, i64 0, i64 0))
+  %2 = icmp ne i64 %return10, 0
+  br i1 %2, label %true, label %end12
+
+end12:                                            ; preds = %end8
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end12, %true
+  %UnifiedRetVal = phi i8* [ %merge, %true ], [ %type1, %end12 ]
+  ret i8* %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"isTriARAP@IS"(i8** %type) #0 {
+__llvm_entry:
+  %type1 = load i8*, i8** %type
+  %return = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @8, i64 0, i64 0))
+  %return3 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @9, i64 0, i64 0))
+  %return4 = call i64 @"or@III"(i64 %return, i64 %return3)
+  %return6 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @10, i64 0, i64 0))
+  %return7 = call i64 @"or@III"(i64 %return4, i64 %return6)
+  ret i64 %return7
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"isTetARAPVol@IS"(i8** %type) #0 {
+__llvm_entry:
+  %type1 = load i8*, i8** %type
+  %return = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @11, i64 0, i64 0))
+  %return3 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @12, i64 0, i64 0))
+  %return4 = call i64 @"or@III"(i64 %return, i64 %return3)
+  %return6 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([15 x i8], [15 x i8]* @13, i64 0, i64 0))
+  %return7 = call i64 @"or@III"(i64 %return4, i64 %return6)
+  ret i64 %return7
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"isTetARAP@IS"(i8** %type) #0 {
+__llvm_entry:
+  %0 = alloca i8*
+  %type1 = load i8*, i8** %type
+  %return = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @14, i64 0, i64 0))
+  %return3 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @15, i64 0, i64 0))
+  %return4 = call i64 @"or@III"(i64 %return, i64 %return3)
+  %return6 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @16, i64 0, i64 0))
+  %return7 = call i64 @"or@III"(i64 %return4, i64 %return6)
+  store i8* %type1, i8** %0
+  %isTetARAPVol = call i64 @"isTetARAPVol@IS"(i8** %0)
+  %return9 = call i64 @"or@III"(i64 %return7, i64 %isTetARAPVol)
+  ret i64 %return9
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"isTetFiber@IS"(i8** %type) #0 {
+__llvm_entry:
+  %type1 = load i8*, i8** %type
+  %return = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @17, i64 0, i64 0))
+  %return3 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @18, i64 0, i64 0))
+  %return4 = call i64 @"or@III"(i64 %return, i64 %return3)
+  ret i64 %return4
+}
+
+; Function Attrs: alwaysinline nounwind
+define private double @"computeDistanceRestLength@FIII"(i64* %geo, i64* %p0, i64* %p1) #0 {
+__llvm_entry:
+  %geo1 = load i64, i64* %geo
+  %p02 = load i64, i64* %p0
+  %return = call <3 x double> @"point@VISI"(i64 %geo1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %p02)
+  %geo3 = load i64, i64* %geo
+  %p14 = load i64, i64* %p1
+  %return5 = call <3 x double> @"point@VISI"(i64 %geo3, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %p14)
+  %return6 = call double @"distance@FVV"(<3 x double> %return, <3 x double> %return5)
+  ret double %return6
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare double @"distance@FVV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"projectToLine@VVVV"(<3 x double>* %pos, <3 x double>* %orig, <3 x double>* %dir) #0 {
+__llvm_entry:
+  %orig1 = load <3 x double>, <3 x double>* %orig
+  %dir2 = load <3 x double>, <3 x double>* %dir
+  %pos3 = load <3 x double>, <3 x double>* %pos
+  %output = call <3 x double> @"sub@VV"(<3 x double> %pos3, <3 x double> %orig1)
+  %return = call double @"dot@FVV"(<3 x double> %output, <3 x double> %dir2)
+  %cast = call <3 x double> @"set@VF"(double %return)
+  %output6 = call <3 x double> @"mul@VV"(<3 x double> %dir2, <3 x double> %cast)
+  %output7 = call <3 x double> @"add@VV"(<3 x double> %orig1, <3 x double> %output6)
+  ret <3 x double> %output7
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FVV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: alwaysinline nounwind
+define private <9 x double> @"fromTriangleSpaceXform@3VVV"(<3 x double>* %p0, <3 x double>* %p1, <3 x double>* %p2) #0 {
+__llvm_entry:
+  %p11 = load <3 x double>, <3 x double>* %p1
+  %p02 = load <3 x double>, <3 x double>* %p0
+  %output = call <3 x double> @"sub@VV"(<3 x double> %p11, <3 x double> %p02)
+  %p23 = load <3 x double>, <3 x double>* %p2
+  %output5 = call <3 x double> @"sub@VV"(<3 x double> %p23, <3 x double> %p02)
+  %return = call <3 x double> @"cross@VVV"(<3 x double> %output5, <3 x double> %output)
+  %return9 = call <3 x double> @"normalize@VV"(<3 x double> %return)
+  %return12 = call <3 x double> @"cross@VVV"(<3 x double> %output, <3 x double> %return9)
+  %return13 = call <3 x double> @"normalize@VV"(<3 x double> %return12)
+  %return16 = call <3 x double> @"cross@VVV"(<3 x double> %return13, <3 x double> %return9)
+  %return20 = call <9 x double> @"set@3VVV"(<3 x double> %return16, <3 x double> %return13, <3 x double> %return9)
+  ret <9 x double> %return20
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"cross@VVV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #2
+
+; Function Attrs: nounwind
+declare <9 x double> @"set@3VVV"(<3 x double>, <3 x double>, <3 x double>) #2
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"fromTriangleSpace@VSIVI"(i8** %path, i64* %prim, <3 x double>* %dir, i64* %invert) #0 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca <3 x double>
+  %path1 = load i8*, i8** %path
+  %prim2 = load i64, i64* %prim
+  %return = call i64* @"primpoints@[ISI"(i8* %path1, i64 %prim2)
+  %return5 = call i64 @"getcomp@I[II"(i64* %return, i64 0)
+  %return6 = call <3 x double> @"point@VSSI"(i8* %path1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %return5)
+  %return9 = call i64 @"getcomp@I[II"(i64* %return, i64 1)
+  %return10 = call <3 x double> @"point@VSSI"(i8* %path1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %return9)
+  %return13 = call i64 @"getcomp@I[II"(i64* %return, i64 2)
+  %return14 = call <3 x double> @"point@VSSI"(i8* %path1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %return13)
+  store <3 x double> %return6, <3 x double>* %0
+  store <3 x double> %return10, <3 x double>* %1
+  store <3 x double> %return14, <3 x double>* %2
+  %fromTriangleSpaceXform = call <9 x double> @"fromTriangleSpaceXform@3VVV"(<3 x double>* %0, <3 x double>* %1, <3 x double>* %2)
+  %invert18 = load i64, i64* %invert
+  %3 = icmp ne i64 %invert18, 0
+  %dir19 = load <3 x double>, <3 x double>* %dir
+  br i1 %3, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return21 = call <9 x double> @"transpose@33"(<9 x double> %fromTriangleSpaceXform)
+  %output = call <3 x double> @"mul@V3"(<3 x double> %dir19, <9 x double> %return21)
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %output24 = call <3 x double> @"mul@V3"(<3 x double> %dir19, <9 x double> %fromTriangleSpaceXform)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end, %true
+  %UnifiedRetVal = phi <3 x double> [ %output, %true ], [ %output24, %end ]
+  ret <3 x double> %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64* @"primpoints@[ISI"(i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"point@VSSI"(i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <9 x double> @"transpose@33"(<9 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"mul@V3"(<3 x double>, <9 x double>) #2
+
+; Function Attrs: alwaysinline nounwind
+define private double @"computeDistanceLineRestLength@FIIVVSI"(i64* %geo, i64* %pt0, <3 x double>* %orig, <3 x double>* %indir, i8** %path, i64* %prim) #0 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca i64
+  %2 = alloca <3 x double>
+  %3 = alloca i64
+  %4 = alloca <3 x double>
+  %5 = alloca <3 x double>
+  %6 = alloca <3 x double>
+  %geo1 = load i64, i64* %geo
+  %pt02 = load i64, i64* %pt0
+  %return = call <3 x double> @"point@VISI"(i64 %geo1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt02)
+  %indir3 = load <3 x double>, <3 x double>* %indir
+  %path4 = load i8*, i8** %path
+  %return5 = call i64 @"ne@ISS"(i8* %path4, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @20, i64 0, i64 0))
+  %prim6 = load i64, i64* %prim
+  %return7 = call i64 @"ge@III"(i64 %prim6, i64 0)
+  %return8 = call i64 @"and@III"(i64 %return5, i64 %return7)
+  %7 = icmp ne i64 %return8, 0
+  br i1 %7, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  store i8* %path4, i8** %0
+  %prim10 = load i64, i64* %prim
+  store i64 %prim10, i64* %1
+  store <3 x double> %indir3, <3 x double>* %2
+  store i64 0, i64* %3
+  %fromTriangleSpace = call <3 x double> @"fromTriangleSpace@VSIVI"(i8** %0, i64* %1, <3 x double>* %2, i64* %3)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %dir.0 = phi <3 x double> [ %fromTriangleSpace, %true ], [ %indir3, %__llvm_entry ]
+  store <3 x double> %return, <3 x double>* %4
+  %orig14 = load <3 x double>, <3 x double>* %orig
+  store <3 x double> %orig14, <3 x double>* %5
+  store <3 x double> %dir.0, <3 x double>* %6
+  %projectToLine = call <3 x double> @"projectToLine@VVVV"(<3 x double>* %4, <3 x double>* %5, <3 x double>* %6)
+  %return16 = call double @"distance@FVV"(<3 x double> %return, <3 x double> %projectToLine)
+  ret double %return16
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"pointPrimTargetPos@VI[IFF"(i64* %geo, i64** %pts, double* %u, double* %v) #0 {
+__llvm_entry:
+  %geo1 = load i64, i64* %geo
+  %pts2 = load i64*, i64** %pts
+  %return = call i64 @"getcomp@I[II"(i64* %pts2, i64 0)
+  %return3 = call <3 x double> @"point@VISI"(i64 %geo1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %return)
+  %geo4 = load i64, i64* %geo
+  %pts5 = load i64*, i64** %pts
+  %return6 = call i64 @"getcomp@I[II"(i64* %pts5, i64 1)
+  %return7 = call <3 x double> @"point@VISI"(i64 %geo4, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %return6)
+  %pts8 = load i64*, i64** %pts
+  %return9 = call i64 @"len@I[I"(i64* %pts8)
+  %return11 = call i64 @"eq@III"(i64 %return9, i64 2)
+  %0 = icmp ne i64 %return11, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %u12 = load double, double* %u
+  %output = fsub double 1.000000e+00, %u12
+  %cast = call <3 x double> @"set@VF"(double %output)
+  %output16 = call <3 x double> @"mul@VV"(<3 x double> %cast, <3 x double> %return3)
+  %cast19 = call <3 x double> @"set@VF"(double %u12)
+  %output20 = call <3 x double> @"mul@VV"(<3 x double> %cast19, <3 x double> %return7)
+  %output21 = call <3 x double> @"add@VV"(<3 x double> %output16, <3 x double> %output20)
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  %return23 = call i64 @"eq@III"(i64 %return9, i64 3)
+  %1 = icmp ne i64 %return23, 0
+  br i1 %1, label %true24, label %false25
+
+true24:                                           ; preds = %false
+  %geo27 = load i64, i64* %geo
+  %return29 = call i64 @"getcomp@I[II"(i64* %pts8, i64 2)
+  %return30 = call <3 x double> @"point@VISI"(i64 %geo27, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %return29)
+  %u32 = load double, double* %u
+  %output33 = fsub double 1.000000e+00, %u32
+  %v34 = load double, double* %v
+  %output35 = fsub double %output33, %v34
+  %cast41 = call <3 x double> @"set@VF"(double %output35)
+  %output42 = call <3 x double> @"mul@VV"(<3 x double> %cast41, <3 x double> %return3)
+  %cast45 = call <3 x double> @"set@VF"(double %u32)
+  %output46 = call <3 x double> @"mul@VV"(<3 x double> %cast45, <3 x double> %return7)
+  %output47 = call <3 x double> @"add@VV"(<3 x double> %output42, <3 x double> %output46)
+  %cast50 = call <3 x double> @"set@VF"(double %v34)
+  %output51 = call <3 x double> @"mul@VV"(<3 x double> %cast50, <3 x double> %return30)
+  %output52 = call <3 x double> @"add@VV"(<3 x double> %output47, <3 x double> %output51)
+  br label %UnifiedReturnBlock
+
+false25:                                          ; preds = %false
+  %return54 = call i64 @"eq@III"(i64 %return9, i64 4)
+  %2 = icmp ne i64 %return54, 0
+  br i1 %2, label %true55, label %end56
+
+true55:                                           ; preds = %false25
+  %geo58 = load i64, i64* %geo
+  %return60 = call i64 @"getcomp@I[II"(i64* %pts8, i64 2)
+  %return61 = call <3 x double> @"point@VISI"(i64 %geo58, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %return60)
+  %geo62 = load i64, i64* %geo
+  %pts63 = load i64*, i64** %pts
+  %return64 = call i64 @"getcomp@I[II"(i64* %pts63, i64 3)
+  %return65 = call <3 x double> @"point@VISI"(i64 %geo62, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %return64)
+  %u66 = load double, double* %u
+  %output67 = fsub double 1.000000e+00, %u66
+  %v68 = load double, double* %v
+  %output69 = fsub double 1.000000e+00, %v68
+  %output73 = fmul double %output67, %output69
+  %output77 = fmul double %output67, %v68
+  %output81 = fmul double %u66, %v68
+  %output84 = fmul double %u66, %output69
+  %cast87 = call <3 x double> @"set@VF"(double %output73)
+  %output88 = call <3 x double> @"mul@VV"(<3 x double> %cast87, <3 x double> %return3)
+  %cast91 = call <3 x double> @"set@VF"(double %output77)
+  %output92 = call <3 x double> @"mul@VV"(<3 x double> %cast91, <3 x double> %return7)
+  %output93 = call <3 x double> @"add@VV"(<3 x double> %output88, <3 x double> %output92)
+  %cast96 = call <3 x double> @"set@VF"(double %output81)
+  %output97 = call <3 x double> @"mul@VV"(<3 x double> %cast96, <3 x double> %return61)
+  %output98 = call <3 x double> @"add@VV"(<3 x double> %output93, <3 x double> %output97)
+  %cast101 = call <3 x double> @"set@VF"(double %output84)
+  %output102 = call <3 x double> @"mul@VV"(<3 x double> %cast101, <3 x double> %return65)
+  %output103 = call <3 x double> @"add@VV"(<3 x double> %output98, <3 x double> %output102)
+  br label %UnifiedReturnBlock
+
+end56:                                            ; preds = %false25
+  %cast104 = call <3 x double> @"set@VI"(i64 0)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end56, %true55, %true24, %true
+  %UnifiedRetVal = phi <3 x double> [ %output21, %true ], [ %output52, %true24 ], [ %output103, %true55 ], [ %cast104, %end56 ]
+  ret <3 x double> %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private double @"computePointPrimRestLength@FII[IP"(i64* %geo, i64* %pt, i64** %tgtpts, <4 x double>* %restvector) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64*
+  %2 = alloca double
+  %3 = alloca double
+  %tgtpts1 = load i64*, i64** %tgtpts
+  %return = call i64 @"len@I[I"(i64* %tgtpts1)
+  %return3 = call i64 @"lt@III"(i64 %return, i64 2)
+  %return5 = call i64 @"gt@III"(i64 %return, i64 4)
+  %return6 = call i64 @"or@III"(i64 %return3, i64 %return5)
+  %4 = icmp ne i64 %return6, 0
+  br i1 %4, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %geo7 = load i64, i64* %geo
+  %pt8 = load i64, i64* %pt
+  %return9 = call <3 x double> @"point@VISI"(i64 %geo7, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt8)
+  %geo10 = load i64, i64* %geo
+  store i64 %geo10, i64* %0
+  %tgtpts11 = load i64*, i64** %tgtpts
+  store i64* %tgtpts11, i64** %1
+  %restvector12 = load <4 x double>, <4 x double>* %restvector
+  %return13 = call double @"getcomp@FPI"(<4 x double> %restvector12, i64 0)
+  store double %return13, double* %2
+  %restvector14 = load <4 x double>, <4 x double>* %restvector
+  %return15 = call double @"getcomp@FPI"(<4 x double> %restvector14, i64 1)
+  store double %return15, double* %3
+  %pointPrimTargetPos = call <3 x double> @"pointPrimTargetPos@VI[IFF"(i64* %0, i64** %1, double* %2, double* %3)
+  %return18 = call double @"distance@FVV"(<3 x double> %return9, <3 x double> %pointPrimTargetPos)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end, %true
+  %UnifiedRetVal = phi double [ 0.000000e+00, %true ], [ %return18, %end ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FPI"(<4 x double>, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"computeDihedralRestLength@IIIIIIF"(i64* %geo, i64* %pt0, i64* %pt1, i64* %pt2, i64* %pt3, double* %restlength) #0 {
+__llvm_entry:
+  %geo1 = load i64, i64* %geo
+  %pt02 = load i64, i64* %pt0
+  %return = call <3 x double> @"point@VISI"(i64 %geo1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt02)
+  %geo3 = load i64, i64* %geo
+  %pt14 = load i64, i64* %pt1
+  %return5 = call <3 x double> @"point@VISI"(i64 %geo3, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt14)
+  %geo6 = load i64, i64* %geo
+  %pt27 = load i64, i64* %pt2
+  %return8 = call <3 x double> @"point@VISI"(i64 %geo6, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt27)
+  %geo9 = load i64, i64* %geo
+  %pt310 = load i64, i64* %pt3
+  %return11 = call <3 x double> @"point@VISI"(i64 %geo9, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt310)
+  %output = call <3 x double> @"sub@VV"(<3 x double> %return11, <3 x double> %return8)
+  %return15 = call double @"length@FV"(<3 x double> %output)
+  %return17 = fcmp olt double %return15, 1.000000e-06
+  br i1 %return17, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %output23 = call <3 x double> @"sub@VV"(<3 x double> %return11, <3 x double> %return)
+  %output26 = call <3 x double> @"sub@VV"(<3 x double> %return8, <3 x double> %return)
+  %return27 = call <3 x double> @"cross@VVV"(<3 x double> %output23, <3 x double> %output26)
+  %output30 = call <3 x double> @"sub@VV"(<3 x double> %return8, <3 x double> %return5)
+  %output33 = call <3 x double> @"sub@VV"(<3 x double> %return11, <3 x double> %return5)
+  %return34 = call <3 x double> @"cross@VVV"(<3 x double> %output30, <3 x double> %output33)
+  %return36 = call <3 x double> @"normalize@VV"(<3 x double> %return27)
+  %return38 = call <3 x double> @"normalize@VV"(<3 x double> %return34)
+  %return39 = call double @"dot@FVV"(<3 x double> %return36, <3 x double> %return38)
+  %return41 = call i64 @"neg@II"(i64 1)
+  %cast = sitofp i64 %return41 to double
+  %return42 = call double @"clamp@FFFF"(double %return39, double %cast, double 1.000000e+00)
+  %return44 = call double @"acos@FF"(double %return42)
+  %return47 = call <3 x double> @"cross@VVV"(<3 x double> %return27, <3 x double> %return34)
+  %return49 = call double @"dot@FVV"(<3 x double> %return47, <3 x double> %output)
+  %return50 = fcmp olt double %return49, 0.000000e+00
+  br i1 %return50, label %true52, label %end53
+
+true52:                                           ; preds = %end
+  %return55 = call double @"neg@FF"(double %return44)
+  br label %end53
+
+end53:                                            ; preds = %true52, %end
+  %phi.0 = phi double [ %return55, %true52 ], [ %return44, %end ]
+  %return57 = call double @"degrees@FF"(double %phi.0)
+  store double %return57, double* %restlength
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end53, %true
+  %UnifiedRetVal = phi i64 [ 0, %true ], [ 1, %end53 ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind
+declare double @"clamp@FFFF"(double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"acos@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+; Function Attrs: nounwind
+declare double @"degrees@FF"(double) #2
+
+; Function Attrs: alwaysinline nounwind
+define private <4 x double> @"computeBendTwistRestVector@PIII"(i64* %geo, i64* %pt0, i64* %pt1) #0 {
+__llvm_entry:
+  %geo1 = load i64, i64* %geo
+  %pt02 = load i64, i64* %pt0
+  %return = call <4 x double> @"point@PISI"(i64 %geo1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @21, i64 0, i64 0), i64 %pt02)
+  %output = call <4 x double> @"mul@PP"(<4 x double> %return, <4 x double> <double -1.000000e+00, double -1.000000e+00, double -1.000000e+00, double 1.000000e+00>)
+  %geo3 = load i64, i64* %geo
+  %pt14 = load i64, i64* %pt1
+  %return5 = call <4 x double> @"point@PISI"(i64 %geo3, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @21, i64 0, i64 0), i64 %pt14)
+  %return8 = call <4 x double> @"qmultiply@PPP"(<4 x double> %output, <4 x double> %return5)
+  %output10 = call <4 x double> @"add@PP"(<4 x double> %return8, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>)
+  %output12 = call <4 x double> @"sub@PP"(<4 x double> %return8, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>)
+  %return15 = call double @"dot@FPP"(<4 x double> %output12, <4 x double> %output12)
+  %return18 = call double @"dot@FPP"(<4 x double> %output10, <4 x double> %output10)
+  %return19 = fcmp ogt double %return15, %return18
+  br i1 %return19, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return22 = call i64 @"neg@II"(i64 1)
+  %cast = call <4 x double> @"set@PI"(i64 %return22)
+  %output23 = call <4 x double> @"mul@PP"(<4 x double> %return8, <4 x double> %cast)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %restDarbeaux.0 = phi <4 x double> [ %output23, %true ], [ %return8, %__llvm_entry ]
+  ret <4 x double> %restDarbeaux.0
+}
+
+; Function Attrs: nounwind
+declare <4 x double> @"point@PISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"mul@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"qmultiply@PPP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"add@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"sub@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FPP"(<4 x double>, <4 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PI"(i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64* @"findVolumePoints@[III"(i64* %geo, i64* %ptnum) #0 {
+__llvm_entry:
+  %geo1 = load i64, i64* %geo
+  %ptnum2 = load i64, i64* %ptnum
+  %return = call i64* @"pointprims@[III"(i64 %geo1, i64 %ptnum2)
+  %return4 = call i64 @"len@I[I"(i64* %return)
+  br label %cond
+
+cond:                                             ; preds = %iter, %__llvm_entry
+  %__impl_foreach_index_25f.0 = phi i64 [ 0, %__llvm_entry ], [ %output54, %iter ]
+  %volpts.0 = phi i64* [ getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), %__llvm_entry ], [ %volpts.1, %iter ]
+  %return7 = call i64 @"lt@III"(i64 %__impl_foreach_index_25f.0, i64 %return4)
+  %0 = icmp ne i64 %return7, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return10 = call i64 @"getcomp@I[II"(i64* %return, i64 %__impl_foreach_index_25f.0)
+  %geo11 = load i64, i64* %geo
+  %return13 = call i64* @"primpoints@[III"(i64 %geo11, i64 %return10)
+  %return15 = call i64 @"len@I[I"(i64* %return13)
+  %return16 = call i64 @"ne@III"(i64 %return15, i64 3)
+  %1 = icmp ne i64 %return16, 0
+  br i1 %1, label %iter, label %end17
+
+end:                                              ; preds = %cond
+  ret i64* %volpts.0
+
+iter:                                             ; preds = %end34, %true44, %body
+  %volpts.1 = phi i64* [ %volpts.0, %body ], [ %output52, %true44 ], [ %volpts.3, %end34 ]
+  %output54 = add i64 %__impl_foreach_index_25f.0, 1
+  br label %cond
+
+end17:                                            ; preds = %body
+  %ptnum19 = load i64, i64* %ptnum
+  %return20 = call i64 @"find@I[II"(i64* %return13, i64 %ptnum19)
+  %return22 = call i64 @"eq@III"(i64 %return20, i64 0)
+  %2 = icmp ne i64 %return22, 0
+  br i1 %2, label %true23, label %end24
+
+true23:                                           ; preds = %end17
+  %return27 = call i64 @"getcomp@I[II"(i64* %return13, i64 2)
+  %return29 = call i64 @"getcomp@I[II"(i64* %return13, i64 1)
+  %return30 = call i64* @"array@[I:II"(i64 %return27, i64 %return29)
+  %output = call i64* @"append@[I[I"(i64* %volpts.0, i64* %return30)
+  br label %end24
+
+end24:                                            ; preds = %true23, %end17
+  %volpts.2 = phi i64* [ %output, %true23 ], [ %volpts.0, %end17 ]
+  %return32 = call i64 @"eq@III"(i64 %return20, i64 1)
+  %3 = icmp ne i64 %return32, 0
+  br i1 %3, label %true33, label %end34
+
+true33:                                           ; preds = %end24
+  %return37 = call i64 @"getcomp@I[II"(i64* %return13, i64 0)
+  %return39 = call i64 @"getcomp@I[II"(i64* %return13, i64 2)
+  %return40 = call i64* @"array@[I:II"(i64 %return37, i64 %return39)
+  %output41 = call i64* @"append@[I[I"(i64* %volpts.2, i64* %return40)
+  br label %end34
+
+end34:                                            ; preds = %true33, %end24
+  %volpts.3 = phi i64* [ %output41, %true33 ], [ %volpts.2, %end24 ]
+  %return43 = call i64 @"eq@III"(i64 %return20, i64 2)
+  %4 = icmp ne i64 %return43, 0
+  br i1 %4, label %true44, label %iter
+
+true44:                                           ; preds = %end34
+  %return48 = call i64 @"getcomp@I[II"(i64* %return13, i64 1)
+  %return50 = call i64 @"getcomp@I[II"(i64* %return13, i64 0)
+  %return51 = call i64* @"array@[I:II"(i64 %return48, i64 %return50)
+  %output52 = call i64* @"append@[I[I"(i64* %volpts.3, i64* %return51)
+  br label %iter
+}
+
+; Function Attrs: nounwind
+declare i64* @"pointprims@[III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64* @"primpoints@[III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"find@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64* @"array@[I:II"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"append@[I[I"(i64*, i64*) #2
+
+; Function Attrs: alwaysinline nounwind
+define private double @"computeVolume@FII[I"(i64* %geo, i64* %ptnum, i64** %volumepts) #0 {
+__llvm_entry:
+  %volumepts1 = load i64*, i64** %volumepts
+  %return = call i64 @"len@I[I"(i64* %volumepts1)
+  %output = call i64 @"div@II"(i64 %return, i64 2)
+  %geo2 = load i64, i64* %geo
+  %ptnum3 = load i64, i64* %ptnum
+  %return4 = call <3 x double> @"point@VISI"(i64 %geo2, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %ptnum3)
+  br label %cond
+
+cond:                                             ; preds = %end24, %__llvm_entry
+  %volume.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %volume.1, %end24 ]
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output38, %end24 ]
+  %return7 = call i64 @"lt@III"(i64 %i.0, i64 %output)
+  %0 = icmp ne i64 %return7, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %volumepts8 = load i64*, i64** %volumepts
+  %output10 = mul i64 %i.0, 2
+  %return11 = call i64 @"getcomp@I[II"(i64* %volumepts8, i64 %output10)
+  %output15 = add i64 %output10, 1
+  %return16 = call i64 @"getcomp@I[II"(i64* %volumepts8, i64 %output15)
+  %ptnum17 = load i64, i64* %ptnum
+  %return19 = call i64 @"lt@III"(i64 %ptnum17, i64 %return11)
+  %return22 = call i64 @"lt@III"(i64 %ptnum17, i64 %return16)
+  %return23 = call i64 @"and@III"(i64 %return19, i64 %return22)
+  %1 = icmp ne i64 %return23, 0
+  br i1 %1, label %true, label %end24
+
+end:                                              ; preds = %cond
+  %output40 = call double @"div@FF"(double %volume.0, double 6.000000e+00)
+  ret double %output40
+
+true:                                             ; preds = %body
+  %geo27 = load i64, i64* %geo
+  %return29 = call <3 x double> @"point@VISI"(i64 %geo27, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %return11)
+  %geo30 = load i64, i64* %geo
+  %return32 = call <3 x double> @"point@VISI"(i64 %geo30, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %return16)
+  %return33 = call <3 x double> @"cross@VVV"(<3 x double> %return29, <3 x double> %return32)
+  %return34 = call double @"dot@FVV"(<3 x double> %return4, <3 x double> %return33)
+  %output35 = fadd double %volume.0, %return34
+  br label %end24
+
+end24:                                            ; preds = %true, %body
+  %volume.1 = phi double [ %output35, %true ], [ %volume.0, %body ]
+  %output38 = add i64 %i.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"div@II"(i64, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private double @"computePressureRestLength@FI[IS"(i64* %geo, i64** %inpts, i8** %mode) #0 {
+__llvm_entry:
+  %0 = alloca i64*
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca i64
+  %4 = alloca i64
+  %5 = alloca i64*
+  %inpts1 = load i64*, i64** %inpts
+  store i64* %inpts1, i64** %0
+  %sortRemoveDuplicates = call i64* @"sortRemoveDuplicates@[I[I"(i64** %0)
+  %return = call i64 @"len@I[I"(i64* %sortRemoveDuplicates)
+  br label %cond
+
+cond:                                             ; preds = %end11, %__llvm_entry
+  %__impl_foreach_index_260.0 = phi i64 [ 0, %__llvm_entry ], [ %output32, %end11 ]
+  %restvol.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %restvol.1, %end11 ]
+  %return5 = call i64 @"lt@III"(i64 %__impl_foreach_index_260.0, i64 %return)
+  %6 = icmp ne i64 %return5, 0
+  br i1 %6, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return8 = call i64 @"getcomp@I[II"(i64* %sortRemoveDuplicates, i64 %__impl_foreach_index_260.0)
+  %mode9 = load i8*, i8** %mode
+  %return10 = call i64 @"eq@ISS"(i8* %mode9, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @22, i64 0, i64 0))
+  %7 = icmp ne i64 %return10, 0
+  br i1 %7, label %true, label %false
+
+end:                                              ; preds = %cond
+  ret double %restvol.0
+
+true:                                             ; preds = %body
+  %geo13 = load i64, i64* %geo
+  %return15 = call double @"point@FISI"(i64 %geo13, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @22, i64 0, i64 0), i64 %return8)
+  %output = fadd double %restvol.0, %return15
+  br label %end11
+
+false:                                            ; preds = %body
+  %return17 = call i64 @"eq@ISS"(i8* %mode9, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @23, i64 0, i64 0))
+  %8 = icmp ne i64 %return17, 0
+  br i1 %8, label %true18, label %false19
+
+end11:                                            ; preds = %end20, %true
+  %restvol.1 = phi double [ %output, %true ], [ %output30, %end20 ]
+  %output32 = add i64 %__impl_foreach_index_260.0, 1
+  br label %cond
+
+true18:                                           ; preds = %false
+  %geo21 = load i64, i64* %geo
+  %return23 = call i64* @"point@[IISI"(i64 %geo21, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @23, i64 0, i64 0), i64 %return8)
+  br label %end20
+
+false19:                                          ; preds = %false
+  %geo24 = load i64, i64* %geo
+  store i64 %geo24, i64* %1
+  store i64 %return8, i64* %2
+  %findVolumePoints = call i64* @"findVolumePoints@[III"(i64* %1, i64* %2)
+  br label %end20
+
+end20:                                            ; preds = %false19, %true18
+  %volumepts.0 = phi i64* [ %return23, %true18 ], [ %findVolumePoints, %false19 ]
+  %geo27 = load i64, i64* %geo
+  store i64 %geo27, i64* %3
+  store i64 %return8, i64* %4
+  store i64* %volumepts.0, i64** %5
+  %computeVolume = call double @"computeVolume@FII[I"(i64* %3, i64* %4, i64** %5)
+  %output30 = fadd double %restvol.0, %computeVolume
+  br label %end11
+}
+
+; Function Attrs: nounwind
+declare double @"point@FISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64* @"point@[IISI"(i64, i8*, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private double @"computeTetVolumeRestLength@FIIIII"(i64* %geo, i64* %pt0, i64* %pt1, i64* %pt2, i64* %pt3) #0 {
+__llvm_entry:
+  %geo1 = load i64, i64* %geo
+  %pt02 = load i64, i64* %pt0
+  %return = call <3 x double> @"point@VISI"(i64 %geo1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt02)
+  %geo3 = load i64, i64* %geo
+  %pt14 = load i64, i64* %pt1
+  %return5 = call <3 x double> @"point@VISI"(i64 %geo3, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt14)
+  %geo6 = load i64, i64* %geo
+  %pt27 = load i64, i64* %pt2
+  %return8 = call <3 x double> @"point@VISI"(i64 %geo6, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt27)
+  %geo9 = load i64, i64* %geo
+  %pt310 = load i64, i64* %pt3
+  %return11 = call <3 x double> @"point@VISI"(i64 %geo9, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt310)
+  %output = call <3 x double> @"sub@VV"(<3 x double> %return, <3 x double> %return5)
+  %output16 = call <3 x double> @"sub@VV"(<3 x double> %return, <3 x double> %return8)
+  %return17 = call <3 x double> @"cross@VVV"(<3 x double> %output, <3 x double> %output16)
+  %output20 = call <3 x double> @"sub@VV"(<3 x double> %return, <3 x double> %return11)
+  %return21 = call double @"dot@FVV"(<3 x double> %return17, <3 x double> %output20)
+  %output22 = call double @"div@FF"(double %return21, double 6.000000e+00)
+  ret double %output22
+}
+
+; Function Attrs: alwaysinline nounwind
+define private double @"computeAngleRestLength@FIIII"(i64* %geo, i64* %pt0, i64* %pt1, i64* %pt2) #0 {
+__llvm_entry:
+  %geo1 = load i64, i64* %geo
+  %pt02 = load i64, i64* %pt0
+  %return = call <3 x double> @"point@VISI"(i64 %geo1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt02)
+  %geo3 = load i64, i64* %geo
+  %pt14 = load i64, i64* %pt1
+  %return5 = call <3 x double> @"point@VISI"(i64 %geo3, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt14)
+  %geo6 = load i64, i64* %geo
+  %pt27 = load i64, i64* %pt2
+  %return8 = call <3 x double> @"point@VISI"(i64 %geo6, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt27)
+  %output = call <3 x double> @"sub@VV"(<3 x double> %return5, <3 x double> %return)
+  %return11 = call <3 x double> @"normalize@VV"(<3 x double> %output)
+  %output14 = call <3 x double> @"sub@VV"(<3 x double> %return8, <3 x double> %return5)
+  %return15 = call <3 x double> @"normalize@VV"(<3 x double> %output14)
+  %return18 = call double @"dot@FVV"(<3 x double> %return11, <3 x double> %return15)
+  %return19 = call i64 @"neg@II"(i64 1)
+  %cast = sitofp i64 %return19 to double
+  %return20 = call double @"clamp@FFFF"(double %return18, double %cast, double 1.000000e+00)
+  %return21 = call double @"acos@FF"(double %return20)
+  %return22 = call double @"degrees@FF"(double %return21)
+  ret double %return22
+}
+
+; Function Attrs: alwaysinline nounwind
+define private double @"computeVertexCentroidDistance@FVVV"(<3 x double>* %p0, <3 x double>* %p1, <3 x double>* %p2) #0 {
+__llvm_entry:
+  %p01 = load <3 x double>, <3 x double>* %p0
+  %p12 = load <3 x double>, <3 x double>* %p1
+  %output = call <3 x double> @"add@VV"(<3 x double> %p01, <3 x double> %p12)
+  %p23 = load <3 x double>, <3 x double>* %p2
+  %output4 = call <3 x double> @"add@VV"(<3 x double> %output, <3 x double> %p23)
+  %cast = call <3 x double> @"set@VI"(i64 3)
+  %output5 = call <3 x double> @"div@VV"(<3 x double> %output4, <3 x double> %cast)
+  %output8 = call <3 x double> @"sub@VV"(<3 x double> %p12, <3 x double> %output5)
+  %return = call double @"length@FV"(<3 x double> %output8)
+  ret double %return
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: alwaysinline nounwind
+define private double @"computeTriangleBendRestLength@FIIII"(i64* %geo, i64* %pt0, i64* %pt1, i64* %pt2) #0 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca <3 x double>
+  %geo1 = load i64, i64* %geo
+  %pt02 = load i64, i64* %pt0
+  %return = call <3 x double> @"point@VISI"(i64 %geo1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt02)
+  %geo3 = load i64, i64* %geo
+  %pt14 = load i64, i64* %pt1
+  %return5 = call <3 x double> @"point@VISI"(i64 %geo3, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt14)
+  %geo6 = load i64, i64* %geo
+  %pt27 = load i64, i64* %pt2
+  %return8 = call <3 x double> @"point@VISI"(i64 %geo6, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt27)
+  store <3 x double> %return, <3 x double>* %0
+  store <3 x double> %return5, <3 x double>* %1
+  store <3 x double> %return8, <3 x double>* %2
+  %computeVertexCentroidDistance = call double @"computeVertexCentroidDistance@FVVV"(<3 x double>* %0, <3 x double>* %1, <3 x double>* %2)
+  ret double %computeVertexCentroidDistance
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"computeTetRestMatrix@IIIIIIF3F"(i64* %geo, i64* %pt0, i64* %pt1, i64* %pt2, i64* %pt3, double* %scale, <9 x double>* %restmatrix, double* %volume) #0 {
+__llvm_entry:
+  %geo1 = load i64, i64* %geo
+  %pt02 = load i64, i64* %pt0
+  %return = call <3 x double> @"point@VISI"(i64 %geo1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt02)
+  %geo3 = load i64, i64* %geo
+  %pt14 = load i64, i64* %pt1
+  %return5 = call <3 x double> @"point@VISI"(i64 %geo3, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt14)
+  %geo6 = load i64, i64* %geo
+  %pt27 = load i64, i64* %pt2
+  %return8 = call <3 x double> @"point@VISI"(i64 %geo6, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt27)
+  %geo9 = load i64, i64* %geo
+  %pt310 = load i64, i64* %pt3
+  %return11 = call <3 x double> @"point@VISI"(i64 %geo9, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt310)
+  %scale12 = load double, double* %scale
+  %output = call <3 x double> @"sub@VV"(<3 x double> %return, <3 x double> %return11)
+  %output17 = call <3 x double> @"sub@VV"(<3 x double> %return5, <3 x double> %return11)
+  %output20 = call <3 x double> @"sub@VV"(<3 x double> %return8, <3 x double> %return11)
+  %return21 = call <9 x double> @"set@3VVV"(<3 x double> %output, <3 x double> %output17, <3 x double> %output20)
+  %output22 = call <9 x double> @"mul@3F"(<9 x double> %return21, double %scale12)
+  %return23 = call <9 x double> @"transpose@33"(<9 x double> %output22)
+  %return25 = call double @"determinant@F3"(<9 x double> %return23)
+  %return27 = fcmp oeq double %return25, 0.000000e+00
+  br i1 %return27, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %return30 = call <9 x double> @"invert@33"(<9 x double> %return23)
+  store <9 x double> %return30, <9 x double>* %restmatrix
+  %output32 = call double @"div@FF"(double %return25, double 6.000000e+00)
+  store double %output32, double* %volume
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end, %true
+  %UnifiedRetVal = phi i64 [ 0, %true ], [ 1, %end ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare <9 x double> @"mul@3F"(<9 x double>, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"determinant@F3"(<9 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"invert@33"(<9 x double>) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"computeTetFiberRestLength@IIIIIIFV"(i64* %geo, i64* %pt0, i64* %pt1, i64* %pt2, i64* %pt3, double* %volume, <3 x double>* %materialW) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca i64
+  %4 = alloca i64
+  %5 = alloca double
+  %restm = alloca <9 x double>
+  store <9 x double> zeroinitializer, <9 x double>* %restm, !vex-initializer-store !3
+  %geo1 = load i64, i64* %geo
+  store i64 %geo1, i64* %0
+  %pt02 = load i64, i64* %pt0
+  store i64 %pt02, i64* %1
+  %pt13 = load i64, i64* %pt1
+  store i64 %pt13, i64* %2
+  %pt24 = load i64, i64* %pt2
+  store i64 %pt24, i64* %3
+  %pt35 = load i64, i64* %pt3
+  store i64 %pt35, i64* %4
+  store double 1.000000e+00, double* %5
+  %computeTetRestMatrix = call i64 @"computeTetRestMatrix@IIIIIIF3F"(i64* %0, i64* %1, i64* %2, i64* %3, i64* %4, double* %5, <9 x double>* %restm, double* %volume)
+  %return = call i64 @"not@II"(i64 %computeTetRestMatrix)
+  %6 = icmp ne i64 %return, 0
+  br i1 %6, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  store <3 x double> <double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, <3 x double>* %materialW
+  %geo6 = load i64, i64* %geo
+  %return8 = call i64 @"haspointattrib@IIS"(i64 %geo6, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @24, i64 0, i64 0))
+  %7 = icmp ne i64 %return8, 0
+  br i1 %7, label %true9, label %end10
+
+true9:                                            ; preds = %end
+  %geo11 = load i64, i64* %geo
+  %pt013 = load i64, i64* %pt0
+  %return14 = call <3 x double> @"point@VISI"(i64 %geo11, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @24, i64 0, i64 0), i64 %pt013)
+  store <3 x double> %return14, <3 x double>* %materialW
+  %geo16 = load i64, i64* %geo
+  %pt118 = load i64, i64* %pt1
+  %return19 = call <3 x double> @"point@VISI"(i64 %geo16, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @24, i64 0, i64 0), i64 %pt118)
+  %output = call <3 x double> @"add@VV"(<3 x double> %return14, <3 x double> %return19)
+  store <3 x double> %output, <3 x double>* %materialW
+  %geo21 = load i64, i64* %geo
+  %pt223 = load i64, i64* %pt2
+  %return24 = call <3 x double> @"point@VISI"(i64 %geo21, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @24, i64 0, i64 0), i64 %pt223)
+  %output25 = call <3 x double> @"add@VV"(<3 x double> %output, <3 x double> %return24)
+  store <3 x double> %output25, <3 x double>* %materialW
+  %geo27 = load i64, i64* %geo
+  %pt329 = load i64, i64* %pt3
+  %return30 = call <3 x double> @"point@VISI"(i64 %geo27, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @24, i64 0, i64 0), i64 %pt329)
+  %output31 = call <3 x double> @"add@VV"(<3 x double> %output25, <3 x double> %return30)
+  store <3 x double> %output31, <3 x double>* %materialW
+  %return33 = call <3 x double> @"normalize@VV"(<3 x double> %output31)
+  store <3 x double> %return33, <3 x double>* %materialW
+  br label %end10
+
+end10:                                            ; preds = %true9, %end
+  %restm34 = load <9 x double>, <9 x double>* %restm
+  %return35 = call <9 x double> @"transpose@33"(<9 x double> %restm34)
+  %materialW36 = load <3 x double>, <3 x double>* %materialW
+  %output37 = call <3 x double> @"mul@V3"(<3 x double> %materialW36, <9 x double> %return35)
+  store <3 x double> %output37, <3 x double>* %materialW
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end10, %true
+  %UnifiedRetVal = phi i64 [ 0, %true ], [ 1, %end10 ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64 @"haspointattrib@IIS"(i64, i8*) #2
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"computeTriRestMatrix@IIIIIF2F"(i64* %geo, i64* %pt0, i64* %pt1, i64* %pt2, double* %scale, <4 x double>* %restmatrix, double* %area) #0 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca <3 x double>
+  %geo1 = load i64, i64* %geo
+  %pt02 = load i64, i64* %pt0
+  %return = call <3 x double> @"point@VISI"(i64 %geo1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt02)
+  %geo3 = load i64, i64* %geo
+  %pt14 = load i64, i64* %pt1
+  %return5 = call <3 x double> @"point@VISI"(i64 %geo3, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt14)
+  %geo6 = load i64, i64* %geo
+  %pt27 = load i64, i64* %pt2
+  %return8 = call <3 x double> @"point@VISI"(i64 %geo6, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %pt27)
+  store <3 x double> %return, <3 x double>* %0
+  store <3 x double> %return5, <3 x double>* %1
+  store <3 x double> %return8, <3 x double>* %2
+  %fromTriangleSpaceXform = call <9 x double> @"fromTriangleSpaceXform@3VVV"(<3 x double>* %0, <3 x double>* %1, <3 x double>* %2)
+  %return13 = call <9 x double> @"transpose@33"(<9 x double> %fromTriangleSpaceXform)
+  %output = call <3 x double> @"mul@V3"(<3 x double> %return, <9 x double> %return13)
+  %cast = call <2 x double> @"set@UV"(<3 x double> %output)
+  %output18 = call <3 x double> @"mul@V3"(<3 x double> %return5, <9 x double> %return13)
+  %cast19 = call <2 x double> @"set@UV"(<3 x double> %output18)
+  %output22 = call <3 x double> @"mul@V3"(<3 x double> %return8, <9 x double> %return13)
+  %cast23 = call <2 x double> @"set@UV"(<3 x double> %output22)
+  %scale24 = load double, double* %scale
+  %output27 = call <2 x double> @"sub@UU"(<2 x double> %cast, <2 x double> %cast23)
+  %output30 = call <2 x double> @"sub@UU"(<2 x double> %cast19, <2 x double> %cast23)
+  %return31 = call <4 x double> @"set@2UU"(<2 x double> %output27, <2 x double> %output30)
+  %output32 = call <4 x double> @"mul@2F"(<4 x double> %return31, double %scale24)
+  %return33 = call <4 x double> @"transpose@22"(<4 x double> %output32)
+  %return35 = call double @"determinant@F2"(<4 x double> %return33)
+  %return37 = fcmp oeq double %return35, 0.000000e+00
+  br i1 %return37, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %return40 = call <4 x double> @"invert@22"(<4 x double> %return33)
+  store <4 x double> %return40, <4 x double>* %restmatrix
+  %output42 = call double @"div@FF"(double %return35, double 2.000000e+00)
+  %return43 = call double @"abs@FF"(double %output42)
+  store double %return43, double* %area
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end, %true
+  %UnifiedRetVal = phi i64 [ 0, %true ], [ 1, %end ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"sub@UU"(<2 x double>, <2 x double>) #1
+
+; Function Attrs: nounwind
+declare <4 x double> @"set@2UU"(<2 x double>, <2 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"mul@2F"(<4 x double>, double) #1
+
+; Function Attrs: nounwind
+declare <4 x double> @"transpose@22"(<4 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"determinant@F2"(<4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"invert@22"(<4 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"abs@FF"(double) #2
+
+; Function Attrs: alwaysinline nounwind
+define private <4 x double> @"polardecomp2d@22"(<4 x double>* %A) #0 {
+__llvm_entry:
+  %A1 = load <4 x double>, <4 x double>* %A
+  %return = call double @"getcomp@F2II"(<4 x double> %A1, i64 0, i64 0)
+  %return3 = call double @"getcomp@F2II"(<4 x double> %A1, i64 1, i64 1)
+  %output = fadd double %return, %return3
+  %return5 = call double @"getcomp@F2II"(<4 x double> %A1, i64 1, i64 0)
+  %return7 = call double @"getcomp@F2II"(<4 x double> %A1, i64 0, i64 1)
+  %output8 = fsub double %return5, %return7
+  %return9 = call <2 x double> @"set@UFF"(double %output, double %output8)
+  %return11 = call <2 x double> @"normalize@UU"(<2 x double> %return9)
+  %return13 = call double @"getcomp@FUI"(<2 x double> %return11, i64 0)
+  %return15 = call double @"getcomp@FUI"(<2 x double> %return11, i64 1)
+  %return16 = call double @"neg@FF"(double %return15)
+  %return21 = call <4 x double> @"set@2FFFF"(double %return13, double %return16, double %return15, double %return13)
+  ret <4 x double> %return21
+}
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@F2II"(<4 x double>, i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UFF"(double, double) #1
+
+; Function Attrs: nounwind
+declare <2 x double> @"normalize@UU"(<2 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FUI"(<2 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@2FFFF"(double, double, double, double) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"orientedRestDifference@II[ISPV"(i64* %geo, i64** %pts, i8** %type, <4 x double>* %restvector, <3 x double>* %aadiff) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  %type1 = load i8*, i8** %type
+  %return = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @25, i64 0, i64 0))
+  %3 = icmp ne i64 %return, 0
+  br i1 %3, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %geo2 = load i64, i64* %geo
+  %pts3 = load i64*, i64** %pts
+  %return4 = call i64 @"getcomp@I[II"(i64* %pts3, i64 0)
+  %return5 = call <4 x double> @"point@PISI"(i64 %geo2, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @21, i64 0, i64 0), i64 %return4)
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return7 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @26, i64 0, i64 0))
+  %4 = icmp ne i64 %return7, 0
+  br i1 %4, label %true8, label %end
+
+end:                                              ; preds = %false, %true8, %true
+  %curorient.0 = phi <4 x double> [ %return5, %true ], [ %computeBendTwistRestVector, %true8 ], [ zeroinitializer, %false ]
+  %isorient.0 = phi i64 [ 1, %true ], [ 1, %true8 ], [ 0, %false ]
+  %5 = icmp ne i64 %isorient.0, 0
+  br i1 %5, label %true16, label %end17
+
+true8:                                            ; preds = %false
+  %geo10 = load i64, i64* %geo
+  store i64 %geo10, i64* %0
+  %pts11 = load i64*, i64** %pts
+  %return12 = call i64 @"getcomp@I[II"(i64* %pts11, i64 0)
+  store i64 %return12, i64* %1
+  %pts13 = load i64*, i64** %pts
+  %return14 = call i64 @"getcomp@I[II"(i64* %pts13, i64 1)
+  store i64 %return14, i64* %2
+  %computeBendTwistRestVector = call <4 x double> @"computeBendTwistRestVector@PIII"(i64* %0, i64* %1, i64* %2)
+  br label %end
+
+true16:                                           ; preds = %end
+  %restvector18 = load <4 x double>, <4 x double>* %restvector
+  %output = call <4 x double> @"mul@PP"(<4 x double> %restvector18, <4 x double> <double -1.000000e+00, double -1.000000e+00, double -1.000000e+00, double 1.000000e+00>)
+  %return21 = call <4 x double> @"qmultiply@PPP"(<4 x double> %output, <4 x double> %curorient.0)
+  %return22 = call <3 x double> @"qconvert@VP"(<4 x double> %return21)
+  store <3 x double> %return22, <3 x double>* %aadiff
+  br label %end17
+
+end17:                                            ; preds = %true16, %end
+  ret i64 %isorient.0
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"qconvert@VP"(<4 x double>) #1
+
+; Function Attrs: alwaysinline nounwind
+define private double @"squaredNorm2@F2"(<4 x double>* %a) #0 {
+__llvm_entry:
+  %output = call <2 x double>* @"resize@[UI"(<2 x double>* getelementptr inbounds ([0 x <2 x double>], [0 x <2 x double>]* @27, i64 0, i64 0), i64 2)
+  %a2 = load <4 x double>, <4 x double>* %a
+  %return = call double @"getcomp@F2II"(<4 x double> %a2, i64 0, i64 0)
+  %return4 = call double @"getcomp@F2II"(<4 x double> %a2, i64 0, i64 1)
+  %return5 = call <2 x double> @"set@UFF"(double %return, double %return4)
+  %return6 = call { <2 x double>, <2 x double>* } @"setcomp@U[UUI"(<2 x double>* %output, <2 x double> %return5, i64 0)
+  %output8 = extractvalue { <2 x double>, <2 x double>* } %return6, 1
+  %return10 = call double @"getcomp@F2II"(<4 x double> %a2, i64 1, i64 0)
+  %return12 = call double @"getcomp@F2II"(<4 x double> %a2, i64 1, i64 1)
+  %return13 = call <2 x double> @"set@UFF"(double %return10, double %return12)
+  %return15 = call { <2 x double>, <2 x double>* } @"setcomp@U[UUI"(<2 x double>* %output8, <2 x double> %return13, i64 1)
+  %output17 = extractvalue { <2 x double>, <2 x double>* } %return15, 1
+  %return19 = call <2 x double> @"getcomp@U[UI"(<2 x double>* %output17, i64 0)
+  %return22 = call double @"dot@FUU"(<2 x double> %return19, <2 x double> %return19)
+  %return24 = call <2 x double> @"getcomp@U[UI"(<2 x double>* %output17, i64 1)
+  %return27 = call double @"dot@FUU"(<2 x double> %return24, <2 x double> %return24)
+  %output28 = fadd double %return22, %return27
+  ret double %output28
+}
+
+; Function Attrs: nounwind readnone
+declare <2 x double>* @"resize@[UI"(<2 x double>*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare { <2 x double>, <2 x double>* } @"setcomp@U[UUI"(<2 x double>*, <2 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"getcomp@U[UI"(<2 x double>*, i64) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FUU"(<2 x double>, <2 x double>) #2
+
+; Function Attrs: alwaysinline nounwind
+define private double @"squaredNorm3@F3"(<9 x double>* %a) #0 {
+__llvm_entry:
+  %a1 = load <9 x double>, <9 x double>* %a
+  %return = call <3 x double>* @"set@[V3"(<9 x double> %a1)
+  %return3 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %return, i64 0)
+  %return6 = call double @"dot@FVV"(<3 x double> %return3, <3 x double> %return3)
+  %return8 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %return, i64 1)
+  %return11 = call double @"dot@FVV"(<3 x double> %return8, <3 x double> %return8)
+  %output = fadd double %return6, %return11
+  %return13 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %return, i64 2)
+  %return16 = call double @"dot@FVV"(<3 x double> %return13, <3 x double> %return13)
+  %output17 = fadd double %output, %return16
+  ret double %output17
+}
+
+; Function Attrs: alwaysinline
+define private <3 x double>* @"set@[V3"(<9 x double> %rw11) #3 {
+__llvm_entry:
+  %rw03 = call <3 x double>* @"resize@[VI"(<3 x double>* undef, i64 3)
+  %t_0_ = call double @"getcomp@F3II"(<9 x double> %rw11, i64 0, i64 0)
+  %t_1_ = call double @"getcomp@F3II"(<9 x double> %rw11, i64 0, i64 1)
+  %t_2_ = call double @"getcomp@F3II"(<9 x double> %rw11, i64 0, i64 2)
+  %t_3_ = call <3 x double> @"set@VFFF"(double %t_0_, double %t_1_, double %t_2_)
+  %t_4_ = call { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>* %rw03, <3 x double> %t_3_, i64 0)
+  %rw020 = extractvalue { <3 x double>, <3 x double>* } %t_4_, 1
+  %t_0_24 = call double @"getcomp@F3II"(<9 x double> %rw11, i64 1, i64 0)
+  %t_1_28 = call double @"getcomp@F3II"(<9 x double> %rw11, i64 1, i64 1)
+  %t_2_32 = call double @"getcomp@F3II"(<9 x double> %rw11, i64 1, i64 2)
+  %t_3_36 = call <3 x double> @"set@VFFF"(double %t_0_24, double %t_1_28, double %t_2_32)
+  %t_4_40 = call { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>* %rw020, <3 x double> %t_3_36, i64 1)
+  %rw042 = extractvalue { <3 x double>, <3 x double>* } %t_4_40, 1
+  %t_0_46 = call double @"getcomp@F3II"(<9 x double> %rw11, i64 2, i64 0)
+  %t_1_50 = call double @"getcomp@F3II"(<9 x double> %rw11, i64 2, i64 1)
+  %t_2_54 = call double @"getcomp@F3II"(<9 x double> %rw11, i64 2, i64 2)
+  %t_3_58 = call <3 x double> @"set@VFFF"(double %t_0_46, double %t_1_50, double %t_2_54)
+  %t_4_62 = call { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>* %rw042, <3 x double> %t_3_58, i64 2)
+  %rw064 = extractvalue { <3 x double>, <3 x double>* } %t_4_62, 1
+  ret <3 x double>* %rw064
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double>* @"resize@[VI"(<3 x double>*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@F3II"(<9 x double>, i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>*, <3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"getcomp@V[VI"(<3 x double>*, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"computeRestVectorDifference@II[ISPP"(i64* %geo, i64** %pts, i8** %type, <4 x double>* %restvector, <4 x double>* %vecdiff) #0 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca i8*
+  %volume = alloca double
+  %curvector = alloca <3 x double>
+  %2 = alloca i64
+  %3 = alloca i64
+  %4 = alloca i64
+  %5 = alloca i64
+  %6 = alloca i64
+  %7 = alloca i8*
+  %D_s_inv = alloca <4 x double>
+  %area = alloca double
+  %8 = alloca i64
+  %9 = alloca i64
+  %10 = alloca i64
+  %11 = alloca i64
+  %12 = alloca double
+  %13 = alloca <4 x double>
+  %14 = alloca i8*
+  %type1 = load i8*, i8** %type
+  store i8* %type1, i8** %14
+  %isTetFiber = call i64 @"isTetFiber@IS"(i8** %14)
+  %return = call i64 @"not@II"(i64 %isTetFiber)
+  %type2 = load i8*, i8** %type
+  store i8* %type2, i8** %0
+  %isTriARAP = call i64 @"isTriARAP@IS"(i8** %0)
+  %return3 = call i64 @"not@II"(i64 %isTriARAP)
+  %return4 = call i64 @"and@III"(i64 %return, i64 %return3)
+  %15 = icmp ne i64 %return4, 0
+  br i1 %15, label %true, label %end
+
+true:                                             ; preds = %true30, %false, %end50, %true7, %true20, %__llvm_entry
+  %merge = phi i64 [ 0, %__llvm_entry ], [ 1, %true20 ], [ 1, %true7 ], [ 1, %end50 ], [ 1, %false ], [ 1, %true30 ]
+  ret i64 %merge
+
+end:                                              ; preds = %__llvm_entry
+  %cast = call <4 x double> @"set@PI"(i64 0)
+  store <4 x double> %cast, <4 x double>* %vecdiff
+  %type5 = load i8*, i8** %type
+  store i8* %type5, i8** %1
+  %isTetFiber6 = call i64 @"isTetFiber@IS"(i8** %1)
+  %16 = icmp ne i64 %isTetFiber6, 0
+  br i1 %16, label %true7, label %false
+
+true7:                                            ; preds = %end
+  store double 0.000000e+00, double* %volume, !vex-initializer-store !3
+  store <3 x double> zeroinitializer, <3 x double>* %curvector, !vex-initializer-store !3
+  %restvector9 = load <4 x double>, <4 x double>* %restvector
+  %cast10 = call <3 x double> @"set@VP"(<4 x double> %restvector9)
+  %geo11 = load i64, i64* %geo
+  store i64 %geo11, i64* %2
+  %pts12 = load i64*, i64** %pts
+  %return13 = call i64 @"getcomp@I[II"(i64* %pts12, i64 0)
+  store i64 %return13, i64* %3
+  %pts14 = load i64*, i64** %pts
+  %return15 = call i64 @"getcomp@I[II"(i64* %pts14, i64 1)
+  store i64 %return15, i64* %4
+  %pts16 = load i64*, i64** %pts
+  %return17 = call i64 @"getcomp@I[II"(i64* %pts16, i64 2)
+  store i64 %return17, i64* %5
+  %pts18 = load i64*, i64** %pts
+  %return19 = call i64 @"getcomp@I[II"(i64* %pts18, i64 3)
+  store i64 %return19, i64* %6
+  %computeTetFiberRestLength = call i64 @"computeTetFiberRestLength@IIIIIIFV"(i64* %2, i64* %3, i64* %4, i64* %5, i64* %6, double* %volume, <3 x double>* %curvector)
+  %17 = icmp ne i64 %computeTetFiberRestLength, 0
+  br i1 %17, label %true20, label %true
+
+false:                                            ; preds = %end
+  %type28 = load i8*, i8** %type
+  store i8* %type28, i8** %7
+  %isTriARAP29 = call i64 @"isTriARAP@IS"(i8** %7)
+  %18 = icmp ne i64 %isTriARAP29, 0
+  br i1 %18, label %true30, label %true
+
+true20:                                           ; preds = %true7
+  %curvector22 = load <3 x double>, <3 x double>* %curvector
+  %output = call <3 x double> @"sub@VV"(<3 x double> %curvector22, <3 x double> %cast10)
+  %cast24 = call <4 x double> @"set@PV"(<3 x double> %output)
+  store <4 x double> %cast24, <4 x double>* %vecdiff
+  %return25 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %cast24, double 0.000000e+00, i64 3)
+  %output27 = extractvalue { double, <4 x double> } %return25, 1
+  store <4 x double> %output27, <4 x double>* %vecdiff
+  br label %true
+
+true30:                                           ; preds = %false
+  store <4 x double> zeroinitializer, <4 x double>* %D_s_inv, !vex-initializer-store !3
+  %restvector32 = load <4 x double>, <4 x double>* %restvector
+  %return33 = call double @"getcomp@FPI"(<4 x double> %restvector32, i64 0)
+  %return35 = call double @"getcomp@FPI"(<4 x double> %restvector32, i64 1)
+  %return37 = call double @"getcomp@FPI"(<4 x double> %restvector32, i64 2)
+  %return39 = call double @"getcomp@FPI"(<4 x double> %restvector32, i64 3)
+  %return40 = call <4 x double> @"set@2FFFF"(double %return33, double %return35, double %return37, double %return39)
+  store double 0.000000e+00, double* %area, !vex-initializer-store !3
+  %geo41 = load i64, i64* %geo
+  store i64 %geo41, i64* %8
+  %pts42 = load i64*, i64** %pts
+  %return43 = call i64 @"getcomp@I[II"(i64* %pts42, i64 0)
+  store i64 %return43, i64* %9
+  %pts44 = load i64*, i64** %pts
+  %return45 = call i64 @"getcomp@I[II"(i64* %pts44, i64 1)
+  store i64 %return45, i64* %10
+  %pts46 = load i64*, i64** %pts
+  %return47 = call i64 @"getcomp@I[II"(i64* %pts46, i64 2)
+  store i64 %return47, i64* %11
+  store double 1.000000e+00, double* %12
+  %computeTriRestMatrix = call i64 @"computeTriRestMatrix@IIIIIF2F"(i64* %8, i64* %9, i64* %10, i64* %11, double* %12, <4 x double>* %D_s_inv, double* %area)
+  %return48 = call i64 @"not@II"(i64 %computeTriRestMatrix)
+  %19 = icmp ne i64 %return48, 0
+  br i1 %19, label %true, label %end50
+
+end50:                                            ; preds = %true30
+  %D_s_inv51 = load <4 x double>, <4 x double>* %D_s_inv
+  %return52 = call <4 x double> @"invert@22"(<4 x double> %D_s_inv51)
+  %output55 = call <4 x double> @"mul@22"(<4 x double> %return52, <4 x double> %return40)
+  store <4 x double> %output55, <4 x double>* %13
+  %polardecomp2d = call <4 x double> @"polardecomp2d@22"(<4 x double>* %13)
+  %return58 = call <4 x double> @"transpose@22"(<4 x double> %polardecomp2d)
+  %output60 = call <4 x double> @"mul@22"(<4 x double> %return58, <4 x double> %return52)
+  %return63 = call <4 x double> @"invert@22"(<4 x double> %return40)
+  %output64 = call <4 x double> @"sub@22"(<4 x double> %output60, <4 x double> %return63)
+  %return66 = call double @"getcomp@F2II"(<4 x double> %output64, i64 0, i64 0)
+  %return68 = call double @"getcomp@F2II"(<4 x double> %output64, i64 0, i64 1)
+  %return70 = call double @"getcomp@F2II"(<4 x double> %output64, i64 1, i64 0)
+  %return72 = call double @"getcomp@F2II"(<4 x double> %output64, i64 1, i64 1)
+  %return73 = call <4 x double> @"set@PFFFF"(double %return66, double %return68, double %return70, double %return72)
+  store <4 x double> %return73, <4 x double>* %vecdiff
+  br label %true
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"set@VP"(<4 x double>) #2
+
+; Function Attrs: nounwind
+declare <4 x double> @"set@PV"(<3 x double>) #2
+
+; Function Attrs: alwaysinline
+define private { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <4 x double> @"setcomp@PFI"(<4 x double> %rw11, double 0.000000e+00, i64 3)
+  %mrv9 = insertvalue { double, <4 x double> } { double 0.000000e+00, <4 x double> undef }, <4 x double> %rw16, 1
+  ret { double, <4 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"setcomp@PFI"(<4 x double>, double, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"mul@22"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"sub@22"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PFFFF"(double, double, double, double) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"computeRestMatrixDifference@II[IS33"(i64* %geo, i64** %pts, i8** %type, <9 x double>* %restmatrix, <9 x double>* %matdiff) #0 {
+__llvm_entry:
+  %D_s_inv = alloca <9 x double>
+  %volume = alloca double
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca i64
+  %4 = alloca i64
+  %5 = alloca double
+  %6 = alloca i8*
+  %type1 = load i8*, i8** %type
+  store i8* %type1, i8** %6
+  %isTetARAP = call i64 @"isTetARAP@IS"(i8** %6)
+  %return = call i64 @"not@II"(i64 %isTetARAP)
+  %7 = icmp ne i64 %return, 0
+  br i1 %7, label %true, label %end
+
+true:                                             ; preds = %end, %__llvm_entry
+  %merge = phi i64 [ 0, %__llvm_entry ], [ 1, %end ]
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %cast = call <9 x double> @"set@3I"(i64 0)
+  store <9 x double> %cast, <9 x double>* %matdiff
+  store <9 x double> zeroinitializer, <9 x double>* %D_s_inv, !vex-initializer-store !3
+  store double 0.000000e+00, double* %volume, !vex-initializer-store !3
+  %geo2 = load i64, i64* %geo
+  store i64 %geo2, i64* %0
+  %pts3 = load i64*, i64** %pts
+  %return4 = call i64 @"getcomp@I[II"(i64* %pts3, i64 0)
+  store i64 %return4, i64* %1
+  %pts5 = load i64*, i64** %pts
+  %return6 = call i64 @"getcomp@I[II"(i64* %pts5, i64 1)
+  store i64 %return6, i64* %2
+  %pts7 = load i64*, i64** %pts
+  %return8 = call i64 @"getcomp@I[II"(i64* %pts7, i64 2)
+  store i64 %return8, i64* %3
+  %pts9 = load i64*, i64** %pts
+  %return10 = call i64 @"getcomp@I[II"(i64* %pts9, i64 3)
+  store i64 %return10, i64* %4
+  store double 1.000000e+00, double* %5
+  %computeTetRestMatrix = call i64 @"computeTetRestMatrix@IIIIIIF3F"(i64* %0, i64* %1, i64* %2, i64* %3, i64* %4, double* %5, <9 x double>* %D_s_inv, double* %volume)
+  %return11 = call i64 @"not@II"(i64 %computeTetRestMatrix)
+  %8 = icmp ne i64 %return11, 0
+  br i1 %8, label %true, label %end13
+
+end13:                                            ; preds = %end
+  %D_s_inv14 = load <9 x double>, <9 x double>* %D_s_inv
+  %return15 = call <9 x double> @"invert@33"(<9 x double> %D_s_inv14)
+  %restmatrix17 = load <9 x double>, <9 x double>* %restmatrix
+  %output = call <9 x double> @"mul@33"(<9 x double> %return15, <9 x double> %restmatrix17)
+  %return19 = call <9 x double> @"polardecomp@33"(<9 x double> %output)
+  %return21 = call <9 x double> @"transpose@33"(<9 x double> %return19)
+  %output23 = call <9 x double> @"mul@33"(<9 x double> %return21, <9 x double> %return15)
+  %restmatrix25 = load <9 x double>, <9 x double>* %restmatrix
+  %return26 = call <9 x double> @"invert@33"(<9 x double> %restmatrix25)
+  %output27 = call <9 x double> @"sub@33"(<9 x double> %output23, <9 x double> %return26)
+  store <9 x double> %output27, <9 x double>* %matdiff
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end13, %true
+  %UnifiedRetVal = phi i64 [ %merge, %true ], [ 1, %end13 ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare <9 x double> @"set@3I"(i64) #2
+
+; Function Attrs: nounwind
+declare <9 x double> @"mul@33"(<9 x double>, <9 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"polardecomp@33"(<9 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"sub@33"(<9 x double>, <9 x double>) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"weldTarget@III"(i64* %geo, i64* %ptnum) #0 {
+__llvm_entry:
+  %geo1 = load i64, i64* %geo
+  %return = call i64 @"haspointattrib@IIS"(i64 %geo1, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @28, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %geo2 = load i64, i64* %geo
+  %ptnum3 = load i64, i64* %ptnum
+  %return4 = call i64 @"point@IISI"(i64 %geo2, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @28, i64 0, i64 0), i64 %ptnum3)
+  %return6 = call i64 @"ge@III"(i64 %return4, i64 0)
+  %1 = icmp ne i64 %return6, 0
+  br i1 %1, label %true7, label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %ptnum12 = load i64, i64* %ptnum
+  br label %UnifiedReturnBlock
+
+true7:                                            ; preds = %true
+  %geo9 = load i64, i64* %geo
+  %return11 = call i64 @"idtopoint@III"(i64 %geo9, i64 %return4)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %true7, %end
+  %UnifiedRetVal = phi i64 [ %ptnum12, %end ], [ %return11, %true7 ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64 @"point@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"idtopoint@III"(i64, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private double @"computeRestLengthDifference@FI[ISFPVSI3"(i64* %geo, i64** %pts, i8** %intype, double* %restlength, <4 x double>* %restvector, <3 x double>* %restdir, i8** %targetpath, i64* %targetprim, <9 x double>* %restmatrix) #0 {
+__llvm_entry:
+  %0 = alloca i8*
+  %aadiff = alloca <3 x double>
+  %1 = alloca i64
+  %2 = alloca i64*
+  %3 = alloca i8*
+  %4 = alloca <4 x double>
+  %5 = alloca i64
+  %6 = alloca i64
+  %7 = alloca i64
+  %8 = alloca i64
+  %9 = alloca i64
+  %10 = alloca <3 x double>
+  %11 = alloca <3 x double>
+  %12 = alloca i8*
+  %13 = alloca i64
+  %14 = alloca i64
+  %15 = alloca i64*
+  %16 = alloca i8*
+  %17 = alloca i64
+  %18 = alloca i64
+  %19 = alloca i64
+  %20 = alloca i64
+  %21 = alloca i64
+  %22 = alloca i64
+  %23 = alloca i64
+  %24 = alloca i64
+  %25 = alloca i64
+  %26 = alloca i64
+  %27 = alloca i64
+  %28 = alloca i64
+  %29 = alloca i64
+  %30 = alloca i64
+  %31 = alloca i64
+  %32 = alloca i64
+  %33 = alloca i64
+  %34 = alloca i64
+  %35 = alloca i64
+  %36 = alloca i64
+  %37 = alloca i64*
+  %38 = alloca <4 x double>
+  %vecdiff = alloca <4 x double>
+  %39 = alloca i64
+  %40 = alloca i64*
+  %41 = alloca i8*
+  %42 = alloca <4 x double>
+  %43 = alloca <4 x double>
+  %matdiff = alloca <9 x double>
+  %44 = alloca i64
+  %45 = alloca i64*
+  %46 = alloca i8*
+  %47 = alloca <9 x double>
+  %48 = alloca <9 x double>
+  %curlength = alloca double
+  store double 0.000000e+00, double* %curlength, !vex-initializer-store !3
+  %intype1 = load i8*, i8** %intype
+  store i8* %intype1, i8** %0
+  %constraintAlias = call i8* @"constraintAlias@SS"(i8** %0)
+  %return = call i64 @"eq@ISS"(i8* %constraintAlias, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @2, i64 0, i64 0))
+  %49 = icmp ne i64 %return, 0
+  br i1 %49, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %geo3 = load i64, i64* %geo
+  %pts4 = load i64*, i64** %pts
+  %return5 = call i64 @"getcomp@I[II"(i64* %pts4, i64 0)
+  %return6 = call <3 x double> @"point@VISI"(i64 %geo3, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), i64 %return5)
+  %restvector7 = load <4 x double>, <4 x double>* %restvector
+  %cast = call <3 x double> @"set@VP"(<4 x double> %restvector7)
+  %return8 = call double @"distance@FVV"(<3 x double> %return6, <3 x double> %cast)
+  store double %return8, double* %curlength
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return10 = call i64 @"eq@ISS"(i8* %constraintAlias, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0))
+  %return12 = call i64 @"eq@ISS"(i8* %constraintAlias, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @29, i64 0, i64 0))
+  %return13 = call i64 @"or@III"(i64 %return10, i64 %return12)
+  %50 = icmp ne i64 %return13, 0
+  br i1 %50, label %true14, label %false15
+
+end:                                              ; preds = %false88, %true99, %true87, %true75, %true58, %true44, %true37, %true24, %true14, %true
+  store <3 x double> zeroinitializer, <3 x double>* %aadiff, !vex-initializer-store !3
+  %geo107 = load i64, i64* %geo
+  store i64 %geo107, i64* %1
+  %pts108 = load i64*, i64** %pts
+  store i64* %pts108, i64** %2
+  store i8* %constraintAlias, i8** %3
+  %restvector110 = load <4 x double>, <4 x double>* %restvector
+  store <4 x double> %restvector110, <4 x double>* %4
+  %orientedRestDifference = call i64 @"orientedRestDifference@II[ISPV"(i64* %1, i64** %2, i8** %3, <4 x double>* %4, <3 x double>* %aadiff)
+  %51 = icmp ne i64 %orientedRestDifference, 0
+  br i1 %51, label %true111, label %end112
+
+true14:                                           ; preds = %false
+  %geo17 = load i64, i64* %geo
+  store i64 %geo17, i64* %5
+  %pts18 = load i64*, i64** %pts
+  %return19 = call i64 @"getcomp@I[II"(i64* %pts18, i64 0)
+  store i64 %return19, i64* %6
+  %pts20 = load i64*, i64** %pts
+  %return21 = call i64 @"getcomp@I[II"(i64* %pts20, i64 1)
+  store i64 %return21, i64* %7
+  %computeDistanceRestLength = call double @"computeDistanceRestLength@FIII"(i64* %5, i64* %6, i64* %7)
+  store double %computeDistanceRestLength, double* %curlength
+  br label %end
+
+false15:                                          ; preds = %false
+  %return23 = call i64 @"eq@ISS"(i8* %constraintAlias, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @7, i64 0, i64 0))
+  %52 = icmp ne i64 %return23, 0
+  br i1 %52, label %true24, label %false25
+
+true24:                                           ; preds = %false15
+  %geo27 = load i64, i64* %geo
+  store i64 %geo27, i64* %8
+  %pts28 = load i64*, i64** %pts
+  %return29 = call i64 @"getcomp@I[II"(i64* %pts28, i64 0)
+  store i64 %return29, i64* %9
+  %restvector30 = load <4 x double>, <4 x double>* %restvector
+  %cast31 = call <3 x double> @"set@VP"(<4 x double> %restvector30)
+  store <3 x double> %cast31, <3 x double>* %10
+  %restdir32 = load <3 x double>, <3 x double>* %restdir
+  store <3 x double> %restdir32, <3 x double>* %11
+  %targetpath33 = load i8*, i8** %targetpath
+  store i8* %targetpath33, i8** %12
+  %targetprim34 = load i64, i64* %targetprim
+  store i64 %targetprim34, i64* %13
+  %computeDistanceLineRestLength = call double @"computeDistanceLineRestLength@FIIVVSI"(i64* %8, i64* %9, <3 x double>* %10, <3 x double>* %11, i8** %12, i64* %13)
+  store double %computeDistanceLineRestLength, double* %curlength
+  br label %end
+
+false25:                                          ; preds = %false15
+  %return36 = call i64 @"eq@ISS"(i8* %constraintAlias, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @30, i64 0, i64 0))
+  %53 = icmp ne i64 %return36, 0
+  br i1 %53, label %true37, label %false38
+
+true37:                                           ; preds = %false25
+  %geo40 = load i64, i64* %geo
+  store i64 %geo40, i64* %14
+  %pts41 = load i64*, i64** %pts
+  store i64* %pts41, i64** %15
+  store i8* getelementptr inbounds ([7 x i8], [7 x i8]* @22, i64 0, i64 0), i8** %16
+  %computePressureRestLength = call double @"computePressureRestLength@FI[IS"(i64* %14, i64** %15, i8** %16)
+  store double %computePressureRestLength, double* %curlength
+  br label %end
+
+false38:                                          ; preds = %false25
+  %return43 = call i64 @"eq@ISS"(i8* %constraintAlias, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @31, i64 0, i64 0))
+  %54 = icmp ne i64 %return43, 0
+  br i1 %54, label %true44, label %false45
+
+true44:                                           ; preds = %false38
+  %geo47 = load i64, i64* %geo
+  store i64 %geo47, i64* %17
+  %pts48 = load i64*, i64** %pts
+  %return49 = call i64 @"getcomp@I[II"(i64* %pts48, i64 0)
+  store i64 %return49, i64* %18
+  %pts50 = load i64*, i64** %pts
+  %return51 = call i64 @"getcomp@I[II"(i64* %pts50, i64 1)
+  store i64 %return51, i64* %19
+  %pts52 = load i64*, i64** %pts
+  %return53 = call i64 @"getcomp@I[II"(i64* %pts52, i64 2)
+  store i64 %return53, i64* %20
+  %pts54 = load i64*, i64** %pts
+  %return55 = call i64 @"getcomp@I[II"(i64* %pts54, i64 3)
+  store i64 %return55, i64* %21
+  %computeTetVolumeRestLength = call double @"computeTetVolumeRestLength@FIIIII"(i64* %17, i64* %18, i64* %19, i64* %20, i64* %21)
+  store double %computeTetVolumeRestLength, double* %curlength
+  br label %end
+
+false45:                                          ; preds = %false38
+  %return57 = call i64 @"eq@ISS"(i8* %constraintAlias, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @32, i64 0, i64 0))
+  %55 = icmp ne i64 %return57, 0
+  br i1 %55, label %true58, label %false59
+
+true58:                                           ; preds = %false45
+  %geo61 = load i64, i64* %geo
+  store i64 %geo61, i64* %22
+  %pts62 = load i64*, i64** %pts
+  %return63 = call i64 @"getcomp@I[II"(i64* %pts62, i64 0)
+  store i64 %return63, i64* %23
+  %pts64 = load i64*, i64** %pts
+  %return65 = call i64 @"getcomp@I[II"(i64* %pts64, i64 1)
+  store i64 %return65, i64* %24
+  %pts66 = load i64*, i64** %pts
+  %return67 = call i64 @"getcomp@I[II"(i64* %pts66, i64 2)
+  store i64 %return67, i64* %25
+  %pts68 = load i64*, i64** %pts
+  %return69 = call i64 @"getcomp@I[II"(i64* %pts68, i64 3)
+  store i64 %return69, i64* %26
+  %computeDihedralRestLength = call i64 @"computeDihedralRestLength@IIIIIIF"(i64* %22, i64* %23, i64* %24, i64* %25, i64* %26, double* %curlength)
+  %return70 = call i64 @"not@II"(i64 %computeDihedralRestLength)
+  %56 = icmp ne i64 %return70, 0
+  br i1 %56, label %true71, label %end
+
+false59:                                          ; preds = %false45
+  %return74 = call i64 @"eq@ISS"(i8* %constraintAlias, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @33, i64 0, i64 0))
+  %57 = icmp ne i64 %return74, 0
+  br i1 %57, label %true75, label %false76
+
+true71:                                           ; preds = %true58
+  br label %UnifiedReturnBlock
+
+true75:                                           ; preds = %false59
+  %geo78 = load i64, i64* %geo
+  store i64 %geo78, i64* %27
+  %pts79 = load i64*, i64** %pts
+  %return80 = call i64 @"getcomp@I[II"(i64* %pts79, i64 0)
+  store i64 %return80, i64* %28
+  %pts81 = load i64*, i64** %pts
+  %return82 = call i64 @"getcomp@I[II"(i64* %pts81, i64 1)
+  store i64 %return82, i64* %29
+  %pts83 = load i64*, i64** %pts
+  %return84 = call i64 @"getcomp@I[II"(i64* %pts83, i64 2)
+  store i64 %return84, i64* %30
+  %computeAngleRestLength = call double @"computeAngleRestLength@FIIII"(i64* %27, i64* %28, i64* %29, i64* %30)
+  store double %computeAngleRestLength, double* %curlength
+  br label %end
+
+false76:                                          ; preds = %false59
+  %return86 = call i64 @"eq@ISS"(i8* %constraintAlias, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @34, i64 0, i64 0))
+  %58 = icmp ne i64 %return86, 0
+  br i1 %58, label %true87, label %false88
+
+true87:                                           ; preds = %false76
+  %geo90 = load i64, i64* %geo
+  store i64 %geo90, i64* %31
+  %pts91 = load i64*, i64** %pts
+  %return92 = call i64 @"getcomp@I[II"(i64* %pts91, i64 0)
+  store i64 %return92, i64* %32
+  %pts93 = load i64*, i64** %pts
+  %return94 = call i64 @"getcomp@I[II"(i64* %pts93, i64 1)
+  store i64 %return94, i64* %33
+  %pts95 = load i64*, i64** %pts
+  %return96 = call i64 @"getcomp@I[II"(i64* %pts95, i64 2)
+  store i64 %return96, i64* %34
+  %computeTriangleBendRestLength = call double @"computeTriangleBendRestLength@FIIII"(i64* %31, i64* %32, i64* %33, i64* %34)
+  store double %computeTriangleBendRestLength, double* %curlength
+  br label %end
+
+false88:                                          ; preds = %false76
+  %return98 = call i64 @"eq@ISS"(i8* %constraintAlias, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @35, i64 0, i64 0))
+  %59 = icmp ne i64 %return98, 0
+  br i1 %59, label %true99, label %end
+
+true99:                                           ; preds = %false88
+  %geo101 = load i64, i64* %geo
+  store i64 %geo101, i64* %35
+  %pts102 = load i64*, i64** %pts
+  %return103 = call i64 @"getcomp@I[II"(i64* %pts102, i64 0)
+  store i64 %return103, i64* %36
+  %pts104 = load i64*, i64** %pts
+  %return105 = call i64* @"slice@[I[IIIIIII"(i64* %pts104, i64 1, i64 1, i64 0, i64 0, i64 0, i64 0)
+  store i64* %return105, i64** %37
+  %restvector106 = load <4 x double>, <4 x double>* %restvector
+  store <4 x double> %restvector106, <4 x double>* %38
+  %computePointPrimRestLength = call double @"computePointPrimRestLength@FII[IP"(i64* %35, i64* %36, i64** %37, <4 x double>* %38)
+  store double %computePointPrimRestLength, double* %curlength
+  br label %end
+
+true111:                                          ; preds = %end
+  %aadiff113 = load <3 x double>, <3 x double>* %aadiff
+  %return114 = call double @"length@FV"(<3 x double> %aadiff113)
+  %return115 = call double @"degrees@FF"(double %return114)
+  br label %UnifiedReturnBlock
+
+end112:                                           ; preds = %end
+  store <4 x double> zeroinitializer, <4 x double>* %vecdiff, !vex-initializer-store !3
+  %geo116 = load i64, i64* %geo
+  store i64 %geo116, i64* %39
+  %pts117 = load i64*, i64** %pts
+  store i64* %pts117, i64** %40
+  store i8* %constraintAlias, i8** %41
+  %restvector119 = load <4 x double>, <4 x double>* %restvector
+  store <4 x double> %restvector119, <4 x double>* %42
+  %computeRestVectorDifference = call i64 @"computeRestVectorDifference@II[ISPP"(i64* %39, i64** %40, i8** %41, <4 x double>* %42, <4 x double>* %vecdiff)
+  %60 = icmp ne i64 %computeRestVectorDifference, 0
+  br i1 %60, label %true120, label %end121
+
+true120:                                          ; preds = %end112
+  %vecdiff122 = load <4 x double>, <4 x double>* %vecdiff
+  %return123 = call double @"getcomp@FPI"(<4 x double> %vecdiff122, i64 0)
+  %return125 = call double @"getcomp@FPI"(<4 x double> %vecdiff122, i64 1)
+  %return127 = call double @"getcomp@FPI"(<4 x double> %vecdiff122, i64 2)
+  %return129 = call double @"getcomp@FPI"(<4 x double> %vecdiff122, i64 3)
+  %return130 = call <4 x double> @"set@2FFFF"(double %return123, double %return125, double %return127, double %return129)
+  store <4 x double> %return130, <4 x double>* %43
+  %squaredNorm2 = call double @"squaredNorm2@F2"(<4 x double>* %43)
+  br label %UnifiedReturnBlock
+
+end121:                                           ; preds = %end112
+  store <9 x double> zeroinitializer, <9 x double>* %matdiff, !vex-initializer-store !3
+  %geo131 = load i64, i64* %geo
+  store i64 %geo131, i64* %44
+  %pts132 = load i64*, i64** %pts
+  store i64* %pts132, i64** %45
+  store i8* %constraintAlias, i8** %46
+  %restmatrix134 = load <9 x double>, <9 x double>* %restmatrix
+  store <9 x double> %restmatrix134, <9 x double>* %47
+  %computeRestMatrixDifference = call i64 @"computeRestMatrixDifference@II[IS33"(i64* %44, i64** %45, i8** %46, <9 x double>* %47, <9 x double>* %matdiff)
+  %61 = icmp ne i64 %computeRestMatrixDifference, 0
+  br i1 %61, label %true135, label %end136
+
+true135:                                          ; preds = %end121
+  %matdiff137 = load <9 x double>, <9 x double>* %matdiff
+  store <9 x double> %matdiff137, <9 x double>* %48
+  %squaredNorm3 = call double @"squaredNorm3@F3"(<9 x double>* %48)
+  br label %UnifiedReturnBlock
+
+end136:                                           ; preds = %end121
+  %curlength138 = load double, double* %curlength
+  %restlength139 = load double, double* %restlength
+  %output = fsub double %curlength138, %restlength139
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end136, %true135, %true120, %true111, %true71
+  %UnifiedRetVal = phi double [ 0.000000e+00, %true71 ], [ %return115, %true111 ], [ %squaredNorm2, %true120 ], [ %squaredNorm3, %true135 ], [ %output, %end136 ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64* @"slice@[I[IIIIIII"(i64*, i64, i64, i64, i64, i64, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private double @"restMetric@FSFP3"(i8** %type, double* %restlength, <4 x double>* %restvector, <9 x double>* %restmatrix) #0 {
+__llvm_entry:
+  %0 = alloca <4 x double>
+  %1 = alloca i8*
+  %2 = alloca <9 x double>
+  %3 = alloca i8*
+  %type1 = load i8*, i8** %type
+  store i8* %type1, i8** %3
+  %isTriARAP = call i64 @"isTriARAP@IS"(i8** %3)
+  %4 = icmp ne i64 %isTriARAP, 0
+  br i1 %4, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %restvector2 = load <4 x double>, <4 x double>* %restvector
+  %return = call double @"getcomp@FPI"(<4 x double> %restvector2, i64 0)
+  %return4 = call double @"getcomp@FPI"(<4 x double> %restvector2, i64 1)
+  %return6 = call double @"getcomp@FPI"(<4 x double> %restvector2, i64 2)
+  %return8 = call double @"getcomp@FPI"(<4 x double> %restvector2, i64 3)
+  %return9 = call <4 x double> @"set@2FFFF"(double %return, double %return4, double %return6, double %return8)
+  %return10 = call <4 x double> @"invert@22"(<4 x double> %return9)
+  store <4 x double> %return10, <4 x double>* %0
+  %squaredNorm2 = call double @"squaredNorm2@F2"(<4 x double>* %0)
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %type11 = load i8*, i8** %type
+  store i8* %type11, i8** %1
+  %isTetARAP = call i64 @"isTetARAP@IS"(i8** %1)
+  %5 = icmp ne i64 %isTetARAP, 0
+  br i1 %5, label %true12, label %end13
+
+true12:                                           ; preds = %end
+  %restmatrix14 = load <9 x double>, <9 x double>* %restmatrix
+  %return15 = call <9 x double> @"invert@33"(<9 x double> %restmatrix14)
+  store <9 x double> %return15, <9 x double>* %2
+  %squaredNorm3 = call double @"squaredNorm3@F3"(<9 x double>* %2)
+  br label %UnifiedReturnBlock
+
+end13:                                            ; preds = %end
+  %restlength16 = load double, double* %restlength
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end13, %true12, %true
+  %UnifiedRetVal = phi double [ %squaredNorm2, %true ], [ %squaredNorm3, %true12 ], [ %restlength16, %end13 ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: alwaysinline nounwind
+define private double @"constraintMetric@FIIISS"(i64* %ptgeo, i64* %congeo, i64* %prim, i8** %type, i8** %metric) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64*
+  %2 = alloca i8*
+  %3 = alloca double
+  %4 = alloca <4 x double>
+  %5 = alloca <3 x double>
+  %6 = alloca i8*
+  %7 = alloca i64
+  %8 = alloca <9 x double>
+  %9 = alloca i8*
+  %10 = alloca double
+  %11 = alloca <4 x double>
+  %12 = alloca <9 x double>
+  %metric1 = load i8*, i8** %metric
+  %return = call i64 @"eq@ISS"(i8* %metric1, i8* getelementptr inbounds ([14 x i8], [14 x i8]* @36, i64 0, i64 0))
+  %return3 = call i64 @"eq@ISS"(i8* %metric1, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @37, i64 0, i64 0))
+  %return4 = call i64 @"or@III"(i64 %return, i64 %return3)
+  %13 = icmp ne i64 %return4, 0
+  br i1 %13, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %congeo5 = load i64, i64* %congeo
+  %prim6 = load i64, i64* %prim
+  %return7 = call double @"prim@FISI"(i64 %congeo5, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @38, i64 0, i64 0), i64 %prim6)
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %congeo8 = load i64, i64* %congeo
+  %prim9 = load i64, i64* %prim
+  %return10 = call double @"prim@FISI"(i64 %congeo8, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @39, i64 0, i64 0), i64 %prim9)
+  %congeo11 = load i64, i64* %congeo
+  %prim12 = load i64, i64* %prim
+  %return13 = call <4 x double> @"prim@PISI"(i64 %congeo11, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @40, i64 0, i64 0), i64 %prim12)
+  %congeo14 = load i64, i64* %congeo
+  %prim15 = load i64, i64* %prim
+  %return16 = call <3 x double> @"prim@VISI"(i64 %congeo14, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @41, i64 0, i64 0), i64 %prim15)
+  %congeo17 = load i64, i64* %congeo
+  %prim18 = load i64, i64* %prim
+  %return19 = call i8* @"prim@SISI"(i64 %congeo17, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @42, i64 0, i64 0), i64 %prim18)
+  %congeo20 = load i64, i64* %congeo
+  %prim21 = load i64, i64* %prim
+  %return22 = call i64 @"prim@IISI"(i64 %congeo20, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @43, i64 0, i64 0), i64 %prim21)
+  %congeo23 = load i64, i64* %congeo
+  %prim24 = load i64, i64* %prim
+  %return25 = call <9 x double> @"prim@3ISI"(i64 %congeo23, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @44, i64 0, i64 0), i64 %prim24)
+  %ptgeo26 = load i64, i64* %ptgeo
+  store i64 %ptgeo26, i64* %0
+  %congeo27 = load i64, i64* %congeo
+  %prim28 = load i64, i64* %prim
+  %return29 = call i64* @"primpoints@[III"(i64 %congeo27, i64 %prim28)
+  store i64* %return29, i64** %1
+  %type30 = load i8*, i8** %type
+  store i8* %type30, i8** %2
+  store double %return10, double* %3
+  store <4 x double> %return13, <4 x double>* %4
+  store <3 x double> %return16, <3 x double>* %5
+  store i8* %return19, i8** %6
+  store i64 %return22, i64* %7
+  store <9 x double> %return25, <9 x double>* %8
+  %computeRestLengthDifference = call double @"computeRestLengthDifference@FI[ISFPVSI3"(i64* %0, i64** %1, i8** %2, double* %3, <4 x double>* %4, <3 x double>* %5, i8** %6, i64* %7, <9 x double>* %8)
+  %return38 = call double @"abs@FF"(double %computeRestLengthDifference)
+  %metric39 = load i8*, i8** %metric
+  %return40 = call i64 @"eq@ISS"(i8* %metric39, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @45, i64 0, i64 0))
+  %14 = icmp ne i64 %return40, 0
+  br i1 %14, label %true41, label %end42
+
+true41:                                           ; preds = %end
+  %type44 = load i8*, i8** %type
+  store i8* %type44, i8** %9
+  store double %return10, double* %10
+  store <4 x double> %return13, <4 x double>* %11
+  store <9 x double> %return25, <9 x double>* %12
+  %restMetric = call double @"restMetric@FSFP3"(i8** %9, double* %10, <4 x double>* %11, <9 x double>* %12)
+  %output = call double @"div@FF"(double %return38, double %restMetric)
+  br label %end42
+
+end42:                                            ; preds = %true41, %end
+  %val.0 = phi double [ %output, %true41 ], [ %return38, %end ]
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end42, %true
+  %UnifiedRetVal = phi double [ %return7, %true ], [ %val.0, %end42 ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare double @"prim@FISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare <4 x double> @"prim@PISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"prim@VISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i8* @"prim@SISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"prim@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare <9 x double> @"prim@3ISI"(i64, i8*, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private double @"maxConstraintMetric@FIII[SS"(i64* %ptgeo, i64* %congeo, i64* %ptnum, i8*** %types, i8** %metric) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca i64
+  %4 = alloca i64
+  %5 = alloca i8*
+  %6 = alloca i8*
+  %ptgeo1 = load i64, i64* %ptgeo
+  store i64 %ptgeo1, i64* %0
+  %ptnum2 = load i64, i64* %ptnum
+  store i64 %ptnum2, i64* %1
+  %weldTarget = call i64 @"weldTarget@III"(i64* %0, i64* %1)
+  %congeo3 = load i64, i64* %congeo
+  %return = call i64* @"pointprims@[III"(i64 %congeo3, i64 %weldTarget)
+  %return6 = call i64 @"len@I[I"(i64* %return)
+  br label %cond
+
+cond:                                             ; preds = %iter, %__llvm_entry
+  %maxval.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %maxval.1, %iter ]
+  %__impl_foreach_index_26c.0 = phi i64 [ 0, %__llvm_entry ], [ %output, %iter ]
+  %return9 = call i64 @"lt@III"(i64 %__impl_foreach_index_26c.0, i64 %return6)
+  %7 = icmp ne i64 %return9, 0
+  br i1 %7, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return12 = call i64 @"getcomp@I[II"(i64* %return, i64 %__impl_foreach_index_26c.0)
+  %congeo13 = load i64, i64* %congeo
+  %return15 = call i8* @"prim@SISI"(i64 %congeo13, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @46, i64 0, i64 0), i64 %return12)
+  %types16 = load i8**, i8*** %types
+  %return18 = call i64 @"find@I[SS"(i8** %types16, i8* %return15)
+  %return19 = call i64 @"lt@III"(i64 %return18, i64 0)
+  %8 = icmp ne i64 %return19, 0
+  br i1 %8, label %iter, label %end20
+
+end:                                              ; preds = %cond
+  ret double %maxval.0
+
+iter:                                             ; preds = %body, %end20
+  %maxval.1 = phi double [ %maxval.0, %body ], [ %return27, %end20 ]
+  %output = add i64 %__impl_foreach_index_26c.0, 1
+  br label %cond
+
+end20:                                            ; preds = %body
+  %ptgeo22 = load i64, i64* %ptgeo
+  store i64 %ptgeo22, i64* %2
+  %congeo23 = load i64, i64* %congeo
+  store i64 %congeo23, i64* %3
+  store i64 %return12, i64* %4
+  store i8* %return15, i8** %5
+  %metric26 = load i8*, i8** %metric
+  store i8* %metric26, i8** %6
+  %constraintMetric = call double @"constraintMetric@FIIISS"(i64* %2, i64* %3, i64* %4, i8** %5, i8** %6)
+  %return27 = call double @"max@FFF"(double %maxval.0, double %constraintMetric)
+  br label %iter
+}
+
+; Function Attrs: nounwind
+declare i64 @"find@I[SS"(i8**, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare double @"max@FFF"(double, double) #1
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_geo1_vellumsolver1_dopnet1_vellumsolver1_break_branchwelds_from_stress_geometryvop1_snippet1@FSII"(double* %_bound_breakthreshold, i8** %_bound_breaktype, i64* %_bound_ptnum, i64* %_bound_group_broken) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca i8**
+  %4 = alloca i8*
+  %_bound_breaktype1 = load i8*, i8** %_bound_breaktype
+  %return = call i64 @"eq@ISS"(i8* %_bound_breaktype1, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @47, i64 0, i64 0))
+  %_bound_breakthreshold2 = load double, double* %_bound_breakthreshold
+  %return3 = fcmp olt double %_bound_breakthreshold2, 0.000000e+00
+  %return4 = zext i1 %return3 to i64
+  %return5 = call i64 @"or@III"(i64 %return, i64 %return4)
+  %5 = icmp ne i64 %return5, 0
+  br i1 %5, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %return7 = call i64 @"eq@ISS"(i8* %_bound_breaktype1, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @37, i64 0, i64 0))
+  %return9 = call i64 @"eq@ISS"(i8* %_bound_breaktype1, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @49, i64 0, i64 0))
+  %return10 = call i64 @"or@III"(i64 %return7, i64 %return9)
+  %6 = icmp ne i64 %return10, 0
+  %. = select i1 %6, i8** getelementptr inbounds ([3 x i8*], [3 x i8*]* @50, i64 0, i64 0), i8** getelementptr inbounds ([2 x i8*], [2 x i8*]* @48, i64 0, i64 0)
+  store i64 0, i64* %0
+  store i64 1, i64* %1
+  %_bound_ptnum13 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum13, i64* %2
+  store i8** %., i8*** %3
+  %_bound_breaktype15 = load i8*, i8** %_bound_breaktype
+  store i8* %_bound_breaktype15, i8** %4
+  %maxConstraintMetric = call double @"maxConstraintMetric@FIII[SS"(i64* %0, i64* %1, i64* %2, i8*** %3, i8** %4)
+  %_bound_breakthreshold17 = load double, double* %_bound_breakthreshold
+  %return18 = fcmp oge double %maxConstraintMetric, %_bound_breakthreshold17
+  %return19 = zext i1 %return18 to i64
+  store i64 %return19, i64* %_bound_group_broken
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end, %true
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @obj_geo1_vellumsolver1_dopnet1_vellumsolver1_break_branchwelds_from_stress_geometryvop1(double %breakthreshold, i8* %breaktype, i64 %ptnum, i64 %group_broken) #2 {
+__llvm_entry:
+  %"<group_broken>" = alloca i64
+  %0 = alloca double
+  %1 = alloca i8*
+  %2 = alloca i64
+  store i64 %group_broken, i64* %"<group_broken>"
+  store double %breakthreshold, double* %0
+  store i8* %breaktype, i8** %1
+  store i64 %ptnum, i64* %2
+  call void @"_obj_geo1_vellumsolver1_dopnet1_vellumsolver1_break_branchwelds_from_stress_geometryvop1_snippet1@FSII"(double* %0, i8** %1, i64* %2, i64* %"<group_broken>")
+  %evalue = load i64, i64* %"<group_broken>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @51, i64 0, i64 0), i64 %evalue) #4
+  store i64 %gvalue, i64* @group_broken
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_vellumsolver1_dopnet1_vellumsolver1_break_branchwelds_from_stress_geometryvop1(double -1.000000e+00, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @47, i64 0, i64 0), i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { alwaysinline }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+!3 = !{!""}
+
+;_code_end

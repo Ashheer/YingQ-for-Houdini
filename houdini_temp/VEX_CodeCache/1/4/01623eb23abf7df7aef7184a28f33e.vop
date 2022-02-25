@@ -1,0 +1,145 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [7 x i8] c"orient\00"
+@1 = private constant [12 x i8] c"__frame_ref\00"
+@2 = private constant [45 x i8] c"Please try a different Slerp Edge Case Seed.\00"
+@3 = private constant [34 x i8] c"Uninterpolatable frames detected:\00"
+@4 = private constant [8 x i8] c" Point \00"
+@5 = private constant [11 x i8] c" at frame \00"
+@6 = private constant [2 x i8] c".\00"
+@ptnum = external global i64
+@orient = external global <4 x double>
+@__no_rotation = external global i64
+@__frame_ref = external global double
+@Frame = external global double
+@7 = private constant [6 x i8] c"ptnum\00"
+@8 = private constant [14 x i8] c"__no_rotation\00"
+@9 = private constant [6 x i8] c"Frame\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IPIFF"(i64* %_bound_ptnum, <4 x double>* %_bound_orient, i64* %_bound___no_rotation, double* %_bound___frame_ref, double* %_bound_Frame) #0 {
+__llvm_entry:
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  %return = call <4 x double> @"point@PISI"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), i64 %_bound_ptnum1)
+  %_bound_orient2 = load <4 x double>, <4 x double>* %_bound_orient
+  %return4 = call double @"dot@FPP"(<4 x double> %_bound_orient2, <4 x double> %return)
+  %return5 = call double @"acos@FF"(double %return4)
+  %return7 = call double @"sin@FF"(double %return5)
+  %return9 = fcmp ole double %return7, 1.000000e-03
+  %return10 = zext i1 %return9 to i64
+  %_bound___no_rotation11 = load i64, i64* %_bound___no_rotation
+  %return12 = call i64 @"not@II"(i64 %_bound___no_rotation11)
+  %return13 = call i64 @"and@III"(i64 %return10, i64 %return12)
+  %_bound___frame_ref14 = load double, double* %_bound___frame_ref
+  %_bound_ptnum15 = load i64, i64* %_bound_ptnum
+  %return16 = call double @"point@FISI"(i64 1, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0), i64 %_bound_ptnum15)
+  %return17 = fcmp one double %_bound___frame_ref14, %return16
+  %return18 = zext i1 %return17 to i64
+  %return19 = call i64 @"and@III"(i64 %return13, i64 %return18)
+  %0 = icmp ne i64 %return19, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %output = call i8* @"add@SS"(i8* getelementptr inbounds ([45 x i8], [45 x i8]* @2, i64 0, i64 0), i8* getelementptr inbounds ([34 x i8], [34 x i8]* @3, i64 0, i64 0))
+  %output20 = call i8* @"add@SS"(i8* %output, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @4, i64 0, i64 0))
+  %_bound_ptnum21 = load i64, i64* %_bound_ptnum
+  %return22 = call i8* @"itoa@SI"(i64 %_bound_ptnum21)
+  %output23 = call i8* @"add@SS"(i8* %output20, i8* %return22)
+  %output24 = call i8* @"add@SS"(i8* %output23, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @5, i64 0, i64 0))
+  %_bound_Frame25 = load double, double* %_bound_Frame
+  %cast = fptosi double %_bound_Frame25 to i64
+  %return26 = call i8* @"itoa@SI"(i64 %cast)
+  %output27 = call i8* @"add@SS"(i8* %output24, i8* %return26)
+  %output28 = call i8* @"add@SS"(i8* %output27, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @6, i64 0, i64 0))
+  call void @"error@S"(i8* %output28)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <4 x double> @"point@PISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FPP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"acos@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"sin@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare double @"point@FISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"add@SS"(i8*, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i8* @"itoa@SI"(i64) #2
+
+; Function Attrs: nounwind
+declare void @"error@S"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %ptnum, <4 x double> %orient, i64 %__no_rotation, double %__frame_ref, double %Frame) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca <4 x double>
+  %2 = alloca i64
+  %3 = alloca double
+  %4 = alloca double
+  store i64 %ptnum, i64* %0
+  store <4 x double> %orient, <4 x double>* %1
+  store i64 %__no_rotation, i64* %2
+  store double %__frame_ref, double* %3
+  store double %Frame, double* %4
+  call void @"__vex_snippet_snippet@IPIFF"(i64* %0, <4 x double>* %1, i64* %2, double* %3, double* %4)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @7, i64 0, i64 0), i64 %ptnum) #3
+  %gvalue7 = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), <4 x double> %orient) #3
+  %gvalue9 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @8, i64 0, i64 0), i64 %__no_rotation) #3
+  %gvalue11 = call double @"_export@FSF"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0), double %__frame_ref) #3
+  %gvalue13 = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @9, i64 0, i64 0), double %Frame) #3
+  store i64 %gvalue, i64* @ptnum
+  store <4 x double> %gvalue7, <4 x double>* @orient
+  store i64 %gvalue9, i64* @__no_rotation
+  store double %gvalue11, double* @__frame_ref
+  store double %gvalue13, double* @Frame
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, i64 0, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

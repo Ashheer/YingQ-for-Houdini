@@ -1,0 +1,46 @@
+;_name	/obj/geo1/vellumsolver1/dopnet1/vellumsolver1/remove_broken_constraints/geometryvop1
+; ModuleID = 'obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_broken_constraints_geometryvop1'
+source_filename = "obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_broken_constraints_geometryvop1"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_broken_constraints_geometryvop1_snippet1@I"(i64* %_bound_primnum) #0 {
+__llvm_entry:
+  %return = call i64 @"geoself@I"()
+  %_bound_primnum1 = load i64, i64* %_bound_primnum
+  %return2 = call i64 @"removeprim@IIII"(i64 %return, i64 %_bound_primnum1, i64 0)
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #1
+
+; Function Attrs: nounwind
+declare i64 @"removeprim@IIII"(i64, i64, i64) #1
+
+; Function Attrs: nounwind
+define void @obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_broken_constraints_geometryvop1(i64 %primnum) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  store i64 %primnum, i64* %0
+  call void @"_obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_broken_constraints_geometryvop1_snippet1@I"(i64* %0)
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_vellumsolver1_dopnet1_vellumsolver1_remove_broken_constraints_geometryvop1(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

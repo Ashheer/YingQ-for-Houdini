@@ -1,0 +1,87 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [6 x i8] c"scale\00"
+@1 = private constant [12 x i8] c"__bound_max\00"
+@2 = private constant [12 x i8] c"__bound_min\00"
+@3 = private constant [5 x i8] c"poly\00"
+@4 = private constant [11 x i8] c"__data_geo\00"
+@5 = private constant [4 x i8] c"set\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0))
+  %output = fmul double 1.000000e-02, %return
+  %return1 = call <3 x double> @"detail@VISI"(i64 1, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0), i64 0)
+  %return2 = call <3 x double> @"detail@VISI"(i64 1, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @2, i64 0, i64 0), i64 0)
+  %return4 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return1)
+  %return7 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double %output, double 0.000000e+00)
+  %output8 = call <3 x double> @"sub@VV"(<3 x double> %return1, <3 x double> %return7)
+  %return9 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %output8)
+  %return12 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 0.000000e+00, double %output)
+  %output13 = call <3 x double> @"sub@VV"(<3 x double> %return1, <3 x double> %return12)
+  %return14 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %output13)
+  %return18 = call i64 @"addprim@IISIII"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @3, i64 0, i64 0), i64 %return4, i64 %return9, i64 %return14)
+  %return20 = call i64 @"setprimgroup@IISIIS"(i64 0, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @4, i64 0, i64 0), i64 %return18, i64 1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @5, i64 0, i64 0))
+  %return22 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return2)
+  %output26 = call <3 x double> @"add@VV"(<3 x double> %return2, <3 x double> %return7)
+  %return27 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %output26)
+  %output31 = call <3 x double> @"add@VV"(<3 x double> %return2, <3 x double> %return12)
+  %return32 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %output31)
+  %return36 = call i64 @"addprim@IISIII"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @3, i64 0, i64 0), i64 %return22, i64 %return27, i64 %return32)
+  %return38 = call i64 @"setprimgroup@IISIIS"(i64 0, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @4, i64 0, i64 0), i64 %return36, i64 1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @5, i64 0, i64 0))
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"detail@VISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"addpoint@IIV"(i64, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IISIII"(i64, i8*, i64, i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"setprimgroup@IISIIS"(i64, i8*, i64, i64, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #2 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

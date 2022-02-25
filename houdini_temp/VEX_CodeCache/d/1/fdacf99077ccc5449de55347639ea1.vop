@@ -1,0 +1,92 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [15 x i8] c"w_not_provided\00"
+@1 = private constant [16 x i8] c"max_rpf_allowed\00"
+@__max_rpf = external global double
+@__max_angular_speed = external global double
+@TimeInc = external global double
+@2 = private constant [10 x i8] c"__max_rpf\00"
+@3 = private constant [20 x i8] c"__max_angular_speed\00"
+@4 = private constant [8 x i8] c"TimeInc\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FFF"(double* %_bound___max_rpf, double* %_bound___max_angular_speed, double* %_bound_TimeInc) #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @0, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  store double 1.000000e+00, double* %_bound___max_rpf
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %_bound___max_angular_speed1 = load double, double* %_bound___max_angular_speed
+  %_bound_TimeInc2 = load double, double* %_bound_TimeInc
+  %output = fmul double %_bound___max_angular_speed1, %_bound_TimeInc2
+  %output4 = call double @"div@FF"(double %output, double 0x401921FB53C8D4F1)
+  %return5 = call double @"chf@FS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @1, i64 0, i64 0))
+  %return7 = call double @"min@FFF"(double %return5, double %output4)
+  store double %return7, double* %_bound___max_rpf
+  br label %end
+
+end:                                              ; preds = %false, %true
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"min@FFF"(double, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %__max_rpf, double %__max_angular_speed, double %TimeInc) #2 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca double
+  %"<__max_rpf>" = alloca double
+  store double %__max_rpf, double* %"<__max_rpf>"
+  store double %__max_angular_speed, double* %0
+  store double %TimeInc, double* %1
+  call void @"__vex_snippet_snippet@FFF"(double* %"<__max_rpf>", double* %0, double* %1)
+  %evalue = load double, double* %"<__max_rpf>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0), double %evalue) #3
+  %gvalue4 = call double @"_export@FSF"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @3, i64 0, i64 0), double %__max_angular_speed) #3
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @4, i64 0, i64 0), double %TimeInc) #3
+  store double %gvalue, double* @__max_rpf
+  store double %gvalue4, double* @__max_angular_speed
+  store double %gvalue6, double* @TimeInc
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

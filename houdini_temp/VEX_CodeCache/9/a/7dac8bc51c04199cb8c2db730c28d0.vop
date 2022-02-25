@@ -1,0 +1,321 @@
+;_name	/obj/rigid/dopnet1/sim_v2/geometryvop1
+; ModuleID = 'obj_rigid_dopnet1_sim_v2_geometryvop1'
+source_filename = "obj_rigid_dopnet1_sim_v2_geometryvop1"
+
+@targetv = external global <3 x double>
+@airresist = external global double
+@force = external global <3 x double>
+@0 = private constant [8 x i8] c"targetv\00"
+@1 = private constant [10 x i8] c"airresist\00"
+@2 = private constant [6 x i8] c"force\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_rigid_dopnet1_sim_v2_geometryvop1_if_use_localshape_snippet1@IVVFF"(i64* %type, <3 x double>* %center, <3 x double>* %axis, double* %radius, double* %height) #0 {
+__llvm_entry:
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_rigid_dopnet1_sim_v2_geometryvop1_if_use_localspeed_snippet1@FFFI"(double* %orbitspeed, double* %liftspeed, double* %suctionspeed, i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  %cast = sitofp i64 %_bound_ptnum1 to double
+  %return = call double @"rand@FF"(double %cast)
+  %orbitspeed2 = load double, double* %orbitspeed
+  %output = fmul double %return, %orbitspeed2
+  store double %output, double* %orbitspeed
+  %_bound_ptnum3 = load i64, i64* %_bound_ptnum
+  %cast4 = sitofp i64 %_bound_ptnum3 to double
+  %return5 = call double @"rand@FF"(double %cast4)
+  %liftspeed6 = load double, double* %liftspeed
+  %output7 = fmul double %return5, %liftspeed6
+  store double %output7, double* %liftspeed
+  %_bound_ptnum8 = load i64, i64* %_bound_ptnum
+  %cast9 = sitofp i64 %_bound_ptnum8 to double
+  %return10 = call double @"rand@FF"(double %cast9)
+  %suctionspeed11 = load double, double* %suctionspeed
+  %output12 = fmul double %return10, %suctionspeed11
+  store double %output12, double* %suctionspeed
+  ret void
+}
+
+; Function Attrs: nounwind
+declare double @"rand@FF"(double) #1
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_rigid_dopnet1_sim_v2_geometryvop1_if_use_localbehaviour_snippet1@IFI"(i64* %treataswind, double* %airresist, i64* %ignoremass) #0 {
+__llvm_entry:
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_rigid_dopnet1_sim_v2_geometryvop1_if1_snippet1@FFF"(double* %softedge, double* %innerstrength, double* %outerstrength) #0 {
+__llvm_entry:
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @obj_rigid_dopnet1_sim_v2_geometryvop1(<3 x double> %parm_center, <3 x double> %targetv, double %airresist, double %parm_airresist, <3 x double> %parm_axis, double %parm_radius, double %parm_orbitspeed, double %parm_liftstrength, double %parm_height, double %parm_innerstrength, double %parm_outerstrength, double %parm_suctionspeed, i64 %parm_treataswind, i64 %parm_type, double %parm_softedge, i64 %parm_uselocalshape, i64 %parm_uselocalfalloff, i64 %parm_uselocalspeed, i64 %parm_uselocalbehavior, i64 %parm_ignoremass, double %mass, <3 x double> %P, <3 x double> %force, i64 %ptnum) #1 {
+__llvm_entry:
+  %outorbitspeed = alloca double
+  %outliftspeed = alloca double
+  %outsuctionspeed = alloca double
+  %0 = alloca i64
+  %1 = alloca <3 x double>
+  %2 = alloca <3 x double>
+  %3 = alloca double
+  %4 = alloca double
+  %5 = alloca i64
+  %6 = alloca i64
+  %7 = alloca double
+  %8 = alloca i64
+  %9 = alloca double
+  %10 = alloca double
+  %11 = alloca double
+  store double 0.000000e+00, double* %outorbitspeed, !vex-initializer-store !3
+  store double 0.000000e+00, double* %outliftspeed, !vex-initializer-store !3
+  store double 0.000000e+00, double* %outsuctionspeed, !vex-initializer-store !3
+  %return = call i64 @"ne@III"(i64 %parm_uselocalshape, i64 0)
+  %12 = icmp ne i64 %return, 0
+  br i1 %12, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  call void @"_obj_rigid_dopnet1_sim_v2_geometryvop1_if_use_localshape_snippet1@IVVFF"(i64* %0, <3 x double>* %1, <3 x double>* %2, double* %3, double* %4)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %output = call <3 x double> @"sub@VV"(<3 x double> %P, <3 x double> %parm_center)
+  %return26 = call <3 x double> @"normalize@VV"(<3 x double> %parm_axis)
+  %return29 = call <3 x double> @"cross@VVV"(<3 x double> %output, <3 x double> %return26)
+  %return31 = call double @"length@FV"(<3 x double> %return29)
+  %return34 = call double @"dot@FVV"(<3 x double> %return26, <3 x double> %output)
+  %return37 = call <3 x double> @"set@VFFF"(double %return31, double %return34, double 0.000000e+00)
+  %return40 = call <3 x double> @"set@VFFF"(double %parm_radius, double %parm_height, double 0.000000e+00)
+  %output43 = call <3 x double> @"div@VV"(<3 x double> %return37, <3 x double> %return40)
+  %return45 = call double @"length@FV"(<3 x double> %output43)
+  %cast = call <3 x double> @"set@VF"(double %return34)
+  %output48 = call <3 x double> @"mul@VV"(<3 x double> %return26, <3 x double> %cast)
+  %output51 = call <3 x double> @"sub@VV"(<3 x double> %output, <3 x double> %output48)
+  %return65 = call <3 x double> @"normalize@VV"(<3 x double> %parm_axis)
+  %return68 = call double @"dot@FVV"(<3 x double> %return65, <3 x double> %output)
+  %cast71 = call <3 x double> @"set@VF"(double %return68)
+  %output72 = call <3 x double> @"mul@VV"(<3 x double> %return65, <3 x double> %cast71)
+  %output75 = call <3 x double> @"sub@VV"(<3 x double> %output, <3 x double> %output72)
+  %return77 = call <3 x double> @"normalize@VV"(<3 x double> %output75)
+  %cast80 = call <3 x double> @"set@VF"(double %parm_radius)
+  %output81 = call <3 x double> @"mul@VV"(<3 x double> %return77, <3 x double> %cast80)
+  %output84 = call <3 x double> @"sub@VV"(<3 x double> %output, <3 x double> %output81)
+  %return87 = call <3 x double> @"cross@VVV"(<3 x double> %return65, <3 x double> %return77)
+  %return90 = call <3 x double> @"cross@VVV"(<3 x double> %output84, <3 x double> %return87)
+  %return92 = call double @"length@FV"(<3 x double> %output84)
+  %output95 = call double @"div@FF"(double %return92, double %parm_height)
+  %return101 = call i64 @"eq@III"(i64 %parm_type, i64 0)
+  %13 = icmp ne i64 %return101, 0
+  br i1 %13, label %true102, label %false
+
+true102:                                          ; preds = %end
+  br label %end103
+
+false:                                            ; preds = %end
+  br label %end103
+
+end103:                                           ; preds = %false, %true102
+  %result.0 = phi <3 x double> [ %return29, %true102 ], [ %return90, %false ]
+  %return111 = call i64 @"ne@III"(i64 %parm_uselocalspeed, i64 0)
+  %14 = icmp ne i64 %return111, 0
+  br i1 %14, label %true112, label %end113
+
+true112:                                          ; preds = %end103
+  store double %parm_orbitspeed, double* %outorbitspeed
+  store double %parm_liftstrength, double* %outliftspeed
+  store double %parm_suctionspeed, double* %outsuctionspeed
+  store i64 %ptnum, i64* %5
+  call void @"_obj_rigid_dopnet1_sim_v2_geometryvop1_if_use_localspeed_snippet1@FFFI"(double* %outorbitspeed, double* %outliftspeed, double* %outsuctionspeed, i64* %5)
+  %outorbitspeed118 = load double, double* %outorbitspeed
+  %outliftspeed119 = load double, double* %outliftspeed
+  %outsuctionspeed120 = load double, double* %outsuctionspeed
+  br label %end113
+
+end113:                                           ; preds = %true112, %end103
+  %_parm_orbitspeed.0 = phi double [ %outorbitspeed118, %true112 ], [ %parm_orbitspeed, %end103 ]
+  %_parm_liftstrength.0 = phi double [ %outliftspeed119, %true112 ], [ %parm_liftstrength, %end103 ]
+  %_parm_suctionspeed.0 = phi double [ %outsuctionspeed120, %true112 ], [ %parm_suctionspeed, %end103 ]
+  %cast123 = call <3 x double> @"set@VF"(double %_parm_orbitspeed.0)
+  %output124 = call <3 x double> @"mul@VV"(<3 x double> %result.0, <3 x double> %cast123)
+  br i1 %13, label %true127, label %false128
+
+true127:                                          ; preds = %end113
+  br label %end129
+
+false128:                                         ; preds = %end113
+  br label %end129
+
+end129:                                           ; preds = %false128, %true127
+  %result1.0 = phi <3 x double> [ %return26, %true127 ], [ %return87, %false128 ]
+  %cast134 = call <3 x double> @"set@VF"(double %_parm_liftstrength.0)
+  %output135 = call <3 x double> @"mul@VV"(<3 x double> %result1.0, <3 x double> %cast134)
+  br i1 %13, label %true138, label %false139
+
+true138:                                          ; preds = %end129
+  br label %end140
+
+false139:                                         ; preds = %end129
+  br label %end140
+
+end140:                                           ; preds = %false139, %true138
+  %result2.0 = phi <3 x double> [ %output51, %true138 ], [ %output84, %false139 ]
+  %return144 = call double @"neg@FF"(double %_parm_suctionspeed.0)
+  %cast147 = call <3 x double> @"set@VF"(double %return144)
+  %output148 = call <3 x double> @"mul@VV"(<3 x double> %result2.0, <3 x double> %cast147)
+  %output151 = call <3 x double> @"add@VV"(<3 x double> %output124, <3 x double> %output135)
+  %output153 = call <3 x double> @"add@VV"(<3 x double> %output151, <3 x double> %output148)
+  %return159 = call i64 @"ne@III"(i64 %parm_uselocalbehavior, i64 0)
+  %15 = icmp ne i64 %return159, 0
+  br i1 %15, label %true160, label %end161
+
+true160:                                          ; preds = %end140
+  call void @"_obj_rigid_dopnet1_sim_v2_geometryvop1_if_use_localbehaviour_snippet1@IFI"(i64* %6, double* %7, i64* %8)
+  br label %end161
+
+end161:                                           ; preds = %true160, %end140
+  br i1 %13, label %true170, label %false171
+
+true170:                                          ; preds = %end161
+  br label %end172
+
+false171:                                         ; preds = %end161
+  br label %end172
+
+end172:                                           ; preds = %false171, %true170
+  %result3.0 = phi double [ %return45, %true170 ], [ %output95, %false171 ]
+  %return180 = call i64 @"ne@III"(i64 %parm_uselocalfalloff, i64 0)
+  %16 = icmp ne i64 %return180, 0
+  br i1 %16, label %true181, label %end182
+
+true181:                                          ; preds = %end172
+  call void @"_obj_rigid_dopnet1_sim_v2_geometryvop1_if1_snippet1@FFF"(double* %9, double* %10, double* %11)
+  br label %end182
+
+end182:                                           ; preds = %true181, %end172
+  %return190 = call double @"neg@FF"(double %parm_softedge)
+  %output192 = fadd double %return190, 1.000000e+00
+  %return194 = call double @"clamp@FFFF"(double %output192, double 0.000000e+00, double 9.999000e-01)
+  %return199 = call double @"fit@FFFFFF"(double %result3.0, double %return194, double 1.000000e+00, double %parm_innerstrength, double %parm_outerstrength)
+  %output202 = fmul double %parm_airresist, %return199
+  %return203 = call i64 @"ne@III"(i64 0, i64 0)
+  %17 = icmp ne i64 %return203, 0
+  %return208 = call i64 @"ne@III"(i64 %parm_ignoremass, i64 0)
+  %18 = icmp ne i64 %return208, 0
+  %phi = select i1 %18, double 1.000000e+00, double %mass
+  %phi219 = select i1 %18, double %mass, double 1.000000e+00
+  %phi220 = select i1 %17, double %phi, double %phi219
+  %cast223 = sitofp i64 %parm_treataswind to double
+  %output224 = fmul double %output202, %cast223
+  %output226 = fmul double %output224, %phi220
+  %cast231 = call <3 x double> @"set@VF"(double %output226)
+  %output232 = call <3 x double> @"mul@VV"(<3 x double> %output153, <3 x double> %cast231)
+  %cast237 = call <3 x double> @"set@VF"(double %airresist)
+  %output238 = call <3 x double> @"mul@VV"(<3 x double> %targetv, <3 x double> %cast237)
+  %output241 = call <3 x double> @"add@VV"(<3 x double> %output232, <3 x double> %output238)
+  %output244 = fadd double %output226, %airresist
+  %cast247 = call <3 x double> @"set@VF"(double %output244)
+  %output248 = call <3 x double> @"div@VV"(<3 x double> %output241, <3 x double> %cast247)
+  %return258 = call i64 @"not@II"(i64 %parm_treataswind)
+  %cast261 = call <3 x double> @"set@VI"(i64 %return258)
+  %output262 = call <3 x double> @"mul@VV"(<3 x double> %output153, <3 x double> %cast261)
+  %cast264 = call <3 x double> @"set@VF"(double %return199)
+  %output265 = call <3 x double> @"mul@VV"(<3 x double> %output262, <3 x double> %cast264)
+  %cast267 = call <3 x double> @"set@VF"(double %phi220)
+  %output268 = call <3 x double> @"mul@VV"(<3 x double> %output265, <3 x double> %cast267)
+  %output271 = call <3 x double> @"add@VV"(<3 x double> %force, <3 x double> %output268)
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0), <3 x double> %output248) #3
+  %gvalue274 = call double @"_export@FSF"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0), double %output244) #3
+  %gvalue276 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0), <3 x double> %output271) #3
+  store <3 x double> %gvalue, <3 x double>* @targetv
+  store double %gvalue274, double* @airresist
+  store <3 x double> %gvalue276, <3 x double>* @force
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"cross@VVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare double @"clamp@FFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+declare double @"fit@FFFFFF"(double, double, double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"bnot@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #2
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_rigid_dopnet1_sim_v2_geometryvop1(<3 x double> zeroinitializer, <3 x double> zeroinitializer, double 0.000000e+00, double 0.000000e+00, <3 x double> <double 0.000000e+00, double 1.000000e+00, double 0.000000e+00>, double 1.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00, double 0.000000e+00, double 1.000000e+00, double 0.000000e+00, i64 0, i64 0, double 0.000000e+00, i64 0, i64 0, i64 0, i64 0, i64 0, double 1.000000e+00, <3 x double> zeroinitializer, <3 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+!3 = !{!""}
+
+;_code_end
