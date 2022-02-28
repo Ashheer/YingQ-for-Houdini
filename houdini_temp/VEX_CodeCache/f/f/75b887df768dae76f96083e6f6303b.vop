@@ -1,0 +1,96 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [7 x i8] c"height\00"
+@1 = private constant [2 x i8] c"P\00"
+@P = external global <3 x double>
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@V"(<3 x double>* %_bound_P) #0 {
+__llvm_entry:
+  %return = call <3 x double> @"volumeindextopos@VISV"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), <3 x double> <double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>)
+  %return1 = call <3 x double> @"volumeindextopos@VISV"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), <3 x double> zeroinitializer)
+  %output = call <3 x double> @"sub@VV"(<3 x double> %return, <3 x double> %return1)
+  %return2 = call <3 x double> @"normalize@VV"(<3 x double> %output)
+  %_bound_P3 = load <3 x double>, <3 x double>* %_bound_P
+  %return7 = call double @"dot@FVV"(<3 x double> %_bound_P3, <3 x double> %return2)
+  %cast = call <3 x double> @"set@VF"(double %return7)
+  %output8 = call <3 x double> @"mul@VV"(<3 x double> %return2, <3 x double> %cast)
+  %output9 = call <3 x double> @"sub@VV"(<3 x double> %_bound_P3, <3 x double> %output8)
+  store <3 x double> %output9, <3 x double>* %_bound_P
+  %return12 = call i64 @"nametoprim@IIS"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0))
+  %return13 = call i64 @"primpoint@IIII"(i64 1, i64 %return12, i64 0)
+  %return14 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return13)
+  %return16 = call double @"dot@FVV"(<3 x double> %return14, <3 x double> %return2)
+  %cast17 = call <3 x double> @"set@VF"(double %return16)
+  %output18 = call <3 x double> @"mul@VV"(<3 x double> %return2, <3 x double> %cast17)
+  %output19 = call <3 x double> @"add@VV"(<3 x double> %output9, <3 x double> %output18)
+  store <3 x double> %output19, <3 x double>* %_bound_P
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"volumeindextopos@VISV"(i64, i8*, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare i64 @"nametoprim@IIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"primpoint@IIII"(i64, i64, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P) #1 {
+__llvm_entry:
+  %"<P>" = alloca <3 x double>
+  store <3 x double> %P, <3 x double>* %"<P>"
+  call void @"__vex_snippet_snippet@V"(<3 x double>* %"<P>")
+  %evalue = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %evalue) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

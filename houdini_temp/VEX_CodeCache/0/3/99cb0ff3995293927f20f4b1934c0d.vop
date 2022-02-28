@@ -1,0 +1,1493 @@
+;_name	/obj/Desert_Terrain_1_1/Desert_Terrain1/heightfield_masknoise1/apply_noise
+; ModuleID = 'obj_Desert_Terrain_1_1_Desert_Terrain1_heightfield_masknoise1_apply_noise'
+source_filename = "obj_Desert_Terrain_1_1_Desert_Terrain1_heightfield_masknoise1_apply_noise"
+
+%nsdata = type { i8*, double, double, double, i64 }
+%nndata = type { double, double }
+
+@0 = private constant [1 x i8] zeroinitializer
+@1 = private constant [7 x i8] c"sparse\00"
+@density = external global double
+@2 = private constant [8 x i8] c"pperlin\00"
+@3 = private constant [6 x i8] c"pflow\00"
+@4 = private constant [8 x i8] c"density\00"
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #0
+
+; Function Attrs: nounwind readnone
+declare double @"max@FFF"(double, double) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #0
+
+; Function Attrs: nounwind readnone
+declare i64* @"array@[I"() #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"min@III"(i64, i64) #0
+
+; Function Attrs: nounwind readnone
+declare i64* @"resize@[II"(i64*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"max@III"(i64, i64) #0
+
+; Function Attrs: nounwind readnone
+declare { i64, i64* } @"setcomp@I[III"(i64*, i64, i64) #0
+
+; Function Attrs: nounwind readnone
+declare double* @"array@[F"() #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[F"(double*) #0
+
+; Function Attrs: nounwind readnone
+declare double* @"resize@[FI"(double*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@F[FI"(double*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare { double, double* } @"setcomp@F[FFI"(double*, double, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double>* @"array@[V"() #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[V"(<3 x double>*) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double>* @"resize@[VI"(<3 x double>*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"getcomp@V[VI"(<3 x double>*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"max@VVV"(<3 x double>, <3 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>*, <3 x double>, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double>* @"array@[P"() #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[P"(<4 x double>*) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double>* @"resize@[PI"(<4 x double>*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"getcomp@P[PI"(<4 x double>*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"max@PPP"(<4 x double>, <4 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare { <4 x double>, <4 x double>* } @"setcomp@P[PPI"(<4 x double>*, <4 x double>, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PF"(double) #0
+
+; Function Attrs: nounwind readnone
+declare double @"min@FFF"(double, double) #0
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FPI"(<4 x double>, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PFFFF"(double, double, double, double) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"min@VVV"(<3 x double>, <3 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"min@PPP"(<4 x double>, <4 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare double @"pow@FFF"(double, double) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"le@III"(i64, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"pow@VVF"(<3 x double>, double) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"pow@PPF"(<4 x double>, double) #0
+
+; Function Attrs: nounwind readnone
+declare double @"log@FF"(double) #0
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"log@VV"(<3 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"log@PP"(<4 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"div@PP"(<4 x double>, <4 x double>) #0
+
+; Function Attrs: alwaysinline nounwind
+define private double @"bias@FFF"(double* %x, double* %b) #1 {
+__llvm_entry:
+  %b1 = load double, double* %b
+  %return = fcmp oeq double %b1, 5.000000e-01
+  br i1 %return, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %x3 = load double, double* %x
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %return5 = call double @"clamp@FFFF"(double %b1, double 1.000000e-06, double 9.999990e-01)
+  %x6 = load double, double* %x
+  %return8 = call double @"log@FF"(double %return5)
+  %return9 = call double @"neg@FF"(double %return8)
+  %output = call double @"div@FF"(double %return9, double 0x3FE62E42FEFA39EF)
+  %return10 = call double @"pow@FFF"(double %x6, double %output)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end, %true
+  %UnifiedRetVal = phi double [ %x3, %true ], [ %return10, %end ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare double @"clamp@FFFF"(double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@IVV"(<3 x double>, <3 x double>) #0
+
+; Function Attrs: alwaysinline nounwind
+define private double @"gain@FFF"(double* %x, double* %g) #1 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca double
+  %2 = alloca double
+  %g1 = load double, double* %g
+  %return = fcmp oeq double %g1, 5.000000e-01
+  br i1 %return, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %x3 = load double, double* %x
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %output = fsub double 1.000000e+00, %g1
+  %x5 = load double, double* %x
+  %return6 = fcmp olt double %x5, 5.000000e-01
+  %output11 = fmul double 2.000000e+00, %x5
+  br i1 %return6, label %true8, label %false
+
+true8:                                            ; preds = %end
+  store double %output11, double* %0
+  store double %output, double* %1
+  %bias = call double @"bias@FFF"(double* %0, double* %1)
+  %output13 = fmul double %bias, 5.000000e-01
+  br label %end9
+
+false:                                            ; preds = %end
+  %output16 = fsub double 2.000000e+00, %output11
+  store double %output16, double* %0
+  store double %output, double* %2
+  %bias18 = call double @"bias@FFF"(double* %0, double* %2)
+  %output19 = fmul double %bias18, 5.000000e-01
+  %output20 = fsub double 1.000000e+00, %output19
+  br label %end9
+
+end9:                                             ; preds = %false, %true8
+  %phi = phi double [ %output13, %true8 ], [ %output20, %false ]
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end9, %true
+  %UnifiedRetVal = phi double [ %x3, %true ], [ %phi, %end9 ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #0
+
+; Function Attrs: alwaysinline nounwind
+define private double @"pyro_vopfw_VOP_CTXT@FV"(<3 x double>* %p) #1 {
+__llvm_entry:
+  ret double undef
+}
+
+; Function Attrs: alwaysinline nounwind
+define private %nsdata @"nsdata@Z6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricISFFFI"(i8** %name, double* %min, double* %max, double* %avg, i64* %symmetric) #1 {
+__llvm_entry:
+  %name1 = load i8*, i8** %name
+  %0 = insertvalue %nsdata undef, i8* %name1, 0
+  %min2 = load double, double* %min
+  %1 = insertvalue %nsdata %0, double %min2, 1
+  %max4 = load double, double* %max
+  %2 = insertvalue %nsdata %1, double %max4, 2
+  %avg6 = load double, double* %avg
+  %3 = insertvalue %nsdata %2, double %avg6, 3
+  %symmetric8 = load i64, i64* %symmetric
+  %4 = insertvalue %nsdata %3, i64 %symmetric8, 4
+  ret %nsdata %4
+}
+
+; Function Attrs: alwaysinline nounwind
+define private %nsdata @"nsdata@Z6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricI"() #1 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca double
+  %2 = alloca double
+  %3 = alloca i64
+  %4 = alloca i8*
+  store i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8** %4
+  store double 0.000000e+00, double* %0
+  store double 0.000000e+00, double* %1
+  store double 0.000000e+00, double* %2
+  store i64 0, i64* %3
+  %nsdata = call %nsdata @"nsdata@Z6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricISFFFI"(i8** %4, double* %0, double* %1, double* %2, i64* %3)
+  ret %nsdata %nsdata
+}
+
+; Function Attrs: alwaysinline nounwind
+define private double @"npivot_symmetric@FZ6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricI"(%nsdata* %stats) #1 {
+__llvm_entry:
+  %stats1 = load %nsdata, %nsdata* %stats
+  %avg = extractvalue %nsdata %stats1, 3
+  ret double %avg
+}
+
+; Function Attrs: alwaysinline
+define private double @"snoise@FV"(<3 x double> %rw11) #3 {
+__llvm_entry:
+  %rw05 = call double @"snoise@FVIFF"(<3 x double> %rw11, i64 0, double 5.000000e-01, double 1.000000e+00)
+  ret double %rw05
+}
+
+; Function Attrs: nounwind readnone
+declare double @"snoise@FVIFF"(<3 x double>, i64, double, double) #0
+
+; Function Attrs: nounwind
+declare double @"fit@FFFFFF"(double, double, double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VU"(<2 x double>) #0
+
+; Function Attrs: alwaysinline nounwind
+define private double @"nwrap_sparse@FVVF"(<3 x double>* %p, <3 x double>* %per, double* %flow) #1 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca double
+  %2 = alloca double
+  %3 = alloca double
+  %4 = alloca i64
+  %5 = alloca i8*
+  %6 = alloca double
+  %7 = alloca double
+  %8 = alloca double
+  %9 = alloca i64
+  %p1 = load <3 x double>, <3 x double>* %p
+  %cast = call <3 x double> @"set@VF"(double 1.250000e+00)
+  %output = call <3 x double> @"mul@VV"(<3 x double> %p1, <3 x double> %cast)
+  %return = call double @"snoise@FV"(<3 x double> %output)
+  store i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i8** %0
+  %return3 = call double @"neg@FF"(double 2.343510e+00)
+  store double %return3, double* %1
+  store double 2.438430e+00, double* %2
+  store double 4.960900e-01, double* %3
+  store i64 1, i64* %4
+  %nsdata = call %nsdata @"nsdata@Z6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricISFFFI"(i8** %0, double* %1, double* %2, double* %3, i64* %4)
+  %min = extractvalue %nsdata %nsdata, 1
+  store i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i8** %5
+  store double %return3, double* %6
+  store double 2.438430e+00, double* %7
+  store double 4.960900e-01, double* %8
+  store i64 1, i64* %9
+  %nsdata5 = call %nsdata @"nsdata@Z6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricISFFFI"(i8** %5, double* %6, double* %7, double* %8, i64* %9)
+  %max = extractvalue %nsdata %nsdata5, 2
+  %return6 = call double @"fit@FFFFFF"(double %return, double %min, double %max, double 0.000000e+00, double 1.000000e+00)
+  ret double %return6
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"set@VP"(<4 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"snoise@VVIFF"(<3 x double>, i64, double, double) #0
+
+; Function Attrs: nounwind
+declare <3 x double> @"fit@VVVVVV"(<3 x double>, <3 x double>, <3 x double>, <3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare double @"abs@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PI"(i64) #0
+
+; Function Attrs: alwaysinline
+define private { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <4 x double> @"setcomp@PFI"(<4 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <4 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <4 x double> } %mrv, <4 x double> %rw16, 1
+  ret { double, <4 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"setcomp@PFI"(<4 x double>, double, i64) #0
+
+; Function Attrs: nounwind
+declare double @"set@FP"(<4 x double>) #2
+
+; Function Attrs: nounwind
+declare double @"avg@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PU"(<2 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UP"(<4 x double>) #0
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"fngrad_sparse@VVVFF"(<3 x double>* %p, <3 x double>* %per, double* %flow, double* %delta) #1 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca double
+  %3 = alloca <3 x double>
+  %4 = alloca <3 x double>
+  %5 = alloca double
+  %delta1 = load double, double* %delta
+  %return = call double @"abs@FF"(double %delta1)
+  %return2 = call double @"max@FFF"(double 1.000000e-05, double %return)
+  %output = fmul double %return2, 5.000000e-01
+  %output4 = call double @"div@FF"(double 1.000000e+00, double %output)
+  %cast = call <4 x double> @"set@PI"(i64 0)
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %out.0 = phi <4 x double> [ %cast, %__llvm_entry ], [ %output47, %body ]
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output50, %body ]
+  %return8 = call i64 @"lt@III"(i64 %i.0, i64 3)
+  %6 = icmp ne i64 %return8, 0
+  br i1 %6, label %body, label %end
+
+body:                                             ; preds = %cond
+  %p9 = load <3 x double>, <3 x double>* %p
+  %cast10 = call <4 x double> @"set@PV"(<3 x double> %p9)
+  %return14 = call double @"getcomp@FPI"(<4 x double> %cast10, i64 %i.0)
+  %output16 = fadd double %return14, %output
+  %return17 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %cast10, double %output16, i64 %i.0)
+  %output19 = extractvalue { double, <4 x double> } %return17, 1
+  %output25 = fsub double %return14, %output
+  %return27 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %cast10, double %output25, i64 %i.0)
+  %output29 = extractvalue { double, <4 x double> } %return27, 1
+  %cast31 = call <3 x double> @"set@VP"(<4 x double> %output19)
+  %cast33 = call <3 x double> @"set@VP"(<4 x double> %output29)
+  store <3 x double> %cast31, <3 x double>* %0
+  %nwrap_sparse = call double @"nwrap_sparse@FVVF"(<3 x double>* %0, <3 x double>* %1, double* %2)
+  store <3 x double> %cast33, <3 x double>* %3
+  %nwrap_sparse36 = call double @"nwrap_sparse@FVVF"(<3 x double>* %3, <3 x double>* %4, double* %5)
+  %output41 = fsub double %nwrap_sparse, %nwrap_sparse36
+  %return42 = call double @"avg@FF"(double %output41)
+  %output43 = fmul double %output4, %return42
+  %return45 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %out.0, double %output43, i64 %i.0)
+  %output47 = extractvalue { double, <4 x double> } %return45, 1
+  %output50 = add i64 %i.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  %cast52 = call <3 x double> @"set@VP"(<4 x double> %out.0)
+  ret <3 x double> %cast52
+}
+
+; Function Attrs: nounwind
+declare <4 x double> @"set@PV"(<3 x double>) #2
+
+; Function Attrs: nounwind
+declare double @"avg@FV"(<3 x double>) #2
+
+; Function Attrs: alwaysinline nounwind
+define private double @"noise_correct@FFZ6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricIIIIIFFPIIFFFF"(double* %val, %nsdata* %stats, i64* %inv, i64* %fold, i64* %accl, i64* %accg, double* %fw, double* %expon, <4 x double>* %per, i64* %dolw, i64* %dogw, double* %disp, double* %dfreq, double* %gflow, double* %flow) #1 {
+__llvm_entry:
+  %expon1 = load double, double* %expon
+  %return = fcmp oeq double %expon1, 0.000000e+00
+  br i1 %return, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %stats3 = load %nsdata, %nsdata* %stats
+  %avg = extractvalue %nsdata %stats3, 3
+  %val4 = load double, double* %val
+  %fold5 = load i64, i64* %fold
+  %symmetric = extractvalue %nsdata %stats3, 4
+  %return7 = call i64 @"and@III"(i64 %fold5, i64 %symmetric)
+  %0 = icmp ne i64 %return7, 0
+  br i1 %0, label %true8, label %end9
+
+true8:                                            ; preds = %end
+  %output = fsub double %val4, %avg
+  %return12 = call double @"abs@FF"(double %output)
+  %output15 = fsub double 1.000000e+00, %avg
+  %return16 = call double @"max@FFF"(double %avg, double %output15)
+  %output17 = call double @"div@FF"(double %return12, double %return16)
+  br label %end9
+
+end9:                                             ; preds = %true8, %end
+  %out.0 = phi double [ %output17, %true8 ], [ %val4, %end ]
+  %inv18 = load i64, i64* %inv
+  %1 = icmp ne i64 %inv18, 0
+  br i1 %1, label %true19, label %end20
+
+true19:                                           ; preds = %end9
+  %output22 = fsub double 1.000000e+00, %out.0
+  br label %end20
+
+end20:                                            ; preds = %true19, %end9
+  %out.1 = phi double [ %output22, %true19 ], [ %out.0, %end9 ]
+  %expon23 = load double, double* %expon
+  %return24 = fcmp one double %expon23, 1.000000e+00
+  br i1 %return24, label %true26, label %end27
+
+true26:                                           ; preds = %end20
+  %return30 = call double @"pow@FFF"(double %out.1, double %expon23)
+  br label %end27
+
+end27:                                            ; preds = %true26, %end20
+  %out.2 = phi double [ %return30, %true26 ], [ %out.1, %end20 ]
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end27, %true
+  %UnifiedRetVal = phi double [ 1.000000e+00, %true ], [ %out.2, %end27 ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"abs@VV"(<3 x double>) #0
+
+; Function Attrs: alwaysinline nounwind
+define private double @"navg_correct@FZ6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricIIIIIFFPIIFFFF"(%nsdata* %stats, i64* %inv, i64* %fold, i64* %accl, i64* %accg, double* %fw, double* %expon, <4 x double>* %per, i64* %dolw, i64* %dogw, double* %disp, double* %dfreq, double* %gflow, double* %flow) #1 {
+__llvm_entry:
+  %expon1 = load double, double* %expon
+  %return = fcmp oeq double %expon1, 0.000000e+00
+  br i1 %return, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %stats3 = load %nsdata, %nsdata* %stats
+  %avg = extractvalue %nsdata %stats3, 3
+  %fold4 = load i64, i64* %fold
+  %symmetric = extractvalue %nsdata %stats3, 4
+  %return6 = call i64 @"and@III"(i64 %fold4, i64 %symmetric)
+  %0 = icmp ne i64 %return6, 0
+  br i1 %0, label %true7, label %end8
+
+true7:                                            ; preds = %end
+  %output = fmul double %avg, %avg
+  br label %end8
+
+end8:                                             ; preds = %true7, %end
+  %navg.0 = phi double [ %output, %true7 ], [ %avg, %end ]
+  %inv11 = load i64, i64* %inv
+  %1 = icmp ne i64 %inv11, 0
+  br i1 %1, label %true12, label %end13
+
+true12:                                           ; preds = %end8
+  %output15 = fsub double 1.000000e+00, %navg.0
+  br label %end13
+
+end13:                                            ; preds = %true12, %end8
+  %navg.1 = phi double [ %output15, %true12 ], [ %navg.0, %end8 ]
+  %expon16 = load double, double* %expon
+  %return17 = fcmp one double %expon16, 1.000000e+00
+  br i1 %return17, label %true19, label %end20
+
+true19:                                           ; preds = %end13
+  %return23 = call double @"pow@FFF"(double %navg.1, double %expon16)
+  br label %end20
+
+end20:                                            ; preds = %true19, %end13
+  %navg.2 = phi double [ %return23, %true19 ], [ %navg.1, %end13 ]
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end20, %true
+  %UnifiedRetVal = phi double [ 1.000000e+00, %true ], [ %navg.2, %end20 ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: alwaysinline nounwind
+define private double @"navg_correct@FFZ6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricIIIIIFFPIIFFFF"(double* %tgt, %nsdata* %stats, i64* %inv, i64* %fold, i64* %accl, i64* %accg, double* %fw, double* %expon, <4 x double>* %per, i64* %dolw, i64* %dogw, double* %disp, double* %dfreq, double* %gflow, double* %flow) #1 {
+__llvm_entry:
+  %expon1 = load double, double* %expon
+  %return = fcmp oeq double %expon1, 0.000000e+00
+  br i1 %return, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %tgt3 = load double, double* %tgt
+  %fold4 = load i64, i64* %fold
+  %stats5 = load %nsdata, %nsdata* %stats
+  %symmetric = extractvalue %nsdata %stats5, 4
+  %return6 = call i64 @"and@III"(i64 %fold4, i64 %symmetric)
+  %0 = icmp ne i64 %return6, 0
+  br i1 %0, label %true7, label %end8
+
+true7:                                            ; preds = %end
+  %output = fmul double %tgt3, %tgt3
+  br label %end8
+
+end8:                                             ; preds = %true7, %end
+  %navg.0 = phi double [ %output, %true7 ], [ %tgt3, %end ]
+  %inv11 = load i64, i64* %inv
+  %1 = icmp ne i64 %inv11, 0
+  br i1 %1, label %true12, label %end13
+
+true12:                                           ; preds = %end8
+  %output15 = fsub double 1.000000e+00, %navg.0
+  br label %end13
+
+end13:                                            ; preds = %true12, %end8
+  %navg.1 = phi double [ %output15, %true12 ], [ %navg.0, %end8 ]
+  %expon16 = load double, double* %expon
+  %return17 = fcmp one double %expon16, 1.000000e+00
+  br i1 %return17, label %true19, label %end20
+
+true19:                                           ; preds = %end13
+  %return23 = call double @"pow@FFF"(double %navg.1, double %expon16)
+  br label %end20
+
+end20:                                            ; preds = %true19, %end13
+  %navg.2 = phi double [ %return23, %true19 ], [ %navg.1, %end13 ]
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end20, %true
+  %UnifiedRetVal = phi double [ 1.000000e+00, %true ], [ %navg.2, %end20 ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare double @"set@FV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"smooth@FFFF"(double, double, double) #0
+
+; Function Attrs: nounwind
+declare double @"lerp@FFFF"(double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UI"(i64) #0
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UF"(double) #0
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"add@UU"(<2 x double>, <2 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"mul@UU"(<2 x double>, <2 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UV"(<3 x double>) #0
+
+; Function Attrs: alwaysinline nounwind
+define private double @"noise_sparse@FVIIIIFFVIIFFFFFV"(<3 x double>* %pp, i64* %inv, i64* %fold, i64* %accl, i64* %accg, double* %fw, double* %expon, <3 x double>* %per, i64* %dolw, i64* %dogw, double* %disp, double* %dfreq, double* %gflow, double* %flow, double* %x_avg, <3 x double>* %x_off) #1 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca double
+  %2 = alloca double
+  %3 = alloca double
+  %4 = alloca i64
+  %5 = alloca <3 x double>
+  %6 = alloca <3 x double>
+  %7 = alloca double
+  %8 = alloca <3 x double>
+  %9 = alloca <3 x double>
+  %10 = alloca double
+  %11 = alloca double
+  %12 = alloca <3 x double>
+  %13 = alloca <3 x double>
+  %14 = alloca double
+  %15 = alloca double
+  %16 = alloca %nsdata
+  %17 = alloca i64
+  %18 = alloca i64
+  %19 = alloca i64
+  %20 = alloca i64
+  %21 = alloca double
+  %22 = alloca double
+  %23 = alloca <4 x double>
+  %24 = alloca i64
+  %25 = alloca i64
+  %26 = alloca double
+  %27 = alloca double
+  %28 = alloca double
+  %29 = alloca double
+  %30 = alloca %nsdata
+  %31 = alloca i64
+  %32 = alloca i64
+  %33 = alloca i64
+  %34 = alloca i64
+  %35 = alloca double
+  %36 = alloca double
+  %37 = alloca <4 x double>
+  %38 = alloca i64
+  %39 = alloca i64
+  %40 = alloca double
+  %41 = alloca double
+  %42 = alloca double
+  %43 = alloca double
+  %expon1 = load double, double* %expon
+  %return = fcmp oeq double %expon1, 0.000000e+00
+  br i1 %return, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  store double 1.000000e+00, double* %x_avg
+  %cast = call <3 x double> @"set@VI"(i64 0)
+  store <3 x double> %cast, <3 x double>* %x_off
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %stats3 = call %nsdata @"nsdata@Z6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricI"()
+  store i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i8** %0
+  %return4 = call double @"neg@FF"(double 2.343510e+00)
+  store double %return4, double* %1
+  store double 2.438430e+00, double* %2
+  store double 4.960900e-01, double* %3
+  store i64 1, i64* %4
+  %nsdata = call %nsdata @"nsdata@Z6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricISFFFI"(i8** %0, double* %1, double* %2, double* %3, i64* %4)
+  %nsdata.fca.0.extract = extractvalue %nsdata %nsdata, 0
+  %nsdata.fca.1.extract = extractvalue %nsdata %nsdata, 1
+  %nsdata.fca.2.extract = extractvalue %nsdata %nsdata, 2
+  %nsdata.fca.3.extract = extractvalue %nsdata %nsdata, 3
+  %nsdata.fca.4.extract = extractvalue %nsdata %nsdata, 4
+  %cast5 = call <3 x double> @"set@VI"(i64 0)
+  store <3 x double> %cast5, <3 x double>* %x_off
+  store double %nsdata.fca.3.extract, double* %x_avg
+  %pp7 = load <3 x double>, <3 x double>* %pp
+  %disp10 = load double, double* %disp
+  %dolw11 = load i64, i64* %dolw
+  %cast12 = sitofp i64 %dolw11 to double
+  %output = fmul double %disp10, %cast12
+  %return13 = fcmp one double %output, 0.000000e+00
+  br i1 %return13, label %true15, label %end16
+
+true15:                                           ; preds = %end
+  %cast18 = call <3 x double> @"set@VF"(double 1.234560e+02)
+  %output19 = call <3 x double> @"add@VV"(<3 x double> %pp7, <3 x double> %cast18)
+  %dfreq20 = load double, double* %dfreq
+  %cast21 = call <3 x double> @"set@VF"(double %dfreq20)
+  %output22 = call <3 x double> @"mul@VV"(<3 x double> %output19, <3 x double> %cast21)
+  store <3 x double> %output22, <3 x double>* %5
+  %nwrap_sparse = call double @"nwrap_sparse@FVVF"(<3 x double>* %5, <3 x double>* %6, double* %7)
+  %disp24 = load double, double* %disp
+  %output27 = fsub double %nwrap_sparse, %nsdata.fca.3.extract
+  %output28 = fmul double %disp24, %output27
+  %output31 = fsub double 1.000000e+00, %nsdata.fca.3.extract
+  %return32 = call double @"max@FFF"(double %nsdata.fca.3.extract, double %output31)
+  %output33 = call double @"div@FF"(double %output28, double %return32)
+  %cast34 = call <3 x double> @"set@VF"(double %output33)
+  br label %end16
+
+end16:                                            ; preds = %true15, %end
+  %dpl.0 = phi <3 x double> [ %cast34, %true15 ], [ %cast5, %end ]
+  %gflow35 = load double, double* %gflow
+  %dogw36 = load i64, i64* %dogw
+  %cast37 = sitofp i64 %dogw36 to double
+  %output38 = fmul double %gflow35, %cast37
+  %return39 = fcmp one double %output38, 0.000000e+00
+  br i1 %return39, label %true41, label %end42
+
+true41:                                           ; preds = %end16
+  %pp44 = load <3 x double>, <3 x double>* %pp
+  store <3 x double> %pp44, <3 x double>* %8
+  store double 5.000000e-02, double* %11
+  %fngrad_sparse = call <3 x double> @"fngrad_sparse@VVVFF"(<3 x double>* %8, <3 x double>* %9, double* %10, double* %11)
+  %cast45 = call <3 x double> @"set@VF"(double %gflow35)
+  %output46 = call <3 x double> @"mul@VV"(<3 x double> %cast45, <3 x double> %fngrad_sparse)
+  br label %end42
+
+end42:                                            ; preds = %true41, %end16
+  %dpg.0 = phi <3 x double> [ %output46, %true41 ], [ %cast5, %end16 ]
+  %pp47 = load <3 x double>, <3 x double>* %pp
+  %accl48 = load i64, i64* %accl
+  %cast50 = call <3 x double> @"set@VI"(i64 %accl48)
+  %output51 = call <3 x double> @"mul@VV"(<3 x double> %cast50, <3 x double> %dpl.0)
+  %accg52 = load i64, i64* %accg
+  %cast54 = call <3 x double> @"set@VI"(i64 %accg52)
+  %output55 = call <3 x double> @"mul@VV"(<3 x double> %cast54, <3 x double> %dpg.0)
+  %output56 = call <3 x double> @"add@VV"(<3 x double> %output51, <3 x double> %output55)
+  %output57 = call <3 x double> @"add@VV"(<3 x double> %pp47, <3 x double> %output56)
+  store <3 x double> %output57, <3 x double>* %pp
+  %output60 = call <3 x double> @"add@VV"(<3 x double> %dpl.0, <3 x double> %dpg.0)
+  store <3 x double> %output60, <3 x double>* %x_off
+  store double %nsdata.fca.3.extract, double* %x_avg
+  %x_off63 = load <3 x double>, <3 x double>* %x_off
+  %output64 = call <3 x double> @"add@VV"(<3 x double> %pp7, <3 x double> %x_off63)
+  store <3 x double> %output64, <3 x double>* %12
+  %nwrap_sparse66 = call double @"nwrap_sparse@FVVF"(<3 x double>* %12, <3 x double>* %13, double* %14)
+  store double %nwrap_sparse66, double* %15
+  %stats68.fca.0.gep = getelementptr inbounds %nsdata, %nsdata* %16, i32 0, i32 0
+  store i8* %nsdata.fca.0.extract, i8** %stats68.fca.0.gep
+  %stats68.fca.1.gep = getelementptr inbounds %nsdata, %nsdata* %16, i32 0, i32 1
+  store double %nsdata.fca.1.extract, double* %stats68.fca.1.gep
+  %stats68.fca.2.gep = getelementptr inbounds %nsdata, %nsdata* %16, i32 0, i32 2
+  store double %nsdata.fca.2.extract, double* %stats68.fca.2.gep
+  %stats68.fca.3.gep = getelementptr inbounds %nsdata, %nsdata* %16, i32 0, i32 3
+  store double %nsdata.fca.3.extract, double* %stats68.fca.3.gep
+  %stats68.fca.4.gep = getelementptr inbounds %nsdata, %nsdata* %16, i32 0, i32 4
+  store i64 %nsdata.fca.4.extract, i64* %stats68.fca.4.gep
+  %inv69 = load i64, i64* %inv
+  store i64 %inv69, i64* %17
+  %fold70 = load i64, i64* %fold
+  store i64 %fold70, i64* %18
+  %expon71 = load double, double* %expon
+  store double %expon71, double* %22
+  %noise_correct = call double @"noise_correct@FFZ6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricIIIIIFFPIIFFFF"(double* %15, %nsdata* %16, i64* %17, i64* %18, i64* %19, i64* %20, double* %21, double* %22, <4 x double>* %23, i64* %24, i64* %25, double* %26, double* %27, double* %28, double* %29)
+  %stats72.fca.0.gep = getelementptr inbounds %nsdata, %nsdata* %30, i32 0, i32 0
+  store i8* %nsdata.fca.0.extract, i8** %stats72.fca.0.gep
+  %stats72.fca.1.gep = getelementptr inbounds %nsdata, %nsdata* %30, i32 0, i32 1
+  store double %nsdata.fca.1.extract, double* %stats72.fca.1.gep
+  %stats72.fca.2.gep = getelementptr inbounds %nsdata, %nsdata* %30, i32 0, i32 2
+  store double %nsdata.fca.2.extract, double* %stats72.fca.2.gep
+  %stats72.fca.3.gep = getelementptr inbounds %nsdata, %nsdata* %30, i32 0, i32 3
+  store double %nsdata.fca.3.extract, double* %stats72.fca.3.gep
+  %stats72.fca.4.gep = getelementptr inbounds %nsdata, %nsdata* %30, i32 0, i32 4
+  store i64 %nsdata.fca.4.extract, i64* %stats72.fca.4.gep
+  %inv73 = load i64, i64* %inv
+  store i64 %inv73, i64* %31
+  %fold74 = load i64, i64* %fold
+  store i64 %fold74, i64* %32
+  %expon75 = load double, double* %expon
+  store double %expon75, double* %36
+  %navg_correct = call double @"navg_correct@FZ6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricIIIIIFFPIIFFFF"(%nsdata* %30, i64* %31, i64* %32, i64* %33, i64* %34, double* %35, double* %36, <4 x double>* %37, i64* %38, i64* %39, double* %40, double* %41, double* %42, double* %43)
+  store double %navg_correct, double* %x_avg
+  %fw76 = load double, double* %fw
+  %disp77 = load double, double* %disp
+  %dfreq78 = load double, double* %dfreq
+  %output79 = fmul double %disp77, %dfreq78
+  %return80 = call double @"abs@FF"(double %output79)
+  %output81 = fadd double %return80, 1.000000e+00
+  %output82 = fmul double %fw76, %output81
+  %x_avg84 = load double, double* %x_avg
+  %return86 = call double @"smooth@FFFF"(double 3.500000e-01, double 8.500000e-01, double %output82)
+  %return87 = call double @"lerp@FFFF"(double %noise_correct, double %x_avg84, double %return86)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end42, %true
+  %UnifiedRetVal = phi double [ 1.000000e+00, %true ], [ %return87, %end42 ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"add@PP"(<4 x double>, <4 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"mul@PP"(<4 x double>, <4 x double>) #0
+
+; Function Attrs: nounwind
+declare <3 x double> @"lerp@VVVF"(<3 x double>, <3 x double>, double) #2
+
+; Function Attrs: alwaysinline nounwind
+define private %nndata @"nndata@Z6nndataM2N5scaleFN5blendFFF"(double* %scale, double* %blend) #1 {
+__llvm_entry:
+  %scale1 = load double, double* %scale
+  %0 = insertvalue %nndata undef, double %scale1, 0
+  %blend2 = load double, double* %blend
+  %1 = insertvalue %nndata %0, double %blend2, 1
+  ret %nndata %1
+}
+
+; Function Attrs: alwaysinline nounwind
+define private %nndata @"nndata@Z6nndataM2N5scaleFN5blendF"() #1 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca double
+  store double 0.000000e+00, double* %1
+  store double 0.000000e+00, double* %0
+  %nndata = call %nndata @"nndata@Z6nndataM2N5scaleFN5blendFFF"(double* %1, double* %0)
+  ret %nndata %nndata
+}
+
+; Function Attrs: alwaysinline nounwind
+define private double @"nattencomp@FFFF"(double* %x, double* %k, double* %e) #1 {
+__llvm_entry:
+  %x1 = load double, double* %x
+  %output = fmul double %x1, %x1
+  %output3 = fsub double 1.000000e+00, %output
+  %e4 = load double, double* %e
+  %output5 = fmul double %e4, 5.000000e-01
+  %return = call double @"pow@FFF"(double %output3, double %output5)
+  %k6 = load double, double* %k
+  %output7 = fsub double 1.000000e+00, %k6
+  %output8 = fmul double %return, %output7
+  %output10 = fadd double %output8, %k6
+  ret double %output10
+}
+
+; Function Attrs: alwaysinline nounwind
+define private double @"natten@FFFF"(double* %n, double* %k, double* %e) #1 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca double
+  %2 = alloca double
+  %n1 = load double, double* %n
+  %output = fmul double %n1, 2.000000e+00
+  %output2 = fsub double %output, 1.000000e+00
+  store double %output2, double* %0
+  %k4 = load double, double* %k
+  store double %k4, double* %1
+  %e5 = load double, double* %e
+  store double %e5, double* %2
+  %nattencomp = call double @"nattencomp@FFFF"(double* %0, double* %1, double* %2)
+  ret double %nattencomp
+}
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"sub@PP"(<4 x double>, <4 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #0
+
+; Function Attrs: nounwind readnone
+declare double @"frac@FF"(double) #0
+
+; Function Attrs: nounwind readnone
+declare double @"sqrt@FF"(double) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@IVV"(<3 x double>, <3 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sqrt@VV"(<3 x double>) #0
+
+; Function Attrs: nounwind
+declare <3 x double> @"clamp@VVVV"(<3 x double>, <3 x double>, <3 x double>) #2
+
+; Function Attrs: alwaysinline nounwind
+define private double @"hmfT_sparse@FVIIIIFFVIIFFFFFVFFFF"(<3 x double>* %p, i64* %inv, i64* %fold, i64* %accl, i64* %accg, double* %fsize, double* %expon, <3 x double>* %per, i64* %dolw, i64* %dogw, double* %disp, double* %dfreq, double* %gflow, double* %flow, double* %x_avg, <3 x double>* %x_off, double* %maxoctaves, double* %lacunarity, double* %gain, double* %x_oct) #1 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca double
+  %2 = alloca double
+  %3 = alloca double
+  %4 = alloca i64
+  %5 = alloca double
+  %6 = alloca double
+  %7 = alloca %nsdata
+  %8 = alloca i64
+  %9 = alloca i64
+  %10 = alloca i64
+  %11 = alloca i64
+  %12 = alloca double
+  %13 = alloca double
+  %14 = alloca <4 x double>
+  %15 = alloca i64
+  %16 = alloca i64
+  %17 = alloca double
+  %18 = alloca double
+  %19 = alloca double
+  %20 = alloca double
+  %21 = alloca double
+  %22 = alloca %nsdata
+  %23 = alloca %nsdata
+  %24 = alloca i64
+  %25 = alloca i64
+  %26 = alloca i64
+  %27 = alloca i64
+  %28 = alloca double
+  %29 = alloca double
+  %30 = alloca <4 x double>
+  %31 = alloca i64
+  %32 = alloca i64
+  %33 = alloca double
+  %34 = alloca double
+  %35 = alloca double
+  %36 = alloca double
+  %37 = alloca i64
+  %38 = alloca i64
+  %39 = alloca i64
+  %40 = alloca i64
+  %41 = alloca double
+  %42 = alloca double
+  %43 = alloca <3 x double>
+  %44 = alloca i64
+  %45 = alloca i64
+  %46 = alloca double
+  %47 = alloca double
+  %48 = alloca double
+  %49 = alloca double
+  %pp = alloca <3 x double>
+  %50 = alloca double
+  %51 = alloca double
+  %52 = alloca i64
+  %53 = alloca i64
+  %54 = alloca i64
+  %55 = alloca i64
+  %56 = alloca double
+  %57 = alloca double
+  %58 = alloca <3 x double>
+  %59 = alloca i64
+  %60 = alloca i64
+  %61 = alloca double
+  %62 = alloca double
+  %63 = alloca double
+  %64 = alloca double
+  %65 = alloca double
+  %66 = alloca double
+  %67 = alloca double
+  %stats1 = call %nsdata @"nsdata@Z6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricI"()
+  store i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i8** %0
+  %return = call double @"neg@FF"(double 2.343510e+00)
+  store double %return, double* %1
+  store double 2.438430e+00, double* %2
+  store double 4.960900e-01, double* %3
+  store i64 1, i64* %4
+  %nsdata = call %nsdata @"nsdata@Z6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricISFFFI"(i8** %0, double* %1, double* %2, double* %3, i64* %4)
+  %nsdata.fca.0.extract = extractvalue %nsdata %nsdata, 0
+  %nsdata.fca.1.extract = extractvalue %nsdata %nsdata, 1
+  %nsdata.fca.2.extract = extractvalue %nsdata %nsdata, 2
+  %nsdata.fca.3.extract = extractvalue %nsdata %nsdata, 3
+  %nsdata.fca.4.extract = extractvalue %nsdata %nsdata, 4
+  %norm2 = call %nndata @"nndata@Z6nndataM2N5scaleFN5blendF"()
+  store double 1.600000e+00, double* %5
+  store double 1.800000e+00, double* %6
+  %nndata = call %nndata @"nndata@Z6nndataM2N5scaleFN5blendFFF"(double* %5, double* %6)
+  %nndata.fca.0.extract = extractvalue %nndata %nndata, 0
+  %nndata.fca.1.extract = extractvalue %nndata %nndata, 1
+  store double 0.000000e+00, double* %x_oct
+  %stats5.fca.4.insert.fca.0.gep = getelementptr inbounds %nsdata, %nsdata* %7, i32 0, i32 0
+  store i8* %nsdata.fca.0.extract, i8** %stats5.fca.4.insert.fca.0.gep
+  %stats5.fca.4.insert.fca.1.gep = getelementptr inbounds %nsdata, %nsdata* %7, i32 0, i32 1
+  store double %nsdata.fca.1.extract, double* %stats5.fca.4.insert.fca.1.gep
+  %stats5.fca.4.insert.fca.2.gep = getelementptr inbounds %nsdata, %nsdata* %7, i32 0, i32 2
+  store double %nsdata.fca.2.extract, double* %stats5.fca.4.insert.fca.2.gep
+  %stats5.fca.4.insert.fca.3.gep = getelementptr inbounds %nsdata, %nsdata* %7, i32 0, i32 3
+  store double %nsdata.fca.3.extract, double* %stats5.fca.4.insert.fca.3.gep
+  %stats5.fca.4.insert.fca.4.gep = getelementptr inbounds %nsdata, %nsdata* %7, i32 0, i32 4
+  store i64 %nsdata.fca.4.extract, i64* %stats5.fca.4.insert.fca.4.gep
+  %inv6 = load i64, i64* %inv
+  store i64 %inv6, i64* %8
+  %fold7 = load i64, i64* %fold
+  store i64 %fold7, i64* %9
+  %expon8 = load double, double* %expon
+  store double %expon8, double* %13
+  %navg_correct = call double @"navg_correct@FZ6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricIIIIIFFPIIFFFF"(%nsdata* %7, i64* %8, i64* %9, i64* %10, i64* %11, double* %12, double* %13, <4 x double>* %14, i64* %15, i64* %16, double* %17, double* %18, double* %19, double* %20)
+  store double %navg_correct, double* %x_avg
+  %stats9.fca.4.insert.fca.0.gep = getelementptr inbounds %nsdata, %nsdata* %22, i32 0, i32 0
+  store i8* %nsdata.fca.0.extract, i8** %stats9.fca.4.insert.fca.0.gep
+  %stats9.fca.4.insert.fca.1.gep = getelementptr inbounds %nsdata, %nsdata* %22, i32 0, i32 1
+  store double %nsdata.fca.1.extract, double* %stats9.fca.4.insert.fca.1.gep
+  %stats9.fca.4.insert.fca.2.gep = getelementptr inbounds %nsdata, %nsdata* %22, i32 0, i32 2
+  store double %nsdata.fca.2.extract, double* %stats9.fca.4.insert.fca.2.gep
+  %stats9.fca.4.insert.fca.3.gep = getelementptr inbounds %nsdata, %nsdata* %22, i32 0, i32 3
+  store double %nsdata.fca.3.extract, double* %stats9.fca.4.insert.fca.3.gep
+  %stats9.fca.4.insert.fca.4.gep = getelementptr inbounds %nsdata, %nsdata* %22, i32 0, i32 4
+  store i64 %nsdata.fca.4.extract, i64* %stats9.fca.4.insert.fca.4.gep
+  %npivot_symmetric = call double @"npivot_symmetric@FZ6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricI"(%nsdata* %22)
+  store double %npivot_symmetric, double* %21
+  %stats10.fca.4.insert.fca.0.gep = getelementptr inbounds %nsdata, %nsdata* %23, i32 0, i32 0
+  store i8* %nsdata.fca.0.extract, i8** %stats10.fca.4.insert.fca.0.gep
+  %stats10.fca.4.insert.fca.1.gep = getelementptr inbounds %nsdata, %nsdata* %23, i32 0, i32 1
+  store double %nsdata.fca.1.extract, double* %stats10.fca.4.insert.fca.1.gep
+  %stats10.fca.4.insert.fca.2.gep = getelementptr inbounds %nsdata, %nsdata* %23, i32 0, i32 2
+  store double %nsdata.fca.2.extract, double* %stats10.fca.4.insert.fca.2.gep
+  %stats10.fca.4.insert.fca.3.gep = getelementptr inbounds %nsdata, %nsdata* %23, i32 0, i32 3
+  store double %nsdata.fca.3.extract, double* %stats10.fca.4.insert.fca.3.gep
+  %stats10.fca.4.insert.fca.4.gep = getelementptr inbounds %nsdata, %nsdata* %23, i32 0, i32 4
+  store i64 %nsdata.fca.4.extract, i64* %stats10.fca.4.insert.fca.4.gep
+  %inv11 = load i64, i64* %inv
+  store i64 %inv11, i64* %24
+  %fold12 = load i64, i64* %fold
+  store i64 %fold12, i64* %25
+  %expon13 = load double, double* %expon
+  store double %expon13, double* %29
+  %navg_correct14 = call double @"navg_correct@FFZ6nsdataM5N4nameSN3minFN3maxFN3avgFN9symmetricIIIIIFFPIIFFFF"(double* %21, %nsdata* %23, i64* %24, i64* %25, i64* %26, i64* %27, double* %28, double* %29, <4 x double>* %30, i64* %31, i64* %32, double* %33, double* %34, double* %35, double* %36)
+  %inv15 = load i64, i64* %inv
+  store i64 %inv15, i64* %37
+  %fold16 = load i64, i64* %fold
+  store i64 %fold16, i64* %38
+  %accl17 = load i64, i64* %accl
+  store i64 %accl17, i64* %39
+  %accg18 = load i64, i64* %accg
+  store i64 %accg18, i64* %40
+  %fsize19 = load double, double* %fsize
+  store double %fsize19, double* %41
+  %expon20 = load double, double* %expon
+  store double %expon20, double* %42
+  %dolw21 = load i64, i64* %dolw
+  store i64 %dolw21, i64* %44
+  %dogw22 = load i64, i64* %dogw
+  store i64 %dogw22, i64* %45
+  %disp23 = load double, double* %disp
+  store double %disp23, double* %46
+  %dfreq24 = load double, double* %dfreq
+  store double %dfreq24, double* %47
+  %gflow25 = load double, double* %gflow
+  store double %gflow25, double* %48
+  %noise_sparse = call double @"noise_sparse@FVIIIIFFVIIFFFFFV"(<3 x double>* %p, i64* %37, i64* %38, i64* %39, i64* %40, double* %41, double* %42, <3 x double>* %43, i64* %44, i64* %45, double* %46, double* %47, double* %48, double* %49, double* %x_avg, <3 x double>* %x_off)
+  %fsize26 = load double, double* %fsize
+  %return27 = fcmp oge double %fsize26, 1.000000e+00
+  %return28 = zext i1 %return27 to i64
+  %maxoctaves30 = load double, double* %maxoctaves
+  %return31 = fcmp ogt double 0.000000e+00, %maxoctaves30
+  %return32 = zext i1 %return31 to i64
+  %return33 = call i64 @"or@III"(i64 %return28, i64 %return32)
+  %lacunarity34 = load double, double* %lacunarity
+  %output = fmul double %lacunarity34, %maxoctaves30
+  %gain36 = load double, double* %gain
+  %output37 = fmul double %output, %gain36
+  %return38 = fcmp oeq double %output37, 0.000000e+00
+  %return39 = zext i1 %return38 to i64
+  %return40 = call i64 @"or@III"(i64 %return33, i64 %return39)
+  %68 = icmp ne i64 %return40, 0
+  br i1 %68, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %p42 = load <3 x double>, <3 x double>* %p
+  store <3 x double> %p42, <3 x double>* %pp
+  %output45 = fsub double %noise_sparse, %navg_correct14
+  %lacunarity46 = load double, double* %lacunarity
+  %return47 = call double @"abs@FF"(double %lacunarity46)
+  %gain48 = load double, double* %gain
+  %return49 = call double @"abs@FF"(double %gain48)
+  %return51 = call double @"min@FFF"(double 1.000000e+00, double %return47)
+  %output52 = fmul double %return49, %return51
+  %fsize53 = load double, double* %fsize
+  %fold54 = load i64, i64* %fold
+  %output55 = add i64 1, %fold54
+  %cast = sitofp i64 %output55 to double
+  %output56 = fmul double %fsize53, %cast
+  %output59 = fmul double %noise_sparse, 2.000000e+00
+  %output62 = mul i64 %fold54, %nsdata.fca.4.extract
+  %69 = icmp ne i64 %output62, 0
+  %phi = select i1 %69, double 1.000000e+01, double %nndata.fca.0.extract
+  %return68 = call double @"smooth@FFFF"(double 1.000000e+00, double %nndata.fca.1.extract, double %return47)
+  %return69 = call double @"lerp@FFFF"(double 1.000000e+01, double %phi, double %return68)
+  br label %body
+
+body:                                             ; preds = %end107, %end
+  %oct.0 = phi double [ 0.000000e+00, %end ], [ %oct.2, %end107 ]
+  %fw.0 = phi double [ %output56, %end ], [ %output102, %end107 ]
+  %out.0 = phi double [ %output45, %end ], [ %output140, %end107 ]
+  %wsum.0 = phi double [ 1.000000e+00, %end ], [ %output147, %end107 ]
+  %w.0 = phi double [ %output59, %end ], [ %output153, %end107 ]
+  %output81 = fmul double %w.0, %output52
+  %output83 = fadd double %oct.0, 1.000000e+00
+  %maxoctaves85 = load double, double* %maxoctaves
+  %return86 = fcmp ogt double %output83, %maxoctaves85
+  br i1 %return86, label %true88, label %end89
+
+end78:                                            ; preds = %end107
+  store double %oct.2, double* %x_oct
+  %return156 = fcmp one double %output147, 0.000000e+00
+  br i1 %return156, label %true158, label %end159
+
+true88:                                           ; preds = %body
+  %return93 = call double @"frac@FF"(double %maxoctaves85)
+  store double %return93, double* %50
+  store double 4.500000e-01, double* %51
+  %bias = call double @"bias@FFF"(double* %50, double* %51)
+  %output94 = fmul double %output81, %bias
+  br label %end89
+
+end89:                                            ; preds = %true88, %body
+  %oct.1 = phi double [ %maxoctaves85, %true88 ], [ %output83, %body ]
+  %w.1 = phi double [ %output94, %true88 ], [ %output81, %body ]
+  %pp96 = load <3 x double>, <3 x double>* %pp
+  %cast98 = call <3 x double> @"set@VF"(double %return47)
+  %output99 = call <3 x double> @"mul@VV"(<3 x double> %pp96, <3 x double> %cast98)
+  store <3 x double> %output99, <3 x double>* %pp
+  %output102 = fmul double %fw.0, %return47
+  %return104 = fcmp ogt double %output102, 1.000000e+00
+  br i1 %return104, label %true106, label %end107
+
+true106:                                          ; preds = %end89
+  %output109 = fsub double 1.000000e+00, %fw.0
+  %output112 = fsub double %output102, %fw.0
+  %output113 = call double @"div@FF"(double %output109, double %output112)
+  %output116 = fsub double 1.000000e+00, %output113
+  %output117 = fsub double %oct.1, %output116
+  %output120 = fmul double %w.1, %output113
+  br label %end107
+
+end107:                                           ; preds = %true106, %end89
+  %oct.2 = phi double [ %output117, %true106 ], [ %oct.1, %end89 ]
+  %w.2 = phi double [ %output120, %true106 ], [ %w.1, %end89 ]
+  %inv121 = load i64, i64* %inv
+  store i64 %inv121, i64* %52
+  %fold122 = load i64, i64* %fold
+  store i64 %fold122, i64* %53
+  %accl123 = load i64, i64* %accl
+  store i64 %accl123, i64* %54
+  %accg124 = load i64, i64* %accg
+  store i64 %accg124, i64* %55
+  %fsize125 = load double, double* %fsize
+  store double %fsize125, double* %56
+  %expon126 = load double, double* %expon
+  store double %expon126, double* %57
+  %dolw127 = load i64, i64* %dolw
+  store i64 %dolw127, i64* %59
+  %dogw128 = load i64, i64* %dogw
+  store i64 %dogw128, i64* %60
+  %disp129 = load double, double* %disp
+  store double %disp129, double* %61
+  %dfreq130 = load double, double* %dfreq
+  store double %dfreq130, double* %62
+  %gflow131 = load double, double* %gflow
+  store double %gflow131, double* %63
+  %noise_sparse132 = call double @"noise_sparse@FVIIIIFFVIIFFFFFV"(<3 x double>* %pp, i64* %52, i64* %53, i64* %54, i64* %55, double* %56, double* %57, <3 x double>* %58, i64* %59, i64* %60, double* %61, double* %62, double* %63, double* %64, double* %x_avg, <3 x double>* %x_off)
+  %output135 = fsub double %noise_sparse132, %navg_correct14
+  %output139 = fmul double %w.2, %output135
+  %output140 = fadd double %out.0, %output139
+  %output144 = fmul double %return69, %w.2
+  %output146 = fmul double %output144, %w.2
+  %output147 = fadd double %wsum.0, %output146
+  %output151 = fadd double %output135, %navg_correct14
+  %output152 = fmul double 2.000000e+00, %output151
+  %output153 = fmul double %w.2, %output152
+  %maxoctaves71 = load double, double* %maxoctaves
+  %return72 = fcmp olt double %oct.2, %maxoctaves71
+  %return73 = zext i1 %return72 to i64
+  %return75 = fcmp olt double %output102, 1.000000e+00
+  %return76 = zext i1 %return75 to i64
+  %return77 = call i64 @"and@III"(i64 %return73, i64 %return76)
+  %70 = icmp ne i64 %return77, 0
+  br i1 %70, label %body, label %end78
+
+true158:                                          ; preds = %end78
+  %return162 = call double @"sqrt@FF"(double %output147)
+  %output163 = call double @"div@FF"(double %output140, double %return162)
+  br label %end159
+
+end159:                                           ; preds = %true158, %end78
+  %out.1 = phi double [ %output163, %true158 ], [ %output140, %end78 ]
+  %output168 = fadd double %out.1, %navg_correct14
+  store double %output168, double* %65
+  store double 9.000000e-01, double* %66
+  store double 2.000000e+00, double* %67
+  %natten = call double @"natten@FFFF"(double* %65, double* %66, double* %67)
+  %return169 = call double @"fit@FFFFFF"(double %output52, double 0.000000e+00, double 1.000000e-01, double 1.000000e+00, double %natten)
+  %output170 = fmul double %out.1, %return169
+  %output172 = fadd double %output170, %navg_correct14
+  %return174 = call double @"clamp@FFFF"(double %output172, double 0.000000e+00, double 1.000000e+00)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end159, %true
+  %UnifiedRetVal = phi double [ %noise_sparse, %true ], [ %return174, %end159 ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: alwaysinline nounwind
+define private double @"noise_cc@FFIIVIVIVVV"(double* %chaos, i64* %inv, i64* %dobias, <3 x double>* %ccbias, i64* %dogain, <3 x double>* %ccgain, i64* %dorng, <3 x double>* %rnglo, <3 x double>* %rnghi, <3 x double>* %amp) #1 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca double
+  %2 = alloca double
+  %3 = alloca double
+  %chaos1 = load double, double* %chaos
+  %dobias2 = load i64, i64* %dobias
+  %4 = icmp ne i64 %dobias2, 0
+  br i1 %4, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  store double %chaos1, double* %0
+  %ccbias4 = load <3 x double>, <3 x double>* %ccbias
+  %return = call double @"getcomp@FVI"(<3 x double> %ccbias4, i64 0)
+  %return5 = call double @"clamp@FFFF"(double %return, double 1.000000e-05, double 9.999900e-01)
+  store double %return5, double* %1
+  %bias = call double @"bias@FFF"(double* %0, double* %1)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %out.0 = phi double [ %bias, %true ], [ %chaos1, %__llvm_entry ]
+  %dogain6 = load i64, i64* %dogain
+  %5 = icmp ne i64 %dogain6, 0
+  br i1 %5, label %true7, label %end8
+
+true7:                                            ; preds = %end
+  store double %out.0, double* %2
+  %ccgain10 = load <3 x double>, <3 x double>* %ccgain
+  %return11 = call double @"getcomp@FVI"(<3 x double> %ccgain10, i64 0)
+  %return12 = call double @"clamp@FFFF"(double %return11, double 1.000000e-05, double 9.999900e-01)
+  store double %return12, double* %3
+  %gain = call double @"gain@FFF"(double* %2, double* %3)
+  br label %end8
+
+end8:                                             ; preds = %true7, %end
+  %out.1 = phi double [ %gain, %true7 ], [ %out.0, %end ]
+  %inv13 = load i64, i64* %inv
+  %6 = icmp ne i64 %inv13, 0
+  br i1 %6, label %true14, label %end15
+
+true14:                                           ; preds = %end8
+  %output = fsub double 1.000000e+00, %out.1
+  br label %end15
+
+end15:                                            ; preds = %true14, %end8
+  %out.2 = phi double [ %output, %true14 ], [ %out.1, %end8 ]
+  %dorng17 = load i64, i64* %dorng
+  %7 = icmp ne i64 %dorng17, 0
+  br i1 %7, label %true18, label %end19
+
+true18:                                           ; preds = %end15
+  %rnglo21 = load <3 x double>, <3 x double>* %rnglo
+  %return22 = call double @"getcomp@FVI"(<3 x double> %rnglo21, i64 0)
+  %rnghi23 = load <3 x double>, <3 x double>* %rnghi
+  %return24 = call double @"getcomp@FVI"(<3 x double> %rnghi23, i64 0)
+  %return25 = call double @"fit@FFFFFF"(double %out.2, double 0.000000e+00, double 1.000000e+00, double %return22, double %return24)
+  br label %end19
+
+end19:                                            ; preds = %true18, %end15
+  %out.3 = phi double [ %return25, %true18 ], [ %out.2, %end15 ]
+  %amp27 = load <3 x double>, <3 x double>* %amp
+  %return28 = call double @"getcomp@FVI"(<3 x double> %amp27, i64 0)
+  %output29 = fmul double %out.3, %return28
+  ret double %output29
+}
+
+; Function Attrs: nounwind
+define void @obj_Desert_Terrain_1_1_Desert_Terrain1_heightfield_masknoise1_apply_noise(<3 x double> %offset, <4 x double> %period, double %oct, double %lac, double %flowrot, double %rough, i64 %cc_fold, i64 %cc_dobias, <3 x double> %cc_bias, i64 %cc_dogain, <3 x double> %cc_gain, i64 %cc_inv, double %fscale, i64 %centernoise, double %finalamp, double %elementsize, <3 x double> %elementscale, double %srcmin, double %srcmax, i64 %combinemethod, i64 %dolwarp, i64 %accuml, double %disp, double %dispfreq, i64 %dogwarp, i64 %accumg, double %gflow, i64 %cc_dorng, <3 x double> %cc_rnglo, <3 x double> %cc_rnghi, <3 x double> %cc_amp, <3 x double> %P, double %density) #2 {
+__llvm_entry:
+  %x_avg = alloca double
+  %x_oct = alloca double
+  %x_off = alloca <3 x double>
+  %p1 = alloca <3 x double>
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca i64
+  %3 = alloca i64
+  %4 = alloca i64
+  %5 = alloca i64
+  %6 = alloca double
+  %7 = alloca double
+  %8 = alloca <3 x double>
+  %9 = alloca i64
+  %10 = alloca i64
+  %11 = alloca double
+  %12 = alloca double
+  %13 = alloca double
+  %14 = alloca double
+  %15 = alloca double
+  %16 = alloca double
+  %17 = alloca double
+  %18 = alloca double
+  %19 = alloca i64
+  %20 = alloca i64
+  %21 = alloca <3 x double>
+  %22 = alloca i64
+  %23 = alloca <3 x double>
+  %24 = alloca i64
+  %25 = alloca <3 x double>
+  %26 = alloca <3 x double>
+  %27 = alloca <3 x double>
+  %cast = call <3 x double> @"set@VF"(double %elementsize)
+  %output = call <3 x double> @"mul@VV"(<3 x double> %elementscale, <3 x double> %cast)
+  %output6 = call { double, double, double } @"assign@FFFV"(<3 x double> %output)
+  %output7 = extractvalue { double, double, double } %output6, 0
+  %output8 = extractvalue { double, double, double } %output6, 1
+  %output9 = extractvalue { double, double, double } %output6, 2
+  %output11 = call double @"div@FF"(double 1.000000e+00, double %output7)
+  %output13 = call double @"div@FF"(double 1.000000e+00, double %output8)
+  %output15 = call double @"div@FF"(double 1.000000e+00, double %output9)
+  %return = call <3 x double> @"set@VFFF"(double %output11, double %output13, double %output15)
+  %cast20 = call <4 x double> @"set@PV"(<3 x double> %return)
+  %output22 = call <4 x double> @"setcomp@PFI"(<4 x double> %cast20, double 0.000000e+00, i64 3)
+  %output25 = call <3 x double> @"mul@VV"(<3 x double> %offset, <3 x double> %return)
+  %cast27 = call <3 x double> @"set@VI"(i64 123)
+  %output28 = call <3 x double> @"add@VV"(<3 x double> %output25, <3 x double> %cast27)
+  %cast30 = call <4 x double> @"set@PV"(<3 x double> %output28)
+  %output32 = call <4 x double> @"setcomp@PFI"(<4 x double> %cast30, double 0.000000e+00, i64 3)
+  %output34 = call double @"div@FF"(double 1.000000e+00, double 2.000000e+00)
+  %output35 = fmul double %elementsize, %output34
+  %output38 = fmul double %disp, %output35
+  store double 0.000000e+00, double* %x_avg
+  store double 0.000000e+00, double* %x_oct
+  %cast39 = call <3 x double> @"set@VI"(i64 0)
+  store <3 x double> %cast39, <3 x double>* %x_off
+  %return41 = call i64 @"eq@ISS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0))
+  %return42 = call i64 @"eq@ISS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0))
+  %return43 = call i64 @"or@III"(i64 %return41, i64 %return42)
+  %28 = icmp ne i64 %return43, 0
+  br i1 %28, label %true44, label %end45
+
+true44:                                           ; preds = %__llvm_entry
+  %cast47 = fptosi double %dispfreq to i64
+  %cast48 = sitofp i64 %cast47 to double
+  br label %end45
+
+end45:                                            ; preds = %true44, %__llvm_entry
+  %dfreq.0 = phi double [ %cast48, %true44 ], [ %dispfreq, %__llvm_entry ]
+  %cast51 = call <4 x double> @"set@PV"(<3 x double> %P)
+  %output52 = call <4 x double> @"mul@PP"(<4 x double> %cast51, <4 x double> %output22)
+  %output54 = call <4 x double> @"sub@PP"(<4 x double> %output52, <4 x double> %output32)
+  %cast55 = call <3 x double> @"set@VP"(<4 x double> %output54)
+  store <3 x double> %cast55, <3 x double>* %p1
+  %cast58 = call <3 x double> @"set@VP"(<4 x double> %period)
+  %pyro_vopfw_VOP_CTXT = call double @"pyro_vopfw_VOP_CTXT@FV"(<3 x double>* %0)
+  br i1 false, label %true63, label %false
+
+true63:                                           ; preds = %end45
+  %pyro_vopfw_VOP_CTXT65 = call double @"pyro_vopfw_VOP_CTXT@FV"(<3 x double>* %1)
+  br label %end64
+
+false:                                            ; preds = %end45
+  br label %end64
+
+end64:                                            ; preds = %false, %true63
+  %return68 = call double @"max@FP"(<4 x double> %output22)
+  %output71 = fmul double %output38, %return68
+  %return77 = call double @"max@FFF"(double 0.000000e+00, double 1.000000e+00)
+  br i1 true, label %true81, label %end82
+
+true81:                                           ; preds = %end64
+  store i64 0, i64* %2
+  store i64 %cc_fold, i64* %3
+  store i64 %accuml, i64* %4
+  store i64 %accumg, i64* %5
+  store double 0.000000e+00, double* %6
+  store double %return77, double* %7
+  store i64 %dolwarp, i64* %9
+  store i64 %dogwarp, i64* %10
+  store double %output71, double* %11
+  store double %dfreq.0, double* %12
+  store double %gflow, double* %13
+  store double %oct, double* %15
+  store double %lac, double* %16
+  store double %rough, double* %17
+  %hmfT_sparse = call double @"hmfT_sparse@FVIIIIFFVIIFFFFFVFFFF"(<3 x double>* %p1, i64* %2, i64* %3, i64* %4, i64* %5, double* %6, double* %7, <3 x double>* %8, i64* %9, i64* %10, double* %11, double* %12, double* %13, double* %14, double* %x_avg, <3 x double>* %x_off, double* %15, double* %16, double* %17, double* %x_oct)
+  br label %end82
+
+end82:                                            ; preds = %true81, %end64
+  %n1.0 = phi double [ %hmfT_sparse, %true81 ], [ 0.000000e+00, %end64 ]
+  %output103 = fadd double %n1.0, 0.000000e+00
+  store double %output103, double* %18
+  store i64 %cc_inv, i64* %19
+  store i64 %cc_dobias, i64* %20
+  store <3 x double> %cc_bias, <3 x double>* %21
+  store i64 %cc_dogain, i64* %22
+  store <3 x double> %cc_gain, <3 x double>* %23
+  store i64 %cc_dorng, i64* %24
+  store <3 x double> %cc_rnglo, <3 x double>* %25
+  store <3 x double> %cc_rnghi, <3 x double>* %26
+  store <3 x double> %cc_amp, <3 x double>* %27
+  %noise_cc = call double @"noise_cc@FFIIVIVIVVV"(double* %18, i64* %19, i64* %20, <3 x double>* %21, i64* %22, <3 x double>* %23, i64* %24, <3 x double>* %25, <3 x double>* %26, <3 x double>* %27)
+  %return119 = call double @"fit@FFFFFF"(double %noise_cc, double %srcmin, double %srcmax, double %srcmin, double %srcmax)
+  %output121 = fsub double %srcmin, 5.000000e-01
+  %output123 = fsub double %srcmax, 5.000000e-01
+  %return129 = call double @"fit@FFFFFF"(double %noise_cc, double %srcmin, double %srcmax, double %output121, double %output123)
+  %return131 = call i64 @"eq@III"(i64 %centernoise, i64 0)
+  %29 = icmp ne i64 %return131, 0
+  br i1 %29, label %true132, label %false133
+
+true132:                                          ; preds = %end82
+  br label %end134
+
+false133:                                         ; preds = %end82
+  br label %end134
+
+end134:                                           ; preds = %false133, %true132
+  %result.0 = phi double [ %return119, %true132 ], [ %return129, %false133 ]
+  %output139 = fmul double %result.0, %finalamp
+  %output142 = fadd double %density, %output139
+  %output145 = fmul double %density, %output139
+  %return147 = call i64 @"eq@III"(i64 %combinemethod, i64 0)
+  %30 = icmp ne i64 %return147, 0
+  br i1 %30, label %true148, label %false149
+
+true148:                                          ; preds = %end134
+  br label %end150
+
+false149:                                         ; preds = %end134
+  %return153 = call i64 @"eq@III"(i64 %combinemethod, i64 1)
+  %31 = icmp ne i64 %return153, 0
+  br i1 %31, label %true154, label %false155
+
+end150:                                           ; preds = %true154, %false155, %true148
+  %result1.0 = phi double [ %output139, %true148 ], [ %output142, %true154 ], [ %output145, %false155 ]
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @4, i64 0, i64 0), double %result1.0) #4
+  store double %gvalue, double* @density
+  ret void
+
+true154:                                          ; preds = %false149
+  br label %end150
+
+false155:                                         ; preds = %false149
+  br label %end150
+}
+
+; Function Attrs: nounwind
+declare { double, double, double } @"assign@FFFV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #0
+
+; Function Attrs: nounwind
+declare double @"max@FP"(<4 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #0
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_Desert_Terrain_1_1_Desert_Terrain1_heightfield_masknoise1_apply_noise(<3 x double> zeroinitializer, <4 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, double 8.000000e+00, double 2.012340e+00, double 0.000000e+00, double 5.000000e-01, i64 0, i64 0, <3 x double> <double 5.000000e-01, double 5.000000e-01, double 5.000000e-01>, i64 0, <3 x double> <double 5.000000e-01, double 5.000000e-01, double 5.000000e-01>, i64 0, double 1.000000e+00, i64 0, double 1.000000e+03, double 5.000000e+02, <3 x double> zeroinitializer, double 0.000000e+00, double 1.000000e+00, i64 0, i64 1, i64 1, double 1.000000e+00, double 3.000000e+00, i64 0, i64 0, double 0.000000e+00, i64 0, <3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, <3 x double> zeroinitializer, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { nounwind readnone }
+attributes #1 = { alwaysinline nounwind }
+attributes #2 = { nounwind }
+attributes #3 = { alwaysinline }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

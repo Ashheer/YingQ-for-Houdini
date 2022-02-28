@@ -1,0 +1,25 @@
+[17:44:29.271] Running Houdini 19.0.498 with PID 40320
+[17:44:29.272] HDA: C:/Users/YingQ/3D/Houdini_libs/YingQ-for-Houdini/otls/Desert_split_and_Scatter.1.0.hda
+[17:44:29.272] Operator Type: Sop/Desert_split_and_Scatter::1.0
+[17:44:31.510] Setting input 0 to C:/Users/YingQ/Desktop/houdini_desertscene_project_v1_1/Houdini files/geo/Desert_Terrain..0.bgeo.sc
+[17:44:31.511] Setting parm tilecount to: [4, 4]
+[17:44:31.511] Setting parm tilenum to: [5]
+[17:44:31.511] Setting parm Seed to: [1.82]
+[17:44:31.511] Setting parm scatteralign1_densityscale to: [1.0]
+[17:44:31.511] Setting parm attribnoise1_elementsize to: [3.12]
+[17:44:31.512] Setting parm scatteralign2_densityscale to: [1.0]
+[17:44:31.512] Setting parm scatteralign3_densityscale to: [1.0]
+[17:44:31.512] Setting parm heightfield_scatter1_density to: [1.0]
+[17:44:31.512] Setting parm attribute_value_replace1_to_0 to: ["StaticMesh'/Game/Megascans/3D_Assets/Icelandic_Jagged_Lava_Outcrop_00/shxxJ_LOD2.shxxJ_LOD2'"]
+[17:44:31.512] Setting parm attribute_value_replace1_to_1 to: ["StaticMesh'/Game/Megascans/3D_Assets/Huge_Icelandic_Lava_Cliff_00/siErE_LOD3.siErE_LOD3'"]
+[17:44:31.512] Setting parm attribrandomize5_strvalue0 to: ["StaticMesh'/Game/Megascans/3D_Assets/Small_Limestone_Rocks_Pack_00/ufilejqva_LOD5_1.ufilejqva_LOD5_1'"]
+[17:44:31.512] Setting parm attribrandomize5_strvalue1 to: ["StaticMesh'/Game/Megascans/3D_Assets/Small_Limestone_Rocks_Pack_00/ufilejqva_LOD5_2.ufilejqva_LOD5_2'"]
+[17:44:31.513] Setting parm attribrandomize5_strvalue2 to: ["StaticMesh'/Game/Megascans/3D_Assets/Small_Limestone_Rocks_Pack_00/ufilejqva_LOD5_3.ufilejqva_LOD5_3'"]
+[17:44:31.513] Setting parm attribrandomize5_strvalue3 to: ["StaticMesh'/Game/Megascans/3D_Assets/Small_Limestone_Rocks_Pack_00/ufilejqva_LOD5_4.ufilejqva_LOD5_4'"]
+[17:44:31.513] Setting parm attribrandomize5_strvalue4 to: ["StaticMesh'/Game/Megascans/3D_Assets/Small_Limestone_Rocks_Pack_00/ufilejqva_LOD5_5.ufilejqva_LOD5_5'"]
+[17:44:31.513] Setting parm attribrandomize5_strvalue5 to: ["StaticMesh'/Game/Megascans/3D_Assets/Small_Limestone_Rocks_Pack_00/ufilejqva_LOD5_6.ufilejqva_LOD5_6'"]
+[17:44:31.513] Setting parm attribrandomize4_strvalue0 to: ["StaticMesh'/Game/Desert_project/Models/Bush_01.Bush_01'"]
+[17:44:31.513] Setting parm attribute_value_replace2_to_0 to: ["Blueprint'/Game/Desert_project/Prefab/Portal_2_scene.Portal_2_scene'"]
+[17:44:31.513] Setting parm attribute_value_replace2_to_1 to: ["Blueprint'/Game/Desert_project/Prefab/Portal_3_scene.Portal_3_scene'"]
+[17:44:31.513] Setting parm attribute_value_replace2_to_2 to: ["Blueprint'/Game/Desert_project/Prefab/Portal_1_scene.Portal_1_scene'"]
+[17:44:35.746] PDG_RESULT: 23;-1;C:/Users/YingQ/Desktop/houdini_desertscene_project_v1_1/Houdini files/geo/HE_OUT_Split_and_Scatter..0.bgeo.sc;file/geo;0

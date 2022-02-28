@@ -1,0 +1,4 @@
+[18:06:50.391] Running Houdini 19.0.498 with PID 39924
+[18:06:50.391] HDA: C:/Users/YingQ/Documents/houdini18.5/otls/Desert_Terrain.1.0.hda
+[18:06:50.392] Operator Type: Sop/Desert_Terrain::1.0
+[18:06:50.393] ERROR: The HDA <C:/Users/YingQ/Documents/houdini18.5/otls/Desert_Terrain.1.0.hda> could not be found

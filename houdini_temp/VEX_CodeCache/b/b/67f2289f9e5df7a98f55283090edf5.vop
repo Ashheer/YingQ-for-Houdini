@@ -1,0 +1,117 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"input_min\00"
+@1 = private constant [10 x i8] c"input_max\00"
+@2 = private constant [11 x i8] c"output_min\00"
+@3 = private constant [11 x i8] c"output_max\00"
+@4 = private constant [10 x i8] c"clamp_min\00"
+@5 = private constant [10 x i8] c"clamp_max\00"
+@6 = private constant [11 x i8] c"remap_ramp\00"
+@density = external global double
+@7 = private constant [8 x i8] c"density\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@F"(double* %_bound_density) #0 {
+__llvm_entry:
+  %return = call double @"ch@FS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0))
+  %return1 = call double @"ch@FS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0))
+  %return2 = call double @"ch@FS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @2, i64 0, i64 0))
+  %return3 = call double @"ch@FS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @3, i64 0, i64 0))
+  %_bound_density4 = load double, double* %_bound_density
+  %return6 = fcmp olt double %_bound_density4, %return
+  br i1 %return6, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return8 = call i64 @"chi@IS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @4, i64 0, i64 0))
+  %0 = icmp ne i64 %return8, 0
+  br i1 %0, label %true9, label %false10
+
+false:                                            ; preds = %__llvm_entry
+  %return20 = fcmp ogt double %_bound_density4, %return1
+  br i1 %return20, label %true22, label %false23
+
+end:                                              ; preds = %true26, %false27, %false23, %true9, %false10
+  ret void
+
+true9:                                            ; preds = %true
+  store double %return2, double* %_bound_density
+  br label %end
+
+false10:                                          ; preds = %true
+  %output = fsub double %_bound_density4, %return
+  %output17 = fadd double %output, %return2
+  store double %output17, double* %_bound_density
+  br label %end
+
+true22:                                           ; preds = %false
+  %return25 = call i64 @"chi@IS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @5, i64 0, i64 0))
+  %1 = icmp ne i64 %return25, 0
+  br i1 %1, label %true26, label %false27
+
+false23:                                          ; preds = %false
+  %return39 = call double @"fit@FFFFFF"(double %_bound_density4, double %return, double %return1, double 0.000000e+00, double 1.000000e+00)
+  %return41 = call double @"chramp@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @6, i64 0, i64 0), double %return39)
+  store double %return41, double* %_bound_density
+  %return45 = call double @"fit@FFFFFF"(double %return41, double 0.000000e+00, double 1.000000e+00, double %return2, double %return3)
+  store double %return45, double* %_bound_density
+  br label %end
+
+true26:                                           ; preds = %true22
+  store double %return3, double* %_bound_density
+  br label %end
+
+false27:                                          ; preds = %true22
+  %output32 = fsub double %_bound_density4, %return1
+  %output35 = fadd double %output32, %return3
+  store double %output35, double* %_bound_density
+  br label %end
+}
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind
+declare double @"fit@FFFFFF"(double, double, double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"chramp@FSF"(i8*, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %density) #2 {
+__llvm_entry:
+  %"<density>" = alloca double
+  store double %density, double* %"<density>"
+  call void @"__vex_snippet_snippet@F"(double* %"<density>")
+  %evalue = load double, double* %"<density>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @7, i64 0, i64 0), double %evalue) #3
+  store double %gvalue, double* @density
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

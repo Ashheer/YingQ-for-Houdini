@@ -1,0 +1,91 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [5 x i8] c"name\00"
+@1 = private constant [0 x i8*] zeroinitializer
+@createlist = external global i8**
+@2 = private constant [11 x i8] c"createlist\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@[S"(i8*** %_bound_createlist) #0 {
+__llvm_entry:
+  %_bound_createlist1 = load i8**, i8*** %_bound_createlist
+  %return = call i64 @"len@I[S"(i8** %_bound_createlist1)
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %__impl_foreach_index_a7.0 = phi i64 [ 0, %__llvm_entry ], [ %output, %body ]
+  %return4 = call i64 @"lt@III"(i64 %__impl_foreach_index_a7.0, i64 %return)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %_bound_createlist5 = load i8**, i8*** %_bound_createlist
+  %return7 = call i8* @"getcomp@S[SI"(i8** %_bound_createlist5, i64 %__impl_foreach_index_a7.0)
+  %return8 = call i64 @"geoself@I"()
+  %return9 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  %return10 = call i64 @"addpoint@IIV"(i64 %return8, <3 x double> %return9)
+  %return11 = call i64 @"geoself@I"()
+  %return14 = call i64 @"setpointattrib@IISIS"(i64 %return11, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0), i64 %return10, i8* %return7)
+  %output = add i64 %__impl_foreach_index_a7.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[S"(i8**) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"getcomp@S[SI"(i8**, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+declare i64 @"addpoint@IIV"(i64, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare i64 @"setpointattrib@IISIS"(i64, i8*, i64, i8*) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8** %createlist) #2 {
+__llvm_entry:
+  %0 = alloca i8**
+  store i8** %createlist, i8*** %0
+  call void @"__vex_snippet_snippet@[S"(i8*** %0)
+  %gvalue = call i8** @"_export@[SS[S"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @2, i64 0, i64 0), i8** %createlist) #3
+  store i8** %gvalue, i8*** @createlist
+  ret void
+}
+
+declare i8** @"_export@[SS[S"(i8*, i8**)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8** getelementptr inbounds ([0 x i8*], [0 x i8*]* @1, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

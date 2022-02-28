@@ -1,0 +1,247 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [7 x i8] c"pscale\00"
+@1 = private constant [7 x i8] c"orient\00"
+@2 = private constant [19 x i8] c"scaleblendbyattrib\00"
+@3 = private constant [15 x i8] c"blendattribute\00"
+@4 = private constant [18 x i8] c"scaleconebyattrib\00"
+@5 = private constant [14 x i8] c"coneattribute\00"
+@6 = private constant [21 x i8] c"scalebasenmlbyattrib\00"
+@7 = private constant [17 x i8] c"basenmlattribute\00"
+@8 = private constant [12 x i8] c"blendtarget\00"
+@9 = private constant [10 x i8] c"attribute\00"
+@10 = private constant [21 x i8] c"blendtargetattribute\00"
+@11 = private constant [7 x i8] c"upbias\00"
+@12 = private constant [13 x i8] c"upbiasattrib\00"
+@__sourceprim = external global i64
+@__sourceprimuv = external global <3 x double>
+@__pscale = external global double
+@__orient = external global <4 x double>
+@__blend_attrib = external global double
+@__cone_attrib = external global double
+@__basenml_attrib = external global double
+@__blend_target_attrib = external global <3 x double>
+@__up_target_attrib = external global <3 x double>
+@13 = private constant [13 x i8] c"__sourceprim\00"
+@14 = private constant [15 x i8] c"__sourceprimuv\00"
+@15 = private constant [9 x i8] c"__pscale\00"
+@16 = private constant [9 x i8] c"__orient\00"
+@17 = private constant [15 x i8] c"__blend_attrib\00"
+@18 = private constant [14 x i8] c"__cone_attrib\00"
+@19 = private constant [17 x i8] c"__basenml_attrib\00"
+@20 = private constant [22 x i8] c"__blend_target_attrib\00"
+@21 = private constant [19 x i8] c"__up_target_attrib\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IVFPFFFVV"(i64* %_bound___sourceprim, <3 x double>* %_bound___sourceprimuv, double* %_bound___pscale, <4 x double>* %_bound___orient, double* %_bound___blend_attrib, double* %_bound___cone_attrib, double* %_bound___basenml_attrib, <3 x double>* %_bound___blend_target_attrib, <3 x double>* %_bound___up_target_attrib) #0 {
+__llvm_entry:
+  %_bound___sourceprim1 = load i64, i64* %_bound___sourceprim
+  %_bound___sourceprimuv2 = load <3 x double>, <3 x double>* %_bound___sourceprimuv
+  %return = call i64 @"haspointattrib@IIS"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0))
+  %return3 = call i64 @"hasvertexattrib@IIS"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0))
+  %return4 = call i64 @"or@III"(i64 %return, i64 %return3)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound___pscale5 = load double, double* %_bound___pscale
+  %return8 = call double @"primuv@FISIV"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), i64 %_bound___sourceprim1, <3 x double> %_bound___sourceprimuv2)
+  %output = fmul double %_bound___pscale5, %return8
+  store double %output, double* %_bound___pscale
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %return9 = call <4 x double> @"set@PFFFF"(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00)
+  store <4 x double> %return9, <4 x double>* %_bound___orient
+  %return10 = call i64 @"haspointattrib@IIS"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0))
+  %return11 = call i64 @"hasvertexattrib@IIS"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0))
+  %return12 = call i64 @"or@III"(i64 %return10, i64 %return11)
+  %1 = icmp ne i64 %return12, 0
+  br i1 %1, label %true13, label %end14
+
+true13:                                           ; preds = %end
+  %return17 = call <4 x double> @"primuv@PISIV"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i64 %_bound___sourceprim1, <3 x double> %_bound___sourceprimuv2)
+  store <4 x double> %return17, <4 x double>* %_bound___orient
+  br label %end14
+
+end14:                                            ; preds = %true13, %end
+  store double 1.000000e+00, double* %_bound___blend_attrib
+  %return18 = call i64 @"chi@IS"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @2, i64 0, i64 0))
+  %2 = icmp ne i64 %return18, 0
+  br i1 %2, label %true19, label %end20
+
+true19:                                           ; preds = %end14
+  %return21 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @3, i64 0, i64 0))
+  %return24 = call double @"primuv@FISIV"(i64 1, i8* %return21, i64 %_bound___sourceprim1, <3 x double> %_bound___sourceprimuv2)
+  store double %return24, double* %_bound___blend_attrib
+  br label %end20
+
+end20:                                            ; preds = %true19, %end14
+  store double 1.000000e+00, double* %_bound___cone_attrib
+  %return25 = call i64 @"chi@IS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @4, i64 0, i64 0))
+  %3 = icmp ne i64 %return25, 0
+  br i1 %3, label %true26, label %end27
+
+true26:                                           ; preds = %end20
+  %return28 = call i8* @"chs@SS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @5, i64 0, i64 0))
+  %return31 = call double @"primuv@FISIV"(i64 1, i8* %return28, i64 %_bound___sourceprim1, <3 x double> %_bound___sourceprimuv2)
+  store double %return31, double* %_bound___cone_attrib
+  br label %end27
+
+end27:                                            ; preds = %true26, %end20
+  store double 1.000000e+00, double* %_bound___basenml_attrib
+  %return32 = call i64 @"chi@IS"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @6, i64 0, i64 0))
+  %4 = icmp ne i64 %return32, 0
+  br i1 %4, label %true33, label %end34
+
+true33:                                           ; preds = %end27
+  %return35 = call i8* @"chs@SS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @7, i64 0, i64 0))
+  %return38 = call double @"primuv@FISIV"(i64 1, i8* %return35, i64 %_bound___sourceprim1, <3 x double> %_bound___sourceprimuv2)
+  store double %return38, double* %_bound___basenml_attrib
+  br label %end34
+
+end34:                                            ; preds = %true33, %end27
+  %return39 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 1.000000e+00, double 0.000000e+00)
+  store <3 x double> %return39, <3 x double>* %_bound___blend_target_attrib
+  %return40 = call i8* @"chs@SS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @8, i64 0, i64 0))
+  %return41 = call i64 @"eq@ISS"(i8* %return40, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @9, i64 0, i64 0))
+  %5 = icmp ne i64 %return41, 0
+  br i1 %5, label %true42, label %end43
+
+true42:                                           ; preds = %end34
+  %return44 = call i8* @"chs@SS"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @10, i64 0, i64 0))
+  %return47 = call <3 x double> @"primuv@VISIV"(i64 1, i8* %return44, i64 %_bound___sourceprim1, <3 x double> %_bound___sourceprimuv2)
+  store <3 x double> %return47, <3 x double>* %_bound___blend_target_attrib
+  br label %end43
+
+end43:                                            ; preds = %true42, %end34
+  %return48 = call <3 x double> @"set@VFFF"(double 1.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  store <3 x double> %return48, <3 x double>* %_bound___up_target_attrib
+  %return49 = call i8* @"chs@SS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @11, i64 0, i64 0))
+  %return50 = call i64 @"eq@ISS"(i8* %return49, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @9, i64 0, i64 0))
+  %6 = icmp ne i64 %return50, 0
+  br i1 %6, label %true51, label %end52
+
+true51:                                           ; preds = %end43
+  %return53 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @12, i64 0, i64 0))
+  %return56 = call <3 x double> @"primuv@VISIV"(i64 1, i8* %return53, i64 %_bound___sourceprim1, <3 x double> %_bound___sourceprimuv2)
+  store <3 x double> %return56, <3 x double>* %_bound___up_target_attrib
+  br label %end52
+
+end52:                                            ; preds = %true51, %end43
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"haspointattrib@IIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"hasvertexattrib@IIS"(i64, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare double @"primuv@FISIV"(i64, i8*, i64, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PFFFF"(double, double, double, double) #2
+
+; Function Attrs: nounwind
+declare <4 x double> @"primuv@PISIV"(i64, i8*, i64, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"primuv@VISIV"(i64, i8*, i64, <3 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %__sourceprim, <3 x double> %__sourceprimuv, double %__pscale, <4 x double> %__orient, double %__blend_attrib, double %__cone_attrib, double %__basenml_attrib, <3 x double> %__blend_target_attrib, <3 x double> %__up_target_attrib) #1 {
+__llvm_entry:
+  %"<__pscale>" = alloca double
+  %"<__orient>" = alloca <4 x double>
+  %"<__blend_attrib>" = alloca double
+  %"<__cone_attrib>" = alloca double
+  %"<__basenml_attrib>" = alloca double
+  %"<__blend_target_attrib>" = alloca <3 x double>
+  %"<__up_target_attrib>" = alloca <3 x double>
+  %0 = alloca i64
+  %1 = alloca <3 x double>
+  store double %__pscale, double* %"<__pscale>"
+  store <4 x double> %__orient, <4 x double>* %"<__orient>"
+  store double %__blend_attrib, double* %"<__blend_attrib>"
+  store double %__cone_attrib, double* %"<__cone_attrib>"
+  store double %__basenml_attrib, double* %"<__basenml_attrib>"
+  store <3 x double> %__blend_target_attrib, <3 x double>* %"<__blend_target_attrib>"
+  store <3 x double> %__up_target_attrib, <3 x double>* %"<__up_target_attrib>"
+  store i64 %__sourceprim, i64* %0
+  store <3 x double> %__sourceprimuv, <3 x double>* %1
+  call void @"__vex_snippet_snippet@IVFPFFFVV"(i64* %0, <3 x double>* %1, double* %"<__pscale>", <4 x double>* %"<__orient>", double* %"<__blend_attrib>", double* %"<__cone_attrib>", double* %"<__basenml_attrib>", <3 x double>* %"<__blend_target_attrib>", <3 x double>* %"<__up_target_attrib>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @13, i64 0, i64 0), i64 %__sourceprim) #3
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @14, i64 0, i64 0), <3 x double> %__sourceprimuv) #3
+  %evalue5 = load double, double* %"<__pscale>"
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @15, i64 0, i64 0), double %evalue5) #3
+  %evalue7 = load <4 x double>, <4 x double>* %"<__orient>"
+  %gvalue8 = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @16, i64 0, i64 0), <4 x double> %evalue7) #3
+  %evalue9 = load double, double* %"<__blend_attrib>"
+  %gvalue10 = call double @"_export@FSF"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @17, i64 0, i64 0), double %evalue9) #3
+  %evalue11 = load double, double* %"<__cone_attrib>"
+  %gvalue12 = call double @"_export@FSF"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @18, i64 0, i64 0), double %evalue11) #3
+  %evalue13 = load double, double* %"<__basenml_attrib>"
+  %gvalue14 = call double @"_export@FSF"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @19, i64 0, i64 0), double %evalue13) #3
+  %evalue15 = load <3 x double>, <3 x double>* %"<__blend_target_attrib>"
+  %gvalue16 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([22 x i8], [22 x i8]* @20, i64 0, i64 0), <3 x double> %evalue15) #3
+  %evalue17 = load <3 x double>, <3 x double>* %"<__up_target_attrib>"
+  %gvalue18 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @21, i64 0, i64 0), <3 x double> %evalue17) #3
+  store i64 %gvalue, i64* @__sourceprim
+  store <3 x double> %gvalue4, <3 x double>* @__sourceprimuv
+  store double %gvalue6, double* @__pscale
+  store <4 x double> %gvalue8, <4 x double>* @__orient
+  store double %gvalue10, double* @__blend_attrib
+  store double %gvalue12, double* @__cone_attrib
+  store double %gvalue14, double* @__basenml_attrib
+  store <3 x double> %gvalue16, <3 x double>* @__blend_target_attrib
+  store <3 x double> %gvalue18, <3 x double>* @__up_target_attrib
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, <3 x double> zeroinitializer, double 0.000000e+00, <4 x double> zeroinitializer, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, <3 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

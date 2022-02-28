@@ -1,0 +1,106 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [19 x i8] c"../enabledirection\00"
+@1 = private constant [15 x i8] c"../castshadows\00"
+@2 = private constant [12 x i8] c"../enableao\00"
+@__combined = external global double
+@__direction = external global double
+@__shadow = external global double
+@__ao = external global double
+@3 = private constant [11 x i8] c"__combined\00"
+@4 = private constant [12 x i8] c"__direction\00"
+@5 = private constant [9 x i8] c"__shadow\00"
+@6 = private constant [5 x i8] c"__ao\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FFFF"(double* %_bound___combined, double* %_bound___direction, double* %_bound___shadow, double* %_bound___ao) #0 {
+__llvm_entry:
+  store double 1.000000e+00, double* %_bound___combined
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @0, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound___direction2 = load double, double* %_bound___direction
+  store double %_bound___direction2, double* %_bound___combined
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %return3 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @1, i64 0, i64 0))
+  %1 = icmp ne i64 %return3, 0
+  br i1 %1, label %true4, label %end5
+
+true4:                                            ; preds = %end
+  %_bound___combined6 = load double, double* %_bound___combined
+  %_bound___shadow7 = load double, double* %_bound___shadow
+  %output8 = fmul double %_bound___combined6, %_bound___shadow7
+  store double %output8, double* %_bound___combined
+  br label %end5
+
+end5:                                             ; preds = %true4, %end
+  %return9 = call i64 @"chi@IS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @2, i64 0, i64 0))
+  %2 = icmp ne i64 %return9, 0
+  br i1 %2, label %true10, label %end11
+
+true10:                                           ; preds = %end5
+  %_bound___combined12 = load double, double* %_bound___combined
+  %_bound___ao13 = load double, double* %_bound___ao
+  %output14 = fmul double %_bound___combined12, %_bound___ao13
+  store double %output14, double* %_bound___combined
+  br label %end11
+
+end11:                                            ; preds = %true10, %end5
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %__combined, double %__direction, double %__shadow, double %__ao) #2 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca double
+  %2 = alloca double
+  %"<__combined>" = alloca double
+  store double %__combined, double* %"<__combined>"
+  store double %__direction, double* %0
+  store double %__shadow, double* %1
+  store double %__ao, double* %2
+  call void @"__vex_snippet_snippet@FFFF"(double* %"<__combined>", double* %0, double* %1, double* %2)
+  %evalue = load double, double* %"<__combined>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @3, i64 0, i64 0), double %evalue) #3
+  %gvalue5 = call double @"_export@FSF"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @4, i64 0, i64 0), double %__direction) #3
+  %gvalue7 = call double @"_export@FSF"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0), double %__shadow) #3
+  %gvalue9 = call double @"_export@FSF"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @6, i64 0, i64 0), double %__ao) #3
+  store double %gvalue, double* @__combined
+  store double %gvalue5, double* @__direction
+  store double %gvalue7, double* @__shadow
+  store double %gvalue9, double* @__ao
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end
