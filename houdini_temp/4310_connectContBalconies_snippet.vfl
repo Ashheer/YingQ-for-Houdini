@@ -1,0 +1,24 @@
+//Identify Current and Previous IDs
+    int curSegment = i@segment;
+    int prevSegment = point(0,"segment", @ptnum - 1 );
+
+//Get maximum segment count & remaining segment count.
+    int maxSegments = chi("maxSegments");
+    int maxFloorSegments = chi("maxFloorSegments");
+    
+    int lastFloorSegment = point(0,"segment", maxFloorSegments );    
+    
+//Connect current and previous segment with a polyline.
+    if( prevSegment == curSegment - 1)
+    {
+        addprim(0,"polyline",@ptnum,@ptnum - 1);
+    }
+
+//If segment 0 & the last remaining segment is also the maximum segment
+//Connect both with a polyline.
+    if( i@segment == 0 && lastFloorSegment == maxSegments )
+    {
+        addprim(0,"polyline",@ptnum,maxFloorSegments);
+    }    
+    
+    //i@segmentTest = lastFloorSegment ;
