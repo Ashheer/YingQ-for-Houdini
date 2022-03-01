@@ -1,0 +1,89 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [8 x i8] c"yHeight\00"
+@N = external global <3 x double>
+@up = external global <3 x double>
+@scale = external global <3 x double>
+@1 = private constant [2 x i8] c"N\00"
+@2 = private constant [3 x i8] c"up\00"
+@3 = private constant [6 x i8] c"scale\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VVV"(<3 x double>* %_bound_N, <3 x double>* %_bound_up, <3 x double>* %_bound_scale) #0 {
+__llvm_entry:
+  store <3 x double> <double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, <3 x double>* %_bound_N
+  store <3 x double> <double 0.000000e+00, double 1.000000e+00, double 0.000000e+00>, <3 x double>* %_bound_up
+  %cast = call <3 x double> @"set@VI"(i64 1)
+  store <3 x double> %cast, <3 x double>* %_bound_scale
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0))
+  %return1 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %cast, double %return, i64 1)
+  %output = extractvalue { double, <3 x double> } %return1, 1
+  store <3 x double> %output, <3 x double>* %_bound_scale
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #2 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 1)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %N, <3 x double> %up, <3 x double> %scale) #3 {
+__llvm_entry:
+  %"<up>" = alloca <3 x double>
+  %"<scale>" = alloca <3 x double>
+  %"<N>" = alloca <3 x double>
+  store <3 x double> %N, <3 x double>* %"<N>"
+  store <3 x double> %up, <3 x double>* %"<up>"
+  store <3 x double> %scale, <3 x double>* %"<scale>"
+  call void @"__vex_snippet_snippet@VVV"(<3 x double>* %"<N>", <3 x double>* %"<up>", <3 x double>* %"<scale>")
+  %evalue = load <3 x double>, <3 x double>* %"<N>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %evalue) #4
+  %evalue1 = load <3 x double>, <3 x double>* %"<up>"
+  %gvalue2 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @2, i64 0, i64 0), <3 x double> %evalue1) #4
+  %evalue3 = load <3 x double>, <3 x double>* %"<scale>"
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0), <3 x double> %evalue3) #4
+  store <3 x double> %gvalue, <3 x double>* @N
+  store <3 x double> %gvalue2, <3 x double>* @up
+  store <3 x double> %gvalue4, <3 x double>* @scale
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { alwaysinline }
+attributes #3 = { nounwind }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end
