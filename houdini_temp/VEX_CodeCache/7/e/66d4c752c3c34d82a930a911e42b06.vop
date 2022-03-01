@@ -1,0 +1,288 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [20 x i8] c"Roof Props Disabled\00"
+@1 = private constant [11 x i8] c"outputMode\00"
+@2 = private constant [17 x i8] c"Unreal Instances\00"
+@3 = private constant [23 x i8] c"Unreal Split Instances\00"
+@4 = private constant [41 x i8] c"FBX Meshes - Combined Generated Geometry\00"
+@5 = private constant [42 x i8] c"FBX Meshes - Instanced Generated Geometry\00"
+@6 = private constant [1 x i8] zeroinitializer
+@7 = private constant [13 x i8] c"- Material: \00"
+@8 = private constant [13 x i8] c"materialMode\00"
+@9 = private constant [18 x i8] c"Visualizer Colors\00"
+@10 = private constant [24 x i8] c"Unreal Material Per FBX\00"
+@11 = private constant [14 x i8] c"- Collision: \00"
+@12 = private constant [8 x i8] c"colMode\00"
+@13 = private constant [5 x i8] c"None\00"
+@14 = private constant [22 x i8] c"Sourced From FBX Data\00"
+@15 = private constant [10 x i8] c"colMethod\00"
+@16 = private constant [30 x i8] c"New Simple Collision - Shared\00"
+@17 = private constant [54 x i8] c"New Simple Collision - Multiple Collisions Per Object\00"
+@18 = private constant [57 x i8] c"New Simple Collision - Unique Object For Every Collision\00"
+@19 = private constant [27 x i8] c"New UCX Collision - Shared\00"
+@20 = private constant [51 x i8] c"New UCX Collision - Multiple Collisions Per Object\00"
+@21 = private constant [54 x i8] c"New UCX Collision - Unique Object For Every Collision\00"
+@22 = private constant [21 x i8] c"New Simple Collision\00"
+@23 = private constant [18 x i8] c"New UCX Collision\00"
+@text = external global i8*
+@text_Mat = external global i8*
+@text_Col = external global i8*
+@24 = private constant [5 x i8] c"text\00"
+@25 = private constant [9 x i8] c"text_Mat\00"
+@26 = private constant [9 x i8] c"text_Col\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@SSS"(i8** %_bound_text, i8** %_bound_text_Mat, i8** %_bound_text_Col) #0 {
+__llvm_entry:
+  store i8* getelementptr inbounds ([20 x i8], [20 x i8]* @0, i64 0, i64 0), i8** %_bound_text
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @1, i64 0, i64 0))
+  %return2 = call i64 @"eq@III"(i64 %return, i64 1)
+  %0 = icmp ne i64 %return2, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  store i8* getelementptr inbounds ([17 x i8], [17 x i8]* @2, i64 0, i64 0), i8** %_bound_text
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %return4 = call i64 @"eq@III"(i64 %return, i64 2)
+  %1 = icmp ne i64 %return4, 0
+  br i1 %1, label %true5, label %end6
+
+true5:                                            ; preds = %end
+  store i8* getelementptr inbounds ([23 x i8], [23 x i8]* @3, i64 0, i64 0), i8** %_bound_text
+  br label %end6
+
+end6:                                             ; preds = %true5, %end
+  %return8 = call i64 @"eq@III"(i64 %return, i64 3)
+  %2 = icmp ne i64 %return8, 0
+  br i1 %2, label %true9, label %end10
+
+true9:                                            ; preds = %end6
+  store i8* getelementptr inbounds ([41 x i8], [41 x i8]* @4, i64 0, i64 0), i8** %_bound_text
+  br label %end10
+
+end10:                                            ; preds = %true9, %end6
+  %return12 = call i64 @"eq@III"(i64 %return, i64 4)
+  %3 = icmp ne i64 %return12, 0
+  br i1 %3, label %true13, label %end14
+
+true13:                                           ; preds = %end10
+  store i8* getelementptr inbounds ([42 x i8], [42 x i8]* @5, i64 0, i64 0), i8** %_bound_text
+  br label %end14
+
+end14:                                            ; preds = %true13, %end10
+  %return16 = call i64 @"gt@III"(i64 %return, i64 2)
+  %4 = icmp ne i64 %return16, 0
+  %. = select i1 %4, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @7, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @6, i64 0, i64 0)
+  store i8* %., i8** %_bound_text_Mat
+  %return21 = call i64 @"chi@IS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return22 = call i64 @"eq@III"(i64 %return21, i64 0)
+  %return23 = call i64 @"and@III"(i64 %return16, i64 %return22)
+  %5 = icmp ne i64 %return23, 0
+  br i1 %5, label %true24, label %end25
+
+true24:                                           ; preds = %end14
+  %output = call i8* @"add@SS"(i8* %., i8* getelementptr inbounds ([18 x i8], [18 x i8]* @9, i64 0, i64 0))
+  store i8* %output, i8** %_bound_text_Mat
+  br label %end25
+
+end25:                                            ; preds = %true24, %end14
+  %return30 = call i64 @"eq@III"(i64 %return21, i64 1)
+  %return31 = call i64 @"and@III"(i64 %return16, i64 %return30)
+  %6 = icmp ne i64 %return31, 0
+  br i1 %6, label %true32, label %end33
+
+true32:                                           ; preds = %end25
+  %_bound_text_Mat34 = load i8*, i8** %_bound_text_Mat
+  %output35 = call i8* @"add@SS"(i8* %_bound_text_Mat34, i8* getelementptr inbounds ([24 x i8], [24 x i8]* @10, i64 0, i64 0))
+  store i8* %output35, i8** %_bound_text_Mat
+  br label %end33
+
+end33:                                            ; preds = %true32, %end25
+  %.148 = select i1 %4, i8* getelementptr inbounds ([14 x i8], [14 x i8]* @11, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @6, i64 0, i64 0)
+  store i8* %.148, i8** %_bound_text_Col
+  %return42 = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @12, i64 0, i64 0))
+  %return43 = call i64 @"eq@III"(i64 %return42, i64 0)
+  %return44 = call i64 @"and@III"(i64 %return16, i64 %return43)
+  %7 = icmp ne i64 %return44, 0
+  br i1 %7, label %true45, label %end46
+
+true45:                                           ; preds = %end33
+  %output48 = call i8* @"add@SS"(i8* %.148, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @13, i64 0, i64 0))
+  store i8* %output48, i8** %_bound_text_Col
+  br label %end46
+
+end46:                                            ; preds = %true45, %end33
+  %return52 = call i64 @"eq@III"(i64 %return42, i64 1)
+  %return53 = call i64 @"and@III"(i64 %return16, i64 %return52)
+  %8 = icmp ne i64 %return53, 0
+  br i1 %8, label %true54, label %end55
+
+true54:                                           ; preds = %end46
+  %_bound_text_Col56 = load i8*, i8** %_bound_text_Col
+  %output57 = call i8* @"add@SS"(i8* %_bound_text_Col56, i8* getelementptr inbounds ([22 x i8], [22 x i8]* @14, i64 0, i64 0))
+  store i8* %output57, i8** %_bound_text_Col
+  br label %end55
+
+end55:                                            ; preds = %true54, %end46
+  %return61 = call i64 @"eq@III"(i64 %return42, i64 2)
+  %return62 = call i64 @"and@III"(i64 %return8, i64 %return61)
+  %return63 = call i64 @"chi@IS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @15, i64 0, i64 0))
+  %return64 = call i64 @"eq@III"(i64 %return63, i64 0)
+  %return65 = call i64 @"and@III"(i64 %return62, i64 %return64)
+  %9 = icmp ne i64 %return65, 0
+  br i1 %9, label %true66, label %end67
+
+true66:                                           ; preds = %end55
+  %_bound_text_Col68 = load i8*, i8** %_bound_text_Col
+  %output69 = call i8* @"add@SS"(i8* %_bound_text_Col68, i8* getelementptr inbounds ([30 x i8], [30 x i8]* @16, i64 0, i64 0))
+  store i8* %output69, i8** %_bound_text_Col
+  br label %end67
+
+end67:                                            ; preds = %true66, %end55
+  %return76 = call i64 @"eq@III"(i64 %return63, i64 1)
+  %return77 = call i64 @"and@III"(i64 %return62, i64 %return76)
+  %10 = icmp ne i64 %return77, 0
+  br i1 %10, label %true78, label %end79
+
+true78:                                           ; preds = %end67
+  %_bound_text_Col80 = load i8*, i8** %_bound_text_Col
+  %output81 = call i8* @"add@SS"(i8* %_bound_text_Col80, i8* getelementptr inbounds ([54 x i8], [54 x i8]* @17, i64 0, i64 0))
+  store i8* %output81, i8** %_bound_text_Col
+  br label %end79
+
+end79:                                            ; preds = %true78, %end67
+  %return88 = call i64 @"eq@III"(i64 %return63, i64 2)
+  %return89 = call i64 @"and@III"(i64 %return62, i64 %return88)
+  %11 = icmp ne i64 %return89, 0
+  br i1 %11, label %true90, label %end91
+
+true90:                                           ; preds = %end79
+  %_bound_text_Col92 = load i8*, i8** %_bound_text_Col
+  %output93 = call i8* @"add@SS"(i8* %_bound_text_Col92, i8* getelementptr inbounds ([57 x i8], [57 x i8]* @18, i64 0, i64 0))
+  store i8* %output93, i8** %_bound_text_Col
+  br label %end91
+
+end91:                                            ; preds = %true90, %end79
+  %return97 = call i64 @"eq@III"(i64 %return42, i64 3)
+  %return98 = call i64 @"and@III"(i64 %return8, i64 %return97)
+  %return101 = call i64 @"and@III"(i64 %return98, i64 %return64)
+  %12 = icmp ne i64 %return101, 0
+  br i1 %12, label %true102, label %end103
+
+true102:                                          ; preds = %end91
+  %_bound_text_Col104 = load i8*, i8** %_bound_text_Col
+  %output105 = call i8* @"add@SS"(i8* %_bound_text_Col104, i8* getelementptr inbounds ([27 x i8], [27 x i8]* @19, i64 0, i64 0))
+  store i8* %output105, i8** %_bound_text_Col
+  br label %end103
+
+end103:                                           ; preds = %true102, %end91
+  %return113 = call i64 @"and@III"(i64 %return98, i64 %return76)
+  %13 = icmp ne i64 %return113, 0
+  br i1 %13, label %true114, label %end115
+
+true114:                                          ; preds = %end103
+  %_bound_text_Col116 = load i8*, i8** %_bound_text_Col
+  %output117 = call i8* @"add@SS"(i8* %_bound_text_Col116, i8* getelementptr inbounds ([51 x i8], [51 x i8]* @20, i64 0, i64 0))
+  store i8* %output117, i8** %_bound_text_Col
+  br label %end115
+
+end115:                                           ; preds = %true114, %end103
+  %return125 = call i64 @"and@III"(i64 %return98, i64 %return88)
+  %14 = icmp ne i64 %return125, 0
+  br i1 %14, label %true126, label %end127
+
+true126:                                          ; preds = %end115
+  %_bound_text_Col128 = load i8*, i8** %_bound_text_Col
+  %output129 = call i8* @"add@SS"(i8* %_bound_text_Col128, i8* getelementptr inbounds ([54 x i8], [54 x i8]* @21, i64 0, i64 0))
+  store i8* %output129, i8** %_bound_text_Col
+  br label %end127
+
+end127:                                           ; preds = %true126, %end115
+  %return134 = call i64 @"and@III"(i64 %return12, i64 %return61)
+  %15 = icmp ne i64 %return134, 0
+  br i1 %15, label %true135, label %end136
+
+true135:                                          ; preds = %end127
+  %_bound_text_Col137 = load i8*, i8** %_bound_text_Col
+  %output138 = call i8* @"add@SS"(i8* %_bound_text_Col137, i8* getelementptr inbounds ([21 x i8], [21 x i8]* @22, i64 0, i64 0))
+  store i8* %output138, i8** %_bound_text_Col
+  br label %end136
+
+end136:                                           ; preds = %true135, %end127
+  %return143 = call i64 @"and@III"(i64 %return12, i64 %return97)
+  %16 = icmp ne i64 %return143, 0
+  br i1 %16, label %true144, label %end145
+
+true144:                                          ; preds = %end136
+  %_bound_text_Col146 = load i8*, i8** %_bound_text_Col
+  %output147 = call i8* @"add@SS"(i8* %_bound_text_Col146, i8* getelementptr inbounds ([18 x i8], [18 x i8]* @23, i64 0, i64 0))
+  store i8* %output147, i8** %_bound_text_Col
+  br label %end145
+
+end145:                                           ; preds = %true144, %end136
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"add@SS"(i8*, i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8* %text, i8* %text_Mat, i8* %text_Col) #2 {
+__llvm_entry:
+  %"<text_Mat>" = alloca i8*
+  %"<text_Col>" = alloca i8*
+  %"<text>" = alloca i8*
+  store i8* %text, i8** %"<text>"
+  store i8* %text_Mat, i8** %"<text_Mat>"
+  store i8* %text_Col, i8** %"<text_Col>"
+  call void @"__vex_snippet_snippet@SSS"(i8** %"<text>", i8** %"<text_Mat>", i8** %"<text_Col>")
+  %evalue = load i8*, i8** %"<text>"
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @24, i64 0, i64 0), i8* %evalue) #3
+  %evalue1 = load i8*, i8** %"<text_Mat>"
+  %gvalue2 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @25, i64 0, i64 0), i8* %evalue1) #3
+  %evalue3 = load i8*, i8** %"<text_Col>"
+  %gvalue4 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @26, i64 0, i64 0), i8* %evalue3) #3
+  store i8* %gvalue, i8** @text
+  store i8* %gvalue2, i8** @text_Mat
+  store i8* %gvalue4, i8** @text_Col
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @6, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @6, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @6, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end

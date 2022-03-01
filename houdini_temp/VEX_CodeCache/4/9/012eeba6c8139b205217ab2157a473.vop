@@ -1,0 +1,64 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@border = external global double
+@src_id = external global i64
+@primnum = external global i64
+@0 = private constant [7 x i8] c"border\00"
+@1 = private constant [7 x i8] c"src_id\00"
+@2 = private constant [8 x i8] c"primnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FII"(double* %_bound_border, i64* %_bound_src_id, i64* %_bound_primnum) #0 {
+__llvm_entry:
+  store double 0.000000e+00, double* %_bound_border
+  %_bound_primnum1 = load i64, i64* %_bound_primnum
+  store i64 %_bound_primnum1, i64* %_bound_src_id
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %border, i64 %src_id, i64 %primnum) #1 {
+__llvm_entry:
+  %"<src_id>" = alloca i64
+  %0 = alloca i64
+  %"<border>" = alloca double
+  store double %border, double* %"<border>"
+  store i64 %src_id, i64* %"<src_id>"
+  store i64 %primnum, i64* %0
+  call void @"__vex_snippet_snippet@FII"(double* %"<border>", i64* %"<src_id>", i64* %0)
+  %evalue = load double, double* %"<border>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), double %evalue) #2
+  %evalue2 = load i64, i64* %"<src_id>"
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i64 %evalue2) #2
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i64 %primnum) #2
+  store double %gvalue, double* @border
+  store i64 %gvalue3, i64* @src_id
+  store i64 %gvalue5, i64* @primnum
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.498"}
+!2 = !{!"64"}
+
+;_code_end
