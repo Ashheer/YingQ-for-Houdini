@@ -1,0 +1,71 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [17 x i8] c"../outside_group\00"
+@1 = private constant [1 x i8] zeroinitializer
+@name = external global i8*
+@__pieceattrib__ = external global i64
+@2 = private constant [5 x i8] c"name\00"
+@3 = private constant [16 x i8] c"__pieceattrib__\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@SI"(i8** %_bound_name, i64* %_bound___pieceattrib__) #0 {
+__llvm_entry:
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @0, i64 0, i64 0))
+  %_bound___pieceattrib__1 = load i64, i64* %_bound___pieceattrib__
+  %return2 = call i8* @"itoa@SI"(i64 %_bound___pieceattrib__1)
+  %output = call i8* @"add@SS"(i8* %return, i8* %return2)
+  store i8* %output, i8** %_bound_name
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"itoa@SI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"add@SS"(i8*, i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8* %name, i64 %__pieceattrib__) #2 {
+__llvm_entry:
+  %0 = alloca i64
+  %"<name>" = alloca i8*
+  store i8* %name, i8** %"<name>"
+  store i64 %__pieceattrib__, i64* %0
+  call void @"__vex_snippet_snippet@SI"(i8** %"<name>", i64* %0)
+  %evalue = load i8*, i8** %"<name>"
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0), i8* %evalue) #3
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @3, i64 0, i64 0), i64 %__pieceattrib__) #3
+  store i8* %gvalue, i8** @name
+  store i64 %gvalue3, i64* @__pieceattrib__
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0), i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

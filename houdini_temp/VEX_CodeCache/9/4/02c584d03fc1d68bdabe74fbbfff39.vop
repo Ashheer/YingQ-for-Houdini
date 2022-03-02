@@ -1,0 +1,70 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [6 x i8] c"point\00"
+@1 = private constant [10 x i8] c"patchname\00"
+@patchinstalled = external global i64
+@patchindex = external global i64
+@2 = private constant [15 x i8] c"patchinstalled\00"
+@3 = private constant [11 x i8] c"patchindex\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@II"(i64* %_bound_patchinstalled, i64* %_bound_patchindex) #0 {
+__llvm_entry:
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0))
+  %return1 = call i64 @"findattribval@IISSS"(i64 1, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0), i8* %return)
+  %return3 = call i64 @"ge@III"(i64 %return1, i64 0)
+  store i64 %return3, i64* %_bound_patchinstalled
+  store i64 %return1, i64* %_bound_patchindex
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"findattribval@IISSS"(i64, i8*, i8*, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %patchinstalled, i64 %patchindex) #2 {
+__llvm_entry:
+  %"<patchindex>" = alloca i64
+  %"<patchinstalled>" = alloca i64
+  store i64 %patchinstalled, i64* %"<patchinstalled>"
+  store i64 %patchindex, i64* %"<patchindex>"
+  call void @"__vex_snippet_snippet@II"(i64* %"<patchinstalled>", i64* %"<patchindex>")
+  %evalue = load i64, i64* %"<patchinstalled>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @2, i64 0, i64 0), i64 %evalue) #3
+  %evalue1 = load i64, i64* %"<patchindex>"
+  %gvalue2 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @3, i64 0, i64 0), i64 %evalue1) #3
+  store i64 %gvalue, i64* @patchinstalled
+  store i64 %gvalue2, i64* @patchindex
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

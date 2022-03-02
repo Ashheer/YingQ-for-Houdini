@@ -1,0 +1,74 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"stiffness\00"
+@1 = private constant [8 x i8] c"damping\00"
+@2 = private constant [10 x i8] c"restscale\00"
+@stiffness = external global double
+@dampingratio = external global double
+@restlength = external global double
+@3 = private constant [13 x i8] c"dampingratio\00"
+@4 = private constant [11 x i8] c"restlength\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FFF"(double* %_bound_stiffness, double* %_bound_dampingratio, double* %_bound_restlength) #0 {
+__llvm_entry:
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0))
+  store double %return, double* %_bound_stiffness
+  %return1 = call double @"chf@FS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0))
+  store double %return1, double* %_bound_dampingratio
+  %_bound_restlength2 = load double, double* %_bound_restlength
+  %return3 = call double @"chf@FS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0))
+  %output = fmul double %_bound_restlength2, %return3
+  store double %output, double* %_bound_restlength
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %stiffness, double %dampingratio, double %restlength) #2 {
+__llvm_entry:
+  %"<dampingratio>" = alloca double
+  %"<restlength>" = alloca double
+  %"<stiffness>" = alloca double
+  store double %stiffness, double* %"<stiffness>"
+  store double %dampingratio, double* %"<dampingratio>"
+  store double %restlength, double* %"<restlength>"
+  call void @"__vex_snippet_snippet@FFF"(double* %"<stiffness>", double* %"<dampingratio>", double* %"<restlength>")
+  %evalue = load double, double* %"<stiffness>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), double %evalue) #3
+  %evalue1 = load double, double* %"<dampingratio>"
+  %gvalue2 = call double @"_export@FSF"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @3, i64 0, i64 0), double %evalue1) #3
+  %evalue3 = load double, double* %"<restlength>"
+  %gvalue4 = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @4, i64 0, i64 0), double %evalue3) #3
+  store double %gvalue, double* @stiffness
+  store double %gvalue2, double* @dampingratio
+  store double %gvalue4, double* @restlength
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

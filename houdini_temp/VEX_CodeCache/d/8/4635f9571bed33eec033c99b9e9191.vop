@@ -1,0 +1,65 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"iteration\00"
+@1 = private constant [12 x i8] c"__breakgrp_\00"
+@primnum = external global i64
+@2 = private constant [8 x i8] c"primnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I"(i64* %_bound_primnum) #0 {
+__llvm_entry:
+  %return = call i64 @"detail@IIS"(i64 1, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0))
+  %return2 = call i8* @"itoa@SI"(i64 %return)
+  %output = call i8* @"add@SS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0), i8* %return2)
+  %_bound_primnum4 = load i64, i64* %_bound_primnum
+  %return5 = call i64 @"setprimgroup@IISII"(i64 0, i8* %output, i64 %_bound_primnum4, i64 1)
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"detail@IIS"(i64, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"itoa@SI"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i8* @"add@SS"(i8*, i8*) #2
+
+; Function Attrs: nounwind
+declare i64 @"setprimgroup@IISII"(i64, i8*, i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %primnum) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  store i64 %primnum, i64* %0
+  call void @"__vex_snippet_snippet@I"(i64* %0)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i64 %primnum) #3
+  store i64 %gvalue, i64* @primnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
