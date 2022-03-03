@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <tool name="sop_hdk_star" label="Star" icon="SOP_hdk_star">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/hdk_star</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Custom</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'hdk_star')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_attribtransformextract" label="Attribute Transform Extract" icon="SOP_kinefx-attribtransformextract">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/attribtransformextract</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::attribtransformextract')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_ikchains::2.0" label="IK Chains" icon="SOP_kinefx-ikchains-2.0">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/ikchains::2.0</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::ikchains::2.0')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_characterblendshapesadd" label="Character Blend Shapes Add" icon="SOP_kinefx-characterblendshapesadd">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/characterblendshapesadd</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::characterblendshapesadd')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_computetransform" label="Compute Transform" icon="SOP_kinefx-computetransform">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/computetransform</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::computetransform')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_motionclipextractkeyposes" label="MotionClip Extract Key Poses" icon="SOP_kinefx-motionclipextractkeyposes">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/motionclipextractkeyposes</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::motionclipextractkeyposes')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_fbxanimimport" label="FBX Animation Import" icon="SOP_kinefx-fbxanimimport">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/fbxanimimport</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::fbxanimimport')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_fbxskinimport" label="FBX Skin Import" icon="SOP_kinefx-fbxskinimport">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/fbxskinimport</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::fbxskinimport')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_mocapimport" label="Mocap Import" icon="SOP_kinefx-mocapimport">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/mocapimport</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::mocapimport')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_rop_gltfcharacteroutput" label="ROP GLTF Character Output" icon="SOP_kinefx-rop_gltfcharacteroutput">
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/rop_gltfcharacteroutput</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::rop_gltfcharacteroutput')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_rop_fbxcharacteroutput" label="ROP FBX Character Output" icon="SOP_kinefx-rop_fbxcharacteroutput">
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/rop_fbxcharacteroutput</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::rop_fbxcharacteroutput')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_rigattribvop" label="Rig Attribute VOP" icon="SOP_kinefx-rigattribvop">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/rigattribvop</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::rigattribvop')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_usdskinimport" label="USD Skin Import" icon="SOP_kinefx-usdskinimport">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/usdskinimport</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::usdskinimport')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_mocapstream" label="Mocap Stream" icon="SOP_kinefx-mocapstream">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/mocapstream</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::mocapstream')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_attribtransformcompute" label="Attribute Transform Compute" icon="SOP_kinefx-attribtransformcompute">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/attribtransformcompute</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::attribtransformcompute')]]></script>
+  </tool>
+
+  <tool name="kinefx::driver_filmboxfbxanimation" label="Filmbox FBX Animation" icon="ROP_kinefx-filmboxfbxanimation">
+    <toolMenuContext name="viewer">
+      <contextNetType>ROP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Driver/filmboxfbxanimation</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import drivertoolutils
+
+drivertoolutils.genericTool(kwargs, 'kinefx::filmboxfbxanimation')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_motionclip" label="MotionClip" icon="SOP_kinefx-motionclip">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/motionclip</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::motionclip')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_computerigpose" label="Compute Rig Pose" icon="SOP_kinefx-computerigpose">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/computerigpose</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::computerigpose')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_rop_fbxanimoutput" label="ROP FBX Animation Output" icon="SOP_kinefx-rop_fbxanimoutput">
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/rop_fbxanimoutput</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::rop_fbxanimoutput')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_dynamicwarp" label="Dynamic Warp" icon="SOP_kinefx-dynamicwarp">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/dynamicwarp</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::dynamicwarp')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_usdanimimport" label="USD Animation Import" icon="SOP_kinefx-usdanimimport">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/usdanimimport</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::usdanimimport')]]></script>
+  </tool>
+
+  <tool name="kinefx::driver_filmboxfbxcharacter" label="Filmbox FBX Character" icon="ROP_kinefx-filmboxfbxcharacter">
+    <toolMenuContext name="viewer">
+      <contextNetType>ROP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Driver/filmboxfbxcharacter</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import drivertoolutils
+
+drivertoolutils.genericTool(kwargs, 'kinefx::filmboxfbxcharacter')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_motionclipupdate" label="MotionClip Update" icon="SOP_kinefx-motionclipupdate">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/motionclipupdate</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::motionclipupdate')]]></script>
+  </tool>
+
+  <tool name="kinefx::driver_gltfcharacter" label="GLTF Character" icon="ROP_kinefx-gltfcharacter">
+    <toolMenuContext name="viewer">
+      <contextNetType>ROP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Driver/gltfcharacter</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import drivertoolutils
+
+drivertoolutils.genericTool(kwargs, 'kinefx::gltfcharacter')]]></script>
+  </tool>
+
+  <tool name="labs::cop2_sbs_archive" label="Labs Substance Archive (Beta)" icon="gamedev_sbs_archive.svg">
+    <toolMenuContext name="cop_viewer">
+      <contextNetType>COP2</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>labs::Cop2/sbs_archive</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Substance</toolSubmenu>
+    <script scriptType="python"><![CDATA[import cop2toolutils
+
+cop2toolutils.genericTool(kwargs, 'labs::sbs_archive')]]></script>
+  </tool>
+
+  <tool name="kinefx::sop_skeletonblend::2.0" label="Skeleton Blend" icon="SOP_kinefx-skeletonblend-2.0">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>kinefx::Sop/skeletonblend::2.0</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>KineFX</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'kinefx::skeletonblend::2.0')]]></script>
+  </tool>
+
+  <tool name="sop_subdivide_learn" label="Learn Subdivide" icon="opdef:/Sop/subdivide_learn?IconSVG">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/subdivide_learn</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Digital Assets</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+soptoolutils.genericTool(kwargs, 'subdivide_learn')]]></script>
+  </tool>
+</shelfDocument>

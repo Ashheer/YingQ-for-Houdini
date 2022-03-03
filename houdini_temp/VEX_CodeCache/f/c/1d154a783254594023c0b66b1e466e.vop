@@ -1,0 +1,139 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x i64] zeroinitializer
+@1 = private constant [7 x i8] c"closed\00"
+@isclosed = external global i64
+@edgeneighbours = external global i64*
+@2 = private constant [9 x i8] c"isclosed\00"
+@3 = private constant [15 x i8] c"edgeneighbours\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I[I"(i64* %_bound_isclosed, i64** %_bound_edgeneighbours) #0 {
+__llvm_entry:
+  %_bound_isclosed1 = load i64, i64* %_bound_isclosed
+  %return = call i64 @"not@II"(i64 %_bound_isclosed1)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_edgeneighbours2 = load i64*, i64** %_bound_edgeneighbours
+  %return4 = call i64 @"len@I[I"(i64* %_bound_edgeneighbours2)
+  br label %cond
+
+end:                                              ; preds = %end8, %__llvm_entry
+  ret void
+
+cond:                                             ; preds = %end36, %true
+  %openedgepts.0 = phi i64* [ getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), %true ], [ %openedgepts.1, %end36 ]
+  %__impl_foreach_index_b.0 = phi i64 [ 0, %true ], [ %output41, %end36 ]
+  %return7 = call i64 @"lt@III"(i64 %__impl_foreach_index_b.0, i64 %return4)
+  %1 = icmp ne i64 %return7, 0
+  br i1 %1, label %body, label %end8
+
+body:                                             ; preds = %cond
+  %return11 = call i64 @"getcomp@I[II"(i64* %_bound_edgeneighbours2, i64 %__impl_foreach_index_b.0)
+  %return13 = call i64* @"pointprims@[III"(i64 0, i64 %return11)
+  %return15 = call i64 @"len@I[I"(i64* %return13)
+  br label %cond16
+
+end8:                                             ; preds = %cond
+  store i64* %openedgepts.0, i64** %_bound_edgeneighbours
+  br label %end
+
+cond16:                                           ; preds = %end31, %body
+  %isclosed.0 = phi i64 [ 1, %body ], [ %return27, %end31 ]
+  %__impl_foreach_index_a.0 = phi i64 [ 0, %body ], [ %output, %end31 ]
+  %return20 = call i64 @"lt@III"(i64 %__impl_foreach_index_a.0, i64 %return15)
+  %2 = icmp ne i64 %return20, 0
+  br i1 %2, label %body17, label %end21
+
+body17:                                           ; preds = %cond16
+  %return25 = call i64 @"getcomp@I[II"(i64* %return13, i64 %__impl_foreach_index_a.0)
+  %return27 = call i64 @"primintrinsic@IISI"(i64 0, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i64 %return25)
+  %return29 = call i64 @"not@II"(i64 %return27)
+  %3 = icmp ne i64 %return29, 0
+  br i1 %3, label %end21, label %end31
+
+end21:                                            ; preds = %body17, %cond16
+  %isclosed.1 = phi i64 [ %return27, %body17 ], [ %isclosed.0, %cond16 ]
+  %return34 = call i64 @"not@II"(i64 %isclosed.1)
+  %4 = icmp ne i64 %return34, 0
+  br i1 %4, label %true35, label %end36
+
+end31:                                            ; preds = %body17
+  %output = add i64 %__impl_foreach_index_a.0, 1
+  br label %cond16
+
+true35:                                           ; preds = %end21
+  %output39 = call i64* @"append@[II"(i64* %openedgepts.0, i64 %return11)
+  br label %end36
+
+end36:                                            ; preds = %true35, %end21
+  %openedgepts.1 = phi i64* [ %output39, %true35 ], [ %openedgepts.0, %end21 ]
+  %output41 = add i64 %__impl_foreach_index_b.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"pointprims@[III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"primintrinsic@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64* @"append@[II"(i64*, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %isclosed, i64* %edgeneighbours) #2 {
+__llvm_entry:
+  %"<edgeneighbours>" = alloca i64*
+  %0 = alloca i64
+  store i64* %edgeneighbours, i64** %"<edgeneighbours>"
+  store i64 %isclosed, i64* %0
+  call void @"__vex_snippet_snippet@I[I"(i64* %0, i64** %"<edgeneighbours>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @2, i64 0, i64 0), i64 %isclosed) #3
+  %evalue2 = load i64*, i64** %"<edgeneighbours>"
+  %gvalue3 = call i64* @"_export@[IS[I"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @3, i64 0, i64 0), i64* %evalue2) #3
+  store i64 %gvalue, i64* @isclosed
+  store i64* %gvalue3, i64** @edgeneighbours
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare i64* @"_export@[IS[I"(i8*, i64*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

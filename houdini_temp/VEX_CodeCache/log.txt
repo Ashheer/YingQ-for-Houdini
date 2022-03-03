@@ -304,3 +304,21 @@
 2022-02-24 09:13:10: >> Bucket[14]: nfiles=275, size=2.02 MB
 2022-02-24 09:13:10: >> Bucket[15]: nfiles=300, size=2.16 MB
 2022-02-24 09:13:10: >> Total: nfiles=4616,  size=36.83 MB
+2022-03-03 18:30:01: Recomputing disk cache
+2022-03-03 18:30:01: >> Bucket[0]: nfiles=510, size=3.91 MB
+2022-03-03 18:30:01: >> Bucket[1]: nfiles=513, size=3.86 MB
+2022-03-03 18:30:01: >> Bucket[2]: nfiles=508, size=5.30 MB
+2022-03-03 18:30:01: >> Bucket[3]: nfiles=518, size=3.72 MB
+2022-03-03 18:30:01: >> Bucket[4]: nfiles=516, size=3.68 MB
+2022-03-03 18:30:01: >> Bucket[5]: nfiles=497, size=4.23 MB
+2022-03-03 18:30:01: >> Bucket[6]: nfiles=514, size=4.03 MB
+2022-03-03 18:30:01: >> Bucket[7]: nfiles=555, size=4.16 MB
+2022-03-03 18:30:01: >> Bucket[8]: nfiles=512, size=3.74 MB
+2022-03-03 18:30:01: >> Bucket[9]: nfiles=484, size=3.96 MB
+2022-03-03 18:30:01: >> Bucket[10]: nfiles=554, size=3.93 MB
+2022-03-03 18:30:01: >> Bucket[11]: nfiles=543, size=3.80 MB
+2022-03-03 18:30:01: >> Bucket[12]: nfiles=481, size=3.77 MB
+2022-03-03 18:30:01: >> Bucket[13]: nfiles=501, size=3.65 MB
+2022-03-03 18:30:01: >> Bucket[14]: nfiles=506, size=3.38 MB
+2022-03-03 18:30:01: >> Bucket[15]: nfiles=545, size=3.87 MB
+2022-03-03 18:30:01: >> Total: nfiles=8257,  size=62.97 MB
