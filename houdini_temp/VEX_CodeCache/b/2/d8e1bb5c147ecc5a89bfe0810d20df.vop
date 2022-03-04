@@ -1,0 +1,102 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@primnum = external global i64
+@numprim = external global i64
+@isneedtop = external global double
+@lasttop = external global double
+@0 = private constant [8 x i8] c"primnum\00"
+@1 = private constant [8 x i8] c"numprim\00"
+@2 = private constant [10 x i8] c"isneedtop\00"
+@3 = private constant [8 x i8] c"lasttop\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IIFF"(i64* %_bound_primnum, i64* %_bound_numprim, double* %_bound_isneedtop, double* %_bound_lasttop) #0 {
+__llvm_entry:
+  %_bound_primnum1 = load i64, i64* %_bound_primnum
+  %return = call i64 @"eq@III"(i64 %_bound_primnum1, i64 1)
+  %_bound_numprim3 = load i64, i64* %_bound_numprim
+  %output = sub i64 %_bound_numprim3, 2
+  %return4 = call i64 @"eq@III"(i64 %_bound_primnum1, i64 %output)
+  %return5 = call i64 @"or@III"(i64 %return, i64 %return4)
+  %0 = icmp ne i64 %return5, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  store double 1.000000e+00, double* %_bound_isneedtop
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %_bound_primnum6 = load i64, i64* %_bound_primnum
+  %return7 = call i64 @"eq@III"(i64 %_bound_primnum6, i64 0)
+  %_bound_numprim9 = load i64, i64* %_bound_numprim
+  %output10 = sub i64 %_bound_numprim9, 1
+  %return11 = call i64 @"eq@III"(i64 %_bound_primnum6, i64 %output10)
+  %return12 = call i64 @"or@III"(i64 %return7, i64 %return11)
+  %1 = icmp ne i64 %return12, 0
+  br i1 %1, label %true13, label %end14
+
+true13:                                           ; preds = %end
+  store double 1.000000e+00, double* %_bound_lasttop
+  br label %end14
+
+end14:                                            ; preds = %true13, %end
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %primnum, i64 %numprim, double %isneedtop, double %lasttop) #2 {
+__llvm_entry:
+  %"<isneedtop>" = alloca double
+  %"<lasttop>" = alloca double
+  %0 = alloca i64
+  %1 = alloca i64
+  store double %isneedtop, double* %"<isneedtop>"
+  store double %lasttop, double* %"<lasttop>"
+  store i64 %primnum, i64* %0
+  store i64 %numprim, i64* %1
+  call void @"__vex_snippet_snippet@IIFF"(i64* %0, i64* %1, double* %"<isneedtop>", double* %"<lasttop>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0), i64 %primnum) #3
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0), i64 %numprim) #3
+  %evalue5 = load double, double* %"<isneedtop>"
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0), double %evalue5) #3
+  %evalue7 = load double, double* %"<lasttop>"
+  %gvalue8 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @3, i64 0, i64 0), double %evalue7) #3
+  store i64 %gvalue, i64* @primnum
+  store i64 %gvalue4, i64* @numprim
+  store double %gvalue6, double* @isneedtop
+  store double %gvalue8, double* @lasttop
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

@@ -1,0 +1,93 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [17 x i8] c"preview_material\00"
+@1 = private constant [11 x i8] c"preview_ID\00"
+@2 = private constant [4 x i8] c"set\00"
+@3 = private constant [7 x i8] c"mat_%d\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call i64 @"nprimitives@II"(i64 0)
+  br label %cond
+
+cond:                                             ; preds = %end11, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output23, %end11 ]
+  %curItt.0 = phi i64 [ 0, %__llvm_entry ], [ %curItt.1, %end11 ]
+  %return3 = call i64 @"lt@III"(i64 %i.0, i64 %return)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return5 = call i8* @"prim@SISI"(i64 0, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @0, i64 0, i64 0), i64 %i.0)
+  %output = sub i64 %i.0, 1
+  %return7 = call i8* @"prim@SISI"(i64 0, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @0, i64 0, i64 0), i64 %output)
+  %return10 = call i64 @"ne@ISS"(i8* %return5, i8* %return7)
+  %1 = icmp ne i64 %return10, 0
+  br i1 %1, label %true, label %end11
+
+end:                                              ; preds = %cond
+  ret void
+
+true:                                             ; preds = %body
+  %output13 = add i64 %curItt.0, 1
+  br label %end11
+
+end11:                                            ; preds = %true, %body
+  %curItt.1 = phi i64 [ %output13, %true ], [ %curItt.0, %body ]
+  %return16 = call i64 @"setprimattrib@IISIIS"(i64 0, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @1, i64 0, i64 0), i64 %i.0, i64 %curItt.1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @2, i64 0, i64 0))
+  %return18 = call i8* @"sprintf@SS:I"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @3, i64 0, i64 0), i64 %curItt.1)
+  %return20 = call i64 @"setprimgroup@IISIIS"(i64 0, i8* %return18, i64 %i.0, i64 1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @2, i64 0, i64 0))
+  %output23 = add i64 %i.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind
+declare i64 @"nprimitives@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i8* @"prim@SISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@ISS"(i8*, i8*) #2
+
+; Function Attrs: nounwind
+declare i64 @"setprimattrib@IISIIS"(i64, i8*, i64, i64, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"sprintf@SS:I"(i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"setprimgroup@IISIIS"(i64, i8*, i64, i64, i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #1 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

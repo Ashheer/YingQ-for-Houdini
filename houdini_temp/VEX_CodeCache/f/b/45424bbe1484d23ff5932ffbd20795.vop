@@ -1,0 +1,66 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@uy = external global double
+@primnum = external global i64
+@0 = private constant [3 x i8] c"uy\00"
+@1 = private constant [8 x i8] c"primnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FI"(double* %_bound_uy, i64* %_bound_primnum) #0 {
+__llvm_entry:
+  %_bound_uy1 = load double, double* %_bound_uy
+  %return = fcmp one double %_bound_uy1, 0.000000e+00
+  br i1 %return, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_primnum3 = load i64, i64* %_bound_primnum
+  %return4 = call i64 @"removeprim@IIII"(i64 0, i64 %_bound_primnum3, i64 1)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"removeprim@IIII"(i64, i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %uy, i64 %primnum) #1 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca i64
+  store double %uy, double* %0
+  store i64 %primnum, i64* %1
+  call void @"__vex_snippet_snippet@FI"(double* %0, i64* %1)
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @0, i64 0, i64 0), double %uy) #2
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0), i64 %primnum) #2
+  store double %gvalue, double* @uy
+  store i64 %gvalue4, i64* @primnum
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
