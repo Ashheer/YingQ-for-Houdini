@@ -1,0 +1,188 @@
+;_name	/obj/tutorial_cable_1_0/tutorial_cable1/vellumsolver1/dopnet1/vellumsolver1/calc_v_2nd_order_fallback
+; ModuleID = 'obj_tutorial_cable_1_0_tutorial_cable1_vellumsolver1_dopnet1_vellumsolver1_calc_v_2nd_order_fallback'
+source_filename = "obj_tutorial_cable_1_0_tutorial_cable1_vellumsolver1_dopnet1_vellumsolver1_calc_v_2nd_order_fallback"
+
+@fallback = external global i64
+@v = external global <3 x double>
+@0 = private constant [9 x i8] c"fallback\00"
+@1 = private constant [2 x i8] c"v\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_tutorial_cable_1_0_tutorial_cable1_vellumsolver1_dopnet1_vellumsolver1_calc_v_2nd_order_fallback_snippet1@FIIIIIVVVFVVI"(double* %maxaccel, i64* %accelfallback, i64* %limitaccel, i64* %fallback, i64* %isgrain, i64* %phase, <3 x double>* %_bound_P, <3 x double>* %_bound_plast, <3 x double>* %_bound_pprevious, double* %_bound_TimeInc, <3 x double>* %_bound_v, <3 x double>* %_bound_vprevious, i64* %_bound_hitnum) #0 {
+__llvm_entry:
+  %_bound_P1 = load <3 x double>, <3 x double>* %_bound_P
+  %cast = call <3 x double> @"set@VI"(i64 2)
+  %output = call <3 x double> @"mul@VV"(<3 x double> %cast, <3 x double> %_bound_P1)
+  %_bound_plast3 = load <3 x double>, <3 x double>* %_bound_plast
+  %output4 = call <3 x double> @"add@VV"(<3 x double> %_bound_P1, <3 x double> %_bound_plast3)
+  %output5 = call <3 x double> @"add@VV"(<3 x double> %output, <3 x double> %output4)
+  %_bound_pprevious6 = load <3 x double>, <3 x double>* %_bound_pprevious
+  %cast7 = call <3 x double> @"set@VI"(i64 4)
+  %output8 = call <3 x double> @"mul@VV"(<3 x double> %cast7, <3 x double> %_bound_pprevious6)
+  %output9 = call <3 x double> @"sub@VV"(<3 x double> %output5, <3 x double> %output8)
+  %_bound_TimeInc10 = load double, double* %_bound_TimeInc
+  %output11 = fmul double 2.000000e+00, %_bound_TimeInc10
+  %cast12 = call <3 x double> @"set@VF"(double %output11)
+  %output13 = call <3 x double> @"div@VV"(<3 x double> %output9, <3 x double> %cast12)
+  %_bound_v14 = load <3 x double>, <3 x double>* %_bound_v
+  %accelfallback15 = load i64, i64* %accelfallback
+  %0 = icmp ne i64 %accelfallback15, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_vprevious17 = load <3 x double>, <3 x double>* %_bound_vprevious
+  %output18 = call <3 x double> @"sub@VV"(<3 x double> %output13, <3 x double> %_bound_vprevious17)
+  %cast20 = call <3 x double> @"set@VF"(double %_bound_TimeInc10)
+  %output21 = call <3 x double> @"div@VV"(<3 x double> %output18, <3 x double> %cast20)
+  %return = call double @"length@FV"(<3 x double> %output21)
+  %maxaccel23 = load double, double* %maxaccel
+  %return24 = fcmp ogt double %return, %maxaccel23
+  %return25 = zext i1 %return24 to i64
+  %fallback26 = load i64, i64* %fallback
+  %_bound_hitnum27 = load i64, i64* %_bound_hitnum
+  %return28 = call i64 @"or@III"(i64 %fallback26, i64 %_bound_hitnum27)
+  %isgrain29 = load i64, i64* %isgrain
+  %return30 = call i64 @"or@III"(i64 %return28, i64 %isgrain29)
+  %phase31 = load i64, i64* %phase
+  %return32 = call i64 @"gt@III"(i64 %phase31, i64 0)
+  %return33 = call i64 @"or@III"(i64 %return30, i64 %return32)
+  %return34 = call i64 @"and@III"(i64 %return25, i64 %return33)
+  store i64 %return34, i64* %fallback
+  %_bound_P35 = load <3 x double>, <3 x double>* %_bound_P
+  %_bound_pprevious36 = load <3 x double>, <3 x double>* %_bound_pprevious
+  %output37 = call <3 x double> @"sub@VV"(<3 x double> %_bound_P35, <3 x double> %_bound_pprevious36)
+  %_bound_TimeInc38 = load double, double* %_bound_TimeInc
+  %cast39 = call <3 x double> @"set@VF"(double %_bound_TimeInc38)
+  %output40 = call <3 x double> @"div@VV"(<3 x double> %output37, <3 x double> %cast39)
+  %1 = icmp ne i64 %return34, 0
+  %return44 = select i1 %1, <3 x double> %output40, <3 x double> %output13
+  store <3 x double> %return44, <3 x double>* %_bound_v
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  store <3 x double> %output13, <3 x double>* %_bound_v
+  br label %end
+
+end:                                              ; preds = %false, %true
+  %limitaccel46 = load i64, i64* %limitaccel
+  %2 = icmp ne i64 %limitaccel46, 0
+  br i1 %2, label %true47, label %end48
+
+true47:                                           ; preds = %end
+  %_bound_v49 = load <3 x double>, <3 x double>* %_bound_v
+  %output51 = call <3 x double> @"sub@VV"(<3 x double> %_bound_v49, <3 x double> %_bound_v14)
+  %return54 = call double @"length@FV"(<3 x double> %output51)
+  %maxaccel55 = load double, double* %maxaccel
+  %_bound_TimeInc56 = load double, double* %_bound_TimeInc
+  %output57 = fmul double %maxaccel55, %_bound_TimeInc56
+  store double %output57, double* %maxaccel
+  %output61 = call double @"div@FF"(double %output57, double %return54)
+  %cast62 = call <3 x double> @"set@VF"(double %output61)
+  %output63 = call <3 x double> @"mul@VV"(<3 x double> %output51, <3 x double> %cast62)
+  %return66 = fcmp ogt double %return54, %output57
+  %output70 = call <3 x double> @"add@VV"(<3 x double> %_bound_v14, <3 x double> %output63)
+  %_bound_v71 = load <3 x double>, <3 x double>* %_bound_v
+  %return72 = select i1 %return66, <3 x double> %output70, <3 x double> %_bound_v71
+  store <3 x double> %return72, <3 x double>* %_bound_v
+  br label %end48
+
+end48:                                            ; preds = %true47, %end
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind
+define void @obj_tutorial_cable_1_0_tutorial_cable1_vellumsolver1_dopnet1_vellumsolver1_calc_v_2nd_order_fallback(double %maxaccel, i64 %accelfallback, i64 %fallback, i64 %limitaccel, i64 %isgrain, i64 %phase, <3 x double> %P, <3 x double> %plast, <3 x double> %pprevious, double %TimeInc, <3 x double> %v, <3 x double> %vprevious, i64 %hitnum) #2 {
+__llvm_entry:
+  %"<v>" = alloca <3 x double>
+  %outmaxaccel = alloca double
+  %outfallback = alloca i64
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  %3 = alloca i64
+  %4 = alloca <3 x double>
+  %5 = alloca <3 x double>
+  %6 = alloca <3 x double>
+  %7 = alloca double
+  %8 = alloca <3 x double>
+  %9 = alloca i64
+  store <3 x double> %v, <3 x double>* %"<v>"
+  store double %maxaccel, double* %outmaxaccel
+  store i64 %fallback, i64* %outfallback
+  store i64 %accelfallback, i64* %0
+  store i64 %limitaccel, i64* %1
+  store i64 %isgrain, i64* %2
+  store i64 %phase, i64* %3
+  store <3 x double> %P, <3 x double>* %4
+  store <3 x double> %plast, <3 x double>* %5
+  store <3 x double> %pprevious, <3 x double>* %6
+  store double %TimeInc, double* %7
+  store <3 x double> %vprevious, <3 x double>* %8
+  store i64 %hitnum, i64* %9
+  call void @"_obj_tutorial_cable_1_0_tutorial_cable1_vellumsolver1_dopnet1_vellumsolver1_calc_v_2nd_order_fallback_snippet1@FIIIIIVVVFVVI"(double* %outmaxaccel, i64* %0, i64* %1, i64* %outfallback, i64* %2, i64* %3, <3 x double>* %4, <3 x double>* %5, <3 x double>* %6, double* %7, <3 x double>* %"<v>", <3 x double>* %8, i64* %9)
+  %outfallback18 = load i64, i64* %outfallback
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @0, i64 0, i64 0), i64 %outfallback18) #3
+  %evalue19 = load <3 x double>, <3 x double>* %"<v>"
+  %gvalue20 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %evalue19) #3
+  store i64 %gvalue, i64* @fallback
+  store <3 x double> %gvalue20, <3 x double>* @v
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_tutorial_cable_1_0_tutorial_cable1_vellumsolver1_dopnet1_vellumsolver1_calc_v_2nd_order_fallback(double 0.000000e+00, i64 0, i64 0, i64 0, i64 0, i64 0, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, double 0.000000e+00, <3 x double> zeroinitializer, <3 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

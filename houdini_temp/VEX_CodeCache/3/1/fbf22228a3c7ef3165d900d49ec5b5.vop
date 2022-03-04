@@ -1,0 +1,116 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [8 x i8] c"balance\00"
+@1 = private constant [5 x i8] c"area\00"
+@2 = private constant [21 x i8] c"maxtexeldensityerror\00"
+@3 = private constant [11 x i8] c"checkerror\00"
+@__widthweight = external global double
+@__heightweight = external global double
+@__areaweight = external global double
+@__maxtexeldensityerror = external global double
+@__checkdensityerror = external global i64
+@4 = private constant [14 x i8] c"__widthweight\00"
+@5 = private constant [15 x i8] c"__heightweight\00"
+@6 = private constant [13 x i8] c"__areaweight\00"
+@7 = private constant [23 x i8] c"__maxtexeldensityerror\00"
+@8 = private constant [20 x i8] c"__checkdensityerror\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FFFFI"(double* %_bound___widthweight, double* %_bound___heightweight, double* %_bound___areaweight, double* %_bound___maxtexeldensityerror, i64* %_bound___checkdensityerror) #0 {
+__llvm_entry:
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0))
+  %return2 = fcmp olt double %return, 5.000000e-01
+  br i1 %return2, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %output = fsub double 5.000000e-01, %return
+  %output5 = fmul double %output, 2.000000e+00
+  br label %end
+
+end:                                              ; preds = %__llvm_entry, %true
+  %phi = phi double [ %output5, %true ], [ 1.000000e+00, %__llvm_entry ]
+  store double %phi, double* %_bound___widthweight
+  %return7 = fcmp ogt double %return, 5.000000e-01
+  br i1 %return7, label %true9, label %end11
+
+true9:                                            ; preds = %end
+  %output13 = fsub double %return, 5.000000e-01
+  %output14 = fmul double %output13, 2.000000e+00
+  br label %end11
+
+end11:                                            ; preds = %end, %true9
+  %phi15 = phi double [ %output14, %true9 ], [ 1.000000e+00, %end ]
+  store double %phi15, double* %_bound___heightweight
+  %return16 = call double @"chf@FS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0))
+  store double %return16, double* %_bound___areaweight
+  %return17 = call double @"chf@FS"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @2, i64 0, i64 0))
+  store double %return17, double* %_bound___maxtexeldensityerror
+  %return18 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @3, i64 0, i64 0))
+  store i64 %return18, i64* %_bound___checkdensityerror
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %__widthweight, double %__heightweight, double %__areaweight, double %__maxtexeldensityerror, i64 %__checkdensityerror) #2 {
+__llvm_entry:
+  %"<__heightweight>" = alloca double
+  %"<__areaweight>" = alloca double
+  %"<__maxtexeldensityerror>" = alloca double
+  %"<__checkdensityerror>" = alloca i64
+  %"<__widthweight>" = alloca double
+  store double %__widthweight, double* %"<__widthweight>"
+  store double %__heightweight, double* %"<__heightweight>"
+  store double %__areaweight, double* %"<__areaweight>"
+  store double %__maxtexeldensityerror, double* %"<__maxtexeldensityerror>"
+  store i64 %__checkdensityerror, i64* %"<__checkdensityerror>"
+  call void @"__vex_snippet_snippet@FFFFI"(double* %"<__widthweight>", double* %"<__heightweight>", double* %"<__areaweight>", double* %"<__maxtexeldensityerror>", i64* %"<__checkdensityerror>")
+  %evalue = load double, double* %"<__widthweight>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @4, i64 0, i64 0), double %evalue) #3
+  %evalue1 = load double, double* %"<__heightweight>"
+  %gvalue2 = call double @"_export@FSF"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @5, i64 0, i64 0), double %evalue1) #3
+  %evalue3 = load double, double* %"<__areaweight>"
+  %gvalue4 = call double @"_export@FSF"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @6, i64 0, i64 0), double %evalue3) #3
+  %evalue5 = load double, double* %"<__maxtexeldensityerror>"
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([23 x i8], [23 x i8]* @7, i64 0, i64 0), double %evalue5) #3
+  %evalue7 = load i64, i64* %"<__checkdensityerror>"
+  %gvalue8 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @8, i64 0, i64 0), i64 %evalue7) #3
+  store double %gvalue, double* @__widthweight
+  store double %gvalue2, double* @__heightweight
+  store double %gvalue4, double* @__areaweight
+  store double %gvalue6, double* @__maxtexeldensityerror
+  store i64 %gvalue8, i64* @__checkdensityerror
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

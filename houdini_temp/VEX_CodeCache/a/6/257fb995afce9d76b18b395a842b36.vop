@@ -1,0 +1,61 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [7 x i8] c"pixels\00"
+@1 = private constant [11 x i8] c"centimeter\00"
+@__targetTexelDensity = external global double
+@2 = private constant [21 x i8] c"__targetTexelDensity\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@F"(double* %_bound___targetTexelDensity) #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @1, i64 0, i64 0))
+  %cast = sitofp i64 %return to double
+  %cast4 = sitofp i64 %return1 to double
+  %output = call double @"div@FF"(double %cast, double %cast4)
+  store double %output, double* %_bound___targetTexelDensity
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %__targetTexelDensity) #2 {
+__llvm_entry:
+  %"<__targetTexelDensity>" = alloca double
+  store double %__targetTexelDensity, double* %"<__targetTexelDensity>"
+  call void @"__vex_snippet_snippet@F"(double* %"<__targetTexelDensity>")
+  %evalue = load double, double* %"<__targetTexelDensity>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @2, i64 0, i64 0), double %evalue) #3
+  store double %gvalue, double* @__targetTexelDensity
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

@@ -1,0 +1,83 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [7 x i8] c"radius\00"
+@1 = private constant [9 x i8] c"typename\00"
+@2 = private constant [7 x i8] c"Sphere\00"
+@3 = private constant [10 x i8] c"transform\00"
+@primnum = external global i64
+@4 = private constant [8 x i8] c"primnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I"(i64* %_bound_primnum) #0 {
+__llvm_entry:
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0))
+  %cast = call <9 x double> @"set@3F"(double %return)
+  %_bound_primnum1 = load i64, i64* %_bound_primnum
+  %return2 = call i8* @"primintrinsic@SISI"(i64 0, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @1, i64 0, i64 0), i64 %_bound_primnum1)
+  %return3 = call i64 @"eq@ISS"(i8* %return2, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0))
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return4 = call i64 @"geoself@I"()
+  %_bound_primnum5 = load i64, i64* %_bound_primnum
+  %return7 = call i64 @"setprimintrinsic@IISI3"(i64 %return4, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @3, i64 0, i64 0), i64 %_bound_primnum5, <9 x double> %cast)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind
+declare <9 x double> @"set@3F"(double) #2
+
+; Function Attrs: nounwind
+declare i8* @"primintrinsic@SISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #2
+
+; Function Attrs: nounwind
+declare i64 @"setprimintrinsic@IISI3"(i64, i8*, i64, <9 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %primnum) #2 {
+__llvm_entry:
+  %0 = alloca i64
+  store i64 %primnum, i64* %0
+  call void @"__vex_snippet_snippet@I"(i64* %0)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @4, i64 0, i64 0), i64 %primnum) #3
+  store i64 %gvalue, i64* @primnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
