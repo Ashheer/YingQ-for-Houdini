@@ -1,0 +1,128 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x i8*] zeroinitializer
+@1 = private constant [5 x i8] c"prim\00"
+@2 = private constant [5 x i8] c"name\00"
+@3 = private constant [9 x i8] c"../layer\00"
+@processlist = external global i8**
+@createlist = external global i8**
+@4 = private constant [12 x i8] c"processlist\00"
+@5 = private constant [11 x i8] c"createlist\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@[S[S"(i8*** %_bound_processlist, i8*** %_bound_createlist) #0 {
+__llvm_entry:
+  %return = call i64 @"nuniqueval@IISS"(i64 1, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0))
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output9, %body ]
+  %base_names.0 = phi i8** [ getelementptr inbounds ([0 x i8*], [0 x i8*]* @0, i64 0, i64 0), %__llvm_entry ], [ %output, %body ]
+  %return3 = call i64 @"lt@III"(i64 %i.0, i64 %return)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return6 = call i8* @"uniqueval@SISSI"(i64 1, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0), i64 %i.0)
+  %output = call i8** @"append@[SS"(i8** %base_names.0, i8* %return6)
+  %output9 = add i64 %i.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  %return11 = call i8** @"sort@[S[S"(i8** %base_names.0)
+  %return12 = call i8* @"chs@SS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @3, i64 0, i64 0))
+  %return14 = call i64 @"len@I[S"(i8** %return11)
+  br label %cond15
+
+cond15:                                           ; preds = %end28, %end
+  %__impl_foreach_index_1e.0 = phi i64 [ 0, %end ], [ %output33, %end28 ]
+  %return19 = call i64 @"lt@III"(i64 %__impl_foreach_index_1e.0, i64 %return14)
+  %1 = icmp ne i64 %return19, 0
+  br i1 %1, label %body16, label %end20
+
+body16:                                           ; preds = %cond15
+  %return24 = call i8* @"getcomp@S[SI"(i8** %return11, i64 %__impl_foreach_index_1e.0)
+  %return27 = call i64 @"match@ISS"(i8* %return12, i8* %return24)
+  %2 = icmp ne i64 %return27, 0
+  br i1 %2, label %true, label %end28
+
+end20:                                            ; preds = %cond15
+  ret void
+
+true:                                             ; preds = %body16
+  %_bound_createlist29 = load i8**, i8*** %_bound_createlist
+  %output31 = call i8** @"append@[SS"(i8** %_bound_createlist29, i8* %return24)
+  store i8** %output31, i8*** %_bound_createlist
+  br label %end28
+
+end28:                                            ; preds = %true, %body16
+  %output33 = add i64 %__impl_foreach_index_1e.0, 1
+  br label %cond15
+}
+
+; Function Attrs: nounwind
+declare i64 @"nuniqueval@IISS"(i64, i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i8* @"uniqueval@SISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i8** @"append@[SS"(i8**, i8*) #1
+
+; Function Attrs: nounwind
+declare i8** @"sort@[S[S"(i8**) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[S"(i8**) #2
+
+; Function Attrs: nounwind readnone
+declare i8* @"getcomp@S[SI"(i8**, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"match@ISS"(i8*, i8*) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8** %processlist, i8** %createlist) #1 {
+__llvm_entry:
+  %"<createlist>" = alloca i8**
+  %0 = alloca i8**
+  store i8** %createlist, i8*** %"<createlist>"
+  call void @"__vex_snippet_snippet@[S[S"(i8*** %0, i8*** %"<createlist>")
+  %gvalue = call i8** @"_export@[SS[S"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @4, i64 0, i64 0), i8** %processlist) #3
+  %evalue1 = load i8**, i8*** %"<createlist>"
+  %gvalue2 = call i8** @"_export@[SS[S"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @5, i64 0, i64 0), i8** %evalue1) #3
+  store i8** %gvalue, i8*** @processlist
+  store i8** %gvalue2, i8*** @createlist
+  ret void
+}
+
+declare i8** @"_export@[SS[S"(i8*, i8**)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8** getelementptr inbounds ([0 x i8*], [0 x i8*]* @0, i64 0, i64 0), i8** getelementptr inbounds ([0 x i8*], [0 x i8*]* @0, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

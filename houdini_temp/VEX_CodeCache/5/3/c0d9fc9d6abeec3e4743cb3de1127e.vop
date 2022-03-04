@@ -1,0 +1,220 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [21 x i8] c"match_terrain_normal\00"
+@1 = private constant [20 x i8] c"match_terrain_slope\00"
+@2 = private constant [13 x i8] c"random_pitch\00"
+@3 = private constant [11 x i8] c"random_yaw\00"
+@4 = private constant [12 x i8] c"global_seed\00"
+@5 = private constant [20 x i8] c"quantization_amount\00"
+@P = external global <3 x double>
+@N = external global <3 x double>
+@orient = external global <4 x double>
+@6 = private constant [2 x i8] c"P\00"
+@7 = private constant [2 x i8] c"N\00"
+@8 = private constant [7 x i8] c"orient\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VVP"(<3 x double>* %_bound_P, <3 x double>* %_bound_N, <4 x double>* %_bound_orient) #0 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca double
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64 @"chi@IS"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @1, i64 0, i64 0))
+  %return2 = call double @"chf@FS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @2, i64 0, i64 0))
+  %return3 = call double @"chf@FS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @3, i64 0, i64 0))
+  %return4 = call i64 @"chi@IS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @4, i64 0, i64 0))
+  %return5 = call double @"ch@FS"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @5, i64 0, i64 0))
+  %_bound_P6 = load <3 x double>, <3 x double>* %_bound_P
+  store <3 x double> %_bound_P6, <3 x double>* %0
+  store double %return5, double* %1
+  %quantize_pos = call <3 x double> @"quantize_pos@VVF"(<3 x double>* %0, double* %1)
+  %cast = call <3 x double> @"set@VI"(i64 %return4)
+  %output = call <3 x double> @"add@VV"(<3 x double> %quantize_pos, <3 x double> %cast)
+  %cast10 = call <3 x double> @"set@VF"(double 2.170000e+00)
+  %output11 = call <3 x double> @"add@VV"(<3 x double> %output, <3 x double> %cast10)
+  %return12 = call double @"rand@FV"(<3 x double> %output11)
+  %output13 = fmul double %return12, 2.000000e+00
+  %output14 = fsub double %output13, 1.000000e+00
+  %output16 = fmul double %output14, %return3
+  %cast21 = call <3 x double> @"set@VF"(double 3.140000e+00)
+  %output22 = call <3 x double> @"add@VV"(<3 x double> %output, <3 x double> %cast21)
+  %return23 = call double @"rand@FV"(<3 x double> %output22)
+  %output24 = fmul double %return23, 2.000000e+00
+  %_bound_N28 = load <3 x double>, <3 x double>* %_bound_N
+  %return29 = call double @"getcomp@FVI"(<3 x double> %_bound_N28, i64 0)
+  %return31 = call double @"getcomp@FVI"(<3 x double> %_bound_N28, i64 2)
+  %return32 = call double @"atan2@FFF"(double %return29, double %return31)
+  %return33 = call double @"degrees@FF"(double %return32)
+  %2 = icmp ne i64 %return1, 0
+  br i1 %2, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %output37 = fadd double %output16, %return33
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %yaw_angle.0 = phi double [ %output37, %true ], [ %output16, %__llvm_entry ]
+  %3 = icmp ne i64 %return, 0
+  br i1 %3, label %true39, label %end40
+
+true39:                                           ; preds = %end
+  %_bound_N41 = load <3 x double>, <3 x double>* %_bound_N
+  br label %end40
+
+end40:                                            ; preds = %end, %true39
+  %phi = phi <3 x double> [ %_bound_N41, %true39 ], [ <double 0.000000e+00, double 1.000000e+00, double 0.000000e+00>, %end ]
+  %return43 = fcmp one double %return2, 0.000000e+00
+  br i1 %return43, label %true45, label %end46
+
+true45:                                           ; preds = %end40
+  %return49 = call double @"radians@FF"(double %return2)
+  %cast54 = call <3 x double> @"set@VF"(double 1.230000e+00)
+  %output55 = call <3 x double> @"add@VV"(<3 x double> %output, <3 x double> %cast54)
+  %return56 = call <2 x double> @"rand@UV"(<3 x double> %output55)
+  %return57 = call <3 x double> @"sample_direction_cone@VVFU"(<3 x double> %phi, double %return49, <2 x double> %return56)
+  br label %end46
+
+end46:                                            ; preds = %true45, %end40
+  %used_normal.0 = phi <3 x double> [ %return57, %true45 ], [ %phi, %end40 ]
+  %return59 = call <9 x double> @"dihedral@3VV"(<3 x double> <double 0.000000e+00, double 1.000000e+00, double 0.000000e+00>, <3 x double> %used_normal.0)
+  %return62 = call double @"radians@FF"(double %yaw_angle.0)
+  %return64 = call <4 x double> @"quaternion@PFV"(double %return62, <3 x double> %used_normal.0)
+  %return65 = call <9 x double> @"qconvert@3P"(<4 x double> %return64)
+  %output66 = call <9 x double> @"mul@33"(<9 x double> %return59, <9 x double> %return65)
+  %return67 = call <4 x double> @"quaternion@P3"(<9 x double> %output66)
+  store <4 x double> %return67, <4 x double>* %_bound_orient
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"quantize_pos@VVF"(<3 x double>* %pos, double* %quantization_amount) #0 {
+__llvm_entry:
+  %quantization_amount1 = load double, double* %quantization_amount
+  %return = fcmp one double %quantization_amount1, 0.000000e+00
+  %pos3 = load <3 x double>, <3 x double>* %pos
+  br i1 %return, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %cast = call <3 x double> @"set@VF"(double %quantization_amount1)
+  %output = call <3 x double> @"div@VV"(<3 x double> %pos3, <3 x double> %cast)
+  %return5 = call <3 x double> @"floor@VV"(<3 x double> %output)
+  %output8 = call <3 x double> @"mul@VV"(<3 x double> %return5, <3 x double> %cast)
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false, %true
+  %UnifiedRetVal = phi <3 x double> [ %output8, %true ], [ %pos3, %false ]
+  ret <3 x double> %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"floor@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"rand@FV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"atan2@FFF"(double, double) #1
+
+; Function Attrs: nounwind
+declare double @"degrees@FF"(double) #2
+
+; Function Attrs: nounwind
+declare double @"radians@FF"(double) #2
+
+; Function Attrs: nounwind
+declare <2 x double> @"rand@UV"(<3 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"sample_direction_cone@VVFU"(<3 x double>, double, <2 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"dihedral@3VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"quaternion@PFV"(double, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"qconvert@3P"(<4 x double>) #1
+
+; Function Attrs: nounwind
+declare <9 x double> @"mul@33"(<9 x double>, <9 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"quaternion@P3"(<9 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P, <3 x double> %N, <4 x double> %orient) #2 {
+__llvm_entry:
+  %"<orient>" = alloca <4 x double>
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  store <4 x double> %orient, <4 x double>* %"<orient>"
+  store <3 x double> %P, <3 x double>* %0
+  store <3 x double> %N, <3 x double>* %1
+  call void @"__vex_snippet_snippet@VVP"(<3 x double>* %0, <3 x double>* %1, <4 x double>* %"<orient>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @6, i64 0, i64 0), <3 x double> %P) #3
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @7, i64 0, i64 0), <3 x double> %N) #3
+  %evalue5 = load <4 x double>, <4 x double>* %"<orient>"
+  %gvalue6 = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @8, i64 0, i64 0), <4 x double> %evalue5) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  store <3 x double> %gvalue4, <3 x double>* @N
+  store <4 x double> %gvalue6, <4 x double>* @orient
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> zeroinitializer, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

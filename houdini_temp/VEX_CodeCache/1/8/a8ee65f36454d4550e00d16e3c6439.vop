@@ -1,0 +1,494 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [16 x i8] c"movement_factor\00"
+@1 = private constant [14 x i8] c"removing_rate\00"
+@2 = private constant [17 x i8] c"avoid_new_points\00"
+@3 = private constant [12 x i8] c"global_seed\00"
+@4 = private constant [10 x i8] c"iteration\00"
+@5 = private constant [20 x i8] c"quantization_amount\00"
+@6 = private constant [2 x i8] c"*\00"
+@7 = private constant [11 x i8] c"@rmflag==0\00"
+@8 = private constant [2 x i8] c"P\00"
+@9 = private constant [14 x i8] c"_inner_radius\00"
+@footprint = external global double
+@falloff = external global double
+@P = external global <3 x double>
+@ptnum = external global i64
+@rmflag = external global double
+@10 = private constant [10 x i8] c"footprint\00"
+@11 = private constant [8 x i8] c"falloff\00"
+@12 = private constant [6 x i8] c"ptnum\00"
+@13 = private constant [7 x i8] c"rmflag\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FFVIF"(double* %_bound_footprint, double* %_bound_falloff, <3 x double>* %_bound_P, i64* %_bound_ptnum, double* %_bound_rmflag) #0 {
+__llvm_entry:
+  %c_pos = alloca <3 x double>
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca double
+  %3 = alloca double
+  %4 = alloca double
+  %5 = alloca double
+  %6 = alloca i64
+  %7 = alloca i64
+  %8 = alloca i64
+  %9 = alloca double
+  %10 = alloca double
+  %11 = alloca double
+  %12 = alloca double
+  %13 = alloca i64
+  %return = call double @"ch@FS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @0, i64 0, i64 0))
+  %return1 = call double @"ch@FS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @1, i64 0, i64 0))
+  %return2 = call i64 @"chi@IS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @2, i64 0, i64 0))
+  %return3 = call i64 @"chi@IS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @3, i64 0, i64 0))
+  %return4 = call i64 @"neg@II"(i64 1)
+  %return5 = call i64 @"detail@IISI"(i64 %return4, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @4, i64 0, i64 0), i64 0)
+  %return6 = call double @"ch@FS"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @5, i64 0, i64 0))
+  %_bound_footprint7 = load double, double* %_bound_footprint
+  %_bound_falloff8 = load double, double* %_bound_falloff
+  %output = fsub double 1.000000e+00, %_bound_falloff8
+  %output9 = fmul double %_bound_footprint7, %output
+  %_bound_P10 = load <3 x double>, <3 x double>* %_bound_P
+  store <3 x double> %_bound_P10, <3 x double>* %c_pos
+  %14 = icmp ne i64 %return2, 0
+  br i1 %14, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  store i64 0, i64* %0
+  %_bound_ptnum12 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum12, i64* %1
+  store double %output9, double* %2
+  store double %return, double* %3
+  store double %return1, double* %4
+  store double %return6, double* %5
+  %output19 = add i64 %return3, %return5
+  store i64 %output19, i64* %6
+  %relax_point = call <4 x double> @"relax_point@PVIIFFFFI"(<3 x double>* %c_pos, i64* %0, i64* %1, double* %2, double* %3, double* %4, double* %5, i64* %6)
+  %return21 = call double @"getcomp@FPI"(<4 x double> %relax_point, i64 0)
+  %tmp = load <3 x double>, <3 x double>* %c_pos
+  %return22 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %tmp, double %return21, i64 0)
+  %output24 = extractvalue { double, <3 x double> } %return22, 1
+  store <3 x double> %output24, <3 x double>* %c_pos
+  %return26 = call double @"getcomp@FPI"(<4 x double> %relax_point, i64 1)
+  %return28 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output24, double %return26, i64 1)
+  %output30 = extractvalue { double, <3 x double> } %return28, 1
+  store <3 x double> %output30, <3 x double>* %c_pos
+  %return32 = call double @"getcomp@FPI"(<4 x double> %relax_point, i64 2)
+  %return34 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output30, double %return32, i64 2)
+  %output36 = extractvalue { double, <3 x double> } %return34, 1
+  store <3 x double> %output36, <3 x double>* %c_pos
+  %return38 = call double @"getcomp@FPI"(<4 x double> %relax_point, i64 3)
+  %cast = fptosi double %return38 to i64
+  %cast42 = sitofp i64 %cast to double
+  store double %cast42, double* %_bound_rmflag
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %done.0 = phi i64 [ %cast, %true ], [ 0, %__llvm_entry ]
+  %return44 = call i64 @"not@II"(i64 %done.0)
+  %return45 = call i64 @"npoints@II"(i64 1)
+  %return46 = call i64 @"gt@III"(i64 %return45, i64 0)
+  %return47 = call i64 @"and@III"(i64 %return44, i64 %return46)
+  %15 = icmp ne i64 %return47, 0
+  br i1 %15, label %true48, label %end49
+
+true48:                                           ; preds = %end
+  store i64 1, i64* %7
+  %_bound_ptnum51 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum51, i64* %8
+  store double %output9, double* %9
+  store double %return, double* %10
+  store double %return1, double* %11
+  store double %return6, double* %12
+  %output58 = add i64 %return3, %return5
+  store i64 %output58, i64* %13
+  %relax_point59 = call <4 x double> @"relax_point@PVIIFFFFI"(<3 x double>* %c_pos, i64* %7, i64* %8, double* %9, double* %10, double* %11, double* %12, i64* %13)
+  %return61 = call double @"getcomp@FPI"(<4 x double> %relax_point59, i64 0)
+  %tmp62 = load <3 x double>, <3 x double>* %c_pos
+  %return63 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %tmp62, double %return61, i64 0)
+  %output65 = extractvalue { double, <3 x double> } %return63, 1
+  store <3 x double> %output65, <3 x double>* %c_pos
+  %return67 = call double @"getcomp@FPI"(<4 x double> %relax_point59, i64 1)
+  %return69 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output65, double %return67, i64 1)
+  %output71 = extractvalue { double, <3 x double> } %return69, 1
+  store <3 x double> %output71, <3 x double>* %c_pos
+  %return73 = call double @"getcomp@FPI"(<4 x double> %relax_point59, i64 2)
+  %return75 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output71, double %return73, i64 2)
+  %output77 = extractvalue { double, <3 x double> } %return75, 1
+  store <3 x double> %output77, <3 x double>* %c_pos
+  %return79 = call double @"getcomp@FPI"(<4 x double> %relax_point59, i64 3)
+  %cast80 = fptosi double %return79 to i64
+  %cast81 = sitofp i64 %cast80 to double
+  store double %cast81, double* %_bound_rmflag
+  br label %end49
+
+end49:                                            ; preds = %true48, %end
+  %c_pos82 = load <3 x double>, <3 x double>* %c_pos
+  store <3 x double> %c_pos82, <3 x double>* %_bound_P
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"detail@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"quantize_pos@VVF"(<3 x double>* %pos, double* %quantization_amount) #0 {
+__llvm_entry:
+  %quantization_amount1 = load double, double* %quantization_amount
+  %return = fcmp one double %quantization_amount1, 0.000000e+00
+  %pos3 = load <3 x double>, <3 x double>* %pos
+  br i1 %return, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %cast = call <3 x double> @"set@VF"(double %quantization_amount1)
+  %output = call <3 x double> @"div@VV"(<3 x double> %pos3, <3 x double> %cast)
+  %return5 = call <3 x double> @"floor@VV"(<3 x double> %output)
+  %output8 = call <3 x double> @"mul@VV"(<3 x double> %return5, <3 x double> %cast)
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false, %true
+  %UnifiedRetVal = phi <3 x double> [ %output8, %true ], [ %pos3, %false ]
+  ret <3 x double> %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"floor@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"compare_pos@IVV"(<3 x double>* %c_pos, <3 x double>* %n_pos) #0 {
+__llvm_entry:
+  %c_pos1 = load <3 x double>, <3 x double>* %c_pos
+  %return = call double @"getcomp@FVI"(<3 x double> %c_pos1, i64 0)
+  %n_pos2 = load <3 x double>, <3 x double>* %n_pos
+  %return3 = call double @"getcomp@FVI"(<3 x double> %n_pos2, i64 0)
+  %return4 = fcmp olt double %return, %return3
+  br i1 %return4, label %true, label %false
+
+true:                                             ; preds = %false, %__llvm_entry
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  %return7 = call double @"getcomp@FVI"(<3 x double> %c_pos1, i64 1)
+  %return9 = call double @"getcomp@FVI"(<3 x double> %n_pos2, i64 1)
+  %return10 = fcmp olt double %return7, %return9
+  br i1 %return10, label %true, label %false13
+
+false13:                                          ; preds = %false
+  %return16 = call double @"getcomp@FVI"(<3 x double> %c_pos1, i64 2)
+  %return18 = call double @"getcomp@FVI"(<3 x double> %n_pos2, i64 2)
+  %return19 = fcmp olt double %return16, %return18
+  %. = select i1 %return19, i64 1, i64 0
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false13, %true
+  %UnifiedRetVal = phi i64 [ 1, %true ], [ %., %false13 ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private <4 x double> @"relax_point@PVIIFFFFI"(<3 x double>* %c_pos, i64* %geometry, i64* %c_ptnum, double* %c_scaled_innerradius, double* %movement_factor, double* %removing_rate, double* %quantization_amount, i64* %seed) #0 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca <3 x double>
+  %3 = alloca double
+  %4 = alloca <3 x double>
+  %5 = alloca <3 x double>
+  %geometry1 = load i64, i64* %geometry
+  %6 = icmp ne i64 %geometry1, 0
+  %. = select i1 %6, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @6, i64 0, i64 0), i8* getelementptr inbounds ([11 x i8], [11 x i8]* @7, i64 0, i64 0)
+  %c_pos4 = load <3 x double>, <3 x double>* %c_pos
+  %c_scaled_innerradius5 = load double, double* %c_scaled_innerradius
+  %return = call i64* @"pcfind_radius@[IISSSFVFI"(i64 %geometry1, i8* %., i8* getelementptr inbounds ([2 x i8], [2 x i8]* @8, i64 0, i64 0), i8* getelementptr inbounds ([14 x i8], [14 x i8]* @9, i64 0, i64 0), double 1.000000e+00, <3 x double> %c_pos4, double %c_scaled_innerradius5, i64 1000)
+  %return7 = call i64 @"len@I[I"(i64* %return)
+  br label %cond
+
+cond:                                             ; preds = %iter, %__llvm_entry
+  %__impl_foreach_index_126.0 = phi i64 [ 0, %__llvm_entry ], [ %output112, %iter ]
+  %return10 = call i64 @"lt@III"(i64 %__impl_foreach_index_126.0, i64 %return7)
+  %7 = icmp ne i64 %return10, 0
+  br i1 %7, label %body, label %end11
+
+body:                                             ; preds = %cond
+  %return14 = call i64 @"getcomp@I[II"(i64* %return, i64 %__impl_foreach_index_126.0)
+  %geometry15 = load i64, i64* %geometry
+  %return16 = call i64 @"not@II"(i64 %geometry15)
+  %c_ptnum18 = load i64, i64* %c_ptnum
+  %return19 = call i64 @"eq@III"(i64 %return14, i64 %c_ptnum18)
+  %return20 = call i64 @"and@III"(i64 %return16, i64 %return19)
+  %8 = icmp ne i64 %return20, 0
+  br i1 %8, label %iter, label %end22
+
+end11:                                            ; preds = %true85, %true92, %true40, %true59, %cond
+  %result_c_pos_rmflag.0 = phi <4 x double> [ %output63, %true59 ], [ zeroinitializer, %true40 ], [ %output97, %true92 ], [ zeroinitializer, %true85 ], [ zeroinitializer, %cond ]
+  %c_pos113 = load <3 x double>, <3 x double>* %c_pos
+  %return114 = call double @"getcomp@FVI"(<3 x double> %c_pos113, i64 0)
+  %return116 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %result_c_pos_rmflag.0, double %return114, i64 0)
+  %output118 = extractvalue { double, <4 x double> } %return116, 1
+  %c_pos119 = load <3 x double>, <3 x double>* %c_pos
+  %return120 = call double @"getcomp@FVI"(<3 x double> %c_pos119, i64 1)
+  %return122 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %output118, double %return120, i64 1)
+  %output124 = extractvalue { double, <4 x double> } %return122, 1
+  %c_pos125 = load <3 x double>, <3 x double>* %c_pos
+  %return126 = call double @"getcomp@FVI"(<3 x double> %c_pos125, i64 2)
+  %return128 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %output124, double %return126, i64 2)
+  %output130 = extractvalue { double, <4 x double> } %return128, 1
+  ret <4 x double> %output130
+
+iter:                                             ; preds = %end41, %body, %end86
+  %output112 = add i64 %__impl_foreach_index_126.0, 1
+  br label %cond
+
+end22:                                            ; preds = %body
+  %return25 = call { <3 x double>, i64 } @"pointattrib@VISII"(i64 %geometry15, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @8, i64 0, i64 0), i64 %return14)
+  %return26 = extractvalue { <3 x double>, i64 } %return25, 0
+  %c_pos27 = load <3 x double>, <3 x double>* %c_pos
+  %output29 = call <3 x double> @"sub@VV"(<3 x double> %c_pos27, <3 x double> %return26)
+  %return31 = call double @"length@FV"(<3 x double> %output29)
+  %geometry32 = load i64, i64* %geometry
+  %return34 = call { double, i64 } @"pointattrib@FISII"(i64 %geometry32, i8* getelementptr inbounds ([14 x i8], [14 x i8]* @9, i64 0, i64 0), i64 %return14)
+  %return35 = extractvalue { double, i64 } %return34, 0
+  %return38 = fcmp olt double %return31, 1.000000e-03
+  br i1 %return38, label %true40, label %end41
+
+true40:                                           ; preds = %end22
+  %geometry42 = load i64, i64* %geometry
+  %c_pos43 = load <3 x double>, <3 x double>* %c_pos
+  %return45 = call i64 @"ne@IVV"(<3 x double> %c_pos43, <3 x double> %return26)
+  store <3 x double> %c_pos43, <3 x double>* %0
+  store <3 x double> %return26, <3 x double>* %1
+  %compare_pos = call i64 @"compare_pos@IVV"(<3 x double>* %0, <3 x double>* %1)
+  %return48 = call i64 @"and@III"(i64 %return45, i64 %compare_pos)
+  %return49 = call i64 @"or@III"(i64 %geometry42, i64 %return48)
+  %c_pos50 = load <3 x double>, <3 x double>* %c_pos
+  %return52 = call i64 @"eq@IVV"(<3 x double> %c_pos50, <3 x double> %return26)
+  %c_scaled_innerradius53 = load double, double* %c_scaled_innerradius
+  %return55 = fcmp olt double %c_scaled_innerradius53, %return35
+  %return56 = zext i1 %return55 to i64
+  %return57 = call i64 @"and@III"(i64 %return52, i64 %return56)
+  %return58 = call i64 @"or@III"(i64 %return49, i64 %return57)
+  %9 = icmp ne i64 %return58, 0
+  br i1 %9, label %true59, label %end11
+
+end41:                                            ; preds = %end22
+  %c_scaled_innerradius64 = load double, double* %c_scaled_innerradius
+  %output66 = fadd double %c_scaled_innerradius64, %return35
+  %c_pos67 = load <3 x double>, <3 x double>* %c_pos
+  %output69 = call <3 x double> @"add@VV"(<3 x double> %c_pos67, <3 x double> %return26)
+  store <3 x double> %output69, <3 x double>* %2
+  %quantization_amount70 = load double, double* %quantization_amount
+  store double %quantization_amount70, double* %3
+  %quantize_pos = call <3 x double> @"quantize_pos@VVF"(<3 x double>* %2, double* %3)
+  %return73 = fcmp oge double %return31, %output66
+  br i1 %return73, label %iter, label %false76
+
+true59:                                           ; preds = %true40
+  %return61 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> zeroinitializer, double 1.000000e+00, i64 3)
+  %output63 = extractvalue { double, <4 x double> } %return61, 1
+  br label %end11
+
+false76:                                          ; preds = %end41
+  %seed79 = load i64, i64* %seed
+  %cast = call <3 x double> @"set@VI"(i64 %seed79)
+  %output80 = call <3 x double> @"add@VV"(<3 x double> %quantize_pos, <3 x double> %cast)
+  %return81 = call double @"rand@FV"(<3 x double> %output80)
+  %removing_rate82 = load double, double* %removing_rate
+  %return83 = fcmp olt double %return81, %removing_rate82
+  br i1 %return83, label %true85, label %end86
+
+true85:                                           ; preds = %false76
+  %geometry87 = load i64, i64* %geometry
+  %c_pos88 = load <3 x double>, <3 x double>* %c_pos
+  store <3 x double> %c_pos88, <3 x double>* %4
+  store <3 x double> %return26, <3 x double>* %5
+  %compare_pos90 = call i64 @"compare_pos@IVV"(<3 x double>* %4, <3 x double>* %5)
+  %return91 = call i64 @"or@III"(i64 %geometry87, i64 %compare_pos90)
+  %10 = icmp ne i64 %return91, 0
+  br i1 %10, label %true92, label %end11
+
+end86:                                            ; preds = %false76
+  %c_pos98 = load <3 x double>, <3 x double>* %c_pos
+  %movement_factor99 = load double, double* %movement_factor
+  %output102 = fsub double %output66, %return31
+  %output103 = fmul double %movement_factor99, %output102
+  %cast106 = call <3 x double> @"set@VF"(double %return31)
+  %output107 = call <3 x double> @"div@VV"(<3 x double> %output29, <3 x double> %cast106)
+  %cast108 = call <3 x double> @"set@VF"(double %output103)
+  %output109 = call <3 x double> @"mul@VV"(<3 x double> %cast108, <3 x double> %output107)
+  %output110 = call <3 x double> @"add@VV"(<3 x double> %c_pos98, <3 x double> %output109)
+  store <3 x double> %output110, <3 x double>* %c_pos
+  br label %iter
+
+true92:                                           ; preds = %true85
+  %return95 = call { double, <4 x double> } @"setcomp@FPFI"(<4 x double> zeroinitializer, double 1.000000e+00, i64 3)
+  %output97 = extractvalue { double, <4 x double> } %return95, 1
+  br label %end11
+}
+
+; Function Attrs: nounwind
+declare i64* @"pcfind_radius@[IISSSFVFI"(i64, i8*, i8*, i8*, double, <3 x double>, double, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare { <3 x double>, i64 } @"pointattrib@VISII"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #2
+
+; Function Attrs: nounwind
+declare { double, i64 } @"pointattrib@FISII"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@IVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@IVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: alwaysinline
+define private { double, <4 x double> } @"setcomp@FPFI"(<4 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <4 x double> @"setcomp@PFI"(<4 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <4 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <4 x double> } %mrv, <4 x double> %rw16, 1
+  ret { double, <4 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"setcomp@PFI"(<4 x double>, double, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind
+declare double @"rand@FV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FPI"(<4 x double>, i64) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %footprint, double %falloff, <3 x double> %P, i64 %ptnum, double %rmflag) #2 {
+__llvm_entry:
+  %"<P>" = alloca <3 x double>
+  %"<rmflag>" = alloca double
+  %0 = alloca double
+  %1 = alloca double
+  %2 = alloca i64
+  store <3 x double> %P, <3 x double>* %"<P>"
+  store double %rmflag, double* %"<rmflag>"
+  store double %footprint, double* %0
+  store double %falloff, double* %1
+  store i64 %ptnum, i64* %2
+  call void @"__vex_snippet_snippet@FFVIF"(double* %0, double* %1, <3 x double>* %"<P>", i64* %2, double* %"<rmflag>")
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @10, i64 0, i64 0), double %footprint) #4
+  %gvalue5 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @11, i64 0, i64 0), double %falloff) #4
+  %evalue6 = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue7 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @8, i64 0, i64 0), <3 x double> %evalue6) #4
+  %gvalue9 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @12, i64 0, i64 0), i64 %ptnum) #4
+  %evalue10 = load double, double* %"<rmflag>"
+  %gvalue11 = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @13, i64 0, i64 0), double %evalue10) #4
+  store double %gvalue, double* @footprint
+  store double %gvalue5, double* @falloff
+  store <3 x double> %gvalue7, <3 x double>* @P
+  store i64 %gvalue9, i64* @ptnum
+  store double %gvalue11, double* @rmflag
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, double 0.000000e+00, <3 x double> zeroinitializer, i64 0, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { alwaysinline }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
