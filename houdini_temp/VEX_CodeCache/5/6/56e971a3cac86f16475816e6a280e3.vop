@@ -1,0 +1,68 @@
+;_name	/obj/PCG_Building1/buildingAsset/subnet1/extrudeTexture_ying15/cleanOverlaps/detect_nans/attribvop1
+; ModuleID = 'obj_PCG_Building1_buildingAsset_subnet1_extrudeTexture_ying15_cleanOverlaps_detect_nans_attribvop1'
+source_filename = "obj_PCG_Building1_buildingAsset_subnet1_extrudeTexture_ying15_cleanOverlaps_detect_nans_attribvop1"
+
+@group___clean_nangroup__ = external global i64
+@0 = private constant [25 x i8] c"group___clean_nangroup__\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_PCG_Building1_buildingAsset_subnet1_extrudeTexture_ying15_cleanOverlaps_detect_nans_attribvop1_snippet1@IV"(i64* %_bound_group___clean_nangroup__, <3 x double>* %_bound_P) #0 {
+__llvm_entry:
+  %_bound_P1 = load <3 x double>, <3 x double>* %_bound_P
+  %return = call double @"getcomp@FVI"(<3 x double> %_bound_P1, i64 0)
+  %return2 = call i64 @"isnan@IF"(double %return)
+  %return4 = call double @"getcomp@FVI"(<3 x double> %_bound_P1, i64 1)
+  %return5 = call i64 @"isnan@IF"(double %return4)
+  %return6 = call i64 @"or@III"(i64 %return2, i64 %return5)
+  %return8 = call double @"getcomp@FVI"(<3 x double> %_bound_P1, i64 2)
+  %return9 = call i64 @"isnan@IF"(double %return8)
+  %return10 = call i64 @"or@III"(i64 %return6, i64 %return9)
+  store i64 %return10, i64* %_bound_group___clean_nangroup__
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"isnan@IF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @obj_PCG_Building1_buildingAsset_subnet1_extrudeTexture_ying15_cleanOverlaps_detect_nans_attribvop1(i64 %group___clean_nangroup__, <3 x double> %P) #2 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %"<group___clean_nangroup__>" = alloca i64
+  store i64 %group___clean_nangroup__, i64* %"<group___clean_nangroup__>"
+  store <3 x double> %P, <3 x double>* %0
+  call void @"_obj_PCG_Building1_buildingAsset_subnet1_extrudeTexture_ying15_cleanOverlaps_detect_nans_attribvop1_snippet1@IV"(i64* %"<group___clean_nangroup__>", <3 x double>* %0)
+  %evalue = load i64, i64* %"<group___clean_nangroup__>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([25 x i8], [25 x i8]* @0, i64 0, i64 0), i64 %evalue) #3
+  store i64 %gvalue, i64* @group___clean_nangroup__
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_PCG_Building1_buildingAsset_subnet1_extrudeTexture_ying15_cleanOverlaps_detect_nans_attribvop1(i64 0, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
