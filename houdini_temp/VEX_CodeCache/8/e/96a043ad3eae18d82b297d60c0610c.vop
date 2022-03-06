@@ -1,0 +1,59 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [12 x i8] c"PlayerSpawn\00"
+@1 = private constant [1 x i8] zeroinitializer
+@pscale = external global double
+@name = external global i8*
+@2 = private constant [7 x i8] c"pscale\00"
+@3 = private constant [5 x i8] c"name\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FS"(double* %_bound_pscale, i8** %_bound_name) #0 {
+__llvm_entry:
+  store double 2.500000e-01, double* %_bound_pscale
+  store i8* getelementptr inbounds ([12 x i8], [12 x i8]* @0, i64 0, i64 0), i8** %_bound_name
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %pscale, i8* %name) #1 {
+__llvm_entry:
+  %"<name>" = alloca i8*
+  %"<pscale>" = alloca double
+  store double %pscale, double* %"<pscale>"
+  store i8* %name, i8** %"<name>"
+  call void @"__vex_snippet_snippet@FS"(double* %"<pscale>", i8** %"<name>")
+  %evalue = load double, double* %"<pscale>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0), double %evalue) #2
+  %evalue1 = load i8*, i8** %"<name>"
+  %gvalue2 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @3, i64 0, i64 0), i8* %evalue1) #2
+  store double %gvalue, double* @pscale
+  store i8* %gvalue2, i8** @name
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

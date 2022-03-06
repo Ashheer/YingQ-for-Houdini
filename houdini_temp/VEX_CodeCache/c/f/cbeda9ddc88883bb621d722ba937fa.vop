@@ -1,0 +1,171 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [16 x i8] c"../searchradius\00"
+@1 = private constant [7 x i8] c"pscale\00"
+@2 = private constant [17 x i8] c"../uniformradius\00"
+@3 = private constant [2 x i8] c"P\00"
+@4 = private constant [19 x i8] c"../maxsearchpoints\00"
+@5 = private constant [9 x i8] c"polyline\00"
+@pscale = external global double
+@P = external global <3 x double>
+@ptnum = external global i64
+@6 = private constant [6 x i8] c"ptnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FVI"(double* %_bound_pscale, <3 x double>* %_bound_P, i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %return = call double @"ch@FS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64 @"haspointattrib@IIS"(i64 0, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0))
+  %return3 = call i64 @"chi@IS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @2, i64 0, i64 0))
+  %return4 = call i64 @"not@II"(i64 %return3)
+  %return5 = call i64 @"and@III"(i64 %return1, i64 %return4)
+  %0 = icmp ne i64 %return5, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_P7 = load <3 x double>, <3 x double>* %_bound_P
+  %_bound_pscale9 = load double, double* %_bound_pscale
+  %output = fmul double %return, %_bound_pscale9
+  %return10 = call i64 @"chi@IS"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @4, i64 0, i64 0))
+  %return11 = call i64* @"pcfind_radius@[IISSFVFI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @3, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), double %return, <3 x double> %_bound_P7, double %output, i64 %return10)
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %_bound_P12 = load <3 x double>, <3 x double>* %_bound_P
+  %output14 = fmul double 2.000000e+00, %return
+  %_bound_pscale15 = load double, double* %_bound_pscale
+  %output16 = fmul double %output14, %_bound_pscale15
+  %return17 = call i64 @"chi@IS"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @4, i64 0, i64 0))
+  %return18 = call i64* @"pcfind@[IISVFI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @3, i64 0, i64 0), <3 x double> %_bound_P12, double %output16, i64 %return17)
+  br label %end
+
+end:                                              ; preds = %false, %true
+  %points.0 = phi i64* [ %return11, %true ], [ %return18, %false ]
+  %return20 = call i64 @"len@I[I"(i64* %points.0)
+  br label %cond
+
+cond:                                             ; preds = %iter, %end
+  %__impl_foreach_index_43.0 = phi i64 [ 0, %end ], [ %output49, %iter ]
+  %return23 = call i64 @"lt@III"(i64 %__impl_foreach_index_43.0, i64 %return20)
+  %1 = icmp ne i64 %return23, 0
+  br i1 %1, label %body, label %end24
+
+body:                                             ; preds = %cond
+  %return27 = call i64 @"getcomp@I[II"(i64* %points.0, i64 %__impl_foreach_index_43.0)
+  %_bound_ptnum28 = load i64, i64* %_bound_ptnum
+  %return30 = call i64 @"eq@III"(i64 %_bound_ptnum28, i64 %return27)
+  %2 = icmp ne i64 %return30, 0
+  br i1 %2, label %iter, label %end32
+
+end24:                                            ; preds = %cond
+  ret void
+
+iter:                                             ; preds = %end32, %body, %end37
+  %output49 = add i64 %__impl_foreach_index_43.0, 1
+  br label %cond
+
+end32:                                            ; preds = %body
+  %return35 = call i64 @"lt@III"(i64 %return27, i64 %_bound_ptnum28)
+  %3 = icmp ne i64 %return35, 0
+  br i1 %3, label %iter, label %end37
+
+end37:                                            ; preds = %end32
+  %return38 = call i64 @"geoself@I"()
+  %return39 = call i64 @"addprim@IIS"(i64 %return38, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0))
+  %return40 = call i64 @"geoself@I"()
+  %_bound_ptnum42 = load i64, i64* %_bound_ptnum
+  %return43 = call i64 @"addvertex@IIII"(i64 %return40, i64 %return39, i64 %_bound_ptnum42)
+  %return44 = call i64 @"geoself@I"()
+  %return47 = call i64 @"addvertex@IIII"(i64 %return44, i64 %return39, i64 %return27)
+  br label %iter
+}
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"haspointattrib@IIS"(i64, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"pcfind_radius@[IISSFVFI"(i64, i8*, i8*, double, <3 x double>, double, i64) #2
+
+; Function Attrs: nounwind
+declare i64* @"pcfind@[IISVFI"(i64, i8*, <3 x double>, double, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #2
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IIS"(i64, i8*) #2
+
+; Function Attrs: nounwind
+declare i64 @"addvertex@IIII"(i64, i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %pscale, <3 x double> %P, i64 %ptnum) #2 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca <3 x double>
+  %2 = alloca i64
+  store double %pscale, double* %0
+  store <3 x double> %P, <3 x double>* %1
+  store i64 %ptnum, i64* %2
+  call void @"__vex_snippet_snippet@FVI"(double* %0, <3 x double>* %1, i64* %2)
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), double %pscale) #3
+  %gvalue5 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @3, i64 0, i64 0), <3 x double> %P) #3
+  %gvalue7 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @6, i64 0, i64 0), i64 %ptnum) #3
+  store double %gvalue, double* @pscale
+  store <3 x double> %gvalue5, <3 x double>* @P
+  store i64 %gvalue7, i64* @ptnum
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 1.000000e+00, <3 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
