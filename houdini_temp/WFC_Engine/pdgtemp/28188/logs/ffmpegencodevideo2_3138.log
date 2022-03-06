@@ -1,0 +1,3 @@
+[19:47:18.865] Executing command: ffmpeg -y -r 10.0/1 -f concat -safe 0 -apply_trc iec61966_2_1 -i "C:/Users/YingQ/Desktop/wfc_project_files_Paul_Unity/videos/framelist.txt" -c:v libx264 -vf "fps=10.0,format=yuv420p" -movflags faststart "C:/Users/YingQ/Desktop/wfc_project_files_Paul_Unity/video/wfc.mp4"
+[19:47:18.902] ERROR: could not find executable ffmpeg
+[19:47:18.902] Are you sure you have ffmpeg installed?

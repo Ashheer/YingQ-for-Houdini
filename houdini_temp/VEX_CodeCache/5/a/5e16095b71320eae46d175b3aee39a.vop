@@ -1,0 +1,56 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@__blur_weight__ = external global double
+@customweight = external global double
+@0 = private constant [16 x i8] c"__blur_weight__\00"
+@1 = private constant [13 x i8] c"customweight\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FF"(double* %_bound___blur_weight__, double* %_bound_customweight) #0 {
+__llvm_entry:
+  %_bound___blur_weight__1 = load double, double* %_bound___blur_weight__
+  %_bound_customweight2 = load double, double* %_bound_customweight
+  %output = fmul double %_bound___blur_weight__1, %_bound_customweight2
+  store double %output, double* %_bound___blur_weight__
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %__blur_weight__, double %customweight) #1 {
+__llvm_entry:
+  %0 = alloca double
+  %"<__blur_weight__>" = alloca double
+  store double %__blur_weight__, double* %"<__blur_weight__>"
+  store double %customweight, double* %0
+  call void @"__vex_snippet_snippet@FF"(double* %"<__blur_weight__>", double* %0)
+  %evalue = load double, double* %"<__blur_weight__>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @0, i64 0, i64 0), double %evalue) #2
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @1, i64 0, i64 0), double %customweight) #2
+  store double %gvalue, double* @__blur_weight__
+  store double %gvalue3, double* @customweight
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

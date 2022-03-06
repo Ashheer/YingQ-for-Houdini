@@ -1,0 +1,131 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [5 x i8] c"side\00"
+@1 = private constant [5 x i8] c"isle\00"
+@primnum = external global i64
+@side = external global i64
+@isle = external global double
+@2 = private constant [8 x i8] c"primnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IIF"(i64* %_bound_primnum, i64* %_bound_side, double* %_bound_isle) #0 {
+__llvm_entry:
+  %_bound_primnum1 = load i64, i64* %_bound_primnum
+  %return = call i64 @"primhedge@III"(i64 0, i64 %_bound_primnum1)
+  br label %body
+
+body:                                             ; preds = %end24, %__llvm_entry
+  %h.0 = phi i64 [ %return, %__llvm_entry ], [ %return33, %end24 ]
+  %return11 = call i64 @"hedge_nextequiv@III"(i64 0, i64 %h.0)
+  %return12 = call i64 @"hedge_prim@III"(i64 0, i64 %return11)
+  %return14 = call i64 @"prim@IISI"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0), i64 %return12)
+  %return16 = call i64 @"prim@IISI"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), i64 %return12)
+  %_bound_side18 = load i64, i64* %_bound_side
+  %return19 = call i64 @"eq@III"(i64 %return14, i64 %_bound_side18)
+  %return21 = call i64 @"neg@II"(i64 1)
+  %return22 = call i64 @"eq@III"(i64 %_bound_side18, i64 %return21)
+  %return23 = call i64 @"or@III"(i64 %return19, i64 %return22)
+  %0 = icmp ne i64 %return23, 0
+  br i1 %0, label %true, label %end24
+
+end:                                              ; preds = %end24
+  ret void
+
+true:                                             ; preds = %body
+  %cast = sitofp i64 %return16 to double
+  store double %cast, double* %_bound_isle
+  %_bound_side26 = load i64, i64* %_bound_side
+  %return28 = call i64 @"eq@III"(i64 %_bound_side26, i64 %return21)
+  %1 = icmp ne i64 %return28, 0
+  br i1 %1, label %true29, label %end24
+
+end24:                                            ; preds = %true, %true29, %body
+  %return33 = call i64 @"hedge_next@III"(i64 0, i64 %h.0)
+  %return5 = call i64 @"ne@III"(i64 %return33, i64 %return)
+  %return8 = call i64 @"ne@III"(i64 %return33, i64 %return21)
+  %return9 = call i64 @"and@III"(i64 %return5, i64 %return8)
+  %2 = icmp ne i64 %return9, 0
+  br i1 %2, label %body, label %end
+
+true29:                                           ; preds = %true
+  store i64 %return14, i64* %_bound_side
+  br label %end24
+}
+
+; Function Attrs: nounwind
+declare i64 @"primhedge@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"hedge_nextequiv@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"hedge_prim@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"prim@IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"hedge_next@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %primnum, i64 %side, double %isle) #1 {
+__llvm_entry:
+  %"<side>" = alloca i64
+  %"<isle>" = alloca double
+  %0 = alloca i64
+  store i64 %side, i64* %"<side>"
+  store double %isle, double* %"<isle>"
+  store i64 %primnum, i64* %0
+  call void @"__vex_snippet_snippet@IIF"(i64* %0, i64* %"<side>", double* %"<isle>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i64 %primnum) #3
+  %evalue2 = load i64, i64* %"<side>"
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0), i64 %evalue2) #3
+  %evalue4 = load double, double* %"<isle>"
+  %gvalue5 = call double @"_export@FSF"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), double %evalue4) #3
+  store i64 %gvalue, i64* @primnum
+  store i64 %gvalue3, i64* @side
+  store double %gvalue5, double* @isle
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

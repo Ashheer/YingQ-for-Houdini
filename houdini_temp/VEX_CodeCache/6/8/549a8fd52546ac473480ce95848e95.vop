@@ -1,0 +1,93 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"iteration\00"
+@1 = private constant [17 x i8] c"../bbox_relative\00"
+@2 = private constant [6 x i8] c"max_z\00"
+@3 = private constant [7 x i8] c"offset\00"
+@next_z = external global double
+@4 = private constant [7 x i8] c"next_z\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@F"(double* %_bound_next_z) #0 {
+__llvm_entry:
+  %return = call i64 @"detail@IISI"(i64 2, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), i64 0)
+  %return1 = call i64 @"ne@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return1, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return2 = call double @"ch@FS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @1, i64 0, i64 0))
+  %cast = fptosi double %return2 to i64
+  %1 = icmp ne i64 %cast, 0
+  br i1 %1, label %true3, label %false4
+
+false:                                            ; preds = %__llvm_entry
+  store double 0.000000e+00, double* %_bound_next_z
+  br label %end
+
+end:                                              ; preds = %true3, %false4, %false
+  ret void
+
+true3:                                            ; preds = %true
+  %return6 = call double @"ch@FS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0))
+  %return7 = call double @"ch@FS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @3, i64 0, i64 0))
+  %output = fadd double %return6, %return7
+  store double %output, double* %_bound_next_z
+  br label %end
+
+false4:                                           ; preds = %true
+  %return8 = call double @"ch@FS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @3, i64 0, i64 0))
+  %return9 = call double @"detail@FISI"(i64 2, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), i64 0)
+  %output10 = fmul double %return8, %return9
+  store double %output10, double* %_bound_next_z
+  br label %end
+}
+
+; Function Attrs: nounwind
+declare i64 @"detail@IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #2
+
+; Function Attrs: nounwind
+declare double @"detail@FISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %next_z) #1 {
+__llvm_entry:
+  %"<next_z>" = alloca double
+  store double %next_z, double* %"<next_z>"
+  call void @"__vex_snippet_snippet@F"(double* %"<next_z>")
+  %evalue = load double, double* %"<next_z>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @4, i64 0, i64 0), double %evalue) #3
+  store double %gvalue, double* @next_z
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

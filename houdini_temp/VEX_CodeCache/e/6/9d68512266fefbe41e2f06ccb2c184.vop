@@ -1,0 +1,70 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"iteration\00"
+@new_name = external global i64
+@total_area = external global double
+@1 = private constant [9 x i8] c"new_name\00"
+@2 = private constant [11 x i8] c"total_area\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IF"(i64* %_bound_new_name, double* %_bound_total_area) #0 {
+__llvm_entry:
+  %return = call i64 @"neg@II"(i64 1)
+  %_bound_total_area1 = load double, double* %_bound_total_area
+  %output = fmul double %_bound_total_area1, 1.000000e+04
+  %cast = fptosi double %output to i64
+  %return2 = call i64 @"detail@IISI"(i64 1, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), i64 0)
+  %output3 = add i64 %cast, %return2
+  %output4 = mul i64 %return, %output3
+  store i64 %output4, i64* %_bound_new_name
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"detail@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %new_name, double %total_area) #2 {
+__llvm_entry:
+  %0 = alloca double
+  %"<new_name>" = alloca i64
+  store i64 %new_name, i64* %"<new_name>"
+  store double %total_area, double* %0
+  call void @"__vex_snippet_snippet@IF"(i64* %"<new_name>", double* %0)
+  %evalue = load i64, i64* %"<new_name>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @1, i64 0, i64 0), i64 %evalue) #3
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @2, i64 0, i64 0), double %total_area) #3
+  store i64 %gvalue, i64* @new_name
+  store double %gvalue3, double* @total_area
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
