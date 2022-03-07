@@ -1,0 +1,56 @@
+;_name	/obj/geo1/wfc_levelgenerator_ying1/UV/groupexpression1/attribvop1
+; ModuleID = 'obj_geo1_wfc_levelgenerator_ying1_UV_groupexpression1_attribvop1'
+source_filename = "obj_geo1_wfc_levelgenerator_ying1_UV_groupexpression1_attribvop1"
+
+@group_group1 = external global i64
+@0 = private constant [13 x i8] c"group_group1\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_geo1_wfc_levelgenerator_ying1_UV_groupexpression1_attribvop1_snippet1@IV"(i64* %_bound_group_group1, <3 x double>* %_bound_P) #0 {
+__llvm_entry:
+  %_bound_P1 = load <3 x double>, <3 x double>* %_bound_P
+  %return = call double @"getcomp@FVI"(<3 x double> %_bound_P1, i64 1)
+  %cast = fptosi double %return to i64
+  store i64 %cast, i64* %_bound_group_group1
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind
+define void @obj_geo1_wfc_levelgenerator_ying1_UV_groupexpression1_attribvop1(i64 %group_group1, <3 x double> %P) #2 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %"<group_group1>" = alloca i64
+  store i64 %group_group1, i64* %"<group_group1>"
+  store <3 x double> %P, <3 x double>* %0
+  call void @"_obj_geo1_wfc_levelgenerator_ying1_UV_groupexpression1_attribvop1_snippet1@IV"(i64* %"<group_group1>", <3 x double>* %0)
+  %evalue = load i64, i64* %"<group_group1>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @0, i64 0, i64 0), i64 %evalue) #3
+  store i64 %gvalue, i64* @group_group1
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_wfc_levelgenerator_ying1_UV_groupexpression1_attribvop1(i64 0, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

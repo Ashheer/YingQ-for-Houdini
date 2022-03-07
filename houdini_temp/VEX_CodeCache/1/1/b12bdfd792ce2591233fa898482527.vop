@@ -1,0 +1,51 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@res = external global <3 x double>
+@0 = private constant [4 x i8] c"res\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@V"(<3 x double>* %_bound_res) #0 {
+__llvm_entry:
+  %return = call <3 x double> @"volumeres@VII"(i64 0, i64 0)
+  store <3 x double> %return, <3 x double>* %_bound_res
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"volumeres@VII"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %res) #1 {
+__llvm_entry:
+  %"<res>" = alloca <3 x double>
+  store <3 x double> %res, <3 x double>* %"<res>"
+  call void @"__vex_snippet_snippet@V"(<3 x double>* %"<res>")
+  %evalue = load <3 x double>, <3 x double>* %"<res>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @0, i64 0, i64 0), <3 x double> %evalue) #2
+  store <3 x double> %gvalue, <3 x double>* @res
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

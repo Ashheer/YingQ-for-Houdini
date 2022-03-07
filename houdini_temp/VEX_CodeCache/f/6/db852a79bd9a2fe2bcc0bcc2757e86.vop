@@ -1,0 +1,71 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [18 x i8] c"material_override\00"
+@1 = private constant [13 x i8] c"materialpath\00"
+@2 = private constant [14 x i8] c"material_name\00"
+@3 = private constant [1 x i8] zeroinitializer
+@material_override = external global i8*
+@shop_materialpath = external global i8*
+@material_name = external global i8*
+@4 = private constant [18 x i8] c"shop_materialpath\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@SSS"(i8** %_bound_material_override, i8** %_bound_shop_materialpath, i8** %_bound_material_name) #0 {
+__llvm_entry:
+  %return = call i8* @"detail@SIS"(i64 1, i8* getelementptr inbounds ([18 x i8], [18 x i8]* @0, i64 0, i64 0))
+  store i8* %return, i8** %_bound_material_override
+  %return1 = call i8* @"detail@SIS"(i64 1, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @1, i64 0, i64 0))
+  store i8* %return1, i8** %_bound_shop_materialpath
+  %return2 = call i8* @"detail@SIS"(i64 1, i8* getelementptr inbounds ([14 x i8], [14 x i8]* @2, i64 0, i64 0))
+  store i8* %return2, i8** %_bound_material_name
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i8* @"detail@SIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8* %material_override, i8* %shop_materialpath, i8* %material_name) #1 {
+__llvm_entry:
+  %"<shop_materialpath>" = alloca i8*
+  %"<material_name>" = alloca i8*
+  %"<material_override>" = alloca i8*
+  store i8* %material_override, i8** %"<material_override>"
+  store i8* %shop_materialpath, i8** %"<shop_materialpath>"
+  store i8* %material_name, i8** %"<material_name>"
+  call void @"__vex_snippet_snippet@SSS"(i8** %"<material_override>", i8** %"<shop_materialpath>", i8** %"<material_name>")
+  %evalue = load i8*, i8** %"<material_override>"
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @0, i64 0, i64 0), i8* %evalue) #2
+  %evalue1 = load i8*, i8** %"<shop_materialpath>"
+  %gvalue2 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @4, i64 0, i64 0), i8* %evalue1) #2
+  %evalue3 = load i8*, i8** %"<material_name>"
+  %gvalue4 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @2, i64 0, i64 0), i8* %evalue3) #2
+  store i8* %gvalue, i8** @material_override
+  store i8* %gvalue2, i8** @shop_materialpath
+  store i8* %gvalue4, i8** @material_name
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @3, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @3, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @3, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

@@ -1,0 +1,78 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@rotation = external global i64
+@transform = external global <9 x double>
+@0 = private constant [9 x i8] c"rotation\00"
+@1 = private constant [10 x i8] c"transform\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I3"(i64* %_bound_rotation, <9 x double>* %_bound_transform) #0 {
+__llvm_entry:
+  %return = call <9 x double> @"ident@3"()
+  %_bound_rotation2 = load i64, i64* %_bound_rotation
+  %return3 = call i64 @"neg@II"(i64 %_bound_rotation2)
+  %cast = sitofp i64 %return3 to double
+  %return4 = call double @"radians@FF"(double %cast)
+  %return5 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 1.000000e+00, double 0.000000e+00)
+  %output = call <9 x double> @"prerotate@3FV"(<9 x double> %return, double %return4, <3 x double> %return5)
+  store <9 x double> %output, <9 x double>* %_bound_transform
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <9 x double> @"ident@3"() #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #2
+
+; Function Attrs: nounwind
+declare double @"radians@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"prerotate@3FV"(<9 x double>, double, <3 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %rotation, <9 x double> %transform) #1 {
+__llvm_entry:
+  %"<transform>" = alloca <9 x double>
+  %0 = alloca i64
+  store <9 x double> %transform, <9 x double>* %"<transform>"
+  store i64 %rotation, i64* %0
+  call void @"__vex_snippet_snippet@I3"(i64* %0, <9 x double>* %"<transform>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @0, i64 0, i64 0), i64 %rotation) #3
+  %evalue2 = load <9 x double>, <9 x double>* %"<transform>"
+  %gvalue3 = call <9 x double> @"_export@3S3"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0), <9 x double> %evalue2) #3
+  store i64 %gvalue, i64* @rotation
+  store <9 x double> %gvalue3, <9 x double>* @transform
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <9 x double> @"_export@3S3"(i8*, <9 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, <9 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
