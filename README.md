@@ -1,6 +1,6 @@
 # YingQ-for-Houdini
 **1. 使用方法**  
-  如果您的Houdini已经使用了json来管理, 直接在package_page中添加:"$LibPath/YingQ-for-Houdini/Packages"即可.  
+  如果您的Houdini已经使用了json来管理, 直接在package_path中添加:"$LibPath/YingQ-for-Houdini/Packages"即可.  
   反之则在C:\Users\Username\Documents\houdiniVersion\packages中创建一个.json,  
 {  
 "env": [  
