@@ -1,0 +1,62 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@height = external global double
+@max = external global double
+@min = external global double
+@0 = private constant [7 x i8] c"height\00"
+@1 = private constant [4 x i8] c"max\00"
+@2 = private constant [4 x i8] c"min\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FFF"(double* %_bound_height, double* %_bound_max, double* %_bound_min) #0 {
+__llvm_entry:
+  %_bound_max1 = load double, double* %_bound_max
+  %_bound_min2 = load double, double* %_bound_min
+  %output = fsub double %_bound_max1, %_bound_min2
+  store double %output, double* %_bound_height
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %height, double %max, double %min) #1 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca double
+  %"<height>" = alloca double
+  store double %height, double* %"<height>"
+  store double %max, double* %0
+  store double %min, double* %1
+  call void @"__vex_snippet_snippet@FFF"(double* %"<height>", double* %0, double* %1)
+  %evalue = load double, double* %"<height>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), double %evalue) #2
+  %gvalue4 = call double @"_export@FSF"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @1, i64 0, i64 0), double %max) #2
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @2, i64 0, i64 0), double %min) #2
+  store double %gvalue, double* @height
+  store double %gvalue4, double* @max
+  store double %gvalue6, double* @min
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
