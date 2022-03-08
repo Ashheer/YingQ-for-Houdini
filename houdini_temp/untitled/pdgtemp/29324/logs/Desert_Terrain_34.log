@@ -1,0 +1,10 @@
+[22:41:35.997] Running Houdini 19.0.531 with PID 26156
+[22:41:35.997] HDA: C:/Users/YingQ/3D/Houdini_libs/YingQ-for-Houdini/otls/Desert_Terrain.1.0.hda
+[22:41:35.998] Operator Type: Sop/Desert_Terrain::1.0
+[22:41:38.993] Setting parm heightfield_resample3_gridsamples to: [505]
+[22:41:38.993] Setting parm heightfield1_sizex to: [1000.0]
+[22:41:38.993] Setting parm heightfield_pattern1_distort_offsetx to: [0.5]
+[22:41:38.993] Setting parm heightfield_noise2_offsetx to: [494.9]
+[22:41:38.993] Setting parm heightfield_masknoise1_offsetx to: [0.0]
+[22:41:38.993] Setting parm heightfield_remap4_outputmax to: [50.0]
+[22:41:42.144] PDG_RESULT: 34;-1;C:/Users/YingQ/Desktop/Desert_Scene_UE5.0P1/Houdini files/geo/geo/geo/Desert_Terrain..0.bgeo.sc;file/geo;0

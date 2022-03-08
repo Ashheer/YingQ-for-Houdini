@@ -1,0 +1,180 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [6 x i8] c"point\00"
+@1 = private constant [12 x i8] c"__cutterdir\00"
+@2 = private constant [7 x i8] c"normal\00"
+@3 = private constant [4 x i8] c"cut\00"
+@4 = private constant [12 x i8] c"cut_spacing\00"
+@5 = private constant [11 x i8] c"cut_offset\00"
+@6 = private constant [16 x i8] c"cut_offset_seed\00"
+@7 = private constant [17 x i8] c"splinter_density\00"
+@8 = private constant [17 x i8] c"cut_noise_height\00"
+@9 = private constant [20 x i8] c"cut_noise_elem_size\00"
+@10 = private constant [15 x i8] c"cut_noise_seed\00"
+@11 = private constant [14 x i8] c"grain_spacing\00"
+@12 = private constant [13 x i8] c"grain_offset\00"
+@13 = private constant [18 x i8] c"grain_offset_seed\00"
+@14 = private constant [18 x i8] c"grain_detail_size\00"
+@15 = private constant [19 x i8] c"grain_noise_height\00"
+@16 = private constant [22 x i8] c"grain_noise_elem_size\00"
+@17 = private constant [17 x i8] c"grain_noise_seed\00"
+@18 = private constant [1 x i8] zeroinitializer
+@N = external global <3 x double>
+@__cutterdir = external global <3 x double>
+@__cutterspacing = external global double
+@__cutteroffset = external global double
+@__cutteroffsetseed = external global double
+@__cutterdetailsize = external global double
+@__cutternoiseheight = external global double
+@__cutternoiseelemsize = external global double
+@__cutternoiseseed = external global double
+@19 = private constant [2 x i8] c"N\00"
+@20 = private constant [16 x i8] c"__cutterspacing\00"
+@21 = private constant [15 x i8] c"__cutteroffset\00"
+@22 = private constant [19 x i8] c"__cutteroffsetseed\00"
+@23 = private constant [19 x i8] c"__cutterdetailsize\00"
+@24 = private constant [20 x i8] c"__cutternoiseheight\00"
+@25 = private constant [22 x i8] c"__cutternoiseelemsize\00"
+@26 = private constant [18 x i8] c"__cutternoiseseed\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VVSFFFFFFF"(<3 x double>* %_bound_N, <3 x double>* %_bound___cutterdir, i8** %_bound___cuttertype, double* %_bound___cutterspacing, double* %_bound___cutteroffset, double* %_bound___cutteroffsetseed, double* %_bound___cutterdetailsize, double* %_bound___cutternoiseheight, double* %_bound___cutternoiseelemsize, double* %_bound___cutternoiseseed) #0 {
+__llvm_entry:
+  %_bound___cutterdir1 = load <3 x double>, <3 x double>* %_bound___cutterdir
+  store <3 x double> %_bound___cutterdir1, <3 x double>* %_bound_N
+  %return = call i64 @"setattribtypeinfo@IISSS"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0))
+  %_bound___cuttertype2 = load i8*, i8** %_bound___cuttertype
+  %return3 = call i64 @"eq@ISS"(i8* %_bound___cuttertype2, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0))
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return4 = call double @"chf@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @4, i64 0, i64 0))
+  store double %return4, double* %_bound___cutterspacing
+  %return5 = call double @"chf@FS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @5, i64 0, i64 0))
+  store double %return5, double* %_bound___cutteroffset
+  %return6 = call double @"chf@FS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @6, i64 0, i64 0))
+  store double %return6, double* %_bound___cutteroffsetseed
+  %return7 = call double @"chf@FS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @7, i64 0, i64 0))
+  %output = call double @"div@FF"(double 1.000000e+00, double %return7)
+  store double %output, double* %_bound___cutterdetailsize
+  %return8 = call double @"chf@FS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @8, i64 0, i64 0))
+  store double %return8, double* %_bound___cutternoiseheight
+  %return9 = call double @"chf@FS"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @9, i64 0, i64 0))
+  store double %return9, double* %_bound___cutternoiseelemsize
+  %return10 = call double @"chf@FS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @10, i64 0, i64 0))
+  store double %return10, double* %_bound___cutternoiseseed
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return11 = call double @"chf@FS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @11, i64 0, i64 0))
+  store double %return11, double* %_bound___cutterspacing
+  %return12 = call double @"chf@FS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @12, i64 0, i64 0))
+  store double %return12, double* %_bound___cutteroffset
+  %return13 = call double @"chf@FS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @13, i64 0, i64 0))
+  store double %return13, double* %_bound___cutteroffsetseed
+  %return14 = call double @"chf@FS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @14, i64 0, i64 0))
+  store double %return14, double* %_bound___cutterdetailsize
+  %return15 = call double @"chf@FS"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @15, i64 0, i64 0))
+  store double %return15, double* %_bound___cutternoiseheight
+  %return16 = call double @"chf@FS"(i8* getelementptr inbounds ([22 x i8], [22 x i8]* @16, i64 0, i64 0))
+  store double %return16, double* %_bound___cutternoiseelemsize
+  %return17 = call double @"chf@FS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @17, i64 0, i64 0))
+  store double %return17, double* %_bound___cutternoiseseed
+  br label %end
+
+end:                                              ; preds = %false, %true
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"setattribtypeinfo@IISSS"(i64, i8*, i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %N, <3 x double> %__cutterdir, i8* %__cuttertype, double %__cutterspacing, double %__cutteroffset, double %__cutteroffsetseed, double %__cutterdetailsize, double %__cutternoiseheight, double %__cutternoiseelemsize, double %__cutternoiseseed) #1 {
+__llvm_entry:
+  %"<__cutterspacing>" = alloca double
+  %"<__cutteroffset>" = alloca double
+  %"<__cutteroffsetseed>" = alloca double
+  %"<__cutterdetailsize>" = alloca double
+  %"<__cutternoiseheight>" = alloca double
+  %"<__cutternoiseelemsize>" = alloca double
+  %"<__cutternoiseseed>" = alloca double
+  %0 = alloca <3 x double>
+  %1 = alloca i8*
+  %"<N>" = alloca <3 x double>
+  store <3 x double> %N, <3 x double>* %"<N>"
+  store double %__cutterspacing, double* %"<__cutterspacing>"
+  store double %__cutteroffset, double* %"<__cutteroffset>"
+  store double %__cutteroffsetseed, double* %"<__cutteroffsetseed>"
+  store double %__cutterdetailsize, double* %"<__cutterdetailsize>"
+  store double %__cutternoiseheight, double* %"<__cutternoiseheight>"
+  store double %__cutternoiseelemsize, double* %"<__cutternoiseelemsize>"
+  store double %__cutternoiseseed, double* %"<__cutternoiseseed>"
+  store <3 x double> %__cutterdir, <3 x double>* %0
+  store i8* %__cuttertype, i8** %1
+  call void @"__vex_snippet_snippet@VVSFFFFFFF"(<3 x double>* %"<N>", <3 x double>* %0, i8** %1, double* %"<__cutterspacing>", double* %"<__cutteroffset>", double* %"<__cutteroffsetseed>", double* %"<__cutterdetailsize>", double* %"<__cutternoiseheight>", double* %"<__cutternoiseelemsize>", double* %"<__cutternoiseseed>")
+  %evalue = load <3 x double>, <3 x double>* %"<N>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @19, i64 0, i64 0), <3 x double> %evalue) #3
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0), <3 x double> %__cutterdir) #3
+  %evalue5 = load double, double* %"<__cutterspacing>"
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @20, i64 0, i64 0), double %evalue5) #3
+  %evalue7 = load double, double* %"<__cutteroffset>"
+  %gvalue8 = call double @"_export@FSF"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @21, i64 0, i64 0), double %evalue7) #3
+  %evalue9 = load double, double* %"<__cutteroffsetseed>"
+  %gvalue10 = call double @"_export@FSF"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @22, i64 0, i64 0), double %evalue9) #3
+  %evalue11 = load double, double* %"<__cutterdetailsize>"
+  %gvalue12 = call double @"_export@FSF"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @23, i64 0, i64 0), double %evalue11) #3
+  %evalue13 = load double, double* %"<__cutternoiseheight>"
+  %gvalue14 = call double @"_export@FSF"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @24, i64 0, i64 0), double %evalue13) #3
+  %evalue15 = load double, double* %"<__cutternoiseelemsize>"
+  %gvalue16 = call double @"_export@FSF"(i8* getelementptr inbounds ([22 x i8], [22 x i8]* @25, i64 0, i64 0), double %evalue15) #3
+  %evalue17 = load double, double* %"<__cutternoiseseed>"
+  %gvalue18 = call double @"_export@FSF"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @26, i64 0, i64 0), double %evalue17) #3
+  store <3 x double> %gvalue, <3 x double>* @N
+  store <3 x double> %gvalue4, <3 x double>* @__cutterdir
+  store double %gvalue6, double* @__cutterspacing
+  store double %gvalue8, double* @__cutteroffset
+  store double %gvalue10, double* @__cutteroffsetseed
+  store double %gvalue12, double* @__cutterdetailsize
+  store double %gvalue14, double* @__cutternoiseheight
+  store double %gvalue16, double* @__cutternoiseelemsize
+  store double %gvalue18, double* @__cutternoiseseed
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> zeroinitializer, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @18, i64 0, i64 0), double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

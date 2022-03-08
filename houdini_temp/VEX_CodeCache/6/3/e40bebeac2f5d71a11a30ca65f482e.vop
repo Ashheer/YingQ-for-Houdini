@@ -1,0 +1,74 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"iteration\00"
+@flipX = external global i64
+@flipY = external global i64
+@1 = private constant [6 x i8] c"flipX\00"
+@2 = private constant [6 x i8] c"flipY\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@II"(i64* %_bound_flipX, i64* %_bound_flipY) #0 {
+__llvm_entry:
+  %return = call i64 @"detail@IISI"(i64 0, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), i64 0)
+  %output = mul i64 %return, 2525525
+  %cast = sitofp i64 %output to double
+  %return1 = call double @"rand@FF"(double %cast)
+  %return2 = fcmp ogt double %return1, 5.000000e-01
+  %. = select i1 %return2, i64 1, i64 0
+  store i64 %., i64* %_bound_flipX
+  %return4 = call i64 @"detail@IISI"(i64 0, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), i64 0)
+  %output5 = mul i64 %return4, 2534622
+  %cast6 = sitofp i64 %output5 to double
+  %return7 = call double @"rand@FF"(double %cast6)
+  %return8 = fcmp olt double %return7, 5.000000e-01
+  %phi13 = select i1 %return8, i64 1, i64 0
+  store i64 %phi13, i64* %_bound_flipY
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"detail@IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare double @"rand@FF"(double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %flipX, i64 %flipY) #1 {
+__llvm_entry:
+  %"<flipY>" = alloca i64
+  %"<flipX>" = alloca i64
+  store i64 %flipX, i64* %"<flipX>"
+  store i64 %flipY, i64* %"<flipY>"
+  call void @"__vex_snippet_snippet@II"(i64* %"<flipX>", i64* %"<flipY>")
+  %evalue = load i64, i64* %"<flipX>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %evalue) #2
+  %evalue1 = load i64, i64* %"<flipY>"
+  %gvalue2 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0), i64 %evalue1) #2
+  store i64 %gvalue, i64* @flipX
+  store i64 %gvalue2, i64* @flipY
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

@@ -1,0 +1,57 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@group_doors = external global i64
+@group_balconies = external global i64
+@group_balconyDoor = external global i64
+@0 = private constant [12 x i8] c"group_doors\00"
+@1 = private constant [16 x i8] c"group_balconies\00"
+@2 = private constant [18 x i8] c"group_balconyDoor\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@III"(i64* %_bound_group_doors, i64* %_bound_group_balconies, i64* %_bound_group_balconyDoor) #0 {
+__llvm_entry:
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %group_doors, i64 %group_balconies, i64 %group_balconyDoor) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i64
+  store i64 %group_doors, i64* %0
+  store i64 %group_balconies, i64* %1
+  store i64 %group_balconyDoor, i64* %2
+  call void @"__vex_snippet_snippet@III"(i64* %0, i64* %1, i64* %2)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @0, i64 0, i64 0), i64 %group_doors) #2
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @1, i64 0, i64 0), i64 %group_balconies) #2
+  %gvalue7 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @2, i64 0, i64 0), i64 %group_balconyDoor) #2
+  store i64 %gvalue, i64* @group_doors
+  store i64 %gvalue5, i64* @group_balconies
+  store i64 %gvalue7, i64* @group_balconyDoor
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

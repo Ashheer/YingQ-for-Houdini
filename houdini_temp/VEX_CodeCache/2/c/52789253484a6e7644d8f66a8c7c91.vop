@@ -1,0 +1,149 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [11 x i8] c"@target=%g\00"
+@1 = private constant [11 x i8] c"__tileable\00"
+@target = external global i64
+@__aspectratio = external global double
+@__width = external global double
+@__height = external global double
+@__eccentricity = external global double
+@__area = external global double
+@__perimeter = external global double
+@group___tileable = external global i64
+@2 = private constant [7 x i8] c"target\00"
+@3 = private constant [14 x i8] c"__aspectratio\00"
+@4 = private constant [8 x i8] c"__width\00"
+@5 = private constant [9 x i8] c"__height\00"
+@6 = private constant [15 x i8] c"__eccentricity\00"
+@7 = private constant [7 x i8] c"__area\00"
+@8 = private constant [12 x i8] c"__perimeter\00"
+@9 = private constant [17 x i8] c"group___tileable\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IFFFFFFI"(i64* %_bound_target, double* %_bound___aspectratio, double* %_bound___width, double* %_bound___height, double* %_bound___eccentricity, double* %_bound___area, double* %_bound___perimeter, i64* %_bound_group___tileable) #0 {
+__llvm_entry:
+  %_bound_target1 = load i64, i64* %_bound_target
+  %return = call i8* @"sprintf@SS:I"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @0, i64 0, i64 0), i64 %_bound_target1)
+  %return2 = call <3 x double> @"getbbox_size@VIS"(i64 0, i8* %return)
+  %return4 = call double @"getcomp@FVI"(<3 x double> %return2, i64 0)
+  %return6 = call double @"getcomp@FVI"(<3 x double> %return2, i64 2)
+  %output = call double @"div@FF"(double %return4, double %return6)
+  store double %output, double* %_bound___aspectratio
+  store double %return6, double* %_bound___width
+  store double %return4, double* %_bound___height
+  %_bound___area11 = load double, double* %_bound___area
+  %_bound___perimeter12 = load double, double* %_bound___perimeter
+  %output14 = fmul double %_bound___perimeter12, %_bound___perimeter12
+  %output15 = call double @"div@FF"(double %_bound___area11, double %output14)
+  store double %output15, double* %_bound___eccentricity
+  %return16 = call i64 @"nprimitivesgroup@IIS"(i64 0, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @1, i64 0, i64 0))
+  %return17 = call i64 @"eq@III"(i64 %return16, i64 0)
+  %0 = icmp ne i64 %return17, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound___width18 = load double, double* %_bound___width
+  %output19 = fsub double %_bound___width18, 1.000000e+00
+  %return20 = call double @"abs@FF"(double %output19)
+  %return21 = fcmp ole double %return20, 1.000000e-04
+  br i1 %return21, label %true23, label %end
+
+end:                                              ; preds = %true, %true23, %__llvm_entry
+  ret void
+
+true23:                                           ; preds = %true
+  store i64 1, i64* %_bound_group___tileable
+  br label %end
+}
+
+; Function Attrs: nounwind readnone
+declare i8* @"sprintf@SS:I"(i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"getbbox_size@VIS"(i64, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind
+declare i64 @"nprimitivesgroup@IIS"(i64, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare double @"abs@FF"(double) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %target, double %__aspectratio, double %__width, double %__height, double %__eccentricity, double %__area, double %__perimeter, i64 %group___tileable) #2 {
+__llvm_entry:
+  %"<__aspectratio>" = alloca double
+  %"<__width>" = alloca double
+  %"<__height>" = alloca double
+  %"<__eccentricity>" = alloca double
+  %"<group___tileable>" = alloca i64
+  %0 = alloca i64
+  %1 = alloca double
+  %2 = alloca double
+  store double %__aspectratio, double* %"<__aspectratio>"
+  store double %__width, double* %"<__width>"
+  store double %__height, double* %"<__height>"
+  store double %__eccentricity, double* %"<__eccentricity>"
+  store i64 %group___tileable, i64* %"<group___tileable>"
+  store i64 %target, i64* %0
+  store double %__area, double* %1
+  store double %__perimeter, double* %2
+  call void @"__vex_snippet_snippet@IFFFFFFI"(i64* %0, double* %"<__aspectratio>", double* %"<__width>", double* %"<__height>", double* %"<__eccentricity>", double* %1, double* %2, i64* %"<group___tileable>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0), i64 %target) #3
+  %evalue4 = load double, double* %"<__aspectratio>"
+  %gvalue5 = call double @"_export@FSF"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @3, i64 0, i64 0), double %evalue4) #3
+  %evalue6 = load double, double* %"<__width>"
+  %gvalue7 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @4, i64 0, i64 0), double %evalue6) #3
+  %evalue8 = load double, double* %"<__height>"
+  %gvalue9 = call double @"_export@FSF"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0), double %evalue8) #3
+  %evalue10 = load double, double* %"<__eccentricity>"
+  %gvalue11 = call double @"_export@FSF"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @6, i64 0, i64 0), double %evalue10) #3
+  %gvalue13 = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @7, i64 0, i64 0), double %__area) #3
+  %gvalue15 = call double @"_export@FSF"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @8, i64 0, i64 0), double %__perimeter) #3
+  %evalue16 = load i64, i64* %"<group___tileable>"
+  %gvalue17 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @9, i64 0, i64 0), i64 %evalue16) #3
+  store i64 %gvalue, i64* @target
+  store double %gvalue5, double* @__aspectratio
+  store double %gvalue7, double* @__width
+  store double %gvalue9, double* @__height
+  store double %gvalue11, double* @__eccentricity
+  store double %gvalue13, double* @__area
+  store double %gvalue15, double* @__perimeter
+  store i64 %gvalue17, i64* @group___tileable
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

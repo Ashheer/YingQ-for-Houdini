@@ -1,0 +1,68 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [8 x i8] c"../../t\00"
+@1 = private constant [8 x i8] c"../../r\00"
+@__initial_xform__ = external global <16 x double>
+@pivot = external global <3 x double>
+@2 = private constant [18 x i8] c"__initial_xform__\00"
+@3 = private constant [6 x i8] c"pivot\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@4V"(<16 x double>* %_bound___initial_xform__, <3 x double>* %_bound_pivot) #0 {
+__llvm_entry:
+  %return = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0))
+  %return1 = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0))
+  %_bound_pivot5 = load <3 x double>, <3 x double>* %_bound_pivot
+  %return6 = call <16 x double> @"maketransform@4IIVVVV"(i64 0, i64 0, <3 x double> %return, <3 x double> %return1, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, <3 x double> %_bound_pivot5)
+  store <16 x double> %return6, <16 x double>* %_bound___initial_xform__
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"chv@VS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare <16 x double> @"maketransform@4IIVVVV"(i64, i64, <3 x double>, <3 x double>, <3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<16 x double> %__initial_xform__, <3 x double> %pivot) #2 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %"<__initial_xform__>" = alloca <16 x double>
+  store <16 x double> %__initial_xform__, <16 x double>* %"<__initial_xform__>"
+  store <3 x double> %pivot, <3 x double>* %0
+  call void @"__vex_snippet_snippet@4V"(<16 x double>* %"<__initial_xform__>", <3 x double>* %0)
+  %evalue = load <16 x double>, <16 x double>* %"<__initial_xform__>"
+  %gvalue = call <16 x double> @"_export@4S4"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @2, i64 0, i64 0), <16 x double> %evalue) #3
+  %gvalue3 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0), <3 x double> %pivot) #3
+  store <16 x double> %gvalue, <16 x double>* @__initial_xform__
+  store <3 x double> %gvalue3, <3 x double>* @pivot
+  ret void
+}
+
+declare <16 x double> @"_export@4S4"(i8*, <16 x double>)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<16 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

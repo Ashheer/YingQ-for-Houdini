@@ -1,0 +1,299 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x i64] zeroinitializer
+@1 = private constant [7 x i8] c"attach\00"
+@2 = private constant [4 x i8] c"pin\00"
+@3 = private constant [7 x i8] c"stitch\00"
+@4 = private constant [13 x i8] c"branchstitch\00"
+@5 = private constant [9 x i8] c"distance\00"
+@6 = private constant [13 x i8] c"attachnormal\00"
+@7 = private constant [13 x i8] c"distanceline\00"
+@8 = private constant [67 x i8] c"The number of points in the geometry and constraints do not match.\00"
+@9 = private constant [9 x i8] c"pressure\00"
+@10 = private constant [3 x i8] c"id\00"
+@11 = private constant [1 x i8] zeroinitializer
+@type_hash = external global i64
+@type = external global i8*
+@pts = external global i64*
+@primnum = external global i64
+@12 = private constant [10 x i8] c"type_hash\00"
+@13 = private constant [5 x i8] c"type\00"
+@14 = private constant [4 x i8] c"pts\00"
+@15 = private constant [8 x i8] c"primnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private i64* @"sortRemoveDuplicates@[I[I"(i64** %a) #0 {
+__llvm_entry:
+  %a2 = load i64*, i64** %a
+  %return = call i64 @"len@I[I"(i64* %a2)
+  %output = call i64* @"resize@[II"(i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64 %return)
+  %return4 = call i64* @"sort@[I[I"(i64* %a2)
+  %return6 = call i64 @"len@I[I"(i64* %return4)
+  br label %cond
+
+cond:                                             ; preds = %iter, %__llvm_entry
+  %last.0 = phi i64 [ 0, %__llvm_entry ], [ %last.1, %iter ]
+  %first.0 = phi i64 [ 1, %__llvm_entry ], [ %first.1, %iter ]
+  %idx.0 = phi i64 [ 0, %__llvm_entry ], [ %idx.1, %iter ]
+  %__impl_foreach_index_32.0 = phi i64 [ 0, %__llvm_entry ], [ %output30, %iter ]
+  %b.0 = phi i64* [ %output, %__llvm_entry ], [ %b.1, %iter ]
+  %return9 = call i64 @"lt@III"(i64 %__impl_foreach_index_32.0, i64 %return6)
+  %0 = icmp ne i64 %return9, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return12 = call i64 @"getcomp@I[II"(i64* %return4, i64 %__impl_foreach_index_32.0)
+  %return14 = call i64 @"not@II"(i64 %first.0)
+  %return17 = call i64 @"eq@III"(i64 %return12, i64 %last.0)
+  %return18 = call i64 @"and@III"(i64 %return14, i64 %return17)
+  %1 = icmp ne i64 %return18, 0
+  br i1 %1, label %iter, label %end19
+
+end:                                              ; preds = %cond
+  %output33 = call i64* @"resize@[II"(i64* %b.0, i64 %idx.0)
+  ret i64* %output33
+
+iter:                                             ; preds = %body, %end19
+  %last.1 = phi i64 [ %last.0, %body ], [ %return12, %end19 ]
+  %first.1 = phi i64 [ %first.0, %body ], [ 0, %end19 ]
+  %idx.1 = phi i64 [ %idx.0, %body ], [ %output27, %end19 ]
+  %b.1 = phi i64* [ %b.0, %body ], [ %output24, %end19 ]
+  %output30 = add i64 %__impl_foreach_index_32.0, 1
+  br label %cond
+
+end19:                                            ; preds = %body
+  %return22 = call { i64, i64* } @"setcomp@I[III"(i64* %b.0, i64 %return12, i64 %idx.0)
+  %output24 = extractvalue { i64, i64* } %return22, 1
+  %output27 = add i64 %idx.0, 1
+  br label %iter
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64* @"resize@[II"(i64*, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"sort@[I[I"(i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare { i64, i64* } @"setcomp@I[III"(i64*, i64, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i8* @"constraintAlias@SS"(i8** %type) #0 {
+__llvm_entry:
+  %type1 = load i8*, i8** %type
+  %return = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %end8, %end, %__llvm_entry
+  %merge = phi i8* [ getelementptr inbounds ([4 x i8], [4 x i8]* @2, i64 0, i64 0), %__llvm_entry ], [ getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0), %end ], [ getelementptr inbounds ([13 x i8], [13 x i8]* @7, i64 0, i64 0), %end8 ]
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %return3 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @3, i64 0, i64 0))
+  %return5 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @4, i64 0, i64 0))
+  %return6 = call i64 @"or@III"(i64 %return3, i64 %return5)
+  %1 = icmp ne i64 %return6, 0
+  br i1 %1, label %true, label %end8
+
+end8:                                             ; preds = %end
+  %return10 = call i64 @"eq@ISS"(i8* %type1, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @6, i64 0, i64 0))
+  %2 = icmp ne i64 %return10, 0
+  br i1 %2, label %true, label %end12
+
+end12:                                            ; preds = %end8
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end12, %true
+  %UnifiedRetVal = phi i8* [ %merge, %true ], [ %type1, %end12 ]
+  ret i8* %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"constraintHash@IS"(i8** %type) #0 {
+__llvm_entry:
+  %0 = alloca i8*
+  %type1 = load i8*, i8** %type
+  store i8* %type1, i8** %0
+  %constraintAlias = call i8* @"constraintAlias@SS"(i8** %0)
+  %return = call i64 @"random_shash@IS"(i8* %constraintAlias)
+  ret i64 %return
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"random_shash@IS"(i8*) #1
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IS[II"(i64* %_bound_type_hash, i8** %_bound_type, i64** %_bound_pts, i64* %_bound_primnum) #0 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca i64*
+  %return = call i64 @"npoints@II"(i64 0)
+  %return1 = call i64 @"npoints@II"(i64 1)
+  %return2 = call i64 @"ne@III"(i64 %return, i64 %return1)
+  %2 = icmp ne i64 %return2, 0
+  br i1 %2, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  call void @"error@S"(i8* getelementptr inbounds ([67 x i8], [67 x i8]* @8, i64 0, i64 0))
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %_bound_type3 = load i8*, i8** %_bound_type
+  store i8* %_bound_type3, i8** %0
+  %constraintHash = call i64 @"constraintHash@IS"(i8** %0)
+  store i64 %constraintHash, i64* %_bound_type_hash
+  %_bound_primnum4 = load i64, i64* %_bound_primnum
+  %return5 = call i64* @"primpoints@[III"(i64 0, i64 %_bound_primnum4)
+  store i64* %return5, i64** %_bound_pts
+  %_bound_type6 = load i8*, i8** %_bound_type
+  %return7 = call i64 @"eq@ISS"(i8* %_bound_type6, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @9, i64 0, i64 0))
+  %3 = icmp ne i64 %return7, 0
+  br i1 %3, label %true8, label %end9
+
+true8:                                            ; preds = %end
+  store i64* %return5, i64** %1
+  %sortRemoveDuplicates = call i64* @"sortRemoveDuplicates@[I[I"(i64** %1)
+  store i64* %sortRemoveDuplicates, i64** %_bound_pts
+  br label %end9
+
+end9:                                             ; preds = %true8, %end
+  %return11 = call i64 @"haspointattrib@IIS"(i64 0, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @10, i64 0, i64 0))
+  %4 = icmp ne i64 %return11, 0
+  br i1 %4, label %true12, label %end13
+
+true12:                                           ; preds = %end9
+  br label %cond
+
+end13:                                            ; preds = %cond, %end9
+  ret void
+
+cond:                                             ; preds = %end26, %true12
+  %i.0 = phi i64 [ 0, %true12 ], [ %output37, %end26 ]
+  %_bound_pts15 = load i64*, i64** %_bound_pts
+  %return16 = call i64 @"len@I[I"(i64* %_bound_pts15)
+  %return17 = call i64 @"lt@III"(i64 %i.0, i64 %return16)
+  %5 = icmp ne i64 %return17, 0
+  br i1 %5, label %body, label %end13
+
+body:                                             ; preds = %cond
+  %return21 = call i64 @"getcomp@I[II"(i64* %_bound_pts15, i64 %i.0)
+  %return22 = call i64 @"point@IISI"(i64 0, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @10, i64 0, i64 0), i64 %return21)
+  %return24 = call i64 @"lt@III"(i64 %return22, i64 0)
+  %6 = icmp ne i64 %return24, 0
+  br i1 %6, label %true25, label %end26
+
+true25:                                           ; preds = %body
+  %_bound_pts27 = load i64*, i64** %_bound_pts
+  %return29 = call i64 @"getcomp@I[II"(i64* %_bound_pts27, i64 %i.0)
+  br label %end26
+
+end26:                                            ; preds = %true25, %body
+  %srcid.0 = phi i64 [ %return29, %true25 ], [ %return22, %body ]
+  %return32 = call i64 @"idtopoint@III"(i64 1, i64 %srcid.0)
+  %tmp = load i64*, i64** %_bound_pts
+  %return33 = call { i64, i64* } @"setcomp@I[III"(i64* %tmp, i64 %return32, i64 %i.0)
+  %output = extractvalue { i64, i64* } %return33, 1
+  store i64* %output, i64** %_bound_pts
+  %output37 = add i64 %i.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare void @"error@S"(i8*) #2
+
+; Function Attrs: nounwind
+declare i64* @"primpoints@[III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"haspointattrib@IIS"(i64, i8*) #2
+
+; Function Attrs: nounwind
+declare i64 @"point@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"idtopoint@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %type_hash, i8* %type, i64* %pts, i64 %primnum) #2 {
+__llvm_entry:
+  %"<pts>" = alloca i64*
+  %0 = alloca i8*
+  %1 = alloca i64
+  %"<type_hash>" = alloca i64
+  store i64 %type_hash, i64* %"<type_hash>"
+  store i64* %pts, i64** %"<pts>"
+  store i8* %type, i8** %0
+  store i64 %primnum, i64* %1
+  call void @"__vex_snippet_snippet@IS[II"(i64* %"<type_hash>", i8** %0, i64** %"<pts>", i64* %1)
+  %evalue = load i64, i64* %"<type_hash>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @12, i64 0, i64 0), i64 %evalue) #3
+  %gvalue4 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @13, i64 0, i64 0), i8* %type) #3
+  %evalue5 = load i64*, i64** %"<pts>"
+  %gvalue6 = call i64* @"_export@[IS[I"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @14, i64 0, i64 0), i64* %evalue5) #3
+  %gvalue8 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @15, i64 0, i64 0), i64 %primnum) #3
+  store i64 %gvalue, i64* @type_hash
+  store i8* %gvalue4, i8** @type
+  store i64* %gvalue6, i64** @pts
+  store i64 %gvalue8, i64* @primnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+declare i64* @"_export@[IS[I"(i8*, i64*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @11, i64 0, i64 0), i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

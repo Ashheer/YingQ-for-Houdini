@@ -1,0 +1,92 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [5 x i8] c"size\00"
+@1 = private constant [7 x i8] c"offset\00"
+@2 = private constant [7 x i8] c"jitter\00"
+@__seedpos = external global <3 x double>
+@clusterattrib = external global i64
+@3 = private constant [10 x i8] c"__seedpos\00"
+@4 = private constant [14 x i8] c"clusterattrib\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VVI"(<3 x double>* %_bound_P, <3 x double>* %_bound___seedpos, i64* %_bound_clusterattrib) #0 {
+__llvm_entry:
+  %return = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0))
+  %return1 = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0))
+  %return2 = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0))
+  %cast = call <3 x double> @"set@VF"(double 1.000000e+00)
+  %output = call <3 x double> @"div@VV"(<3 x double> %cast, <3 x double> %return)
+  %_bound_P4 = load <3 x double>, <3 x double>* %_bound_P
+  %output6 = call <3 x double> @"mul@VV"(<3 x double> %_bound_P4, <3 x double> %output)
+  %output8 = call <3 x double> @"sub@VV"(<3 x double> %output6, <3 x double> %return1)
+  %output10 = call { i64, double, double, <3 x double>, <3 x double> } @"vnoise@VVIFFVV"(<3 x double> %output8, <3 x double> %return2)
+  %output11 = extractvalue { i64, double, double, <3 x double>, <3 x double> } %output10, 0
+  %output14 = extractvalue { i64, double, double, <3 x double>, <3 x double> } %output10, 3
+  store <3 x double> %output14, <3 x double>* %_bound___seedpos
+  store i64 %output11, i64* %_bound_clusterattrib
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"chv@VS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare { i64, double, double, <3 x double>, <3 x double> } @"vnoise@VVIFFVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P, <3 x double> %__seedpos, i64 %clusterattrib) #2 {
+__llvm_entry:
+  %"<__seedpos>" = alloca <3 x double>
+  %"<clusterattrib>" = alloca i64
+  %0 = alloca <3 x double>
+  store <3 x double> %__seedpos, <3 x double>* %"<__seedpos>"
+  store i64 %clusterattrib, i64* %"<clusterattrib>"
+  store <3 x double> %P, <3 x double>* %0
+  call void @"__vex_snippet_snippet@VVI"(<3 x double>* %0, <3 x double>* %"<__seedpos>", i64* %"<clusterattrib>")
+  %evalue = load <3 x double>, <3 x double>* %"<__seedpos>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @3, i64 0, i64 0), <3 x double> %evalue) #3
+  %evalue2 = load i64, i64* %"<clusterattrib>"
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @4, i64 0, i64 0), i64 %evalue2) #3
+  store <3 x double> %gvalue, <3 x double>* @__seedpos
+  store i64 %gvalue3, i64* @clusterattrib
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

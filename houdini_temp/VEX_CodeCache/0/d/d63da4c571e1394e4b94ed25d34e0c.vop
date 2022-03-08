@@ -1,0 +1,51 @@
+;_name	/obj/cable_ying/cable_ying1/vellumsolver1/dopnet1/vellumsolver1/ensure_smoothing_attributes/geometryvop1
+; ModuleID = 'obj_cable_ying_cable_ying1_vellumsolver1_dopnet1_vellumsolver1_ensure_smoothing_attributes_geometryvop1'
+source_filename = "obj_cable_ying_cable_ying1_vellumsolver1_dopnet1_vellumsolver1_ensure_smoothing_attributes_geometryvop1"
+
+@dP = external global <3 x double>
+@dPw = external global double
+@0 = private constant [3 x i8] c"dP\00"
+@1 = private constant [4 x i8] c"dPw\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_cable_ying_cable_ying1_vellumsolver1_dopnet1_vellumsolver1_ensure_smoothing_attributes_geometryvop1_snippet1@VF"(<3 x double>* %_bound_dP, double* %_bound_dPw) #0 {
+__llvm_entry:
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @obj_cable_ying_cable_ying1_vellumsolver1_dopnet1_vellumsolver1_ensure_smoothing_attributes_geometryvop1(<3 x double> %dP, double %dPw) #1 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca double
+  call void @"_obj_cable_ying_cable_ying1_vellumsolver1_dopnet1_vellumsolver1_ensure_smoothing_attributes_geometryvop1_snippet1@VF"(<3 x double>* %0, double* %1)
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @0, i64 0, i64 0), <3 x double> %dP) #2
+  %gvalue2 = call double @"_export@FSF"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @1, i64 0, i64 0), double %dPw) #2
+  store <3 x double> %gvalue, <3 x double>* @dP
+  store double %gvalue2, double* @dPw
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_cable_ying_cable_ying1_vellumsolver1_dopnet1_vellumsolver1_ensure_smoothing_attributes_geometryvop1(<3 x double> zeroinitializer, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
