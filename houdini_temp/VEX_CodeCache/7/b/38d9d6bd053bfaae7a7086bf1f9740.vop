@@ -1,0 +1,29 @@
+;_name	/obj/geo1/subnet1/attribvop1
+; ModuleID = 'obj_geo1_subnet1_attribvop1'
+source_filename = "obj_geo1_subnet1_attribvop1"
+
+@0 = private constant [1 x i8] zeroinitializer
+
+; Function Attrs: nounwind
+define void @obj_geo1_subnet1_attribvop1(i64 %ptnum, i64 %vtxnum, i64 %primnum, i64 %id, i64 %numpt, i64 %numvtx, i64 %numprim, double %Time, double %TimeInc, double %Frame, double %life, double %age, i8* %OpInput2, i8* %OpInput3, i8* %OpInput4, i8* %OpInput1, <3 x double> %uv, <3 x double> %P, <3 x double> %v, <3 x double> %force, <3 x double> %Cd, <3 x double> %N) #0 {
+__llvm_entry:
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_subnet1_attribvop1(i64 0, i64 0, i64 0, i64 -1, i64 0, i64 0, i64 0, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
