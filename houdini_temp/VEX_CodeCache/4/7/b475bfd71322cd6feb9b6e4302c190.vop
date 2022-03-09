@@ -1,0 +1,83 @@
+;_name	/obj/geo1/heightfield_visualize1/cop2net1/vopcop2gen1
+; ModuleID = 'obj_geo1_heightfield_visualize1_cop2net1_vopcop2gen1'
+source_filename = "obj_geo1_heightfield_visualize1_cop2net1_vopcop2gen1"
+
+@XRES = external global i64
+@YRES = external global i64
+@AR = external global double
+@R = external global double
+@G = external global double
+@B = external global double
+@A = external global double
+@Cr = external global double
+@Cg = external global double
+@Cb = external global double
+@C4 = external global double
+@PNAME = external global i8*
+@PL = external global i64
+@NP = external global i64
+@PS = external global i64
+@AI = external global i64
+@AS = external global i64
+@I = external global i64
+@NI = external global i64
+@H = external global double
+@S = external global double
+@V = external global double
+@X = external global double
+@Y = external global double
+@IX = external global i64
+@IY = external global i64
+@SF = external global i64
+@EF = external global i64
+@F = external global i64
+@FR = external global i64
+@TIME = external global double
+@TINC = external global double
+@PXSC = external global double
+@0 = private constant [7 x i8] c"linear\00"
+@1 = private constant [2 x i8*] [i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0)]
+@2 = private constant [2 x double] [double 0.000000e+00, double 1.000000e+00]
+@3 = private constant [2 x <3 x double>] [<3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>]
+@4 = private constant [11 x i8] c"colorspace\00"
+@5 = private constant [11 x i8] c"cspace:rgb\00"
+
+; Function Attrs: nounwind
+define void @obj_geo1_heightfield_visualize1_cop2net1_vopcop2gen1(i8** %ramp_the_basis_strings, double* %ramp_the_key_positions, <3 x double>* %ramp_the_key_values) #0 {
+__llvm_entry:
+  %0 = load double, double* @Y
+  %return = call <3 x double> @"spline@V[SF[V[F:SS"(i8** %ramp_the_basis_strings, double %0, <3 x double>* %ramp_the_key_values, double* %ramp_the_key_positions, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @4, i64 0, i64 0), i8* getelementptr inbounds ([11 x i8], [11 x i8]* @5, i64 0, i64 0))
+  %output = call { double, double, double } @"assign@FFFV"(<3 x double> %return)
+  %output5 = extractvalue { double, double, double } %output, 0
+  %output6 = extractvalue { double, double, double } %output, 1
+  %output7 = extractvalue { double, double, double } %output, 2
+  store double %output5, double* @R
+  store double %output6, double* @G
+  store double %output7, double* @B
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"spline@V[SF[V[F:SS"(i8**, double, <3 x double>*, double*, i8*, i8*) #1
+
+; Function Attrs: nounwind
+declare { double, double, double } @"assign@FFFV"(<3 x double>) #0
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_heightfield_visualize1_cop2net1_vopcop2gen1(i8** getelementptr inbounds ([2 x i8*], [2 x i8*]* @1, i64 0, i64 0), double* getelementptr inbounds ([2 x double], [2 x double]* @2, i64 0, i64 0), <3 x double>* getelementptr inbounds ([2 x <3 x double>], [2 x <3 x double>]* @3, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { nounwind }
+attributes #1 = { nounwind readnone }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cop2"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

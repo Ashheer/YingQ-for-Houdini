@@ -1,0 +1,61 @@
+Crash report from YingQ; Houdini FX Version 19.0.531 [windows-x86_64-cl19.29]
+Uptime 2194 seconds
+Wed Mar  9 18:52:39 2022
+Caught signal 11
+
+Traceback from 40160 ThreadId=0x00002404
+CURRENT THREAD 9220
++0x11686066 [UI_Feel::computeSize] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x11750e1e [UI_ScrollBar::getMinHeight] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x11750c12 [UI_ScrollBar::computeMinSize] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x11a97711 [SI_ScrollRegion::addOrRemoveScrollbars] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libSI.dll
++0x1168fa30 [UI_Feel::setSizeP] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fb3fa [UI_LayoutManager::layoutFeel] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fb1c0 [UI_LayoutManager::layoutChild] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fbd8c [UI_LayoutManager::layoutOverlap] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fb475 [UI_LayoutManager::layoutFeel] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fb1c0 [UI_LayoutManager::layoutChild] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fc1a5 [UI_LayoutManager::layoutVertical] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fb49b [UI_LayoutManager::layoutFeel] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fb1c0 [UI_LayoutManager::layoutChild] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fc1a5 [UI_LayoutManager::layoutVertical] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fb49b [UI_LayoutManager::layoutFeel] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fb1c0 [UI_LayoutManager::layoutChild] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fc1a5 [UI_LayoutManager::layoutVertical] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x116fb49b [UI_LayoutManager::layoutFeel] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x1168a800 [UI_Feel::layoutP] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x10c157f1 [OPUI_Dialog::configurationChanged] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOPUI.dll
++0x10c18e64 [OPUI_Dialog::initApplication] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOPUI.dll
++0x10c11bb1 [OPUI_Dialog::OPUI_Dialog] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOPUI.dll
++0x15c04cca [FUI_DialogManager::getDialog] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libFUI.dll
++0x107d2212 [FUSE_ParmDialog::setDialog] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libFUSE.dll
++0x107d345f [FUSE_ParmDialogApp::pathNodeChanged] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libFUSE.dll
++0x10bebae4 [OPUI_App::opuiNetChanged] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOPUI.dll
++0x12f11b3d [OP_Value::changed] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOP.dll
++0x12e55494 [OP_Node::opChanged] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOP.dll
++0x176f8d0c [OBJ_Node::opChanged] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOBJ.dll
++0x12dec928 [OP_Network::destroySingleNode] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOP.dll
++0x12debab9 [OP_Network::destroyNode] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOP.dll
++0x12de62fd [OP_Network::changeChildNodeType] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOP.dll
++0x12d43eaa [OP_Node::cmd_locate] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOP.dll
++0x29dffdec [CMD_Manager::runCommand] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libCMD.dll
++0x29deb7b9 [CMD_Manager::internalExecute] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libCMD.dll
++0x29dfe545 [CMD_Manager::processInput] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libCMD.dll
++0x29dfcc8e [CMD_Manager::internalSendInput] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libCMD.dll
++0x29e0036d [CMD_Manager::sendInputNoLock] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libCMD.dll
++0x29dfaee8 [CMD_Manager::executeNoLock] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libCMD.dll
++0x29df6545 [CMD_Loop::setupForStart] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libCMD.dll
++0x2ca970a1 [tbb::interface7::internal::task_arena_base::internal_execute] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\tbb.dll
++0x62e01185 [TBBPROXY_TaskArenaExecute] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libTBBPROXY.dll
++0x29dfada1 [CMD_Manager::execute] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libCMD.dll
++0x10c0b478 [OPUI_ConvertSubnet::handleAcceptCancel] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libOPUI.dll
++0x11740a2a [UI_Queue::processNextEvent] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x1173dfd9 [UI_Queue::drain] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x1173e4dc [UI_Queue::eventLoop] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libUI.dll
++0x11aed8b6 [AP_Interface::loadWindowGeometry] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libSI.dll
++0x11aee235 [myWinMain] C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\libSI.dll
++0x14000196e C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\houdinifx.exe
++0x14000222a C:\Program Files\Side Effects Software\Houdini 19.0.531\bin\houdinifx.exe
++0x7ffe534f54e0 [BaseThreadInitThunk] C:\WINDOWS\System32\KERNEL32.DLL
++0x7ffe5492485b [RtlUserThreadStart] C:\WINDOWS\SYSTEM32\ntdll.dll
+

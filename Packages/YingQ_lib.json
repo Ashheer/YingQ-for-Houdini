@@ -27,7 +27,18 @@
           "HOUDINI_OTLSCAN_PATH": {
              "method": "append",
              "value": [
-                "$YingQLib/otls"
+                "$YingQLib/otls/Geo/Building",
+                "$YingQLib/otls/Geo/Cable",
+                "$YingQLib/otls/Geo/HardSurface",
+                "$YingQLib/otls/Geo/Layout",
+                "$YingQLib/otls/Geo/Terrain",
+                "$YingQLib/otls/Geo/WFC",
+                "$YingQLib/otls/Group",
+                "$YingQLib/otls/HDK",
+                "$YingQLib/otls/Operation",
+                "$YingQLib/otls/Subdivide",
+                "$YingQLib/otls/Texture",
+                "$YingQLib/otls/Test"
              ]
           }
        },

@@ -1,14 +1,8 @@
 
-
 import hou
 import os
 import PySide2
 
-
-
-# import fee_Utils
-# from importlib import reload
-# reload(fee_Utils)
 
 def displayConfirmation(prevText='', postText=''):
     sureToRunThis = hou.ui.displayConfirmation(prevText + '\n\nAre you sure you wantS to run this\n你是否确定要运行这个工具\n\n' + postText)
@@ -33,10 +27,6 @@ def isFloat(inputString):
     except:
         return False
     return None
-
-
-
-
 
 
 
