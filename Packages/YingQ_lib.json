@@ -13,11 +13,19 @@
          }
        },
        {
+         "PYTHONPATH": {
+            "method": "append",
+            "value": [
+               "$YingQLib/scripts/python"
+            ]
+         }
+       },  
+       {
           "HOUDINI_TEMP_DIR" : "$YingQLib/houdini_temp"
        },
        {
          "HOUDINI_DSO_PATH": {
-            "method": "prepend",
+            "method": "prepend", 
             "value": [
                "$YingQLib/dso"
             ]

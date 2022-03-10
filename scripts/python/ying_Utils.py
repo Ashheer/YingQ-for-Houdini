@@ -1,10 +1,40 @@
-
+""" 
+from select import select """
 import hou
 import os
 import PySide2
 
 
-def displayConfirmation(prevText='', postText=''):
+
+
+def setClipboardText(text): 
+    clipboard = PySide2.QtWidgets.QApplication.clipboard()
+    clipboard.clear()
+    clipboard.setText(text)
+
+def del_last_parm():
+    sel_nodes = hou.selectedNodes()
+    if len(sel_nodes) == 1:
+        if sel_nodes[0].type().name() == "attributewrangle":
+            try:
+                node = sel_nodes[0]
+                print("res")
+                parm = node.parmTemplateGroup()
+                all_parms = parm.entries()
+                single = all_parms[-1]
+                if single.type() == hou.parmTemplateType.Folder:    
+                    return
+                parm.remove(single)
+                node.setTemplateGroup(parm)
+            except hou.OperationFailed:
+                return
+        else:
+            return
+    else:
+        return
+
+
+""" def displayConfirmation(prevText='', postText=''):
     sureToRunThis = hou.ui.displayConfirmation(prevText + '\n\nAre you sure you wantS to run this\n你是否确定要运行这个工具\n\n' + postText)
     if not sureToRunThis:
         raise SystemExit('Stop Run', sureToRunThis)
@@ -13,7 +43,7 @@ def readTXTAsList(outList, txt):
     for line in txt.readlines():
         curline = line.strip()
         if curline == '':
-            continue
+        continue
         outList.append(curline[:])
 
 
@@ -27,16 +57,11 @@ def isFloat(inputString):
     except:
         return False
     return None
+ """
 
 
 
-def setClipboardText(text):
-    clipboard = PySide2.QtWidgets.QApplication.clipboard()
-    clipboard.clear()
-    clipboard.setText(text)
-
-
-def createAndRunBat(command, batPath):
+""" def createAndRunBat(command, batPath):
     with open(batPath, 'w') as BAT:
         BAT.write(command)
     os.system(batPath)
@@ -125,3 +150,4 @@ git push
     # p.wait()
     # print(p.returncode)
 
+ """

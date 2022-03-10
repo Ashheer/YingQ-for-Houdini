@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="sop_ying" label="YingQ Sop">
+    <memberTool name="deleteNode"/>
+  </toolshelf>
+
+  <tool name="deleteNode" label="Delete Selected Node" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+#veriable for counter that updates +1 if we have no connection to first node input
+counter=0
+#list of nodes that are selected in network viewer
+sel_nodes=hou.selectedNodes()
+#code for when we have selected 1 node
+if len(sel_nodes)==1:
+#loop the list sel_nodes
+    for n in sel_nodes:
+        current=hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor,0).setCurrentNode(n)
+#if we have no conection to node, do nothing
+        if len(n.inputConnections())==0:
+            pass
+#if we have atleast 1 connection, we seartch for first connection, looping with WHILE
+        elif len(n.inputConnections())>0:
+            while n.input(counter)==None:
+                counter+=1
+#once we get input index, we make sure we select the node up and delete the node we are currently on
+            n.input(counter).setCurrent(True)
+            n.destroy()
+#if we have 0 or more than 1 node selected
+elif len(sel_nodes) > 1 or len(sel_nodes) == 0:
+#we loop and we deselect every node we have selected
+    for n in sel_nodes:
+        n.setSelected(False)
+#we take the current node and ma it selected one, that makes sure we have only one node selected
+    current=hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor).currentNode()
+#now that we have refrence to single node, we can add some functions, for this we just make it that its selected
+    current.setCurrent(True)
+#even we have adressed all possible node select states, i just added else as a habit
+else:
+    pass
+#after we are done we home selection to selected node
+hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor).homeToSelection()
+        ]]></script>
+  </tool>
+</shelfDocument>

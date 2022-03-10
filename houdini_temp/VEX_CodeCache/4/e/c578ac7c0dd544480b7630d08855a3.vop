@@ -1,0 +1,98 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [13 x i8] c"meta:density\00"
+@1 = private constant [1 x i8] zeroinitializer
+@OpInput2 = external global i8*
+@P = external global <3 x double>
+@fedge = external global double
+@fvortex = external global double
+@2 = private constant [9 x i8] c"OpInput2\00"
+@3 = private constant [2 x i8] c"P\00"
+@4 = private constant [6 x i8] c"fedge\00"
+@5 = private constant [8 x i8] c"fvortex\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@SVFF"(i8** %_bound_OpInput2, <3 x double>* %_bound_P, double* %_bound_fedge, double* %_bound_fvortex) #0 {
+__llvm_entry:
+  %_bound_OpInput21 = load i8*, i8** %_bound_OpInput2
+  %_bound_P2 = load <3 x double>, <3 x double>* %_bound_P
+  %return = call i64 @"metastart@ISV"(i8* %_bound_OpInput21, <3 x double> %_bound_P2)
+  store double 0.000000e+00, double* %_bound_fedge
+  store double 0.000000e+00, double* %_bound_fvortex
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %return4 = call i64 @"metanext@II"(i64 %return)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %_bound_P6 = load <3 x double>, <3 x double>* %_bound_P
+  %return7 = call { i64, double } @"metaimport@IISVF"(i64 %return, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @0, i64 0, i64 0), <3 x double> %_bound_P6)
+  br label %cond
+
+end:                                              ; preds = %cond
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"metastart@ISV"(i8*, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"metanext@II"(i64) #1
+
+; Function Attrs: nounwind
+declare { i64, double } @"metaimport@IISVF"(i64, i8*, <3 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8* %OpInput2, <3 x double> %P, double %fedge, double %fvortex) #1 {
+__llvm_entry:
+  %"<fedge>" = alloca double
+  %"<fvortex>" = alloca double
+  %0 = alloca i8*
+  %1 = alloca <3 x double>
+  store double %fedge, double* %"<fedge>"
+  store double %fvortex, double* %"<fvortex>"
+  store i8* %OpInput2, i8** %0
+  store <3 x double> %P, <3 x double>* %1
+  call void @"__vex_snippet_snippet@SVFF"(i8** %0, <3 x double>* %1, double* %"<fedge>", double* %"<fvortex>")
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @2, i64 0, i64 0), i8* %OpInput2) #2
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @3, i64 0, i64 0), <3 x double> %P) #2
+  %evalue5 = load double, double* %"<fedge>"
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @4, i64 0, i64 0), double %evalue5) #2
+  %evalue7 = load double, double* %"<fvortex>"
+  %gvalue8 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @5, i64 0, i64 0), double %evalue7) #2
+  store i8* %gvalue, i8** @OpInput2
+  store <3 x double> %gvalue4, <3 x double>* @P
+  store double %gvalue6, double* @fedge
+  store double %gvalue8, double* @fvortex
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0), <3 x double> zeroinitializer, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

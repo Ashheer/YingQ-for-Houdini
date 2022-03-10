@@ -1,0 +1,201 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [16 x i8] c"set_visualizers\00"
+@1 = private constant [18 x i8] c"clear_visualizers\00"
+@2 = private constant [0 x i8*] zeroinitializer
+@3 = private constant [4 x i8] c"op:\00"
+@4 = private constant [16 x i8] c"visualizer_path\00"
+@5 = private constant [14 x i8] c"set_wireframe\00"
+@6 = private constant [13 x i8] c"gl_wireframe\00"
+@7 = private constant [8 x i8] c"set_lit\00"
+@8 = private constant [7 x i8] c"gl_lit\00"
+@9 = private constant [9 x i8] c"set_xray\00"
+@10 = private constant [8 x i8] c"gl_xray\00"
+@11 = private constant [14 x i8] c"set_cuspangle\00"
+@12 = private constant [13 x i8] c"vm_cuspangle\00"
+@13 = private constant [18 x i8] c"set_showallpoints\00"
+@14 = private constant [17 x i8] c"gl_showallpoints\00"
+@15 = private constant [17 x i8] c"set_spherepoints\00"
+@16 = private constant [16 x i8] c"gl_spherepoints\00"
+@17 = private constant [16 x i8] c"set_spriteblend\00"
+@18 = private constant [15 x i8] c"gl_spriteblend\00"
+@19 = private constant [17 x i8] c"set_spritecutoff\00"
+@20 = private constant [16 x i8] c"gl_spritecutoff\00"
+@visualizer = external global i8**
+@21 = private constant [11 x i8] c"visualizer\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@[S"(i8*** %_bound_visualizer) #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @0, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return1 = call i64 @"chi@IS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @1, i64 0, i64 0))
+  %1 = icmp ne i64 %return1, 0
+  br i1 %1, label %true2, label %end3
+
+end:                                              ; preds = %end3, %__llvm_entry
+  %return7 = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @5, i64 0, i64 0))
+  %2 = icmp ne i64 %return7, 0
+  br i1 %2, label %true8, label %end9
+
+true2:                                            ; preds = %true
+  store i8** getelementptr inbounds ([0 x i8*], [0 x i8*]* @2, i64 0, i64 0), i8*** %_bound_visualizer
+  br label %end3
+
+end3:                                             ; preds = %true2, %true
+  %return4 = call i64 @"geoself@I"()
+  %return5 = call i8* @"chs@SS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @4, i64 0, i64 0))
+  %output = call i8* @"add@SS"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0), i8* %return5)
+  %return6 = call i64 @"addvisualizer@IIS"(i64 %return4, i8* %output)
+  br label %end
+
+true8:                                            ; preds = %end
+  %return10 = call i64 @"geoself@I"()
+  %return11 = call i64 @"chi@IS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @6, i64 0, i64 0))
+  %return12 = call i64 @"setdetailattrib@IISI"(i64 %return10, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @6, i64 0, i64 0), i64 %return11)
+  br label %end9
+
+end9:                                             ; preds = %true8, %end
+  %return13 = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @7, i64 0, i64 0))
+  %3 = icmp ne i64 %return13, 0
+  br i1 %3, label %true14, label %end15
+
+true14:                                           ; preds = %end9
+  %return16 = call i64 @"geoself@I"()
+  %return17 = call i64 @"chi@IS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @8, i64 0, i64 0))
+  %return18 = call i64 @"setdetailattrib@IISI"(i64 %return16, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @8, i64 0, i64 0), i64 %return17)
+  br label %end15
+
+end15:                                            ; preds = %true14, %end9
+  %return19 = call i64 @"chi@IS"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @9, i64 0, i64 0))
+  %4 = icmp ne i64 %return19, 0
+  br i1 %4, label %true20, label %end21
+
+true20:                                           ; preds = %end15
+  %return22 = call i64 @"geoself@I"()
+  %return23 = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @10, i64 0, i64 0))
+  %return24 = call i64 @"setdetailattrib@IISI"(i64 %return22, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @10, i64 0, i64 0), i64 %return23)
+  br label %end21
+
+end21:                                            ; preds = %true20, %end15
+  %return25 = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @11, i64 0, i64 0))
+  %5 = icmp ne i64 %return25, 0
+  br i1 %5, label %true26, label %end27
+
+true26:                                           ; preds = %end21
+  %return28 = call i64 @"geoself@I"()
+  %return29 = call double @"chf@FS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @12, i64 0, i64 0))
+  %return30 = call i64 @"setdetailattrib@IISF"(i64 %return28, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @12, i64 0, i64 0), double %return29)
+  br label %end27
+
+end27:                                            ; preds = %true26, %end21
+  %return31 = call i64 @"chi@IS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @13, i64 0, i64 0))
+  %6 = icmp ne i64 %return31, 0
+  br i1 %6, label %true32, label %end33
+
+true32:                                           ; preds = %end27
+  %return34 = call i64 @"geoself@I"()
+  %return35 = call i64 @"chi@IS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @14, i64 0, i64 0))
+  %return36 = call i64 @"setdetailattrib@IISI"(i64 %return34, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @14, i64 0, i64 0), i64 %return35)
+  br label %end33
+
+end33:                                            ; preds = %true32, %end27
+  %return37 = call i64 @"chi@IS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @15, i64 0, i64 0))
+  %7 = icmp ne i64 %return37, 0
+  br i1 %7, label %true38, label %end39
+
+true38:                                           ; preds = %end33
+  %return40 = call i64 @"geoself@I"()
+  %return41 = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @16, i64 0, i64 0))
+  %return42 = call i64 @"setdetailattrib@IISI"(i64 %return40, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @16, i64 0, i64 0), i64 %return41)
+  br label %end39
+
+end39:                                            ; preds = %true38, %end33
+  %return43 = call i64 @"chi@IS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @17, i64 0, i64 0))
+  %8 = icmp ne i64 %return43, 0
+  br i1 %8, label %true44, label %end45
+
+true44:                                           ; preds = %end39
+  %return46 = call i64 @"geoself@I"()
+  %return47 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @18, i64 0, i64 0))
+  %return48 = call i64 @"setdetailattrib@IISI"(i64 %return46, i8* getelementptr inbounds ([15 x i8], [15 x i8]* @18, i64 0, i64 0), i64 %return47)
+  br label %end45
+
+end45:                                            ; preds = %true44, %end39
+  %return49 = call i64 @"chi@IS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @19, i64 0, i64 0))
+  %9 = icmp ne i64 %return49, 0
+  br i1 %9, label %true50, label %end51
+
+true50:                                           ; preds = %end45
+  %return52 = call i64 @"geoself@I"()
+  %return53 = call double @"chf@FS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @20, i64 0, i64 0))
+  %return54 = call i64 @"setdetailattrib@IISF"(i64 %return52, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @20, i64 0, i64 0), double %return53)
+  br label %end51
+
+end51:                                            ; preds = %true50, %end45
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #2
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"add@SS"(i8*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"addvisualizer@IIS"(i64, i8*) #2
+
+; Function Attrs: nounwind
+declare i64 @"setdetailattrib@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"setdetailattrib@IISF"(i64, i8*, double) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8** %visualizer) #2 {
+__llvm_entry:
+  %"<visualizer>" = alloca i8**
+  store i8** %visualizer, i8*** %"<visualizer>"
+  call void @"__vex_snippet_snippet@[S"(i8*** %"<visualizer>")
+  %evalue = load i8**, i8*** %"<visualizer>"
+  %gvalue = call i8** @"_export@[SS[S"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @21, i64 0, i64 0), i8** %evalue) #3
+  store i8** %gvalue, i8*** @visualizer
+  ret void
+}
+
+declare i8** @"_export@[SS[S"(i8*, i8**)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8** getelementptr inbounds ([0 x i8*], [0 x i8*]* @2, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
