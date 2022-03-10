@@ -44,6 +44,7 @@
                 "$YingQLib/otls/Group",
                 "$YingQLib/otls/HDK",
                 "$YingQLib/otls/Operation",
+                "$YingQLib/otls/Scripts",
                 "$YingQLib/otls/Subdivide",
                 "$YingQLib/otls/Texture",
                 "$YingQLib/otls/Test"
