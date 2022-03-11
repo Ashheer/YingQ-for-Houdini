@@ -1,0 +1,3 @@
+attribwrangle/snippet
+	Normals Preset Test
+	@N = @N;

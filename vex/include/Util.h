@@ -1,11 +1,9 @@
 #include "math.h"
 
-// this file gathers operations that are not specific to one object
 
 
-
-// this test function demonstrates how multiple outputs can be handled at once using export
-vector testFunction(
+//  how multiple outputs can be handled at once using export
+vector MultiOutput(
 		int myInt;
 		float myFloat;
 		vector2 myVector2;
@@ -51,13 +49,13 @@ void gradientField(
     he = hedge_next(geo,he);
     vector P3= attrib(geo,'point','P',hedge_dstpoint(geo,he));
     int p3p=hedge_dstpoint(geo,he);
-    
+     
     // get edges and area
     vector v1=P3-P2;
     vector v2=P1-P3;
     vector v3=P2-P1;
     vector norm=cross(v1,v2)/length(cross(v1,v2));
-    float area=length(cross(v1,v2));
+    float area=length(cross(v1,v2)); //*1/2?
     
     // compute gradient
     grad=1/(2*area)*(

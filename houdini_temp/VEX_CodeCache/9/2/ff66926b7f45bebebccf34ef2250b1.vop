@@ -1,0 +1,174 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [6 x i8] c"point\00"
+@1 = private constant [2 x i8] c"P\00"
+@2 = private constant [9 x i8] c"redValue\00"
+@gradRedValue = external global <3 x double>
+@primnum = external global i64
+@3 = private constant [13 x i8] c"gradRedValue\00"
+@4 = private constant [8 x i8] c"primnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"gradientField@VSII"(<3 x double>* %grad, i8** %attribName, i64* %geo, i64* %primNum) #0 {
+__llvm_entry:
+  %geo1 = load i64, i64* %geo
+  %primNum2 = load i64, i64* %primNum
+  %return = call i64 @"primhedge@III"(i64 %geo1, i64 %primNum2)
+  %geo3 = load i64, i64* %geo
+  %return6 = call i64 @"hedge_dstpoint@III"(i64 %geo3, i64 %return)
+  %return7 = call <3 x double> @"attrib@VISSI"(i64 %geo3, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return6)
+  %geo8 = load i64, i64* %geo
+  %return10 = call i64 @"hedge_dstpoint@III"(i64 %geo8, i64 %return)
+  %geo11 = load i64, i64* %geo
+  %return13 = call i64 @"hedge_next@III"(i64 %geo11, i64 %return)
+  %geo14 = load i64, i64* %geo
+  %return17 = call i64 @"hedge_dstpoint@III"(i64 %geo14, i64 %return13)
+  %return18 = call <3 x double> @"attrib@VISSI"(i64 %geo14, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return17)
+  %geo19 = load i64, i64* %geo
+  %return21 = call i64 @"hedge_dstpoint@III"(i64 %geo19, i64 %return13)
+  %geo22 = load i64, i64* %geo
+  %return24 = call i64 @"hedge_next@III"(i64 %geo22, i64 %return13)
+  %geo25 = load i64, i64* %geo
+  %return28 = call i64 @"hedge_dstpoint@III"(i64 %geo25, i64 %return24)
+  %return29 = call <3 x double> @"attrib@VISSI"(i64 %geo25, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return28)
+  %geo30 = load i64, i64* %geo
+  %return32 = call i64 @"hedge_dstpoint@III"(i64 %geo30, i64 %return24)
+  %output = call <3 x double> @"sub@VV"(<3 x double> %return29, <3 x double> %return18)
+  %output37 = call <3 x double> @"sub@VV"(<3 x double> %return7, <3 x double> %return29)
+  %output40 = call <3 x double> @"sub@VV"(<3 x double> %return18, <3 x double> %return7)
+  %return43 = call <3 x double> @"cross@VVV"(<3 x double> %output, <3 x double> %output37)
+  %return46 = call <3 x double> @"cross@VVV"(<3 x double> %output, <3 x double> %output37)
+  %return47 = call double @"length@FV"(<3 x double> %return46)
+  %cast = call <3 x double> @"set@VF"(double %return47)
+  %output48 = call <3 x double> @"div@VV"(<3 x double> %return43, <3 x double> %cast)
+  %return51 = call <3 x double> @"cross@VVV"(<3 x double> %output, <3 x double> %output37)
+  %return52 = call double @"length@FV"(<3 x double> %return51)
+  %output54 = fmul double 2.000000e+00, %return52
+  %output55 = call double @"div@FF"(double 1.000000e+00, double %output54)
+  %geo56 = load i64, i64* %geo
+  %attribName57 = load i8*, i8** %attribName
+  %return59 = call <3 x double> @"attrib@VISSI"(i64 %geo56, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i8* %attribName57, i64 %return10)
+  %output61 = call <3 x double> @"mul@VV"(<3 x double> %return59, <3 x double> %output)
+  %geo62 = load i64, i64* %geo
+  %attribName63 = load i8*, i8** %attribName
+  %return65 = call <3 x double> @"attrib@VISSI"(i64 %geo62, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i8* %attribName63, i64 %return21)
+  %output67 = call <3 x double> @"mul@VV"(<3 x double> %return65, <3 x double> %output37)
+  %output68 = call <3 x double> @"add@VV"(<3 x double> %output61, <3 x double> %output67)
+  %geo69 = load i64, i64* %geo
+  %attribName70 = load i8*, i8** %attribName
+  %return72 = call <3 x double> @"attrib@VISSI"(i64 %geo69, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i8* %attribName70, i64 %return32)
+  %output74 = call <3 x double> @"mul@VV"(<3 x double> %return72, <3 x double> %output40)
+  %output75 = call <3 x double> @"add@VV"(<3 x double> %output68, <3 x double> %output74)
+  %cast76 = call <3 x double> @"set@VF"(double %output55)
+  %output77 = call <3 x double> @"mul@VV"(<3 x double> %cast76, <3 x double> %output75)
+  store <3 x double> %output77, <3 x double>* %grad
+  %return78 = call <9 x double> @"ident@3"()
+  %output80 = call double @"div@FF"(double 0x400921FB4D12D84A, double 2.000000e+00)
+  %output84 = call <9 x double> @"rotate@3FV"(<9 x double> %return78, double %output80, <3 x double> %output48)
+  %grad85 = load <3 x double>, <3 x double>* %grad
+  %output87 = call <3 x double> @"mul@V3"(<3 x double> %grad85, <9 x double> %output84)
+  store <3 x double> %output87, <3 x double>* %grad
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"primhedge@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"hedge_dstpoint@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"attrib@VISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"hedge_next@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"cross@VVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare <9 x double> @"ident@3"() #1
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"rotate@3FV"(<9 x double>, double, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"mul@V3"(<3 x double>, <9 x double>) #1
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VI"(<3 x double>* %_bound_gradRedValue, i64* %_bound_primnum) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i8*
+  store i8* getelementptr inbounds ([9 x i8], [9 x i8]* @2, i64 0, i64 0), i8** %2
+  store i64 0, i64* %0
+  %_bound_primnum1 = load i64, i64* %_bound_primnum
+  store i64 %_bound_primnum1, i64* %1
+  call void @"gradientField@VSII"(<3 x double>* %_bound_gradRedValue, i8** %2, i64* %0, i64* %1)
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %gradRedValue, i64 %primnum) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  %"<gradRedValue>" = alloca <3 x double>
+  store <3 x double> %gradRedValue, <3 x double>* %"<gradRedValue>"
+  store i64 %primnum, i64* %0
+  call void @"__vex_snippet_snippet@VI"(<3 x double>* %"<gradRedValue>", i64* %0)
+  %evalue = load <3 x double>, <3 x double>* %"<gradRedValue>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @3, i64 0, i64 0), <3 x double> %evalue) #3
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @4, i64 0, i64 0), i64 %primnum) #3
+  store <3 x double> %gvalue, <3 x double>* @gradRedValue
+  store i64 %gvalue3, i64* @primnum
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

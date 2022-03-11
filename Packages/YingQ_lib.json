@@ -37,6 +37,7 @@
              "value": [
                 "$YingQLib/otls/Geo/Building",
                 "$YingQLib/otls/Geo/Cable",
+                "$YingQLib/otls/Geo/Curve",
                 "$YingQLib/otls/Geo/HardSurface",
                 "$YingQLib/otls/Geo/Layout",
                 "$YingQLib/otls/Geo/Terrain",

@@ -1,0 +1,174 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@testFloat = external global double
+@testVector2 = external global <2 x double>
+@testVector3 = external global <3 x double>
+@testVector4 = external global <4 x double>
+@testInt = external global i64
+@difference = external global double
+@0 = private constant [10 x i8] c"testFloat\00"
+@1 = private constant [12 x i8] c"testVector2\00"
+@2 = private constant [12 x i8] c"testVector3\00"
+@3 = private constant [12 x i8] c"testVector4\00"
+@4 = private constant [8 x i8] c"testInt\00"
+@5 = private constant [11 x i8] c"difference\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FUVPIF"(double* %_bound_testFloat, <2 x double>* %_bound_testVector2, <3 x double>* %_bound_testVector3, <4 x double>* %_bound_testVector4, i64* %_bound_testInt, double* %_bound_difference) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca double
+  %2 = alloca <2 x double>
+  %3 = alloca <3 x double>
+  %4 = alloca <4 x double>
+  %testInt = alloca i64
+  store i64 0, i64* %testInt, !vex-initializer-store !3
+  store i64 1, i64* %0
+  store double 2.000000e+00, double* %1
+  %return = call <2 x double> @"set@UFF"(double 3.000000e+00, double 4.000000e+00)
+  store <2 x double> %return, <2 x double>* %2
+  %return1 = call <3 x double> @"set@VFFF"(double 5.000000e+00, double 6.000000e+00, double 7.000000e+00)
+  store <3 x double> %return1, <3 x double>* %3
+  %return2 = call <4 x double> @"set@PFFFF"(double 8.000000e+00, double 9.000000e+00, double 1.000000e+01, double 1.100000e+01)
+  store <4 x double> %return2, <4 x double>* %4
+  %testFunction = call <3 x double> @"testFunction@VIFUVPIFUVP"(i64* %0, double* %1, <2 x double>* %2, <3 x double>* %3, <4 x double>* %4, i64* %testInt, double* %_bound_testFloat, <2 x double>* %_bound_testVector2, <3 x double>* %_bound_testVector3, <4 x double>* %_bound_testVector4)
+  %testInt3 = load i64, i64* %testInt
+  store i64 %testInt3, i64* %_bound_testInt
+  %_bound_testVector35 = load <3 x double>, <3 x double>* %_bound_testVector3
+  %output = call <3 x double> @"sub@VV"(<3 x double> %testFunction, <3 x double> %_bound_testVector35)
+  %return6 = call double @"length@FV"(<3 x double> %output)
+  store double %return6, double* %_bound_difference
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"testFunction@VIFUVPIFUVP"(i64* %myInt, double* %myFloat, <2 x double>* %myVector2, <3 x double>* %myVector3, <4 x double>* %myVector4, i64* %exInt, double* %exFloat, <2 x double>* %exVector2, <3 x double>* %exVector3, <4 x double>* %exVector4) #0 {
+__llvm_entry:
+  %myInt1 = load i64, i64* %myInt
+  %output = mul i64 2, %myInt1
+  store i64 %output, i64* %exInt
+  %myFloat2 = load double, double* %myFloat
+  %output3 = fmul double 2.000000e+00, %myFloat2
+  store double %output3, double* %exFloat
+  %myVector24 = load <2 x double>, <2 x double>* %myVector2
+  %cast = call <2 x double> @"set@UI"(i64 2)
+  %output5 = call <2 x double> @"mul@UU"(<2 x double> %cast, <2 x double> %myVector24)
+  store <2 x double> %output5, <2 x double>* %exVector2
+  %myVector36 = load <3 x double>, <3 x double>* %myVector3
+  %cast7 = call <3 x double> @"set@VI"(i64 2)
+  %output8 = call <3 x double> @"mul@VV"(<3 x double> %cast7, <3 x double> %myVector36)
+  store <3 x double> %output8, <3 x double>* %exVector3
+  %myVector39 = load <3 x double>, <3 x double>* %myVector3
+  %output11 = call <3 x double> @"mul@VV"(<3 x double> %cast7, <3 x double> %myVector39)
+  store <3 x double> %output11, <3 x double>* %exVector3
+  %myVector412 = load <4 x double>, <4 x double>* %myVector4
+  %cast13 = call <4 x double> @"set@PI"(i64 2)
+  %output14 = call <4 x double> @"mul@PP"(<4 x double> %cast13, <4 x double> %myVector412)
+  store <4 x double> %output14, <4 x double>* %exVector4
+  %exVector315 = load <3 x double>, <3 x double>* %exVector3
+  ret <3 x double> %exVector315
+}
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"mul@UU"(<2 x double>, <2 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"mul@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"set@UFF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PFFFF"(double, double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %testFloat, <2 x double> %testVector2, <3 x double> %testVector3, <4 x double> %testVector4, i64 %testInt, double %difference) #2 {
+__llvm_entry:
+  %"<testVector2>" = alloca <2 x double>
+  %"<testVector3>" = alloca <3 x double>
+  %"<testVector4>" = alloca <4 x double>
+  %"<testInt>" = alloca i64
+  %"<difference>" = alloca double
+  %"<testFloat>" = alloca double
+  store double %testFloat, double* %"<testFloat>"
+  store <2 x double> %testVector2, <2 x double>* %"<testVector2>"
+  store <3 x double> %testVector3, <3 x double>* %"<testVector3>"
+  store <4 x double> %testVector4, <4 x double>* %"<testVector4>"
+  store i64 %testInt, i64* %"<testInt>"
+  store double %difference, double* %"<difference>"
+  call void @"__vex_snippet_snippet@FUVPIF"(double* %"<testFloat>", <2 x double>* %"<testVector2>", <3 x double>* %"<testVector3>", <4 x double>* %"<testVector4>", i64* %"<testInt>", double* %"<difference>")
+  %evalue = load double, double* %"<testFloat>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), double %evalue) #3
+  %evalue1 = load <2 x double>, <2 x double>* %"<testVector2>"
+  %gvalue2 = call <2 x double> @"_export@USU"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0), <2 x double> %evalue1) #3
+  %evalue3 = load <3 x double>, <3 x double>* %"<testVector3>"
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @2, i64 0, i64 0), <3 x double> %evalue3) #3
+  %evalue5 = load <4 x double>, <4 x double>* %"<testVector4>"
+  %gvalue6 = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @3, i64 0, i64 0), <4 x double> %evalue5) #3
+  %evalue7 = load i64, i64* %"<testInt>"
+  %gvalue8 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @4, i64 0, i64 0), i64 %evalue7) #3
+  %evalue9 = load double, double* %"<difference>"
+  %gvalue10 = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @5, i64 0, i64 0), double %evalue9) #3
+  store double %gvalue, double* @testFloat
+  store <2 x double> %gvalue2, <2 x double>* @testVector2
+  store <3 x double> %gvalue4, <3 x double>* @testVector3
+  store <4 x double> %gvalue6, <4 x double>* @testVector4
+  store i64 %gvalue8, i64* @testInt
+  store double %gvalue10, double* @difference
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <2 x double> @"_export@USU"(i8*, <2 x double>)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, <2 x double> zeroinitializer, <3 x double> zeroinitializer, <4 x double> zeroinitializer, i64 0, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+!3 = !{!""}
+
+;_code_end
