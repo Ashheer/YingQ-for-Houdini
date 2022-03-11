@@ -35,6 +35,7 @@
           "HOUDINI_OTLSCAN_PATH": {
              "method": "append",
              "value": [
+                "$YingQLib/otls/Example",
                 "$YingQLib/otls/Geo/Building",
                 "$YingQLib/otls/Geo/Cable",
                 "$YingQLib/otls/Geo/Curve",
