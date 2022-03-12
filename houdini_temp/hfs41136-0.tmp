@@ -346,17 +346,4 @@ soptoolutils.genericTool(kwargs, 'kinefx::skeletonblend::2.0')]]></script>
 
 soptoolutils.genericTool(kwargs, 'gradient_example_ying')]]></script>
   </tool>
-
-  <tool name="sop_expand_collapse_Example" label="Ying Expand Collapse Example" icon="SOP_subnet">
-    <toolMenuContext name="viewer">
-      <contextNetType>SOP</contextNetType>
-    </toolMenuContext>
-    <toolMenuContext name="network">
-      <contextOpType>Sop/expand_collapse_Example</contextOpType>
-    </toolMenuContext>
-    <toolSubmenu>Digital Assets</toolSubmenu>
-    <script scriptType="python"><![CDATA[import soptoolutils
-
-soptoolutils.genericTool(kwargs, 'expand_collapse_Example')]]></script>
-  </tool>
 </shelfDocument>

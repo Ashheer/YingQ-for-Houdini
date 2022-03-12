@@ -36,6 +36,7 @@
              "method": "append",
              "value": [
                 "$YingQLib/otls/Example",
+                "$YingQLib/otls/Geo",
                 "$YingQLib/otls/Geo/Building",
                 "$YingQLib/otls/Geo/Cable",
                 "$YingQLib/otls/Geo/Curve",
