@@ -1,0 +1,217 @@
+;_name	/obj/basics/sprite1/attribvop1
+; ModuleID = 'obj_basics_sprite1_attribvop1'
+source_filename = "obj_basics_sprite1_attribvop1"
+
+@0 = private constant [17 x i8] c"gl_showallpoints\00"
+@1 = private constant [15 x i8] c"gl_spriteblend\00"
+@2 = private constant [16 x i8] c"gl_spritecutoff\00"
+@3 = private constant [1 x i8] zeroinitializer
+@spriteshop = external global i8*
+@spriterot = external global double
+@spritescale = external global <3 x double>
+@spriteuv = external global <4 x double>
+@gl_spritetex = external global i8*
+@4 = private constant [11 x i8] c"spriteshop\00"
+@5 = private constant [10 x i8] c"spriterot\00"
+@6 = private constant [12 x i8] c"spritescale\00"
+@7 = private constant [9 x i8] c"spriteuv\00"
+@8 = private constant [13 x i8] c"gl_spritetex\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_basics_sprite1_attribvop1_if1_snippet1@SIVVIIIFVS"(i8** %spriteshop, i64* %cropmode, <3 x double>* %textureoffset, <3 x double>* %texturesize, i64* %textureindex, i64* %texturerow, i64* %texturecol, double* %spriterot, <3 x double>* %spritescale, i8** %spritemap) #0 {
+__llvm_entry:
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_basics_sprite1_attribvop1_snippet1@IIIF"(i64* %drawmode, i64* %spriteblend, i64* %setspritecutoff, double* %spritecutoff) #0 {
+__llvm_entry:
+  %drawmode1 = load i64, i64* %drawmode
+  %return = call i64 @"ne@III"(i64 %drawmode1, i64 0)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return2 = call i64 @"geoself@I"()
+  %return3 = call i64 @"adddetailattrib@IISI"(i64 %return2, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @0, i64 0, i64 0), i64 0)
+  %return4 = call i64 @"geoself@I"()
+  %drawmode5 = load i64, i64* %drawmode
+  %return6 = call i64 @"eq@III"(i64 %drawmode5, i64 1)
+  %1 = icmp ne i64 %return6, 0
+  %. = select i1 %1, i64 0, i64 1
+  %return9 = call i64 @"setdetailattrib@IISI"(i64 %return4, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @0, i64 0, i64 0), i64 %.)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %spriteblend10 = load i64, i64* %spriteblend
+  %return11 = call i64 @"ne@III"(i64 %spriteblend10, i64 0)
+  %2 = icmp ne i64 %return11, 0
+  br i1 %2, label %true12, label %end13
+
+true12:                                           ; preds = %end
+  %return14 = call i64 @"geoself@I"()
+  %return15 = call i64 @"adddetailattrib@IISI"(i64 %return14, i8* getelementptr inbounds ([15 x i8], [15 x i8]* @1, i64 0, i64 0), i64 0)
+  %return16 = call i64 @"geoself@I"()
+  %spriteblend17 = load i64, i64* %spriteblend
+  %output = sub i64 %spriteblend17, 1
+  %return18 = call i64 @"setdetailattrib@IISI"(i64 %return16, i8* getelementptr inbounds ([15 x i8], [15 x i8]* @1, i64 0, i64 0), i64 %output)
+  br label %end13
+
+end13:                                            ; preds = %true12, %end
+  %setspritecutoff19 = load i64, i64* %setspritecutoff
+  %return20 = call i64 @"ne@III"(i64 %setspritecutoff19, i64 0)
+  %3 = icmp ne i64 %return20, 0
+  br i1 %3, label %true21, label %end22
+
+true21:                                           ; preds = %end13
+  %return23 = call i64 @"geoself@I"()
+  %return24 = call i64 @"adddetailattrib@IISF"(i64 %return23, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @2, i64 0, i64 0), double 0.000000e+00)
+  %return25 = call i64 @"geoself@I"()
+  %spritecutoff26 = load double, double* %spritecutoff
+  %return27 = call i64 @"setdetailattrib@IISF"(i64 %return25, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @2, i64 0, i64 0), double %spritecutoff26)
+  br label %end22
+
+end22:                                            ; preds = %true21, %end13
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #2
+
+; Function Attrs: nounwind
+declare i64 @"adddetailattrib@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setdetailattrib@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"adddetailattrib@IISF"(i64, i8*, double) #2
+
+; Function Attrs: nounwind
+declare i64 @"setdetailattrib@IISF"(i64, i8*, double) #2
+
+; Function Attrs: nounwind
+define void @obj_basics_sprite1_attribvop1(i8* %parm_spriteshop, i8* %spriteshop, <3 x double> %parm_textureoffset, <3 x double> %parm_texturesize, i64 %texturecropmode, i64 %parm_textureindex, i64 %parm_texturerow, i64 %parm_texturecol, double %parm_spriterot, <3 x double> %parm_spritescale, i64 %parm_uselocal, double %spriterot, <3 x double> %spritescale, <4 x double> %spriteuv, i64 %parm_drawmode, i8* %parm_spritemap, i8* %gl_spritetex, i64 %parm_spriteblend, i64 %parm_setspritecutoff, double %parm_spritecutoff) #2 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca i64
+  %2 = alloca <3 x double>
+  %3 = alloca <3 x double>
+  %4 = alloca i64
+  %5 = alloca i64
+  %6 = alloca i64
+  %7 = alloca double
+  %8 = alloca <3 x double>
+  %9 = alloca i8*
+  %10 = alloca i64
+  %11 = alloca i64
+  %12 = alloca i64
+  %13 = alloca double
+  %return = call i64 @"ne@III"(i64 %parm_uselocal, i64 0)
+  %14 = icmp ne i64 %return, 0
+  br i1 %14, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  call void @"_obj_basics_sprite1_attribvop1_if1_snippet1@SIVVIIIFVS"(i8** %0, i64* %1, <3 x double>* %2, <3 x double>* %3, i64* %4, i64* %5, i64* %6, double* %7, <3 x double>* %8, i8** %9)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %output = call { double, double, double } @"assign@FFFV"(<3 x double> %parm_textureoffset)
+  %output37 = extractvalue { double, double, double } %output, 0
+  %output38 = extractvalue { double, double, double } %output, 1
+  %output41 = call { double, double, double } @"assign@FFFV"(<3 x double> %parm_texturesize)
+  %output42 = extractvalue { double, double, double } %output41, 0
+  %output43 = extractvalue { double, double, double } %output41, 1
+  %return49 = call <4 x double> @"set@PFFFF"(double %output37, double %output38, double %output42, double %output43)
+  %cast = sitofp i64 %parm_texturecol to double
+  %output52 = call double @"div@FF"(double 1.000000e+00, double %cast)
+  %return55 = call i64 @"mod@III"(i64 %parm_textureindex, i64 %parm_texturecol)
+  %cast58 = sitofp i64 %return55 to double
+  %output59 = fmul double %output52, %cast58
+  %cast61 = sitofp i64 %parm_texturerow to double
+  %output63 = call double @"div@FF"(double 1.000000e+00, double %cast61)
+  %output66 = call i64 @"div@II"(i64 %parm_textureindex, i64 %parm_texturecol)
+  %output69 = sub i64 %parm_texturerow, %output66
+  %output71 = sub i64 %output69, 1
+  %cast74 = sitofp i64 %output71 to double
+  %output75 = fmul double %output63, %cast74
+  %return80 = call <4 x double> @"set@PFFFF"(double %output59, double %output75, double %output52, double %output63)
+  %return82 = call i64 @"eq@III"(i64 %texturecropmode, i64 0)
+  %15 = icmp ne i64 %return82, 0
+  br i1 %15, label %true83, label %false
+
+true83:                                           ; preds = %end
+  br label %end84
+
+false:                                            ; preds = %end
+  br label %end84
+
+end84:                                            ; preds = %false, %true83
+  %result.0 = phi <4 x double> [ %return49, %true83 ], [ %return80, %false ]
+  store i64 %parm_drawmode, i64* %10
+  store i64 %parm_spriteblend, i64* %11
+  store i64 %parm_setspritecutoff, i64* %12
+  store double %parm_spritecutoff, double* %13
+  call void @"_obj_basics_sprite1_attribvop1_snippet1@IIIF"(i64* %10, i64* %11, i64* %12, double* %13)
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @4, i64 0, i64 0), i8* %parm_spriteshop) #3
+  %gvalue98 = call double @"_export@FSF"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @5, i64 0, i64 0), double %parm_spriterot) #3
+  %gvalue100 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @6, i64 0, i64 0), <3 x double> %parm_spritescale) #3
+  %gvalue102 = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @7, i64 0, i64 0), <4 x double> %result.0) #3
+  %gvalue104 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0), i8* %parm_spritemap) #3
+  store i8* %gvalue, i8** @spriteshop
+  store double %gvalue98, double* @spriterot
+  store <3 x double> %gvalue100, <3 x double>* @spritescale
+  store <4 x double> %gvalue102, <4 x double>* @spriteuv
+  store i8* %gvalue104, i8** @gl_spritetex
+  ret void
+}
+
+; Function Attrs: nounwind
+declare { double, double, double } @"assign@FFFV"(<3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PFFFF"(double, double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"mod@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"div@II"(i64, i64) #1
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_basics_sprite1_attribvop1(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @3, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @3, i64 0, i64 0), <3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, i64 0, i64 0, i64 1, i64 1, double 0.000000e+00, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, i64 0, double 0.000000e+00, <3 x double> zeroinitializer, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 1.000000e+00, double 1.000000e+00>, i64 0, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @3, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @3, i64 0, i64 0), i64 0, i64 0, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

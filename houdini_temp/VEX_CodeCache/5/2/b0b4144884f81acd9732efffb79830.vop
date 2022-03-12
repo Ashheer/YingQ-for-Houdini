@@ -1,0 +1,61 @@
+;_name	/obj/attribs_to_create/sim_particles/popsolver/kill_dead_at_end/geometryvop1
+; ModuleID = 'obj_attribs_to_create_sim_particles_popsolver_kill_dead_at_end_geometryvop1'
+source_filename = "obj_attribs_to_create_sim_particles_popsolver_kill_dead_at_end_geometryvop1"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_attribs_to_create_sim_particles_popsolver_kill_dead_at_end_geometryvop1_snippet1@II"(i64* %_bound_dead, i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %_bound_dead1 = load i64, i64* %_bound_dead
+  %return = call i64 @"gt@III"(i64 %_bound_dead1, i64 0)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return2 = call i64 @"geoself@I"()
+  %_bound_ptnum3 = load i64, i64* %_bound_ptnum
+  %return4 = call i64 @"removepoint@III"(i64 %return2, i64 %_bound_ptnum3)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #2
+
+; Function Attrs: nounwind
+declare i64 @"removepoint@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+define void @obj_attribs_to_create_sim_particles_popsolver_kill_dead_at_end_geometryvop1(i64 %dead, i64 %ptnum) #2 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  store i64 %dead, i64* %0
+  store i64 %ptnum, i64* %1
+  call void @"_obj_attribs_to_create_sim_particles_popsolver_kill_dead_at_end_geometryvop1_snippet1@II"(i64* %0, i64* %1)
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_attribs_to_create_sim_particles_popsolver_kill_dead_at_end_geometryvop1(i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

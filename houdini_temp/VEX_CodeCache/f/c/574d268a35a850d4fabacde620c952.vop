@@ -1,0 +1,95 @@
+;_name	/obj/attribs_to_create/sim_particles/poplocation1/popsource2/sopsolver1/random_velocity
+; ModuleID = 'obj_attribs_to_create_sim_particles_poplocation1_popsource2_sopsolver1_random_velocity'
+source_filename = "obj_attribs_to_create_sim_particles_poplocation1_popsource2_sopsolver1_random_velocity"
+
+@0 = private constant [1 x i8] zeroinitializer
+@v = external global <3 x double>
+@1 = private constant [2 x i8] c"v\00"
+
+; Function Attrs: nounwind
+define void @obj_attribs_to_create_sim_particles_poplocation1_popsource2_sopsolver1_random_velocity(i64 %ptnum, i64 %vtxnum, i64 %primnum, i64 %id, i64 %numpt, i64 %numvtx, i64 %numprim, double %Time, double %TimeInc, double %Frame, double %life, double %age, i8* %OpInput2, i8* %OpInput3, i8* %OpInput4, i8* %OpInput1, <3 x double> %uv, <3 x double> %P, <3 x double> %v, <3 x double> %force, <3 x double> %Cd, <3 x double> %N, double %seed, <3 x double> %var, double %inheritvel, <3 x double> %parmvel) #0 {
+__llvm_entry:
+  %cast = call <3 x double> @"set@VF"(double %inheritvel)
+  %output = call <3 x double> @"mul@VV"(<3 x double> %v, <3 x double> %cast)
+  %cast33 = sitofp i64 %ptnum to double
+  %return = call <3 x double> @"set@VFFF"(double %cast33, double %Time, double %seed)
+  br label %cond
+
+cond:                                             ; preds = %false, %__llvm_entry
+  %_condition.0 = phi i64 [ 1, %__llvm_entry ], [ %return52, %false ]
+  %_vec.0 = phi <3 x double> [ %return, %__llvm_entry ], [ %output55, %false ]
+  %shift.0 = phi <3 x double> [ zeroinitializer, %__llvm_entry ], [ %return47, %false ]
+  %return40 = call i64 @"ne@III"(i64 %_condition.0, i64 0)
+  %0 = icmp ne i64 %return40, 0
+  br i1 %0, label %false, label %end
+
+end:                                              ; preds = %cond
+  %output61 = call <3 x double> @"mul@VV"(<3 x double> %shift.0, <3 x double> %var)
+  %output64 = call <3 x double> @"add@VV"(<3 x double> %output, <3 x double> %output61)
+  %output66 = call <3 x double> @"add@VV"(<3 x double> %output64, <3 x double> %parmvel)
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %output66) #2
+  store <3 x double> %gvalue, <3 x double>* @v
+  ret void
+
+false:                                            ; preds = %cond
+  %return45 = call <3 x double> @"rand@VV"(<3 x double> %_vec.0)
+  %return47 = call <3 x double> @"fit@VVVVVV"(<3 x double> %return45, <3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, <3 x double> <double -1.000000e+00, double -1.000000e+00, double -1.000000e+00>, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>)
+  %return49 = call double @"length@FV"(<3 x double> %return47)
+  %return51 = fcmp ogt double %return49, 1.000000e+00
+  %return52 = zext i1 %return51 to i64
+  %cast54 = call <3 x double> @"set@VF"(double 1.000000e-01)
+  %output55 = call <3 x double> @"add@VV"(<3 x double> %_vec.0, <3 x double> %cast54)
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"random_hash@IV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"random@VI"(i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"rand@VV"(<3 x double>) #0
+
+; Function Attrs: nounwind
+declare <3 x double> @"fit@VVVVVV"(<3 x double>, <3 x double>, <3 x double>, <3 x double>, <3 x double>) #0
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_attribs_to_create_sim_particles_poplocation1_popsource2_sopsolver1_random_velocity(i64 0, i64 0, i64 0, i64 -1, i64 0, i64 0, i64 0, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, <3 x double> zeroinitializer, double 0.000000e+00, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, double 0.000000e+00, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

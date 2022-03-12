@@ -1,0 +1,92 @@
+;_name	/obj/attribs_to_create/sim_particles/drag/apply_drag_force
+; ModuleID = 'obj_attribs_to_create_sim_particles_drag_apply_drag_force'
+source_filename = "obj_attribs_to_create_sim_particles_drag_apply_drag_force"
+
+@targetv = external global <3 x double>
+@airresist = external global double
+@0 = private constant [8 x i8] c"targetv\00"
+@1 = private constant [10 x i8] c"airresist\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_attribs_to_create_sim_particles_drag_apply_drag_force_if1_snippet1@VFI"(<3 x double>* %windvelocity, double* %airresist, i64* %ignoremass) #0 {
+__llvm_entry:
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @obj_attribs_to_create_sim_particles_drag_apply_drag_force(double %parm_airresist, <3 x double> %targetv, double %airresist, <3 x double> %parm_windvelocity, i64 %parm_uselocaldrag, i64 %parm_ignoremass, double %mass) #1 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca double
+  %2 = alloca i64
+  %return = call i64 @"ne@III"(i64 %parm_uselocaldrag, i64 0)
+  %3 = icmp ne i64 %return, 0
+  br i1 %3, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  call void @"_obj_attribs_to_create_sim_particles_drag_apply_drag_force_if1_snippet1@VFI"(<3 x double>* %0, double* %1, i64* %2)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %return12 = call i64 @"ne@III"(i64 0, i64 0)
+  %4 = icmp ne i64 %return12, 0
+  %return16 = call i64 @"ne@III"(i64 %parm_ignoremass, i64 0)
+  %5 = icmp ne i64 %return16, 0
+  %phi = select i1 %5, double 1.000000e+00, double %mass
+  %phi27 = select i1 %5, double %mass, double 1.000000e+00
+  %phi28 = select i1 %4, double %phi, double %phi27
+  %output = fmul double %parm_airresist, %phi28
+  %cast = call <3 x double> @"set@VF"(double %output)
+  %output35 = call <3 x double> @"mul@VV"(<3 x double> %parm_windvelocity, <3 x double> %cast)
+  %cast40 = call <3 x double> @"set@VF"(double %airresist)
+  %output41 = call <3 x double> @"mul@VV"(<3 x double> %targetv, <3 x double> %cast40)
+  %output44 = call <3 x double> @"add@VV"(<3 x double> %output35, <3 x double> %output41)
+  %output47 = fadd double %output, %airresist
+  %cast50 = call <3 x double> @"set@VF"(double %output47)
+  %output51 = call <3 x double> @"div@VV"(<3 x double> %output44, <3 x double> %cast50)
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0), <3 x double> %output51) #3
+  %gvalue55 = call double @"_export@FSF"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0), double %output47) #3
+  store <3 x double> %gvalue, <3 x double>* @targetv
+  store double %gvalue55, double* @airresist
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #2
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_attribs_to_create_sim_particles_drag_apply_drag_force(double 1.000000e+00, <3 x double> zeroinitializer, double 0.000000e+00, <3 x double> zeroinitializer, i64 0, i64 0, double 1.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

@@ -1,0 +1,88 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [6 x i8] c"decay\00"
+@Cd = external global <3 x double>
+@Timeinc = external global double
+@1 = private constant [3 x i8] c"Cd\00"
+@2 = private constant [8 x i8] c"Timeinc\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VF"(<3 x double>* %_bound_Cd, double* %_bound_Timeinc) #0 {
+__llvm_entry:
+  %_bound_Cd1 = load <3 x double>, <3 x double>* %_bound_Cd
+  %return = call double @"getcomp@FVI"(<3 x double> %_bound_Cd1, i64 0)
+  %return2 = call double @"chf@FS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0))
+  %_bound_Timeinc3 = load double, double* %_bound_Timeinc
+  %output = fmul double %return2, %_bound_Timeinc3
+  %output4 = fsub double %return, %output
+  %return5 = call double @"max@FFF"(double 0.000000e+00, double %output4)
+  %return6 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %_bound_Cd1, double %return5, i64 0)
+  %output8 = extractvalue { double, <3 x double> } %return6, 1
+  store <3 x double> %output8, <3 x double>* %_bound_Cd
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"max@FFF"(double, double) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #2 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 0)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %Cd, double %Timeinc) #3 {
+__llvm_entry:
+  %0 = alloca double
+  %"<Cd>" = alloca <3 x double>
+  store <3 x double> %Cd, <3 x double>* %"<Cd>"
+  store double %Timeinc, double* %0
+  call void @"__vex_snippet_snippet@VF"(<3 x double>* %"<Cd>", double* %0)
+  %evalue = load <3 x double>, <3 x double>* %"<Cd>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @1, i64 0, i64 0), <3 x double> %evalue) #4
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), double %Timeinc) #4
+  store <3 x double> %gvalue, <3 x double>* @Cd
+  store double %gvalue3, double* @Timeinc
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { alwaysinline }
+attributes #3 = { nounwind }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

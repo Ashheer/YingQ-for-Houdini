@@ -1,0 +1,128 @@
+;_name	/obj/attribs_to_create/sim_particles/poplocation1/popsource2/sopsolver1/setup_life
+; ModuleID = 'obj_attribs_to_create_sim_particles_poplocation1_popsource2_sopsolver1_setup_life'
+source_filename = "obj_attribs_to_create_sim_particles_poplocation1_popsource2_sopsolver1_setup_life"
+
+@life = external global double
+@age = external global double
+@0 = private constant [5 x i8] c"life\00"
+@1 = private constant [4 x i8] c"age\00"
+
+; Function Attrs: nounwind
+define void @obj_attribs_to_create_sim_particles_poplocation1_popsource2_sopsolver1_setup_life(double %parm_lifeexpectancy, double %parm_lifevariance, double %parm_seed, double %life, double %age, i64 %ptnum, double %Time, i64 %parm_jitterbirthtime, double %parm_timestep) #0 {
+__llvm_entry:
+  %return = call i64 @"isbound@IS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0))
+  %cast = sitofp i64 %ptnum to double
+  %return6 = call <3 x double> @"set@VFFF"(double %cast, double %Time, double %parm_seed)
+  %cast8 = call <3 x double> @"set@VF"(double 1.500000e-01)
+  %output = call <3 x double> @"add@VV"(<3 x double> %return6, <3 x double> %cast8)
+  %return12 = call double @"rand@FV"(<3 x double> %output)
+  %return14 = call i64 @"neg@II"(i64 1)
+  %cast15 = sitofp i64 %return14 to double
+  %return16 = call double @"fit@FFFFFF"(double %return12, double 0.000000e+00, double 1.000000e+00, double %cast15, double 1.000000e+00)
+  %output19 = fmul double %parm_lifevariance, %return16
+  %output22 = fadd double %parm_lifeexpectancy, %output19
+  %return23 = call i64 @"ne@III"(i64 1, i64 0)
+  %0 = icmp ne i64 %return23, 0
+  %return28 = call i64 @"ne@III"(i64 %return, i64 0)
+  %1 = icmp ne i64 %return28, 0
+  br i1 %0, label %true24, label %false25
+
+true24:                                           ; preds = %__llvm_entry
+  %phi = select i1 %1, double %life, double %output22
+  br label %end26
+
+false25:                                          ; preds = %__llvm_entry
+  %phi41 = select i1 %1, double %output22, double %life
+  br label %end26
+
+end26:                                            ; preds = %false25, %true24
+  %phi42 = phi double [ %phi, %true24 ], [ %phi41, %false25 ]
+  %cast45 = call <3 x double> @"set@VF"(double 1.000000e-01)
+  %output46 = call <3 x double> @"add@VV"(<3 x double> %return6, <3 x double> %cast45)
+  %return53 = call double @"rand@FV"(<3 x double> %output46)
+  %output56 = fmul double %parm_timestep, %return53
+  %return58 = call double @"neg@FF"(double %output56)
+  %return60 = call i64 @"eq@III"(i64 %parm_jitterbirthtime, i64 0)
+  %2 = icmp ne i64 %return60, 0
+  br i1 %2, label %true61, label %false62
+
+true61:                                           ; preds = %end26
+  br label %end63
+
+false62:                                          ; preds = %end26
+  %return66 = call i64 @"eq@III"(i64 %parm_jitterbirthtime, i64 1)
+  %3 = icmp ne i64 %return66, 0
+  br i1 %3, label %true67, label %false68
+
+end63:                                            ; preds = %true67, %false68, %true61
+  %result1.0 = phi double [ 0.000000e+00, %true61 ], [ %return58, %true67 ], [ %output56, %false68 ]
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @0, i64 0, i64 0), double %phi42) #2
+  %gvalue74 = call double @"_export@FSF"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @1, i64 0, i64 0), double %result1.0) #2
+  store double %gvalue, double* @life
+  store double %gvalue74, double* @age
+  ret void
+
+true67:                                           ; preds = %false62
+  br label %end63
+
+false68:                                          ; preds = %false62
+  br label %end63
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"isbound@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"random_hash@IV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"random@FI"(i64) #1
+
+; Function Attrs: nounwind
+declare double @"rand@FV"(<3 x double>) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind
+declare double @"fit@FFFFFF"(double, double, double, double, double) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_attribs_to_create_sim_particles_poplocation1_popsource2_sopsolver1_setup_life(double 1.000000e+02, double 0.000000e+00, double 0.000000e+00, double 1.000000e+02, double 0.000000e+00, i64 0, double 0.000000e+00, i64 0, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

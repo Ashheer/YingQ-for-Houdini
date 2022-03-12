@@ -1,0 +1,47 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@coolscale = external global double
+@0 = private constant [10 x i8] c"coolscale\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@F"(double* %_bound_coolscale) #0 {
+__llvm_entry:
+  store double 1.000000e+01, double* %_bound_coolscale
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %coolscale) #1 {
+__llvm_entry:
+  %"<coolscale>" = alloca double
+  store double %coolscale, double* %"<coolscale>"
+  call void @"__vex_snippet_snippet@F"(double* %"<coolscale>")
+  %evalue = load double, double* %"<coolscale>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), double %evalue) #2
+  store double %gvalue, double* @coolscale
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
