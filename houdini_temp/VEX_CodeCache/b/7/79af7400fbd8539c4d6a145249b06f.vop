@@ -1,0 +1,735 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [7 x i8] c"catrom\00"
+@1 = private constant [4 x i8] c"all\00"
+@2 = private constant [5 x i8] c"none\00"
+@3 = private constant [2 x i8] c"1\00"
+@4 = private constant [5 x i8] c"init\00"
+@5 = private constant [4 x i8] c"set\00"
+@6 = private constant [4 x i8] c"add\00"
+@7 = private constant [4 x i8] c"sub\00"
+@8 = private constant [5 x i8] c"mult\00"
+@9 = private constant [7 x i8] c"screen\00"
+@10 = private constant [8 x i8] c"overlay\00"
+@11 = private constant [5 x i8] c"diff\00"
+@12 = private constant [8 x i8] c"hardmix\00"
+@13 = private constant [4 x i8] c"min\00"
+@14 = private constant [4 x i8] c"max\00"
+@15 = private constant [6 x i8] c"class\00"
+@16 = private constant [7 x i8] c"attrib\00"
+@17 = private constant [12 x i8] c"doinitvalue\00"
+@18 = private constant [14 x i8] c"initvaluefrom\00"
+@19 = private constant [8 x i8] c"uniform\00"
+@20 = private constant [10 x i8] c"initvalue\00"
+@21 = private constant [12 x i8] c"colorattrib\00"
+@22 = private constant [25 x i8] c"componentscope_initcolor\00"
+@23 = private constant [12 x i8] c"floatattrib\00"
+@24 = private constant [25 x i8] c"componentscope_initfloat\00"
+@25 = private constant [15 x i8] c"initcomplement\00"
+@26 = private constant [17 x i8] c"separationmethod\00"
+@27 = private constant [7 x i8] c"custom\00"
+@28 = private constant [12 x i8] c"singlevalue\00"
+@29 = private constant [18 x i8] c"enable_preprocess\00"
+@30 = private constant [10 x i8] c"operation\00"
+@31 = private constant [8 x i8] c"doblend\00"
+@32 = private constant [12 x i8] c"blendweight\00"
+@33 = private constant [10 x i8] c"blendmode\00"
+@34 = private constant [11 x i8] c"blendspace\00"
+@35 = private constant [19 x i8] c"componentscope_rgb\00"
+@36 = private constant [19 x i8] c"componentscope_hsv\00"
+@output = external global <3 x double>
+@initcolor = external global <3 x double>
+@initfloat = external global double
+@elemnum = external global i64
+@separation = external global double
+@blendattrib = external global double
+@37 = private constant [7 x i8] c"output\00"
+@38 = private constant [10 x i8] c"initcolor\00"
+@39 = private constant [10 x i8] c"initfloat\00"
+@40 = private constant [8 x i8] c"elemnum\00"
+@41 = private constant [11 x i8] c"separation\00"
+@42 = private constant [12 x i8] c"blendattrib\00"
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"vop_colormix@VVVFI"(<3 x double>* %c1, <3 x double>* %c2, double* %bias, i64* %adjust) #0 {
+__llvm_entry:
+  %adjust1 = load i64, i64* %adjust
+  %return = call i64 @"eq@III"(i64 %adjust1, i64 3)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %bias2 = load double, double* %bias
+  %c13 = load <3 x double>, <3 x double>* %c1
+  %c25 = load <3 x double>, <3 x double>* %c2
+  %return7 = call <3 x double> @"cspline@VFV:VVV"(double %bias2, <3 x double> %c13, <3 x double> %c13, <3 x double> %c25, <3 x double> %c25)
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return9 = call i64 @"eq@III"(i64 %adjust1, i64 2)
+  %1 = icmp ne i64 %return9, 0
+  br i1 %1, label %true10, label %false11
+
+end:                                              ; preds = %true20, %false21, %true10, %true
+  %clr.0 = phi <3 x double> [ %return7, %true ], [ %return17, %true10 ], [ %return27, %true20 ], [ %return31, %false21 ]
+  ret <3 x double> %clr.0
+
+true10:                                           ; preds = %false
+  %c113 = load <3 x double>, <3 x double>* %c1
+  %c214 = load <3 x double>, <3 x double>* %c2
+  %bias15 = load double, double* %bias
+  %return16 = call double @"smooth@FFFF"(double 0.000000e+00, double 1.000000e+00, double %bias15)
+  %return17 = call <3 x double> @"lerp@VVVF"(<3 x double> %c113, <3 x double> %c214, double %return16)
+  br label %end
+
+false11:                                          ; preds = %false
+  %return19 = call i64 @"eq@III"(i64 %adjust1, i64 1)
+  %2 = icmp ne i64 %return19, 0
+  %c123 = load <3 x double>, <3 x double>* %c1
+  %c224 = load <3 x double>, <3 x double>* %c2
+  %bias25 = load double, double* %bias
+  br i1 %2, label %true20, label %false21
+
+true20:                                           ; preds = %false11
+  %return26 = call double @"clamp@FFFF"(double %bias25, double 0.000000e+00, double 1.000000e+00)
+  %return27 = call <3 x double> @"lerp@VVVF"(<3 x double> %c123, <3 x double> %c224, double %return26)
+  br label %end
+
+false21:                                          ; preds = %false11
+  %return31 = call <3 x double> @"lerp@VVVF"(<3 x double> %c123, <3 x double> %c224, double %bias25)
+  br label %end
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: alwaysinline
+define private <3 x double> @"cspline@VFV:VVV"(double %rw11, <3 x double> %rw22, <3 x double> %rw33, <3 x double> %rw44, <3 x double> %rw55) #2 {
+__llvm_entry:
+  %rw011 = call <3 x double> @"spline@VSFV:VVV"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), double %rw11, <3 x double> %rw22, <3 x double> %rw33, <3 x double> %rw44, <3 x double> %rw55)
+  ret <3 x double> %rw011
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"spline@VSFV:VVV"(i8*, double, <3 x double>, <3 x double>, <3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"smooth@FFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"lerp@VVVF"(<3 x double>, <3 x double>, double) #3
+
+; Function Attrs: nounwind
+declare double @"clamp@FFFF"(double, double, double) #3
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #2 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"applyScope@VVVS"(<3 x double>* %original_value, <3 x double>* %new_value, i8** %scope) #0 {
+__llvm_entry:
+  %scope1 = load i8*, i8** %scope
+  %return = call i64 @"eq@ISS"(i8* %scope1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @1, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %new_value2 = load <3 x double>, <3 x double>* %new_value
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  %return4 = call i64 @"eq@ISS"(i8* %scope1, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0))
+  %1 = icmp ne i64 %return4, 0
+  br i1 %1, label %true5, label %false6
+
+true5:                                            ; preds = %false
+  %original_value8 = load <3 x double>, <3 x double>* %original_value
+  br label %UnifiedReturnBlock
+
+false6:                                           ; preds = %false
+  %original_value9 = load <3 x double>, <3 x double>* %original_value
+  %return11 = call i8* @"getcomp@SSI"(i8* %scope1, i64 0)
+  %return12 = call i64 @"eq@ISS"(i8* %return11, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @3, i64 0, i64 0))
+  %2 = icmp ne i64 %return12, 0
+  br i1 %2, label %true13, label %end14
+
+true13:                                           ; preds = %false6
+  %new_value15 = load <3 x double>, <3 x double>* %new_value
+  %return16 = call double @"getcomp@FVI"(<3 x double> %new_value15, i64 0)
+  %return17 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %original_value9, double %return16, i64 0)
+  %output = extractvalue { double, <3 x double> } %return17, 1
+  br label %end14
+
+end14:                                            ; preds = %true13, %false6
+  %scoped.0 = phi <3 x double> [ %output, %true13 ], [ %original_value9, %false6 ]
+  %scope19 = load i8*, i8** %scope
+  %return20 = call i8* @"getcomp@SSI"(i8* %scope19, i64 1)
+  %return21 = call i64 @"eq@ISS"(i8* %return20, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @3, i64 0, i64 0))
+  %3 = icmp ne i64 %return21, 0
+  br i1 %3, label %true22, label %end23
+
+true22:                                           ; preds = %end14
+  %new_value24 = load <3 x double>, <3 x double>* %new_value
+  %return25 = call double @"getcomp@FVI"(<3 x double> %new_value24, i64 1)
+  %return27 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %scoped.0, double %return25, i64 1)
+  %output29 = extractvalue { double, <3 x double> } %return27, 1
+  br label %end23
+
+end23:                                            ; preds = %true22, %end14
+  %scoped.1 = phi <3 x double> [ %output29, %true22 ], [ %scoped.0, %end14 ]
+  %scope30 = load i8*, i8** %scope
+  %return31 = call i8* @"getcomp@SSI"(i8* %scope30, i64 2)
+  %return32 = call i64 @"eq@ISS"(i8* %return31, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @3, i64 0, i64 0))
+  %4 = icmp ne i64 %return32, 0
+  br i1 %4, label %true33, label %end34
+
+true33:                                           ; preds = %end23
+  %new_value35 = load <3 x double>, <3 x double>* %new_value
+  %return36 = call double @"getcomp@FVI"(<3 x double> %new_value35, i64 2)
+  %return38 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %scoped.1, double %return36, i64 2)
+  %output40 = extractvalue { double, <3 x double> } %return38, 1
+  br label %end34
+
+end34:                                            ; preds = %true33, %end23
+  %scoped.2 = phi <3 x double> [ %output40, %true33 ], [ %scoped.1, %end23 ]
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end34, %true5, %true
+  %UnifiedRetVal = phi <3 x double> [ %new_value2, %true ], [ %original_value8, %true5 ], [ %scoped.2, %end34 ]
+  ret <3 x double> %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"getcomp@SSI"(i8*, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"aa_applyColorOperation@VVVIS"(<3 x double>* %original_value, <3 x double>* %new_value, i64* %has_attrib, i8** %operation) #0 {
+__llvm_entry:
+  %operation1 = load i8*, i8** %operation
+  %return = call i64 @"eq@ISS"(i8* %operation1, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @4, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %has_attrib2 = load i64, i64* %has_attrib
+  %1 = icmp ne i64 %has_attrib2, 0
+  br i1 %1, label %true3, label %false4
+
+false:                                            ; preds = %__llvm_entry
+  %return9 = call i64 @"eq@ISS"(i8* %operation1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @5, i64 0, i64 0))
+  %has_attrib10 = load i64, i64* %has_attrib
+  %return11 = call i64 @"not@II"(i64 %has_attrib10)
+  %return12 = call i64 @"or@III"(i64 %return9, i64 %return11)
+  %2 = icmp ne i64 %return12, 0
+  br i1 %2, label %true13, label %false14
+
+true3:                                            ; preds = %true
+  %original_value6 = load <3 x double>, <3 x double>* %original_value
+  br label %UnifiedReturnBlock
+
+false4:                                           ; preds = %true
+  %new_value7 = load <3 x double>, <3 x double>* %new_value
+  br label %UnifiedReturnBlock
+
+true13:                                           ; preds = %false
+  %new_value16 = load <3 x double>, <3 x double>* %new_value
+  br label %UnifiedReturnBlock
+
+false14:                                          ; preds = %false
+  %return18 = call i64 @"eq@ISS"(i8* %operation1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @6, i64 0, i64 0))
+  %3 = icmp ne i64 %return18, 0
+  br i1 %3, label %true19, label %false20
+
+true19:                                           ; preds = %false14
+  %original_value22 = load <3 x double>, <3 x double>* %original_value
+  %new_value23 = load <3 x double>, <3 x double>* %new_value
+  %output = call <3 x double> @"add@VV"(<3 x double> %original_value22, <3 x double> %new_value23)
+  br label %UnifiedReturnBlock
+
+false20:                                          ; preds = %false14
+  %return25 = call i64 @"eq@ISS"(i8* %operation1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @7, i64 0, i64 0))
+  %4 = icmp ne i64 %return25, 0
+  br i1 %4, label %true26, label %false27
+
+true26:                                           ; preds = %false20
+  %original_value29 = load <3 x double>, <3 x double>* %original_value
+  %new_value30 = load <3 x double>, <3 x double>* %new_value
+  %output31 = call <3 x double> @"sub@VV"(<3 x double> %original_value29, <3 x double> %new_value30)
+  br label %UnifiedReturnBlock
+
+false27:                                          ; preds = %false20
+  %return33 = call i64 @"eq@ISS"(i8* %operation1, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @8, i64 0, i64 0))
+  %5 = icmp ne i64 %return33, 0
+  br i1 %5, label %true34, label %false35
+
+true34:                                           ; preds = %false27
+  %original_value37 = load <3 x double>, <3 x double>* %original_value
+  %new_value38 = load <3 x double>, <3 x double>* %new_value
+  %output39 = call <3 x double> @"mul@VV"(<3 x double> %original_value37, <3 x double> %new_value38)
+  br label %UnifiedReturnBlock
+
+false35:                                          ; preds = %false27
+  %return41 = call i64 @"eq@ISS"(i8* %operation1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @9, i64 0, i64 0))
+  %6 = icmp ne i64 %return41, 0
+  br i1 %6, label %true42, label %false43
+
+true42:                                           ; preds = %false35
+  %original_value45 = load <3 x double>, <3 x double>* %original_value
+  %cast = call <3 x double> @"set@VI"(i64 1)
+  %output46 = call <3 x double> @"sub@VV"(<3 x double> %cast, <3 x double> %original_value45)
+  %new_value47 = load <3 x double>, <3 x double>* %new_value
+  %output49 = call <3 x double> @"sub@VV"(<3 x double> %cast, <3 x double> %new_value47)
+  %output50 = call <3 x double> @"mul@VV"(<3 x double> %output46, <3 x double> %output49)
+  %output52 = call <3 x double> @"sub@VV"(<3 x double> %cast, <3 x double> %output50)
+  br label %UnifiedReturnBlock
+
+false43:                                          ; preds = %false35
+  %return54 = call i64 @"eq@ISS"(i8* %operation1, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @10, i64 0, i64 0))
+  %7 = icmp ne i64 %return54, 0
+  br i1 %7, label %true55, label %false56
+
+true55:                                           ; preds = %false43
+  %original_value58 = load <3 x double>, <3 x double>* %original_value
+  %new_value59 = load <3 x double>, <3 x double>* %new_value
+  %output60 = call <3 x double> @"mul@VV"(<3 x double> %original_value58, <3 x double> %new_value59)
+  %cast61 = call <3 x double> @"set@VI"(i64 2)
+  %output62 = call <3 x double> @"mul@VV"(<3 x double> %output60, <3 x double> %cast61)
+  %return64 = call i64 @"len@IV"(<3 x double> %original_value58)
+  %cast65 = sitofp i64 %return64 to double
+  %return66 = fcmp ole double %cast65, 5.000000e-01
+  %return67 = zext i1 %return66 to i64
+  %cast68 = call <3 x double> @"set@VI"(i64 %return67)
+  %output69 = call <3 x double> @"mul@VV"(<3 x double> %output62, <3 x double> %cast68)
+  %original_value70 = load <3 x double>, <3 x double>* %original_value
+  %cast71 = call <3 x double> @"set@VI"(i64 1)
+  %output72 = call <3 x double> @"sub@VV"(<3 x double> %cast71, <3 x double> %original_value70)
+  %output74 = call <3 x double> @"mul@VV"(<3 x double> %cast61, <3 x double> %output72)
+  %new_value75 = load <3 x double>, <3 x double>* %new_value
+  %output77 = call <3 x double> @"sub@VV"(<3 x double> %cast71, <3 x double> %new_value75)
+  %output78 = call <3 x double> @"mul@VV"(<3 x double> %output74, <3 x double> %output77)
+  %output80 = call <3 x double> @"sub@VV"(<3 x double> %cast71, <3 x double> %output78)
+  %return82 = call i64 @"len@IV"(<3 x double> %original_value70)
+  %cast83 = sitofp i64 %return82 to double
+  %return84 = fcmp ogt double %cast83, 5.000000e-01
+  %return85 = zext i1 %return84 to i64
+  %cast86 = call <3 x double> @"set@VI"(i64 %return85)
+  %output87 = call <3 x double> @"mul@VV"(<3 x double> %output80, <3 x double> %cast86)
+  %output88 = call <3 x double> @"add@VV"(<3 x double> %output69, <3 x double> %output87)
+  br label %UnifiedReturnBlock
+
+false56:                                          ; preds = %false43
+  %return90 = call i64 @"eq@ISS"(i8* %operation1, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @11, i64 0, i64 0))
+  %8 = icmp ne i64 %return90, 0
+  br i1 %8, label %true91, label %false92
+
+true91:                                           ; preds = %false56
+  %original_value94 = load <3 x double>, <3 x double>* %original_value
+  %new_value95 = load <3 x double>, <3 x double>* %new_value
+  %output96 = call <3 x double> @"sub@VV"(<3 x double> %original_value94, <3 x double> %new_value95)
+  %return97 = call <3 x double> @"abs@VV"(<3 x double> %output96)
+  br label %UnifiedReturnBlock
+
+false92:                                          ; preds = %false56
+  %return99 = call i64 @"eq@ISS"(i8* %operation1, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @12, i64 0, i64 0))
+  %9 = icmp ne i64 %return99, 0
+  br i1 %9, label %true100, label %false101
+
+true100:                                          ; preds = %false92
+  %original_value103 = load <3 x double>, <3 x double>* %original_value
+  %return104 = call double @"getcomp@FVI"(<3 x double> %original_value103, i64 0)
+  %new_value105 = load <3 x double>, <3 x double>* %new_value
+  %return106 = call double @"getcomp@FVI"(<3 x double> %new_value105, i64 0)
+  %output107 = fadd double %return104, %return106
+  %return108 = fcmp oge double %output107, 1.000000e+00
+  %. = select i1 %return108, i64 1, i64 0
+  %cast113 = sitofp i64 %. to double
+  %return115 = call double @"getcomp@FVI"(<3 x double> %original_value103, i64 1)
+  %return117 = call double @"getcomp@FVI"(<3 x double> %new_value105, i64 1)
+  %output118 = fadd double %return115, %return117
+  %return119 = fcmp oge double %output118, 1.000000e+00
+  %phi124 = select i1 %return119, i64 1, i64 0
+  %cast125 = sitofp i64 %phi124 to double
+  %return127 = call double @"getcomp@FVI"(<3 x double> %original_value103, i64 2)
+  %return129 = call double @"getcomp@FVI"(<3 x double> %new_value105, i64 2)
+  %output130 = fadd double %return127, %return129
+  %return131 = fcmp oge double %output130, 1.000000e+00
+  %.155 = select i1 %return131, i64 1, i64 0
+  %cast137 = sitofp i64 %.155 to double
+  %return138 = call <3 x double> @"set@VFFF"(double %cast113, double %cast125, double %cast137)
+  br label %UnifiedReturnBlock
+
+false101:                                         ; preds = %false92
+  %return140 = call i64 @"eq@ISS"(i8* %operation1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @13, i64 0, i64 0))
+  %10 = icmp ne i64 %return140, 0
+  br i1 %10, label %true141, label %false142
+
+true141:                                          ; preds = %false101
+  %original_value144 = load <3 x double>, <3 x double>* %original_value
+  %new_value145 = load <3 x double>, <3 x double>* %new_value
+  %return146 = call <3 x double> @"min@VVV"(<3 x double> %original_value144, <3 x double> %new_value145)
+  br label %UnifiedReturnBlock
+
+false142:                                         ; preds = %false101
+  %return148 = call i64 @"eq@ISS"(i8* %operation1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @14, i64 0, i64 0))
+  %11 = icmp ne i64 %return148, 0
+  br i1 %11, label %true149, label %end150
+
+true149:                                          ; preds = %false142
+  %original_value151 = load <3 x double>, <3 x double>* %original_value
+  %new_value152 = load <3 x double>, <3 x double>* %new_value
+  %return153 = call <3 x double> @"max@VVV"(<3 x double> %original_value151, <3 x double> %new_value152)
+  br label %UnifiedReturnBlock
+
+end150:                                           ; preds = %false142
+  %return154 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end150, %true149, %true141, %true100, %true91, %true55, %true42, %true34, %true26, %true19, %true13, %false4, %true3
+  %UnifiedRetVal = phi <3 x double> [ %original_value6, %true3 ], [ %new_value7, %false4 ], [ %new_value16, %true13 ], [ %output, %true19 ], [ %output31, %true26 ], [ %output39, %true34 ], [ %output52, %true42 ], [ %output88, %true55 ], [ %return97, %true91 ], [ %return138, %true100 ], [ %return146, %true141 ], [ %return153, %true149 ], [ %return154, %end150 ]
+  ret <3 x double> %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: alwaysinline
+define private i64 @"len@IV"(<3 x double> %rw11) #2 {
+__llvm_entry:
+  ret i64 3
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"abs@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"min@VVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"max@VVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare double @"lerp@FFFF"(double, double, double) #3
+
+; Function Attrs: nounwind readnone
+declare double @"rint@FF"(double) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #3
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #3
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"aa_blend@VVVF"(<3 x double>* %original_value, <3 x double>* %new_value, double* %blend_amount) #0 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca double
+  %2 = alloca i64
+  %3 = alloca <3 x double>
+  %original_value1 = load <3 x double>, <3 x double>* %original_value
+  %return = call <3 x double> @"rgbtohsv@VV"(<3 x double> %original_value1)
+  store <3 x double> %return, <3 x double>* %3
+  %new_value2 = load <3 x double>, <3 x double>* %new_value
+  %return3 = call <3 x double> @"rgbtohsv@VV"(<3 x double> %new_value2)
+  store <3 x double> %return3, <3 x double>* %0
+  %blend_amount4 = load double, double* %blend_amount
+  store double %blend_amount4, double* %1
+  store i64 1, i64* %2
+  %vop_colormix = call <3 x double> @"vop_colormix@VVVFI"(<3 x double>* %3, <3 x double>* %0, double* %1, i64* %2)
+  %return5 = call <3 x double> @"hsvtorgb@VV"(<3 x double> %vop_colormix)
+  ret <3 x double> %return5
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"rgbtohsv@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"hsvtorgb@VV"(<3 x double>) #1
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VVFIFF"(<3 x double>* %_bound_output, <3 x double>* %_bound_initcolor, double* %_bound_initfloat, i64* %_bound_elemnum, double* %_bound_separation, double* %_bound_blendattrib) #0 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %2 = alloca i8*
+  %3 = alloca <3 x double>
+  %4 = alloca <3 x double>
+  %5 = alloca i8*
+  %6 = alloca <3 x double>
+  %7 = alloca <3 x double>
+  %8 = alloca i64
+  %9 = alloca i8*
+  %10 = alloca <3 x double>
+  %11 = alloca <3 x double>
+  %12 = alloca i8*
+  %13 = alloca <3 x double>
+  %14 = alloca <3 x double>
+  %15 = alloca i8*
+  %16 = alloca <3 x double>
+  %17 = alloca <3 x double>
+  %18 = alloca double
+  %19 = alloca <3 x double>
+  %20 = alloca double
+  %_bound_output1 = load <3 x double>, <3 x double>* %_bound_output
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @15, i64 0, i64 0))
+  %return4 = call i8* @"chs@SS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @16, i64 0, i64 0))
+  %return5 = call i64 @"hasattrib@IISS"(i64 2, i8* %return, i8* %return4)
+  %return6 = call i64 @"chi@IS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @17, i64 0, i64 0))
+  %21 = icmp ne i64 %return6, 0
+  br i1 %21, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return7 = call i8* @"chs@SS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @18, i64 0, i64 0))
+  %return8 = call i64 @"eq@ISS"(i8* %return7, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @19, i64 0, i64 0))
+  %22 = icmp ne i64 %return8, 0
+  br i1 %22, label %true9, label %false
+
+end:                                              ; preds = %false15, %true22, %true14, %true9, %__llvm_entry
+  %color.0 = phi <3 x double> [ %return11, %true9 ], [ %applyScope, %true14 ], [ %applyScope30, %true22 ], [ %_bound_output1, %false15 ], [ %_bound_output1, %__llvm_entry ]
+  %return31 = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @25, i64 0, i64 0))
+  %23 = icmp ne i64 %return31, 0
+  br i1 %23, label %true32, label %end33
+
+true9:                                            ; preds = %true
+  %return11 = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @20, i64 0, i64 0))
+  br label %end
+
+false:                                            ; preds = %true
+  %return13 = call i64 @"eq@ISS"(i8* %return7, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @21, i64 0, i64 0))
+  %24 = icmp ne i64 %return13, 0
+  br i1 %24, label %true14, label %false15
+
+true14:                                           ; preds = %false
+  %return17 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  store <3 x double> %return17, <3 x double>* %0
+  %_bound_initcolor18 = load <3 x double>, <3 x double>* %_bound_initcolor
+  store <3 x double> %_bound_initcolor18, <3 x double>* %1
+  %return19 = call i8* @"chs@SS"(i8* getelementptr inbounds ([25 x i8], [25 x i8]* @22, i64 0, i64 0))
+  store i8* %return19, i8** %2
+  %applyScope = call <3 x double> @"applyScope@VVVS"(<3 x double>* %0, <3 x double>* %1, i8** %2)
+  br label %end
+
+false15:                                          ; preds = %false
+  %return21 = call i64 @"eq@ISS"(i8* %return7, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @23, i64 0, i64 0))
+  %25 = icmp ne i64 %return21, 0
+  br i1 %25, label %true22, label %end
+
+true22:                                           ; preds = %false15
+  %return24 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  store <3 x double> %return24, <3 x double>* %3
+  %_bound_initfloat25 = load double, double* %_bound_initfloat
+  %return28 = call <3 x double> @"set@VFFF"(double %_bound_initfloat25, double %_bound_initfloat25, double %_bound_initfloat25)
+  store <3 x double> %return28, <3 x double>* %4
+  %return29 = call i8* @"chs@SS"(i8* getelementptr inbounds ([25 x i8], [25 x i8]* @24, i64 0, i64 0))
+  store i8* %return29, i8** %5
+  %applyScope30 = call <3 x double> @"applyScope@VVVS"(<3 x double>* %3, <3 x double>* %4, i8** %5)
+  br label %end
+
+true32:                                           ; preds = %end
+  %cast = call <3 x double> @"set@VI"(i64 1)
+  %output = call <3 x double> @"sub@VV"(<3 x double> %cast, <3 x double> %color.0)
+  br label %end33
+
+end33:                                            ; preds = %true32, %end
+  %color.1 = phi <3 x double> [ %output, %true32 ], [ %color.0, %end ]
+  %return38 = call i8* @"chs@SS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @26, i64 0, i64 0))
+  %return39 = call i64 @"eq@ISS"(i8* %return38, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @27, i64 0, i64 0))
+  %26 = icmp ne i64 %return39, 0
+  br i1 %26, label %true40, label %end41
+
+true40:                                           ; preds = %end33
+  br label %end41
+
+end41:                                            ; preds = %true40, %end33
+  %return43 = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @28, i64 0, i64 0))
+  %return45 = call i64 @"chi@IS"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @29, i64 0, i64 0))
+  %return47 = call i64 @"and@III"(i64 %return45, i64 %return6)
+  %return48 = call i64 @"or@III"(i64 %return5, i64 %return47)
+  %27 = icmp ne i64 %return48, 0
+  br i1 %27, label %true49, label %end50
+
+true49:                                           ; preds = %end41
+  br label %end50
+
+end50:                                            ; preds = %true49, %end41
+  %hasattrib.0 = phi i64 [ 1, %true49 ], [ %return5, %end41 ]
+  store <3 x double> %color.1, <3 x double>* %6
+  store <3 x double> %return43, <3 x double>* %7
+  store i64 %hasattrib.0, i64* %8
+  %return54 = call i8* @"chs@SS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @30, i64 0, i64 0))
+  store i8* %return54, i8** %9
+  %aa_applyColorOperation = call <3 x double> @"aa_applyColorOperation@VVVIS"(<3 x double>* %6, <3 x double>* %7, i64* %8, i8** %9)
+  %return55 = call i64 @"chi@IS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @31, i64 0, i64 0))
+  %28 = icmp ne i64 %return55, 0
+  br i1 %28, label %true56, label %end57
+
+true56:                                           ; preds = %end50
+  %return58 = call double @"chf@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @32, i64 0, i64 0))
+  %return59 = call i8* @"chs@SS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @33, i64 0, i64 0))
+  %return60 = call i64 @"eq@ISS"(i8* %return59, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @16, i64 0, i64 0))
+  %29 = icmp ne i64 %return60, 0
+  br i1 %29, label %true61, label %end62
+
+end57:                                            ; preds = %true68, %false69, %end50
+  %color.2 = phi <3 x double> [ %return76, %true68 ], [ %aa_blend80, %false69 ], [ %aa_applyColorOperation, %end50 ]
+  store <3 x double> %_bound_output1, <3 x double>* %10
+  store <3 x double> %color.2, <3 x double>* %11
+  %return83 = call i8* @"chs@SS"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @35, i64 0, i64 0))
+  store i8* %return83, i8** %12
+  %applyScope84 = call <3 x double> @"applyScope@VVVS"(<3 x double>* %10, <3 x double>* %11, i8** %12)
+  %return86 = call <3 x double> @"rgbtohsv@VV"(<3 x double> %_bound_output1)
+  store <3 x double> %return86, <3 x double>* %13
+  %return88 = call <3 x double> @"rgbtohsv@VV"(<3 x double> %applyScope84)
+  store <3 x double> %return88, <3 x double>* %14
+  %return89 = call i8* @"chs@SS"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @36, i64 0, i64 0))
+  store i8* %return89, i8** %15
+  %applyScope90 = call <3 x double> @"applyScope@VVVS"(<3 x double>* %13, <3 x double>* %14, i8** %15)
+  %return91 = call <3 x double> @"hsvtorgb@VV"(<3 x double> %applyScope90)
+  store <3 x double> %return91, <3 x double>* %_bound_output
+  ret void
+
+true61:                                           ; preds = %true56
+  %_bound_blendattrib64 = load double, double* %_bound_blendattrib
+  %output65 = fmul double %return58, %_bound_blendattrib64
+  br label %end62
+
+end62:                                            ; preds = %true61, %true56
+  %blend.0 = phi double [ %output65, %true61 ], [ %return58, %true56 ]
+  %return66 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @34, i64 0, i64 0))
+  %return67 = call i64 @"not@II"(i64 %return66)
+  %30 = icmp ne i64 %return67, 0
+  br i1 %30, label %true68, label %false69
+
+true68:                                           ; preds = %end62
+  %return72 = call <3 x double> @"rgbtohsv@VV"(<3 x double> %_bound_output1)
+  store <3 x double> %return72, <3 x double>* %16
+  %return74 = call <3 x double> @"rgbtohsv@VV"(<3 x double> %aa_applyColorOperation)
+  store <3 x double> %return74, <3 x double>* %17
+  store double %blend.0, double* %18
+  %aa_blend = call <3 x double> @"aa_blend@VVVF"(<3 x double>* %16, <3 x double>* %17, double* %18)
+  %return76 = call <3 x double> @"hsvtorgb@VV"(<3 x double> %aa_blend)
+  br label %end57
+
+false69:                                          ; preds = %end62
+  store <3 x double> %_bound_output1, <3 x double>* %16
+  store <3 x double> %aa_applyColorOperation, <3 x double>* %19
+  store double %blend.0, double* %20
+  %aa_blend80 = call <3 x double> @"aa_blend@VVVF"(<3 x double>* %16, <3 x double>* %19, double* %20)
+  br label %end57
+}
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"hasattrib@IISS"(i64, i8*, i8*) #3
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"chv@VS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %output, <3 x double> %initcolor, double %initfloat, i64 %elemnum, double %separation, double %blendattrib) #3 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca double
+  %2 = alloca i64
+  %3 = alloca double
+  %4 = alloca double
+  %"<output>" = alloca <3 x double>
+  store <3 x double> %output, <3 x double>* %"<output>"
+  store <3 x double> %initcolor, <3 x double>* %0
+  store double %initfloat, double* %1
+  store i64 %elemnum, i64* %2
+  store double %separation, double* %3
+  store double %blendattrib, double* %4
+  call void @"__vex_snippet_snippet@VVFIFF"(<3 x double>* %"<output>", <3 x double>* %0, double* %1, i64* %2, double* %3, double* %4)
+  %evalue = load <3 x double>, <3 x double>* %"<output>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @37, i64 0, i64 0), <3 x double> %evalue) #4
+  %gvalue7 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @38, i64 0, i64 0), <3 x double> %initcolor) #4
+  %gvalue9 = call double @"_export@FSF"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @39, i64 0, i64 0), double %initfloat) #4
+  %gvalue11 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @40, i64 0, i64 0), i64 %elemnum) #4
+  %gvalue13 = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @41, i64 0, i64 0), double %separation) #4
+  %gvalue15 = call double @"_export@FSF"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @42, i64 0, i64 0), double %blendattrib) #4
+  store <3 x double> %gvalue, <3 x double>* @output
+  store <3 x double> %gvalue7, <3 x double>* @initcolor
+  store double %gvalue9, double* @initfloat
+  store i64 %gvalue11, i64* @elemnum
+  store double %gvalue13, double* @separation
+  store double %gvalue15, double* @blendattrib
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> zeroinitializer, double 0.000000e+00, i64 0, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { alwaysinline }
+attributes #3 = { nounwind }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
