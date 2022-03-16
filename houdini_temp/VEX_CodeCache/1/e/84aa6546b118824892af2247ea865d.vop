@@ -1,0 +1,70 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"width_sum\00"
+@1 = private constant [4 x i8] c"set\00"
+@2 = private constant [6 x i8] c"width\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output11, %body ]
+  %sum.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %output, %body ]
+  %return = call i64 @"npoints@II"(i64 0)
+  %return2 = call i64 @"lt@III"(i64 %i.0, i64 %return)
+  %0 = icmp ne i64 %return2, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return5 = call i64 @"setpointattrib@IISIFS"(i64 0, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), i64 %i.0, double %sum.0, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @1, i64 0, i64 0))
+  %return8 = call double @"point@FISI"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0), i64 %i.0)
+  %output = fadd double %sum.0, %return8
+  %output11 = add i64 %i.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"setpointattrib@IISIFS"(i64, i8*, i64, double, i8*) #1
+
+; Function Attrs: nounwind
+declare double @"point@FISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #1 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

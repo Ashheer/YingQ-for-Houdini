@@ -1,0 +1,86 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [15 x i8] c"profile_height\00"
+@MODULE_HEIGHT = external global double
+@original_width = external global double
+@MODULE_WIDTH = external global double
+@SCALAR = external global double
+@1 = private constant [14 x i8] c"MODULE_HEIGHT\00"
+@2 = private constant [15 x i8] c"original_width\00"
+@3 = private constant [13 x i8] c"MODULE_WIDTH\00"
+@4 = private constant [7 x i8] c"SCALAR\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FFFF"(double* %_bound_MODULE_HEIGHT, double* %_bound_original_width, double* %_bound_MODULE_WIDTH, double* %_bound_SCALAR) #0 {
+__llvm_entry:
+  %return = call double @"prim@FISI"(i64 1, i8* getelementptr inbounds ([15 x i8], [15 x i8]* @0, i64 0, i64 0), i64 0)
+  %_bound_MODULE_HEIGHT1 = load double, double* %_bound_MODULE_HEIGHT
+  %output = call double @"div@FF"(double %return, double %_bound_MODULE_HEIGHT1)
+  %_bound_MODULE_WIDTH2 = load double, double* %_bound_MODULE_WIDTH
+  store double %_bound_MODULE_WIDTH2, double* %_bound_original_width
+  store double %output, double* %_bound_SCALAR
+  %_bound_MODULE_WIDTH5 = load double, double* %_bound_MODULE_WIDTH
+  %output6 = fmul double %output, %_bound_MODULE_WIDTH5
+  store double %output6, double* %_bound_MODULE_WIDTH
+  %return7 = call double @"prim@FISI"(i64 1, i8* getelementptr inbounds ([15 x i8], [15 x i8]* @0, i64 0, i64 0), i64 0)
+  store double %return7, double* %_bound_MODULE_HEIGHT
+  ret void
+}
+
+; Function Attrs: nounwind
+declare double @"prim@FISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %MODULE_HEIGHT, double %original_width, double %MODULE_WIDTH, double %SCALAR) #1 {
+__llvm_entry:
+  %"<original_width>" = alloca double
+  %"<MODULE_WIDTH>" = alloca double
+  %"<SCALAR>" = alloca double
+  %"<MODULE_HEIGHT>" = alloca double
+  store double %MODULE_HEIGHT, double* %"<MODULE_HEIGHT>"
+  store double %original_width, double* %"<original_width>"
+  store double %MODULE_WIDTH, double* %"<MODULE_WIDTH>"
+  store double %SCALAR, double* %"<SCALAR>"
+  call void @"__vex_snippet_snippet@FFFF"(double* %"<MODULE_HEIGHT>", double* %"<original_width>", double* %"<MODULE_WIDTH>", double* %"<SCALAR>")
+  %evalue = load double, double* %"<MODULE_HEIGHT>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @1, i64 0, i64 0), double %evalue) #3
+  %evalue1 = load double, double* %"<original_width>"
+  %gvalue2 = call double @"_export@FSF"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @2, i64 0, i64 0), double %evalue1) #3
+  %evalue3 = load double, double* %"<MODULE_WIDTH>"
+  %gvalue4 = call double @"_export@FSF"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @3, i64 0, i64 0), double %evalue3) #3
+  %evalue5 = load double, double* %"<SCALAR>"
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @4, i64 0, i64 0), double %evalue5) #3
+  store double %gvalue, double* @MODULE_HEIGHT
+  store double %gvalue2, double* @original_width
+  store double %gvalue4, double* @MODULE_WIDTH
+  store double %gvalue6, double* @SCALAR
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

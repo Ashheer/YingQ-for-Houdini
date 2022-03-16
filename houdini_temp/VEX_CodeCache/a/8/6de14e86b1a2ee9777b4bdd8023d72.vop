@@ -1,0 +1,48 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [1 x i8] zeroinitializer
+@MODULE_ID = external global i8*
+@1 = private constant [10 x i8] c"MODULE_ID\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@S"(i8** %_bound_MODULE_ID) #0 {
+__llvm_entry:
+  store i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i8** %_bound_MODULE_ID
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8* %MODULE_ID) #1 {
+__llvm_entry:
+  %"<MODULE_ID>" = alloca i8*
+  store i8* %MODULE_ID, i8** %"<MODULE_ID>"
+  call void @"__vex_snippet_snippet@S"(i8** %"<MODULE_ID>")
+  %evalue = load i8*, i8** %"<MODULE_ID>"
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0), i8* %evalue) #2
+  store i8* %gvalue, i8** @MODULE_ID
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

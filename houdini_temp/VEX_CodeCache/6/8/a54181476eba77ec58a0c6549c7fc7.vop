@@ -1,0 +1,125 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [6 x i8] c"FLOOR\00"
+@1 = private constant [12 x i8] c"floorHeight\00"
+@2 = private constant [16 x i8] c"bottomcutheight\00"
+@3 = private constant [13 x i8] c"topcutheight\00"
+@4 = private constant [12 x i8] c"BOTTOMLEDGE\00"
+@5 = private constant [9 x i8] c"TOPLEDGE\00"
+@6 = private constant [11 x i8] c"FloorIndex\00"
+@primnum = external global i64
+@profile_height = external global double
+@profile_type = external global i64
+@FloorIndex = external global i64
+@7 = private constant [8 x i8] c"primnum\00"
+@8 = private constant [15 x i8] c"profile_height\00"
+@9 = private constant [13 x i8] c"profile_type\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IFII"(i64* %_bound_primnum, double* %_bound_profile_height, i64* %_bound_profile_type, i64* %_bound_FloorIndex) #0 {
+__llvm_entry:
+  %_bound_primnum1 = load i64, i64* %_bound_primnum
+  %return = call i64 @"inprimgroup@IISI"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i64 %_bound_primnum1)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return2 = call double @"detail@FISI"(i64 2, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0), i64 0)
+  %return3 = call double @"detail@FISI"(i64 2, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @2, i64 0, i64 0), i64 0)
+  %output = fsub double %return2, %return3
+  %return4 = call double @"detail@FISI"(i64 2, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @3, i64 0, i64 0), i64 0)
+  %output5 = fsub double %output, %return4
+  store double %output5, double* %_bound_profile_height
+  store i64 0, i64* %_bound_profile_type
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %_bound_primnum6 = load i64, i64* %_bound_primnum
+  %return7 = call i64 @"inprimgroup@IISI"(i64 0, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @4, i64 0, i64 0), i64 %_bound_primnum6)
+  %1 = icmp ne i64 %return7, 0
+  br i1 %1, label %true8, label %false9
+
+end:                                              ; preds = %false9, %true14, %true8, %true
+  %return17 = call i64 @"detail@IISI"(i64 1, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @6, i64 0, i64 0), i64 0)
+  store i64 %return17, i64* %_bound_FloorIndex
+  ret void
+
+true8:                                            ; preds = %false
+  %return11 = call double @"detail@FISI"(i64 2, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @2, i64 0, i64 0), i64 0)
+  store double %return11, double* %_bound_profile_height
+  store i64 1, i64* %_bound_profile_type
+  br label %end
+
+false9:                                           ; preds = %false
+  %_bound_primnum12 = load i64, i64* %_bound_primnum
+  %return13 = call i64 @"inprimgroup@IISI"(i64 0, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0), i64 %_bound_primnum12)
+  %2 = icmp ne i64 %return13, 0
+  br i1 %2, label %true14, label %end
+
+true14:                                           ; preds = %false9
+  %return16 = call double @"detail@FISI"(i64 2, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @3, i64 0, i64 0), i64 0)
+  store double %return16, double* %_bound_profile_height
+  store i64 2, i64* %_bound_profile_type
+  br label %end
+}
+
+; Function Attrs: nounwind
+declare i64 @"inprimgroup@IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare double @"detail@FISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"detail@IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %primnum, double %profile_height, i64 %profile_type, i64 %FloorIndex) #1 {
+__llvm_entry:
+  %"<profile_height>" = alloca double
+  %"<profile_type>" = alloca i64
+  %"<FloorIndex>" = alloca i64
+  %0 = alloca i64
+  store double %profile_height, double* %"<profile_height>"
+  store i64 %profile_type, i64* %"<profile_type>"
+  store i64 %FloorIndex, i64* %"<FloorIndex>"
+  store i64 %primnum, i64* %0
+  call void @"__vex_snippet_snippet@IFII"(i64* %0, double* %"<profile_height>", i64* %"<profile_type>", i64* %"<FloorIndex>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @7, i64 0, i64 0), i64 %primnum) #2
+  %evalue2 = load double, double* %"<profile_height>"
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @8, i64 0, i64 0), double %evalue2) #2
+  %evalue4 = load i64, i64* %"<profile_type>"
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @9, i64 0, i64 0), i64 %evalue4) #2
+  %evalue6 = load i64, i64* %"<FloorIndex>"
+  %gvalue7 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @6, i64 0, i64 0), i64 %evalue6) #2
+  store i64 %gvalue, i64* @primnum
+  store double %gvalue3, double* @profile_height
+  store i64 %gvalue5, i64* @profile_type
+  store i64 %gvalue7, i64* @FloorIndex
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, double 0.000000e+00, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

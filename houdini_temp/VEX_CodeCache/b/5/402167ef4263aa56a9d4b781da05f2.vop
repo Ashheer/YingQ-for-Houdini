@@ -1,0 +1,89 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [13 x i8] c"profile_type\00"
+@1 = private constant [1 x i8] zeroinitializer
+@FacadePatternAtIndex = external global i8*
+@BottomLedgePatternAtIndex = external global i8*
+@TopLedgePatternAtIndex = external global i8*
+@2 = private constant [21 x i8] c"FacadePatternAtIndex\00"
+@3 = private constant [26 x i8] c"BottomLedgePatternAtIndex\00"
+@4 = private constant [23 x i8] c"TopLedgePatternAtIndex\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@SSS"(i8** %_bound_FacadePatternAtIndex, i8** %_bound_BottomLedgePatternAtIndex, i8** %_bound_TopLedgePatternAtIndex) #0 {
+__llvm_entry:
+  %return = call i64 @"prim@IISI"(i64 1, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @0, i64 0, i64 0), i64 0)
+  %return1 = call i64 @"eq@III"(i64 %return, i64 1)
+  %0 = icmp ne i64 %return1, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_BottomLedgePatternAtIndex2 = load i8*, i8** %_bound_BottomLedgePatternAtIndex
+  store i8* %_bound_BottomLedgePatternAtIndex2, i8** %_bound_FacadePatternAtIndex
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return3 = call i64 @"prim@IISI"(i64 1, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @0, i64 0, i64 0), i64 0)
+  %return4 = call i64 @"eq@III"(i64 %return3, i64 2)
+  %1 = icmp ne i64 %return4, 0
+  br i1 %1, label %true5, label %end
+
+end:                                              ; preds = %false, %true5, %true
+  ret void
+
+true5:                                            ; preds = %false
+  %_bound_TopLedgePatternAtIndex7 = load i8*, i8** %_bound_TopLedgePatternAtIndex
+  store i8* %_bound_TopLedgePatternAtIndex7, i8** %_bound_FacadePatternAtIndex
+  br label %end
+}
+
+; Function Attrs: nounwind
+declare i64 @"prim@IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8* %FacadePatternAtIndex, i8* %BottomLedgePatternAtIndex, i8* %TopLedgePatternAtIndex) #1 {
+__llvm_entry:
+  %0 = alloca i8*
+  %1 = alloca i8*
+  %"<FacadePatternAtIndex>" = alloca i8*
+  store i8* %FacadePatternAtIndex, i8** %"<FacadePatternAtIndex>"
+  store i8* %BottomLedgePatternAtIndex, i8** %0
+  store i8* %TopLedgePatternAtIndex, i8** %1
+  call void @"__vex_snippet_snippet@SSS"(i8** %"<FacadePatternAtIndex>", i8** %0, i8** %1)
+  %evalue = load i8*, i8** %"<FacadePatternAtIndex>"
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @2, i64 0, i64 0), i8* %evalue) #3
+  %gvalue4 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([26 x i8], [26 x i8]* @3, i64 0, i64 0), i8* %BottomLedgePatternAtIndex) #3
+  %gvalue6 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([23 x i8], [23 x i8]* @4, i64 0, i64 0), i8* %TopLedgePatternAtIndex) #3
+  store i8* %gvalue, i8** @FacadePatternAtIndex
+  store i8* %gvalue4, i8** @BottomLedgePatternAtIndex
+  store i8* %gvalue6, i8** @TopLedgePatternAtIndex
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

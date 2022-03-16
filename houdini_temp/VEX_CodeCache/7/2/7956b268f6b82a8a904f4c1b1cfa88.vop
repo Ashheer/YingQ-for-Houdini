@@ -1,0 +1,133 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"P\00"
+@ptnum = external global i64
+@P = external global <3 x double>
+@group_CONVEXCORNER = external global i64
+@1 = private constant [6 x i8] c"ptnum\00"
+@2 = private constant [19 x i8] c"group_CONVEXCORNER\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IVI"(i64* %_bound_ptnum, <3 x double>* %_bound_P, i64* %_bound_group_CONVEXCORNER) #0 {
+__llvm_entry:
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  %output = add i64 %_bound_ptnum1, 1
+  %return = call i64 @"npoints@II"(i64 0)
+  %return2 = call i64 @"mod@III"(i64 %output, i64 %return)
+  %_bound_ptnum3 = load i64, i64* %_bound_ptnum
+  %output4 = sub i64 %_bound_ptnum3, 1
+  %return6 = call i64 @"neg@II"(i64 1)
+  %return7 = call i64 @"eq@III"(i64 %output4, i64 %return6)
+  %0 = icmp ne i64 %return7, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return8 = call i64 @"npoints@II"(i64 0)
+  %output9 = sub i64 %return8, 1
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %prev_pt.0 = phi i64 [ %output9, %true ], [ %output4, %__llvm_entry ]
+  %return11 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 %prev_pt.0)
+  %return13 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 %return2)
+  %_bound_P14 = load <3 x double>, <3 x double>* %_bound_P
+  %output16 = call <3 x double> @"sub@VV"(<3 x double> %_bound_P14, <3 x double> %return11)
+  %return17 = call <3 x double> @"normalize@VV"(<3 x double> %output16)
+  %_bound_P19 = load <3 x double>, <3 x double>* %_bound_P
+  %output20 = call <3 x double> @"sub@VV"(<3 x double> %return13, <3 x double> %_bound_P19)
+  %return21 = call <3 x double> @"normalize@VV"(<3 x double> %output20)
+  %return24 = call <3 x double> @"cross@VVV"(<3 x double> %return17, <3 x double> %return21)
+  %return25 = call <3 x double> @"normalize@VV"(<3 x double> %return24)
+  %return26 = call double @"getcomp@FVI"(<3 x double> %return25, i64 1)
+  %return29 = call double @"dot@FVV"(<3 x double> %return21, <3 x double> %return17)
+  %return31 = fcmp olt double %return29, 1.000000e+00
+  br i1 %return31, label %true33, label %end34
+
+true33:                                           ; preds = %end
+  %return36 = fcmp ogt double %return26, 0.000000e+00
+  br i1 %return36, label %true38, label %end34
+
+end34:                                            ; preds = %true33, %true38, %end
+  ret void
+
+true38:                                           ; preds = %true33
+  store i64 1, i64* %_bound_group_CONVEXCORNER
+  br label %end34
+}
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"mod@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"cross@VVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #2
+
+; Function Attrs: nounwind
+declare double @"dot@FVV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %ptnum, <3 x double> %P, i64 %group_CONVEXCORNER) #1 {
+__llvm_entry:
+  %"<group_CONVEXCORNER>" = alloca i64
+  %0 = alloca i64
+  %1 = alloca <3 x double>
+  store i64 %group_CONVEXCORNER, i64* %"<group_CONVEXCORNER>"
+  store i64 %ptnum, i64* %0
+  store <3 x double> %P, <3 x double>* %1
+  call void @"__vex_snippet_snippet@IVI"(i64* %0, <3 x double>* %1, i64* %"<group_CONVEXCORNER>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %ptnum) #3
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %P) #3
+  %evalue5 = load i64, i64* %"<group_CONVEXCORNER>"
+  %gvalue6 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @2, i64 0, i64 0), i64 %evalue5) #3
+  store i64 %gvalue, i64* @ptnum
+  store <3 x double> %gvalue4, <3 x double>* @P
+  store i64 %gvalue6, i64* @group_CONVEXCORNER
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, <3 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

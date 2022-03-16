@@ -1,0 +1,55 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@group_TOPLEDGE = external global i64
+@group_BOTTOMLEDGE = external global i64
+@0 = private constant [15 x i8] c"group_TOPLEDGE\00"
+@1 = private constant [18 x i8] c"group_BOTTOMLEDGE\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@II"(i64* %_bound_group_TOPLEDGE, i64* %_bound_group_BOTTOMLEDGE) #0 {
+__llvm_entry:
+  store i64 0, i64* %_bound_group_TOPLEDGE
+  store i64 0, i64* %_bound_group_BOTTOMLEDGE
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %group_TOPLEDGE, i64 %group_BOTTOMLEDGE) #1 {
+__llvm_entry:
+  %"<group_BOTTOMLEDGE>" = alloca i64
+  %"<group_TOPLEDGE>" = alloca i64
+  store i64 %group_TOPLEDGE, i64* %"<group_TOPLEDGE>"
+  store i64 %group_BOTTOMLEDGE, i64* %"<group_BOTTOMLEDGE>"
+  call void @"__vex_snippet_snippet@II"(i64* %"<group_TOPLEDGE>", i64* %"<group_BOTTOMLEDGE>")
+  %evalue = load i64, i64* %"<group_TOPLEDGE>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @0, i64 0, i64 0), i64 %evalue) #2
+  %evalue1 = load i64, i64* %"<group_BOTTOMLEDGE>"
+  %gvalue2 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @1, i64 0, i64 0), i64 %evalue1) #2
+  store i64 %gvalue, i64* @group_TOPLEDGE
+  store i64 %gvalue2, i64* @group_BOTTOMLEDGE
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
