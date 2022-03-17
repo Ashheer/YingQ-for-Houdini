@@ -1,0 +1,109 @@
+function int [ ] pointNeighboursByEdges ( int input; int ptindex; int depth; int includeself; int computeweights; float weights [ ] )
+{
+    int pts [ ] = array ( ptindex );
+    
+    if ( computeweights && includeself )
+        append ( weights, 0 );
+    
+    float d = 1.0 / depth;
+    int lastpts [ ] = pts;
+    for ( int i = 0; i < depth; ++i )
+    {
+        int newpts [ ] = { };
+        foreach ( int pt; lastpts )
+        {
+            int connected [ ] = neighbours ( input, pt );
+            foreach ( int c; connected )
+            {
+                if ( find ( pts, c ) < 0 )
+                {
+                    append ( pts, c );
+                    append ( newpts, c );
+                    if ( computeweights )
+                        append ( weights, ( 1.0 + i ) * d );
+                }
+            }
+        }
+        lastpts = newpts;
+    }
+    
+    if ( includeself )
+        return pts;
+        
+    return pts [ 1: ];
+}
+
+function int [ ] pointNeighboursByPrims ( int input; int ptindex; int depth; int includeself; int computeweights; float weights [ ] )
+{
+    int pts [ ] = array ( ptindex );
+    
+    float sideradius = 0.7071067811865475; // sqrt(0.5)
+    if ( computeweights && includeself )
+        append ( weights, 0 );
+    
+    float d = 1.0 / depth;
+    int lastpts [ ] = pts;
+    for ( int i = 0; i < depth; ++i )
+    {
+        int newpts [ ] = { };
+        foreach ( int pt; lastpts )
+        {
+            int connected [ ] = neighbours ( input, pt );
+            foreach ( int c; connected )
+            {
+                if ( find ( pts, c ) < 0 )
+                {
+                    append ( pts, c );
+                    append ( newpts, c );
+                        if ( computeweights )
+                            append ( weights, sideradius * ( 1.0 + i ) * d );
+                }
+            }
+        }
+        
+        foreach ( int pt; lastpts )
+        {
+            int connectedprims [ ] = pointprims ( input, pt );
+            foreach ( int pr; connectedprims )
+            {
+                int connected [ ] = primpoints ( input, pr );
+                foreach ( int c; connected )
+                {
+                    if ( find ( pts, c ) < 0 )
+                    {
+                        append ( pts, c );
+                        append ( newpts, c );
+                        if ( computeweights )
+                            append ( weights, ( 1.0 + i ) * d );
+                    }
+                }
+            }
+        }
+                
+        lastpts = newpts;
+    }
+       
+    //float m = 1.0 / max ( weights );
+    //int count = len ( weights );
+    //for ( int i = 0; i < count; ++i )
+        //weights [ i ] *= m;//ALL Weight to 0-1 !!
+
+    if ( includeself )
+        return pts;
+    
+    return pts [ 1: ];
+}
+
+int pts [ ] = { };
+float weights [ ] = { };
+
+int depth = chi("../depth");
+int includeself = chi("../self");
+int computeweights = chi("../computeweights");
+if ( chi("../neighbouring") == 0 )
+    pts = pointNeighboursByEdges ( 0, @ptnum, depth, includeself, computeweights, weights );
+else
+    pts = pointNeighboursByPrims ( 0, @ptnum, depth, includeself, computeweights, weights );
+
+i[]@ptindices = pts;
+f[]@ptweights = weights;

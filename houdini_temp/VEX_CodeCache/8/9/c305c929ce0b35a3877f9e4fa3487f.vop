@@ -1,0 +1,164 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [12 x i8] c"../maxprims\00"
+@1 = private constant [2 x i8] c"P\00"
+@2 = private constant [5 x i8] c"../r\00"
+@3 = private constant [10 x i8] c"../maxpts\00"
+@4 = private constant [20 x i8] c"../connectattribute\00"
+@5 = private constant [17 x i8] c"../invertconnect\00"
+@6 = private constant [9 x i8] c"polyline\00"
+@P = external global <3 x double>
+@ptnum = external global i64
+@currentattrib = external global i64
+@7 = private constant [6 x i8] c"ptnum\00"
+@8 = private constant [14 x i8] c"currentattrib\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VII"(<3 x double>* %_bound_P, i64* %_bound_ptnum, i64* %_bound_currentattrib) #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @0, i64 0, i64 0))
+  %_bound_P1 = load <3 x double>, <3 x double>* %_bound_P
+  %return2 = call double @"ch@FS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0))
+  %return3 = call i64 @"chi@IS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @3, i64 0, i64 0))
+  %return4 = call i64* @"pcfind@[IISVFI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %_bound_P1, double %return2, i64 %return3)
+  %return5 = call i8* @"chs@SS"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @4, i64 0, i64 0))
+  %return7 = call i64 @"len@I[I"(i64* %return4)
+  br label %cond
+
+cond:                                             ; preds = %end22, %__llvm_entry
+  %nprims.0 = phi i64 [ 0, %__llvm_entry ], [ %nprims.1, %end22 ]
+  %__impl_foreach_index.0 = phi i64 [ 0, %__llvm_entry ], [ %output44, %end22 ]
+  %return10 = call i64 @"lt@III"(i64 %__impl_foreach_index.0, i64 %return7)
+  %0 = icmp ne i64 %return10, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return13 = call i64 @"getcomp@I[II"(i64* %return4, i64 %__impl_foreach_index.0)
+  %return16 = call i64 @"ge@III"(i64 %nprims.0, i64 %return)
+  %1 = icmp ne i64 %return16, 0
+  br i1 %1, label %end, label %end17
+
+end:                                              ; preds = %body, %cond
+  ret void
+
+end17:                                            ; preds = %body
+  %_bound_ptnum18 = load i64, i64* %_bound_ptnum
+  %return20 = call i64 @"lt@III"(i64 %_bound_ptnum18, i64 %return13)
+  %2 = icmp ne i64 %return20, 0
+  br i1 %2, label %true21, label %end22
+
+true21:                                           ; preds = %end17
+  %return25 = call i64 @"point@IISI"(i64 0, i8* %return5, i64 %return13)
+  %_bound_currentattrib26 = load i64, i64* %_bound_currentattrib
+  %return28 = call i64 @"ne@III"(i64 %_bound_currentattrib26, i64 %return25)
+  %return29 = call i64 @"chi@IS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @5, i64 0, i64 0))
+  %return30 = call i64 @"not@II"(i64 %return29)
+  %return31 = call i64 @"eq@III"(i64 %return28, i64 %return30)
+  %3 = icmp ne i64 %return31, 0
+  br i1 %3, label %true32, label %end22
+
+end22:                                            ; preds = %true21, %true32, %end17
+  %nprims.1 = phi i64 [ %output, %true32 ], [ %nprims.0, %true21 ], [ %nprims.0, %end17 ]
+  %output44 = add i64 %__impl_foreach_index.0, 1
+  br label %cond
+
+true32:                                           ; preds = %true21
+  %return34 = call i64 @"geoself@I"()
+  %return35 = call i64 @"addprim@IIS"(i64 %return34, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @6, i64 0, i64 0))
+  %_bound_ptnum37 = load i64, i64* %_bound_ptnum
+  %return38 = call i64 @"addvertex@IIII"(i64 0, i64 %return35, i64 %_bound_ptnum37)
+  %return41 = call i64 @"addvertex@IIII"(i64 0, i64 %return35, i64 %return13)
+  %output = add i64 %nprims.0, 1
+  br label %end22
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64* @"pcfind@[IISVFI"(i64, i8*, <3 x double>, double, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"point@IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #2
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IIS"(i64, i8*) #2
+
+; Function Attrs: nounwind
+declare i64 @"addvertex@IIII"(i64, i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P, i64 %ptnum, i64 %currentattrib) #2 {
+__llvm_entry:
+  %0 = alloca <3 x double>
+  %1 = alloca i64
+  %2 = alloca i64
+  store <3 x double> %P, <3 x double>* %0
+  store i64 %ptnum, i64* %1
+  store i64 %currentattrib, i64* %2
+  call void @"__vex_snippet_snippet@VII"(<3 x double>* %0, i64* %1, i64* %2)
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %P) #3
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @7, i64 0, i64 0), i64 %ptnum) #3
+  %gvalue7 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @8, i64 0, i64 0), i64 %currentattrib) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  store i64 %gvalue5, i64* @ptnum
+  store i64 %gvalue7, i64* @currentattrib
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

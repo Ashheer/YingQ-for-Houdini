@@ -42,6 +42,7 @@
                 "$YingQLib/otls/Geo/Curve",
                 "$YingQLib/otls/Geo/HardSurface",
                 "$YingQLib/otls/Geo/Layout",
+                "$YingQLib/otls/Geo/Shape",
                 "$YingQLib/otls/Geo/Terrain",
                 "$YingQLib/otls/Geo/WFC",
                 "$YingQLib/otls/Group",
