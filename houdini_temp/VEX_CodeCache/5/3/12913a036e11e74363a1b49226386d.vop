@@ -1,0 +1,68 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [16 x i8] c"../level_height\00"
+@1 = private constant [1 x i8] zeroinitializer
+@scale = external global double
+@building_levels = external global i8*
+@2 = private constant [6 x i8] c"scale\00"
+@3 = private constant [16 x i8] c"building_levels\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FS"(double* %_bound_scale, i8** %_bound_building_levels) #0 {
+__llvm_entry:
+  %_bound_building_levels1 = load i8*, i8** %_bound_building_levels
+  %return = call double @"atof@FS"(i8* %_bound_building_levels1)
+  %return2 = call double @"ch@FS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @0, i64 0, i64 0))
+  %output = fmul double %return, %return2
+  store double %output, double* %_bound_scale
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"atof@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %scale, i8* %building_levels) #2 {
+__llvm_entry:
+  %0 = alloca i8*
+  %"<scale>" = alloca double
+  store double %scale, double* %"<scale>"
+  store i8* %building_levels, i8** %0
+  call void @"__vex_snippet_snippet@FS"(double* %"<scale>", i8** %0)
+  %evalue = load double, double* %"<scale>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0), double %evalue) #3
+  %gvalue3 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @3, i64 0, i64 0), i8* %building_levels) #3
+  store double %gvalue, double* @scale
+  store i8* %gvalue3, i8** @building_levels
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @1, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

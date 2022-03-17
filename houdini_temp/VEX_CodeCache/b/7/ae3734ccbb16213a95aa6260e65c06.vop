@@ -1,0 +1,79 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [1 x i8] zeroinitializer
+@min_height = external global double
+@minheight = external global i8*
+@scale = external global double
+@height = external global i8*
+@1 = private constant [11 x i8] c"min_height\00"
+@2 = private constant [10 x i8] c"minheight\00"
+@3 = private constant [6 x i8] c"scale\00"
+@4 = private constant [7 x i8] c"height\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FSFS"(double* %_bound_min_height, i8** %_bound_minheight, double* %_bound_scale, i8** %_bound_height) #0 {
+__llvm_entry:
+  %_bound_minheight1 = load i8*, i8** %_bound_minheight
+  %return = call double @"atof@FS"(i8* %_bound_minheight1)
+  store double %return, double* %_bound_min_height
+  %_bound_height2 = load i8*, i8** %_bound_height
+  %return3 = call double @"atof@FS"(i8* %_bound_height2)
+  %output = fsub double %return3, %return
+  store double %output, double* %_bound_scale
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"atof@FS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %min_height, i8* %minheight, double %scale, i8* %height) #2 {
+__llvm_entry:
+  %"<scale>" = alloca double
+  %0 = alloca i8*
+  %1 = alloca i8*
+  %"<min_height>" = alloca double
+  store double %min_height, double* %"<min_height>"
+  store double %scale, double* %"<scale>"
+  store i8* %minheight, i8** %0
+  store i8* %height, i8** %1
+  call void @"__vex_snippet_snippet@FSFS"(double* %"<min_height>", i8** %0, double* %"<scale>", i8** %1)
+  %evalue = load double, double* %"<min_height>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @1, i64 0, i64 0), double %evalue) #3
+  %gvalue4 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0), i8* %minheight) #3
+  %evalue5 = load double, double* %"<scale>"
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0), double %evalue5) #3
+  %gvalue8 = call i8* @"_export@SSS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @4, i64 0, i64 0), i8* %height) #3
+  store double %gvalue, double* @min_height
+  store i8* %gvalue4, i8** @minheight
+  store double %gvalue6, double* @scale
+  store i8* %gvalue8, i8** @height
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), double 0.000000e+00, i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

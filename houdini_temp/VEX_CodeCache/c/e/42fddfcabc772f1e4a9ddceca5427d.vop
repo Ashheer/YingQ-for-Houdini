@@ -1,0 +1,142 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [11 x i8] c"min_latlon\00"
+@1 = private constant [11 x i8] c"max_latlon\00"
+@map_length = external global double
+@map_height = external global double
+@2 = private constant [11 x i8] c"map_length\00"
+@3 = private constant [11 x i8] c"map_height\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FF"(double* %_bound_map_length, double* %_bound_map_height) #0 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca double
+  %2 = alloca double
+  %3 = alloca double
+  %4 = alloca double
+  %5 = alloca double
+  %6 = alloca double
+  %7 = alloca double
+  %return = call <3 x double> @"detail@VIS"(i64 0, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @0, i64 0, i64 0))
+  %return1 = call <3 x double> @"detail@VIS"(i64 0, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @1, i64 0, i64 0))
+  %return3 = call double @"getcomp@FVI"(<3 x double> %return, i64 0)
+  store double %return3, double* %0
+  %return5 = call double @"getcomp@FVI"(<3 x double> %return, i64 2)
+  store double %return5, double* %1
+  %return7 = call double @"getcomp@FVI"(<3 x double> %return1, i64 0)
+  store double %return7, double* %2
+  store double %return5, double* %3
+  %haversine = call double @"haversine@FFFFF"(double* %0, double* %1, double* %2, double* %3)
+  store double %haversine, double* %_bound_map_length
+  store double %return3, double* %4
+  store double %return5, double* %5
+  store double %return3, double* %6
+  %return17 = call double @"getcomp@FVI"(<3 x double> %return1, i64 2)
+  store double %return17, double* %7
+  %haversine18 = call double @"haversine@FFFFF"(double* %4, double* %5, double* %6, double* %7)
+  store double %haversine18, double* %_bound_map_height
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private double @"haversine@FFFFF"(double* %_lat1, double* %_lon1, double* %_lat2, double* %_lon2) #0 {
+__llvm_entry:
+  %_lat21 = load double, double* %_lat2
+  %_lat12 = load double, double* %_lat1
+  %output = fsub double %_lat21, %_lat12
+  %return = call double @"radians@FF"(double %output)
+  %_lon23 = load double, double* %_lon2
+  %_lon14 = load double, double* %_lon1
+  %output5 = fsub double %_lon23, %_lon14
+  %return6 = call double @"radians@FF"(double %output5)
+  %_lat17 = load double, double* %_lat1
+  %return8 = call double @"radians@FF"(double %_lat17)
+  %_lat29 = load double, double* %_lat2
+  %return10 = call double @"radians@FF"(double %_lat29)
+  %output12 = call double @"div@FF"(double %return, double 2.000000e+00)
+  %return13 = call double @"sin@FF"(double %output12)
+  %return14 = call double @"pow@FFF"(double %return13, double 2.000000e+00)
+  %return16 = call double @"cos@FF"(double %return8)
+  %return18 = call double @"cos@FF"(double %return10)
+  %output19 = fmul double %return16, %return18
+  %output21 = call double @"div@FF"(double %return6, double 2.000000e+00)
+  %return22 = call double @"sin@FF"(double %output21)
+  %return23 = call double @"pow@FFF"(double %return22, double 2.000000e+00)
+  %output24 = fmul double %output19, %return23
+  %output25 = fadd double %return14, %output24
+  %return27 = call double @"sqrt@FF"(double %output25)
+  %return28 = call double @"asin@FF"(double %return27)
+  %output29 = fmul double 2.000000e+00, %return28
+  %output32 = fmul double 6.373000e+06, %output29
+  ret double %output32
+}
+
+; Function Attrs: nounwind
+declare double @"radians@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"sin@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"pow@FFF"(double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"cos@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"sqrt@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"asin@FF"(double) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"detail@VIS"(i64, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %map_length, double %map_height) #1 {
+__llvm_entry:
+  %"<map_height>" = alloca double
+  %"<map_length>" = alloca double
+  store double %map_length, double* %"<map_length>"
+  store double %map_height, double* %"<map_height>"
+  call void @"__vex_snippet_snippet@FF"(double* %"<map_length>", double* %"<map_height>")
+  %evalue = load double, double* %"<map_length>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @2, i64 0, i64 0), double %evalue) #3
+  %evalue1 = load double, double* %"<map_height>"
+  %gvalue2 = call double @"_export@FSF"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @3, i64 0, i64 0), double %evalue1) #3
+  store double %gvalue, double* @map_length
+  store double %gvalue2, double* @map_height
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
