@@ -1,0 +1,254 @@
+;_name	/obj/geo1/twist1/attribvop_deform
+; ModuleID = 'obj_geo1_twist1_attribvop_deform'
+source_filename = "obj_geo1_twist1_attribvop_deform"
+
+@0 = private constant [1 x i8] zeroinitializer
+@P = external global <3 x double>
+@1 = private constant [5 x i8] c"file\00"
+@2 = private constant [7 x i8] c"detail\00"
+@3 = private constant [8 x i8] c"__xform\00"
+@4 = private constant [2 x i8] c"P\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_geo1_twist1_attribvop_deform_snippet_compute_weight@IIFIFF"(i64* %useWeight, i64* %inv, double* %ex, i64* %easing, double* %w, double* %_bound_weight) #0 {
+__llvm_entry:
+  %useWeight1 = load i64, i64* %useWeight
+  %0 = icmp ne i64 %useWeight1, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_weight2 = load double, double* %_bound_weight
+  store double %_bound_weight2, double* %w
+  %inv3 = load i64, i64* %inv
+  %1 = icmp ne i64 %inv3, 0
+  br i1 %1, label %true4, label %end5
+
+end:                                              ; preds = %true8, %false, %__llvm_entry
+  ret void
+
+true4:                                            ; preds = %true
+  %output = fsub double 1.000000e+00, %_bound_weight2
+  store double %output, double* %w
+  br label %end5
+
+end5:                                             ; preds = %true4, %true
+  %easing7 = load i64, i64* %easing
+  %return = call i64 @"eq@III"(i64 %easing7, i64 0)
+  %2 = icmp ne i64 %return, 0
+  %w10 = load double, double* %w
+  br i1 %2, label %true8, label %false
+
+true8:                                            ; preds = %end5
+  %ex11 = load double, double* %ex
+  %return12 = call double @"pow@FFF"(double %w10, double %ex11)
+  store double %return12, double* %w
+  br label %end
+
+false:                                            ; preds = %end5
+  %output14 = fsub double 1.000000e+00, %w10
+  %ex15 = load double, double* %ex
+  %return16 = call double @"pow@FFF"(double %output14, double %ex15)
+  %output17 = fsub double 1.000000e+00, %return16
+  store double %output17, double* %w
+  br label %end
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"pow@FFF"(double, double) #1
+
+; Function Attrs: nounwind
+define void @obj_geo1_twist1_attribvop_deform(i8* %OpInput2, <3 x double> %P, <3 x double> %t, double %angle, double %decay, double %upperLimit, double %lowerLimit, double %len, i64 %useWeight, i64 %inv, double %ex, i64 %easing, double %weight) #2 {
+__llvm_entry:
+  %outw = alloca double
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca double
+  %3 = alloca i64
+  %4 = alloca double
+  %5 = alloca <3 x double>
+  %6 = alloca double
+  %7 = alloca double
+  %8 = alloca double
+  %9 = alloca double
+  %10 = alloca double
+  %11 = alloca double
+  %12 = alloca <16 x double>
+  %output = call <3 x double> @"sub@VV"(<3 x double> %P, <3 x double> %t)
+  store double 1.000000e+00, double* %outw
+  store i64 %useWeight, i64* %0
+  store i64 %inv, i64* %1
+  store double %ex, double* %2
+  store i64 %easing, i64* %3
+  store double %weight, double* %4
+  call void @"_obj_geo1_twist1_attribvop_deform_snippet_compute_weight@IIFIFF"(i64* %0, i64* %1, double* %2, i64* %3, double* %outw, double* %4)
+  %return = call i64 @"eq@ISS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0))
+  %13 = icmp ne i64 %return, 0
+  br i1 %13, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %sourcefile.0 = phi i8* [ %OpInput2, %true ], [ getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), %__llvm_entry ]
+  %return16 = call { i64, <16 x double> } @"getattribute@IS4SSII"(i8* %sourcefile.0, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0), i8* getelementptr inbounds ([8 x i8], [8 x i8]* @3, i64 0, i64 0), i64 0, i64 0)
+  %output18 = extractvalue { i64, <16 x double> } %return16, 1
+  store <3 x double> %output, <3 x double>* %5
+  store double %angle, double* %6
+  store double %decay, double* %7
+  store double %upperLimit, double* %8
+  store double %lowerLimit, double* %9
+  store double %len, double* %10
+  %outw25 = load double, double* %outw
+  store double %outw25, double* %11
+  store <16 x double> %output18, <16 x double>* %12
+  %twistPoint = call <3 x double> @"twistPoint@VVFFFFFF4"(<3 x double>* %5, double* %6, double* %7, double* %8, double* %9, double* %10, double* %11, <16 x double>* %12)
+  %output29 = call <3 x double> @"add@VV"(<3 x double> %t, <3 x double> %twistPoint)
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @4, i64 0, i64 0), <3 x double> %output29) #4
+  store <3 x double> %gvalue, <3 x double>* @P
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare { i64, <16 x double> } @"getattribute@IS4SSII"(i8*, i8*, i8*, i64, i64) #1
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"twistPoint@VVFFFFFF4"(<3 x double>* %pWorld, double* %angle, double* %decay, double* %upperLimit, double* %lowerLimit, double* %len, double* %weight, <16 x double>* %xform) #0 {
+__llvm_entry:
+  %pWorld1 = load <3 x double>, <3 x double>* %pWorld
+  %xform2 = load <16 x double>, <16 x double>* %xform
+  %return = call <16 x double> @"invert@44"(<16 x double> %xform2)
+  %output = call <3 x double> @"mul@V4"(<3 x double> %pWorld1, <16 x double> %return)
+  %angle3 = load double, double* %angle
+  %return4 = fcmp one double %angle3, 0.000000e+00
+  %return5 = zext i1 %return4 to i64
+  %len6 = load double, double* %len
+  %return7 = fcmp ogt double %len6, 0.000000e+00
+  %return8 = zext i1 %return7 to i64
+  %return9 = call i64 @"and@III"(i64 %return5, i64 %return8)
+  %0 = icmp ne i64 %return9, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return11 = call double @"radians@FF"(double %angle3)
+  %len12 = load double, double* %len
+  %output13 = call double @"div@FF"(double %return11, double %len12)
+  %return15 = call double @"getcomp@FVI"(<3 x double> %output, i64 1)
+  %lowerLimit16 = load double, double* %lowerLimit
+  %upperLimit17 = load double, double* %upperLimit
+  %return18 = call double @"clamp@FFFF"(double %return15, double %lowerLimit16, double %upperLimit17)
+  %output21 = fmul double %return18, %output13
+  %decay22 = load double, double* %decay
+  %return23 = call double @"neg@FF"(double %decay22)
+  %return25 = call double @"abs@FF"(double %return18)
+  %output26 = fmul double %return23, %return25
+  %return27 = call double @"exp@FF"(double %output26)
+  %output28 = fmul double %output21, %return27
+  %weight29 = load double, double* %weight
+  %output30 = fmul double %output28, %weight29
+  %return32 = call double @"cos@FF"(double %output30)
+  %return34 = call double @"sin@FF"(double %output30)
+  %return37 = call double @"getcomp@FVI"(<3 x double> %output, i64 0)
+  %output38 = fmul double %return32, %return37
+  %return41 = call double @"getcomp@FVI"(<3 x double> %output, i64 2)
+  %output42 = fmul double %return34, %return41
+  %output43 = fadd double %output38, %output42
+  %return45 = call double @"neg@FF"(double %return34)
+  %output48 = fmul double %return45, %return37
+  %output52 = fmul double %return32, %return41
+  %output53 = fadd double %output48, %output52
+  %return55 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output, double %output43, i64 0)
+  %output57 = extractvalue { double, <3 x double> } %return55, 1
+  %return60 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output57, double %output53, i64 2)
+  %output62 = extractvalue { double, <3 x double> } %return60, 1
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %p.0 = phi <3 x double> [ %output62, %true ], [ %output, %__llvm_entry ]
+  %xform64 = load <16 x double>, <16 x double>* %xform
+  %output65 = call <3 x double> @"mul@V4"(<3 x double> %p.0, <16 x double> %xform64)
+  ret <3 x double> %output65
+}
+
+; Function Attrs: nounwind readnone
+declare <16 x double> @"invert@44"(<16 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"mul@V4"(<3 x double>, <16 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare double @"radians@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind
+declare double @"clamp@FFFF"(double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+; Function Attrs: nounwind
+declare double @"abs@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"exp@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"cos@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"sin@FF"(double) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_geo1_twist1_attribvop_deform(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), <3 x double> zeroinitializer, <3 x double> zeroinitializer, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00, double -1.000000e+00, double 1.000000e+00, i64 0, i64 0, double 1.000000e+00, i64 0, double 1.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { alwaysinline }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

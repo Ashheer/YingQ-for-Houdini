@@ -1,3 +1,25 @@
 attribwrangle/snippet
 	Normals Preset Test
 	@N = @N;
+
+attribwrangle/snippet
+	Laplacian
+	int pts [ ] = i[]@ptlist;
+
+	vector center = 0;
+	foreach ( int pt; pts )
+	{
+    	vector p = point ( 0, "P", pt );
+    	center += p;
+	}
+	center = center / len ( pts );
+
+	/*朝向周围里变化剧烈的点移动*/
+
+	int hitprim = -1;
+	vector hituv = 0;
+
+	xyzdist ( 1, center, hitprim, hituv, ch("maxdist") );
+	center = primuv ( 1, "P", hitprim, hituv );
+
+	@P = center;
