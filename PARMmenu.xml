@@ -17,8 +17,50 @@ import ying_Utils
 ying_Utils.setClipboardText(parm0.name())
       ]]></scriptCode>
       </scriptItem>
-      
+      <scriptItem id="reveal_in_file_browser">
+        <label>Open in File browser</label>
+        <scriptCode>
+<![CDATA[
+import os
+import sys
+import subprocess
+path = kwargs["parms"][0].eval()
+old_path = path
+if path != "":
+    path = hou.expandString(path)
+    path = os.path.normpath(path)
+    path = os.path.dirname(path)
+    if os.path.exists(path):
+        if sys.platform == "linux2":
+            new_env = os.environ
+            new_env["LD_LIBRARY_PATH"] = ""
+            subprocess.Popen(["xdg-open", path], env=new_env)
+        if sys.platform == "win32":
+            subprocess.Popen(["explorer", path])
+        if sys.platform == "darwin":
+            subprocess.Popen(["open", path])
+    else:
+        print('Folder "{}" does not exist or you do not have permission to access it'.format(old_path))
+]]>
+          </scriptCode>
+          </scriptItem>
+          <scriptItem id="reveal_in_photoshop">
+            <label>Photoshop</label>
+            <scriptCode>
+<![CDATA[
+import os
+import sys
+import subprocess
+path = kwargs["parms"][0].eval()
+if path != "":
+    path = os.path.normpath(path)
+    subprocess.Popen(["C:\Program Files\Adobe\Adobe Photoshop 2022\Photoshop.exe", path])
+ ]]>
+            </scriptCode>
+        </scriptItem>
     </subMenu>
 
   </menu>
 </menuDocument>
+
+
