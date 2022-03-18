@@ -1,5 +1,21 @@
+vector smoothfilter ( int input; int pts [ ]; float dist [ ]; string attrib )
+{
+    float sum = 0, w, d;
+    vector value, result = 0;
+    float maxd = dist [ -1 ];
+    int count = len ( pts );
+    for ( int i = 0; i < count; ++i )
+    {
+        value = point ( input, attrib, pts [ i ] );
+        w = 1 - smooth ( 0, 1.1 * maxd, dist [ i ] );
+        sum += w;
+        result += w * value;
+    }
+    result /= sum;
+    return result;
+}
 
-int input = chi("ninput");  //0/1
+int input = chi("ninput");
 int maxpts = chi("../maxpts");
 
 int @nearpt = -1;
@@ -63,7 +79,7 @@ if ( chi("../computeweights") )
     float sumweight = 0;
     float maxdist = dists [ -1 ];
     
-    count = len ( pts );
+    int count = len ( pts );
     for ( int i = 0; i < count; ++i )
     {
         float w = 1 - smooth ( 0, 1.1 * maxdist, dists [ i ] );
