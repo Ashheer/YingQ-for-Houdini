@@ -323,3 +323,46 @@ Fri Mar 18 2022 19:42:28 GMT+0800 (香港标准时间) WebSocketServer: client_1
 Fri Mar 18 2022 19:42:28 GMT+0800 (香港标准时间) WebSocketServer: Configure: CMDN dialog
 Fri Mar 18 2022 19:42:30 GMT+0800 (香港标准时间) LocalThumbnails: Stopping child process
 Fri Mar 18 2022 19:42:31 GMT+0800 (香港标准时间) WebSocketServer: client_1: Client disconnected
+Fri Mar 18 2022 20:04:19 GMT+0800 (香港标准时间) SystemFonts: Font directory changed: C:/WINDOWS/Fonts
+Fri Mar 18 2022 20:04:19 GMT+0800 (香港标准时间) SystemFonts: Font directory changed: C:/WINDOWS/Fonts
+Fri Mar 18 2022 20:04:21 GMT+0800 (香港标准时间) SystemFonts: Loading system fonts
+Fri Mar 18 2022 20:04:21 GMT+0800 (香港标准时间) SystemFonts: Requesting fonts from font manager
+Fri Mar 18 2022 20:04:21 GMT+0800 (香港标准时间) SystemFonts: Font directory changed: C:/WINDOWS/Fonts
+Fri Mar 18 2022 20:04:21 GMT+0800 (香港标准时间) SystemFonts: Font directory changed: C:/WINDOWS/Fonts
+Fri Mar 18 2022 20:04:21 GMT+0800 (香港标准时间) SystemFonts: Font directory changed: C:/WINDOWS/Fonts
+Fri Mar 18 2022 20:04:21 GMT+0800 (香港标准时间) SystemFonts: Font directory changed: C:/WINDOWS/Fonts
+Fri Mar 18 2022 20:04:21 GMT+0800 (香港标准时间) SystemFonts: Font directory changed: C:/WINDOWS/Fonts
+Fri Mar 18 2022 20:04:22 GMT+0800 (香港标准时间) SystemFonts: Font directory changed: C:/WINDOWS/Fonts
+Fri Mar 18 2022 20:04:22 GMT+0800 (香港标准时间) SystemFonts: System fonts changed while loading (1125ms) - loading again
+Fri Mar 18 2022 20:04:23 GMT+0800 (香港标准时间) SystemFonts: Loading system fonts
+Fri Mar 18 2022 20:04:23 GMT+0800 (香港标准时间) SystemFonts: Requesting fonts from font manager
+Fri Mar 18 2022 20:04:24 GMT+0800 (香港标准时间) SystemFonts: Loaded 468 fonts (1126ms)
+Fri Mar 18 2022 20:04:29 GMT+0800 (香港标准时间) Vulcan: <- PHXS 23.0.2: cclibraries.api.QueryRequest
+Fri Mar 18 2022 20:04:29 GMT+0800 (香港标准时间) API: Client connected: PHXS - 23.0.2
+Fri Mar 18 2022 20:04:29 GMT+0800 (香港标准时间) Vulcan: -> PHXS 23.0.2: cclibraries.api.QueryResponse
+Fri Mar 18 2022 20:04:29 GMT+0800 (香港标准时间) API: [f3ed2bbc-6f36-4212-b5d2-2f45136fab19] POST 127.0.0.1:5970/notifications/libraries
+Fri Mar 18 2022 20:04:29 GMT+0800 (香港标准时间) API: [f3ed2bbc-6f36-4212-b5d2-2f45136fab19] 403 (1ms)
+Fri Mar 18 2022 20:04:29 GMT+0800 (香港标准时间) API: [b2281b14-423d-4568-b7d2-43bb0018245b] POST 127.0.0.1:5970/notifications/libraries/sync
+Fri Mar 18 2022 20:04:29 GMT+0800 (香港标准时间) API: [b2281b14-423d-4568-b7d2-43bb0018245b] 403 (0ms)
+Fri Mar 18 2022 20:04:29 GMT+0800 (香港标准时间) API: [dfa45138-2cde-4e36-a365-86e34ca33e23] GET 127.0.0.1:5970/libraries
+Fri Mar 18 2022 20:04:29 GMT+0800 (香港标准时间) API: [dfa45138-2cde-4e36-a365-86e34ca33e23] 403 (1ms)
+Fri Mar 18 2022 20:04:29 GMT+0800 (香港标准时间) API: [668abd41-321e-4615-b284-3826301f3eca] GET 127.0.0.1:5970/libraries
+Fri Mar 18 2022 20:04:29 GMT+0800 (香港标准时间) API: [668abd41-321e-4615-b284-3826301f3eca] 403 (0ms)
+Fri Mar 18 2022 20:04:34 GMT+0800 (香港标准时间) API: [fb87da1b-39d0-4c3e-a1e1-3277702b0c19] POST 127.0.0.1:5970/notifications/libraries
+Fri Mar 18 2022 20:04:34 GMT+0800 (香港标准时间) API: [fb87da1b-39d0-4c3e-a1e1-3277702b0c19] 403 (0ms)
+Fri Mar 18 2022 20:04:34 GMT+0800 (香港标准时间) API: [33da2bff-aeb4-445f-b5be-277d01dd034c] POST 127.0.0.1:5970/notifications/libraries/sync
+Fri Mar 18 2022 20:04:34 GMT+0800 (香港标准时间) API: [33da2bff-aeb4-445f-b5be-277d01dd034c] 403 (0ms)
+Fri Mar 18 2022 20:04:35 GMT+0800 (香港标准时间) Vulcan: <- PHXS 23.0.2: cclibraries.service.QueryRequest
+Fri Mar 18 2022 20:04:35 GMT+0800 (香港标准时间) WebSocketServer: client_2: Client connected: diagnostic
+Fri Mar 18 2022 20:04:35 GMT+0800 (香港标准时间) Vulcan: -> PHXS 23.0.2: cclibraries.service.QueryResponse
+Fri Mar 18 2022 20:04:35 GMT+0800 (香港标准时间) WebSocketServer: client_2: Client disconnected
+Fri Mar 18 2022 20:04:36 GMT+0800 (香港标准时间) WebSocketServer: client_3: Client connected: version=23
+Fri Mar 18 2022 20:04:36 GMT+0800 (香港标准时间) WebSocketServer: client_3: SEND environmentinfo
+Fri Mar 18 2022 20:04:36 GMT+0800 (香港标准时间) WebSocketServer: client_3: SEND clearcollections
+Fri Mar 18 2022 20:04:36 GMT+0800 (香港标准时间) WebSocketServer: client_3: RECEIVE configure
+Fri Mar 18 2022 20:04:36 GMT+0800 (香港标准时间) WebSocketServer: Configure: CMDN dialog
+Fri Mar 18 2022 20:04:39 GMT+0800 (香港标准时间) API: [aadaf330-d7e6-4d61-bb8c-cb1c6a127363] POST 127.0.0.1:5970/notifications/libraries
+Fri Mar 18 2022 20:04:39 GMT+0800 (香港标准时间) API: [aadaf330-d7e6-4d61-bb8c-cb1c6a127363] 403 (0ms)
+Fri Mar 18 2022 20:04:39 GMT+0800 (香港标准时间) API: [89106700-b747-4315-a179-c6af44504436] POST 127.0.0.1:5970/notifications/libraries/sync
+Fri Mar 18 2022 20:04:39 GMT+0800 (香港标准时间) API: [89106700-b747-4315-a179-c6af44504436] 403 (0ms)
+Fri Mar 18 2022 20:04:39 GMT+0800 (香港标准时间) WebSocketServer: client_3: Client disconnected

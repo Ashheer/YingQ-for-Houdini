@@ -262,3 +262,287 @@ Fri Mar 18 2022 19:42:28.347 GMT+0800 (香港标准时间) ServiceInterface > [I
     at  main.js:19:58003  for product PHXS[23.0.2]
 Fri Mar 18 2022 19:42:28.348 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] -> PHXS 23.0.2: ccxprocess.StockTemplateResponse 
  {"requestId":"edf5d411b1f44f0a8cd8e2785eff94f7","err":{}}
+Fri Mar 18 2022 19:43:01.56 GMT+0800 (香港标准时间) Main > [INFO] performance
+Fri Mar 18 2022 19:43:01.58 GMT+0800 (香港标准时间) Main > [INFO] performance
+Fri Mar 18 2022 19:43:01.58 GMT+0800 (香港标准时间) Main > [INFO] performance
+Fri Mar 18 2022 19:43:01.58 GMT+0800 (香港标准时间) Main > [DISK] CPU: 1.88%, RAM: 56.71MB, Disk: 0.00MB 
+Fri Mar 18 2022 20:04:26.833 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] <- PHXS 23.0.2: ccxprocess.UserAvatarRequest
+Fri Mar 18 2022 20:04:26.833 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] -> CCXP 1.0.0: ccxprocess.AvatarRequest 
+ {"params":{"productCode":"PHXS","productVersion":"23.0.2"}}
+Fri Mar 18 2022 20:04:26.837 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] <- CCXP 1.0.0: ccxprocess.AvatarRequest 
+ {"params":{"productCode":"PHXS","productVersion":"23.0.2"}}
+Fri Mar 18 2022 20:04:26.838 GMT+0800 (香港标准时间) ServiceInterface > [INFO] Request Received  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:26.860 GMT+0800 (香港标准时间) ServiceInterface > [INFO] r [Error]: User Signed Out
+    at  main.js:19:346209
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at  asyncToGenerator.js:21:12
+    at e.<anonymous> ( main.js:19:74693)
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at e.<anonymous> ( asyncToGenerator.js:21:12)
+    at e.<anonymous> ( main.js:19:75297)
+    at  main.js:19:346017
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at  asyncToGenerator.js:21:12
+    at  main.js:19:348485
+    at n.<anonymous> ( main.js:19:348591)
+    at n.emit (node:events:365:28)
+    at  main.js:19:58003 {
+  underlyingError: 'User Signed Out',
+  error_code: 'USER_SIGNED_OUT',
+  silent: false,
+  context: '',
+  headers: undefined,
+  payload: {},
+  subErrorList: [],
+  supportData: undefined
+}  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:26.861 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] -> CCXP 1.0.0: ccxprocess.AvatarResponse 
+ {"err":{"desc":"","message":"User Signed Out","code":"USER_SIGNED_OUT"}}
+Fri Mar 18 2022 20:04:26.862 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] <- CCXP 1.0.0: ccxprocess.AvatarResponse 
+ {"err":{"desc":"","message":"User Signed Out","code":"USER_SIGNED_OUT"}}
+Fri Mar 18 2022 20:04:26.863 GMT+0800 (香港标准时间) ServiceInterface > [INFO] Request Received
+Fri Mar 18 2022 20:04:26.863 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] -> PHXS 23.0.2: ccxprocess.UserAvatarResponse
+Fri Mar 18 2022 20:04:26.865 GMT+0800 (香港标准时间) ServiceInterface > [INFO] Response sent in 2ms
+Fri Mar 18 2022 20:04:34.41 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] <- PHXS 23.0.2: ccxprocess.DiscoverPanelRequest 
+ {"version":1,"requestId":"4a379917-da50-4332-8e1c-af02f5b338ca","params":{"productCode":"PHXS","productVersion":"23.0.2","productLanguage":"en_US"},"urgent":true}
+Fri Mar 18 2022 20:04:34.41 GMT+0800 (香港标准时间) ServiceInterface > [INFO] Request Received  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:34.42 GMT+0800 (香港标准时间) ServiceInterface > [INFO] r [Error]: User Signed Out
+    at  main.js:19:346209
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at  asyncToGenerator.js:21:12
+    at e.<anonymous> ( main.js:19:74693)
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at e.<anonymous> ( asyncToGenerator.js:21:12)
+    at e.<anonymous> ( main.js:19:75297)
+    at  main.js:19:346017
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at  asyncToGenerator.js:21:12
+    at  main.js:19:348485
+    at n.<anonymous> ( main.js:19:348591)
+    at n.emit (node:events:365:28)
+    at  main.js:19:58003 {
+  underlyingError: 'User Signed Out',
+  error_code: 'USER_SIGNED_OUT',
+  silent: false,
+  context: '',
+  headers: undefined,
+  payload: {},
+  subErrorList: [],
+  supportData: undefined
+}  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:34.42 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] -> PHXS 23.0.2: ccxprocess.DiscoverPanelResponse 
+ {"requestId":"4a379917-da50-4332-8e1c-af02f5b338ca","err":{"desc":"","message":"User Signed Out","code":"USER_SIGNED_OUT"}}
+Fri Mar 18 2022 20:04:34.217 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] <- PHXS 23.0.2: ccxprocess.SenseiModelsRequest 
+ {"params":{"surfaceId":["sensei_model"],"productCode":"PHXS","productVersion":"23.0.2","platform":"win"},"requestId":"0aa9eb25-d702-46c3-8e08-31c153d42c2b","version":1}
+Fri Mar 18 2022 20:04:34.217 GMT+0800 (香港标准时间) ServiceInterface > [INFO] Request Received  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:34.218 GMT+0800 (香港标准时间) ServiceInterface > [INFO] r [Error]: User Signed Out
+    at  main.js:19:346209
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at  asyncToGenerator.js:21:12
+    at e.<anonymous> ( main.js:19:74693)
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at e.<anonymous> ( asyncToGenerator.js:21:12)
+    at e.<anonymous> ( main.js:19:75297)
+    at  main.js:19:346017
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at  asyncToGenerator.js:21:12
+    at  main.js:19:348485
+    at n.<anonymous> ( main.js:19:348591)
+    at n.emit (node:events:365:28)
+    at  main.js:19:58003 {
+  underlyingError: 'User Signed Out',
+  error_code: 'USER_SIGNED_OUT',
+  silent: false,
+  context: '',
+  headers: undefined,
+  payload: {},
+  subErrorList: [],
+  supportData: undefined
+}  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:34.218 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] -> PHXS 23.0.2: ccxprocess.SenseiModelsResponse 
+ {"requestId":"0aa9eb25-d702-46c3-8e08-31c153d42c2b","err":{"desc":"","message":"User Signed Out","code":"USER_SIGNED_OUT"}}
+Fri Mar 18 2022 20:04:34.239 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] <- PHXS 23.0.2: ccxprocess.TutorialRequest 
+ {"params":{"productLanguage":"en_US","productVersion":"23.0.2","productCode":"PHXS"},"requestId":"934df7c0-a6b3-11ec-9809-350d2531c872","version":1,"analytics":{"env.fw.name":"UP cmInAppLearn","env.fw.version":"1.11.0-33"}}
+Fri Mar 18 2022 20:04:34.239 GMT+0800 (香港标准时间) ServiceInterface > [INFO] Request Received  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:34.240 GMT+0800 (香港标准时间) ServiceInterface > [INFO] r [Error]: User Signed Out
+    at  main.js:19:346209
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at  asyncToGenerator.js:21:12
+    at e.<anonymous> ( main.js:19:74693)
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at e.<anonymous> ( asyncToGenerator.js:21:12)
+    at e.<anonymous> ( main.js:19:75297)
+    at  main.js:19:346017
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at  asyncToGenerator.js:21:12
+    at  main.js:19:348485
+    at n.<anonymous> ( main.js:19:348591)
+    at n.emit (node:events:365:28)
+    at  main.js:19:58003 {
+  underlyingError: 'User Signed Out',
+  error_code: 'USER_SIGNED_OUT',
+  silent: false,
+  context: '',
+  headers: undefined,
+  payload: {},
+  subErrorList: [],
+  supportData: undefined
+}  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:34.240 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] -> PHXS 23.0.2: ccxprocess.TutorialResponse 
+ {"requestId":"934df7c0-a6b3-11ec-9809-350d2531c872","err":{"desc":"","message":"User Signed Out","code":"USER_SIGNED_OUT"}}
+Fri Mar 18 2022 20:04:35.642 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] <- PHXS 23.0.2: ccxprocess.SenseiModelsRequest 
+ {"params":{"surfaceId":["sensei_model"],"productCode":"PHXS","productVersion":"23.0.2","platform":"win"},"requestId":"f57320b9-a9e5-42f9-b5fc-9b7d87836bef","version":1}
+Fri Mar 18 2022 20:04:35.643 GMT+0800 (香港标准时间) ServiceInterface > [INFO] Request Received  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:35.643 GMT+0800 (香港标准时间) ServiceInterface > [INFO] r [Error]: User Signed Out
+    at  main.js:19:346209
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at  asyncToGenerator.js:21:12
+    at e.<anonymous> ( main.js:19:74693)
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at e.<anonymous> ( asyncToGenerator.js:21:12)
+    at e.<anonymous> ( main.js:19:75297)
+    at  main.js:19:346017
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at  asyncToGenerator.js:21:12
+    at  main.js:19:348485
+    at n.<anonymous> ( main.js:19:348591)
+    at n.emit (node:events:365:28)
+    at  main.js:19:58003 {
+  underlyingError: 'User Signed Out',
+  error_code: 'USER_SIGNED_OUT',
+  silent: false,
+  context: '',
+  headers: undefined,
+  payload: {},
+  subErrorList: [],
+  supportData: undefined
+}  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:35.644 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] -> PHXS 23.0.2: ccxprocess.SenseiModelsResponse 
+ {"requestId":"f57320b9-a9e5-42f9-b5fc-9b7d87836bef","err":{"desc":"","message":"User Signed Out","code":"USER_SIGNED_OUT"}}
+Fri Mar 18 2022 20:04:35.788 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] <- PHXS 23.0.2: ccxprocess.StockTemplateRequest 
+ {"stockParams":{"productCode":"PHXS","productVersion":"23.0.2","productLanguage":"en_US","countryCode":"US","subscriptionStatus":"paid"},"requestId":"1099acfd5a7c421d89b4175369b63a2f","userTrackingEnabled":false}
+Fri Mar 18 2022 20:04:35.788 GMT+0800 (香港标准时间) ServiceInterface > [INFO] Request Received  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:35.789 GMT+0800 (香港标准时间) ServiceInterface > [INFO] Error: User Signed Out
+    at  main.js:19:341133
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at  asyncToGenerator.js:21:12
+    at e.<anonymous> ( main.js:19:74693)
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at e.<anonymous> ( asyncToGenerator.js:21:12)
+    at e.<anonymous> ( main.js:19:75297)
+    at  main.js:19:340943
+    at tryCatch ( runtime.js:63:40)
+    at Generator.invoke [as _invoke] ( runtime.js:293:22)
+    at Generator.next ( runtime.js:118:21)
+    at asyncGeneratorStep ( asyncToGenerator.js:3:24)
+    at _next ( asyncToGenerator.js:25:9)
+    at  asyncToGenerator.js:32:7
+    at new Promise (<anonymous>)
+    at n.<anonymous> ( asyncToGenerator.js:21:12)
+    at n.<anonymous> ( main.js:19:341793)
+    at n.emit (node:events:365:28)
+    at  main.js:19:58003  for product PHXS[23.0.2]
+Fri Mar 18 2022 20:04:35.790 GMT+0800 (香港标准时间) VulcanWrapper > [DISK] -> PHXS 23.0.2: ccxprocess.StockTemplateResponse 
+ {"requestId":"1099acfd5a7c421d89b4175369b63a2f","err":{}}
