@@ -1,0 +1,107 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x double] zeroinitializer
+@1 = private constant [0 x i64] zeroinitializer
+@2 = private constant [10 x i8] c"primitive\00"
+@3 = private constant [22 x i8] c"animatrixconnectivity\00"
+@4 = private constant [15 x i8] c"collectivesize\00"
+@sortedconnectivity = external global i64*
+@5 = private constant [19 x i8] c"sortedconnectivity\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@[I"(i64** %_bound_sortedconnectivity) #0 {
+__llvm_entry:
+  %return = call i64* @"uniquevals@[IISS"(i64 0, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0), i8* getelementptr inbounds ([22 x i8], [22 x i8]* @3, i64 0, i64 0))
+  %return2 = call i64 @"len@I[I"(i64* %return)
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output18, %body ]
+  %sumsize.0 = phi double* [ getelementptr inbounds ([0 x double], [0 x double]* @0, i64 0, i64 0), %__llvm_entry ], [ %output, %body ]
+  %return5 = call i64 @"lt@III"(i64 %i.0, i64 %return2)
+  %0 = icmp ne i64 %return5, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return8 = call i64 @"getcomp@I[II"(i64* %return, i64 %i.0)
+  %return10 = call i64 @"findattribval@IISSI"(i64 0, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0), i8* getelementptr inbounds ([22 x i8], [22 x i8]* @3, i64 0, i64 0), i64 %return8)
+  %return12 = call double @"prim@FISI"(i64 0, i8* getelementptr inbounds ([15 x i8], [15 x i8]* @4, i64 0, i64 0), i64 %return10)
+  %return15 = call { double, double* } @"setcomp@F[FFI"(double* %sumsize.0, double %return12, i64 %i.0)
+  %output = extractvalue { double, double* } %return15, 1
+  %output18 = add i64 %i.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  %return20 = call i64* @"argsort@[I[F"(double* %sumsize.0)
+  %return21 = call i64* @"reverse@[I[I"(i64* %return20)
+  %return24 = call i64* @"reorder@[I[I[I"(i64* %return, i64* %return21)
+  store i64* %return24, i64** %_bound_sortedconnectivity
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64* @"uniquevals@[IISS"(i64, i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"findattribval@IISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare double @"prim@FISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare { double, double* } @"setcomp@F[FFI"(double*, double, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64* @"argsort@[I[F"(double*) #2
+
+; Function Attrs: nounwind
+declare i64* @"reverse@[I[I"(i64*) #1
+
+; Function Attrs: nounwind
+declare i64* @"reorder@[I[I[I"(i64*, i64*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64* %sortedconnectivity) #1 {
+__llvm_entry:
+  %"<sortedconnectivity>" = alloca i64*
+  store i64* %sortedconnectivity, i64** %"<sortedconnectivity>"
+  call void @"__vex_snippet_snippet@[I"(i64** %"<sortedconnectivity>")
+  %evalue = load i64*, i64** %"<sortedconnectivity>"
+  %gvalue = call i64* @"_export@[IS[I"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @5, i64 0, i64 0), i64* %evalue) #3
+  store i64* %gvalue, i64** @sortedconnectivity
+  ret void
+}
+
+declare i64* @"_export@[IS[I"(i8*, i64*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64* getelementptr inbounds ([0 x i64], [0 x i64]* @1, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
