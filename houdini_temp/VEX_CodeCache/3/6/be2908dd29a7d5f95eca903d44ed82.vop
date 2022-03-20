@@ -1,0 +1,73 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [17 x i8] c"railingThickness\00"
+@1 = private constant [2 x i8] c"P\00"
+@P = external global <3 x double>
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@V"(<3 x double>* %_bound_P) #0 {
+__llvm_entry:
+  %_bound_P1 = load <3 x double>, <3 x double>* %_bound_P
+  %return = call { double, i64, <3 x double> } @"xyzdist@FIVIV"(i64 1, <3 x double> %_bound_P1)
+  %return2 = extractvalue { double, i64, <3 x double> } %return, 0
+  %output = extractvalue { double, i64, <3 x double> } %return, 1
+  %output3 = extractvalue { double, i64, <3 x double> } %return, 2
+  %return5 = call double @"chf@FS"(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @0, i64 0, i64 0))
+  %output6 = fmul double %return5, 1.100000e+00
+  %return7 = fcmp olt double %return2, %output6
+  br i1 %return7, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return11 = call <3 x double> @"primuv@VISIV"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %output, <3 x double> %output3)
+  store <3 x double> %return11, <3 x double>* %_bound_P
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+; Function Attrs: nounwind
+declare { double, i64, <3 x double> } @"xyzdist@FIVIV"(i64, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"primuv@VISIV"(i64, i8*, i64, <3 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P) #1 {
+__llvm_entry:
+  %"<P>" = alloca <3 x double>
+  store <3 x double> %P, <3 x double>* %"<P>"
+  call void @"__vex_snippet_snippet@V"(<3 x double>* %"<P>")
+  %evalue = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %evalue) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

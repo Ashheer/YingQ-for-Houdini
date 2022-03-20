@@ -1,0 +1,1636 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x i8*] zeroinitializer
+@1 = private constant [14 x i8] c"../attribname\00"
+@2 = private constant [14 x i8] c"../usenewname\00"
+@3 = private constant [11 x i8] c"../newname\00"
+@4 = private constant [29 x i8] c"not match len of attrib name\00"
+@5 = private constant [15 x i8] c"../sourceclass\00"
+@6 = private constant [20 x i8] c"../matchbyattribute\00"
+@7 = private constant [20 x i8] c"../attributetomatch\00"
+@8 = private constant [13 x i8] c"../mergetype\00"
+@9 = private constant [11 x i8] c"uniquepush\00"
+@10 = private constant [0 x i64] zeroinitializer
+@11 = private constant [15 x i8] c"../targetclass\00"
+@12 = private constant [4 x i8] c"set\00"
+@13 = private constant [0 x double] zeroinitializer
+@14 = private constant [0 x <2 x double>] zeroinitializer
+@15 = private constant [0 x <3 x double>] zeroinitializer
+@16 = private constant [0 x <4 x double>] zeroinitializer
+@17 = private constant [0 x <9 x double>] zeroinitializer
+@18 = private constant [0 x <16 x double>] zeroinitializer
+@19 = private constant [87 x i8] c"One or more of the specified chs('../sourceclass') attributes has an unsupported size.\00"
+@20 = private constant [87 x i8] c"One or more of the specified chs('../targetclass') attributes has an unsupported size.\00"
+@21 = private constant [76 x i8] c"One or more of the specified chs('../sourceclass') attributes do not exist.\00"
+@22 = private constant [89 x i8] c"2 One or more of the specified chs('../sourceclass') attributes has an unsupported type.\00"
+@elemnum = external global i64
+@23 = private constant [8 x i8] c"elemnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"uniquepush@I[II"(i64** %arr, i64* %arg) #0 {
+__llvm_entry:
+  %arr1 = load i64*, i64** %arr
+  %arg2 = load i64, i64* %arg
+  %return = call i64 @"find@I[II"(i64* %arr1, i64 %arg2)
+  %return3 = call i64 @"lt@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %arr4 = load i64*, i64** %arr
+  %arg5 = load i64, i64* %arg
+  %output = call i64* @"push@[II"(i64* %arr4, i64 %arg5)
+  store i64* %output, i64** %arr
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false, %true
+  %UnifiedRetVal = phi i64 [ 1, %true ], [ 0, %false ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64 @"find@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64* @"push@[II"(i64*, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"uniquepush@I[FF"(double** %arr, double* %arg) #0 {
+__llvm_entry:
+  %arr1 = load double*, double** %arr
+  %arg2 = load double, double* %arg
+  %return = call i64 @"find@I[FF"(double* %arr1, double %arg2)
+  %return3 = call i64 @"lt@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %arr4 = load double*, double** %arr
+  %arg5 = load double, double* %arg
+  %output = call double* @"push@[FF"(double* %arr4, double %arg5)
+  store double* %output, double** %arr
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false, %true
+  %UnifiedRetVal = phi i64 [ 1, %true ], [ 0, %false ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64 @"find@I[FF"(double*, double) #1
+
+; Function Attrs: nounwind readnone
+declare double* @"push@[FF"(double*, double) #2
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"uniquepush@I[UU"(<2 x double>** %arr, <2 x double>* %arg) #0 {
+__llvm_entry:
+  %arr1 = load <2 x double>*, <2 x double>** %arr
+  %arg2 = load <2 x double>, <2 x double>* %arg
+  %return = call i64 @"find@I[UU"(<2 x double>* %arr1, <2 x double> %arg2)
+  %return3 = call i64 @"lt@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %arr4 = load <2 x double>*, <2 x double>** %arr
+  %arg5 = load <2 x double>, <2 x double>* %arg
+  %output = call <2 x double>* @"push@[UU"(<2 x double>* %arr4, <2 x double> %arg5)
+  store <2 x double>* %output, <2 x double>** %arr
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false, %true
+  %UnifiedRetVal = phi i64 [ 1, %true ], [ 0, %false ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64 @"find@I[UU"(<2 x double>*, <2 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <2 x double>* @"push@[UU"(<2 x double>*, <2 x double>) #2
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"uniquepush@I[VV"(<3 x double>** %arr, <3 x double>* %arg) #0 {
+__llvm_entry:
+  %arr1 = load <3 x double>*, <3 x double>** %arr
+  %arg2 = load <3 x double>, <3 x double>* %arg
+  %return = call i64 @"find@I[VV"(<3 x double>* %arr1, <3 x double> %arg2)
+  %return3 = call i64 @"lt@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %arr4 = load <3 x double>*, <3 x double>** %arr
+  %arg5 = load <3 x double>, <3 x double>* %arg
+  %output = call <3 x double>* @"push@[VV"(<3 x double>* %arr4, <3 x double> %arg5)
+  store <3 x double>* %output, <3 x double>** %arr
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false, %true
+  %UnifiedRetVal = phi i64 [ 1, %true ], [ 0, %false ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64 @"find@I[VV"(<3 x double>*, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double>* @"push@[VV"(<3 x double>*, <3 x double>) #2
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"uniquepush@I[PP"(<4 x double>** %arr, <4 x double>* %arg) #0 {
+__llvm_entry:
+  %arr1 = load <4 x double>*, <4 x double>** %arr
+  %arg2 = load <4 x double>, <4 x double>* %arg
+  %return = call i64 @"find@I[PP"(<4 x double>* %arr1, <4 x double> %arg2)
+  %return3 = call i64 @"lt@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %arr4 = load <4 x double>*, <4 x double>** %arr
+  %arg5 = load <4 x double>, <4 x double>* %arg
+  %output = call <4 x double>* @"push@[PP"(<4 x double>* %arr4, <4 x double> %arg5)
+  store <4 x double>* %output, <4 x double>** %arr
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false, %true
+  %UnifiedRetVal = phi i64 [ 1, %true ], [ 0, %false ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64 @"find@I[PP"(<4 x double>*, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double>* @"push@[PP"(<4 x double>*, <4 x double>) #2
+
+; Function Attrs: nounwind
+declare i64 @"find@I[22"(<4 x double>*, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double>* @"push@[22"(<4 x double>*, <4 x double>) #2
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"uniquepush@I[33"(<9 x double>** %arr, <9 x double>* %arg) #0 {
+__llvm_entry:
+  %arr1 = load <9 x double>*, <9 x double>** %arr
+  %arg2 = load <9 x double>, <9 x double>* %arg
+  %return = call i64 @"find@I[33"(<9 x double>* %arr1, <9 x double> %arg2)
+  %return3 = call i64 @"lt@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %arr4 = load <9 x double>*, <9 x double>** %arr
+  %arg5 = load <9 x double>, <9 x double>* %arg
+  %output = call <9 x double>* @"push@[33"(<9 x double>* %arr4, <9 x double> %arg5)
+  store <9 x double>* %output, <9 x double>** %arr
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false, %true
+  %UnifiedRetVal = phi i64 [ 1, %true ], [ 0, %false ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64 @"find@I[33"(<9 x double>*, <9 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <9 x double>* @"push@[33"(<9 x double>*, <9 x double>) #2
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"uniquepush@I[44"(<16 x double>** %arr, <16 x double>* %arg) #0 {
+__llvm_entry:
+  %arr1 = load <16 x double>*, <16 x double>** %arr
+  %arg2 = load <16 x double>, <16 x double>* %arg
+  %return = call i64 @"find@I[44"(<16 x double>* %arr1, <16 x double> %arg2)
+  %return3 = call i64 @"lt@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %arr4 = load <16 x double>*, <16 x double>** %arr
+  %arg5 = load <16 x double>, <16 x double>* %arg
+  %output = call <16 x double>* @"push@[44"(<16 x double>* %arr4, <16 x double> %arg5)
+  store <16 x double>* %output, <16 x double>** %arr
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false, %true
+  %UnifiedRetVal = phi i64 [ 1, %true ], [ 0, %false ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64 @"find@I[44"(<16 x double>*, <16 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <16 x double>* @"push@[44"(<16 x double>*, <16 x double>) #2
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"uniquepush@I[SS"(i8*** %arr, i8** %arg) #0 {
+__llvm_entry:
+  %arr1 = load i8**, i8*** %arr
+  %arg2 = load i8*, i8** %arg
+  %return = call i64 @"find@I[SS"(i8** %arr1, i8* %arg2)
+  %return3 = call i64 @"lt@III"(i64 %return, i64 0)
+  %0 = icmp ne i64 %return3, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %arr4 = load i8**, i8*** %arr
+  %arg5 = load i8*, i8** %arg
+  %output = call i8** @"push@[SS"(i8** %arr4, i8* %arg5)
+  store i8** %output, i8*** %arr
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false, %true
+  %UnifiedRetVal = phi i64 [ 1, %true ], [ 0, %false ]
+  ret i64 %UnifiedRetVal
+}
+
+; Function Attrs: nounwind
+declare i64 @"find@I[SS"(i8**, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i8** @"push@[SS"(i8**, i8*) #2
+
+; Function Attrs: alwaysinline nounwind
+define private void @"uniquepush@[I[I"(i64** %arr, i64** %arg) #0 {
+__llvm_entry:
+  %arr1 = load i64*, i64** %arr
+  %return = call i64 @"len@I[I"(i64* %arr1)
+  %arg4 = load i64*, i64** %arg
+  %return5 = call i64 @"len@I[I"(i64* %arg4)
+  %output = add i64 %return, %return5
+  %output6 = call i64* @"resize@[II"(i64* %arr1, i64 %output)
+  store i64* %output6, i64** %arr
+  %arg7 = load i64*, i64** %arg
+  %return8 = call i64 @"len@I[I"(i64* %arg7)
+  br label %cond
+
+cond:                                             ; preds = %end19, %__llvm_entry
+  %__impl_foreach_index_7.0 = phi i64 [ 0, %__llvm_entry ], [ %output28, %end19 ]
+  %len.0 = phi i64 [ %return, %__llvm_entry ], [ %len.1, %end19 ]
+  %return11 = call i64 @"lt@III"(i64 %__impl_foreach_index_7.0, i64 %return8)
+  %0 = icmp ne i64 %return11, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %arg12 = load i64*, i64** %arg
+  %return14 = call i64 @"getcomp@I[II"(i64* %arg12, i64 %__impl_foreach_index_7.0)
+  %arr15 = load i64*, i64** %arr
+  %return17 = call i64 @"find@I[II"(i64* %arr15, i64 %return14)
+  %return18 = call i64 @"lt@III"(i64 %return17, i64 0)
+  %1 = icmp ne i64 %return18, 0
+  br i1 %1, label %true, label %end19
+
+end:                                              ; preds = %cond
+  %arr29 = load i64*, i64** %arr
+  %output31 = call i64* @"resize@[II"(i64* %arr29, i64 %len.0)
+  store i64* %output31, i64** %arr
+  ret void
+
+true:                                             ; preds = %body
+  %output22 = add i64 %len.0, 1
+  %tmp = load i64*, i64** %arr
+  %return24 = call { i64, i64* } @"setcomp@I[III"(i64* %tmp, i64 %return14, i64 %len.0)
+  %output26 = extractvalue { i64, i64* } %return24, 1
+  store i64* %output26, i64** %arr
+  br label %end19
+
+end19:                                            ; preds = %true, %body
+  %len.1 = phi i64 [ %output22, %true ], [ %len.0, %body ]
+  %output28 = add i64 %__impl_foreach_index_7.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64* @"resize@[II"(i64*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { i64, i64* } @"setcomp@I[III"(i64*, i64, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private void @"uniquepush@[F[F"(double** %arr, double** %arg) #0 {
+__llvm_entry:
+  %arr1 = load double*, double** %arr
+  %return = call i64 @"len@I[F"(double* %arr1)
+  %arg4 = load double*, double** %arg
+  %return5 = call i64 @"len@I[F"(double* %arg4)
+  %output = add i64 %return, %return5
+  %output6 = call double* @"resize@[FI"(double* %arr1, i64 %output)
+  store double* %output6, double** %arr
+  %arg7 = load double*, double** %arg
+  %return8 = call i64 @"len@I[F"(double* %arg7)
+  br label %cond
+
+cond:                                             ; preds = %end19, %__llvm_entry
+  %__impl_foreach_index_8.0 = phi i64 [ 0, %__llvm_entry ], [ %output28, %end19 ]
+  %len.0 = phi i64 [ %return, %__llvm_entry ], [ %len.1, %end19 ]
+  %return11 = call i64 @"lt@III"(i64 %__impl_foreach_index_8.0, i64 %return8)
+  %0 = icmp ne i64 %return11, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %arg12 = load double*, double** %arg
+  %return14 = call double @"getcomp@F[FI"(double* %arg12, i64 %__impl_foreach_index_8.0)
+  %arr15 = load double*, double** %arr
+  %return17 = call i64 @"find@I[FF"(double* %arr15, double %return14)
+  %return18 = call i64 @"lt@III"(i64 %return17, i64 0)
+  %1 = icmp ne i64 %return18, 0
+  br i1 %1, label %true, label %end19
+
+end:                                              ; preds = %cond
+  %arr29 = load double*, double** %arr
+  %output31 = call double* @"resize@[FI"(double* %arr29, i64 %len.0)
+  store double* %output31, double** %arr
+  ret void
+
+true:                                             ; preds = %body
+  %output22 = add i64 %len.0, 1
+  %tmp = load double*, double** %arr
+  %return24 = call { double, double* } @"setcomp@F[FFI"(double* %tmp, double %return14, i64 %len.0)
+  %output26 = extractvalue { double, double* } %return24, 1
+  store double* %output26, double** %arr
+  br label %end19
+
+end19:                                            ; preds = %true, %body
+  %len.1 = phi i64 [ %output22, %true ], [ %len.0, %body ]
+  %output28 = add i64 %__impl_foreach_index_8.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[F"(double*) #2
+
+; Function Attrs: nounwind readnone
+declare double* @"resize@[FI"(double*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@F[FI"(double*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { double, double* } @"setcomp@F[FFI"(double*, double, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private void @"uniquepush@[U[U"(<2 x double>** %arr, <2 x double>** %arg) #0 {
+__llvm_entry:
+  %arr1 = load <2 x double>*, <2 x double>** %arr
+  %return = call i64 @"len@I[U"(<2 x double>* %arr1)
+  %arg4 = load <2 x double>*, <2 x double>** %arg
+  %return5 = call i64 @"len@I[U"(<2 x double>* %arg4)
+  %output = add i64 %return, %return5
+  %output6 = call <2 x double>* @"resize@[UI"(<2 x double>* %arr1, i64 %output)
+  store <2 x double>* %output6, <2 x double>** %arr
+  %arg7 = load <2 x double>*, <2 x double>** %arg
+  %return8 = call i64 @"len@I[U"(<2 x double>* %arg7)
+  br label %cond
+
+cond:                                             ; preds = %end19, %__llvm_entry
+  %__impl_foreach_index_9.0 = phi i64 [ 0, %__llvm_entry ], [ %output28, %end19 ]
+  %len.0 = phi i64 [ %return, %__llvm_entry ], [ %len.1, %end19 ]
+  %return11 = call i64 @"lt@III"(i64 %__impl_foreach_index_9.0, i64 %return8)
+  %0 = icmp ne i64 %return11, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %arg12 = load <2 x double>*, <2 x double>** %arg
+  %return14 = call <2 x double> @"getcomp@U[UI"(<2 x double>* %arg12, i64 %__impl_foreach_index_9.0)
+  %arr15 = load <2 x double>*, <2 x double>** %arr
+  %return17 = call i64 @"find@I[UU"(<2 x double>* %arr15, <2 x double> %return14)
+  %return18 = call i64 @"lt@III"(i64 %return17, i64 0)
+  %1 = icmp ne i64 %return18, 0
+  br i1 %1, label %true, label %end19
+
+end:                                              ; preds = %cond
+  %arr29 = load <2 x double>*, <2 x double>** %arr
+  %output31 = call <2 x double>* @"resize@[UI"(<2 x double>* %arr29, i64 %len.0)
+  store <2 x double>* %output31, <2 x double>** %arr
+  ret void
+
+true:                                             ; preds = %body
+  %output22 = add i64 %len.0, 1
+  %tmp = load <2 x double>*, <2 x double>** %arr
+  %return24 = call { <2 x double>, <2 x double>* } @"setcomp@U[UUI"(<2 x double>* %tmp, <2 x double> %return14, i64 %len.0)
+  %output26 = extractvalue { <2 x double>, <2 x double>* } %return24, 1
+  store <2 x double>* %output26, <2 x double>** %arr
+  br label %end19
+
+end19:                                            ; preds = %true, %body
+  %len.1 = phi i64 [ %output22, %true ], [ %len.0, %body ]
+  %output28 = add i64 %__impl_foreach_index_9.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[U"(<2 x double>*) #2
+
+; Function Attrs: nounwind readnone
+declare <2 x double>* @"resize@[UI"(<2 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <2 x double> @"getcomp@U[UI"(<2 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { <2 x double>, <2 x double>* } @"setcomp@U[UUI"(<2 x double>*, <2 x double>, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private void @"uniquepush@[V[V"(<3 x double>** %arr, <3 x double>** %arg) #0 {
+__llvm_entry:
+  %arr1 = load <3 x double>*, <3 x double>** %arr
+  %return = call i64 @"len@I[V"(<3 x double>* %arr1)
+  %arg4 = load <3 x double>*, <3 x double>** %arg
+  %return5 = call i64 @"len@I[V"(<3 x double>* %arg4)
+  %output = add i64 %return, %return5
+  %output6 = call <3 x double>* @"resize@[VI"(<3 x double>* %arr1, i64 %output)
+  store <3 x double>* %output6, <3 x double>** %arr
+  %arg7 = load <3 x double>*, <3 x double>** %arg
+  %return8 = call i64 @"len@I[V"(<3 x double>* %arg7)
+  br label %cond
+
+cond:                                             ; preds = %end19, %__llvm_entry
+  %__impl_foreach_index_a.0 = phi i64 [ 0, %__llvm_entry ], [ %output28, %end19 ]
+  %len.0 = phi i64 [ %return, %__llvm_entry ], [ %len.1, %end19 ]
+  %return11 = call i64 @"lt@III"(i64 %__impl_foreach_index_a.0, i64 %return8)
+  %0 = icmp ne i64 %return11, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %arg12 = load <3 x double>*, <3 x double>** %arg
+  %return14 = call <3 x double> @"getcomp@V[VI"(<3 x double>* %arg12, i64 %__impl_foreach_index_a.0)
+  %arr15 = load <3 x double>*, <3 x double>** %arr
+  %return17 = call i64 @"find@I[VV"(<3 x double>* %arr15, <3 x double> %return14)
+  %return18 = call i64 @"lt@III"(i64 %return17, i64 0)
+  %1 = icmp ne i64 %return18, 0
+  br i1 %1, label %true, label %end19
+
+end:                                              ; preds = %cond
+  %arr29 = load <3 x double>*, <3 x double>** %arr
+  %output31 = call <3 x double>* @"resize@[VI"(<3 x double>* %arr29, i64 %len.0)
+  store <3 x double>* %output31, <3 x double>** %arr
+  ret void
+
+true:                                             ; preds = %body
+  %output22 = add i64 %len.0, 1
+  %tmp = load <3 x double>*, <3 x double>** %arr
+  %return24 = call { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>* %tmp, <3 x double> %return14, i64 %len.0)
+  %output26 = extractvalue { <3 x double>, <3 x double>* } %return24, 1
+  store <3 x double>* %output26, <3 x double>** %arr
+  br label %end19
+
+end19:                                            ; preds = %true, %body
+  %len.1 = phi i64 [ %output22, %true ], [ %len.0, %body ]
+  %output28 = add i64 %__impl_foreach_index_a.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[V"(<3 x double>*) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double>* @"resize@[VI"(<3 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"getcomp@V[VI"(<3 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { <3 x double>, <3 x double>* } @"setcomp@V[VVI"(<3 x double>*, <3 x double>, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private void @"uniquepush@[P[P"(<4 x double>** %arr, <4 x double>** %arg) #0 {
+__llvm_entry:
+  %arr1 = load <4 x double>*, <4 x double>** %arr
+  %return = call i64 @"len@I[P"(<4 x double>* %arr1)
+  %arg4 = load <4 x double>*, <4 x double>** %arg
+  %return5 = call i64 @"len@I[P"(<4 x double>* %arg4)
+  %output = add i64 %return, %return5
+  %output6 = call <4 x double>* @"resize@[PI"(<4 x double>* %arr1, i64 %output)
+  store <4 x double>* %output6, <4 x double>** %arr
+  %arg7 = load <4 x double>*, <4 x double>** %arg
+  %return8 = call i64 @"len@I[P"(<4 x double>* %arg7)
+  br label %cond
+
+cond:                                             ; preds = %end19, %__llvm_entry
+  %__impl_foreach_index_b.0 = phi i64 [ 0, %__llvm_entry ], [ %output28, %end19 ]
+  %len.0 = phi i64 [ %return, %__llvm_entry ], [ %len.1, %end19 ]
+  %return11 = call i64 @"lt@III"(i64 %__impl_foreach_index_b.0, i64 %return8)
+  %0 = icmp ne i64 %return11, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %arg12 = load <4 x double>*, <4 x double>** %arg
+  %return14 = call <4 x double> @"getcomp@P[PI"(<4 x double>* %arg12, i64 %__impl_foreach_index_b.0)
+  %arr15 = load <4 x double>*, <4 x double>** %arr
+  %return17 = call i64 @"find@I[PP"(<4 x double>* %arr15, <4 x double> %return14)
+  %return18 = call i64 @"lt@III"(i64 %return17, i64 0)
+  %1 = icmp ne i64 %return18, 0
+  br i1 %1, label %true, label %end19
+
+end:                                              ; preds = %cond
+  %arr29 = load <4 x double>*, <4 x double>** %arr
+  %output31 = call <4 x double>* @"resize@[PI"(<4 x double>* %arr29, i64 %len.0)
+  store <4 x double>* %output31, <4 x double>** %arr
+  ret void
+
+true:                                             ; preds = %body
+  %output22 = add i64 %len.0, 1
+  %tmp = load <4 x double>*, <4 x double>** %arr
+  %return24 = call { <4 x double>, <4 x double>* } @"setcomp@P[PPI"(<4 x double>* %tmp, <4 x double> %return14, i64 %len.0)
+  %output26 = extractvalue { <4 x double>, <4 x double>* } %return24, 1
+  store <4 x double>* %output26, <4 x double>** %arr
+  br label %end19
+
+end19:                                            ; preds = %true, %body
+  %len.1 = phi i64 [ %output22, %true ], [ %len.0, %body ]
+  %output28 = add i64 %__impl_foreach_index_b.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[P"(<4 x double>*) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double>* @"resize@[PI"(<4 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"getcomp@P[PI"(<4 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { <4 x double>, <4 x double>* } @"setcomp@P[PPI"(<4 x double>*, <4 x double>, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[2"(<4 x double>*) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double>* @"resize@[2I"(<4 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"getcomp@2[2I"(<4 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { <4 x double>, <4 x double>* } @"setcomp@2[22I"(<4 x double>*, <4 x double>, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private void @"uniquepush@[3[3"(<9 x double>** %arr, <9 x double>** %arg) #0 {
+__llvm_entry:
+  %arr1 = load <9 x double>*, <9 x double>** %arr
+  %return = call i64 @"len@I[3"(<9 x double>* %arr1)
+  %arg4 = load <9 x double>*, <9 x double>** %arg
+  %return5 = call i64 @"len@I[3"(<9 x double>* %arg4)
+  %output = add i64 %return, %return5
+  %output6 = call <9 x double>* @"resize@[3I"(<9 x double>* %arr1, i64 %output)
+  store <9 x double>* %output6, <9 x double>** %arr
+  %arg7 = load <9 x double>*, <9 x double>** %arg
+  %return8 = call i64 @"len@I[3"(<9 x double>* %arg7)
+  br label %cond
+
+cond:                                             ; preds = %end19, %__llvm_entry
+  %__impl_foreach_index_d.0 = phi i64 [ 0, %__llvm_entry ], [ %output28, %end19 ]
+  %len.0 = phi i64 [ %return, %__llvm_entry ], [ %len.1, %end19 ]
+  %return11 = call i64 @"lt@III"(i64 %__impl_foreach_index_d.0, i64 %return8)
+  %0 = icmp ne i64 %return11, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %arg12 = load <9 x double>*, <9 x double>** %arg
+  %return14 = call <9 x double> @"getcomp@3[3I"(<9 x double>* %arg12, i64 %__impl_foreach_index_d.0)
+  %arr15 = load <9 x double>*, <9 x double>** %arr
+  %return17 = call i64 @"find@I[33"(<9 x double>* %arr15, <9 x double> %return14)
+  %return18 = call i64 @"lt@III"(i64 %return17, i64 0)
+  %1 = icmp ne i64 %return18, 0
+  br i1 %1, label %true, label %end19
+
+end:                                              ; preds = %cond
+  %arr29 = load <9 x double>*, <9 x double>** %arr
+  %output31 = call <9 x double>* @"resize@[3I"(<9 x double>* %arr29, i64 %len.0)
+  store <9 x double>* %output31, <9 x double>** %arr
+  ret void
+
+true:                                             ; preds = %body
+  %output22 = add i64 %len.0, 1
+  %tmp = load <9 x double>*, <9 x double>** %arr
+  %return24 = call { <9 x double>, <9 x double>* } @"setcomp@3[33I"(<9 x double>* %tmp, <9 x double> %return14, i64 %len.0)
+  %output26 = extractvalue { <9 x double>, <9 x double>* } %return24, 1
+  store <9 x double>* %output26, <9 x double>** %arr
+  br label %end19
+
+end19:                                            ; preds = %true, %body
+  %len.1 = phi i64 [ %output22, %true ], [ %len.0, %body ]
+  %output28 = add i64 %__impl_foreach_index_d.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[3"(<9 x double>*) #2
+
+; Function Attrs: nounwind readnone
+declare <9 x double>* @"resize@[3I"(<9 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"getcomp@3[3I"(<9 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { <9 x double>, <9 x double>* } @"setcomp@3[33I"(<9 x double>*, <9 x double>, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private void @"uniquepush@[4[4"(<16 x double>** %arr, <16 x double>** %arg) #0 {
+__llvm_entry:
+  %arr1 = load <16 x double>*, <16 x double>** %arr
+  %return = call i64 @"len@I[4"(<16 x double>* %arr1)
+  %arg4 = load <16 x double>*, <16 x double>** %arg
+  %return5 = call i64 @"len@I[4"(<16 x double>* %arg4)
+  %output = add i64 %return, %return5
+  %output6 = call <16 x double>* @"resize@[4I"(<16 x double>* %arr1, i64 %output)
+  store <16 x double>* %output6, <16 x double>** %arr
+  %arg7 = load <16 x double>*, <16 x double>** %arg
+  %return8 = call i64 @"len@I[4"(<16 x double>* %arg7)
+  br label %cond
+
+cond:                                             ; preds = %end19, %__llvm_entry
+  %__impl_foreach_index_e.0 = phi i64 [ 0, %__llvm_entry ], [ %output28, %end19 ]
+  %len.0 = phi i64 [ %return, %__llvm_entry ], [ %len.1, %end19 ]
+  %return11 = call i64 @"lt@III"(i64 %__impl_foreach_index_e.0, i64 %return8)
+  %0 = icmp ne i64 %return11, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %arg12 = load <16 x double>*, <16 x double>** %arg
+  %return14 = call <16 x double> @"getcomp@4[4I"(<16 x double>* %arg12, i64 %__impl_foreach_index_e.0)
+  %arr15 = load <16 x double>*, <16 x double>** %arr
+  %return17 = call i64 @"find@I[44"(<16 x double>* %arr15, <16 x double> %return14)
+  %return18 = call i64 @"lt@III"(i64 %return17, i64 0)
+  %1 = icmp ne i64 %return18, 0
+  br i1 %1, label %true, label %end19
+
+end:                                              ; preds = %cond
+  %arr29 = load <16 x double>*, <16 x double>** %arr
+  %output31 = call <16 x double>* @"resize@[4I"(<16 x double>* %arr29, i64 %len.0)
+  store <16 x double>* %output31, <16 x double>** %arr
+  ret void
+
+true:                                             ; preds = %body
+  %output22 = add i64 %len.0, 1
+  %tmp = load <16 x double>*, <16 x double>** %arr
+  %return24 = call { <16 x double>, <16 x double>* } @"setcomp@4[44I"(<16 x double>* %tmp, <16 x double> %return14, i64 %len.0)
+  %output26 = extractvalue { <16 x double>, <16 x double>* } %return24, 1
+  store <16 x double>* %output26, <16 x double>** %arr
+  br label %end19
+
+end19:                                            ; preds = %true, %body
+  %len.1 = phi i64 [ %output22, %true ], [ %len.0, %body ]
+  %output28 = add i64 %__impl_foreach_index_e.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[4"(<16 x double>*) #2
+
+; Function Attrs: nounwind readnone
+declare <16 x double>* @"resize@[4I"(<16 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <16 x double> @"getcomp@4[4I"(<16 x double>*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { <16 x double>, <16 x double>* } @"setcomp@4[44I"(<16 x double>*, <16 x double>, i64) #2
+
+; Function Attrs: alwaysinline nounwind
+define private void @"uniquepush@[S[S"(i8*** %arr, i8*** %arg) #0 {
+__llvm_entry:
+  %arr1 = load i8**, i8*** %arr
+  %return = call i64 @"len@I[S"(i8** %arr1)
+  %arg4 = load i8**, i8*** %arg
+  %return5 = call i64 @"len@I[S"(i8** %arg4)
+  %output = add i64 %return, %return5
+  %output6 = call i8** @"resize@[SI"(i8** %arr1, i64 %output)
+  store i8** %output6, i8*** %arr
+  %arg7 = load i8**, i8*** %arg
+  %return8 = call i64 @"len@I[S"(i8** %arg7)
+  br label %cond
+
+cond:                                             ; preds = %end19, %__llvm_entry
+  %__impl_foreach_index_f.0 = phi i64 [ 0, %__llvm_entry ], [ %output28, %end19 ]
+  %len.0 = phi i64 [ %return, %__llvm_entry ], [ %len.1, %end19 ]
+  %return11 = call i64 @"lt@III"(i64 %__impl_foreach_index_f.0, i64 %return8)
+  %0 = icmp ne i64 %return11, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %arg12 = load i8**, i8*** %arg
+  %return14 = call i8* @"getcomp@S[SI"(i8** %arg12, i64 %__impl_foreach_index_f.0)
+  %arr15 = load i8**, i8*** %arr
+  %return17 = call i64 @"find@I[SS"(i8** %arr15, i8* %return14)
+  %return18 = call i64 @"lt@III"(i64 %return17, i64 0)
+  %1 = icmp ne i64 %return18, 0
+  br i1 %1, label %true, label %end19
+
+end:                                              ; preds = %cond
+  %arr29 = load i8**, i8*** %arr
+  %output31 = call i8** @"resize@[SI"(i8** %arr29, i64 %len.0)
+  store i8** %output31, i8*** %arr
+  ret void
+
+true:                                             ; preds = %body
+  %output22 = add i64 %len.0, 1
+  %tmp = load i8**, i8*** %arr
+  %return24 = call { i8*, i8** } @"setcomp@S[SSI"(i8** %tmp, i8* %return14, i64 %len.0)
+  %output26 = extractvalue { i8*, i8** } %return24, 1
+  store i8** %output26, i8*** %arr
+  br label %end19
+
+end19:                                            ; preds = %true, %body
+  %len.1 = phi i64 [ %output22, %true ], [ %len.0, %body ]
+  %output28 = add i64 %__impl_foreach_index_f.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[S"(i8**) #2
+
+; Function Attrs: nounwind readnone
+declare i8** @"resize@[SI"(i8**, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i8* @"getcomp@S[SI"(i8**, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { i8*, i8** } @"setcomp@S[SSI"(i8**, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@IUU"(<2 x double>, <2 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@IVV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@IPP"(<4 x double>, <4 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@I22"(<4 x double>, <4 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@I33"(<9 x double>, <9 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@I44"(<16 x double>, <16 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@ISS"(i8*, i8*) #2
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I"(i64* %_bound_elemnum) #0 {
+__llvm_entry:
+  %attribtarget = alloca i64*
+  %0 = alloca i64
+  %attribtarget95 = alloca double*
+  %1 = alloca double
+  %attribtarget130 = alloca <2 x double>*
+  %2 = alloca <2 x double>
+  %attribtarget165 = alloca <3 x double>*
+  %3 = alloca <3 x double>
+  %attribtarget200 = alloca <4 x double>*
+  %4 = alloca <4 x double>
+  %attribtarget235 = alloca <9 x double>*
+  %5 = alloca <9 x double>
+  %attribtarget270 = alloca <16 x double>*
+  %6 = alloca <16 x double>
+  %attribtarget305 = alloca i8**
+  %7 = alloca i8*
+  %attribtarget340 = alloca i64*
+  %8 = alloca i64*
+  %attribtarget383 = alloca double*
+  %9 = alloca double*
+  %attribtarget417 = alloca <2 x double>*
+  %10 = alloca <2 x double>*
+  %attribtarget451 = alloca <3 x double>*
+  %11 = alloca <3 x double>*
+  %attribtarget485 = alloca <4 x double>*
+  %12 = alloca <4 x double>*
+  %attribtarget519 = alloca <9 x double>*
+  %13 = alloca <9 x double>*
+  %attribtarget553 = alloca <16 x double>*
+  %14 = alloca <16 x double>*
+  %attribtarget587 = alloca i8**
+  %15 = alloca i8**
+  %return = call i8* @"chs@SS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @1, i64 0, i64 0))
+  %return1 = call i8** @"split@[SS"(i8* %return)
+  %return2 = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @2, i64 0, i64 0))
+  %16 = icmp ne i64 %return2, 0
+  br i1 %16, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return3 = call i8* @"chs@SS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @3, i64 0, i64 0))
+  %return4 = call i8** @"split@[SS"(i8* %return3)
+  %return6 = call i64 @"len@I[S"(i8** %return1)
+  %return8 = call i64 @"len@I[S"(i8** %return4)
+  %return9 = call i64 @"ne@III"(i64 %return6, i64 %return8)
+  %17 = icmp ne i64 %return9, 0
+  br i1 %17, label %true10, label %end
+
+end:                                              ; preds = %true, %true10, %__llvm_entry
+  %newattribname.0 = phi i8** [ %return4, %true10 ], [ %return4, %true ], [ getelementptr inbounds ([0 x i8*], [0 x i8*]* @0, i64 0, i64 0), %__llvm_entry ]
+  %return13 = call i64 @"len@I[S"(i8** %return1)
+  br label %cond
+
+true10:                                           ; preds = %true
+  call void @"error@S"(i8* getelementptr inbounds ([29 x i8], [29 x i8]* @4, i64 0, i64 0))
+  br label %end
+
+cond:                                             ; preds = %iter, %end
+  %index.0 = phi i64 [ 0, %end ], [ %output, %iter ]
+  %return16 = call i64 @"lt@III"(i64 %index.0, i64 %return13)
+  %18 = icmp ne i64 %return16, 0
+  br i1 %18, label %body, label %end17
+
+body:                                             ; preds = %cond
+  %return20 = call i8* @"getcomp@S[SI"(i8** %return1, i64 %index.0)
+  %return21 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @5, i64 0, i64 0))
+  %return23 = call i64 @"attribtype@IISS"(i64 1, i8* %return21, i8* %return20)
+  %return24 = call i64 @"chi@IS"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @6, i64 0, i64 0))
+  %19 = icmp ne i64 %return24, 0
+  br i1 %19, label %true25, label %false
+
+end17:                                            ; preds = %cond
+  ret void
+
+iter:                                             ; preds = %true609, %false610, %true584, %false585, %true550, %false551, %true516, %false517, %true482, %false483, %true448, %false449, %true414, %false415, %true380, %false381, %true337, %false338, %true302, %false303, %true267, %false268, %true232, %false233, %true197, %false198, %true162, %false163, %true127, %false128, %true92, %false93, %true51, %false52, %false541, %false258
+  %output = add i64 %index.0, 1
+  br label %cond
+
+true25:                                           ; preds = %body
+  %return28 = call i8* @"chs@SS"(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @7, i64 0, i64 0))
+  %_bound_elemnum29 = load i64, i64* %_bound_elemnum
+  %return30 = call i64 @"findattribval@IISSII"(i64 1, i8* %return21, i8* %return28, i64 0, i64 %_bound_elemnum29)
+  br label %end26
+
+false:                                            ; preds = %body
+  %_bound_elemnum31 = load i64, i64* %_bound_elemnum
+  br label %end26
+
+end26:                                            ; preds = %false, %true25
+  %elemnum.0 = phi i64 [ %return30, %true25 ], [ %_bound_elemnum31, %false ]
+  br i1 %16, label %true33, label %false34
+
+true33:                                           ; preds = %end26
+  %return38 = call i8* @"getcomp@S[SI"(i8** %newattribname.0, i64 %index.0)
+  br label %end35
+
+false34:                                          ; preds = %end26
+  br label %end35
+
+end35:                                            ; preds = %false34, %true33
+  %attribnameresult.0 = phi i8* [ %return38, %true33 ], [ %return20, %false34 ]
+  %return41 = call i64 @"eq@III"(i64 %return23, i64 0)
+  %20 = icmp ne i64 %return41, 0
+  br i1 %20, label %true42, label %false43
+
+true42:                                           ; preds = %end35
+  %return48 = call i64 @"attrib@IISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return49 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return50 = call i64 @"eq@ISS"(i8* %return49, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %21 = icmp ne i64 %return50, 0
+  br i1 %21, label %true51, label %false52
+
+false43:                                          ; preds = %end35
+  %return73 = call i64 @"eq@III"(i64 %return23, i64 1)
+  %22 = icmp ne i64 %return73, 0
+  br i1 %22, label %true74, label %false75
+
+true51:                                           ; preds = %true42
+  store i64* getelementptr inbounds ([0 x i64], [0 x i64]* @10, i64 0, i64 0), i64** %attribtarget, !vex-initializer-store !3
+  %return54 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum56 = load i64, i64* %_bound_elemnum
+  %return57 = call i64* @"attrib@[IISSI"(i64 0, i8* %return54, i8* %attribnameresult.0, i64 %_bound_elemnum56)
+  store i64* %return57, i64** %attribtarget
+  store i64 %return48, i64* %0
+  %uniquepush = call i64 @"uniquepush@I[II"(i64** %attribtarget, i64* %0)
+  %_bound_elemnum61 = load i64, i64* %_bound_elemnum
+  %return62 = call i64 @"neg@II"(i64 1)
+  %attribtarget63 = load i64*, i64** %attribtarget
+  %return64 = call i64 @"setattrib@IISSII[IS"(i64 0, i8* %return54, i8* %attribnameresult.0, i64 %_bound_elemnum61, i64 %return62, i64* %attribtarget63, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false52:                                          ; preds = %true42
+  %return65 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum67 = load i64, i64* %_bound_elemnum
+  %return68 = call i64 @"neg@II"(i64 1)
+  %return71 = call i64 @"setattrib@IISSIIIS"(i64 0, i8* %return65, i8* %attribnameresult.0, i64 %_bound_elemnum67, i64 %return68, i64 %return48, i8* %return49)
+  br label %iter
+
+true74:                                           ; preds = %false43
+  %return79 = call i64 @"attribsize@IISS"(i64 1, i8* %return21, i8* %return20)
+  %return81 = call i64 @"eq@III"(i64 %return79, i64 1)
+  %23 = icmp ne i64 %return81, 0
+  br i1 %23, label %true82, label %false83
+
+false75:                                          ; preds = %false43
+  %return291 = call i64 @"eq@III"(i64 %return23, i64 2)
+  %24 = icmp ne i64 %return291, 0
+  br i1 %24, label %true292, label %false293
+
+true82:                                           ; preds = %true74
+  %return89 = call double @"attrib@FISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return90 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return91 = call i64 @"eq@ISS"(i8* %return90, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %25 = icmp ne i64 %return91, 0
+  br i1 %25, label %true92, label %false93
+
+false83:                                          ; preds = %true74
+  %return116 = call i64 @"eq@III"(i64 %return79, i64 2)
+  %26 = icmp ne i64 %return116, 0
+  br i1 %26, label %true117, label %false118
+
+true92:                                           ; preds = %true82
+  store double* getelementptr inbounds ([0 x double], [0 x double]* @13, i64 0, i64 0), double** %attribtarget95, !vex-initializer-store !3
+  %return96 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum98 = load i64, i64* %_bound_elemnum
+  %return99 = call double* @"attrib@[FISSI"(i64 0, i8* %return96, i8* %attribnameresult.0, i64 %_bound_elemnum98)
+  store double* %return99, double** %attribtarget95
+  store double %return89, double* %1
+  %uniquepush101 = call i64 @"uniquepush@I[FF"(double** %attribtarget95, double* %1)
+  %_bound_elemnum104 = load i64, i64* %_bound_elemnum
+  %return105 = call i64 @"neg@II"(i64 1)
+  %attribtarget106 = load double*, double** %attribtarget95
+  %return107 = call i64 @"setattrib@IISSII[FS"(i64 0, i8* %return96, i8* %attribnameresult.0, i64 %_bound_elemnum104, i64 %return105, double* %attribtarget106, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false93:                                          ; preds = %true82
+  %return108 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum110 = load i64, i64* %_bound_elemnum
+  %return111 = call i64 @"neg@II"(i64 1)
+  %return114 = call i64 @"setattrib@IISSIIFS"(i64 0, i8* %return108, i8* %attribnameresult.0, i64 %_bound_elemnum110, i64 %return111, double %return89, i8* %return90)
+  br label %iter
+
+true117:                                          ; preds = %false83
+  %return124 = call <2 x double> @"attrib@UISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return125 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return126 = call i64 @"eq@ISS"(i8* %return125, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %27 = icmp ne i64 %return126, 0
+  br i1 %27, label %true127, label %false128
+
+false118:                                         ; preds = %false83
+  %return151 = call i64 @"eq@III"(i64 %return79, i64 3)
+  %28 = icmp ne i64 %return151, 0
+  br i1 %28, label %true152, label %false153
+
+true127:                                          ; preds = %true117
+  store <2 x double>* getelementptr inbounds ([0 x <2 x double>], [0 x <2 x double>]* @14, i64 0, i64 0), <2 x double>** %attribtarget130, !vex-initializer-store !3
+  %return131 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum133 = load i64, i64* %_bound_elemnum
+  %return134 = call <2 x double>* @"attrib@[UISSI"(i64 0, i8* %return131, i8* %attribnameresult.0, i64 %_bound_elemnum133)
+  store <2 x double>* %return134, <2 x double>** %attribtarget130
+  store <2 x double> %return124, <2 x double>* %2
+  %uniquepush136 = call i64 @"uniquepush@I[UU"(<2 x double>** %attribtarget130, <2 x double>* %2)
+  %_bound_elemnum139 = load i64, i64* %_bound_elemnum
+  %return140 = call i64 @"neg@II"(i64 1)
+  %attribtarget141 = load <2 x double>*, <2 x double>** %attribtarget130
+  %return142 = call i64 @"setattrib@IISSII[US"(i64 0, i8* %return131, i8* %attribnameresult.0, i64 %_bound_elemnum139, i64 %return140, <2 x double>* %attribtarget141, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false128:                                         ; preds = %true117
+  %return143 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum145 = load i64, i64* %_bound_elemnum
+  %return146 = call i64 @"neg@II"(i64 1)
+  %return149 = call i64 @"setattrib@IISSIIUS"(i64 0, i8* %return143, i8* %attribnameresult.0, i64 %_bound_elemnum145, i64 %return146, <2 x double> %return124, i8* %return125)
+  br label %iter
+
+true152:                                          ; preds = %false118
+  %return159 = call <3 x double> @"attrib@VISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return160 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return161 = call i64 @"eq@ISS"(i8* %return160, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %29 = icmp ne i64 %return161, 0
+  br i1 %29, label %true162, label %false163
+
+false153:                                         ; preds = %false118
+  %return186 = call i64 @"eq@III"(i64 %return79, i64 4)
+  %30 = icmp ne i64 %return186, 0
+  br i1 %30, label %true187, label %false188
+
+true162:                                          ; preds = %true152
+  store <3 x double>* getelementptr inbounds ([0 x <3 x double>], [0 x <3 x double>]* @15, i64 0, i64 0), <3 x double>** %attribtarget165, !vex-initializer-store !3
+  %return166 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum168 = load i64, i64* %_bound_elemnum
+  %return169 = call <3 x double>* @"attrib@[VISSI"(i64 0, i8* %return166, i8* %attribnameresult.0, i64 %_bound_elemnum168)
+  store <3 x double>* %return169, <3 x double>** %attribtarget165
+  store <3 x double> %return159, <3 x double>* %3
+  %uniquepush171 = call i64 @"uniquepush@I[VV"(<3 x double>** %attribtarget165, <3 x double>* %3)
+  %_bound_elemnum174 = load i64, i64* %_bound_elemnum
+  %return175 = call i64 @"neg@II"(i64 1)
+  %attribtarget176 = load <3 x double>*, <3 x double>** %attribtarget165
+  %return177 = call i64 @"setattrib@IISSII[VS"(i64 0, i8* %return166, i8* %attribnameresult.0, i64 %_bound_elemnum174, i64 %return175, <3 x double>* %attribtarget176, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false163:                                         ; preds = %true152
+  %return178 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum180 = load i64, i64* %_bound_elemnum
+  %return181 = call i64 @"neg@II"(i64 1)
+  %return184 = call i64 @"setattrib@IISSIIVS"(i64 0, i8* %return178, i8* %attribnameresult.0, i64 %_bound_elemnum180, i64 %return181, <3 x double> %return159, i8* %return160)
+  br label %iter
+
+true187:                                          ; preds = %false153
+  %return194 = call <4 x double> @"attrib@PISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return195 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return196 = call i64 @"eq@ISS"(i8* %return195, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %31 = icmp ne i64 %return196, 0
+  br i1 %31, label %true197, label %false198
+
+false188:                                         ; preds = %false153
+  %return221 = call i64 @"eq@III"(i64 %return79, i64 9)
+  %32 = icmp ne i64 %return221, 0
+  br i1 %32, label %true222, label %false223
+
+true197:                                          ; preds = %true187
+  store <4 x double>* getelementptr inbounds ([0 x <4 x double>], [0 x <4 x double>]* @16, i64 0, i64 0), <4 x double>** %attribtarget200, !vex-initializer-store !3
+  %return201 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum203 = load i64, i64* %_bound_elemnum
+  %return204 = call <4 x double>* @"attrib@[PISSI"(i64 0, i8* %return201, i8* %attribnameresult.0, i64 %_bound_elemnum203)
+  store <4 x double>* %return204, <4 x double>** %attribtarget200
+  store <4 x double> %return194, <4 x double>* %4
+  %uniquepush206 = call i64 @"uniquepush@I[PP"(<4 x double>** %attribtarget200, <4 x double>* %4)
+  %_bound_elemnum209 = load i64, i64* %_bound_elemnum
+  %return210 = call i64 @"neg@II"(i64 1)
+  %attribtarget211 = load <4 x double>*, <4 x double>** %attribtarget200
+  %return212 = call i64 @"setattrib@IISSII[PS"(i64 0, i8* %return201, i8* %attribnameresult.0, i64 %_bound_elemnum209, i64 %return210, <4 x double>* %attribtarget211, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false198:                                         ; preds = %true187
+  %return213 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum215 = load i64, i64* %_bound_elemnum
+  %return216 = call i64 @"neg@II"(i64 1)
+  %return219 = call i64 @"setattrib@IISSIIPS"(i64 0, i8* %return213, i8* %attribnameresult.0, i64 %_bound_elemnum215, i64 %return216, <4 x double> %return194, i8* %return195)
+  br label %iter
+
+true222:                                          ; preds = %false188
+  %return229 = call <9 x double> @"attrib@3ISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return230 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return231 = call i64 @"eq@ISS"(i8* %return230, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %33 = icmp ne i64 %return231, 0
+  br i1 %33, label %true232, label %false233
+
+false223:                                         ; preds = %false188
+  %return256 = call i64 @"eq@III"(i64 %return79, i64 16)
+  %34 = icmp ne i64 %return256, 0
+  br i1 %34, label %true257, label %false258
+
+true232:                                          ; preds = %true222
+  store <9 x double>* getelementptr inbounds ([0 x <9 x double>], [0 x <9 x double>]* @17, i64 0, i64 0), <9 x double>** %attribtarget235, !vex-initializer-store !3
+  %return236 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum238 = load i64, i64* %_bound_elemnum
+  %return239 = call <9 x double>* @"attrib@[3ISSI"(i64 0, i8* %return236, i8* %attribnameresult.0, i64 %_bound_elemnum238)
+  store <9 x double>* %return239, <9 x double>** %attribtarget235
+  store <9 x double> %return229, <9 x double>* %5
+  %uniquepush241 = call i64 @"uniquepush@I[33"(<9 x double>** %attribtarget235, <9 x double>* %5)
+  %_bound_elemnum244 = load i64, i64* %_bound_elemnum
+  %return245 = call i64 @"neg@II"(i64 1)
+  %attribtarget246 = load <9 x double>*, <9 x double>** %attribtarget235
+  %return247 = call i64 @"setattrib@IISSII[3S"(i64 0, i8* %return236, i8* %attribnameresult.0, i64 %_bound_elemnum244, i64 %return245, <9 x double>* %attribtarget246, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false233:                                         ; preds = %true222
+  %return248 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum250 = load i64, i64* %_bound_elemnum
+  %return251 = call i64 @"neg@II"(i64 1)
+  %return254 = call i64 @"setattrib@IISSII3S"(i64 0, i8* %return248, i8* %attribnameresult.0, i64 %_bound_elemnum250, i64 %return251, <9 x double> %return229, i8* %return230)
+  br label %iter
+
+true257:                                          ; preds = %false223
+  %return264 = call <16 x double> @"attrib@4ISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return265 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return266 = call i64 @"eq@ISS"(i8* %return265, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %35 = icmp ne i64 %return266, 0
+  br i1 %35, label %true267, label %false268
+
+false258:                                         ; preds = %false223
+  call void @"warning@S"(i8* getelementptr inbounds ([87 x i8], [87 x i8]* @19, i64 0, i64 0))
+  br label %iter
+
+true267:                                          ; preds = %true257
+  store <16 x double>* getelementptr inbounds ([0 x <16 x double>], [0 x <16 x double>]* @18, i64 0, i64 0), <16 x double>** %attribtarget270, !vex-initializer-store !3
+  %return271 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum273 = load i64, i64* %_bound_elemnum
+  %return274 = call <16 x double>* @"attrib@[4ISSI"(i64 0, i8* %return271, i8* %attribnameresult.0, i64 %_bound_elemnum273)
+  store <16 x double>* %return274, <16 x double>** %attribtarget270
+  store <16 x double> %return264, <16 x double>* %6
+  %uniquepush276 = call i64 @"uniquepush@I[44"(<16 x double>** %attribtarget270, <16 x double>* %6)
+  %_bound_elemnum279 = load i64, i64* %_bound_elemnum
+  %return280 = call i64 @"neg@II"(i64 1)
+  %attribtarget281 = load <16 x double>*, <16 x double>** %attribtarget270
+  %return282 = call i64 @"setattrib@IISSII[4S"(i64 0, i8* %return271, i8* %attribnameresult.0, i64 %_bound_elemnum279, i64 %return280, <16 x double>* %attribtarget281, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false268:                                         ; preds = %true257
+  %return283 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum285 = load i64, i64* %_bound_elemnum
+  %return286 = call i64 @"neg@II"(i64 1)
+  %return289 = call i64 @"setattrib@IISSII4S"(i64 0, i8* %return283, i8* %attribnameresult.0, i64 %_bound_elemnum285, i64 %return286, <16 x double> %return264, i8* %return265)
+  br label %iter
+
+true292:                                          ; preds = %false75
+  %return299 = call i8* @"attrib@SISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return300 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return301 = call i64 @"eq@ISS"(i8* %return300, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %36 = icmp ne i64 %return301, 0
+  br i1 %36, label %true302, label %false303
+
+false293:                                         ; preds = %false75
+  %return326 = call i64 @"eq@III"(i64 %return23, i64 3)
+  %37 = icmp ne i64 %return326, 0
+  br i1 %37, label %true327, label %false328
+
+true302:                                          ; preds = %true292
+  store i8** getelementptr inbounds ([0 x i8*], [0 x i8*]* @0, i64 0, i64 0), i8*** %attribtarget305, !vex-initializer-store !3
+  %return306 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum308 = load i64, i64* %_bound_elemnum
+  %return309 = call i8** @"attrib@[SISSI"(i64 0, i8* %return306, i8* %attribnameresult.0, i64 %_bound_elemnum308)
+  store i8** %return309, i8*** %attribtarget305
+  store i8* %return299, i8** %7
+  %uniquepush311 = call i64 @"uniquepush@I[SS"(i8*** %attribtarget305, i8** %7)
+  %_bound_elemnum314 = load i64, i64* %_bound_elemnum
+  %return315 = call i64 @"neg@II"(i64 1)
+  %attribtarget316 = load i8**, i8*** %attribtarget305
+  %return317 = call i64 @"setattrib@IISSII[SS"(i64 0, i8* %return306, i8* %attribnameresult.0, i64 %_bound_elemnum314, i64 %return315, i8** %attribtarget316, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false303:                                         ; preds = %true292
+  %return318 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum320 = load i64, i64* %_bound_elemnum
+  %return321 = call i64 @"neg@II"(i64 1)
+  %return324 = call i64 @"setattrib@IISSIISS"(i64 0, i8* %return318, i8* %attribnameresult.0, i64 %_bound_elemnum320, i64 %return321, i8* %return299, i8* %return300)
+  br label %iter
+
+true327:                                          ; preds = %false293
+  %return334 = call i64* @"attrib@[IISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return335 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return336 = call i64 @"eq@ISS"(i8* %return335, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %38 = icmp ne i64 %return336, 0
+  br i1 %38, label %true337, label %false338
+
+false328:                                         ; preds = %false293
+  %return360 = call i64 @"eq@III"(i64 %return23, i64 4)
+  %39 = icmp ne i64 %return360, 0
+  br i1 %39, label %true361, label %false362
+
+true337:                                          ; preds = %true327
+  store i64* getelementptr inbounds ([0 x i64], [0 x i64]* @10, i64 0, i64 0), i64** %attribtarget340, !vex-initializer-store !3
+  %return341 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum343 = load i64, i64* %_bound_elemnum
+  %return344 = call i64* @"attrib@[IISSI"(i64 0, i8* %return341, i8* %return20, i64 %_bound_elemnum343)
+  store i64* %return344, i64** %attribtarget340
+  store i64* %return334, i64** %8
+  call void @"uniquepush@[I[I"(i64** %attribtarget340, i64** %8)
+  %_bound_elemnum348 = load i64, i64* %_bound_elemnum
+  %return349 = call i64 @"neg@II"(i64 1)
+  %attribtarget350 = load i64*, i64** %attribtarget340
+  %return351 = call i64 @"setattrib@IISSII[IS"(i64 0, i8* %return341, i8* %attribnameresult.0, i64 %_bound_elemnum348, i64 %return349, i64* %attribtarget350, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false338:                                         ; preds = %true327
+  %return352 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum354 = load i64, i64* %_bound_elemnum
+  %return355 = call i64 @"neg@II"(i64 1)
+  %return358 = call i64 @"setattrib@IISSII[IS"(i64 0, i8* %return352, i8* %attribnameresult.0, i64 %_bound_elemnum354, i64 %return355, i64* %return334, i8* %return335)
+  br label %iter
+
+true361:                                          ; preds = %false328
+  %return365 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %return367 = call i64 @"attribsize@IISS"(i64 1, i8* %return365, i8* %return20)
+  %return369 = call i64 @"eq@III"(i64 %return367, i64 1)
+  %40 = icmp ne i64 %return369, 0
+  br i1 %40, label %true370, label %false371
+
+false362:                                         ; preds = %false328
+  %return573 = call i64 @"eq@III"(i64 %return23, i64 5)
+  %41 = icmp ne i64 %return573, 0
+  br i1 %41, label %true574, label %false575
+
+true370:                                          ; preds = %true361
+  %return377 = call double* @"attrib@[FISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return378 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return379 = call i64 @"eq@ISS"(i8* %return378, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %42 = icmp ne i64 %return379, 0
+  br i1 %42, label %true380, label %false381
+
+false371:                                         ; preds = %true361
+  %return403 = call i64 @"eq@III"(i64 %return367, i64 2)
+  %43 = icmp ne i64 %return403, 0
+  br i1 %43, label %true404, label %false405
+
+true380:                                          ; preds = %true370
+  store double* getelementptr inbounds ([0 x double], [0 x double]* @13, i64 0, i64 0), double** %attribtarget383, !vex-initializer-store !3
+  %_bound_elemnum386 = load i64, i64* %_bound_elemnum
+  %return387 = call double* @"attrib@[FISSI"(i64 0, i8* %return365, i8* %return20, i64 %_bound_elemnum386)
+  store double* %return387, double** %attribtarget383
+  store double* %return377, double** %9
+  call void @"uniquepush@[F[F"(double** %attribtarget383, double** %9)
+  %_bound_elemnum391 = load i64, i64* %_bound_elemnum
+  %return392 = call i64 @"neg@II"(i64 1)
+  %attribtarget393 = load double*, double** %attribtarget383
+  %return394 = call i64 @"setattrib@IISSII[FS"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum391, i64 %return392, double* %attribtarget393, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false381:                                         ; preds = %true370
+  %_bound_elemnum397 = load i64, i64* %_bound_elemnum
+  %return398 = call i64 @"neg@II"(i64 1)
+  %return401 = call i64 @"setattrib@IISSII[FS"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum397, i64 %return398, double* %return377, i8* %return378)
+  br label %iter
+
+true404:                                          ; preds = %false371
+  %return411 = call <2 x double>* @"attrib@[UISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return412 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return413 = call i64 @"eq@ISS"(i8* %return412, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %44 = icmp ne i64 %return413, 0
+  br i1 %44, label %true414, label %false415
+
+false405:                                         ; preds = %false371
+  %return437 = call i64 @"eq@III"(i64 %return367, i64 3)
+  %45 = icmp ne i64 %return437, 0
+  br i1 %45, label %true438, label %false439
+
+true414:                                          ; preds = %true404
+  store <2 x double>* getelementptr inbounds ([0 x <2 x double>], [0 x <2 x double>]* @14, i64 0, i64 0), <2 x double>** %attribtarget417, !vex-initializer-store !3
+  %_bound_elemnum420 = load i64, i64* %_bound_elemnum
+  %return421 = call <2 x double>* @"attrib@[UISSI"(i64 0, i8* %return365, i8* %return20, i64 %_bound_elemnum420)
+  store <2 x double>* %return421, <2 x double>** %attribtarget417
+  store <2 x double>* %return411, <2 x double>** %10
+  call void @"uniquepush@[U[U"(<2 x double>** %attribtarget417, <2 x double>** %10)
+  %_bound_elemnum425 = load i64, i64* %_bound_elemnum
+  %return426 = call i64 @"neg@II"(i64 1)
+  %attribtarget427 = load <2 x double>*, <2 x double>** %attribtarget417
+  %return428 = call i64 @"setattrib@IISSII[US"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum425, i64 %return426, <2 x double>* %attribtarget427, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false415:                                         ; preds = %true404
+  %_bound_elemnum431 = load i64, i64* %_bound_elemnum
+  %return432 = call i64 @"neg@II"(i64 1)
+  %return435 = call i64 @"setattrib@IISSII[US"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum431, i64 %return432, <2 x double>* %return411, i8* %return412)
+  br label %iter
+
+true438:                                          ; preds = %false405
+  %return445 = call <3 x double>* @"attrib@[VISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return446 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return447 = call i64 @"eq@ISS"(i8* %return446, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %46 = icmp ne i64 %return447, 0
+  br i1 %46, label %true448, label %false449
+
+false439:                                         ; preds = %false405
+  %return471 = call i64 @"eq@III"(i64 %return367, i64 4)
+  %47 = icmp ne i64 %return471, 0
+  br i1 %47, label %true472, label %false473
+
+true448:                                          ; preds = %true438
+  store <3 x double>* getelementptr inbounds ([0 x <3 x double>], [0 x <3 x double>]* @15, i64 0, i64 0), <3 x double>** %attribtarget451, !vex-initializer-store !3
+  %_bound_elemnum454 = load i64, i64* %_bound_elemnum
+  %return455 = call <3 x double>* @"attrib@[VISSI"(i64 0, i8* %return365, i8* %return20, i64 %_bound_elemnum454)
+  store <3 x double>* %return455, <3 x double>** %attribtarget451
+  store <3 x double>* %return445, <3 x double>** %11
+  call void @"uniquepush@[V[V"(<3 x double>** %attribtarget451, <3 x double>** %11)
+  %_bound_elemnum459 = load i64, i64* %_bound_elemnum
+  %return460 = call i64 @"neg@II"(i64 1)
+  %attribtarget461 = load <3 x double>*, <3 x double>** %attribtarget451
+  %return462 = call i64 @"setattrib@IISSII[VS"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum459, i64 %return460, <3 x double>* %attribtarget461, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false449:                                         ; preds = %true438
+  %_bound_elemnum465 = load i64, i64* %_bound_elemnum
+  %return466 = call i64 @"neg@II"(i64 1)
+  %return469 = call i64 @"setattrib@IISSII[VS"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum465, i64 %return466, <3 x double>* %return445, i8* %return446)
+  br label %iter
+
+true472:                                          ; preds = %false439
+  %return479 = call <4 x double>* @"attrib@[PISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return480 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return481 = call i64 @"eq@ISS"(i8* %return480, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %48 = icmp ne i64 %return481, 0
+  br i1 %48, label %true482, label %false483
+
+false473:                                         ; preds = %false439
+  %return505 = call i64 @"eq@III"(i64 %return367, i64 9)
+  %49 = icmp ne i64 %return505, 0
+  br i1 %49, label %true506, label %false507
+
+true482:                                          ; preds = %true472
+  store <4 x double>* getelementptr inbounds ([0 x <4 x double>], [0 x <4 x double>]* @16, i64 0, i64 0), <4 x double>** %attribtarget485, !vex-initializer-store !3
+  %_bound_elemnum488 = load i64, i64* %_bound_elemnum
+  %return489 = call <4 x double>* @"attrib@[PISSI"(i64 0, i8* %return365, i8* %return20, i64 %_bound_elemnum488)
+  store <4 x double>* %return489, <4 x double>** %attribtarget485
+  store <4 x double>* %return479, <4 x double>** %12
+  call void @"uniquepush@[P[P"(<4 x double>** %attribtarget485, <4 x double>** %12)
+  %_bound_elemnum493 = load i64, i64* %_bound_elemnum
+  %return494 = call i64 @"neg@II"(i64 1)
+  %attribtarget495 = load <4 x double>*, <4 x double>** %attribtarget485
+  %return496 = call i64 @"setattrib@IISSII[PS"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum493, i64 %return494, <4 x double>* %attribtarget495, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false483:                                         ; preds = %true472
+  %_bound_elemnum499 = load i64, i64* %_bound_elemnum
+  %return500 = call i64 @"neg@II"(i64 1)
+  %return503 = call i64 @"setattrib@IISSII[PS"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum499, i64 %return500, <4 x double>* %return479, i8* %return480)
+  br label %iter
+
+true506:                                          ; preds = %false473
+  %return513 = call <9 x double>* @"attrib@[3ISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return514 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return515 = call i64 @"eq@ISS"(i8* %return514, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %50 = icmp ne i64 %return515, 0
+  br i1 %50, label %true516, label %false517
+
+false507:                                         ; preds = %false473
+  %return539 = call i64 @"eq@III"(i64 %return367, i64 16)
+  %51 = icmp ne i64 %return539, 0
+  br i1 %51, label %true540, label %false541
+
+true516:                                          ; preds = %true506
+  store <9 x double>* getelementptr inbounds ([0 x <9 x double>], [0 x <9 x double>]* @17, i64 0, i64 0), <9 x double>** %attribtarget519, !vex-initializer-store !3
+  %_bound_elemnum522 = load i64, i64* %_bound_elemnum
+  %return523 = call <9 x double>* @"attrib@[3ISSI"(i64 0, i8* %return365, i8* %return20, i64 %_bound_elemnum522)
+  store <9 x double>* %return523, <9 x double>** %attribtarget519
+  store <9 x double>* %return513, <9 x double>** %13
+  call void @"uniquepush@[3[3"(<9 x double>** %attribtarget519, <9 x double>** %13)
+  %_bound_elemnum527 = load i64, i64* %_bound_elemnum
+  %return528 = call i64 @"neg@II"(i64 1)
+  %attribtarget529 = load <9 x double>*, <9 x double>** %attribtarget519
+  %return530 = call i64 @"setattrib@IISSII[3S"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum527, i64 %return528, <9 x double>* %attribtarget529, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false517:                                         ; preds = %true506
+  %_bound_elemnum533 = load i64, i64* %_bound_elemnum
+  %return534 = call i64 @"neg@II"(i64 1)
+  %return537 = call i64 @"setattrib@IISSII[3S"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum533, i64 %return534, <9 x double>* %return513, i8* %return514)
+  br label %iter
+
+true540:                                          ; preds = %false507
+  %return547 = call <16 x double>* @"attrib@[4ISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return548 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return549 = call i64 @"eq@ISS"(i8* %return548, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %52 = icmp ne i64 %return549, 0
+  br i1 %52, label %true550, label %false551
+
+false541:                                         ; preds = %false507
+  call void @"warning@S"(i8* getelementptr inbounds ([87 x i8], [87 x i8]* @20, i64 0, i64 0))
+  br label %iter
+
+true550:                                          ; preds = %true540
+  store <16 x double>* getelementptr inbounds ([0 x <16 x double>], [0 x <16 x double>]* @18, i64 0, i64 0), <16 x double>** %attribtarget553, !vex-initializer-store !3
+  %_bound_elemnum556 = load i64, i64* %_bound_elemnum
+  %return557 = call <16 x double>* @"attrib@[4ISSI"(i64 0, i8* %return365, i8* %return20, i64 %_bound_elemnum556)
+  store <16 x double>* %return557, <16 x double>** %attribtarget553
+  store <16 x double>* %return547, <16 x double>** %14
+  call void @"uniquepush@[4[4"(<16 x double>** %attribtarget553, <16 x double>** %14)
+  %_bound_elemnum561 = load i64, i64* %_bound_elemnum
+  %return562 = call i64 @"neg@II"(i64 1)
+  %attribtarget563 = load <16 x double>*, <16 x double>** %attribtarget553
+  %return564 = call i64 @"setattrib@IISSII[4S"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum561, i64 %return562, <16 x double>* %attribtarget563, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false551:                                         ; preds = %true540
+  %_bound_elemnum567 = load i64, i64* %_bound_elemnum
+  %return568 = call i64 @"neg@II"(i64 1)
+  %return571 = call i64 @"setattrib@IISSII[4S"(i64 0, i8* %return365, i8* %attribnameresult.0, i64 %_bound_elemnum567, i64 %return568, <16 x double>* %return547, i8* %return548)
+  br label %iter
+
+true574:                                          ; preds = %false362
+  %return581 = call i8** @"attrib@[SISSI"(i64 1, i8* %return21, i8* %return20, i64 %elemnum.0)
+  %return582 = call i8* @"chs@SS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @8, i64 0, i64 0))
+  %return583 = call i64 @"eq@ISS"(i8* %return582, i8* getelementptr inbounds ([11 x i8], [11 x i8]* @9, i64 0, i64 0))
+  %53 = icmp ne i64 %return583, 0
+  br i1 %53, label %true584, label %false585
+
+false575:                                         ; preds = %false362
+  %return607 = call i64 @"neg@II"(i64 1)
+  %return608 = call i64 @"eq@III"(i64 %return23, i64 %return607)
+  %54 = icmp ne i64 %return608, 0
+  br i1 %54, label %true609, label %false610
+
+true584:                                          ; preds = %true574
+  store i8** getelementptr inbounds ([0 x i8*], [0 x i8*]* @0, i64 0, i64 0), i8*** %attribtarget587, !vex-initializer-store !3
+  %return588 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum590 = load i64, i64* %_bound_elemnum
+  %return591 = call i8** @"attrib@[SISSI"(i64 0, i8* %return588, i8* %return20, i64 %_bound_elemnum590)
+  store i8** %return591, i8*** %attribtarget587
+  store i8** %return581, i8*** %15
+  call void @"uniquepush@[S[S"(i8*** %attribtarget587, i8*** %15)
+  %_bound_elemnum595 = load i64, i64* %_bound_elemnum
+  %return596 = call i64 @"neg@II"(i64 1)
+  %attribtarget597 = load i8**, i8*** %attribtarget587
+  %return598 = call i64 @"setattrib@IISSII[SS"(i64 0, i8* %return588, i8* %attribnameresult.0, i64 %_bound_elemnum595, i64 %return596, i8** %attribtarget597, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @12, i64 0, i64 0))
+  br label %iter
+
+false585:                                         ; preds = %true574
+  %return599 = call i8* @"chs@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @11, i64 0, i64 0))
+  %_bound_elemnum601 = load i64, i64* %_bound_elemnum
+  %return602 = call i64 @"neg@II"(i64 1)
+  %return605 = call i64 @"setattrib@IISSII[SS"(i64 0, i8* %return599, i8* %attribnameresult.0, i64 %_bound_elemnum601, i64 %return602, i8** %return581, i8* %return582)
+  br label %iter
+
+true609:                                          ; preds = %false575
+  call void @"warning@S"(i8* getelementptr inbounds ([76 x i8], [76 x i8]* @21, i64 0, i64 0))
+  br label %iter
+
+false610:                                         ; preds = %false575
+  call void @"warning@S"(i8* getelementptr inbounds ([89 x i8], [89 x i8]* @22, i64 0, i64 0))
+  br label %iter
+}
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i8** @"split@[SS"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #2
+
+; Function Attrs: nounwind
+declare void @"error@S"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"attribtype@IISS"(i64, i8*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"findattribval@IISSII"(i64, i8*, i8*, i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"attrib@IISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #2
+
+; Function Attrs: nounwind
+declare i64* @"attrib@[IISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSII[IS"(i64, i8*, i8*, i64, i64, i64*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSIIIS"(i64, i8*, i8*, i64, i64, i64, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"attribsize@IISS"(i64, i8*, i8*) #1
+
+; Function Attrs: nounwind
+declare double @"attrib@FISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare double* @"attrib@[FISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSII[FS"(i64, i8*, i8*, i64, i64, double*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSIIFS"(i64, i8*, i8*, i64, i64, double, i8*) #1
+
+; Function Attrs: nounwind
+declare <2 x double> @"attrib@UISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <2 x double>* @"attrib@[UISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSII[US"(i64, i8*, i8*, i64, i64, <2 x double>*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSIIUS"(i64, i8*, i8*, i64, i64, <2 x double>, i8*) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"attrib@VISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double>* @"attrib@[VISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSII[VS"(i64, i8*, i8*, i64, i64, <3 x double>*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSIIVS"(i64, i8*, i8*, i64, i64, <3 x double>, i8*) #1
+
+; Function Attrs: nounwind
+declare <4 x double> @"attrib@PISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <4 x double>* @"attrib@[PISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSII[PS"(i64, i8*, i8*, i64, i64, <4 x double>*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSIIPS"(i64, i8*, i8*, i64, i64, <4 x double>, i8*) #1
+
+; Function Attrs: nounwind
+declare <9 x double> @"attrib@3ISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <9 x double>* @"attrib@[3ISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSII[3S"(i64, i8*, i8*, i64, i64, <9 x double>*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSII3S"(i64, i8*, i8*, i64, i64, <9 x double>, i8*) #1
+
+; Function Attrs: nounwind
+declare <16 x double> @"attrib@4ISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <16 x double>* @"attrib@[4ISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSII[4S"(i64, i8*, i8*, i64, i64, <16 x double>*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSII4S"(i64, i8*, i8*, i64, i64, <16 x double>, i8*) #1
+
+; Function Attrs: nounwind
+declare void @"warning@S"(i8*) #1
+
+; Function Attrs: nounwind
+declare i8* @"attrib@SISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i8** @"attrib@[SISSI"(i64, i8*, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSII[SS"(i64, i8*, i8*, i64, i64, i8**, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattrib@IISSIISS"(i64, i8*, i8*, i64, i64, i8*, i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %elemnum) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  store i64 %elemnum, i64* %0
+  call void @"__vex_snippet_snippet@I"(i64* %0)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @23, i64 0, i64 0), i64 %elemnum) #3
+  store i64 %gvalue, i64* @elemnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+!3 = !{!""}
+
+;_code_end
