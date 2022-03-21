@@ -1,0 +1,291 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x double] zeroinitializer
+@1 = private constant [15 x i8] c"../autoClasses\00"
+@2 = private constant [11 x i8] c"numclasses\00"
+@3 = private constant [11 x i8] c"../classes\00"
+@4 = private constant [15 x i8] c"../possibility\00"
+@5 = private constant [12 x i8] c"../randtype\00"
+@6 = private constant [8 x i8] c"../seed\00"
+@varient = external global i64
+@ptnum = external global i64
+@numpt = external global i64
+@7 = private constant [8 x i8] c"varient\00"
+@8 = private constant [6 x i8] c"ptnum\00"
+@9 = private constant [6 x i8] c"numpt\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@III"(i64* %_bound_varient, i64* %_bound_ptnum, i64* %_bound_numpt) #0 {
+__llvm_entry:
+  %0 = alloca double*
+  %1 = alloca double
+  %2 = alloca double
+  %3 = alloca i64
+  %4 = alloca i64
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @1, i64 0, i64 0))
+  %5 = icmp ne i64 %return, 0
+  br i1 %5, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return1 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @2, i64 0, i64 0))
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  %return2 = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @3, i64 0, i64 0))
+  br label %end
+
+end:                                              ; preds = %false, %true
+  %phi = phi i64 [ %return1, %true ], [ %return2, %false ]
+  %output = sub i64 %phi, 1
+  %output5 = call double* @"resize@[FI"(double* getelementptr inbounds ([0 x double], [0 x double]* @0, i64 0, i64 0), i64 %output)
+  br label %cond
+
+cond:                                             ; preds = %body, %end
+  %pdf.0 = phi double* [ %output5, %end ], [ %output19, %body ]
+  %i.0 = phi i64 [ %output, %end ], [ %output21, %body ]
+  %return8 = call i64 @"neg@II"(i64 1)
+  %return9 = call i64 @"gt@III"(i64 %i.0, i64 %return8)
+  %6 = icmp ne i64 %return9, 0
+  br i1 %6, label %body, label %end10
+
+body:                                             ; preds = %cond
+  %output13 = add i64 %i.0, 1
+  %return14 = call i8* @"itoa@SI"(i64 %output13)
+  %output15 = call i8* @"add@SS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @4, i64 0, i64 0), i8* %return14)
+  %return16 = call double @"chf@FS"(i8* %output15)
+  %return17 = call { double, double* } @"setcomp@F[FFI"(double* %pdf.0, double %return16, i64 %i.0)
+  %output19 = extractvalue { double, double* } %return17, 1
+  %output21 = sub i64 %i.0, 1
+  br label %cond
+
+end10:                                            ; preds = %cond
+  store double* %pdf.0, double** %0
+  %return23 = call i64 @"chi@IS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @5, i64 0, i64 0))
+  %return24 = call double @"chf@FS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @6, i64 0, i64 0))
+  store double %return24, double* %2
+  %_bound_ptnum25 = load i64, i64* %_bound_ptnum
+  store i64 %_bound_ptnum25, i64* %3
+  %output27 = sub i64 %return23, 1
+  store i64 %output27, i64* %4
+  %random_uniform = call double @"random_uniform@FFII"(double* %2, i64* %3, i64* %4)
+  %_bound_ptnum28 = load i64, i64* %_bound_ptnum
+  %_bound_numpt29 = load i64, i64* %_bound_numpt
+  %cast = sitofp i64 %_bound_numpt29 to double
+  %output30 = fsub double %cast, 9.999900e-01
+  %cast31 = sitofp i64 %_bound_ptnum28 to double
+  %output32 = call double @"div@FF"(double %cast31, double %output30)
+  %7 = icmp ne i64 %return23, 0
+  %return33 = select i1 %7, double %random_uniform, double %output32
+  store double %return33, double* %1
+  %sample_pdf = call i64 @"sample_pdf@I[FF"(double** %0, double* %1)
+  store i64 %sample_pdf, i64* %_bound_varient
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private i64 @"sample_pdf@I[FF"(double** %pdf, double* %uniform_rand) #0 {
+__llvm_entry:
+  %pdf1 = load double*, double** %pdf
+  %return = call double* @"create_cdf@[F[F"(double* %pdf1)
+  %uniform_rand3 = load double, double* %uniform_rand
+  %return4 = call i64 @"sample_cdf@[FFI"(double* %return, double %uniform_rand3)
+  ret i64 %return4
+}
+
+; Function Attrs: nounwind readnone
+declare double* @"create_cdf@[F[F"(double*) #1
+
+; Function Attrs: alwaysinline
+define private i64 @"sample_cdf@[FFI"(double* %rw01, double %rw12) #2 {
+__llvm_entry:
+  %rw24 = call { i64, double, double } @"sample_cdf@[FFIFF"(double* %rw01, double %rw12)
+  %rw25 = extractvalue { i64, double, double } %rw24, 0
+  ret i64 %rw25
+}
+
+; Function Attrs: nounwind readnone
+declare { i64, double, double } @"sample_cdf@[FFIFF"(double*, double) #1
+
+; Function Attrs: alwaysinline nounwind
+define private double @"random_uniform@FFII"(double* %seed, i64* %offset, i64* %core) #0 {
+__llvm_entry:
+  %core1 = load i64, i64* %core
+  %return = call i64 @"neg@II"(i64 1)
+  %return2 = call i64 @"eq@III"(i64 %core1, i64 %return)
+  %0 = icmp ne i64 %return2, 0
+  br i1 %0, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %offset3 = load i64, i64* %offset
+  %cast = sitofp i64 %offset3 to double
+  br label %UnifiedReturnBlock
+
+false:                                            ; preds = %__llvm_entry
+  %return5 = call i64 @"eq@III"(i64 %core1, i64 0)
+  %1 = icmp ne i64 %return5, 0
+  br i1 %1, label %true6, label %false7
+
+true6:                                            ; preds = %false
+  %seed9 = load double, double* %seed
+  %offset10 = load i64, i64* %offset
+  %cast11 = sitofp i64 %offset10 to double
+  %return12 = call double @"random@FFF"(double %seed9, double %cast11)
+  br label %UnifiedReturnBlock
+
+false7:                                           ; preds = %false
+  %return14 = call i64 @"eq@III"(i64 %core1, i64 1)
+  %2 = icmp ne i64 %return14, 0
+  br i1 %2, label %true15, label %false16
+
+true15:                                           ; preds = %false7
+  %seed18 = load double, double* %seed
+  %offset19 = load i64, i64* %offset
+  %return20 = call double @"random_brj@FFI"(double %seed18, i64 %offset19)
+  br label %UnifiedReturnBlock
+
+false16:                                          ; preds = %false7
+  %return22 = call i64 @"eq@III"(i64 %core1, i64 2)
+  %3 = icmp ne i64 %return22, 0
+  br i1 %3, label %true23, label %false24
+
+true23:                                           ; preds = %false16
+  %seed26 = load double, double* %seed
+  %offset27 = load i64, i64* %offset
+  %return28 = call double @"random_sobol@FFI"(double %seed26, i64 %offset27)
+  br label %UnifiedReturnBlock
+
+false24:                                          ; preds = %false16
+  %cast30 = sitofp i64 %return to double
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %false24, %true23, %true15, %true6, %true
+  %UnifiedRetVal = phi double [ %cast, %true ], [ %return12, %true6 ], [ %return20, %true15 ], [ %return28, %true23 ], [ %cast30, %false24 ]
+  ret double %UnifiedRetVal
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: alwaysinline
+define private double @"random@FFF"(double %rw11, double %rw22) #2 {
+__llvm_entry:
+  %t_0_ = call i64 @"floor@IF"(double %rw11)
+  %t_1_ = call i64 @"floor@IF"(double %rw22)
+  %rw06 = call double @"random@FII"(i64 %t_0_, i64 %t_1_)
+  ret double %rw06
+}
+
+; Function Attrs: nounwind
+declare i64 @"floor@IF"(double) #3
+
+; Function Attrs: alwaysinline
+define private double @"random@FII"(i64 %rw11, i64 %rw22) #2 {
+__llvm_entry:
+  %t_0_ = call i64 @"random_hash@III"(i64 %rw11, i64 %rw22)
+  %rw05 = call double @"random@FI"(i64 %t_0_)
+  ret double %rw05
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"random_hash@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"random@FI"(i64) #1
+
+; Function Attrs: alwaysinline
+define private double @"random_brj@FFI"(double %rw11, i64 %rw22) #2 {
+__llvm_entry:
+  %t_0_ = call i64 @"random_fhash@IF"(double %rw11)
+  %rw05 = call double @"random_brj@FII"(i64 %t_0_, i64 %rw22)
+  ret double %rw05
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"random_fhash@IF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"random_brj@FII"(i64, i64) #1
+
+; Function Attrs: alwaysinline
+define private double @"random_sobol@FFI"(double %rw11, i64 %rw22) #2 {
+__llvm_entry:
+  %t_0_ = call i64 @"random_fhash@IF"(double %rw11)
+  %rw05 = call double @"random_sobol@FII"(i64 %t_0_, i64 %rw22)
+  ret double %rw05
+}
+
+; Function Attrs: nounwind readnone
+declare double @"random_sobol@FII"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double* @"resize@[FI"(double*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"itoa@SI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"add@SS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare { double, double* } @"setcomp@F[FFI"(double*, double, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %varient, i64 %ptnum, i64 %numpt) #3 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %"<varient>" = alloca i64
+  store i64 %varient, i64* %"<varient>"
+  store i64 %ptnum, i64* %0
+  store i64 %numpt, i64* %1
+  call void @"__vex_snippet_snippet@III"(i64* %"<varient>", i64* %0, i64* %1)
+  %evalue = load i64, i64* %"<varient>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @7, i64 0, i64 0), i64 %evalue) #4
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @8, i64 0, i64 0), i64 %ptnum) #4
+  %gvalue6 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @9, i64 0, i64 0), i64 %numpt) #4
+  store i64 %gvalue, i64* @varient
+  store i64 %gvalue4, i64* @ptnum
+  store i64 %gvalue6, i64* @numpt
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { alwaysinline }
+attributes #3 = { nounwind }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

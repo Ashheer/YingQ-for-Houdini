@@ -1,0 +1,51 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@density = external global double
+@0 = private constant [8 x i8] c"density\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@F"(double* %_bound_density) #0 {
+__llvm_entry:
+  %_bound_density1 = load double, double* %_bound_density
+  %return = fcmp ogt double %_bound_density1, 1.000000e-07
+  %return2 = zext i1 %return to i64
+  %cast = sitofp i64 %return2 to double
+  store double %cast, double* %_bound_density
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %density) #1 {
+__llvm_entry:
+  %"<density>" = alloca double
+  store double %density, double* %"<density>"
+  call void @"__vex_snippet_snippet@F"(double* %"<density>")
+  %evalue = load double, double* %"<density>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0), double %evalue) #2
+  store double %gvalue, double* @density
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

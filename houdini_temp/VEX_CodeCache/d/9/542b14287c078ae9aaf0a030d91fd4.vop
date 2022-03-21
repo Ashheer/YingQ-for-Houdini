@@ -1,0 +1,61 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [15 x i8] c"measuredvolume\00"
+@measuretype = external global double
+@elemnum = external global i64
+@1 = private constant [12 x i8] c"measuretype\00"
+@2 = private constant [8 x i8] c"elemnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FI"(double* %_bound_measuretype, i64* %_bound_elemnum) #0 {
+__llvm_entry:
+  %_bound_elemnum1 = load i64, i64* %_bound_elemnum
+  %return = call double @"primintrinsic@FISI"(i64 0, i8* getelementptr inbounds ([15 x i8], [15 x i8]* @0, i64 0, i64 0), i64 %_bound_elemnum1)
+  store double %return, double* %_bound_measuretype
+  ret void
+}
+
+; Function Attrs: nounwind
+declare double @"primintrinsic@FISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %measuretype, i64 %elemnum) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  %"<measuretype>" = alloca double
+  store double %measuretype, double* %"<measuretype>"
+  store i64 %elemnum, i64* %0
+  call void @"__vex_snippet_snippet@FI"(double* %"<measuretype>", i64* %0)
+  %evalue = load double, double* %"<measuretype>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0), double %evalue) #2
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i64 %elemnum) #2
+  store double %gvalue, double* @measuretype
+  store i64 %gvalue3, i64* @elemnum
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

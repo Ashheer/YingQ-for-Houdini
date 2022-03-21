@@ -1,0 +1,110 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [16 x i8] c"../rotateyrange\00"
+@1 = private constant [8 x i8] c"../seed\00"
+@2 = private constant [12 x i8] c"../scalemax\00"
+@3 = private constant [12 x i8] c"../scalemin\00"
+@ptnum = external global i64
+@xform = external global <16 x double>
+@4 = private constant [6 x i8] c"ptnum\00"
+@5 = private constant [6 x i8] c"xform\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I4"(i64* %_bound_ptnum, <16 x double>* %_bound_xform) #0 {
+__llvm_entry:
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @0, i64 0, i64 0))
+  %output = fmul double 2.000000e+00, %return
+  %return1 = call double @"chf@FS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0))
+  %output2 = fmul double 0x400921FB4D12D84A, %return1
+  %_bound_ptnum3 = load i64, i64* %_bound_ptnum
+  %return4 = call double @"random_brj@FFI"(double %output2, i64 %_bound_ptnum3)
+  %output5 = fmul double %output, %return4
+  %output7 = fsub double %output5, %return
+  %return8 = call double @"chf@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @2, i64 0, i64 0))
+  %return9 = call double @"chf@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @3, i64 0, i64 0))
+  %output10 = fsub double %return8, %return9
+  %output12 = fmul double 0x4005BF0A8B145769, %return1
+  %_bound_ptnum13 = load i64, i64* %_bound_ptnum
+  %return14 = call double @"random_brj@FFI"(double %output12, i64 %_bound_ptnum13)
+  %output15 = fmul double %output10, %return14
+  %output17 = fadd double %output15, %return9
+  %cast = call <3 x double> @"set@VI"(i64 0)
+  %return19 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double %output7, double 0.000000e+00)
+  %cast21 = call <3 x double> @"set@VF"(double %output17)
+  %return22 = call <16 x double> @"maketransform@4IIVVV"(i64 5, i64 0, <3 x double> %cast, <3 x double> %return19, <3 x double> %cast21)
+  store <16 x double> %return22, <16 x double>* %_bound_xform
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: alwaysinline
+define private double @"random_brj@FFI"(double %rw11, i64 %rw22) #2 {
+__llvm_entry:
+  %t_0_ = call i64 @"random_fhash@IF"(double %rw11)
+  %rw05 = call double @"random_brj@FII"(i64 %t_0_, i64 %rw22)
+  ret double %rw05
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"random_fhash@IF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"random_brj@FII"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind
+declare <16 x double> @"maketransform@4IIVVV"(i64, i64, <3 x double>, <3 x double>, <3 x double>) #3
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %ptnum, <16 x double> %xform) #3 {
+__llvm_entry:
+  %"<xform>" = alloca <16 x double>
+  %0 = alloca i64
+  store <16 x double> %xform, <16 x double>* %"<xform>"
+  store i64 %ptnum, i64* %0
+  call void @"__vex_snippet_snippet@I4"(i64* %0, <16 x double>* %"<xform>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @4, i64 0, i64 0), i64 %ptnum) #4
+  %evalue2 = load <16 x double>, <16 x double>* %"<xform>"
+  %gvalue3 = call <16 x double> @"_export@4S4"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @5, i64 0, i64 0), <16 x double> %evalue2) #4
+  store i64 %gvalue, i64* @ptnum
+  store <16 x double> %gvalue3, <16 x double>* @xform
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <16 x double> @"_export@4S4"(i8*, <16 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, <16 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { alwaysinline }
+attributes #3 = { nounwind }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

@@ -1,0 +1,180 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"transform\00"
+@1 = private constant [2 x i8] c"P\00"
+@2 = private constant [25 x i8] c"../resotre_voxelval_in_P\00"
+@3 = private constant [30 x i8] c"../restore_voxelval_in_attrib\00"
+@4 = private constant [13 x i8] c"../enablelod\00"
+@5 = private constant [14 x i8] c"../volumename\00"
+@6 = private constant [14 x i8] c"../grid1/rows\00"
+@P = external global <3 x double>
+@ptnum = external global i64
+@voxelval = external global double
+@7 = private constant [6 x i8] c"ptnum\00"
+@8 = private constant [9 x i8] c"voxelval\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VIF"(<3 x double>* %_bound_P, i64* %_bound_ptnum, double* %_bound_voxelval) #0 {
+__llvm_entry:
+  %return = call <9 x double> @"primintrinsic@3ISI"(i64 1, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), i64 0)
+  %return1 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 0)
+  %_bound_P2 = load <3 x double>, <3 x double>* %_bound_P
+  %output = call <3 x double> @"mul@V3"(<3 x double> %_bound_P2, <9 x double> %return)
+  %output6 = call <3 x double> @"add@VV"(<3 x double> %output, <3 x double> %return1)
+  store <3 x double> %output6, <3 x double>* %_bound_P
+  %return7 = call i64 @"chi@IS"(i8* getelementptr inbounds ([25 x i8], [25 x i8]* @2, i64 0, i64 0))
+  %return8 = call i64 @"chi@IS"(i8* getelementptr inbounds ([30 x i8], [30 x i8]* @3, i64 0, i64 0))
+  %return9 = call i64 @"or@III"(i64 %return7, i64 %return8)
+  %0 = icmp ne i64 %return9, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return10 = call i64 @"chi@IS"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @4, i64 0, i64 0))
+  %1 = icmp ne i64 %return10, 0
+  br i1 %1, label %true11, label %false
+
+end:                                              ; preds = %end32, %true41, %__llvm_entry
+  ret void
+
+true11:                                           ; preds = %true
+  %return13 = call i8* @"chs@SS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @5, i64 0, i64 0))
+  %return15 = call double @"volumesample@FISV"(i64 1, i8* %return13, <3 x double> %output6)
+  br label %end12
+
+false:                                            ; preds = %true
+  %_bound_ptnum16 = load i64, i64* %_bound_ptnum
+  %return17 = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @6, i64 0, i64 0))
+  %return18 = call i64 @"mod@III"(i64 %_bound_ptnum16, i64 %return17)
+  %output22 = call i64 @"div@II"(i64 %_bound_ptnum16, i64 %return17)
+  %output23 = sub i64 %return17, %output22
+  %return24 = call i8* @"chs@SS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @5, i64 0, i64 0))
+  %cast = sitofp i64 %return18 to double
+  %cast27 = sitofp i64 %output23 to double
+  %return28 = call <3 x double> @"set@VFFF"(double %cast, double %cast27, double 0.000000e+00)
+  %return29 = call double @"volumeindex@FISV"(i64 1, i8* %return24, <3 x double> %return28)
+  br label %end12
+
+end12:                                            ; preds = %false, %true11
+  %voxelval.0 = phi double [ %return15, %true11 ], [ %return29, %false ]
+  %2 = icmp ne i64 %return7, 0
+  br i1 %2, label %true31, label %end32
+
+true31:                                           ; preds = %end12
+  %_bound_P33 = load <3 x double>, <3 x double>* %_bound_P
+  %return34 = call double @"getcomp@FVI"(<3 x double> %_bound_P33, i64 1)
+  %output36 = fadd double %return34, %voxelval.0
+  %return37 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %_bound_P33, double %output36, i64 1)
+  %output39 = extractvalue { double, <3 x double> } %return37, 1
+  store <3 x double> %output39, <3 x double>* %_bound_P
+  br label %end32
+
+end32:                                            ; preds = %true31, %end12
+  %3 = icmp ne i64 %return8, 0
+  br i1 %3, label %true41, label %end
+
+true41:                                           ; preds = %end32
+  store double %voxelval.0, double* %_bound_voxelval
+  br label %end
+}
+
+; Function Attrs: nounwind
+declare <9 x double> @"primintrinsic@3ISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"mul@V3"(<3 x double>, <9 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"or@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i8* @"chs@SS"(i8*) #2
+
+; Function Attrs: nounwind
+declare double @"volumesample@FISV"(i64, i8*, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"mod@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"div@II"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #2
+
+; Function Attrs: nounwind
+declare double @"volumeindex@FISV"(i64, i8*, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #2
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 1)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P, i64 %ptnum, double %voxelval) #1 {
+__llvm_entry:
+  %"<voxelval>" = alloca double
+  %0 = alloca i64
+  %"<P>" = alloca <3 x double>
+  store <3 x double> %P, <3 x double>* %"<P>"
+  store double %voxelval, double* %"<voxelval>"
+  store i64 %ptnum, i64* %0
+  call void @"__vex_snippet_snippet@VIF"(<3 x double>* %"<P>", i64* %0, double* %"<voxelval>")
+  %evalue = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %evalue) #4
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @7, i64 0, i64 0), i64 %ptnum) #4
+  %evalue4 = load double, double* %"<voxelval>"
+  %gvalue5 = call double @"_export@FSF"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @8, i64 0, i64 0), double %evalue4) #4
+  store <3 x double> %gvalue, <3 x double>* @P
+  store i64 %gvalue3, i64* @ptnum
+  store double %gvalue5, double* @voxelval
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, i64 0, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { alwaysinline }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
