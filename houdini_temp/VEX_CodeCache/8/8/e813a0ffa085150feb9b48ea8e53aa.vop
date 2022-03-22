@@ -1,0 +1,58 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"iteration\00"
+@depth = external global i64
+@1 = private constant [6 x i8] c"depth\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I"(i64* %_bound_depth) #0 {
+__llvm_entry:
+  %return = call i64 @"neg@II"(i64 1)
+  %return1 = call i64 @"detail@IIS"(i64 %return, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0))
+  %output = add i64 1, %return1
+  store i64 %output, i64* %_bound_depth
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"detail@IIS"(i64, i8*) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %depth) #2 {
+__llvm_entry:
+  %"<depth>" = alloca i64
+  store i64 %depth, i64* %"<depth>"
+  call void @"__vex_snippet_snippet@I"(i64* %"<depth>")
+  %evalue = load i64, i64* %"<depth>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %evalue) #3
+  store i64 %gvalue, i64* @depth
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

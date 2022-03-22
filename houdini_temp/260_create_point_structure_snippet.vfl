@@ -1,0 +1,76 @@
+vector pos [ ] = { };
+vector center = @P;
+append ( pos, center );
+
+int pts [ ] = primpoints ( 0, @primnum );
+vector primpts [ ] = { };
+foreach ( int pt; pts )
+{
+    vector p = point ( 0, "P", pt );
+    append ( primpts, p );
+}
+
+int isclosed = primintrinsic ( 0, "closed", @primnum );
+if ( isclosed )
+    append ( primpts, primpts [ 0 ] );
+
+    
+vector edgepts [ ] = { };
+vector edges [ ] = { };
+vector diagonals [ ] = { };
+
+int count = len ( primpts ) - 1;
+for ( int i = 0; i < count; ++i )
+{
+    vector p = primpts [ i + 1 ] + 0.5 * ( primpts [ i ] - primpts [ i + 1 ] );
+    append ( pos, p );
+    append ( edgepts, p );
+    
+    append ( edges, primpts [ i ] );
+    append ( edges, p );
+    append ( edges, primpts [ i + 1 ] );
+    append ( edges, p );
+    
+    append ( edges, p );
+    append ( edges, center );
+    
+    append ( diagonals, primpts [ i ] );
+    append ( diagonals, center );
+}
+
+if ( isclosed )
+    append ( edgepts, edgepts [ 0 ] );
+
+
+int edgecount = len ( edges ) / 2;
+for ( int i = 0; i < edgecount; ++i )
+{
+    vector p = edges [ i * 2 + 1 ] + 0.5 * ( edges [ i * 2 ] - edges [ i * 2 + 1 ] );
+    append ( pos, p );
+}
+
+int diagonalcount = len ( diagonals ) / 2;
+for ( int i = 0; i < diagonalcount; ++i )
+{
+    for ( int f = 1; f <= 3; ++f )
+    {
+        vector p = diagonals [ i * 2 + 1 ] + 0.25 * f * ( diagonals [ i * 2 ] - diagonals [ i * 2 + 1 ] );
+        append ( pos, p );
+    }
+}
+
+int edgeptscount = len ( edgepts ) - 1;
+for ( int i = 0; i < edgeptscount; ++i )
+{
+    vector p0 = edgepts [ i + 1 ] + 0.25 * ( edgepts [ i ] - edgepts [ i + 1 ] );
+    vector p1 = edgepts [ i + 1 ] + 0.75 * ( edgepts [ i ] - edgepts [ i + 1 ] );
+    append ( pos, p0 );
+    append ( pos, p1 );
+}
+
+
+foreach ( vector p; pos )
+{
+    int pt = addpoint ( 0, p );
+    setpointattrib ( 0, "primid", pt, i@primid );
+}

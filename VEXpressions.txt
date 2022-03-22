@@ -23,3 +23,28 @@ attribwrangle/snippet
 	center = primuv ( 1, "P", hitprim, hituv );
 
 	@P = center;
+
+
+attribwrangle/snippet
+	PcfindFilter
+	vector smoothfilter ( int input; int pts [ ]; float dist [ ]; string attrib )
+	{
+    	float sum = 0, w, d;
+   	 vector value, result = 0;
+    	float maxd = dist [ -1 ];
+ 	   int count = len ( pts );
+   	 for ( int i = 0; i < count; ++i )
+  	  {
+  	      value = point ( input, attrib, pts [ i ] );
+       	 w = 1 - smooth ( 0, 1.1 * maxd, dist [ i ] );
+     	   sum += w;
+    	    result += w * value;
+  	  }
+  	  result /= sum;
+  	  return result;
+	}
+
+	float dists [ ] = { };
+	int pts [ ] = pcfind ( 1, "P", @P, ch("r"), chi("maxpts"), dists );
+
+	@Cd = smoothfilter ( 1, pts, dists, "Cd" );

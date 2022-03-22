@@ -1,0 +1,159 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"P\00"
+@1 = private constant [2 x i8] c"r\00"
+@2 = private constant [7 x i8] c"maxpts\00"
+@3 = private constant [3 x i8] c"Cd\00"
+@P = external global <3 x double>
+@Cd = external global <3 x double>
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VV"(<3 x double>* %_bound_P, <3 x double>* %_bound_Cd) #0 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64*
+  %2 = alloca double*
+  %3 = alloca i8*
+  %_bound_P1 = load <3 x double>, <3 x double>* %_bound_P
+  %return = call double @"ch@FS"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0))
+  %return2 = call i64 @"chi@IS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0))
+  %return3 = call { i64*, double* } @"pcfind@[IISVFI[F"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %_bound_P1, double %return, i64 %return2)
+  %return4 = extractvalue { i64*, double* } %return3, 0
+  %output = extractvalue { i64*, double* } %return3, 1
+  store i64 1, i64* %0
+  store i64* %return4, i64** %1
+  store double* %output, double** %2
+  store i8* getelementptr inbounds ([3 x i8], [3 x i8]* @3, i64 0, i64 0), i8** %3
+  %smoothfilter = call <3 x double> @"smoothfilter@VI[I[FS"(i64* %0, i64** %1, double** %2, i8** %3)
+  store <3 x double> %smoothfilter, <3 x double>* %_bound_Cd
+  ret void
+}
+
+; Function Attrs: alwaysinline nounwind
+define private <3 x double> @"smoothfilter@VI[I[FS"(i64* %input, i64** %pts, double** %dist, i8** %attrib) #0 {
+__llvm_entry:
+  %cast = call <3 x double> @"set@VI"(i64 0)
+  %dist1 = load double*, double** %dist
+  %return = call i64 @"neg@II"(i64 1)
+  %return2 = call double @"getcomp@F[FI"(double* %dist1, i64 %return)
+  %pts3 = load i64*, i64** %pts
+  %return4 = call i64 @"len@I[I"(i64* %pts3)
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %result.0 = phi <3 x double> [ %cast, %__llvm_entry ], [ %output28, %body ]
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output30, %body ]
+  %sum.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %output22, %body ]
+  %return7 = call i64 @"lt@III"(i64 %i.0, i64 %return4)
+  %0 = icmp ne i64 %return7, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %input8 = load i64, i64* %input
+  %attrib9 = load i8*, i8** %attrib
+  %pts10 = load i64*, i64** %pts
+  %return12 = call i64 @"getcomp@I[II"(i64* %pts10, i64 %i.0)
+  %return13 = call <3 x double> @"point@VISI"(i64 %input8, i8* %attrib9, i64 %return12)
+  %output = fmul double 1.100000e+00, %return2
+  %dist15 = load double*, double** %dist
+  %return17 = call double @"getcomp@F[FI"(double* %dist15, i64 %i.0)
+  %return18 = call double @"smooth@FFFF"(double 0.000000e+00, double %output, double %return17)
+  %output19 = fsub double 1.000000e+00, %return18
+  %output22 = fadd double %sum.0, %output19
+  %cast26 = call <3 x double> @"set@VF"(double %output19)
+  %output27 = call <3 x double> @"mul@VV"(<3 x double> %cast26, <3 x double> %return13)
+  %output28 = call <3 x double> @"add@VV"(<3 x double> %result.0, <3 x double> %output27)
+  %output30 = add i64 %i.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  %cast33 = call <3 x double> @"set@VF"(double %sum.0)
+  %output34 = call <3 x double> @"div@VV"(<3 x double> %result.0, <3 x double> %cast33)
+  ret <3 x double> %output34
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@F[FI"(double*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"smooth@FFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"div@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind
+declare { i64*, double* } @"pcfind@[IISVFI[F"(i64, i8*, <3 x double>, double, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P, <3 x double> %Cd) #2 {
+__llvm_entry:
+  %"<Cd>" = alloca <3 x double>
+  %0 = alloca <3 x double>
+  store <3 x double> %Cd, <3 x double>* %"<Cd>"
+  store <3 x double> %P, <3 x double>* %0
+  call void @"__vex_snippet_snippet@VV"(<3 x double>* %0, <3 x double>* %"<Cd>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %P) #3
+  %evalue2 = load <3 x double>, <3 x double>* %"<Cd>"
+  %gvalue3 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @3, i64 0, i64 0), <3 x double> %evalue2) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  store <3 x double> %gvalue3, <3 x double>* @Cd
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <3 x double> <double 1.000000e+00, double 1.000000e+00, double 1.000000e+00>)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

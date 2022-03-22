@@ -1,0 +1,81 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"r\00"
+@1 = private constant [7 x i8] c"maxpts\00"
+@2 = private constant [2 x i8] c"P\00"
+@P = external global <3 x double>
+@density = external global double
+@3 = private constant [8 x i8] c"density\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VF"(<3 x double>* %_bound_P, double* %_bound_density) #0 {
+__llvm_entry:
+  %return = call double @"ch@FS"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0))
+  %return1 = call i64 @"chi@IS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0))
+  %_bound_P2 = load <3 x double>, <3 x double>* %_bound_P
+  %return5 = call i64* @"pcfind@[IISVFI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @2, i64 0, i64 0), <3 x double> %_bound_P2, double %return, i64 %return1)
+  %return7 = call i64 @"len@I[I"(i64* %return5)
+  %cast = sitofp i64 %return1 to double
+  %cast9 = sitofp i64 %return7 to double
+  %output = call double @"div@FF"(double %cast9, double %cast)
+  store double %output, double* %_bound_density
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind
+declare i64* @"pcfind@[IISVFI"(i64, i8*, <3 x double>, double, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P, double %density) #2 {
+__llvm_entry:
+  %"<density>" = alloca double
+  %0 = alloca <3 x double>
+  store double %density, double* %"<density>"
+  store <3 x double> %P, <3 x double>* %0
+  call void @"__vex_snippet_snippet@VF"(<3 x double>* %0, double* %"<density>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @2, i64 0, i64 0), <3 x double> %P) #3
+  %evalue2 = load double, double* %"<density>"
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @3, i64 0, i64 0), double %evalue2) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  store double %gvalue3, double* @density
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
