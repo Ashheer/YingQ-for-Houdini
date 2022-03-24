@@ -1,0 +1,127 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [11 x i8] c"pointcount\00"
+@1 = private constant [7 x i8] c"radius\00"
+@2 = private constant [7 x i8] c"length\00"
+@3 = private constant [12 x i8] c"revolutions\00"
+@4 = private constant [12 x i8] c"strandcount\00"
+@5 = private constant [9 x i8] c"polyline\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @0, i64 0, i64 0))
+  %return1 = call double @"ch@FS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0))
+  %return2 = call double @"ch@FS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @2, i64 0, i64 0))
+  %return3 = call double @"ch@FS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @3, i64 0, i64 0))
+  %return4 = call i64 @"chi@IS"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @4, i64 0, i64 0))
+  %output = fmul double %return3, 2.000000e+00
+  %output6 = fmul double %output, 0x400921FB4D12D84A
+  %cast = sitofp i64 %return to double
+  %output8 = call double @"div@FF"(double %output6, double %cast)
+  %output11 = sub i64 %return, 1
+  %cast12 = sitofp i64 %output11 to double
+  %output13 = call double @"div@FF"(double %return2, double %cast12)
+  %cast15 = sitofp i64 %return4 to double
+  %output16 = call double @"div@FF"(double 0x401921FB4D12D84A, double %cast15)
+  br label %cond
+
+cond:                                             ; preds = %end26, %__llvm_entry
+  %j.0 = phi i64 [ 0, %__llvm_entry ], [ %output67, %end26 ]
+  %return19 = call i64 @"lt@III"(i64 %j.0, i64 %return4)
+  %0 = icmp ne i64 %return19, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return20 = call i64 @"addprim@IIS"(i64 0, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0))
+  br label %cond21
+
+end:                                              ; preds = %cond
+  ret void
+
+cond21:                                           ; preds = %body22, %body
+  %i.0 = phi i64 [ 0, %body ], [ %output64, %body22 ]
+  %return25 = call i64 @"lt@III"(i64 %i.0, i64 %return)
+  %1 = icmp ne i64 %return25, 0
+  br i1 %1, label %body22, label %end26
+
+body22:                                           ; preds = %cond21
+  %cast30 = sitofp i64 %i.0 to double
+  %output31 = fmul double %cast30, %output8
+  %cast34 = sitofp i64 %j.0 to double
+  %output35 = fmul double %cast34, %output16
+  %output36 = fadd double %output31, %output35
+  %return37 = call double @"cos@FF"(double %output36)
+  %output39 = fmul double %return37, %return1
+  %return49 = call double @"sin@FF"(double %output36)
+  %output51 = fmul double %return49, %return1
+  %output55 = fmul double %cast30, %output13
+  %return56 = call <3 x double> @"set@VFFF"(double %output39, double %output51, double %output55)
+  %return58 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return56)
+  %return61 = call i64 @"addvertex@IIII"(i64 0, i64 %return20, i64 %return58)
+  %output64 = add i64 %i.0, 1
+  br label %cond21
+
+end26:                                            ; preds = %cond21
+  %output67 = add i64 %j.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IIS"(i64, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare double @"cos@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"sin@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+declare i64 @"addpoint@IIV"(i64, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare i64 @"addvertex@IIII"(i64, i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #2 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

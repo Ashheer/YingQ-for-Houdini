@@ -1,0 +1,135 @@
+;_name	/obj/rope/dopnet1/popgrains1/integrate_P_and_reset_attributes/geometrywrangle1/geometryvop1
+; ModuleID = 'obj_rope_dopnet1_popgrains1_integrate_P_and_reset_attributes_geometrywrangle1_geometryvop1'
+source_filename = "obj_rope_dopnet1_popgrains1_integrate_P_and_reset_attributes_geometrywrangle1_geometryvop1"
+
+@pprevious = external global <3 x double>
+@P = external global <3 x double>
+@has_pprevious = external global i64
+@hitnum = external global i64
+@hitv = external global <3 x double>
+@ispbd = external global i64
+@group___pbd_group = external global i64
+@0 = private constant [10 x i8] c"pprevious\00"
+@1 = private constant [2 x i8] c"P\00"
+@2 = private constant [14 x i8] c"has_pprevious\00"
+@3 = private constant [7 x i8] c"hitnum\00"
+@4 = private constant [5 x i8] c"hitv\00"
+@5 = private constant [6 x i8] c"ispbd\00"
+@6 = private constant [18 x i8] c"group___pbd_group\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_rope_dopnet1_popgrains1_integrate_P_and_reset_attributes_geometrywrangle1_geometryvop1_snippet1@IVVVFIIVII"(i64* %_bound_stopped, <3 x double>* %_bound_pprevious, <3 x double>* %_bound_P, <3 x double>* %_bound_v, double* %_bound_TimeInc, i64* %_bound_has_pprevious, i64* %_bound_hitnum, <3 x double>* %_bound_hitv, i64* %_bound_ispbd, i64* %_bound_group___pbd_group) #0 {
+__llvm_entry:
+  %_bound_stopped1 = load i64, i64* %_bound_stopped
+  %0 = icmp ne i64 %_bound_stopped1, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %_bound_P2 = load <3 x double>, <3 x double>* %_bound_P
+  store <3 x double> %_bound_P2, <3 x double>* %_bound_pprevious
+  %_bound_P3 = load <3 x double>, <3 x double>* %_bound_P
+  %_bound_v4 = load <3 x double>, <3 x double>* %_bound_v
+  %_bound_TimeInc5 = load double, double* %_bound_TimeInc
+  %cast = call <3 x double> @"set@VF"(double %_bound_TimeInc5)
+  %output = call <3 x double> @"mul@VV"(<3 x double> %_bound_v4, <3 x double> %cast)
+  %output6 = call <3 x double> @"add@VV"(<3 x double> %_bound_P3, <3 x double> %output)
+  store <3 x double> %output6, <3 x double>* %_bound_P
+  store i64 1, i64* %_bound_has_pprevious
+  store i64 0, i64* %_bound_hitnum
+  %cast7 = call <3 x double> @"set@VI"(i64 0)
+  store <3 x double> %cast7, <3 x double>* %_bound_hitv
+  store i64 1, i64* %_bound_ispbd
+  store i64 1, i64* %_bound_group___pbd_group
+  br label %UnifiedReturnBlock
+
+UnifiedReturnBlock:                               ; preds = %end, %true
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #1
+
+; Function Attrs: nounwind
+define void @obj_rope_dopnet1_popgrains1_integrate_P_and_reset_attributes_geometrywrangle1_geometryvop1(i64 %stopped, <3 x double> %pprevious, <3 x double> %P, <3 x double> %v, double %TimeInc, i64 %has_pprevious, i64 %hitnum, <3 x double> %hitv, i64 %ispbd, i64 %group___pbd_group) #2 {
+__llvm_entry:
+  %"<pprevious>" = alloca <3 x double>
+  %"<P>" = alloca <3 x double>
+  %"<has_pprevious>" = alloca i64
+  %"<hitnum>" = alloca i64
+  %"<hitv>" = alloca <3 x double>
+  %"<ispbd>" = alloca i64
+  %"<group___pbd_group>" = alloca i64
+  %0 = alloca i64
+  %1 = alloca <3 x double>
+  %2 = alloca double
+  store <3 x double> %pprevious, <3 x double>* %"<pprevious>"
+  store <3 x double> %P, <3 x double>* %"<P>"
+  store i64 %has_pprevious, i64* %"<has_pprevious>"
+  store i64 %hitnum, i64* %"<hitnum>"
+  store <3 x double> %hitv, <3 x double>* %"<hitv>"
+  store i64 %ispbd, i64* %"<ispbd>"
+  store i64 %group___pbd_group, i64* %"<group___pbd_group>"
+  store i64 %stopped, i64* %0
+  store <3 x double> %v, <3 x double>* %1
+  store double %TimeInc, double* %2
+  call void @"_obj_rope_dopnet1_popgrains1_integrate_P_and_reset_attributes_geometrywrangle1_geometryvop1_snippet1@IVVVFIIVII"(i64* %0, <3 x double>* %"<pprevious>", <3 x double>* %"<P>", <3 x double>* %1, double* %2, i64* %"<has_pprevious>", i64* %"<hitnum>", <3 x double>* %"<hitv>", i64* %"<ispbd>", i64* %"<group___pbd_group>")
+  %evalue = load <3 x double>, <3 x double>* %"<pprevious>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), <3 x double> %evalue) #3
+  %evalue4 = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue5 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %evalue4) #3
+  %evalue6 = load i64, i64* %"<has_pprevious>"
+  %gvalue7 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @2, i64 0, i64 0), i64 %evalue6) #3
+  %evalue8 = load i64, i64* %"<hitnum>"
+  %gvalue9 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @3, i64 0, i64 0), i64 %evalue8) #3
+  %evalue10 = load <3 x double>, <3 x double>* %"<hitv>"
+  %gvalue11 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @4, i64 0, i64 0), <3 x double> %evalue10) #3
+  %evalue12 = load i64, i64* %"<ispbd>"
+  %gvalue13 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @5, i64 0, i64 0), i64 %evalue12) #3
+  %evalue14 = load i64, i64* %"<group___pbd_group>"
+  %gvalue15 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @6, i64 0, i64 0), i64 %evalue14) #3
+  store <3 x double> %gvalue, <3 x double>* @pprevious
+  store <3 x double> %gvalue5, <3 x double>* @P
+  store i64 %gvalue7, i64* @has_pprevious
+  store i64 %gvalue9, i64* @hitnum
+  store <3 x double> %gvalue11, <3 x double>* @hitv
+  store i64 %gvalue13, i64* @ispbd
+  store i64 %gvalue15, i64* @group___pbd_group
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_rope_dopnet1_popgrains1_integrate_P_and_reset_attributes_geometrywrangle1_geometryvop1(i64 0, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, double 0.000000e+00, i64 0, i64 0, <3 x double> zeroinitializer, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

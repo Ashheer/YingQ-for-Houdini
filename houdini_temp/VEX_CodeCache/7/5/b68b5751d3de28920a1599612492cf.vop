@@ -1,0 +1,234 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [7 x i8] c"length\00"
+@1 = private constant [2 x i8] c"P\00"
+@v = external global double
+@h = external global double
+@y = external global double
+@c1 = external global double
+@a = external global double
+@c2 = external global double
+@P = external global <3 x double>
+@2 = private constant [2 x i8] c"v\00"
+@3 = private constant [2 x i8] c"h\00"
+@4 = private constant [2 x i8] c"y\00"
+@5 = private constant [3 x i8] c"c1\00"
+@6 = private constant [2 x i8] c"a\00"
+@7 = private constant [3 x i8] c"c2\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FFFFFFV"(double* %_bound_v, double* %_bound_h, double* %_bound_y, double* %_bound_c1, double* %_bound_a, double* %_bound_c2, <3 x double>* %_bound_P) #0 {
+__llvm_entry:
+  %return = call double @"chf@FS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0))
+  %return1 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 0)
+  %return2 = call i64 @"neg@II"(i64 1)
+  %return3 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return2)
+  %return5 = call double @"getcomp@FVI"(<3 x double> %return1, i64 1)
+  %return7 = call double @"getcomp@FVI"(<3 x double> %return3, i64 1)
+  %output = fsub double %return5, %return7
+  %return8 = call double @"abs@FF"(double %output)
+  %return10 = call double @"getcomp@FVI"(<3 x double> %return1, i64 0)
+  %return12 = call double @"getcomp@FVI"(<3 x double> %return3, i64 0)
+  %output13 = fsub double %return10, %return12
+  %return14 = call double @"abs@FF"(double %output13)
+  store double %return8, double* %_bound_v
+  store double %return14, double* %_bound_h
+  %output19 = fmul double %return, %return
+  %output22 = fmul double %return8, %return8
+  %output23 = fsub double %output19, %output22
+  %return24 = call double @"sqrt@FF"(double %output23)
+  %output26 = call double @"div@FF"(double %return24, double %return14)
+  store double %output26, double* %_bound_y
+  br label %cond
+
+cond:                                             ; preds = %end40, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output48, %end40 ]
+  %a.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %a.1, %end40 ]
+  %return29 = call i64 @"npoints@II"(i64 1)
+  %return30 = call i64 @"lt@III"(i64 %i.0, i64 %return29)
+  %0 = icmp ne i64 %return30, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return32 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %i.0)
+  %return34 = call double @"getcomp@FVI"(<3 x double> %return32, i64 1)
+  %output36 = fsub double %return34, %output26
+  %return37 = call double @"abs@FF"(double %output36)
+  %return38 = fcmp olt double %return37, 1.000000e-02
+  br i1 %return38, label %true, label %end40
+
+end:                                              ; preds = %cond
+  %output51 = call double @"div@FF"(double %return14, double %a.0)
+  %output54 = call double @"div@FF"(double %return8, double %a.0)
+  %return57 = call double @"neg@FF"(double %return10)
+  %output60 = fmul double 2.000000e+00, %output54
+  %output62 = fmul double 4.000000e+00, %output54
+  %output64 = fmul double %output62, %output54
+  %return66 = call double @"exp@FF"(double %output51)
+  %output67 = fsub double 1.000000e+00, %return66
+  %output68 = fmul double 4.000000e+00, %output67
+  %return70 = call double @"neg@FF"(double %output51)
+  %return71 = call double @"exp@FF"(double %return70)
+  %output72 = fsub double 1.000000e+00, %return71
+  %output73 = fmul double %output68, %output72
+  %output74 = fsub double %output64, %output73
+  %return75 = call double @"sqrt@FF"(double %output74)
+  %output76 = fsub double %output60, %return75
+  %output79 = fmul double 2.000000e+00, %return66
+  %output80 = fsub double 2.000000e+00, %output79
+  %output81 = call double @"div@FF"(double %output76, double %output80)
+  %return82 = call double @"log@FF"(double %output81)
+  %output83 = fmul double %a.0, %return82
+  %output84 = fadd double %return57, %output83
+  %output91 = fadd double %return10, %output84
+  %output93 = call double @"div@FF"(double %output91, double %a.0)
+  %return94 = call double @"cosh@FF"(double %output93)
+  %output95 = fmul double %a.0, %return94
+  %output96 = fsub double %return5, %output95
+  store double %output84, double* %_bound_c1
+  store double %a.0, double* %_bound_a
+  store double %output96, double* %_bound_c2
+  %_bound_P101 = load <3 x double>, <3 x double>* %_bound_P
+  %return102 = call double @"getcomp@FVI"(<3 x double> %_bound_P101, i64 0)
+  %output104 = fadd double %return102, %output84
+  %output106 = call double @"div@FF"(double %output104, double %a.0)
+  %return107 = call double @"cosh@FF"(double %output106)
+  %output108 = fmul double %a.0, %return107
+  %output110 = fadd double %output108, %output96
+  %return111 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %_bound_P101, double %output110, i64 1)
+  %output113 = extractvalue { double, <3 x double> } %return111, 1
+  store <3 x double> %output113, <3 x double>* %_bound_P
+  ret void
+
+true:                                             ; preds = %body
+  %return42 = call double @"getcomp@FVI"(<3 x double> %return32, i64 0)
+  %output43 = fmul double 2.000000e+00, %return42
+  %output45 = call double @"div@FF"(double %output43, double %return14)
+  br label %end40
+
+end40:                                            ; preds = %true, %body
+  %a.1 = phi double [ %output45, %true ], [ %a.0, %body ]
+  %output48 = add i64 %i.0, 1
+  br label %cond
+}
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind
+declare double @"abs@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"sqrt@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"exp@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"log@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"cosh@FF"(double) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 1)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %v, double %h, double %y, double %c1, double %a, double %c2, <3 x double> %P) #2 {
+__llvm_entry:
+  %"<h>" = alloca double
+  %"<y>" = alloca double
+  %"<c1>" = alloca double
+  %"<a>" = alloca double
+  %"<c2>" = alloca double
+  %"<P>" = alloca <3 x double>
+  %"<v>" = alloca double
+  store double %v, double* %"<v>"
+  store double %h, double* %"<h>"
+  store double %y, double* %"<y>"
+  store double %c1, double* %"<c1>"
+  store double %a, double* %"<a>"
+  store double %c2, double* %"<c2>"
+  store <3 x double> %P, <3 x double>* %"<P>"
+  call void @"__vex_snippet_snippet@FFFFFFV"(double* %"<v>", double* %"<h>", double* %"<y>", double* %"<c1>", double* %"<a>", double* %"<c2>", <3 x double>* %"<P>")
+  %evalue = load double, double* %"<v>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @2, i64 0, i64 0), double %evalue) #4
+  %evalue1 = load double, double* %"<h>"
+  %gvalue2 = call double @"_export@FSF"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @3, i64 0, i64 0), double %evalue1) #4
+  %evalue3 = load double, double* %"<y>"
+  %gvalue4 = call double @"_export@FSF"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @4, i64 0, i64 0), double %evalue3) #4
+  %evalue5 = load double, double* %"<c1>"
+  %gvalue6 = call double @"_export@FSF"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @5, i64 0, i64 0), double %evalue5) #4
+  %evalue7 = load double, double* %"<a>"
+  %gvalue8 = call double @"_export@FSF"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @6, i64 0, i64 0), double %evalue7) #4
+  %evalue9 = load double, double* %"<c2>"
+  %gvalue10 = call double @"_export@FSF"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @7, i64 0, i64 0), double %evalue9) #4
+  %evalue11 = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue12 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %evalue11) #4
+  store double %gvalue, double* @v
+  store double %gvalue2, double* @h
+  store double %gvalue4, double* @y
+  store double %gvalue6, double* @c1
+  store double %gvalue8, double* @a
+  store double %gvalue10, double* @c2
+  store <3 x double> %gvalue12, <3 x double>* @P
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { alwaysinline }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

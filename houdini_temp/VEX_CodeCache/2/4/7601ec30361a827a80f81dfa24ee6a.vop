@@ -1,0 +1,104 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@a = external global double
+@P = external global <3 x double>
+@c1 = external global double
+@c2 = external global double
+@0 = private constant [2 x i8] c"a\00"
+@1 = private constant [2 x i8] c"P\00"
+@2 = private constant [3 x i8] c"c1\00"
+@3 = private constant [3 x i8] c"c2\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FVFF"(double* %_bound_a, <3 x double>* %_bound_P, double* %_bound_c1, double* %_bound_c2) #0 {
+__llvm_entry:
+  %_bound_a1 = load double, double* %_bound_a
+  %_bound_P2 = load <3 x double>, <3 x double>* %_bound_P
+  %return = call double @"getcomp@FVI"(<3 x double> %_bound_P2, i64 0)
+  %_bound_c13 = load double, double* %_bound_c1
+  %output = fadd double %return, %_bound_c13
+  %output5 = call double @"div@FF"(double %output, double %_bound_a1)
+  %return6 = call double @"cosh@FF"(double %output5)
+  %output7 = fmul double %_bound_a1, %return6
+  %_bound_c28 = load double, double* %_bound_c2
+  %output9 = fadd double %output7, %_bound_c28
+  %return11 = call double @"getcomp@FVI"(<3 x double> %_bound_P2, i64 1)
+  %output13 = fadd double %return11, %output9
+  %return14 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %_bound_P2, double %output13, i64 1)
+  %output16 = extractvalue { double, <3 x double> } %return14, 1
+  store <3 x double> %output16, <3 x double>* %_bound_P
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"cosh@FF"(double) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #2 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 1)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %a, <3 x double> %P, double %c1, double %c2) #3 {
+__llvm_entry:
+  %"<P>" = alloca <3 x double>
+  %0 = alloca double
+  %1 = alloca double
+  %2 = alloca double
+  store <3 x double> %P, <3 x double>* %"<P>"
+  store double %a, double* %0
+  store double %c1, double* %1
+  store double %c2, double* %2
+  call void @"__vex_snippet_snippet@FVFF"(double* %0, <3 x double>* %"<P>", double* %1, double* %2)
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), double %a) #4
+  %evalue4 = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue5 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %evalue4) #4
+  %gvalue7 = call double @"_export@FSF"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @2, i64 0, i64 0), double %c1) #4
+  %gvalue9 = call double @"_export@FSF"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @3, i64 0, i64 0), double %c2) #4
+  store double %gvalue, double* @a
+  store <3 x double> %gvalue5, <3 x double>* @P
+  store double %gvalue7, double* @c1
+  store double %gvalue9, double* @c2
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, <3 x double> zeroinitializer, double 0.000000e+00, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { alwaysinline }
+attributes #3 = { nounwind }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

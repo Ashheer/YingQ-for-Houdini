@@ -1,0 +1,71 @@
+;_name	/obj/rope/dopnet1/popgrains1/restore_from_stash/geometryvop1
+; ModuleID = 'obj_rope_dopnet1_popgrains1_restore_from_stash_geometryvop1'
+source_filename = "obj_rope_dopnet1_popgrains1_restore_from_stash_geometryvop1"
+
+@v = external global <3 x double>
+@pprevious = external global <3 x double>
+@ispbd = external global i64
+@0 = private constant [2 x i8] c"v\00"
+@1 = private constant [10 x i8] c"pprevious\00"
+@2 = private constant [6 x i8] c"ispbd\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_rope_dopnet1_popgrains1_restore_from_stash_geometryvop1_snippet1@VVVVI"(<3 x double>* %_bound_v, <3 x double>* %_bound_tempv, <3 x double>* %_bound_pprevious, <3 x double>* %_bound_oldp, i64* %_bound_ispbd) #0 {
+__llvm_entry:
+  %_bound_tempv1 = load <3 x double>, <3 x double>* %_bound_tempv
+  store <3 x double> %_bound_tempv1, <3 x double>* %_bound_v
+  %_bound_oldp2 = load <3 x double>, <3 x double>* %_bound_oldp
+  store <3 x double> %_bound_oldp2, <3 x double>* %_bound_pprevious
+  store i64 1, i64* %_bound_ispbd
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @obj_rope_dopnet1_popgrains1_restore_from_stash_geometryvop1(<3 x double> %v, <3 x double> %tempv, <3 x double> %pprevious, <3 x double> %oldp, i64 %ispbd) #1 {
+__llvm_entry:
+  %"<pprevious>" = alloca <3 x double>
+  %"<ispbd>" = alloca i64
+  %0 = alloca <3 x double>
+  %1 = alloca <3 x double>
+  %"<v>" = alloca <3 x double>
+  store <3 x double> %v, <3 x double>* %"<v>"
+  store <3 x double> %pprevious, <3 x double>* %"<pprevious>"
+  store i64 %ispbd, i64* %"<ispbd>"
+  store <3 x double> %tempv, <3 x double>* %0
+  store <3 x double> %oldp, <3 x double>* %1
+  call void @"_obj_rope_dopnet1_popgrains1_restore_from_stash_geometryvop1_snippet1@VVVVI"(<3 x double>* %"<v>", <3 x double>* %0, <3 x double>* %"<pprevious>", <3 x double>* %1, i64* %"<ispbd>")
+  %evalue = load <3 x double>, <3 x double>* %"<v>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %evalue) #2
+  %evalue3 = load <3 x double>, <3 x double>* %"<pprevious>"
+  %gvalue4 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @1, i64 0, i64 0), <3 x double> %evalue3) #2
+  %evalue5 = load i64, i64* %"<ispbd>"
+  %gvalue6 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0), i64 %evalue5) #2
+  store <3 x double> %gvalue, <3 x double>* @v
+  store <3 x double> %gvalue4, <3 x double>* @pprevious
+  store i64 %gvalue6, i64* @ispbd
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_rope_dopnet1_popgrains1_restore_from_stash_geometryvop1(<3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, <3 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

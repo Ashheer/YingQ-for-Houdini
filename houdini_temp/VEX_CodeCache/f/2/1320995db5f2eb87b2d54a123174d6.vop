@@ -1,0 +1,104 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"A\00"
+@curveu = external global double
+@P = external global <3 x double>
+@1 = private constant [7 x i8] c"curveu\00"
+@2 = private constant [2 x i8] c"P\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FV"(double* %_bound_curveu, <3 x double>* %_bound_P) #0 {
+__llvm_entry:
+  %_bound_curveu1 = load double, double* %_bound_curveu
+  %return = call double @"fit01@FFFF"(double %_bound_curveu1, double 0.000000e+00, double 1.300000e+03)
+  %return2 = call double @"chf@FS"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0))
+  %output = call double @"div@FF"(double %return, double 1.300000e+03)
+  %return5 = call double @"cosh@FF"(double %output)
+  %output6 = fmul double %return2, %return5
+  %_bound_P7 = load <3 x double>, <3 x double>* %_bound_P
+  %return8 = call double @"getcomp@FVI"(<3 x double> %_bound_P7, i64 1)
+  %output10 = fadd double %return8, %output6
+  %return11 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %_bound_P7, double %output10, i64 1)
+  %output13 = extractvalue { double, <3 x double> } %return11, 1
+  store <3 x double> %output13, <3 x double>* %_bound_P
+  %output16 = call double @"div@FF"(double 1.000000e+00, double %return2)
+  %return17 = call double @"cosh@FF"(double %output16)
+  %output18 = fmul double %return2, %return17
+  %return20 = call double @"getcomp@FVI"(<3 x double> %output13, i64 1)
+  %output22 = fsub double %return20, %output18
+  %return24 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output13, double %output22, i64 1)
+  %output26 = extractvalue { double, <3 x double> } %return24, 1
+  store <3 x double> %output26, <3 x double>* %_bound_P
+  ret void
+}
+
+; Function Attrs: nounwind
+declare double @"fit01@FFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"cosh@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #2
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 1)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %curveu, <3 x double> %P) #1 {
+__llvm_entry:
+  %"<P>" = alloca <3 x double>
+  %0 = alloca double
+  store <3 x double> %P, <3 x double>* %"<P>"
+  store double %curveu, double* %0
+  call void @"__vex_snippet_snippet@FV"(double* %0, <3 x double>* %"<P>")
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), double %curveu) #4
+  %evalue2 = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue3 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @2, i64 0, i64 0), <3 x double> %evalue2) #4
+  store double %gvalue, double* @curveu
+  store <3 x double> %gvalue3, <3 x double>* @P
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { alwaysinline }
+attributes #4 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
