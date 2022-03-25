@@ -1,0 +1,94 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [3 x i8] c"%i\00"
+@1 = private constant [0 x i64] zeroinitializer
+@tile = external global i64
+@legal = external global i64*
+@2 = private constant [5 x i8] c"tile\00"
+@3 = private constant [6 x i8] c"legal\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I[I"(i64* %_bound_tile, i64** %_bound_legal) #0 {
+__llvm_entry:
+  %return = call i64 @"npoints@II"(i64 0)
+  call void @"printf@S:I"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @0, i64 0, i64 0), i64 %return)
+  %return2 = call i64 @"neg@II"(i64 1)
+  %return3 = call i64 @"npoints@II"(i64 %return2)
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %legal.0 = phi i64* [ getelementptr inbounds ([0 x i64], [0 x i64]* @1, i64 0, i64 0), %__llvm_entry ], [ %output, %body ]
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output10, %body ]
+  %return6 = call i64 @"lt@III"(i64 %i.0, i64 %return3)
+  %0 = icmp ne i64 %return6, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %output = call i64* @"append@[II"(i64* %legal.0, i64 %i.0)
+  %output10 = add i64 %i.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  store i64 %return2, i64* %_bound_tile
+  store i64* %legal.0, i64** %_bound_legal
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #1
+
+; Function Attrs: nounwind
+declare void @"printf@S:I"(i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64* @"append@[II"(i64*, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %tile, i64* %legal) #1 {
+__llvm_entry:
+  %"<legal>" = alloca i64*
+  %"<tile>" = alloca i64
+  store i64 %tile, i64* %"<tile>"
+  store i64* %legal, i64** %"<legal>"
+  call void @"__vex_snippet_snippet@I[I"(i64* %"<tile>", i64** %"<legal>")
+  %evalue = load i64, i64* %"<tile>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0), i64 %evalue) #3
+  %evalue1 = load i64*, i64** %"<legal>"
+  %gvalue2 = call i64* @"_export@[IS[I"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0), i64* %evalue1) #3
+  store i64 %gvalue, i64* @tile
+  store i64* %gvalue2, i64** @legal
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare i64* @"_export@[IS[I"(i8*, i64*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64* getelementptr inbounds ([0 x i64], [0 x i64]* @1, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

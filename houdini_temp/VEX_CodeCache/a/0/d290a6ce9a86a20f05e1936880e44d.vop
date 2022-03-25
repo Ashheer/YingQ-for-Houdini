@@ -1,0 +1,57 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@asd = external global i64
+@numpy = external global double
+@0 = private constant [4 x i8] c"asd\00"
+@1 = private constant [6 x i8] c"numpy\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IF"(i64* %_bound_asd, double* %_bound_numpy) #0 {
+__llvm_entry:
+  %_bound_numpy1 = load double, double* %_bound_numpy
+  %cast = fptosi double %_bound_numpy1 to i64
+  store i64 %cast, i64* %_bound_asd
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %asd, double %numpy) #1 {
+__llvm_entry:
+  %0 = alloca double
+  %"<asd>" = alloca i64
+  store i64 %asd, i64* %"<asd>"
+  store double %numpy, double* %0
+  call void @"__vex_snippet_snippet@IF"(i64* %"<asd>", double* %0)
+  %evalue = load i64, i64* %"<asd>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @0, i64 0, i64 0), i64 %evalue) #2
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), double %numpy) #2
+  store i64 %gvalue, i64* @asd
+  store double %gvalue3, double* @numpy
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
