@@ -1,0 +1,316 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x i64] zeroinitializer
+@1 = private constant [6 x i8] c"legal\00"
+@2 = private constant [5 x i8] c"tile\00"
+@3 = private constant [0 x double] zeroinitializer
+@ntiles = external global i64
+@giveup = external global i64
+@seed = external global double
+@Frame = external global double
+@mostDetermindedPts = external global i64*
+@luckytile = external global i64
+@luckytileidx = external global i64
+@frequency = external global double*
+@4 = private constant [7 x i8] c"ntiles\00"
+@5 = private constant [7 x i8] c"giveup\00"
+@6 = private constant [5 x i8] c"seed\00"
+@7 = private constant [6 x i8] c"Frame\00"
+@8 = private constant [19 x i8] c"mostDetermindedPts\00"
+@9 = private constant [10 x i8] c"luckytile\00"
+@10 = private constant [13 x i8] c"luckytileidx\00"
+@11 = private constant [10 x i8] c"frequency\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IIFF[III[F"(i64* %_bound_ntiles, i64* %_bound_giveup, double* %_bound_seed, double* %_bound_Frame, i64** %_bound_mostDetermindedPts, i64* %_bound_luckytile, i64* %_bound_luckytileidx, double** %_bound_frequency) #0 {
+__llvm_entry:
+  %_bound_ntiles1 = load i64, i64* %_bound_ntiles
+  %output = add i64 %_bound_ntiles1, 1
+  %_bound_giveup2 = load i64, i64* %_bound_giveup
+  %return = call i64 @"not@II"(i64 %_bound_giveup2)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %cond
+
+end:                                              ; preds = %end126, %true141, %end6, %__llvm_entry
+  ret void
+
+cond:                                             ; preds = %end13, %true
+  %mostDetermindedCadidateCount.0 = phi i64 [ %output, %true ], [ %mostDetermindedCadidateCount.1, %end13 ]
+  %collapsed.0 = phi i64 [ 0, %true ], [ %collapsed.1, %end13 ]
+  %i.0 = phi i64 [ 0, %true ], [ %output47, %end13 ]
+  %mostDetermindedPts.0 = phi i64* [ getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), %true ], [ %mostDetermindedPts.1, %end13 ]
+  %return4 = call i64 @"npoints@II"(i64 0)
+  %return5 = call i64 @"lt@III"(i64 %i.0, i64 %return4)
+  %1 = icmp ne i64 %return5, 0
+  br i1 %1, label %body, label %end6
+
+body:                                             ; preds = %cond
+  %return8 = call i64* @"point@[IISI"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %i.0)
+  %return10 = call i64 @"len@I[I"(i64* %return8)
+  %return11 = call i64 @"eq@III"(i64 %return10, i64 1)
+  %2 = icmp ne i64 %return11, 0
+  br i1 %2, label %true12, label %false
+
+end6:                                             ; preds = %cond
+  %return49 = call i64 @"not@II"(i64 %collapsed.0)
+  %3 = icmp ne i64 %return49, 0
+  br i1 %3, label %true50, label %end
+
+true12:                                           ; preds = %body
+  %return16 = call i64 @"getcomp@I[II"(i64* %return8, i64 0)
+  %return17 = call i64 @"setpointattrib@IISII"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0), i64 %i.0, i64 %return16)
+  %return20 = call i64 @"setpointattrib@IISI[I"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %i.0, i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0))
+  br label %end13
+
+false:                                            ; preds = %body
+  %return23 = call i64 @"gt@III"(i64 %return10, i64 1)
+  %return27 = call i64 @"lt@III"(i64 %return10, i64 %mostDetermindedCadidateCount.0)
+  %return28 = call i64 @"and@III"(i64 %return23, i64 %return27)
+  %4 = icmp ne i64 %return28, 0
+  br i1 %4, label %true29, label %false30
+
+end13:                                            ; preds = %false30, %true41, %true29, %true12
+  %mostDetermindedCadidateCount.1 = phi i64 [ %mostDetermindedCadidateCount.0, %true12 ], [ %return10, %true29 ], [ %mostDetermindedCadidateCount.0, %true41 ], [ %mostDetermindedCadidateCount.0, %false30 ]
+  %collapsed.1 = phi i64 [ 1, %true12 ], [ %collapsed.0, %true29 ], [ %collapsed.0, %true41 ], [ %collapsed.0, %false30 ]
+  %mostDetermindedPts.1 = phi i64* [ %mostDetermindedPts.0, %true12 ], [ %output36, %true29 ], [ %output45, %true41 ], [ %mostDetermindedPts.0, %false30 ]
+  %output47 = add i64 %i.0, 1
+  br label %cond
+
+true29:                                           ; preds = %false
+  %output36 = call i64* @"append@[II"(i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64 %i.0)
+  br label %end13
+
+false30:                                          ; preds = %false
+  %return40 = call i64 @"eq@III"(i64 %return10, i64 %mostDetermindedCadidateCount.0)
+  %5 = icmp ne i64 %return40, 0
+  br i1 %5, label %true41, label %end13
+
+true41:                                           ; preds = %false30
+  %output45 = call i64* @"append@[II"(i64* %mostDetermindedPts.0, i64 %i.0)
+  br label %end13
+
+true50:                                           ; preds = %end6
+  %_bound_seed52 = load double, double* %_bound_seed
+  %_bound_Frame53 = load double, double* %_bound_Frame
+  %output54 = fmul double %_bound_Frame53, 1.300000e+00
+  %output55 = fadd double %_bound_seed52, %output54
+  %return56 = call double @"rand@FF"(double %output55)
+  %return58 = call i64 @"len@I[I"(i64* %mostDetermindedPts.0)
+  %cast = sitofp i64 %return58 to double
+  %output59 = fmul double %return56, %cast
+  %return60 = call i64 @"floor@IF"(double %output59)
+  %return63 = call i64 @"getcomp@I[II"(i64* %mostDetermindedPts.0, i64 %return60)
+  store i64* %mostDetermindedPts.0, i64** %_bound_mostDetermindedPts
+  store i64 %return63, i64* %_bound_luckytile
+  store i64 %return60, i64* %_bound_luckytileidx
+  %return68 = call i64* @"point@[IISI"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %return63)
+  %return71 = call i64 @"len@I[I"(i64* %return68)
+  %output72 = call double* @"resize@[FI"(double* getelementptr inbounds ([0 x double], [0 x double]* @3, i64 0, i64 0), i64 %return71)
+  br label %cond73
+
+cond73:                                           ; preds = %end93, %true50
+  %ptfrequency.0 = phi double* [ %output72, %true50 ], [ %ptfrequency.1, %end93 ]
+  %legalidx.0 = phi i64 [ 0, %true50 ], [ %output108, %end93 ]
+  %return78 = call i64 @"lt@III"(i64 %legalidx.0, i64 %return71)
+  %6 = icmp ne i64 %return78, 0
+  br i1 %6, label %body74, label %end79
+
+body74:                                           ; preds = %cond73
+  %_bound_frequency82 = load double*, double** %_bound_frequency
+  %return85 = call i64 @"getcomp@I[II"(i64* %return68, i64 %legalidx.0)
+  %return86 = call double @"getcomp@F[FI"(double* %_bound_frequency82, i64 %return85)
+  %return87 = call { double, double* } @"setcomp@F[FFI"(double* %ptfrequency.0, double %return86, i64 %legalidx.0)
+  %output89 = extractvalue { double, double* } %return87, 1
+  %return91 = call i64 @"gt@III"(i64 %legalidx.0, i64 0)
+  %7 = icmp ne i64 %return91, 0
+  br i1 %7, label %true92, label %end93
+
+end79:                                            ; preds = %cond73
+  %_bound_seed109 = load double, double* %_bound_seed
+  %output110 = fmul double %_bound_seed109, 1.110000e+01
+  %_bound_Frame111 = load double, double* %_bound_Frame
+  %output112 = fmul double %_bound_Frame111, 1.100000e-01
+  %output113 = fadd double %output110, %output112
+  %return114 = call double @"rand@FF"(double %output113)
+  %return116 = call i64 @"neg@II"(i64 1)
+  %return117 = call double @"getcomp@F[FI"(double* %ptfrequency.0, i64 %return116)
+  %output118 = fmul double %return114, %return117
+  br label %cond120
+
+true92:                                           ; preds = %body74
+  %return97 = call double @"getcomp@F[FI"(double* %output89, i64 %legalidx.0)
+  %output100 = sub i64 %legalidx.0, 1
+  %return101 = call double @"getcomp@F[FI"(double* %output89, i64 %output100)
+  %output102 = fadd double %return97, %return101
+  %return104 = call { double, double* } @"setcomp@F[FFI"(double* %output89, double %output102, i64 %legalidx.0)
+  %output106 = extractvalue { double, double* } %return104, 1
+  br label %end93
+
+end93:                                            ; preds = %true92, %body74
+  %ptfrequency.1 = phi double* [ %output106, %true92 ], [ %output89, %body74 ]
+  %output108 = add i64 %legalidx.0, 1
+  br label %cond73
+
+cond120:                                          ; preds = %end135, %end79
+  %idx.0 = phi i64 [ 0, %end79 ], [ %output138, %end135 ]
+  %return125 = call i64 @"lt@III"(i64 %idx.0, i64 %return71)
+  %8 = icmp ne i64 %return125, 0
+  br i1 %8, label %body121, label %end126
+
+body121:                                          ; preds = %cond120
+  %return130 = call double @"getcomp@F[FI"(double* %ptfrequency.0, i64 %idx.0)
+  %return132 = fcmp oge double %return130, %output118
+  br i1 %return132, label %true134, label %end135
+
+end126:                                           ; preds = %true134, %cond120
+  %lucyidx.0 = phi i64 [ %idx.0, %true134 ], [ %return116, %cond120 ]
+  %return140 = call i64 @"ge@III"(i64 %lucyidx.0, i64 0)
+  %9 = icmp ne i64 %return140, 0
+  br i1 %9, label %true141, label %end
+
+true134:                                          ; preds = %body121
+  br label %end126
+
+end135:                                           ; preds = %body121
+  %output138 = add i64 %idx.0, 1
+  br label %cond120
+
+true141:                                          ; preds = %end126
+  %return146 = call i64 @"getcomp@I[II"(i64* %return68, i64 %lucyidx.0)
+  %return147 = call i64 @"setpointattrib@IISII"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0), i64 %return63, i64 %return146)
+  %return150 = call i64 @"setpointattrib@IISI[I"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %return63, i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0))
+  br label %end
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"point@[IISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setpointattrib@IISII"(i64, i8*, i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"setpointattrib@IISI[I"(i64, i8*, i64, i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"append@[II"(i64*, i64) #2
+
+; Function Attrs: nounwind
+declare double @"rand@FF"(double) #2
+
+; Function Attrs: nounwind
+declare i64 @"floor@IF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double* @"resize@[FI"(double*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@F[FI"(double*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare { double, double* } @"setcomp@F[FFI"(double*, double, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %ntiles, i64 %giveup, double %seed, double %Frame, i64* %mostDetermindedPts, i64 %luckytile, i64 %luckytileidx, double* %frequency) #2 {
+__llvm_entry:
+  %"<mostDetermindedPts>" = alloca i64*
+  %"<luckytile>" = alloca i64
+  %"<luckytileidx>" = alloca i64
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca double
+  %3 = alloca double
+  %4 = alloca double*
+  store i64* %mostDetermindedPts, i64** %"<mostDetermindedPts>"
+  store i64 %luckytile, i64* %"<luckytile>"
+  store i64 %luckytileidx, i64* %"<luckytileidx>"
+  store i64 %ntiles, i64* %0
+  store i64 %giveup, i64* %1
+  store double %seed, double* %2
+  store double %Frame, double* %3
+  store double* %frequency, double** %4
+  call void @"__vex_snippet_snippet@IIFF[III[F"(i64* %0, i64* %1, double* %2, double* %3, i64** %"<mostDetermindedPts>", i64* %"<luckytile>", i64* %"<luckytileidx>", double** %4)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @4, i64 0, i64 0), i64 %ntiles) #3
+  %gvalue7 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @5, i64 0, i64 0), i64 %giveup) #3
+  %gvalue9 = call double @"_export@FSF"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @6, i64 0, i64 0), double %seed) #3
+  %gvalue11 = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @7, i64 0, i64 0), double %Frame) #3
+  %evalue12 = load i64*, i64** %"<mostDetermindedPts>"
+  %gvalue13 = call i64* @"_export@[IS[I"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @8, i64 0, i64 0), i64* %evalue12) #3
+  %evalue14 = load i64, i64* %"<luckytile>"
+  %gvalue15 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @9, i64 0, i64 0), i64 %evalue14) #3
+  %evalue16 = load i64, i64* %"<luckytileidx>"
+  %gvalue17 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @10, i64 0, i64 0), i64 %evalue16) #3
+  %gvalue19 = call double* @"_export@[FS[F"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @11, i64 0, i64 0), double* %frequency) #3
+  store i64 %gvalue, i64* @ntiles
+  store i64 %gvalue7, i64* @giveup
+  store double %gvalue9, double* @seed
+  store double %gvalue11, double* @Frame
+  store i64* %gvalue13, i64** @mostDetermindedPts
+  store i64 %gvalue15, i64* @luckytile
+  store i64 %gvalue17, i64* @luckytileidx
+  store double* %gvalue19, double** @frequency
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i64* @"_export@[IS[I"(i8*, i64*)
+
+declare double* @"_export@[FS[F"(i8*, double*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0, double 0.000000e+00, double 0.000000e+00, i64* getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), i64 0, i64 0, double* getelementptr inbounds ([0 x double], [0 x double]* @3, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

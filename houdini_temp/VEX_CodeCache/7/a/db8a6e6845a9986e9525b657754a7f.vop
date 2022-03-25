@@ -1,0 +1,99 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [1 x i8] zeroinitializer
+@1 = private constant [0 x i8*] zeroinitializer
+@soppath = external global i8*
+@tile = external global i64
+@ntiles = external global i64
+@soppaths = external global i8**
+@2 = private constant [8 x i8] c"soppath\00"
+@3 = private constant [5 x i8] c"tile\00"
+@4 = private constant [7 x i8] c"ntiles\00"
+@5 = private constant [9 x i8] c"soppaths\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@SII[S"(i8** %_bound_soppath, i64* %_bound_tile, i64* %_bound_ntiles, i8*** %_bound_soppaths) #0 {
+__llvm_entry:
+  %_bound_tile1 = load i64, i64* %_bound_tile
+  %return = call i64 @"ge@III"(i64 %_bound_tile1, i64 0)
+  %_bound_ntiles3 = load i64, i64* %_bound_ntiles
+  %return4 = call i64 @"lt@III"(i64 %_bound_tile1, i64 %_bound_ntiles3)
+  %return5 = call i64 @"and@III"(i64 %return, i64 %return4)
+  %0 = icmp ne i64 %return5, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_soppaths6 = load i8**, i8*** %_bound_soppaths
+  %return8 = call i8* @"getcomp@S[SI"(i8** %_bound_soppaths6, i64 %_bound_tile1)
+  br label %end
+
+end:                                              ; preds = %__llvm_entry, %true
+  %phi = phi i8* [ %return8, %true ], [ getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), %__llvm_entry ]
+  store i8* %phi, i8** %_bound_soppath
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i8* @"getcomp@S[SI"(i8**, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i8* %soppath, i64 %tile, i64 %ntiles, i8** %soppaths) #2 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  %2 = alloca i8**
+  %"<soppath>" = alloca i8*
+  store i8* %soppath, i8** %"<soppath>"
+  store i64 %tile, i64* %0
+  store i64 %ntiles, i64* %1
+  store i8** %soppaths, i8*** %2
+  call void @"__vex_snippet_snippet@SII[S"(i8** %"<soppath>", i64* %0, i64* %1, i8*** %2)
+  %evalue = load i8*, i8** %"<soppath>"
+  %gvalue = call i8* @"_export@SSS"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), i8* %evalue) #3
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @3, i64 0, i64 0), i64 %tile) #3
+  %gvalue7 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @4, i64 0, i64 0), i64 %ntiles) #3
+  %gvalue9 = call i8** @"_export@[SS[S"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @5, i64 0, i64 0), i8** %soppaths) #3
+  store i8* %gvalue, i8** @soppath
+  store i64 %gvalue5, i64* @tile
+  store i64 %gvalue7, i64* @ntiles
+  store i8** %gvalue9, i8*** @soppaths
+  ret void
+}
+
+declare i8* @"_export@SSS"(i8*, i8*)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare i8** @"_export@[SS[S"(i8*, i8**)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i8* getelementptr inbounds ([1 x i8], [1 x i8]* @0, i64 0, i64 0), i64 0, i64 0, i8** getelementptr inbounds ([0 x i8*], [0 x i8*]* @1, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

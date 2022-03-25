@@ -1,0 +1,169 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [14 x i8] c"../grid1/rows\00"
+@1 = private constant [14 x i8] c"../grid1/cols\00"
+@2 = private constant [0 x i8*] zeroinitializer
+@3 = private constant [0 x double] zeroinitializer
+@4 = private constant [8 x i8] c"soppath\00"
+@5 = private constant [10 x i8] c"frequency\00"
+@6 = private constant [5 x i8] c"seed\00"
+@rows = external global i64
+@cols = external global i64
+@ntiles = external global i64
+@soppaths = external global i8**
+@frequency = external global double*
+@seed = external global double
+@giveup = external global i64
+@7 = private constant [5 x i8] c"rows\00"
+@8 = private constant [5 x i8] c"cols\00"
+@9 = private constant [7 x i8] c"ntiles\00"
+@10 = private constant [9 x i8] c"soppaths\00"
+@11 = private constant [7 x i8] c"giveup\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@III[S[FFI"(i64* %_bound_rows, i64* %_bound_cols, i64* %_bound_ntiles, i8*** %_bound_soppaths, double** %_bound_frequency, double* %_bound_seed, i64* %_bound_giveup) #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @0, i64 0, i64 0))
+  store i64 %return, i64* %_bound_rows
+  %return1 = call i64 @"chi@IS"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @1, i64 0, i64 0))
+  store i64 %return1, i64* %_bound_cols
+  %return2 = call i64 @"neg@II"(i64 1)
+  %return3 = call i64 @"npoints@II"(i64 %return2)
+  store i64 %return3, i64* %_bound_ntiles
+  %output = call i8** @"resize@[SI"(i8** getelementptr inbounds ([0 x i8*], [0 x i8*]* @2, i64 0, i64 0), i64 %return3)
+  %output8 = call double* @"resize@[FI"(double* getelementptr inbounds ([0 x double], [0 x double]* @3, i64 0, i64 0), i64 %return3)
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %soppaths.0 = phi i8** [ %output, %__llvm_entry ], [ %output19, %body ]
+  %frequency.0 = phi double* [ %output8, %__llvm_entry ], [ %output27, %body ]
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output29, %body ]
+  %return11 = call i64 @"npoints@II"(i64 %return2)
+  %return12 = call i64 @"lt@III"(i64 %i.0, i64 %return11)
+  %0 = icmp ne i64 %return12, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return16 = call i8* @"point@SISI"(i64 %return2, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @4, i64 0, i64 0), i64 %i.0)
+  %return17 = call { i8*, i8** } @"setcomp@S[SSI"(i8** %soppaths.0, i8* %return16, i64 %i.0)
+  %output19 = extractvalue { i8*, i8** } %return17, 1
+  %return23 = call double @"point@FISI"(i64 %return2, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @5, i64 0, i64 0), i64 %i.0)
+  %return25 = call { double, double* } @"setcomp@F[FFI"(double* %frequency.0, double %return23, i64 %i.0)
+  %output27 = extractvalue { double, double* } %return25, 1
+  %output29 = add i64 %i.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  store i8** %soppaths.0, i8*** %_bound_soppaths
+  store double* %frequency.0, double** %_bound_frequency
+  %return32 = call double @"ch@FS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @6, i64 0, i64 0))
+  store double %return32, double* %_bound_seed
+  store i64 0, i64* %_bound_giveup
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"npoints@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare i8** @"resize@[SI"(i8**, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double* @"resize@[FI"(double*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare i8* @"point@SISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { i8*, i8** } @"setcomp@S[SSI"(i8**, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare double @"point@FISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { double, double* } @"setcomp@F[FFI"(double*, double, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"ch@FS"(i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %rows, i64 %cols, i64 %ntiles, i8** %soppaths, double* %frequency, double %seed, i64 %giveup) #2 {
+__llvm_entry:
+  %"<cols>" = alloca i64
+  %"<ntiles>" = alloca i64
+  %"<soppaths>" = alloca i8**
+  %"<frequency>" = alloca double*
+  %"<seed>" = alloca double
+  %"<giveup>" = alloca i64
+  %"<rows>" = alloca i64
+  store i64 %rows, i64* %"<rows>"
+  store i64 %cols, i64* %"<cols>"
+  store i64 %ntiles, i64* %"<ntiles>"
+  store i8** %soppaths, i8*** %"<soppaths>"
+  store double* %frequency, double** %"<frequency>"
+  store double %seed, double* %"<seed>"
+  store i64 %giveup, i64* %"<giveup>"
+  call void @"__vex_snippet_snippet@III[S[FFI"(i64* %"<rows>", i64* %"<cols>", i64* %"<ntiles>", i8*** %"<soppaths>", double** %"<frequency>", double* %"<seed>", i64* %"<giveup>")
+  %evalue = load i64, i64* %"<rows>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @7, i64 0, i64 0), i64 %evalue) #3
+  %evalue1 = load i64, i64* %"<cols>"
+  %gvalue2 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @8, i64 0, i64 0), i64 %evalue1) #3
+  %evalue3 = load i64, i64* %"<ntiles>"
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @9, i64 0, i64 0), i64 %evalue3) #3
+  %evalue5 = load i8**, i8*** %"<soppaths>"
+  %gvalue6 = call i8** @"_export@[SS[S"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @10, i64 0, i64 0), i8** %evalue5) #3
+  %evalue7 = load double*, double** %"<frequency>"
+  %gvalue8 = call double* @"_export@[FS[F"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @5, i64 0, i64 0), double* %evalue7) #3
+  %evalue9 = load double, double* %"<seed>"
+  %gvalue10 = call double @"_export@FSF"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @6, i64 0, i64 0), double %evalue9) #3
+  %evalue11 = load i64, i64* %"<giveup>"
+  %gvalue12 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @11, i64 0, i64 0), i64 %evalue11) #3
+  store i64 %gvalue, i64* @rows
+  store i64 %gvalue2, i64* @cols
+  store i64 %gvalue4, i64* @ntiles
+  store i8** %gvalue6, i8*** @soppaths
+  store double* %gvalue8, double** @frequency
+  store double %gvalue10, double* @seed
+  store i64 %gvalue12, i64* @giveup
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare i8** @"_export@[SS[S"(i8*, i8**)
+
+declare double* @"_export@[FS[F"(i8*, double*)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0, i64 0, i8** getelementptr inbounds ([0 x i8*], [0 x i8*]* @2, i64 0, i64 0), double* getelementptr inbounds ([0 x double], [0 x double]* @3, i64 0, i64 0), double 0.000000e+00, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

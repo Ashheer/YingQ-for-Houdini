@@ -1,0 +1,95 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"dimension\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call <3 x double> @"chv@VS"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0))
+  br label %cond
+
+cond:                                             ; preds = %end14, %__llvm_entry
+  %y.0 = phi i64 [ 0, %__llvm_entry ], [ %output38, %end14 ]
+  %return3 = call double @"getcomp@FVI"(<3 x double> %return, i64 1)
+  %cast = sitofp i64 %y.0 to double
+  %return4 = fcmp olt double %cast, %return3
+  br i1 %return4, label %body, label %end
+
+body:                                             ; preds = %cond
+  br label %cond6
+
+end:                                              ; preds = %cond
+  ret void
+
+cond6:                                            ; preds = %end24, %body
+  %z.0 = phi i64 [ 0, %body ], [ %output36, %end24 ]
+  %return10 = call double @"getcomp@FVI"(<3 x double> %return, i64 2)
+  %cast11 = sitofp i64 %z.0 to double
+  %return12 = fcmp olt double %cast11, %return10
+  br i1 %return12, label %body7, label %end14
+
+body7:                                            ; preds = %cond6
+  br label %cond16
+
+end14:                                            ; preds = %cond6
+  %output38 = add i64 %y.0, 1
+  br label %cond
+
+cond16:                                           ; preds = %body17, %body7
+  %x.0 = phi i64 [ 0, %body7 ], [ %output, %body17 ]
+  %return20 = call double @"getcomp@FVI"(<3 x double> %return, i64 0)
+  %cast21 = sitofp i64 %x.0 to double
+  %return22 = fcmp olt double %cast21, %return20
+  br i1 %return22, label %body17, label %end24
+
+body17:                                           ; preds = %cond16
+  %return32 = call <3 x double> @"set@VFFF"(double %cast21, double %cast, double %cast11)
+  %return33 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %return32)
+  %output = add i64 %x.0, 1
+  br label %cond16
+
+end24:                                            ; preds = %cond16
+  %output36 = add i64 %z.0, 1
+  br label %cond6
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"chv@VS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+declare i64 @"addpoint@IIV"(i64, <3 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #2 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
