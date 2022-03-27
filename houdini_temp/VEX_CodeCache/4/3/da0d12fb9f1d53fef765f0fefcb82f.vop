@@ -1,0 +1,116 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@N = external global <3 x double>
+@group_up = external global i64
+@group_down = external global i64
+@group_lift = external global i64
+@group_right = external global i64
+@0 = private constant [2 x i8] c"N\00"
+@1 = private constant [9 x i8] c"group_up\00"
+@2 = private constant [11 x i8] c"group_down\00"
+@3 = private constant [11 x i8] c"group_lift\00"
+@4 = private constant [12 x i8] c"group_right\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VIIII"(<3 x double>* %_bound_N, i64* %_bound_group_up, i64* %_bound_group_down, i64* %_bound_group_lift, i64* %_bound_group_right) #0 {
+__llvm_entry:
+  %_bound_N1 = load <3 x double>, <3 x double>* %_bound_N
+  %return = call <3 x double> @"abs@VV"(<3 x double> %_bound_N1)
+  %return3 = call double @"getcomp@FVI"(<3 x double> %return, i64 1)
+  %return5 = call double @"getcomp@FVI"(<3 x double> %return, i64 2)
+  %return6 = fcmp ogt double %return3, %return5
+  br i1 %return6, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %return9 = call double @"getcomp@FVI"(<3 x double> %_bound_N1, i64 1)
+  %return10 = fcmp ogt double %return9, 0.000000e+00
+  br i1 %return10, label %true12, label %false13
+
+false:                                            ; preds = %__llvm_entry
+  %return16 = call double @"getcomp@FVI"(<3 x double> %_bound_N1, i64 2)
+  %return17 = fcmp ogt double %return16, 0.000000e+00
+  br i1 %return17, label %true19, label %false20
+
+end:                                              ; preds = %true19, %false20, %true12, %false13
+  ret void
+
+true12:                                           ; preds = %true
+  store i64 1, i64* %_bound_group_up
+  br label %end
+
+false13:                                          ; preds = %true
+  store i64 1, i64* %_bound_group_down
+  br label %end
+
+true19:                                           ; preds = %false
+  store i64 1, i64* %_bound_group_lift
+  br label %end
+
+false20:                                          ; preds = %false
+  store i64 1, i64* %_bound_group_right
+  br label %end
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"abs@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %N, i64 %group_up, i64 %group_down, i64 %group_lift, i64 %group_right) #2 {
+__llvm_entry:
+  %"<group_up>" = alloca i64
+  %"<group_down>" = alloca i64
+  %"<group_lift>" = alloca i64
+  %"<group_right>" = alloca i64
+  %0 = alloca <3 x double>
+  store i64 %group_up, i64* %"<group_up>"
+  store i64 %group_down, i64* %"<group_down>"
+  store i64 %group_lift, i64* %"<group_lift>"
+  store i64 %group_right, i64* %"<group_right>"
+  store <3 x double> %N, <3 x double>* %0
+  call void @"__vex_snippet_snippet@VIIII"(<3 x double>* %0, i64* %"<group_up>", i64* %"<group_down>", i64* %"<group_lift>", i64* %"<group_right>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %N) #3
+  %evalue2 = load i64, i64* %"<group_up>"
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([9 x i8], [9 x i8]* @1, i64 0, i64 0), i64 %evalue2) #3
+  %evalue4 = load i64, i64* %"<group_down>"
+  %gvalue5 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @2, i64 0, i64 0), i64 %evalue4) #3
+  %evalue6 = load i64, i64* %"<group_lift>"
+  %gvalue7 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([11 x i8], [11 x i8]* @3, i64 0, i64 0), i64 %evalue6) #3
+  %evalue8 = load i64, i64* %"<group_right>"
+  %gvalue9 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @4, i64 0, i64 0), i64 %evalue8) #3
+  store <3 x double> %gvalue, <3 x double>* @N
+  store i64 %gvalue3, i64* @group_up
+  store i64 %gvalue5, i64* @group_down
+  store i64 %gvalue7, i64* @group_lift
+  store i64 %gvalue9, i64* @group_right
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, i64 0, i64 0, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

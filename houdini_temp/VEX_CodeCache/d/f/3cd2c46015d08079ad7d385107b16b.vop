@@ -1,0 +1,47 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@copynum = external global i64
+@0 = private constant [8 x i8] c"copynum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I"(i64* %_bound_copynum) #0 {
+__llvm_entry:
+  store i64 1, i64* %_bound_copynum
+  ret void
+}
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %copynum) #1 {
+__llvm_entry:
+  %"<copynum>" = alloca i64
+  store i64 %copynum, i64* %"<copynum>"
+  call void @"__vex_snippet_snippet@I"(i64* %"<copynum>")
+  %evalue = load i64, i64* %"<copynum>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @0, i64 0, i64 0), i64 %evalue) #2
+  store i64 %gvalue, i64* @copynum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

@@ -1,0 +1,109 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x double] zeroinitializer
+@1 = private constant [9 x i8] c"cut_area\00"
+@cut_areas = external global double*
+@2 = private constant [10 x i8] c"cut_areas\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@[F"(double** %_bound_cut_areas) #0 {
+__llvm_entry:
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output8, %body ]
+  %cut_areas.0 = phi double* [ getelementptr inbounds ([0 x double], [0 x double]* @0, i64 0, i64 0), %__llvm_entry ], [ %output, %body ]
+  %return = call i64 @"lt@III"(i64 %i.0, i64 6)
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return4 = call double @"prim@FISI"(i64 0, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @1, i64 0, i64 0), i64 %i.0)
+  %return5 = call { double, double* } @"setcomp@F[FFI"(double* %cut_areas.0, double %return4, i64 %i.0)
+  %output = extractvalue { double, double* } %return5, 1
+  %output8 = add i64 %i.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  br label %cond10
+
+cond10:                                           ; preds = %body11, %end
+  %i9.0 = phi i64 [ 0, %end ], [ %output30, %body11 ]
+  %cut_areas.1 = phi double* [ %cut_areas.0, %end ], [ %output28, %body11 ]
+  %return14 = call i64 @"len@I[F"(double* %cut_areas.1)
+  %return15 = call i64 @"lt@III"(i64 %i9.0, i64 %return14)
+  %1 = icmp ne i64 %return15, 0
+  br i1 %1, label %body11, label %end16
+
+body11:                                           ; preds = %cond10
+  %return21 = call double @"getcomp@F[FI"(double* %cut_areas.1, i64 %i9.0)
+  %output22 = fmul double %return21, 1.000000e+02
+  %return23 = call double @"rint@FF"(double %output22)
+  %output24 = call double @"div@FF"(double %return23, double 1.000000e+02)
+  %return26 = call { double, double* } @"setcomp@F[FFI"(double* %cut_areas.1, double %output24, i64 %i9.0)
+  %output28 = extractvalue { double, double* } %return26, 1
+  %output30 = add i64 %i9.0, 1
+  br label %cond10
+
+end16:                                            ; preds = %cond10
+  store double* %cut_areas.1, double** %_bound_cut_areas
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+declare double @"prim@FISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare { double, double* } @"setcomp@F[FFI"(double*, double, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[F"(double*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@F[FI"(double*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"rint@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double* %cut_areas) #2 {
+__llvm_entry:
+  %"<cut_areas>" = alloca double*
+  store double* %cut_areas, double** %"<cut_areas>"
+  call void @"__vex_snippet_snippet@[F"(double** %"<cut_areas>")
+  %evalue = load double*, double** %"<cut_areas>"
+  %gvalue = call double* @"_export@[FS[F"(i8* getelementptr inbounds ([10 x i8], [10 x i8]* @2, i64 0, i64 0), double* %evalue) #3
+  store double* %gvalue, double** @cut_areas
+  ret void
+}
+
+declare double* @"_export@[FS[F"(i8*, double*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double* getelementptr inbounds ([0 x double], [0 x double]* @0, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
