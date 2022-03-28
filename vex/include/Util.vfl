@@ -115,3 +115,6 @@ vector4 orientForCopy(
     return qmultiply(Qorient,Qrotate); // 先从010轴转rotation角度 再计算从010到normal! 相当于第二轮就是原来本来就要转的, 第一轮是额外加上的 所以是可以直接算影响finnal direction!
 
 }
+
+
+
