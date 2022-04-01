@@ -1,0 +1,72 @@
+;_name	/obj/EdgeFracture1/geo1/edgefracture4/groupexpression1/attribvop1
+; ModuleID = 'obj_EdgeFracture1_geo1_edgefracture4_groupexpression1_attribvop1'
+source_filename = "obj_EdgeFracture1_geo1_edgefracture4_groupexpression1_attribvop1"
+
+@group_origpts = external global i64
+@group_newpts = external global i64
+@0 = private constant [14 x i8] c"group_origpts\00"
+@1 = private constant [13 x i8] c"group_newpts\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"_obj_EdgeFracture1_geo1_edgefracture4_groupexpression1_attribvop1_snippet1@IIII"(i64* %_bound_group_origpts, i64* %_bound___origpt, i64* %_bound_ptnum, i64* %_bound_group_newpts) #0 {
+__llvm_entry:
+  %_bound___origpt1 = load i64, i64* %_bound___origpt
+  %_bound_ptnum2 = load i64, i64* %_bound_ptnum
+  %return = call i64 @"eq@III"(i64 %_bound___origpt1, i64 %_bound_ptnum2)
+  store i64 %return, i64* %_bound_group_origpts
+  %_bound___origpt3 = load i64, i64* %_bound___origpt
+  %_bound_ptnum4 = load i64, i64* %_bound_ptnum
+  %return5 = call i64 @"ne@III"(i64 %_bound___origpt3, i64 %_bound_ptnum4)
+  store i64 %return5, i64* %_bound_group_newpts
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ne@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @obj_EdgeFracture1_geo1_edgefracture4_groupexpression1_attribvop1(i64 %group_origpts, i64 %__origpt, i64 %ptnum, i64 %group_newpts) #2 {
+__llvm_entry:
+  %"<group_newpts>" = alloca i64
+  %0 = alloca i64
+  %1 = alloca i64
+  %"<group_origpts>" = alloca i64
+  store i64 %group_origpts, i64* %"<group_origpts>"
+  store i64 %group_newpts, i64* %"<group_newpts>"
+  store i64 %__origpt, i64* %0
+  store i64 %ptnum, i64* %1
+  call void @"_obj_EdgeFracture1_geo1_edgefracture4_groupexpression1_attribvop1_snippet1@IIII"(i64* %"<group_origpts>", i64* %0, i64* %1, i64* %"<group_newpts>")
+  %evalue = load i64, i64* %"<group_origpts>"
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @0, i64 0, i64 0), i64 %evalue) #3
+  %evalue3 = load i64, i64* %"<group_newpts>"
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @1, i64 0, i64 0), i64 %evalue3) #3
+  store i64 %gvalue, i64* @group_origpts
+  store i64 %gvalue4, i64* @group_newpts
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @obj_EdgeFracture1_geo1_edgefracture4_groupexpression1_attribvop1(i64 0, i64 0, i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

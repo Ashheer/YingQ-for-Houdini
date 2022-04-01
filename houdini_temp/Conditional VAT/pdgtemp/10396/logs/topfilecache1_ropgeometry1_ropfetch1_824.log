@@ -1,0 +1,16 @@
+[10:38:54.497] Running Houdini 19.0.531 with PID 67460
+[10:38:54.498] Loading .hip file C:/Users/YingQ/Desktop/VAT/VAT DEMO/conditional_vertex_animation_textures/Conditional VAT.hip.
+Unknown command: viewmaskoverlay
+Unknown command: viewmaskoverlay
+Unknown command: viewmaskoverlay
+Unknown command: viewmaskoverlay
+[10:39:20.439] ROP node path '/obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1/ropnet1/geometry1'
+[10:39:20.440] ROP type name: 'geometry'
+[10:39:20.440] ROP source path: 'Internal'
+[10:39:20.441] Checking for custom output parms '['sopoutput']' on node '/obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1/ropnet1/geometry1'
+[10:39:20.560] Setting callback preframe on /obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1
+[10:39:20.561] Setting callback postwrite on /obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1
+[10:39:20.562] Cooking node using 'hou.Rop.render'
+[10:39:21.301] Setting batch sub index to 0
+[10:39:21.654] Checking for custom output parms '['sopoutput']' on node '/obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1/ropnet1/geometry1'
+[10:39:21.654] PDG_START: 824;0

@@ -1,0 +1,758 @@
+[10:38:53.172] Running Houdini 19.0.531 with PID 57224
+[10:38:53.173] Loading .hip file C:/Users/YingQ/Desktop/VAT/VAT DEMO/conditional_vertex_animation_textures/Conditional VAT.hip.
+Unknown command: viewmaskoverlay
+Unknown command: viewmaskoverlay
+Unknown command: viewmaskoverlay
+Unknown command: viewmaskoverlay
+[10:39:15.229] ROP node path '/obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1/ropnet1/geometry1'
+[10:39:15.230] ROP type name: 'geometry'
+[10:39:15.230] ROP source path: 'Internal'
+[10:39:15.231] Checking for custom output parms '['sopoutput']' on node '/obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1/ropnet1/geometry1'
+[10:39:15.232] Setting callback preframe on /obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1
+[10:39:15.233] Setting callback postwrite on /obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1
+[10:39:15.233] Cooking node using 'hou.Rop.render'
+[10:39:15.958] Setting batch sub index to 0
+[10:39:16.238] Checking for custom output parms '['sopoutput']' on node '/obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1/ropnet1/geometry1'
+[10:39:16.239] PDG_START: 780;0
+57224: Fatal error: Segmentation fault
+-- TRACEBACK BEGIN --
+Traceback from hython 19.0.531 (Compiled on windows-x86_64-cl19.29):
+CURRENT THREAD 64288
++0x25436f73 C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGEO.dll
++0x254dcaa0 C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGEO.dll
++0x25659903 C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGEO.dll
++0x256690b3 C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGEO.dll
++0x239f1cfe [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::insertInTri] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239f51d0 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::insertPoint] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239f5b61 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::insertPoints] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a03551 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a03eb3 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23cf42c9 [GU_MeshIntersect::~GU_MeshIntersect] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d050f4 [GU_MeshIntersect::dumpCrossings] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2a63b9cb [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a63ab73 [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a638b3e [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x23ce0bea [GUmatchAttributesAndMerge] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d10c7c [GU_MeshIntersect::runDelaunayInstances] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d1006f [GU_MeshIntersect::resolveIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23764a95 [GU_Boolean::resolveMeshIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2375cd76 [GU_Boolean::generateCells] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x1b07a4e7 [SOP_BooleanParms::opWindingOp] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b062b52 [SOP_BoneLink::updateParmsFlags] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b151547 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14fb9c [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
+OTHER THREAD 67856
++0x7ffc41543874 [NtRemoveIoCompletion] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc3dfb10ab C:\WINDOWS\SYSTEM32\MSWSOCK.dll
++0x7ffc401c54e0 [BaseThreadInitThunk] C:\WINDOWS\System32\KERNEL32.DLL
++0x7ffc414a485b [RtlUserThreadStart] C:\WINDOWS\SYSTEM32\ntdll.dll
+OTHER THREAD 63936
++0x7ffc41543dd4 [NtDelayExecution] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc414fb5c3 [RtlDelayExecution] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc3eecb3a1 [SleepEx] C:\WINDOWS\System32\KERNELBASE.dll
++0x12243038 [UT_ThreadSafeCache<UT_Lock>::unsafe_end] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libUT.dll
++0x12242f33 [UT_ThreadSafeCache<UT_Lock>::unsafe_end] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libUT.dll
++0x7ffc3e9b6c0c [recalloc] C:\WINDOWS\System32\ucrtbase.dll
++0x7ffc401c54e0 [BaseThreadInitThunk] C:\WINDOWS\System32\KERNEL32.DLL
++0x7ffc414a485b [RtlUserThreadStart] C:\WINDOWS\SYSTEM32\ntdll.dll
+OTHER THREAD 26272
++0x7ffc41543dd4 [NtDelayExecution] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc414fb5c3 [RtlDelayExecution] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc3eecb3a1 [SleepEx] C:\WINDOWS\System32\KERNELBASE.dll
++0x7ffc4021e9bc [WerpLaunchAeDebug] C:\WINDOWS\System32\KERNEL32.DLL
++0x7ffc3efc2b83 [UnhandledExceptionFilter] C:\WINDOWS\System32\KERNELBASE.dll
++0x7ffc4154a76c [memset] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc415337d6 [_C_specific_handler] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc415486ef [_chkstk] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc414d5aea [RtlRestoreContext] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc415476fe [KiUserExceptionDispatcher] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x11e800fc [UT_FpExpansion::fpxreal::copy] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libUT.dll
++0x2398f9dc [GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap>::segmentIntersection] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239f6621 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::intersectConstraints] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a01d13 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::trackSegment] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239dc0f6 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::enforceEdge] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239db80e [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::enforceConstraints] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a037cf [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a03eb3 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23cf42c9 [GU_MeshIntersect::~GU_MeshIntersect] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d050f4 [GU_MeshIntersect::dumpCrossings] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2a63b9cb [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a63ab73 [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a638b3e [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x23ce0bea [GUmatchAttributesAndMerge] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d10c7c [GU_MeshIntersect::runDelaunayInstances] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d1006f [GU_MeshIntersect::resolveIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23764a95 [GU_Boolean::resolveMeshIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2375cd76 [GU_Boolean::generateCells] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x1b07a4e7 [SOP_BooleanParms::opWindingOp] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b062b52 [SOP_BoneLink::updateParmsFlags] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b151547 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14fb9c [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
+OTHER THREAD 54244
++0x2aa6e4a0 C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbbmalloc.dll
++0x2aa6e179 C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbbmalloc.dll
++0x2aa6f292 [_TBB_malloc_safer_realloc] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbbmalloc.dll
++0x001f1677 C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbbmalloc_proxy.dll
++0x23459edb [GU_PackedImpl::setBoxCache] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239a7683 [GU_Delaunay::WindingTrackerT<UT_Vector2T<int> >::resetVisitedTris] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d0dd39 [GU_MeshIntersect::orientToTriFace] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d0a49d [GU_MeshIntersect::markHardSxTs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239fc194 [GU_Delaunay::TriangulatorBase::markEnforced] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239dc043 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::enforceEdge] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239db80e [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::enforceConstraints] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a037cf [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a03eb3 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23cf42c9 [GU_MeshIntersect::~GU_MeshIntersect] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d050f4 [GU_MeshIntersect::dumpCrossings] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2a63b9cb [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a63ab73 [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a638b3e [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x23ce026a [GUmatchAttributesAndMerge] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d01028 [GU_MeshIntersect::constructMpPositions] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d10023 [GU_MeshIntersect::resolveIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23764a95 [GU_Boolean::resolveMeshIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2375cd76 [GU_Boolean::generateCells] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x1b07a4e7 [SOP_BooleanParms::opWindingOp] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b062b52 [SOP_BoneLink::updateParmsFlags] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b151547 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14fb9c [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
+OTHER THREAD 6092
++0x23cf3d75 [GU_MeshIntersect::~GU_MeshIntersect] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d050f4 [GU_MeshIntersect::dumpCrossings] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2a63b9cb [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a63ab73 [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a638b3e [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x23ce026a [GUmatchAttributesAndMerge] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d01028 [GU_MeshIntersect::constructMpPositions] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d10023 [GU_MeshIntersect::resolveIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23764a95 [GU_Boolean::resolveMeshIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2375cd76 [GU_Boolean::generateCells] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x1b07a4e7 [SOP_BooleanParms::opWindingOp] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b062b52 [SOP_BoneLink::updateParmsFlags] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b151547 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14fb9c [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b152f03 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b149e11 [SOP_Compiled::~SOP_Compiled] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1223dac3 [UT_Thread::yield] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libUT.dll
++0x1223dff4 [UT_JobInfo::divideWork] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libUT.dll
++0x2a63b9cb [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
+OTHER THREAD 55744
++0x7ffc41543dd4 [NtDelayExecution] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc414fb5c3 [RtlDelayExecution] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc3eecb3a1 [SleepEx] C:\WINDOWS\System32\KERNELBASE.dll
++0x7ffc4021e9bc [WerpLaunchAeDebug] C:\WINDOWS\System32\KERNEL32.DLL
++0x7ffc3efc2b83 [UnhandledExceptionFilter] C:\WINDOWS\System32\KERNELBASE.dll
++0x7ffc4154a76c [memset] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc415337d6 [_C_specific_handler] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc415486ef [_chkstk] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc414d5aea [RtlRestoreContext] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x7ffc415476fe [KiUserExceptionDispatcher] C:\WINDOWS\SYSTEM32\ntdll.dll
++0x25436f73 C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGEO.dll
++0x254dcaa0 C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGEO.dll
++0x2565971a C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGEO.dll
++0x2566917a C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGEO.dll
++0x239f1cfe [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::insertInTri] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239f51d0 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::insertPoint] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239f5b61 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::insertPoints] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a03551 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a03eb3 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23cf42c9 [GU_MeshIntersect::~GU_MeshIntersect] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d050f4 [GU_MeshIntersect::dumpCrossings] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2a63b9cb [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a63ab73 [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a638b3e [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x23ce026a [GUmatchAttributesAndMerge] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d01028 [GU_MeshIntersect::constructMpPositions] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d10023 [GU_MeshIntersect::resolveIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23764a95 [GU_Boolean::resolveMeshIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2375cd76 [GU_Boolean::generateCells] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x1b07a4e7 [SOP_BooleanParms::opWindingOp] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b062b52 [SOP_BoneLink::updateParmsFlags] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b151547 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14fb9c [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
+OTHER THREAD 65532
++0x2397aa59 [GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap>::append] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23990b15 [GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap>::setPos4M] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2397ea2a [GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap>::boundingTriangle] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239c01a2 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::createBoundingTriangle] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239fde10 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::setupBatch] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a034d8 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a03eb3 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23cf42c9 [GU_MeshIntersect::~GU_MeshIntersect] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d050f4 [GU_MeshIntersect::dumpCrossings] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2a63b9cb [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a63ab73 [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a635284 [tbb::task_scheduler_init::default_num_threads] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a63450e [tbb::task_scheduler_init::default_num_threads] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a62f4dc [tbb::internal::thread_sleep_v3] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a62f45b [tbb::internal::thread_sleep_v3] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x7ffc3e9b6c0c [recalloc] C:\WINDOWS\System32\ucrtbase.dll
++0x7ffc401c54e0 [BaseThreadInitThunk] C:\WINDOWS\System32\KERNEL32.DLL
++0x7ffc414a485b [RtlUserThreadStart] C:\WINDOWS\SYSTEM32\ntdll.dll
+OTHER THREAD 59448
++0x25659763 C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGEO.dll
++0x256690b3 C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGEO.dll
++0x239f1cfe [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::insertInTri] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239f51d0 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::insertPoint] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x239f5b61 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::insertPoints] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a03551 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23a03eb3 [GU_Delaunay::TriangulatorT<GU_Delaunay::MpKernelT<GU_Delaunay::MpLinkMpMap> >::triangulate] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23cf42c9 [GU_MeshIntersect::~GU_MeshIntersect] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d050f4 [GU_MeshIntersect::dumpCrossings] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2a63b9cb [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a63ab73 [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x2a638b3e [tbb::interface7::internal::task_arena_base::internal_max_concurrency] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\tbb.dll
++0x23ce0bea [GUmatchAttributesAndMerge] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d10c7c [GU_MeshIntersect::runDelaunayInstances] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23d1006f [GU_MeshIntersect::resolveIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x23764a95 [GU_Boolean::resolveMeshIntersections] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x2375cd76 [GU_Boolean::generateCells] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libGU.dll
++0x1b07a4e7 [SOP_BooleanParms::opWindingOp] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b062b52 [SOP_BoneLink::updateParmsFlags] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b151547 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1ae78b7e [SOP_NodeVerb::cookInputs] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15073d [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b153264 [SOP_Compiled::execute] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b14f8f1 [SOP_Compiled::compileMulti] C:\PROGRA~1\SIDEEF~1\Houdini 19.0.531\bin\libSOP.dll
++0x1b15267c [SOP_Compiled::execute] C:\PR

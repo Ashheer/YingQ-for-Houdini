@@ -1,0 +1,66 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@EdgeColumnWidth = external global double
+@ptnum = external global i64
+@0 = private constant [16 x i8] c"EdgeColumnWidth\00"
+@1 = private constant [6 x i8] c"ptnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FI"(double* %_bound_EdgeColumnWidth, i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %_bound_EdgeColumnWidth1 = load double, double* %_bound_EdgeColumnWidth
+  %return = fcmp ogt double %_bound_EdgeColumnWidth1, 0.000000e+00
+  br i1 %return, label %end, label %false
+
+false:                                            ; preds = %__llvm_entry
+  %_bound_ptnum3 = load i64, i64* %_bound_ptnum
+  %return4 = call i64 @"removepoint@III"(i64 0, i64 %_bound_ptnum3)
+  br label %end
+
+end:                                              ; preds = %__llvm_entry, %false
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"removepoint@III"(i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %EdgeColumnWidth, i64 %ptnum) #1 {
+__llvm_entry:
+  %0 = alloca double
+  %1 = alloca i64
+  store double %EdgeColumnWidth, double* %0
+  store i64 %ptnum, i64* %1
+  call void @"__vex_snippet_snippet@FI"(double* %0, i64* %1)
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @0, i64 0, i64 0), double %EdgeColumnWidth) #2
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i64 %ptnum) #2
+  store double %gvalue, double* @EdgeColumnWidth
+  store i64 %gvalue4, i64* @ptnum
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

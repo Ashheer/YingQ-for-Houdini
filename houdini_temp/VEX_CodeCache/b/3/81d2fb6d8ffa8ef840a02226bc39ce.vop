@@ -1,0 +1,369 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [7 x i8] c"orient\00"
+@1 = private constant [2 x i8] c"w\00"
+@2 = private constant [12 x i8] c"__frame_ref\00"
+@3 = private constant [15 x i8] c"edge_case_seed\00"
+@4 = private constant [16 x i8] c"rot_offset_size\00"
+@5 = private constant [10 x i8] c"transform\00"
+@6 = private constant [4 x i8] c"set\00"
+@ptnum = external global i64
+@w = external global <3 x double>
+@__frame_ref = external global double
+@TimeInc = external global double
+@orient = external global <4 x double>
+@__edge_case_cycle_count = external global i64
+@Frame = external global double
+@__no_rotation = external global i64
+@__rest_orient = external global <4 x double>
+@7 = private constant [6 x i8] c"ptnum\00"
+@8 = private constant [8 x i8] c"TimeInc\00"
+@9 = private constant [24 x i8] c"__edge_case_cycle_count\00"
+@10 = private constant [6 x i8] c"Frame\00"
+@11 = private constant [14 x i8] c"__no_rotation\00"
+@12 = private constant [14 x i8] c"__rest_orient\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@IVFFPIFIP"(i64* %_bound_ptnum, <3 x double>* %_bound_w, double* %_bound___frame_ref, double* %_bound_TimeInc, <4 x double>* %_bound_orient, i64* %_bound___edge_case_cycle_count, double* %_bound_Frame, i64* %_bound___no_rotation, <4 x double>* %_bound___rest_orient) #0 {
+__llvm_entry:
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  %return = call <4 x double> @"point@PISI"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), i64 %_bound_ptnum1)
+  %_bound_w2 = load <3 x double>, <3 x double>* %_bound_w
+  %_bound_ptnum3 = load i64, i64* %_bound_ptnum
+  %return4 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %_bound_ptnum3)
+  %return6 = call <3 x double> @"normalize@VV"(<3 x double> %_bound_w2)
+  %return8 = call <3 x double> @"normalize@VV"(<3 x double> %return4)
+  %output = call <3 x double> @"add@VV"(<3 x double> %return6, <3 x double> %return8)
+  %return9 = call <3 x double> @"normalize@VV"(<3 x double> %output)
+  %return11 = call double @"length@FV"(<3 x double> %return9)
+  %return13 = fcmp olt double %return11, 1.000000e-03
+  br i1 %return13, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  %output17 = call <3 x double> @"add@VV"(<3 x double> %_bound_w2, <3 x double> %return4)
+  %cast = call <3 x double> @"set@VF"(double 5.000000e-01)
+  %output18 = call <3 x double> @"mul@VV"(<3 x double> %cast, <3 x double> %output17)
+  %return20 = call double @"length@FV"(<3 x double> %output18)
+  %return22 = fcmp olt double %return20, 1.000000e-03
+  br i1 %return22, label %true24, label %false25
+
+false:                                            ; preds = %__llvm_entry
+  %cast29 = call <3 x double> @"set@VF"(double 5.000000e-01)
+  %output30 = call <3 x double> @"mul@VV"(<3 x double> %return9, <3 x double> %cast29)
+  %return32 = call double @"length@FV"(<3 x double> %_bound_w2)
+  %return34 = call double @"length@FV"(<3 x double> %return4)
+  %output35 = fadd double %return32, %return34
+  %cast36 = call <3 x double> @"set@VF"(double %output35)
+  %output37 = call <3 x double> @"mul@VV"(<3 x double> %output30, <3 x double> %cast36)
+  br label %end
+
+end:                                              ; preds = %true24, %false25, %false
+  %w.0 = phi <3 x double> [ %_bound_w2, %true24 ], [ %output18, %false25 ], [ %output37, %false ]
+  %no_rotation.0 = phi i64 [ 1, %true24 ], [ 0, %false25 ], [ 0, %false ]
+  %return39 = call double @"length@FV"(<3 x double> %w.0)
+  %return41 = fcmp olt double %return39, 1.000000e-03
+  br i1 %return41, label %true43, label %end44
+
+true24:                                           ; preds = %true
+  br label %end
+
+false25:                                          ; preds = %true
+  br label %end
+
+true43:                                           ; preds = %end
+  br label %end44
+
+end44:                                            ; preds = %true43, %end
+  %no_rotation.1 = phi i64 [ 1, %true43 ], [ %no_rotation.0, %end ]
+  %_bound___frame_ref45 = load double, double* %_bound___frame_ref
+  %_bound_ptnum46 = load i64, i64* %_bound_ptnum
+  %return47 = call double @"point@FISI"(i64 1, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @2, i64 0, i64 0), i64 %_bound_ptnum46)
+  %return48 = fcmp oeq double %_bound___frame_ref45, %return47
+  br i1 %return48, label %true50, label %end51
+
+true50:                                           ; preds = %end44
+  br label %end51
+
+end51:                                            ; preds = %true50, %end44
+  %no_rotation.2 = phi i64 [ 1, %true50 ], [ %no_rotation.1, %end44 ]
+  %return53 = call i64 @"not@II"(i64 %no_rotation.2)
+  %0 = icmp ne i64 %return53, 0
+  br i1 %0, label %true54, label %end55
+
+true54:                                           ; preds = %end51
+  %return57 = call double @"length@FV"(<3 x double> %w.0)
+  %_bound_TimeInc58 = load double, double* %_bound_TimeInc
+  %output59 = fmul double %return57, %_bound_TimeInc58
+  %_bound_orient60 = load <4 x double>, <4 x double>* %_bound_orient
+  %return62 = call double @"dot@FPP"(<4 x double> %_bound_orient60, <4 x double> %return)
+  %return63 = call double @"acos@FF"(double %return62)
+  %return65 = call double @"sin@FF"(double %return63)
+  %return67 = fcmp ole double %return65, 1.000000e-03
+  %return68 = zext i1 %return67 to i64
+  %return72 = fcmp ogt double %output59, 0x3FC41B2F70DBE03C
+  %return73 = zext i1 %return72 to i64
+  %return74 = call i64 @"and@III"(i64 %return68, i64 %return73)
+  %output77 = call double @"div@FF"(double %output59, double 0x401921FB53C8D4F1)
+  %return78 = call double @"rint@FF"(double %output77)
+  %return79 = fcmp ogt double %return78, 0.000000e+00
+  %return80 = zext i1 %return79 to i64
+  %return81 = call i64 @"and@III"(i64 %return74, i64 %return80)
+  %1 = icmp ne i64 %return81, 0
+  br i1 %1, label %true82, label %false83
+
+end55:                                            ; preds = %end110, %false83, %end51
+  %no_rotation.3 = phi i64 [ %no_rotation.2, %end110 ], [ 1, %false83 ], [ %no_rotation.2, %end51 ]
+  store i64 %no_rotation.3, i64* %_bound___no_rotation
+  %_bound_orient156 = load <4 x double>, <4 x double>* %_bound_orient
+  %return157 = call double @"getcomp@FPI"(<4 x double> %_bound_orient156, i64 3)
+  %return158 = fcmp oeq double %return157, 1.000000e+00
+  br i1 %return158, label %true160, label %end161
+
+true82:                                           ; preds = %true54
+  %cast89 = fptosi double %return78 to i64
+  store i64 %cast89, i64* %_bound___edge_case_cycle_count
+  %_bound_ptnum90 = load i64, i64* %_bound_ptnum
+  %cast91 = sitofp i64 %_bound_ptnum90 to double
+  %output92 = fadd double %cast91, 1.900000e+00
+  %return93 = call double @"chf@FS"(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @3, i64 0, i64 0))
+  %output94 = fadd double %return93, 1.770000e+01
+  %output95 = fmul double %output92, %output94
+  %output98 = fadd double %cast91, 5.400000e+00
+  %_bound_Frame99 = load double, double* %_bound_Frame
+  %output100 = fmul double %output98, %_bound_Frame99
+  %output101 = fadd double %output95, %output100
+  %return102 = call double @"chf@FS"(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @4, i64 0, i64 0))
+  %return103 = call double @"radians@FF"(double 1.000000e+00)
+  %_bound_Frame104 = load double, double* %_bound_Frame
+  %return105 = call double @"mod@FFF"(double %_bound_Frame104, double 2.000000e+00)
+  %return106 = fcmp oeq double %return105, 0.000000e+00
+  %return113 = call double @"rand@FF"(double %output101)
+  br i1 %return106, label %true108, label %false109
+
+false83:                                          ; preds = %true54
+  br label %end55
+
+true108:                                          ; preds = %true82
+  %output115 = fmul double 5.000000e-01, %return102
+  %output117 = fmul double 1.500000e+00, %return102
+  %return118 = call double @"fit01@FFFF"(double %return113, double %output115, double %output117)
+  %output119 = fmul double %return103, %return118
+  br label %end110
+
+false109:                                         ; preds = %true82
+  %return123 = call double @"neg@FF"(double 1.500000e+00)
+  %output125 = fmul double %return123, %return102
+  %return126 = call double @"neg@FF"(double 5.000000e-01)
+  %output128 = fmul double %return126, %return102
+  %return129 = call double @"fit01@FFFF"(double %return113, double %output125, double %output128)
+  %output130 = fmul double %return103, %return129
+  br label %end110
+
+end110:                                           ; preds = %false109, %true108
+  %rotation_offset_3D.0 = phi double [ %output119, %true108 ], [ %output130, %false109 ]
+  %output132 = fmul double 5.000000e-01, %rotation_offset_3D.0
+  %return135 = call <3 x double> @"normalize@VV"(<3 x double> %w.0)
+  %return138 = call double @"sin@FF"(double %output132)
+  %cast139 = call <3 x double> @"set@VF"(double %return138)
+  %output140 = call <3 x double> @"mul@VV"(<3 x double> %return135, <3 x double> %cast139)
+  %return142 = call double @"getcomp@FVI"(<3 x double> %output140, i64 0)
+  %return144 = call double @"getcomp@FVI"(<3 x double> %output140, i64 1)
+  %return146 = call double @"getcomp@FVI"(<3 x double> %output140, i64 2)
+  %return148 = call double @"cos@FF"(double %output132)
+  %return149 = call <4 x double> @"set@PFFFF"(double %return142, double %return144, double %return146, double %return148)
+  %_bound_orient151 = load <4 x double>, <4 x double>* %_bound_orient
+  %return152 = call <4 x double> @"qmultiply@PPP"(<4 x double> %return149, <4 x double> %_bound_orient151)
+  store <4 x double> %return152, <4 x double>* %_bound_orient
+  %return154 = call <4 x double> @"normalize@PP"(<4 x double> %return152)
+  store <4 x double> %return154, <4 x double>* %_bound_orient
+  br label %end55
+
+true160:                                          ; preds = %end55
+  store <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, <4 x double>* %_bound_orient
+  br label %end161
+
+end161:                                           ; preds = %true160, %end55
+  %_bound___rest_orient162 = load <4 x double>, <4 x double>* %_bound___rest_orient
+  %return163 = call double @"getcomp@FPI"(<4 x double> %_bound___rest_orient162, i64 3)
+  %return164 = fcmp oeq double %return163, 1.000000e+00
+  br i1 %return164, label %true166, label %end167
+
+true166:                                          ; preds = %end161
+  store <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, <4 x double>* %_bound___rest_orient
+  br label %end167
+
+end167:                                           ; preds = %true166, %end161
+  %_bound_orient168 = load <4 x double>, <4 x double>* %_bound_orient
+  %return169 = call <9 x double> @"qconvert@3P"(<4 x double> %_bound_orient168)
+  %_bound_ptnum170 = load i64, i64* %_bound_ptnum
+  %return172 = call i64 @"setprimintrinsic@IISI3S"(i64 0, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @5, i64 0, i64 0), i64 %_bound_ptnum170, <9 x double> %return169, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @6, i64 0, i64 0))
+  %_bound_Frame173 = load double, double* %_bound_Frame
+  store double %_bound_Frame173, double* %_bound___frame_ref
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <4 x double> @"point@PISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare double @"point@FISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #2
+
+; Function Attrs: nounwind
+declare double @"dot@FPP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"acos@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"sin@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"and@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"rint@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #2
+
+; Function Attrs: nounwind
+declare double @"radians@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"mod@FFF"(double, double) #2
+
+; Function Attrs: nounwind
+declare double @"rand@FF"(double) #1
+
+; Function Attrs: nounwind
+declare double @"fit01@FFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"cos@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PFFFF"(double, double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"qmultiply@PPP"(<4 x double>, <4 x double>) #2
+
+; Function Attrs: nounwind
+declare <4 x double> @"normalize@PP"(<4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FPI"(<4 x double>, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"qconvert@3P"(<4 x double>) #2
+
+; Function Attrs: nounwind
+declare i64 @"setprimintrinsic@IISI3S"(i64, i8*, i64, <9 x double>, i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %ptnum, <3 x double> %w, double %__frame_ref, double %TimeInc, <4 x double> %orient, i64 %__edge_case_cycle_count, double %Frame, i64 %__no_rotation, <4 x double> %__rest_orient) #1 {
+__llvm_entry:
+  %"<__frame_ref>" = alloca double
+  %"<orient>" = alloca <4 x double>
+  %"<__edge_case_cycle_count>" = alloca i64
+  %"<__no_rotation>" = alloca i64
+  %"<__rest_orient>" = alloca <4 x double>
+  %0 = alloca i64
+  %1 = alloca <3 x double>
+  %2 = alloca double
+  %3 = alloca double
+  store double %__frame_ref, double* %"<__frame_ref>"
+  store <4 x double> %orient, <4 x double>* %"<orient>"
+  store i64 %__edge_case_cycle_count, i64* %"<__edge_case_cycle_count>"
+  store i64 %__no_rotation, i64* %"<__no_rotation>"
+  store <4 x double> %__rest_orient, <4 x double>* %"<__rest_orient>"
+  store i64 %ptnum, i64* %0
+  store <3 x double> %w, <3 x double>* %1
+  store double %TimeInc, double* %2
+  store double %Frame, double* %3
+  call void @"__vex_snippet_snippet@IVFFPIFIP"(i64* %0, <3 x double>* %1, double* %"<__frame_ref>", double* %2, <4 x double>* %"<orient>", i64* %"<__edge_case_cycle_count>", double* %3, i64* %"<__no_rotation>", <4 x double>* %"<__rest_orient>")
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @7, i64 0, i64 0), i64 %ptnum) #3
+  %gvalue6 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), <3 x double> %w) #3
+  %evalue7 = load double, double* %"<__frame_ref>"
+  %gvalue8 = call double @"_export@FSF"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @2, i64 0, i64 0), double %evalue7) #3
+  %gvalue10 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @8, i64 0, i64 0), double %TimeInc) #3
+  %evalue11 = load <4 x double>, <4 x double>* %"<orient>"
+  %gvalue12 = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0), <4 x double> %evalue11) #3
+  %evalue13 = load i64, i64* %"<__edge_case_cycle_count>"
+  %gvalue14 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([24 x i8], [24 x i8]* @9, i64 0, i64 0), i64 %evalue13) #3
+  %gvalue16 = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @10, i64 0, i64 0), double %Frame) #3
+  %evalue17 = load i64, i64* %"<__no_rotation>"
+  %gvalue18 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @11, i64 0, i64 0), i64 %evalue17) #3
+  %evalue19 = load <4 x double>, <4 x double>* %"<__rest_orient>"
+  %gvalue20 = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @12, i64 0, i64 0), <4 x double> %evalue19) #3
+  store i64 %gvalue, i64* @ptnum
+  store <3 x double> %gvalue6, <3 x double>* @w
+  store double %gvalue8, double* @__frame_ref
+  store double %gvalue10, double* @TimeInc
+  store <4 x double> %gvalue12, <4 x double>* @orient
+  store i64 %gvalue14, i64* @__edge_case_cycle_count
+  store double %gvalue16, double* @Frame
+  store i64 %gvalue18, i64* @__no_rotation
+  store <4 x double> %gvalue20, <4 x double>* @__rest_orient
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, <3 x double> zeroinitializer, double 0.000000e+00, double 0.000000e+00, <4 x double> <double 0.000000e+00, double 0.000000e+00, double 0.000000e+00, double 1.000000e+00>, i64 0, double 0.000000e+00, i64 0, <4 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

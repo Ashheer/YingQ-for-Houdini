@@ -1,0 +1,87 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [3 x i8] c"Cd\00"
+@1 = private constant [6 x i8] c"point\00"
+@2 = private constant [6 x i8] c"color\00"
+@3 = private constant [4 x i8] c"Cd2\00"
+@4 = private constant [5 x i8] c"Cd_v\00"
+@5 = private constant [7 x i8] c"vertex\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call i64 @"haspointattrib@IIS"(i64 0, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @0, i64 0, i64 0))
+  %0 = icmp ne i64 %return, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return1 = call i64 @"setattribtypeinfo@IISSS"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([3 x i8], [3 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0))
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %return2 = call i64 @"haspointattrib@IIS"(i64 0, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0))
+  %1 = icmp ne i64 %return2, 0
+  br i1 %1, label %true3, label %end4
+
+true3:                                            ; preds = %end
+  %return5 = call i64 @"setattribtypeinfo@IISSS"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0), i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0))
+  br label %end4
+
+end4:                                             ; preds = %true3, %end
+  %return6 = call i64 @"hasvertexattrib@IIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @4, i64 0, i64 0))
+  %2 = icmp ne i64 %return6, 0
+  br i1 %2, label %true7, label %end8
+
+true7:                                            ; preds = %end4
+  %return9 = call i64 @"setattribtypeinfo@IISSS"(i64 0, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @5, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8], [5 x i8]* @4, i64 0, i64 0), i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0))
+  br label %end8
+
+end8:                                             ; preds = %true7, %end4
+  %return10 = call i64 @"haspointattrib@IIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @4, i64 0, i64 0))
+  %3 = icmp ne i64 %return10, 0
+  br i1 %3, label %true11, label %end12
+
+true11:                                           ; preds = %end8
+  %return13 = call i64 @"setattribtypeinfo@IISSS"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8], [5 x i8]* @4, i64 0, i64 0), i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0))
+  br label %end12
+
+end12:                                            ; preds = %true11, %end8
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"haspointattrib@IIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"setattribtypeinfo@IISSS"(i64, i8*, i8*, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"hasvertexattrib@IIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #1 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

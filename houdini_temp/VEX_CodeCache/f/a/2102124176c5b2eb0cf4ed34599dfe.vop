@@ -1,0 +1,65 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x <3 x double>] zeroinitializer
+@actions = external global <3 x double>*
+@1 = private constant [8 x i8] c"actions\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@[V"(<3 x double>** %_bound_actions) #0 {
+__llvm_entry:
+  %return = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 1.000000e+00, double 0.000000e+00)
+  %return1 = call i64 @"neg@II"(i64 1)
+  %cast = sitofp i64 %return1 to double
+  %return2 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double %cast, double 0.000000e+00)
+  %return3 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 0.000000e+00, double 1.000000e+00)
+  %return6 = call <3 x double> @"set@VFFF"(double 0.000000e+00, double 0.000000e+00, double %cast)
+  %return7 = call <3 x double>* @"array@[V:VVVV"(<3 x double> %return, <3 x double> %return2, <3 x double> %return3, <3 x double> %return6)
+  store <3 x double>* %return7, <3 x double>** %_bound_actions
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double>* @"array@[V:VVVV"(<3 x double>, <3 x double>, <3 x double>, <3 x double>) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double>* %actions) #2 {
+__llvm_entry:
+  %"<actions>" = alloca <3 x double>*
+  store <3 x double>* %actions, <3 x double>** %"<actions>"
+  call void @"__vex_snippet_snippet@[V"(<3 x double>** %"<actions>")
+  %evalue = load <3 x double>*, <3 x double>** %"<actions>"
+  %gvalue = call <3 x double>* @"_export@[VS[V"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0), <3 x double>* %evalue) #3
+  store <3 x double>* %gvalue, <3 x double>** @actions
+  ret void
+}
+
+declare <3 x double>* @"_export@[VS[V"(i8*, <3 x double>*)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double>* getelementptr inbounds ([0 x <3 x double>], [0 x <3 x double>]* @0, i64 0, i64 0))
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

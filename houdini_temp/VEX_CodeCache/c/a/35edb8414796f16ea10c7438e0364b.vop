@@ -1,0 +1,246 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"P\00"
+@1 = private constant [7 x i8] c"pscale\00"
+@2 = private constant [16 x i8] c"stroke_softedge\00"
+@3 = private constant [8 x i8] c"density\00"
+@4 = private constant [14 x i8] c"stroke_method\00"
+@5 = private constant [13 x i8] c"stroke_value\00"
+@6 = private constant [8 x i8] c"replace\00"
+@7 = private constant [4 x i8] c"add\00"
+@8 = private constant [9 x i8] c"multiply\00"
+@9 = private constant [4 x i8] c"max\00"
+@10 = private constant [4 x i8] c"min\00"
+@P = external global <3 x double>
+@density = external global double
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VF"(<3 x double>* %_bound_P, double* %_bound_density) #0 {
+__llvm_entry:
+  %_bound_P1 = load <3 x double>, <3 x double>* %_bound_P
+  %return = call i64* @"pcfind_radius@[IISSFVFI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), double 1.000000e+00, <3 x double> %_bound_P1, double 0.000000e+00, i64 100)
+  %return3 = call i64 @"len@I[I"(i64* %return)
+  %return4 = call i64 @"eq@III"(i64 %return3, i64 0)
+  %0 = icmp ne i64 %return4, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %UnifiedReturnBlock
+
+end:                                              ; preds = %__llvm_entry
+  %return5 = call i64 @"hasprimattrib@IIS"(i64 2, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @2, i64 0, i64 0))
+  %1 = icmp ne i64 %return5, 0
+  br i1 %1, label %true6, label %end7
+
+true6:                                            ; preds = %end
+  %return8 = call double @"prim@FISI"(i64 2, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @2, i64 0, i64 0), i64 0)
+  br label %end7
+
+end7:                                             ; preds = %true6, %end
+  %softedge.0 = phi double [ %return8, %true6 ], [ 1.000000e+00, %end ]
+  br label %cond
+
+cond:                                             ; preds = %end32, %end7
+  %__impl_foreach_index.0 = phi i64 [ 0, %end7 ], [ %output69, %end32 ]
+  %paintamount.0 = phi double [ 0.000000e+00, %end7 ], [ %paintamount.1, %end32 ]
+  %return13 = call i64 @"lt@III"(i64 %__impl_foreach_index.0, i64 %return3)
+  %2 = icmp ne i64 %return13, 0
+  br i1 %2, label %body, label %end14
+
+body:                                             ; preds = %cond
+  %return17 = call i64 @"getcomp@I[II"(i64* %return, i64 %__impl_foreach_index.0)
+  %return19 = call double @"point@FISI"(i64 1, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i64 %return17)
+  %return21 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 %return17)
+  %return23 = call double @"point@FISI"(i64 1, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @3, i64 0, i64 0), i64 %return17)
+  %_bound_P24 = load <3 x double>, <3 x double>* %_bound_P
+  %output = call <3 x double> @"sub@VV"(<3 x double> %_bound_P24, <3 x double> %return21)
+  %return26 = call double @"length@FV"(<3 x double> %output)
+  %return29 = fcmp olt double %return26, %return19
+  br i1 %return29, label %true31, label %end32
+
+end14:                                            ; preds = %cond
+  %return71 = call double @"clamp@FFFF"(double %paintamount.0, double 0.000000e+00, double 1.000000e+00)
+  %return72 = call i8* @"prim@SISI"(i64 2, i8* getelementptr inbounds ([14 x i8], [14 x i8]* @4, i64 0, i64 0), i64 0)
+  %return73 = call double @"prim@FISI"(i64 2, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @5, i64 0, i64 0), i64 0)
+  %return75 = call i64 @"eq@ISS"(i8* %return72, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @6, i64 0, i64 0))
+  %3 = icmp ne i64 %return75, 0
+  br i1 %3, label %true76, label %false77
+
+true31:                                           ; preds = %body
+  %output36 = fsub double 1.000000e+00, %softedge.0
+  %output37 = fmul double %return19, %output36
+  %return38 = fcmp olt double %return26, %output37
+  br i1 %return38, label %true40, label %false
+
+end32:                                            ; preds = %true40, %false, %body
+  %paintamount.1 = phi double [ %output44, %true40 ], [ %output67, %false ], [ %paintamount.0, %body ]
+  %output69 = add i64 %__impl_foreach_index.0, 1
+  br label %cond
+
+true40:                                           ; preds = %true31
+  %output44 = fadd double %paintamount.0, %return23
+  br label %end32
+
+false:                                            ; preds = %true31
+  %output47 = call double @"div@FF"(double %return26, double %return19)
+  %output49 = fsub double %output47, 1.000000e+00
+  %output51 = call double @"div@FF"(double %output49, double %softedge.0)
+  %output52 = fadd double %output51, 1.000000e+00
+  %output55 = fmul double %output52, %output52
+  %output57 = fsub double %output55, 1.000000e+00
+  %output60 = fmul double %output57, %output57
+  %return62 = call double @"clamp@FFFF"(double %output60, double 0.000000e+00, double 1.000000e+00)
+  %output66 = fmul double %return62, %return23
+  %output67 = fadd double %paintamount.0, %output66
+  br label %end32
+
+true76:                                           ; preds = %end14
+  br label %end78
+
+false77:                                          ; preds = %end14
+  %return81 = call i64 @"eq@ISS"(i8* %return72, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @7, i64 0, i64 0))
+  %4 = icmp ne i64 %return81, 0
+  br i1 %4, label %true82, label %false83
+
+end78:                                            ; preds = %false99, %true106, %true98, %true90, %true82, %true76
+  %goalval.0 = phi double [ %return73, %true76 ], [ %output87, %true82 ], [ %output95, %true90 ], [ %return103, %true98 ], [ %return110, %true106 ], [ %return73, %false99 ]
+  %_bound_density111 = load double, double* %_bound_density
+  %return114 = call double @"lerp@FFFF"(double %_bound_density111, double %goalval.0, double %return71)
+  store double %return114, double* %_bound_density
+  br label %UnifiedReturnBlock
+
+true82:                                           ; preds = %false77
+  %_bound_density86 = load double, double* %_bound_density
+  %output87 = fadd double %return73, %_bound_density86
+  br label %end78
+
+false83:                                          ; preds = %false77
+  %return89 = call i64 @"eq@ISS"(i8* %return72, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @8, i64 0, i64 0))
+  %5 = icmp ne i64 %return89, 0
+  br i1 %5, label %true90, label %false91
+
+true90:                                           ; preds = %false83
+  %_bound_density94 = load double, double* %_bound_density
+  %output95 = fmul double %return73, %_bound_density94
+  br label %end78
+
+false91:                                          ; preds = %false83
+  %return97 = call i64 @"eq@ISS"(i8* %return72, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @9, i64 0, i64 0))
+  %6 = icmp ne i64 %return97, 0
+  br i1 %6, label %true98, label %false99
+
+true98:                                           ; preds = %false91
+  %_bound_density102 = load double, double* %_bound_density
+  %return103 = call double @"max@FFF"(double %return73, double %_bound_density102)
+  br label %end78
+
+false99:                                          ; preds = %false91
+  %return105 = call i64 @"eq@ISS"(i8* %return72, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @10, i64 0, i64 0))
+  %7 = icmp ne i64 %return105, 0
+  br i1 %7, label %true106, label %end78
+
+true106:                                          ; preds = %false99
+  %_bound_density109 = load double, double* %_bound_density
+  %return110 = call double @"min@FFF"(double %return73, double %_bound_density109)
+  br label %end78
+
+UnifiedReturnBlock:                               ; preds = %end78, %true
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64* @"pcfind_radius@[IISSFVFI"(i64, i8*, i8*, double, <3 x double>, double, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+declare i64 @"hasprimattrib@IIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+declare double @"prim@FISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind
+declare double @"point@FISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #2
+
+; Function Attrs: nounwind
+declare double @"clamp@FFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+declare i8* @"prim@SISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #2
+
+; Function Attrs: nounwind readnone
+declare double @"max@FFF"(double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"min@FFF"(double, double) #2
+
+; Function Attrs: nounwind
+declare double @"lerp@FFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P, double %density) #1 {
+__llvm_entry:
+  %"<density>" = alloca double
+  %0 = alloca <3 x double>
+  store double %density, double* %"<density>"
+  store <3 x double> %P, <3 x double>* %0
+  call void @"__vex_snippet_snippet@VF"(<3 x double>* %0, double* %"<density>")
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %P) #3
+  %evalue2 = load double, double* %"<density>"
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @3, i64 0, i64 0), double %evalue2) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  store double %gvalue3, double* @density
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

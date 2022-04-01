@@ -1,0 +1,17 @@
+[10:38:54.879] Running Houdini 19.0.531 with PID 65240
+[10:38:54.880] Loading .hip file C:/Users/YingQ/Desktop/VAT/VAT DEMO/conditional_vertex_animation_textures/Conditional VAT.hip.
+Unknown command: viewmaskoverlay
+Unknown command: viewmaskoverlay
+Unknown command: viewmaskoverlay
+Unknown command: viewmaskoverlay
+[10:39:23.151] ROP node path '/obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1/ropnet1/geometry1'
+[10:39:23.151] ROP type name: 'geometry'
+[10:39:23.151] ROP source path: 'Internal'
+[10:39:23.152] Checking for custom output parms '['sopoutput']' on node '/obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1/ropnet1/geometry1'
+[10:39:23.153] Setting callback preframe on /obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1
+[10:39:23.153] Setting callback postwrite on /obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1
+[10:39:23.153] Cooking node using 'hou.Rop.render'
+[10:39:24.070] Setting batch sub index to 0
+[10:39:24.470] Checking for custom output parms '['sopoutput']' on node '/obj/destructible/filecache2/topnet_cache/topfilecache1/ropgeometry1/ropnet1/geometry1'
+[10:39:24.471] PDG_START: 791;0
+65240: Fatal error: Segmentation fault

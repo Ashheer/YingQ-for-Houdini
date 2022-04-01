@@ -1,0 +1,142 @@
+;_name	/out/render_this_first/textures/pscale
+; ModuleID = 'out_render_this_first_textures_pscale'
+source_filename = "out_render_this_first_textures_pscale"
+
+@XRES = external global i64
+@YRES = external global i64
+@AR = external global double
+@R = external global double
+@G = external global double
+@B = external global double
+@A = external global double
+@Cr = external global double
+@Cg = external global double
+@Cb = external global double
+@C4 = external global double
+@PNAME = external global i8*
+@PL = external global i64
+@NP = external global i64
+@PS = external global i64
+@AI = external global i64
+@AS = external global i64
+@I = external global i64
+@NI = external global i64
+@H = external global double
+@S = external global double
+@V = external global double
+@X = external global double
+@Y = external global double
+@IX = external global i64
+@IY = external global i64
+@SF = external global i64
+@EF = external global i64
+@F = external global i64
+@FR = external global i64
+@TIME = external global double
+@TINC = external global double
+@PXSC = external global double
+@0 = private constant [29 x i8] c"op:`opfullpath(chs(\22path\22))`\00"
+@1 = private constant [7 x i8] c"pscale\00"
+@2 = private constant [5 x i8] c"file\00"
+@3 = private constant [6 x i8] c"point\00"
+@4 = private constant [7 x i8] c"vertex\00"
+
+; Function Attrs: nounwind
+define void @out_render_this_first_textures_pscale(i8* %geo, double %target_texture_size, double %numpt, i8* %export_attribute, i64 %m) #0 {
+__llvm_entry:
+  %0 = load i64, i64* @IY
+  %1 = load i64, i64* @IX
+  %2 = load i64, i64* @YRES
+  %output = call double @"div@FF"(double %numpt, double %target_texture_size)
+  %return = call double @"ceil@FF"(double %output)
+  %output7 = fsub double %return, 1.000000e+00
+  %cast = sitofp i64 %0 to double
+  %return10 = call double @"mod@FFF"(double %cast, double %return)
+  %output13 = fsub double %output7, %return10
+  %output16 = fmul double %output13, %target_texture_size
+  %cast18 = fptosi double %output16 to i64
+  %output20 = add i64 %1, %cast18
+  %cast22 = fptosi double %numpt to i64
+  %cast24 = fptosi double %return to i64
+  %output26 = call i64 @"div@II"(i64 %2, i64 %cast24)
+  %output29 = call double @"div@FF"(double %cast, double %return)
+  %return31 = call double @"floor@FF"(double %output29)
+  %output33 = fadd double %return31, 1.000000e+00
+  %cast35 = fptosi double %output33 to i64
+  %output38 = sub i64 %output26, %cast35
+  %output41 = mul i64 %cast22, %output38
+  %output44 = add i64 %output20, %output41
+  %return49 = call i64 @"eq@ISS"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0), i8* getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0))
+  %3 = icmp ne i64 %return49, 0
+  br i1 %3, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %sourcefile.0 = phi i8* [ %geo, %true ], [ getelementptr inbounds ([5 x i8], [5 x i8]* @2, i64 0, i64 0), %__llvm_entry ]
+  %return52 = call i64 @"eq@ISS"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0), i8* getelementptr inbounds ([7 x i8], [7 x i8]* @4, i64 0, i64 0))
+  %4 = icmp ne i64 %return52, 0
+  br i1 %4, label %true53, label %end54
+
+true53:                                           ; preds = %end
+  %return57 = call i64 @"vertexindex@ISII"(i8* %sourcefile.0, i64 %output44, i64 0)
+  br label %end54
+
+end54:                                            ; preds = %true53, %end
+  %elemidx.0 = phi i64 [ %return57, %true53 ], [ %output44, %end ]
+  %return61 = call { double, i64 } @"getattrib@FSSSII"(i8* %sourcefile.0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0), i8* %export_attribute, i64 %elemidx.0)
+  %return62 = extractvalue { double, i64 } %return61, 0
+  %output63 = extractvalue { double, i64 } %return61, 1
+  %return65 = call i64 @"not@II"(i64 %output63)
+  %5 = icmp ne i64 %return65, 0
+  %.return62 = select i1 %5, double 0.000000e+00, double %return62
+  store double %.return62, double* @R
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"ceil@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"mod@FFF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"div@II"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"floor@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"eq@ISS"(i8*, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"vertexindex@ISII"(i8*, i64, i64) #1
+
+; Function Attrs: nounwind
+declare { double, i64 } @"getattrib@FSSSII"(i8*, i8*, i8*, i64) #0
+
+; Function Attrs: nounwind readnone
+declare i64 @"not@II"(i64) #1
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @out_render_this_first_textures_pscale(i8* getelementptr inbounds ([29 x i8], [29 x i8]* @0, i64 0, i64 0), double 0.000000e+00, double 0.000000e+00, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @1, i64 0, i64 0), i64 0)
+  ret void
+}
+
+attributes #0 = { nounwind }
+attributes #1 = { nounwind readnone }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cop2"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

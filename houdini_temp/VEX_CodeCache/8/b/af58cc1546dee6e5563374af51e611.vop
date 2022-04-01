@@ -1,0 +1,66 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [10 x i8] c"transform\00"
+@1 = private constant [4 x i8] c"set\00"
+@__rest_orient = external global <4 x double>
+@ptnum = external global i64
+@2 = private constant [14 x i8] c"__rest_orient\00"
+@3 = private constant [6 x i8] c"ptnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@PI"(<4 x double>* %_bound___rest_orient, i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %_bound___rest_orient1 = load <4 x double>, <4 x double>* %_bound___rest_orient
+  %return = call <9 x double> @"qconvert@3P"(<4 x double> %_bound___rest_orient1)
+  %_bound_ptnum2 = load i64, i64* %_bound_ptnum
+  %return4 = call i64 @"setprimintrinsic@IISI3S"(i64 0, i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i64 0, i64 0), i64 %_bound_ptnum2, <9 x double> %return, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @1, i64 0, i64 0))
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"qconvert@3P"(<4 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"setprimintrinsic@IISI3S"(i64, i8*, i64, <9 x double>, i8*) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<4 x double> %__rest_orient, i64 %ptnum) #2 {
+__llvm_entry:
+  %0 = alloca <4 x double>
+  %1 = alloca i64
+  store <4 x double> %__rest_orient, <4 x double>* %0
+  store i64 %ptnum, i64* %1
+  call void @"__vex_snippet_snippet@PI"(<4 x double>* %0, i64* %1)
+  %gvalue = call <4 x double> @"_export@PSP"(i8* getelementptr inbounds ([14 x i8], [14 x i8]* @2, i64 0, i64 0), <4 x double> %__rest_orient) #3
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @3, i64 0, i64 0), i64 %ptnum) #3
+  store <4 x double> %gvalue, <4 x double>* @__rest_orient
+  store i64 %gvalue4, i64* @ptnum
+  ret void
+}
+
+declare <4 x double> @"_export@PSP"(i8*, <4 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<4 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

@@ -1,0 +1,94 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [13 x i8] c"__max_pscale\00"
+@1 = private constant [12 x i8] c"__max_numpt\00"
+@__max_pscale = external global double
+@__max_numpt = external global i64
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FI"(double* %_bound___max_pscale, i64* %_bound___max_numpt) #0 {
+__llvm_entry:
+  %return = call double @"detail@FISI"(i64 1, i8* getelementptr inbounds ([13 x i8], [13 x i8]* @0, i64 0, i64 0), i64 0)
+  %return1 = call i64 @"detail@IISI"(i64 1, i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0), i64 0)
+  %_bound___max_pscale3 = load double, double* %_bound___max_pscale
+  %return4 = fcmp ogt double %return, %_bound___max_pscale3
+  br i1 %return4, label %true, label %false
+
+true:                                             ; preds = %__llvm_entry
+  br label %end
+
+false:                                            ; preds = %__llvm_entry
+  br label %end
+
+end:                                              ; preds = %false, %true
+  %phi = phi double [ %return, %true ], [ %_bound___max_pscale3, %false ]
+  store double %phi, double* %_bound___max_pscale
+  %_bound___max_numpt9 = load i64, i64* %_bound___max_numpt
+  %return10 = call i64 @"gt@III"(i64 %return1, i64 %_bound___max_numpt9)
+  %0 = icmp ne i64 %return10, 0
+  br i1 %0, label %true11, label %false12
+
+true11:                                           ; preds = %end
+  br label %end13
+
+false12:                                          ; preds = %end
+  br label %end13
+
+end13:                                            ; preds = %false12, %true11
+  %phi16 = phi i64 [ %return1, %true11 ], [ %_bound___max_numpt9, %false12 ]
+  store i64 %phi16, i64* %_bound___max_numpt
+  ret void
+}
+
+; Function Attrs: nounwind
+declare double @"detail@FISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"detail@IISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"gt@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %__max_pscale, i64 %__max_numpt) #1 {
+__llvm_entry:
+  %"<__max_numpt>" = alloca i64
+  %"<__max_pscale>" = alloca double
+  store double %__max_pscale, double* %"<__max_pscale>"
+  store i64 %__max_numpt, i64* %"<__max_numpt>"
+  call void @"__vex_snippet_snippet@FI"(double* %"<__max_pscale>", i64* %"<__max_numpt>")
+  %evalue = load double, double* %"<__max_pscale>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @0, i64 0, i64 0), double %evalue) #3
+  %evalue1 = load i64, i64* %"<__max_numpt>"
+  %gvalue2 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @1, i64 0, i64 0), i64 %evalue1) #3
+  store double %gvalue, double* @__max_pscale
+  store i64 %gvalue2, i64* @__max_numpt
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

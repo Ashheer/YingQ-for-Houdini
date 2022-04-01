@@ -1,0 +1,238 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [0 x i64] zeroinitializer
+@1 = private constant [2 x i8] c"P\00"
+@2 = private constant [2 x i8] c"N\00"
+@3 = private constant [4 x i8] c"set\00"
+@4 = private constant [16 x i8] c"EdgeColumnWidth\00"
+@5 = private constant [5 x i8] c"kill\00"
+@6 = private constant [5 x i8] c"poly\00"
+@7 = private constant [7 x i8] c"CORNER\00"
+@8 = private constant [5 x i8] c"BOOL\00"
+@primnum = external global i64
+@9 = private constant [8 x i8] c"primnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@I"(i64* %_bound_primnum) #0 {
+__llvm_entry:
+  %_bound_primnum1 = load i64, i64* %_bound_primnum
+  %return = call i64* @"primpoints@[III"(i64 0, i64 %_bound_primnum1)
+  %return3 = call i64 @"len@I[I"(i64* %return)
+  br label %cond
+
+cond:                                             ; preds = %end16, %__llvm_entry
+  %__impl_foreach_index.0 = phi i64 [ 0, %__llvm_entry ], [ %output20, %end16 ]
+  %brokenpoint.0 = phi i64* [ getelementptr inbounds ([0 x i64], [0 x i64]* @0, i64 0, i64 0), %__llvm_entry ], [ %brokenpoint.1, %end16 ]
+  %return6 = call i64 @"lt@III"(i64 %__impl_foreach_index.0, i64 %return3)
+  %0 = icmp ne i64 %return6, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %return9 = call i64 @"getcomp@I[II"(i64* %return, i64 %__impl_foreach_index.0)
+  %return11 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return9)
+  %return12 = call i64* @"nearpoints@[IIVF"(i64 0, <3 x double> %return11, double 1.000000e-05)
+  %return14 = call i64 @"len@I[I"(i64* %return12)
+  %return15 = call i64 @"lt@III"(i64 %return14, i64 2)
+  %1 = icmp ne i64 %return15, 0
+  br i1 %1, label %true, label %end16
+
+end:                                              ; preds = %cond
+  %return22 = call i64 @"getcomp@I[II"(i64* %return, i64 1)
+  %return23 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return22)
+  %return25 = call i64 @"getcomp@I[II"(i64* %return, i64 0)
+  %return26 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return25)
+  %output27 = call <3 x double> @"sub@VV"(<3 x double> %return23, <3 x double> %return26)
+  %return28 = call <3 x double> @"normalize@VV"(<3 x double> %output27)
+  %return31 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return25)
+  %return34 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return22)
+  %output35 = call <3 x double> @"sub@VV"(<3 x double> %return31, <3 x double> %return34)
+  %return36 = call <3 x double> @"normalize@VV"(<3 x double> %output35)
+  %return40 = call i64 @"setpointattrib@IISIVS"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @2, i64 0, i64 0), i64 %return25, <3 x double> %return28, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0))
+  %return44 = call i64 @"setpointattrib@IISIVS"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @2, i64 0, i64 0), i64 %return22, <3 x double> %return36, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0))
+  %return48 = call i64 @"find@I[II"(i64* %brokenpoint.0, i64 %return25)
+  %return49 = call i64 @"lt@III"(i64 %return48, i64 0)
+  %2 = icmp ne i64 %return49, 0
+  %return54 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return25)
+  br i1 %2, label %true50, label %false
+
+true:                                             ; preds = %body
+  %output = call i64* @"push@[II"(i64* %brokenpoint.0, i64 %return9)
+  br label %end16
+
+end16:                                            ; preds = %true, %body
+  %brokenpoint.1 = phi i64* [ %output, %true ], [ %brokenpoint.0, %body ]
+  %output20 = add i64 %__impl_foreach_index.0, 1
+  br label %cond
+
+true50:                                           ; preds = %end
+  %return58 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @4, i64 0, i64 0), i64 %return25)
+  %output59 = call <3 x double> @"mul@VV"(<3 x double> %return28, <3 x double> %return58)
+  %output60 = call <3 x double> @"add@VV"(<3 x double> %return54, <3 x double> %output59)
+  br label %end51
+
+false:                                            ; preds = %end
+  br label %end51
+
+end51:                                            ; preds = %false, %true50
+  %newpos3.0 = phi <3 x double> [ %output60, %true50 ], [ %return54, %false ]
+  %return67 = call i64 @"find@I[II"(i64* %brokenpoint.0, i64 %return22)
+  %return68 = call i64 @"lt@III"(i64 %return67, i64 0)
+  %3 = icmp ne i64 %return68, 0
+  %return74 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0), i64 %return22)
+  br i1 %3, label %true69, label %false70
+
+true69:                                           ; preds = %end51
+  %return78 = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([16 x i8], [16 x i8]* @4, i64 0, i64 0), i64 %return22)
+  %output79 = call <3 x double> @"mul@VV"(<3 x double> %return36, <3 x double> %return78)
+  %output80 = call <3 x double> @"add@VV"(<3 x double> %return74, <3 x double> %output79)
+  br label %end71
+
+false70:                                          ; preds = %end51
+  br label %end71
+
+end71:                                            ; preds = %false70, %true69
+  %newpos4.0 = phi <3 x double> [ %output80, %true69 ], [ %return74, %false70 ]
+  %return85 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %newpos3.0)
+  %return87 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %newpos4.0)
+  %return89 = call i64 @"setpointgroup@IISIIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @5, i64 0, i64 0), i64 %return85, i64 1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0))
+  %return91 = call i64 @"setpointgroup@IISIIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @5, i64 0, i64 0), i64 %return87, i64 1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0))
+  %_bound_primnum92 = load i64, i64* %_bound_primnum
+  %return93 = call i64 @"removeprim@IIII"(i64 0, i64 %_bound_primnum92, i64 0)
+  %return94 = call i64 @"addprim@IIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @6, i64 0, i64 0))
+  %return95 = call i64 @"addprim@IIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @6, i64 0, i64 0))
+  %return96 = call i64 @"addprim@IIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @6, i64 0, i64 0))
+  %return97 = call i64 @"geoself@I"()
+  %return101 = call i64 @"addvertex@IIII"(i64 %return97, i64 %return94, i64 %return25)
+  %return102 = call i64 @"geoself@I"()
+  %return105 = call i64 @"addvertex@IIII"(i64 %return102, i64 %return94, i64 %return85)
+  %return106 = call i64 @"geoself@I"()
+  %return109 = call i64 @"addvertex@IIII"(i64 %return106, i64 %return95, i64 %return87)
+  %return110 = call i64 @"geoself@I"()
+  %return114 = call i64 @"addvertex@IIII"(i64 %return110, i64 %return95, i64 %return22)
+  %return115 = call i64 @"geoself@I"()
+  %return118 = call i64 @"addvertex@IIII"(i64 %return115, i64 %return96, i64 %return85)
+  %return119 = call i64 @"geoself@I"()
+  %return122 = call i64 @"addvertex@IIII"(i64 %return119, i64 %return96, i64 %return87)
+  %return124 = call i64 @"setprimgroup@IISIIS"(i64 0, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @7, i64 0, i64 0), i64 %return94, i64 1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0))
+  %return126 = call i64 @"setprimgroup@IISIIS"(i64 0, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @7, i64 0, i64 0), i64 %return95, i64 1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0))
+  %return130 = call i64 @"find@I[II"(i64* %brokenpoint.0, i64 %return25)
+  %return131 = call i64 @"ge@III"(i64 %return130, i64 0)
+  %4 = icmp ne i64 %return131, 0
+  br i1 %4, label %true132, label %end133
+
+true132:                                          ; preds = %end71
+  %return136 = call i64 @"setpointgroup@IISIIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @8, i64 0, i64 0), i64 %return25, i64 1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0))
+  br label %end133
+
+end133:                                           ; preds = %true132, %end71
+  %return140 = call i64 @"find@I[II"(i64* %brokenpoint.0, i64 %return22)
+  %return141 = call i64 @"ge@III"(i64 %return140, i64 0)
+  %5 = icmp ne i64 %return141, 0
+  br i1 %5, label %true142, label %end143
+
+true142:                                          ; preds = %end133
+  %return146 = call i64 @"setpointgroup@IISIIS"(i64 0, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @8, i64 0, i64 0), i64 %return22, i64 1, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @3, i64 0, i64 0))
+  br label %end143
+
+end143:                                           ; preds = %true142, %end133
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64* @"primpoints@[III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"len@I[I"(i64*) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"getcomp@I[II"(i64*, i64) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+declare i64* @"nearpoints@[IIVF"(i64, <3 x double>, double) #1
+
+; Function Attrs: nounwind readnone
+declare i64* @"push@[II"(i64*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"sub@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"setpointattrib@IISIVS"(i64, i8*, i64, <3 x double>, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"find@I[II"(i64*, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"add@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+declare i64 @"addpoint@IIV"(i64, <3 x double>) #1
+
+; Function Attrs: nounwind
+declare i64 @"setpointgroup@IISIIS"(i64, i8*, i64, i64, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"removeprim@IIII"(i64, i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"addprim@IIS"(i64, i8*) #1
+
+; Function Attrs: nounwind
+declare i64 @"geoself@I"() #1
+
+; Function Attrs: nounwind
+declare i64 @"addvertex@IIII"(i64, i64, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"setprimgroup@IISIIS"(i64, i8*, i64, i64, i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"ge@III"(i64, i64) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %primnum) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  store i64 %primnum, i64* %0
+  call void @"__vex_snippet_snippet@I"(i64* %0)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @9, i64 0, i64 0), i64 %primnum) #3
+  store i64 %gvalue, i64* @primnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

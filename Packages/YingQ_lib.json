@@ -1,4 +1,5 @@
-{
+{   
+    "load_package_once": true,  
     "path":"$LibPath/YingQ-for-Houdini",
     "env": [
        {

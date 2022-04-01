@@ -1,0 +1,110 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@__magnitude = external global double
+@pivot = external global <3 x double>
+@__pv16n = external global <3 x double>
+@0 = private constant [12 x i8] c"__magnitude\00"
+@1 = private constant [6 x i8] c"pivot\00"
+@2 = private constant [8 x i8] c"__pv16n\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@FVV"(double* %_bound___magnitude, <3 x double>* %_bound_pivot, <3 x double>* %_bound___pv16n) #0 {
+__llvm_entry:
+  %_bound_pivot1 = load <3 x double>, <3 x double>* %_bound_pivot
+  %return = call double @"length@FV"(<3 x double> %_bound_pivot1)
+  store double %return, double* %_bound___magnitude
+  %_bound_pivot2 = load <3 x double>, <3 x double>* %_bound_pivot
+  %return3 = call <3 x double> @"normalize@VV"(<3 x double> %_bound_pivot2)
+  %return5 = call double @"getcomp@FVI"(<3 x double> %return3, i64 0)
+  %return7 = call double @"getcomp@FVI"(<3 x double> %return3, i64 1)
+  %return9 = call double @"getcomp@FVI"(<3 x double> %return3, i64 2)
+  %return10 = call <3 x double> @"set@VFFF"(double %return5, double %return7, double %return9)
+  store <3 x double> %return10, <3 x double>* %_bound___pv16n
+  %return12 = call double @"getcomp@FVI"(<3 x double> %return10, i64 1)
+  %return13 = fcmp olt double %return12, 0.000000e+00
+  br i1 %return13, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound___magnitude15 = load double, double* %_bound___magnitude
+  %return16 = call i64 @"neg@II"(i64 1)
+  %cast = sitofp i64 %return16 to double
+  %output = fmul double %_bound___magnitude15, %cast
+  store double %output, double* %_bound___magnitude
+  %_bound___pv16n17 = load <3 x double>, <3 x double>* %_bound___pv16n
+  %cast19 = call <3 x double> @"set@VI"(i64 %return16)
+  %output20 = call <3 x double> @"mul@VV"(<3 x double> %_bound___pv16n17, <3 x double> %cast19)
+  store <3 x double> %output20, <3 x double>* %_bound___pv16n
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+; Function Attrs: nounwind
+declare double @"length@FV"(<3 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"normalize@VV"(<3 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #2
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VI"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"mul@VV"(<3 x double>, <3 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(double %__magnitude, <3 x double> %pivot, <3 x double> %__pv16n) #1 {
+__llvm_entry:
+  %"<__pv16n>" = alloca <3 x double>
+  %0 = alloca <3 x double>
+  %"<__magnitude>" = alloca double
+  store double %__magnitude, double* %"<__magnitude>"
+  store <3 x double> %__pv16n, <3 x double>* %"<__pv16n>"
+  store <3 x double> %pivot, <3 x double>* %0
+  call void @"__vex_snippet_snippet@FVV"(double* %"<__magnitude>", <3 x double>* %0, <3 x double>* %"<__pv16n>")
+  %evalue = load double, double* %"<__magnitude>"
+  %gvalue = call double @"_export@FSF"(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @0, i64 0, i64 0), double %evalue) #3
+  %gvalue3 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), <3 x double> %pivot) #3
+  %evalue4 = load <3 x double>, <3 x double>* %"<__pv16n>"
+  %gvalue5 = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @2, i64 0, i64 0), <3 x double> %evalue4) #3
+  store double %gvalue, double* @__magnitude
+  store <3 x double> %gvalue3, <3 x double>* @pivot
+  store <3 x double> %gvalue5, <3 x double>* @__pv16n
+  ret void
+}
+
+declare double @"_export@FSF"(i8*, double)
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(double 0.000000e+00, <3 x double> zeroinitializer, <3 x double> zeroinitializer)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

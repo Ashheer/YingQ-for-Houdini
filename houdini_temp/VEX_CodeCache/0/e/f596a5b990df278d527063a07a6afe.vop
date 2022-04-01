@@ -1,0 +1,116 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@P = external global <3 x double>
+@xform = external global <9 x double>
+@angle = external global double
+@0 = private constant [2 x i8] c"P\00"
+@1 = private constant [6 x i8] c"xform\00"
+@2 = private constant [6 x i8] c"angle\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@V3F"(<3 x double>* %_bound_P, <9 x double>* %_bound_xform, double* %_bound_angle) #0 {
+__llvm_entry:
+  %_bound_P1 = load <3 x double>, <3 x double>* %_bound_P
+  %_bound_xform2 = load <9 x double>, <9 x double>* %_bound_xform
+  %output = call <3 x double> @"mul@V3"(<3 x double> %_bound_P1, <9 x double> %_bound_xform2)
+  store <3 x double> %output, <3 x double>* %_bound_P
+  %return = call <3 x double> @"getbbox_center@VI"(i64 0)
+  %_bound_P3 = load <3 x double>, <3 x double>* %_bound_P
+  %return4 = call double @"getcomp@FVI"(<3 x double> %_bound_P3, i64 2)
+  %return6 = call double @"getcomp@FVI"(<3 x double> %return, i64 2)
+  %output7 = fsub double %return4, %return6
+  %return9 = call double @"getcomp@FVI"(<3 x double> %_bound_P3, i64 0)
+  %return11 = call double @"getcomp@FVI"(<3 x double> %return, i64 0)
+  %output12 = fsub double %return9, %return11
+  %return13 = call double @"atan2@FFF"(double %output7, double %output12)
+  %return14 = call double @"neg@FF"(double %return13)
+  %return15 = call double @"degrees@FF"(double %return14)
+  %return17 = call i64 @"neg@II"(i64 206)
+  %cast = sitofp i64 %return17 to double
+  %output18 = fsub double %return15, %cast
+  %return20 = call double @"mod@FFF"(double %output18, double 3.600000e+02)
+  store double %return20, double* %_bound_angle
+  %_bound_P21 = load <3 x double>, <3 x double>* %_bound_P
+  %_bound_xform22 = load <9 x double>, <9 x double>* %_bound_xform
+  %return23 = call <9 x double> @"invert@33"(<9 x double> %_bound_xform22)
+  %output24 = call <3 x double> @"mul@V3"(<3 x double> %_bound_P21, <9 x double> %return23)
+  store <3 x double> %output24, <3 x double>* %_bound_P
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"mul@V3"(<3 x double>, <9 x double>) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"getbbox_center@VI"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"atan2@FFF"(double, double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #2
+
+; Function Attrs: nounwind
+declare double @"degrees@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"mod@FFF"(double, double) #2
+
+; Function Attrs: nounwind readnone
+declare <9 x double> @"invert@33"(<9 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P, <9 x double> %xform, double %angle) #1 {
+__llvm_entry:
+  %"<angle>" = alloca double
+  %0 = alloca <9 x double>
+  %"<P>" = alloca <3 x double>
+  store <3 x double> %P, <3 x double>* %"<P>"
+  store double %angle, double* %"<angle>"
+  store <9 x double> %xform, <9 x double>* %0
+  call void @"__vex_snippet_snippet@V3F"(<3 x double>* %"<P>", <9 x double>* %0, double* %"<angle>")
+  %evalue = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %evalue) #3
+  %gvalue3 = call <9 x double> @"_export@3S3"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @1, i64 0, i64 0), <9 x double> %xform) #3
+  %evalue4 = load double, double* %"<angle>"
+  %gvalue5 = call double @"_export@FSF"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0), double %evalue4) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  store <9 x double> %gvalue3, <9 x double>* @xform
+  store double %gvalue5, double* @angle
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare <9 x double> @"_export@3S3"(i8*, <9 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, <9 x double> zeroinitializer, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readnone }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

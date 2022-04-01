@@ -1,0 +1,162 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [2 x i8] c"P\00"
+@P = external global <3 x double>
+@Time = external global double
+@1 = private constant [5 x i8] c"Time\00"
+
+; Function Attrs: alwaysinline nounwind
+define private <4 x double> @"slerpdebug@PPPF"(<4 x double>* %q0, <4 x double>* %q1, double* %bias) #0 {
+__llvm_entry:
+  %q11 = load <4 x double>, <4 x double>* %q1
+  %q02 = load <4 x double>, <4 x double>* %q0
+  %return17 = call double @"dot@FPP"(<4 x double> %q02, <4 x double> %q11)
+  %q018 = load <4 x double>, <4 x double>* %q0
+  %q119 = load <4 x double>, <4 x double>* %q1
+  %return20 = call double @"qdistance@FPP"(<4 x double> %q018, <4 x double> %q119)
+  %return22 = call double @"sin@FF"(double %return20)
+  %return24 = fcmp olt double %return17, 0.000000e+00
+  br i1 %return24, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %return27 = call <4 x double> @"qinvert@PP"(<4 x double> %q11)
+  %return29 = call i64 @"neg@II"(i64 1)
+  %cast = sitofp i64 %return29 to double
+  %output = fmul double %return22, %cast
+  %output31 = fsub double 0x400921FB4D12D84A, %return20
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  %subtended.0 = phi double [ %output31, %true ], [ %return20, %__llvm_entry ]
+  %sinsubtended.0 = phi double [ %output, %true ], [ %return22, %__llvm_entry ]
+  %tempq1.0 = phi <4 x double> [ %return27, %true ], [ %q11, %__llvm_entry ]
+  %bias32 = load double, double* %bias
+  %output33 = fsub double 1.000000e+00, %bias32
+  %output35 = fmul double %output33, %subtended.0
+  %return36 = call double @"sin@FF"(double %output35)
+  %q037 = load <4 x double>, <4 x double>* %q0
+  %cast38 = call <4 x double> @"set@PF"(double %return36)
+  %output39 = call <4 x double> @"mul@PP"(<4 x double> %cast38, <4 x double> %q037)
+  %output42 = fmul double %bias32, %subtended.0
+  %return43 = call double @"sin@FF"(double %output42)
+  %cast45 = call <4 x double> @"set@PF"(double %return43)
+  %output46 = call <4 x double> @"mul@PP"(<4 x double> %cast45, <4 x double> %tempq1.0)
+  %output47 = call <4 x double> @"add@PP"(<4 x double> %output39, <4 x double> %output46)
+  %cast49 = call <4 x double> @"set@PF"(double %sinsubtended.0)
+  %output50 = call <4 x double> @"div@PP"(<4 x double> %output47, <4 x double> %cast49)
+  ret <4 x double> %output50
+}
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FPI"(<4 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"set@VFFF"(double, double, double) #1
+
+; Function Attrs: nounwind
+declare double @"dot@FPP"(<4 x double>, <4 x double>) #2
+
+; Function Attrs: nounwind
+declare double @"qdistance@FPP"(<4 x double>, <4 x double>) #2
+
+; Function Attrs: nounwind readnone
+declare double @"sin@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"qinvert@PP"(<4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"neg@II"(i64) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"mul@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"add@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"div@PP"(<4 x double>, <4 x double>) #1
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VF"(<3 x double>* %_bound_P, double* %_bound_Time) #0 {
+__llvm_entry:
+  %0 = alloca <4 x double>
+  %1 = alloca <4 x double>
+  %2 = alloca double
+  %return = call <3 x double> @"point@VISI"(i64 0, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 0)
+  %return1 = call <3 x double> @"point@VISI"(i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), i64 0)
+  %return3 = call double @"getcomp@FVI"(<3 x double> %return, i64 0)
+  %return5 = call double @"getcomp@FVI"(<3 x double> %return, i64 1)
+  %return7 = call double @"getcomp@FVI"(<3 x double> %return, i64 2)
+  %return9 = call <4 x double> @"set@PFFFF"(double %return3, double %return5, double %return7, double 0.000000e+00)
+  %return11 = call double @"getcomp@FVI"(<3 x double> %return1, i64 0)
+  %return13 = call double @"getcomp@FVI"(<3 x double> %return1, i64 1)
+  %return15 = call double @"getcomp@FVI"(<3 x double> %return1, i64 2)
+  %return17 = call <4 x double> @"set@PFFFF"(double %return11, double %return13, double %return15, double 0.000000e+00)
+  store <4 x double> %return9, <4 x double>* %0
+  store <4 x double> %return17, <4 x double>* %1
+  %_bound_Time20 = load double, double* %_bound_Time
+  store double %_bound_Time20, double* %2
+  %slerpdebug = call <4 x double> @"slerpdebug@PPPF"(<4 x double>* %0, <4 x double>* %1, double* %2)
+  %cast = call <3 x double> @"set@VP"(<4 x double> %slerpdebug)
+  store <3 x double> %cast, <3 x double>* %_bound_P
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"point@VISI"(i64, i8*, i64) #2
+
+; Function Attrs: nounwind readnone
+declare double @"getcomp@FVI"(<3 x double>, i64) #1
+
+; Function Attrs: nounwind readnone
+declare <4 x double> @"set@PFFFF"(double, double, double, double) #1
+
+; Function Attrs: nounwind
+declare <3 x double> @"set@VP"(<4 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %P, double %Time) #2 {
+__llvm_entry:
+  %0 = alloca double
+  %"<P>" = alloca <3 x double>
+  store <3 x double> %P, <3 x double>* %"<P>"
+  store double %Time, double* %0
+  call void @"__vex_snippet_snippet@VF"(<3 x double>* %"<P>", double* %0)
+  %evalue = load <3 x double>, <3 x double>* %"<P>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @0, i64 0, i64 0), <3 x double> %evalue) #3
+  %gvalue3 = call double @"_export@FSF"(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @1, i64 0, i64 0), double %Time) #3
+  store <3 x double> %gvalue, <3 x double>* @P
+  store double %gvalue3, double* @Time
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare double @"_export@FSF"(i8*, double)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, double 0.000000e+00)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

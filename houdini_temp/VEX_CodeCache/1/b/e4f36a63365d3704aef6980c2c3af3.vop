@@ -1,0 +1,131 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [7 x i8] c"Points\00"
+@1 = private constant [2 x i8] c"m\00"
+@2 = private constant [3 x i8] c"n1\00"
+@3 = private constant [3 x i8] c"n2\00"
+@4 = private constant [3 x i8] c"n3\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @__vex_snippet_snippet() #0 {
+__llvm_entry:
+  %return = call i64 @"chi@IS"(i8* getelementptr inbounds ([7 x i8], [7 x i8]* @0, i64 0, i64 0))
+  %cast = sitofp i64 %return to double
+  %output = call double @"div@FF"(double 0x401921FB54442D18, double %cast)
+  %return2 = call double @"chf@FS"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @1, i64 0, i64 0))
+  %return3 = call double @"chf@FS"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @2, i64 0, i64 0))
+  %return4 = call double @"chf@FS"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @3, i64 0, i64 0))
+  %return5 = call double @"chf@FS"(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @4, i64 0, i64 0))
+  br label %cond
+
+cond:                                             ; preds = %body, %__llvm_entry
+  %angle.0 = phi double [ 0.000000e+00, %__llvm_entry ], [ %output55, %body ]
+  %pos.0 = phi <3 x double> [ zeroinitializer, %__llvm_entry ], [ %output50, %body ]
+  %i.0 = phi i64 [ 0, %__llvm_entry ], [ %output58, %body ]
+  %return8 = call i64 @"lt@III"(i64 %i.0, i64 %return)
+  %0 = icmp ne i64 %return8, 0
+  br i1 %0, label %body, label %end
+
+body:                                             ; preds = %cond
+  %output11 = fmul double %return2, %angle.0
+  %output12 = call double @"div@FF"(double %output11, double 4.000000e+00)
+  %return13 = call double @"cos@FF"(double %output12)
+  %output15 = call double @"div@FF"(double %return13, double 1.000000e+00)
+  %return16 = call double @"abs@FF"(double %output15)
+  %return18 = call double @"pow@FFF"(double %return16, double %return4)
+  %return23 = call double @"sin@FF"(double %output12)
+  %output25 = call double @"div@FF"(double %return23, double 1.000000e+00)
+  %return26 = call double @"abs@FF"(double %output25)
+  %return28 = call double @"pow@FFF"(double %return26, double %return5)
+  %output31 = fadd double %return18, %return28
+  %output33 = call double @"div@FF"(double 1.000000e+00, double %return3)
+  %return34 = call double @"neg@FF"(double %output33)
+  %return35 = call double @"pow@FFF"(double %output31, double %return34)
+  %return37 = call double @"cos@FF"(double %angle.0)
+  %output39 = fmul double %return37, %return35
+  %return40 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %pos.0, double %output39, i64 0)
+  %output42 = extractvalue { double, <3 x double> } %return40, 1
+  %return44 = call double @"sin@FF"(double %angle.0)
+  %output46 = fmul double %return44, %return35
+  %return48 = call { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %output42, double %output46, i64 1)
+  %output50 = extractvalue { double, <3 x double> } %return48, 1
+  %return52 = call i64 @"addpoint@IIV"(i64 0, <3 x double> %output50)
+  %output55 = fadd double %angle.0, %output
+  %output58 = add i64 %i.0, 1
+  br label %cond
+
+end:                                              ; preds = %cond
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i64 @"chi@IS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare double @"div@FF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"chf@FS"(i8*) #1
+
+; Function Attrs: nounwind readnone
+declare i64 @"lt@III"(i64, i64) #1
+
+; Function Attrs: nounwind readnone
+declare double @"cos@FF"(double) #1
+
+; Function Attrs: nounwind
+declare double @"abs@FF"(double) #2
+
+; Function Attrs: nounwind readnone
+declare double @"pow@FFF"(double, double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"sin@FF"(double) #1
+
+; Function Attrs: nounwind readnone
+declare double @"neg@FF"(double) #1
+
+; Function Attrs: alwaysinline
+define private { double, <3 x double> } @"setcomp@FVFI"(<3 x double> %rw11, double %rw22, i64 %rw33) #3 {
+__llvm_entry:
+  %rw16 = call <3 x double> @"setcomp@VFI"(<3 x double> %rw11, double %rw22, i64 %rw33)
+  %mrv = insertvalue { double, <3 x double> } undef, double %rw22, 0
+  %mrv9 = insertvalue { double, <3 x double> } %mrv, <3 x double> %rw16, 1
+  ret { double, <3 x double> } %mrv9
+}
+
+; Function Attrs: nounwind readnone
+declare <3 x double> @"setcomp@VFI"(<3 x double>, double, i64) #1
+
+; Function Attrs: nounwind
+declare i64 @"addpoint@IIV"(i64, <3 x double>) #2
+
+; Function Attrs: nounwind
+define void @__vex_snippet() #2 {
+__llvm_entry:
+  call void @__vex_snippet_snippet()
+  ret void
+}
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet()
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind readnone }
+attributes #2 = { nounwind }
+attributes #3 = { alwaysinline }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

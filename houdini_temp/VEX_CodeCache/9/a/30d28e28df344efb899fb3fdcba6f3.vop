@@ -1,0 +1,64 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@group_InsideFaces = external global i64
+@primnum = external global i64
+@0 = private constant [18 x i8] c"group_InsideFaces\00"
+@1 = private constant [8 x i8] c"primnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@II"(i64* %_bound_group_InsideFaces, i64* %_bound_primnum) #0 {
+__llvm_entry:
+  %_bound_group_InsideFaces1 = load i64, i64* %_bound_group_InsideFaces
+  %0 = icmp ne i64 %_bound_group_InsideFaces1, 0
+  br i1 %0, label %true, label %end
+
+true:                                             ; preds = %__llvm_entry
+  %_bound_primnum2 = load i64, i64* %_bound_primnum
+  %return = call i64 @"removeprim@IIII"(i64 0, i64 %_bound_primnum2, i64 1)
+  br label %end
+
+end:                                              ; preds = %true, %__llvm_entry
+  ret void
+}
+
+; Function Attrs: nounwind
+declare i64 @"removeprim@IIII"(i64, i64, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(i64 %group_InsideFaces, i64 %primnum) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  %1 = alloca i64
+  store i64 %group_InsideFaces, i64* %0
+  store i64 %primnum, i64* %1
+  call void @"__vex_snippet_snippet@II"(i64* %0, i64* %1)
+  %gvalue = call i64 @"_export@ISI"(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @0, i64 0, i64 0), i64 %group_InsideFaces) #2
+  %gvalue4 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([8 x i8], [8 x i8]* @1, i64 0, i64 0), i64 %primnum) #2
+  store i64 %gvalue, i64* @group_InsideFaces
+  store i64 %gvalue4, i64* @primnum
+  ret void
+}
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(i64 0, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end

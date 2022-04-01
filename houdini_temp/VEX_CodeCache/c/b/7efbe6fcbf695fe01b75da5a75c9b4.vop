@@ -1,0 +1,61 @@
+;_name	<vexpression>
+; ModuleID = '__vex_snippet'
+source_filename = "__vex_snippet"
+
+@0 = private constant [6 x i8] c"pivot\00"
+@__last_frame_pivot = external global <3 x double>
+@ptnum = external global i64
+@1 = private constant [19 x i8] c"__last_frame_pivot\00"
+@2 = private constant [6 x i8] c"ptnum\00"
+
+; Function Attrs: alwaysinline nounwind
+define private void @"__vex_snippet_snippet@VI"(<3 x double>* %_bound___last_frame_pivot, i64* %_bound_ptnum) #0 {
+__llvm_entry:
+  %_bound_ptnum1 = load i64, i64* %_bound_ptnum
+  %return = call <3 x double> @"primintrinsic@VISI"(i64 0, i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i64 %_bound_ptnum1)
+  store <3 x double> %return, <3 x double>* %_bound___last_frame_pivot
+  ret void
+}
+
+; Function Attrs: nounwind
+declare <3 x double> @"primintrinsic@VISI"(i64, i8*, i64) #1
+
+; Function Attrs: nounwind
+define void @__vex_snippet(<3 x double> %__last_frame_pivot, i64 %ptnum) #1 {
+__llvm_entry:
+  %0 = alloca i64
+  %"<__last_frame_pivot>" = alloca <3 x double>
+  store <3 x double> %__last_frame_pivot, <3 x double>* %"<__last_frame_pivot>"
+  store i64 %ptnum, i64* %0
+  call void @"__vex_snippet_snippet@VI"(<3 x double>* %"<__last_frame_pivot>", i64* %0)
+  %evalue = load <3 x double>, <3 x double>* %"<__last_frame_pivot>"
+  %gvalue = call <3 x double> @"_export@VSV"(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @1, i64 0, i64 0), <3 x double> %evalue) #2
+  %gvalue3 = call i64 @"_export@ISI"(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @2, i64 0, i64 0), i64 %ptnum) #2
+  store <3 x double> %gvalue, <3 x double>* @__last_frame_pivot
+  store i64 %gvalue3, i64* @ptnum
+  ret void
+}
+
+declare <3 x double> @"_export@VSV"(i8*, <3 x double>)
+
+declare i64 @"_export@ISI"(i8*, i64)
+
+define void @__shader_default_arguments() {
+__llvm_entry:
+  call void @__vex_snippet(<3 x double> zeroinitializer, i64 0)
+  ret void
+}
+
+attributes #0 = { alwaysinline nounwind }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!context = !{!0}
+!version = !{!1}
+!precision = !{!2}
+
+!0 = !{!"cvex"}
+!1 = !{!"19.0.531"}
+!2 = !{!"64"}
+
+;_code_end
