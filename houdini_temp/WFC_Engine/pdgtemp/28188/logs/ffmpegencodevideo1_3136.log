@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "C:/Users/YingQ/3D/Houdini_libs/YingQ-for-Houdini/houdini_temp/WFC_Engine/pdgtemp/28188/scripts/ffmpeg.py", line 156, in <module>
-    main()
-  File "C:/Users/YingQ/3D/Houdini_libs/YingQ-for-Houdini/houdini_temp/WFC_Engine/pdgtemp/28188/scripts/ffmpeg.py", line 149, in main
-    encodevideo(workitem)
-  File "C:/Users/YingQ/3D/Houdini_libs/YingQ-for-Houdini/houdini_temp/WFC_Engine/pdgtemp/28188/scripts/ffmpeg.py", line 113, in encodevideo
-    with open(framelistfile.local_path, 'w') as framefile:
-PermissionError: [Errno 13] Permission denied: 'C:/Users/YingQ/Desktop/wfc_project_files_Paul_Unity/TOPOUTPUT'

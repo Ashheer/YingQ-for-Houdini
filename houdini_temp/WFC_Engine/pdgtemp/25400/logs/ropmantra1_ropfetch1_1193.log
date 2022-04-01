@@ -1,18 +1,0 @@
-[19:14:43.644] Running Houdini 19.0.531 with PID 24972
-[19:14:43.644] Loading .hip file C:/Users/YingQ/Desktop/wfc_project_files_Paul_Unity/WFC_Engine.hip.
-Unknown command: viewmaskoverlay
-Unknown command: viewmaskoverlay
-Unknown command: viewmaskoverlay
-Unknown command: viewmaskoverlay
-[19:14:46.986] ROP node path '/obj/topnet1/ropmantra1/ropnet1/mantra1'
-[19:14:46.986] ROP type name: 'ifd'
-[19:14:46.986] ROP source path: 'oplib:/Driver/ifd?Driver/ifd'
-[19:14:46.986] ROP library path: 'C:/PROGRA~1/SIDEEF~1/Houdini 19.0.531/houdini/otls/OPlibDriver.hda'
-[19:14:46.986] Checking for custom output parms '['vm_picture']' on node '/obj/topnet1/ropmantra1/ropnet1/mantra1'
-[19:14:46.987] Cooking node using 'hou.Rop.render'
-ALF_PROGRESS 0%
-ALF_PROGRESS 1%
-ALF_PROGRESS 2%
-ALF_PROGRESS 3%
-
-*** Terminated by PDG scheduler

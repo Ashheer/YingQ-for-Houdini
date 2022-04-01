@@ -1,4 +1,0 @@
-vector dir = noise((@P + @Frame + @ptnum * 100) * chf("randomness")) - set(0.5, 0.5, 0.5);
-dir = normalize(dir);
-
-@P += dir * chf("speed");

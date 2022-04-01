@@ -1,6 +1,0 @@
-custom_toolbox.gad = 
-{
-    LAYOUT(horizontal) JUSTIFY(left,center) HSTRETCH
-
-    TOGGLE_BUTTON "Keep position" VALUE(keep_offset.val) HELP("Keep position on creation.");
-}

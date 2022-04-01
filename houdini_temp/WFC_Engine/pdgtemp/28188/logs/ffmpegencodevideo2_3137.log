@@ -1,3 +1,0 @@
-[19:46:20.017] Executing command: ffmpeg -y -r 10.0/1 -f concat -safe 0 -apply_trc iec61966_2_1 -i "C:/Users/YingQ/3D/Houdini_libs/YingQ-for-Houdini/houdini_temp/WFC_Engine/pdgtemp/28188/WFC_Engine.ffmpegencodevideo2.0_framelist.txt" -c:v libx264 -vf "fps=10.0,format=yuv420p" -movflags faststart "C:/Users/YingQ/Desktop/wfc_project_files_Paul_Unity/video/WFC_Engine.ffmpegencodevideo2.0.mp4"
-[19:46:20.054] ERROR: could not find executable ffmpeg
-[19:46:20.054] Are you sure you have ffmpeg installed?

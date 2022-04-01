@@ -22,7 +22,7 @@
          }
        },  
        {
-          "HOUDINI_TEMP_DIR" : "$YingQLib/houdini_temp"
+          "HOUDINI_TEMP_DIR" : "C:/Users/YingQ/3D/Houdini_libs/Others/houdini_temp"
        },
        {
          "HOUDINI_DSO_PATH": {

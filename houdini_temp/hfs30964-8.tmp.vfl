@@ -1,5 +1,0 @@
-﻿float angle = fit(dot(set(0, 1, 0), @N), -1.0, 1.0, 0.0, 180.0);
-
-if(angle > chf("angle")){
-    setprimgroup(0, "top", @primnum, 1);
-}
