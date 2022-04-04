@@ -8,6 +8,11 @@
   <toolshelf name="sop_ying" label="YingQ Sop">
     <memberTool name="deleteNode"/>
     <memberTool name="import"/>
+    <memberTool name="deleteTemplate"/>
+    <memberTool name="openhip"/>
+    <memberTool name="updateMode"/>
+    <memberTool name="matchParm"/>
+    <memberTool name="splitPrim"/>
   </toolshelf>
 
   <tool name="deleteNode" label="Delete Selected Node" icon="hicon:/SVGIcons.index?NETVIEW_image_delete.svg">
@@ -259,5 +264,99 @@ if app is None:
     app = QApplication(sys.argv)      
 geoUI = UI()
 geoUI.show()]]></script>
+  </tool>
+
+  <tool name="deleteTemplate" label="Delete Template" icon="hicon:/SVGIcons.index?BUTTONS_list_delete.svg">
+    <script scriptType="python"><![CDATA[def off_templateflags(current):
+    for child in current.children():
+        node = hou.node(child.path())
+        if "setTemplateFlag" in dir(node): #é²æ­¢æä¸äºèç¹æ²¡ætemplate flag, æ¯å¦rop fbx output
+            node.setTemplateFlag(False)
+
+
+def main():
+    editor = hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor)
+    current_node = editor.pwd()
+    if current_node.childTypeCategory() == hou.sopNodeTypeCategory():
+        off_templateflags(current_node)
+
+
+main()]]></script>
+  </tool>
+
+  <tool name="updateMode" label="Change Update Mode" icon="hicon:/SVGIcons.index?VOP_twoway.svg">
+    <script scriptType="python"><![CDATA[import hou
+
+mode_name = hou.updateModeSetting().name()
+mode = hou.updateMode.Manual if mode_name == "AutoUpdate" else hou.updateMode.AutoUpdate
+hou.setUpdateMode(mode)]]></script>
+  </tool>
+
+  <tool name="openhip" label="Open hip path" icon="hicon:/SVGIcons.index?ENGINE_open_in_houdini.svg">
+    <script scriptType="python"><![CDATA[from pathlib import Path
+import webbrowser
+
+p = Path(hou.getenv("HIP"))
+webbrowser.open(p.absolute())]]></script>
+  </tool>
+
+  <tool name="matchParm" label="Match Same Node Parmeters" icon="hicon:/SVGIcons.index?FUI_ShowParms.svg">
+    <script scriptType="python"><![CDATA[def matchParams():
+    import hou
+
+    value = 0
+    sel = hou.selectedNodes()
+
+    if len(sel) == 2:
+        source = sel[0]
+        dest = sel[1]
+        for param in source.parms():
+            sourceParm = param.name()  # source parameter
+            destParm = dest.parm(sourceParm)  # Destination parameter
+            try:
+                destParm.deleteAllKeyframes()
+            except:
+                value += 1
+            try:
+                sourceLanguage = param.expressionLanguage()
+                destParm.setExpression(param.expression(), language=sourceLanguage)
+
+            except:
+                value += 1
+            try:
+                destParm.set(param.eval())
+            except:
+                value += 1
+            try:
+                destParm.set(param.unexpandedString())
+            except:
+                value += 1
+
+            if param.isLocked() == 'True':
+                destParm.lock(on)
+    else:
+        print ('Select two nodes to match parameters')
+
+matchParams()]]></script>
+  </tool>
+
+  <tool name="splitPrim" label="Split Prim With Group" icon="hicon:/SVGIcons.index?DOP_split.svg">
+    <script scriptType="python"><![CDATA[import hou
+
+selectedNodes = hou.selectedNodes()
+
+for n in selectedNodes:
+    groups = n.geometry().primGroups()
+    for group in groups:
+    
+        blastNode = n.createOutputNode('blast')
+        blastNode.setName(group.name())
+        blastNode.parm('group').set(group.name())
+        blastNode.parm('negate').set(1) 
+        
+        outNull = blastNode.createOutputNode('null')
+        outNull.setName('OUT_' + group.name())
+        
+        outNull.setColor(hou.Color([1,0,0]))]]></script>
   </tool>
 </shelfDocument>
