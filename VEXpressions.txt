@@ -1,29 +1,92 @@
 attribwrangle/snippet
-	Normals Preset Test
-	@N = @N;
+	Color Random
+
+	float seed = 0.99 + ch("seed");
+	float r = hscript_rand ( @ptnum + seed + sin ( 13 * @ptnum + 19 * seed ) );
+
+	float s = fit ( random ( 17 * @ptnum + 91 * seed ), 0, 1, ch("srangex"), ch("srangey"));
+	s = ch("s") * ( 1 - ch("srand") ) + s * ch("srand") * ch("s");
+
+	float val = fit ( random ( 173 * @ptnum + 11 * seed ), 0, 1, ch("vrangex"), ch("vrangey"));
+	val = ch("v") * ( 1 - ch("vrand") ) + val * ch("vrand") * ch("v");
+
+	@Cd = hsvtorgb ( ( r + 0.618033988749895 ) % 1, s, val );
 
 attribwrangle/snippet
-	Laplacian
-	int pts [ ] = i[]@ptlist;
 
-	vector center = 0;
-	foreach ( int pt; pts )
-	{
-    	vector p = point ( 0, "P", pt );
-    	center += p;
+	Attribute Transfer
+	//Attribute Transfer
+
+	int handle = pcopen(@OpInput2, "P", @P, chf("rad"), chi("num"));
+	vector lookup_P = pcfilter(handle, "P"); //Average P
+	vector lookup_attrib = pcfilter(handle, chs("attrib")); //Average of attrib
+
+	i@many = pcnumfound(handle);
+	if(i@many>0){
+	`chs("attrib_cast")` = lookup_attrib; //Supply the attribute you want to transfer
+	v@P = lerp(v@P, lookup_P, chf("mix"));
 	}
-	center = center / len ( pts );
 
-	/*朝向周围里变化剧烈的点移动*/
+attribwrangle/snippet
 
-	int hitprim = -1;
-	vector hituv = 0;
+	Add Normal
+	@N = @N;
 
-	xyzdist ( 1, center, hitprim, hituv, ch("maxdist") );
-	center = primuv ( 1, "P", hitprim, hituv );
 
-	@P = center;
+attribwrangle/snippet
+	Convert to polyline
 
+    	for(int i = 0; i< @numvtx; i++){
+    
+   	int vtx1,vtx2;
+    	if(i<@numvtx-1){
+    	vtx1 = i;
+    	vtx2 = i+1;
+    	}
+    	else{
+    	vtx1 = i;
+    	vtx2 = 0;
+    	}
+    
+    
+    	int lvtx1 = vertexindex(0,@primnum,vtx1);
+    	int pt1 = vertexpoint(0,lvtx1);
+    
+    	int lvtx2 = vertexindex(0,@primnum,vtx2);
+    	int pt2 = vertexpoint(0,lvtx2);
+    
+    	int prim = addprim(0,“polyline”);
+    	addvertex(0,prim,pt1);
+    	addvertex(0,prim,pt2);
+    	}
+    
+    	removeprim(0,@primnum,0);
+    
+    	//Convert to polgon to polyline. Use clean sop to remove overlap.
+    	//Ends convert one primitive to one polyline。These code convert one segment to one polyline after that can do something foreach segment.
+
+
+
+
+attribwrangle/snippet
+	Convert sphere primitive intrinsic transform to pscale	
+
+	matrix3 m3 = primintrinsic(0, 'transform', @primnum);
+
+	vector extracted = cracktransform(0, 0, 2, { 0, 0, 0 }, m3);
+
+	@pscale = max(extracted,max(extracted,extracted));
+
+
+attribwrangle/snippet
+	Clip
+
+	float dotprod = dot(chv("clip_dir"),normalize(chv("clip_pos")-@P));
+
+	if( dotprod > 0 )
+	{
+	removepoint(geoself(),@ptnum);
+	}
 
 attribwrangle/snippet
 	PcfindFilter
