@@ -1,0 +1,29 @@
+#ifndef __HOUTU_VFL__
+#define __HOUTU_VFL__
+
+#include "houtu.vfl"
+
+// 创建一条两点之间的连线
+//in: geometry int, 2 point ids
+//out: a new line in the geometry
+int addline(const int geo, p1, p2)
+{
+    int prim = addprim(geo, "polyline");
+    addvertex(geo, prim, p1);
+    addvertex(geo, prim, p2);
+    return prim;
+}
+
+// 创建一条曲线
+// note: 请使用detail(only once)模式运行, 否则会生成多条曲线
+int connect_to_curve(const int geo)
+{
+    int prim = addprim(geo, "polyline");
+    for (int i = 0; i < npoints(geo); i++)
+    {
+        addvertex(geo, prim, i);
+    }
+    return prim;
+}
+
+#endif

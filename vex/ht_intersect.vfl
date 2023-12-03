@@ -1,0 +1,38 @@
+#ifndef __HOUTU_INTERSECT__
+#define __HOUTU_INTERSECT__
+
+// 碰撞检测相关自定义vex函数
+
+#include "ht_intersect.vfl"
+
+// =================================================
+// 参数和返回值, 参考官方vex函数 int intersect(<geometry>geometry, vector orig, vector dir, vector &p, vector &uvw)
+// 作用是找出射线碰撞点, 和官方版区别是过滤出从外向内碰撞的情况
+// 例如从鸡蛋内部向外不会检测到碰撞, 反过来向内可以检测到碰撞
+// =================================================
+int ht_intersect_only_enter(const int geo; vector orig; vector dir; export vector p; export vector uvw)
+{
+    int prim = -1;
+    vector dirN = normalize(dir);
+
+    vector poses[];
+    int prims[];
+    vector uvws[];
+    intersect_all(geo, "", orig, dir, poses, prims, uvws);
+    foreach (int i; int primId; prims)
+    {
+        prim = primId;
+        uvw = uvws[i];
+        p = poses[i];
+        // 必须有N属性
+        vector hitN = normalize(primuv(geo, "N", prim, uvw));
+        if (dot(dirN, hitN) < 0)
+        {
+            // 第一个达到条件, 停止运行
+            return prim;
+        }
+    }
+    return -1;
+}
+
+#endif
